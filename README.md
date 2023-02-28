@@ -1,5 +1,4 @@
-# blocksearchengine
-Blockchain Search Engine
+# Blockchain Search Engine
 
 Website : http://blocksearchengine.com/
 
