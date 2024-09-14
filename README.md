@@ -1,5 +1,5 @@
 # Blockchain Search Engine
 
-Website : http://blocksearchengine.com/
+Website : https://www.web3lens.com/
 
 Developer : Ritwick Halder (ritwick.com)
