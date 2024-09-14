@@ -220,3 +220,8 @@ input[type="text"]::placeholder {
 input[type="text"]:-ms-input-placeholder {
 	text-align: center;
 }
+
+.header-main {
+	background-color: #0277BD !important;
+    opacity: 0.9 !important;
+}

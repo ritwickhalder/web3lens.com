@@ -1,5 +1,5 @@
-document.write( ' <nav class=\"navbar fixed-top navbar-expand-lg navbar-dark bg-dark\">\n' );
-document.write( '  <a class=\"navbar-brand\" href=\"index.html\"><img src="logo.png">&nbsp BlockSearchEngine.com</a>\n' );
+document.write( ' <nav class=\"navbar fixed-top header-main navbar-expand-lg navbar-dark bg-dark\">\n' );
+document.write( '  <a class=\"navbar-brand\" href=\"index.html\"><img src="logo.png">&nbsp Web3Lens.com</a>\n' );
 document.write( '  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavDropdown\" aria-controls=\"navbarNavDropdown\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n' );
 document.write( '    <span class=\"navbar-toggler-icon\"></span>\n' );
 document.write( '  </button>\n' );
