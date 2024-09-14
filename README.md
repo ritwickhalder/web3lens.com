@@ -2,4 +2,4 @@
 
 Website : https://www.web3lens.com/
 
-Developer : Ritwick Halder (ritwick.com)
+Developer : Ritwick Halder (https://www.ritwick.com)
