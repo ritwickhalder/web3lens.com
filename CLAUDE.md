@@ -23,6 +23,17 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
   while `legacy/` exists; the parity test (`scripts/test/chains-parity.test.ts`) compares it to the legacy code.
 - When ROADMAP Phase 1 starts editing chains by hand, delete the converter, the parity test and `legacy/` together.
 
+## Vercel
+
+- Project `web3lens.com` (`prj_cl8g6PcciesZGyDYcgT1B1VYD1Cl`) in team "Ritwick Halder's projects"
+  (slug `ritwick-halders-projects`, id `team_9Ufuw89VeVBTBguTpE5rk0S3`). Git-connected to
+  `github.com/ritwickhalder/web3lens.com`, so pushes deploy.
+- This folder is linked with `vercel link` (`.vercel/project.json`, gitignored). `vercel env pull` refreshes
+  `.env.local` (holds `VERCEL_OIDC_TOKEN`; never commit or print it).
+- Vercel MCP (from the Vercel Claude Code plugin) is account-wide: pass the team and project ids above to its tools
+  (`get_project`, `list_deployments`, `get_runtime_errors`, `get_runtime_logs`, ...) rather than looking them up.
+  Ask before any MCP write (deploys, env vars, domains, DNS).
+
 ## Git
 
 - Don't commit or push unless asked.
