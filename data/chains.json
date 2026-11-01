@@ -144,7 +144,7 @@
   },
   {
     "id": "polygon",
-    "name": "Polygon (matic)",
+    "name": "Polygon",
     "legacyValue": "Polygon",
     "explorer": {
       "kind": "url",

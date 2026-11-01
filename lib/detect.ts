@@ -62,11 +62,11 @@ export function detectQuery(query: string): Detection | null {
   return null;
 }
 
-/** Example queries shown on the home page; each must be detected as `expect`. */
+/** Example queries shown on the home page; each must be detected as `expect`. `icon` is the chain id whose logo is shown. */
 export const EXAMPLES = [
-  { query: 'vitalik.eth', expect: 'ENS name', note: 'ENS name' },
-  { query: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', expect: 'EVM address', note: 'USDC contract' },
-  { query: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', expect: 'Bitcoin address', note: 'Bitcoin genesis address' },
+  { query: 'vitalik.eth', expect: 'ENS name', note: "Vitalik Buterin's ENS", icon: 'ethereum' },
+  { query: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', expect: 'EVM address', note: 'USDC contract', icon: 'usdc' },
+  { query: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', expect: 'Bitcoin address', note: 'Bitcoin genesis address', icon: 'bitcoin' },
   // Not a Tron example yet: the legacy Tron route always opens /transaction/ (fixed in ROADMAP Phase 1).
-  { query: 'rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh', expect: 'XRP address', note: 'XRP genesis account' },
+  { query: 'rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh', expect: 'XRP address', note: 'XRP genesis account', icon: 'ripple' },
 ] as const;

@@ -17,11 +17,11 @@ export default function SiteMapPage() {
         <ul className="space-y-1">
           {PAGES.map((page) => (
             <li key={page.href}>
-              <span className="text-fg/80">{page.label}</span> · <Link href={page.href}>{`${host}${page.href}`}</Link>
+              <span className="font-bold text-fg">{page.label}</span> · <Link href={page.href}>{`${host}${page.href}`}</Link>
             </li>
           ))}
           <li>
-            <span className="text-fg/80">Sitemap XML file</span> · <a href="/sitemap.xml">{`${host}/sitemap.xml`}</a>
+            <span className="font-bold text-fg">Sitemap XML file</span> · <a href="/sitemap.xml">{`${host}/sitemap.xml`}</a>
           </li>
         </ul>
       </InfoSection>

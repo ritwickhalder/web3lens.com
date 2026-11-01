@@ -1,5 +1,5 @@
 import { PageShell } from '@/components/content/PageShell';
-import { GuideAccordion } from '@/components/guide/GuideAccordion';
+import { GuideSections, GuideToc } from '@/components/guide/GuideSections';
 import { GUIDE } from '@/content/guide';
 import { pageMetadata } from '@/lib/metadata';
 
@@ -15,12 +15,13 @@ export default function BlockchainGuidePage() {
       eyebrow="Learn"
       title={
         <>
-          Crypto & blockchain, <span className="text-lens">explained.</span>
+          Crypto & blockchain, <span className="text-accent">explained.</span>
         </>
       }
       lead={`A beginner's guide in ${GUIDE.length} short answers, most with a video. Start at the top or jump to what you need.`}
+      aside={<GuideToc entries={GUIDE} />}
     >
-      <GuideAccordion entries={GUIDE} />
+      <GuideSections entries={GUIDE} />
     </PageShell>
   );
 }

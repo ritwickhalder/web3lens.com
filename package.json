@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.4.3",
-    "lucide-react": "^0.575.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@web3icons/react": "^4.1.24",
     "next": "16.4.3",
     "nodemailer": "^10.3.1",
     "react": "19.2.3",

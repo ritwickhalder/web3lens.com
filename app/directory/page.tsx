@@ -13,11 +13,11 @@ export const metadata = pageMetadata({
 export default function DirectoryPage() {
   return (
     <PageShell
-      width="wide"
+      layout="stacked"
       eyebrow="Directory"
       title={
         <>
-          The crypto internet, <span className="text-lens">curated.</span>
+          The crypto internet, <span className="text-accent">curated.</span>
         </>
       }
       lead="YouTube channels, forums, news sites and communities worth following. Filter by type or search by name."

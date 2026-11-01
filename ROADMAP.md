@@ -15,8 +15,9 @@ Still to do: confirm parity on the live deploy, then delete `legacy/`.
 
 The biggest user-facing jump: people shouldn't have to know which chain an address belongs to.
 
-- ✅ **Redesign.** Dark "observatory" identity, lime + violet accents, Unbounded / Geist / Geist Mono, new logo
-  and icons, card-based directory, videos that load on demand. Tokens live in `app/globals.css`.
+- ✅ **Redesign.** Navy + cyan identity with redline annotations, Manrope throughout, line-art lens logo,
+  official coin logos (`@web3icons/react`) and Phosphor duotone illustrations, centred one-line hero with a
+  wide search bar, popular-chain tiles, wide 1560px layouts. No gradients. Tokens live in `app/globals.css`.
 - ✅ **Auto-detect what was pasted** (`lib/detect.ts`): EVM, Bitcoin, Litecoin, BCH, Dogecoin, Tron, XRP,
   Cosmos, Cardano, Stellar, Solana, ENS/.sol names, tx hashes, block numbers. Pre-selects the chain and offers
   alternatives. Next: more Cosmos-SDK prefixes (`osmo1`, `celestia1`…), Unstoppable domains, Polkadot SS58.

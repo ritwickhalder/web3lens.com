@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Copy } from 'lucide-react';
+import { Check, Copy } from '@phosphor-icons/react/dist/ssr';
 import { useState } from 'react';
 
 /** Copies `value` to the clipboard and shows a tick for a moment. */
@@ -23,9 +23,9 @@ export function CopyButton({ value, label = 'Copy' }: { value: string; label?: s
       onClick={copy}
       aria-label={copied ? 'Copied' : label}
       title={copied ? 'Copied' : label}
-      className="grid size-8 shrink-0 place-items-center rounded-lg border border-line text-muted transition-colors hover:border-lime/50 hover:text-lime"
+      className="grid size-9 shrink-0 place-items-center rounded-md border border-line text-muted transition-colors hover:border-accent hover:text-accent"
     >
-      {copied ? <Check className="size-4 text-lime" /> : <Copy className="size-4" />}
+      {copied ? <Check weight="bold" className="size-4 text-accent" /> : <Copy weight="duotone" className="size-4" />}
     </button>
   );
 }

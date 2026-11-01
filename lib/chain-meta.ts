@@ -38,6 +38,7 @@ export const POPULAR_CHAIN_IDS = [
   'litecoin',
   'dogecoin',
   'polkadot',
+  'stellar',
 ];
 
 export function chainMeta(id: string, name: string): ChainMeta {

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronDown, Search } from 'lucide-react';
+import { CaretDown, Check, MagnifyingGlass } from '@phosphor-icons/react/dist/ssr';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
@@ -115,22 +115,22 @@ export function ChainCombobox({
         aria-expanded={open}
         aria-label={`Blockchain: ${value.name}${auto ? ' (auto-detected)' : ''}. Change blockchain`}
         onClick={() => (open ? setOpen(false) : openList())}
-        className="flex h-12 w-full items-center gap-2.5 rounded-xl px-2.5 text-left transition-colors hover:bg-white/[0.05] sm:w-56"
+        className="flex h-16 w-full items-center gap-3 rounded-xl px-3 text-left transition-colors hover:bg-ink-3 md:w-64"
       >
-        <ChainGlyph id={value.id} name={value.name} />
+        <ChainGlyph id={value.id} name={value.name} size="md" />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-[15px] font-medium text-fg">{value.name}</span>
-          <span className="block text-[10px] uppercase tracking-[0.14em] text-faint">
-            {auto ? <span className="text-lime">Auto-detected</span> : 'Blockchain'}
+          <span className="block text-[11px] font-bold uppercase tracking-[0.12em] text-faint">
+            {auto ? <span className="text-accent">Auto-detected</span> : 'Blockchain'}
           </span>
+          <span className="block truncate text-base font-bold text-fg">{value.name}</span>
         </span>
-        <ChevronDown aria-hidden className={`size-4 shrink-0 text-muted transition-transform ${open ? 'rotate-180' : ''}`} />
+        <CaretDown aria-hidden weight="bold" className={`size-4 shrink-0 text-muted transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
-        <div className="glass absolute inset-x-0 top-[calc(100%+10px)] z-50 overflow-hidden rounded-2xl bg-ink-2/95 text-left shadow-2xl shadow-black/70 sm:right-auto sm:w-[380px]">
-          <div className="flex items-center gap-2 border-b border-line px-3.5">
-            <Search aria-hidden className="size-4 text-muted" />
+        <div className="absolute inset-x-0 top-[calc(100%+12px)] z-50 overflow-hidden rounded-xl border border-line-strong bg-ink-2 text-left shadow-2xl shadow-black/60 md:right-auto md:w-[420px]">
+          <div className="flex items-center gap-2.5 border-b border-line px-4">
+            <MagnifyingGlass aria-hidden weight="bold" className="size-4 text-muted" />
             <input
               ref={inputRef}
               role="combobox"
@@ -147,15 +147,15 @@ export function ChainCombobox({
                 setActive(0);
               }}
               onKeyDown={onKeyDown}
-              className="h-12 w-full bg-transparent text-sm text-fg outline-none placeholder:text-faint"
+              className="h-14 w-full bg-transparent text-[15px] font-semibold text-fg outline-none placeholder:font-medium placeholder:text-faint"
             />
           </div>
-          <div ref={listRef} id={listId} role="listbox" aria-label="Blockchains" className="max-h-80 overflow-y-auto p-1.5">
-            {options.length === 0 && <p className="px-3 py-6 text-center text-sm text-muted">No chain matches "{filter}"</p>}
+          <div ref={listRef} id={listId} role="listbox" aria-label="Blockchains" className="max-h-[24rem] overflow-y-auto p-2">
+            {options.length === 0 && <p className="px-3 py-6 text-center text-sm font-semibold text-muted">No chain matches "{filter}"</p>}
             {sections.map((section) =>
               section.chains.length === 0 ? null : (
                 <div key={section.title} role="group" aria-label={section.title}>
-                  <p className="eyebrow px-2.5 pb-1.5 pt-3 !text-faint">{section.title}</p>
+                  <p className="label px-3 pb-2 pt-3 !text-faint">{section.title}</p>
                   {section.chains.map((chain) => {
                     index += 1;
                     const i = index;
@@ -168,14 +168,14 @@ export function ChainCombobox({
                         aria-selected={chain.id === value.id}
                         onPointerEnter={() => setActive(i)}
                         onClick={() => pick(chain)}
-                        className={`flex cursor-pointer items-center gap-3 rounded-lg px-2.5 py-2 text-sm ${
-                          i === active ? 'bg-white/[0.07] text-fg' : 'text-fg/80'
+                        className={`flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-[15px] font-semibold ${
+                          i === active ? 'bg-ink-3 text-fg' : 'text-fg/85'
                         }`}
                       >
                         <ChainGlyph id={chain.id} name={chain.name} size="sm" />
                         <span className="flex-1 truncate">{chain.name}</span>
-                        {chain.fallback && <span className="text-[10px] uppercase tracking-wider text-faint">limited</span>}
-                        {chain.id === value.id && <span className="size-1.5 rounded-full bg-lime" />}
+                        {chain.fallback && <span className="text-[11px] font-bold uppercase tracking-wider text-redline/80">limited</span>}
+                        {chain.id === value.id && <Check aria-hidden weight="bold" className="size-4 text-accent" />}
                       </div>
                     );
                   })}

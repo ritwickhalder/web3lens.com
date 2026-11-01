@@ -18,7 +18,7 @@ export default function ContactPage() {
         <>
           Feedback, a chain we're missing, a broken explorer link or a feature idea? Use the form below, or reach us on
           our{' '}
-          <a href={SITE.facebook} target="_blank" rel="noopener noreferrer" className="text-lime underline-offset-4 hover:underline">
+          <a href={SITE.facebook} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-4 hover:underline">
             Facebook page
           </a>
           .

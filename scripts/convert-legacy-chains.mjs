@@ -23,6 +23,8 @@ const LABEL_FIXES = {
   'Basic Attenti...': 'Basic Attention Token',
   'Experience Po...': 'Experience Points',
   'High Performa...': 'High Performance Blockchain',
+  // Shorter display names for chains shown in tight UI.
+  'Polygon (matic)': 'Polygon',
 };
 
 function legacyToExplorer(value, label, record) {

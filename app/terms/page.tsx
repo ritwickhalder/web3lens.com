@@ -19,18 +19,18 @@ export default function TermsPage() {
         all these conditions mentioned below. Please read them carefully. {name} is not responsible for the privacy
         policies or content of the websites to which it links.
       </Intro>
-      <InfoSection heading="Privacy Policy">
+      <InfoSection index={1} heading="Privacy Policy">
         Please read our <Link href="/privacy-policy">'Privacy Policy'</Link> page to understand our policies and
         practices.
       </InfoSection>
-      <InfoSection heading="Licensing">
+      <InfoSection index={2} heading="Licensing">
         Some logos that appear on {name} are of a company, organization, website are protected by copyright and/or
         trademark. It is believed that the use of low-resolution images of logos to illustrate the company/website as a
         visual link to the respective hyperlink, qualifies as fair use under Copyright Law. Any featured website on{' '}
         {domain} that wish to be removed from {name}, may <Link href="/contact">'contact us'</Link> and we shall remove
         the content.
       </InfoSection>
-      <InfoSection heading="Terms of Use">
+      <InfoSection index={3} heading="Terms of Use">
         It is your responsibility as a user to safeguard your public and private data. Initiating or taking part in any
         malicious behaviour towards {domain}, its users or any third party via our website is strictly forbidden. Any
         malicious/obtrusive actions on part of the user, as judged by {name}, shall result in the prompt termination of
@@ -40,7 +40,7 @@ export default function TermsPage() {
         presence at all times for any illegal activities and so offenders shall be prosecuted. {name} reserves its right
         to modify any part or all of these Terms at any time for any reason.
       </InfoSection>
-      <InfoSection heading="Disclaimer of Warranties">
+      <InfoSection index={4} heading="Disclaimer of Warranties">
         This site is provided by {name} on an "as is" and "as available" basis. {name} makes no representations or
         warranties of any kind, explicitly, implicitly or implied, as to the operation of this site or the
         information/content included on this site. You hereby agree to use this site is at your own risk. To the full
@@ -53,7 +53,7 @@ export default function TermsPage() {
         some or all of the above disclaimers, exclusions, or limitations may not apply to you, and you might have
         additional rights.
       </InfoSection>
-      <InfoSection heading="Your Feedback">
+      <InfoSection index={5} heading="Your Feedback">
         If you have any questions or suggestions regarding terms of use, please feel free to contact us at our{' '}
         <Link href="/contact">'contact us'</Link> page to let us know anything you wish to convey and we'll get back to
         you as soon as possible. Thank you.
