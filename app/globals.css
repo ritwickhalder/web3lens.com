@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/*
+ * Colours carried over from the legacy Bootstrap site. Everything themed goes through
+ * these tokens so the redesign (ROADMAP Phase 1) can re-theme in one place.
+ */
+@theme {
+  --font-sans: Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-signika), Arial, sans-serif;
+
+  --color-page: #0f88f2;
+  --color-nav: #0277bd;
+  --color-donate: #b3e5fc;
+  --color-guide: #0097a7;
+  --color-directory: #f1f8e9;
+  --color-directory-head: #f0f4c3;
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-success-border: #c3e6cb;
+  --color-light-bg: #fefefe;
+  --color-light-text: #818182;
+  --color-light-border: #fdfdfe;
+}
+
+body {
+  background: var(--color-page);
+  color: #212529;
+  font-family: var(--font-sans);
+  text-rendering: auto;
+}
+
+/* Inline links inside ported legacy copy were blue in the original pages. */
+.prose-legacy a {
+  color: blue;
+}
+.prose-legacy a:hover {
+  text-decoration: underline;
+}

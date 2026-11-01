@@ -1,0 +1,34 @@
+{
+  "name": "web3lens",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "chains:convert": "node scripts/convert-legacy-chains.mjs",
+    "test": "tsx --test scripts/test/*.test.ts"
+  },
+  "dependencies": {
+    "@next/third-parties": "^16.4.3",
+    "lucide-react": "^0.575.0",
+    "next": "16.4.3",
+    "nodemailer": "^10.3.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.13",
+    "typescript": "^5"
+  }
+}
