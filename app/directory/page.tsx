@@ -1,4 +1,5 @@
-import { DirectoryTable, type DirectoryEntry } from '@/components/directory/DirectoryTable';
+import { PageShell } from '@/components/content/PageShell';
+import { DirectoryGrid, type DirectoryEntry } from '@/components/directory/DirectoryGrid';
 import entries from '@/data/directory.json';
 import { pageMetadata } from '@/lib/metadata';
 
@@ -11,9 +12,17 @@ export const metadata = pageMetadata({
 
 export default function DirectoryPage() {
   return (
-    <main className="min-h-screen bg-directory px-4 pb-32 pt-[16vh] sm:px-[8%] lg:px-[12%]">
-      <h1 className="sr-only">Crypto Directory</h1>
-      <DirectoryTable entries={entries as DirectoryEntry[]} />
-    </main>
+    <PageShell
+      width="wide"
+      eyebrow="Directory"
+      title={
+        <>
+          The crypto internet, <span className="text-lens">curated.</span>
+        </>
+      }
+      lead="YouTube channels, forums, news sites and communities worth following. Filter by type or search by name."
+    >
+      <DirectoryGrid entries={entries as DirectoryEntry[]} />
+    </PageShell>
   );
 }

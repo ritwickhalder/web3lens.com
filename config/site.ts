@@ -5,6 +5,7 @@ export const SITE = {
   domain: 'Web3Lens.com',
   url: 'https://www.web3lens.com',
   title: 'Web3Lens - Blockchain Explorer | Blockchain Search Engine',
+  tagline: 'Look up anything, on any chain.',
   description:
     "Web3Lens.com is a search engine and blockchain explorer for all cryptocurrencies. You can search any cryptocurrency addresses, transaction hash, history / details, data, blocks, etc. It's also a web directory of all crypto related groups, news channels and communities.",
   shortDescription:
@@ -16,11 +17,11 @@ export const SITE = {
 } as const;
 
 export const DONATION_ADDRESSES = [
-  { label: 'Ethereum/Polygon', address: '0x0E678aCf9988e284f448C6224Ea36bb9E9d56803' },
+  { label: 'Ethereum / Polygon', address: '0x0E678aCf9988e284f448C6224Ea36bb9E9d56803' },
   { label: 'Cosmos', address: 'cosmos18hjgges2wkmntaewy84974yqdeh45u40z2wxug' },
 ] as const;
 
-export type NavLink = { label: string; href: string; external?: boolean };
+export type NavLink = { label: string; href: string; external?: boolean; description?: string };
 
 export const NEWS_LINKS: NavLink[] = [
   { label: 'Reddit - Bitcoin', href: 'https://www.reddit.com/r/Bitcoin/' },
@@ -39,6 +40,16 @@ export const NEWS_LINKS: NavLink[] = [
   { label: 'Investing Cryptocurrency News', href: 'https://www.investing.com/news/cryptocurrency-news' },
   { label: 'Entrepreneur Cryptocurrency News', href: 'https://www.entrepreneur.com/topic/cryptocurrency' },
 ].map((l) => ({ ...l, external: true }));
+
+/** Primary navigation. */
+export const MAIN_NAV: NavLink[] = [
+  { label: 'Search', href: '/' },
+  { label: 'Directory', href: '/directory' },
+  { label: 'Learn', href: '/blockchain-guide' },
+  { label: 'About', href: '/about' },
+];
+
+export const MARKET_LINK: NavLink = { label: 'CoinMarketCap', href: 'https://coinmarketcap.com/', external: true };
 
 export const INFO_LINKS: NavLink[] = [
   { label: 'Bookmark this page', href: '/bookmark' },

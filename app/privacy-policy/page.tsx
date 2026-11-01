@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <PageShell title="PRIVACY POLICY">
+    <PageShell eyebrow="Legal" title="Privacy Policy">
       <Intro>
         Here at {SITE.name} we take your privacy very seriously. This privacy policy describes what personal information
         we collect about you and how we use it here.

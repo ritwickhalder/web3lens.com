@@ -3,25 +3,35 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Dependency-free replacement for the legacy particles.js background (legacy/pscript1.js
- * config): white dots that drift, link to neighbours within 150px, link to the pointer on
- * hover, and gain 4 more dots on click. Density matches particles.js (80 per 800 area units).
+ * "Node network" canvas behind the hero (successor of the legacy particles.js background):
+ * nodes in the brand colours drift, link to neighbours within 150px, link to the pointer on
+ * hover, and gain 4 more nodes on click. Dependency-free; a static frame under reduced motion.
  */
 const CONFIG = {
-  density: 80 / 800,
-  maxRadius: 2,
-  opacity: 0.5,
-  speed: 2,
+  density: 45 / 800,
+  maxRadius: 1.8,
+  opacity: 0.75,
+  speed: 0.9,
   linkDistance: 150,
-  linkOpacity: 0.4,
-  grabDistance: 150,
+  linkOpacity: 0.16,
+  grabDistance: 170,
   pushCount: 4,
 };
 
-type Particle = { x: number; y: number; vx: number; vy: number; r: number };
+/** lime, aqua, violet, white — weighted towards the quieter colours. */
+const COLORS = ['198,242,78', '82,227,207', '143,124,255', '143,124,255', '238,240,246', '238,240,246'];
+
+type Particle = { x: number; y: number; vx: number; vy: number; r: number; c: string };
 
 function makeParticle(w: number, h: number, x = Math.random() * w, y = Math.random() * h): Particle {
-  return { x, y, vx: Math.random() - 0.5, vy: Math.random() - 0.5, r: Math.random() * CONFIG.maxRadius || 0.5 };
+  return {
+    x,
+    y,
+    vx: Math.random() - 0.5,
+    vy: Math.random() - 0.5,
+    r: Math.max(0.6, Math.random() * CONFIG.maxRadius),
+    c: COLORS[Math.floor(Math.random() * COLORS.length)],
+  };
 }
 
 export function ParticlesBackground() {
@@ -64,7 +74,7 @@ export function ParticlesBackground() {
         }
         ctx!.beginPath();
         ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(255,255,255,${CONFIG.opacity})`;
+        ctx!.fillStyle = `rgba(${p.c},${CONFIG.opacity})`;
         ctx!.fill();
       }
 
@@ -75,7 +85,7 @@ export function ParticlesBackground() {
           const b = particles[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d > CONFIG.linkDistance) continue;
-          ctx!.strokeStyle = `rgba(255,255,255,${CONFIG.linkOpacity * (1 - d / CONFIG.linkDistance)})`;
+          ctx!.strokeStyle = `rgba(170,180,255,${CONFIG.linkOpacity * (1 - d / CONFIG.linkDistance)})`;
           ctx!.beginPath();
           ctx!.moveTo(a.x, a.y);
           ctx!.lineTo(b.x, b.y);
@@ -84,7 +94,7 @@ export function ParticlesBackground() {
         if (pointer) {
           const d = Math.hypot(a.x - pointer.x, a.y - pointer.y);
           if (d <= CONFIG.grabDistance) {
-            ctx!.strokeStyle = `rgba(255,255,255,${1 - d / CONFIG.grabDistance})`;
+            ctx!.strokeStyle = `rgba(198,242,78,${0.55 * (1 - d / CONFIG.grabDistance)})`;
             ctx!.beginPath();
             ctx!.moveTo(a.x, a.y);
             ctx!.lineTo(pointer.x, pointer.y);

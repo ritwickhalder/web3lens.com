@@ -1,35 +1,44 @@
 /**
- * Common frame for the content pages: room for the fixed navbar and donation bar, a
- * centred column, and the white "~ TITLE ~" heading the legacy pages used.
+ * Common frame for the inner pages: an eyebrow + display title + lead header, then content.
  */
-export function PageShell({ title, children }: { title: string; children: React.ReactNode }) {
+export function PageShell({
+  eyebrow,
+  title,
+  lead,
+  width = 'narrow',
+  children,
+}: {
+  eyebrow?: string;
+  title: React.ReactNode;
+  lead?: React.ReactNode;
+  width?: 'narrow' | 'wide';
+  children: React.ReactNode;
+}) {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-32 pt-[12vh] text-center sm:px-[8%] lg:px-[12%]">
-      <h1 className="mb-8 text-[1.75rem] font-medium text-white">~ {title} ~</h1>
+    <main className={`mx-auto w-full px-5 pt-16 sm:pt-20 ${width === 'wide' ? 'max-w-6xl' : 'max-w-3xl'}`}>
+      <header className="mb-10 sm:mb-12">
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <h1 className="mt-3 font-display text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">{title}</h1>
+        {lead && <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{lead}</p>}
+      </header>
       {children}
     </main>
   );
 }
 
-/** Green heading strip + light body block (Bootstrap alert-success / alert-light). */
+/** A titled block of long-form copy (About / Terms / Privacy). */
 export function InfoSection({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
-    <section className="mb-4 text-left">
-      <h2 className="rounded-t border border-success-border bg-success-bg px-5 py-3 text-base font-bold uppercase text-success-text">
-        {heading}
-      </h2>
-      <div className="prose-legacy rounded-b border border-light-border bg-light-bg px-5 py-3 leading-normal text-light-text">
-        {children}
-      </div>
+    <section className="border-t border-line py-8 first:border-t-0 first:pt-0">
+      <h2 className="font-display text-base font-semibold text-fg sm:text-lg">{heading}</h2>
+      <div className="prose-lens mt-3 text-[15px]">{children}</div>
     </section>
   );
 }
 
-/** Intro paragraph in a light alert box. */
+/** Highlighted intro paragraph. */
 export function Intro({ children }: { children: React.ReactNode }) {
   return (
-    <p className="prose-legacy mb-6 rounded border border-light-border bg-light-bg px-5 py-3 text-left font-[Verdana,sans-serif] text-light-text">
-      {children}
-    </p>
+    <p className="prose-lens mb-10 rounded-2xl border border-line bg-white/[0.02] p-5 text-[15px] sm:p-6">{children}</p>
   );
 }

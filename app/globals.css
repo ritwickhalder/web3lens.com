@@ -1,38 +1,144 @@
 @import "tailwindcss";
 
 /*
- * Colours carried over from the legacy Bootstrap site. Everything themed goes through
- * these tokens so the redesign (ROADMAP Phase 1) can re-theme in one place.
+ * Web3Lens design tokens. Dark "observatory" palette: near-black ink, hairline borders,
+ * an acid-lime primary and a violet secondary. Change the brand here, not in components.
  */
 @theme {
-  --font-sans: Arial, Helvetica, ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-signika), Arial, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-unbounded), var(--font-geist), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --color-page: #0f88f2;
-  --color-nav: #0277bd;
-  --color-donate: #b3e5fc;
-  --color-guide: #0097a7;
-  --color-directory: #f1f8e9;
-  --color-directory-head: #f0f4c3;
-  --color-success-bg: #d4edda;
-  --color-success-text: #155724;
-  --color-success-border: #c3e6cb;
-  --color-light-bg: #fefefe;
-  --color-light-text: #818182;
-  --color-light-border: #fdfdfe;
+  --color-ink: #07080c;
+  --color-ink-2: #0c0e15;
+  --color-ink-3: #12151e;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.14);
+  --color-fg: #eef0f6;
+  --color-muted: #8d93a6;
+  --color-faint: #5b6174;
+  --color-lime: #c6f24e;
+  --color-lime-deep: #9fd11f;
+  --color-violet: #8f7cff;
+  --color-aqua: #52e3cf;
+  --color-danger: #ff6b7d;
+  --color-warn: #ffc65c;
+
+  --animate-drift: drift 18s ease-in-out infinite;
+  --animate-spin-slow: spin 40s linear infinite;
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(2%, -3%, 0) scale(1.05);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
-body {
-  background: var(--color-page);
-  color: #212529;
-  font-family: var(--font-sans);
-  text-rendering: auto;
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-lime) 35%, transparent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 2px;
+  }
 }
 
-/* Inline links inside ported legacy copy were blue in the original pages. */
-.prose-legacy a {
-  color: blue;
+@layer components {
+  /* Frosted panel used for cards, menus and the search bar. */
+  .glass {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(255 255 255 / 0.015));
+    border: 1px solid var(--color-line);
+    backdrop-filter: blur(14px);
+  }
+
+  /* Lime → aqua → violet text gradient for one or two words per heading, never whole paragraphs. */
+  .text-lens {
+    background: linear-gradient(100deg, var(--color-lime) 0%, var(--color-aqua) 45%, var(--color-violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Gradient hairline border via a masked pseudo-element. */
+  .ring-lens {
+    position: relative;
+  }
+  .ring-lens::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, rgb(198 242 78 / 0.7), rgb(82 227 207 / 0.25) 40%, rgb(143 124 255 / 0.7));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+
+  /* Long-form copy on About / Terms / Privacy. */
+  .prose-lens {
+    color: color-mix(in oklab, var(--color-fg) 72%, transparent);
+    line-height: 1.75;
+  }
+  .prose-lens a {
+    color: var(--color-lime);
+    text-decoration: underline;
+    text-decoration-color: rgb(198 242 78 / 0.35);
+    text-underline-offset: 3px;
+  }
+  .prose-lens a:hover {
+    text-decoration-color: var(--color-lime);
+  }
 }
-.prose-legacy a:hover {
-  text-decoration: underline;
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -5,21 +5,28 @@ Planned work lives in [ROADMAP.md](ROADMAP.md).
 
 ## Current features
 
+Design: dark "observatory" theme, an acid-lime + violet accent pair, Unbounded (display), Geist (body) and
+Geist Mono (hashes and data). All colours and fonts are tokens in `app/globals.css`.
+
 | Feature | Where it lives now | Legacy source |
 |---|---|---|
-| **Blockchain search.** Pick one of 769 chains in a searchable dropdown, type an address / tx hash / block / data, press SEARCH or Enter. The chain's block explorer opens in a new tab. | `components/search/ChainSearch.tsx`, `components/search/ChainCombobox.tsx` | `index.html`, Chosen.js |
+| **Smart search.** One bar: chain picker + query box + Search. Enter or the button opens the chain's block explorer in a new tab. `/` or `Ctrl/⌘ K` focuses it from anywhere on the page. | `components/search/SmartSearch.tsx` | `index.html` |
+| **Auto-detect.** Recognises what's pasted (EVM address / tx hash, ENS and .sol names, Bitcoin, Litecoin, Bitcoin Cash, Dogecoin, Tron, XRP, Cosmos, Cardano, Stellar and Solana addresses, Solana signatures, raw tx hashes, block numbers), shows the type, pre-selects the matching chain until the user picks one, and offers the alternatives as chips. | `lib/detect.ts` (shared with the future extensions) | — (new) |
+| **Chain picker.** Searchable list of all 769 chains with a "Popular" group, brand-coloured glyphs and keyboard navigation (↑ ↓ Enter Esc). Chains the old site flagged as unsupported are marked "limited". | `components/search/ChainCombobox.tsx`, `components/search/ChainGlyph.tsx`, `lib/chain-meta.ts` | Chosen.js dropdown |
+| **Popular chains and recent searches** shown under the bar; recents stay in this browser only (localStorage) and can be cleared. | `SmartSearch.tsx`, `lib/recent.ts` | — (new) |
 | **Explorer routing.** Each chain maps to one of three handoffs: open a URL with the query in it (685 chains), submit a GET/POST form to the explorer (83), or search Google for "<chain> Blockchain Explorer <query>" (1). Of these, 93 chains are marked `fallback`: the site says the chain is "not yet supported" and uses a substitute explorer. | `data/chains.json` (generated), `lib/chains.ts`, `lib/explorer.ts` | `select.js` (770-case `switch`) |
-| **Empty-query check.** Searching with an empty box shows "Oops.. You forgot to enter something…". | `ChainSearch.tsx` (inline message, was an `alert`) | `select.js` |
-| **Particle background** on the home page: drifting white dots linked within 150px, links to the pointer on hover, click adds 4 dots. Static frame under `prefers-reduced-motion`. | `components/ParticlesBackground.tsx` (no dependency) | `pscript1.js` + particles.js |
+| **Empty-query check.** Searching with an empty box shows an inline message. | `SmartSearch.tsx` | `alert()` in `select.js` |
+| **Home page:** hero with a node-network canvas (nodes link within 150px, link to the pointer, click adds 4), clickable "try it" examples that demo auto-detect, how-it-works steps, Directory/Learn cards, roadmap preview, support call-out. | `app/page.tsx`, `components/ParticlesBackground.tsx`, `components/home/TryExamples.tsx` | `pscript1.js` + particles.js |
 | **Responsive layout.** One page for all screen sizes. | Tailwind breakpoints | separate `mobile.html` + `mobilemenu.js` |
-| **Navbar:** CoinMarketCap, Crypto Directory, Crypto News dropdown (15 outside sources), Blockchain Guide, Information dropdown (Bookmark, Terms, Privacy, Sitemap, About), Contact Us. Collapses into a menu below 1024px. | `components/layout/SiteHeader.tsx`, `config/site.ts` | `menu.js` |
-| **Donation bar** fixed at the bottom; expands to show the ETH/Polygon and Cosmos addresses. | `components/layout/DonationFooter.tsx` | `footer.js` |
-| **Crypto Directory:** 60 YouTube channels, forums, news sites, Facebook groups, Reddit communities and Twitter profiles, with search, column sorting and paging. | `app/directory/page.tsx`, `components/directory/DirectoryTable.tsx`, `data/directory.json` | `directory.html` + DataTables |
-| **Beginner's Guide:** 7-question FAQ (blockchain, Bitcoin, buying/selling, mining, wallets, NFTs, DeFi) with YouTube videos; one answer open at a time. | `app/blockchain-guide/page.tsx`, `components/guide/GuideAccordion.tsx`, `content/guide.ts` | `blockchain-guide.html` |
+| **Navbar:** Search, Directory, Learn, About, News dropdown (15 outside sources), Markets (CoinMarketCap), Contact. Sticky glass bar; full-width sheet on mobile. | `components/layout/SiteHeader.tsx`, `config/site.ts` | `menu.js` |
+| **Footer** with navigation, information links (Bookmark, Terms, Privacy, Sitemap) and the ETH/Polygon and Cosmos donation addresses with copy buttons. | `components/layout/SiteFooter.tsx`, `components/ui/CopyButton.tsx` | `footer.js` fixed donation bar |
+| **Crypto Directory:** 60 YouTube channels, forums, news sites, Facebook groups, Reddit communities and Twitter profiles as a card grid with type filters (with counts) and search. | `app/directory/page.tsx`, `components/directory/DirectoryGrid.tsx`, `data/directory.json` | `directory.html` + DataTables |
+| **Learn (Beginner's Guide):** 7-question FAQ (blockchain, Bitcoin, buying/selling, mining, wallets, NFTs, DeFi); one answer open at a time; videos load only when played. | `app/blockchain-guide/page.tsx`, `components/guide/GuideAccordion.tsx`, `content/guide.ts` | `blockchain-guide.html` |
 | **Contact form** (name, email, subject, message) that emails the site owner. Honeypot, minimum fill time, spam/link checks, per-IP and per-email rate limit. | `app/contact/page.tsx`, `components/contact/ContactForm.tsx`, `app/api/contact/route.ts`, `lib/contact.ts` | `contact.html` + `contact.php` |
-| **Static pages:** About, Terms of Use, Privacy Policy, Bookmark how-to, HTML sitemap. | `app/{about,terms,privacy-policy,bookmark,site-map}/page.tsx` | `*.html` |
-| **SEO:** per-page title/description/canonical/Open Graph/Twitter tags, generated OG image, `sitemap.xml`, `robots.txt`, favicon, Google Search Console verification files. | `app/layout.tsx`, `lib/metadata.ts`, `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`, `public/google*.html` | `<head>` tags in `index.html` |
+| **Static pages:** About (with stats), Terms of Use, Privacy Policy, Bookmark how-to, HTML sitemap, 404. | `app/{about,terms,privacy-policy,bookmark,site-map}/page.tsx`, `components/content/PageShell.tsx` | `*.html` |
+| **SEO:** per-page title/description/canonical/Open Graph/Twitter tags, generated OG image and app icons, `sitemap.xml`, `robots.txt`, Google Search Console verification files. | `app/layout.tsx`, `lib/metadata.ts`, `app/opengraph-image.tsx`, `app/icon.svg`, `app/sitemap.ts`, `app/robots.ts`, `public/google*.html` | `<head>` tags in `index.html` |
 | **Old URLs keep working:** `/about.html`, `/mobile.html`, `/contact.php`, etc. redirect permanently to the new routes; `web3lens.com` redirects to `www.web3lens.com`. | `next.config.ts` | — |
+| **Accessibility:** skip link, visible focus rings, labelled controls, `prefers-reduced-motion` respected. | `app/layout.tsx`, `app/globals.css` | — |
 | **Analytics:** GA4, loaded only when `NEXT_PUBLIC_GA_ID` is set. | `app/layout.tsx` | dead Universal Analytics tag |
 
 ## Defects fixed during the migration

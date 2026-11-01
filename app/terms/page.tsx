@@ -13,7 +13,7 @@ export default function TermsPage() {
   const name = SITE.name;
   const domain = SITE.domain;
   return (
-    <PageShell title="Terms Of Use">
+    <PageShell eyebrow="Legal" title="Terms of Use">
       <Intro>
         {name} provides all its services to you subject to the following conditions. By visiting {domain}, you accept
         all these conditions mentioned below. Please read them carefully. {name} is not responsible for the privacy

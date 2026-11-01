@@ -15,11 +15,13 @@ Still to do: confirm parity on the live deploy, then delete `legacy/`.
 
 The biggest user-facing jump: people shouldn't have to know which chain an address belongs to.
 
-- **Redesign.** New visual identity, dark mode, proper typography. All colours are already tokens in `app/globals.css`.
-- **Auto-detect what was pasted** (`lib/detect.ts`, shared with the extensions):
-  EVM address (`0x` + 40 hex), EVM tx hash (`0x` + 64 hex), Bitcoin (base58 `1…`/`3…`, bech32 `bc1…`),
-  Solana (base58, 32–44 chars), Cosmos-SDK bech32 (`cosmos1…`, `osmo1…`, …), Tron (`T…`), XRP (`r…`),
-  ENS / SNS / Unstoppable names, plain block numbers. Suggest the matching chains and pre-select the best one.
+- ✅ **Redesign.** Dark "observatory" identity, lime + violet accents, Unbounded / Geist / Geist Mono, new logo
+  and icons, card-based directory, videos that load on demand. Tokens live in `app/globals.css`.
+- ✅ **Auto-detect what was pasted** (`lib/detect.ts`): EVM, Bitcoin, Litecoin, BCH, Dogecoin, Tron, XRP,
+  Cosmos, Cardano, Stellar, Solana, ENS/.sol names, tx hashes, block numbers. Pre-selects the chain and offers
+  alternatives. Next: more Cosmos-SDK prefixes (`osmo1`, `celestia1`…), Unstoppable domains, Polkadot SS58.
+- ✅ **Recent searches and popular chains** under the search bar (localStorage, clearable).
+- **Light theme** toggle (tokens are ready; dark stays the default).
 - **Correct paths per input type.** Explorer templates become `{ address, tx, block, search }` so Bitcoin
   transactions, Solana addresses, etc. go to the right page (fixes the quirks listed in FEATURES.md).
 - **Several explorers per chain** (e.g. Etherscan / Blockscout / Blockchair), with a remembered preference.
@@ -29,7 +31,7 @@ The biggest user-facing jump: people shouldn't have to know which chain an addre
 - **Per-chain landing pages** `/explorer/[chain]`, statically generated: "Bitcoin block explorer" pages with
   the search box pre-set. Large SEO surface.
 - **OpenSearch descriptor** (`/opensearch.xml`) so browsers offer "Search Web3Lens" from the address bar. Quick win.
-- **Recent searches and favourite chains** (localStorage, clearable).
+- **Favourite chains** pinned to the top of the picker (localStorage).
 - **Chain list cleanup.** A link-health script plus a weekly Vercel cron that flags dead explorers; drop or
   mark delisted coins; move `http://` explorers to `https://`; send ERC-20 tokens to their token page instead of
   a generic Etherscan search. After this, `chains.json` is edited by hand and the legacy converter is retired.

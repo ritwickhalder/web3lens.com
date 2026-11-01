@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
 
 function Key({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="rounded border border-[#adb5bd] border-b-[3px] bg-[#f8f9fa] px-3 py-1.5 font-mono text-lg text-[#212529]">
+    <kbd className="grid min-w-14 place-items-center rounded-xl border border-line-strong border-b-4 bg-ink-3 px-4 py-3 font-mono text-lg text-fg">
       {children}
     </kbd>
   );
@@ -19,21 +19,34 @@ function Key({ children }: { children: React.ReactNode }) {
 
 export default function BookmarkPage() {
   return (
-    <PageShell title={`Steps to Bookmark - ${SITE.domain}`}>
-      <div className="overflow-hidden rounded text-left">
-        <p className="border border-success-border bg-success-bg px-5 py-3 font-bold text-success-text">
-          Use this simple keyboard shortcut to bookmark {SITE.name} on any browser :
-        </p>
-        <p className="border-x border-b border-[#ffeeba] bg-white px-5 py-3">
-          1. &nbsp;Firstly navigate to main webpage "<Link href="/" className="text-[#007bff] hover:underline">{SITE.domain}</Link>"
-        </p>
-        <div className="border-x border-b border-[#ffeeba] bg-white px-5 py-3">
-          2. &nbsp;Press "Ctrl+D" (or "⌘+D" on a Mac) and click on "done" or "add" to save the bookmark. Simple !!
-          <p className="mt-5 mb-2 flex items-center justify-center gap-2" aria-hidden>
-            <Key>Ctrl</Key> + <Key>D</Key>
+    <PageShell
+      eyebrow="Bookmark"
+      title="Keep Web3Lens one keystroke away."
+      lead="Use this keyboard shortcut to bookmark Web3Lens in any browser."
+    >
+      <ol className="space-y-4">
+        <li className="glass flex gap-5 rounded-2xl p-6">
+          <span className="font-mono text-sm text-lime">01</span>
+          <p className="text-fg/85">
+            Go to the main page,{' '}
+            <Link href="/" className="text-lime underline-offset-4 hover:underline">
+              {SITE.domain}
+            </Link>
+            .
           </p>
-        </div>
-      </div>
+        </li>
+        <li className="glass flex gap-5 rounded-2xl p-6">
+          <span className="font-mono text-sm text-lime">02</span>
+          <div className="flex-1">
+            <p className="text-fg/85">
+              Press <b>Ctrl + D</b> (<b>⌘ + D</b> on a Mac) and click "Done" or "Add" to save the bookmark. Simple!
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-3 text-muted" aria-hidden>
+              <Key>Ctrl</Key> + <Key>D</Key>
+            </div>
+          </div>
+        </li>
+      </ol>
     </PageShell>
   );
 }

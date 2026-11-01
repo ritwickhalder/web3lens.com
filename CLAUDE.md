@@ -8,7 +8,8 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 
 - Routes in `app/<slug>/page.tsx`; shared UI in `components/<area>/`; logic in `lib/`; site constants in `config/site.ts`.
 - Data the browser extensions will also need (`data/*.json`) stays JSON, not TS.
-- Colours are Tailwind theme tokens in `app/globals.css` (`bg-nav`, `bg-guide`, …); don't hard-code new brand colours.
+- Design tokens live in `app/globals.css` (`bg-ink`, `text-lime`, `border-line`, `.glass`, `.text-lens`, `.eyebrow`, …); don't hard-code new brand colours. Fonts: `font-display` (Unbounded), `font-sans` (Geist), `font-mono` (Geist Mono, for hashes and data).
+- Inner pages use `PageShell` (`components/content/PageShell.tsx`) for the eyebrow/title/lead header.
 - Every page sets metadata with `pageMetadata()` from `lib/metadata.ts`.
 - Tests: `scripts/test/*.test.ts` with `node:test`, run by `npm test`. Run `npm test`, `npm run lint` and `npm run typecheck` before finishing.
 - Keep `public/google*.html` (Search Console verification) and the legacy URL redirects in `next.config.ts`.

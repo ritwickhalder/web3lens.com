@@ -1,3 +1,4 @@
+import { PageShell } from '@/components/content/PageShell';
 import { GuideAccordion } from '@/components/guide/GuideAccordion';
 import { GUIDE } from '@/content/guide';
 import { pageMetadata } from '@/lib/metadata';
@@ -10,11 +11,16 @@ export const metadata = pageMetadata({
 
 export default function BlockchainGuidePage() {
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-32 pt-[12vh] text-center sm:px-[8%] lg:px-[12%]">
-      <h1 className="mb-8 text-[1.75rem] font-medium text-white">
-        Beginner's Guide to Cryptocurrencies & Blockchain (FAQ's)
-      </h1>
+    <PageShell
+      eyebrow="Learn"
+      title={
+        <>
+          Crypto & blockchain, <span className="text-lens">explained.</span>
+        </>
+      }
+      lead={`A beginner's guide in ${GUIDE.length} short answers, most with a video. Start at the top or jump to what you need.`}
+    >
       <GuideAccordion entries={GUIDE} />
-    </main>
+    </PageShell>
   );
 }

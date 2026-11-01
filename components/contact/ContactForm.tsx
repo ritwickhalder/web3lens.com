@@ -1,9 +1,11 @@
 'use client';
 
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
 const fieldClass =
-  'mb-6 w-full border border-black/[.075] bg-[#f8f8f8] p-3 text-base text-[#727272] shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_2px_rgba(0,0,0,0.24)] outline-none transition-colors hover:border-[#8BC3A3] focus:border-[#8BC3A3]';
+  'w-full rounded-xl border border-line bg-white/[0.03] px-4 py-3 text-[15px] text-fg outline-none transition-colors placeholder:text-faint hover:border-line-strong focus:border-lime/60 focus:bg-white/[0.05]';
+const labelClass = 'mb-1.5 block text-xs font-medium text-muted';
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'error'; message: string };
 
@@ -35,53 +37,65 @@ export function ContactForm() {
     }
   }
 
-  return (
-    <div className="bg-white p-[30px] text-left shadow-[0_10px_20px_rgba(0,0,0,0.19),0_6px_6px_rgba(0,0,0,0.23)]">
-      <form onSubmit={onSubmit}>
-        <div className="grid grid-cols-2 gap-x-4">
-          <input name="name" required maxLength={100} placeholder="Name" aria-label="Name" className={fieldClass} />
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder="Email"
-            aria-label="Email"
-            className={fieldClass}
-          />
-        </div>
-        <input name="subject" required maxLength={150} placeholder="Subject" aria-label="Subject" className={fieldClass} />
-        <textarea
-          name="message"
-          required
-          maxLength={2000}
-          placeholder="Message"
-          aria-label="Message"
-          className={`${fieldClass} h-[170px] resize-y`}
-        />
-        <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-          <label>
-            Website
-            <input name="website" tabIndex={-1} autoComplete="off" />
-          </label>
-        </div>
+  if (status.kind === 'sent') {
+    return (
+      <div role="status" className="glass rounded-3xl p-10 text-center">
+        <CheckCircle2 aria-hidden className="mx-auto size-10 text-lime" strokeWidth={1.5} />
+        <p className="mt-5 font-display text-xl font-semibold">Thank you!</p>
+        <p className="mt-2 text-sm text-muted">Your message has been delivered. We'll get back to you soon.</p>
         <button
-          type="submit"
-          disabled={status.kind === 'sending'}
-          className="mx-auto block w-[180px] rounded-[3px] bg-[#8BC3A3] p-[15px] font-bold text-white shadow-[0_1px_4px_rgba(0,0,0,0.10)] transition-colors hover:bg-[#111] disabled:opacity-60"
+          type="button"
+          onClick={() => setStatus({ kind: 'idle' })}
+          className="mt-6 text-sm text-lime underline-offset-4 hover:underline"
         >
-          {status.kind === 'sending' ? 'Sending…' : 'Send Message'}
+          Send another message
         </button>
-      </form>
-      {status.kind === 'sent' && (
-        <p role="status" className="mt-6 bg-[#f2f2f2] px-5 py-3">
-          <strong>Thank You !</strong> Your email has been delivered.
-        </p>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="glass relative rounded-3xl p-6 sm:p-8">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label>
+          <span className={labelClass}>Name</span>
+          <input name="name" required maxLength={100} autoComplete="name" className={fieldClass} />
+        </label>
+        <label>
+          <span className={labelClass}>Email</span>
+          <input name="email" type="email" required autoComplete="email" className={fieldClass} />
+        </label>
+        <label className="sm:col-span-2">
+          <span className={labelClass}>Subject</span>
+          <input name="subject" required maxLength={150} className={fieldClass} />
+        </label>
+        <label className="sm:col-span-2">
+          <span className={labelClass}>Message</span>
+          <textarea name="message" required maxLength={2000} rows={6} className={`${fieldClass} resize-y`} />
+        </label>
+      </div>
+      <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Website
+          <input name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
       {status.kind === 'error' && (
-        <p role="alert" className="mt-6 rounded bg-[#f8d7da] px-5 py-3 text-[#721c24]">
+        <p role="alert" className="mt-5 rounded-xl border border-danger/30 bg-danger/10 px-4 py-2.5 text-sm text-danger">
           {status.message}
         </p>
       )}
-    </div>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+        <p className="text-xs text-faint">We only use your email to reply to you.</p>
+        <button
+          type="submit"
+          disabled={status.kind === 'sending'}
+          className="group flex items-center gap-2 rounded-2xl bg-lime px-6 py-3 font-display text-sm font-semibold text-ink transition-colors hover:bg-[#d4ff5c] disabled:opacity-60"
+        >
+          {status.kind === 'sending' ? 'Sending…' : 'Send message'}
+          <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </button>
+      </div>
+    </form>
   );
 }

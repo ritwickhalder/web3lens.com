@@ -10,40 +10,59 @@ export const metadata = pageMetadata({
   path: '/about',
 });
 
+const STATS = [
+  { value: String(CHAINS.length), label: 'chains searchable' },
+  { value: '2018', label: 'online since' },
+  { value: '0', label: 'ads or sign-ups' },
+];
+
 export default function AboutPage() {
   return (
-    <PageShell title="ABOUT">
-      <InfoSection heading="What is it ?">
-        {SITE.name} is your all-one-search engine to search data, address, transactions across all popular blockchains
-        in the world. You also get an extensive directory of all blockchain or cryptocurrency related websites, blogs and
-        channels.
-      </InfoSection>
+    <PageShell
+      eyebrow="About"
+      title={
+        <>
+          One search box for <span className="text-lens">every blockchain.</span>
+        </>
+      }
+      lead={`${SITE.name} is your all-in-one search engine for data, addresses and transactions across the world's blockchains, plus a directory of crypto websites, blogs and channels.`}
+    >
+      <dl className="mb-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
+        {STATS.map((s) => (
+          <div key={s.label} className="bg-ink-2 p-5 sm:p-6">
+            <dt className="text-xs text-muted">{s.label}</dt>
+            <dd className="mt-1 font-display text-2xl font-semibold text-fg sm:text-3xl">{s.value}</dd>
+          </div>
+        ))}
+      </dl>
+
       <InfoSection heading="A brief history & why you need this website">
-        This website has been created on April 2018 due to the requirement of searching data, transaction history etc.
-        across different blockchains. Since there are over 1000 blockchains in the world it's quite essential to have a
-        single website to search across any blockchain. So use it and feel free to{' '}
+        This website was created in April 2018 because searching data, transaction history and more across different
+        blockchains meant juggling a different explorer for each one. With over 1000 blockchains in the world, it's
+        essential to have a single website to search across any of them. So use it, and feel free to{' '}
         <Link href="/contact">drop in your suggestions</Link> to make this website even better :-)
       </InfoSection>
       <InfoSection heading="What can you do with this website">
-        You can do the following things on this website :-
-        <ul className="mt-2 list-disc pl-10">
-          <li>Search the blockchain for over 750 Cryptocurrency Addresses.</li>
+        <ul className="list-disc space-y-1.5 pl-5 marker:text-lime">
+          <li>Search the blockchain for addresses on over {Math.floor(CHAINS.length / 50) * 50} cryptocurrencies.</li>
           <li>Search transactions on the blockchain for any cryptocurrency.</li>
           <li>Search block data & history for any cryptocurrency on the blockchain.</li>
           <li>
-            Search and use the directory of cryptocurrency and blockchain related websites, news channels, groups and
-            communities.
+            Browse the <Link href="/directory">directory</Link> of cryptocurrency and blockchain websites, news channels,
+            groups and communities.
           </li>
           <li>
-            Check out the basic <Link href="/blockchain-guide">guide</Link> on blockchain and cryptocurrencies for
-            beginners if you are new to this space.
+            Read the beginner's <Link href="/blockchain-guide">guide</Link> to blockchain and cryptocurrencies if you're
+            new to this space.
           </li>
         </ul>
       </InfoSection>
       <InfoSection heading="Developer">
-        <a href={SITE.author.url} target="_blank" rel="noopener noreferrer" className="font-bold uppercase">
+        Built and maintained by{' '}
+        <a href={SITE.author.url} target="_blank" rel="noopener noreferrer">
           {SITE.author.name}
         </a>
+        .
       </InfoSection>
     </PageShell>
   );

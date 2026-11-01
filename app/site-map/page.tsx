@@ -12,16 +12,16 @@ export const metadata = pageMetadata({
 export default function SiteMapPage() {
   const host = SITE.url.replace('https://www.', '');
   return (
-    <PageShell title="SITEMAP">
+    <PageShell eyebrow="Information" title="Sitemap">
       <InfoSection heading="Website map (links)">
-        <ul className="leading-loose">
+        <ul className="space-y-1">
           {PAGES.map((page) => (
             <li key={page.href}>
-              &rarr; &nbsp;{page.label} :- <Link href={page.href}>{`${host}${page.href}`}</Link>
+              <span className="text-fg/80">{page.label}</span> · <Link href={page.href}>{`${host}${page.href}`}</Link>
             </li>
           ))}
           <li>
-            &rarr; &nbsp;Sitemap XML File :- <a href="/sitemap.xml">{`${host}/sitemap.xml`}</a>
+            <span className="text-fg/80">Sitemap XML file</span> · <a href="/sitemap.xml">{`${host}/sitemap.xml`}</a>
           </li>
         </ul>
       </InfoSection>
