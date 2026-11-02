@@ -4,13 +4,15 @@ Use the same copy in all three stores unless a field below says otherwise.
 
 ## Name
 
-Web3Lens: Blockchain Search
+Comes from the manifest (Chrome limit 75 characters; 59 used):
+
+> Blockchain Explorer – Scan Blockchain & Web3 Block Explorer
 
 ## Short description / summary
 
 Chrome (comes from the manifest, ≤132 characters; 130 used):
 
-> Look up any blockchain address or transaction: auto-detects 30+ formats, opens the right explorer, shows balances and risk checks.
+> Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 769+ blockchains with Web3Lens.
 
 Firefox summary (≤250 characters):
 
@@ -18,22 +20,26 @@ Firefox summary (≤250 characters):
 
 ## Detailed description
 
-Web3Lens is one search box for every blockchain.
+Web3Lens is a multichain blockchain explorer and search tool: one search box to scan blockchain networks and jump
+to the right block explorer for any address, transaction or block.
 
+**Crypto address and transaction hash lookup**
 Paste an address, transaction hash, block number or ENS name and Web3Lens works out what it is and which chain it
 belongs to (30+ formats across Bitcoin, Ethereum and EVM chains, Solana, Tron, XRP, Cosmos, Cardano, Polkadot,
 TON and more), verifies the checksum so typos are caught before you send anything, and opens the right page on the
-right block explorer: 789 chains in total.
+right block explorer. 789 blockchain networks are covered in total.
 
+**Multichain explorer results in the extension**
 For 14 major chains (Ethereum, Base, Arbitrum, OP Mainnet, Polygon, BNB Chain, Avalanche, Linea, zkSync, Scroll,
 Gnosis, Bitcoin, Litecoin and Solana) it shows the answer itself: balances, token holdings, recent activity,
 transaction details with decoded input, and the same address across 11 EVM chains. Every number says where it
 came from and when; anything a source can't provide is shown as unavailable, never guessed.
 
-Risk checks: the OFAC sanctions list (works offline), reported scam addresses, contract verification, upgradeable
-proxies and owners, and the token approvals an address has granted. "No reports" is never presented as "safe".
+**Risk checks**
+The OFAC sanctions list (works offline), reported scam addresses, contract verification, upgradeable proxies and
+owners, and the token approvals an address has granted. "No reports" is never presented as "safe".
 
-Also included:
+**Web3 tools and shortcuts**
 • Right-click any selected address or hash: "Look up on Web3Lens" or "Open in its block explorer"
 • Type w3 and a space in the address bar to search from there
 • "Find addresses on this page" (reads the page only when you click it)
@@ -43,8 +49,9 @@ Also included:
 • Saved labels and notes, favourite chains, preferred explorers: stored only in your browser
 • Light and dark themes
 
-Privacy: no account, no wallet connection, no analytics, no ads, no remote code. The extension has no access to
-your browsing history or page content beyond the text you select or a page you explicitly scan. Lookups you run are
+**Privacy**
+No account, no wallet connection, no analytics, no ads, no remote code. The extension has no access to your
+browsing history or page content beyond the text you select or a page you explicitly scan. Lookups you run are
 sent to web3lens.com to fetch public blockchain data; switch "Online lookups" off in settings to keep everything in
 your browser (detection, explorer links, tools and the sanctions check still work).
 
