@@ -139,3 +139,17 @@ Edge Add-ons and AMO (listings, screenshots, privacy answers), then link the sto
 - More donation chains and a WalletConnect "tip" button.
 - ✅ Structured data (WebSite + SearchAction) for a sitelinks search box.
 - Point the old blocksearchengine.com domain at www.web3lens.com with permanent redirects.
+
+## Phase 7 — Pro (later)
+
+Decided November 2026: build after accounts (Phase 4). Rule: safety stays free for everyone — detection,
+checksums, risk checks, sanctions, explorer routing, the developer tools and the extensions' core features.
+Pro covers what costs money to run or serves power users:
+
+- Watchlists with email/push alerts when a saved address moves (needs servers and scheduled jobs).
+- Sync of saved labels, notes and settings across devices and the extensions (needs accounts and storage).
+- Larger batches (e.g. 1,000 values), full-history CSV export, multichain balances for whole batches.
+- Approval scans on every EVM chain with revoke links (needs a paid log index; free sources cover some chains).
+- API keys with higher rate limits for `/api/v1`.
+- Team workspaces and private notes on shared investigations.
+- Portfolio view: combined value across chains for saved addresses.
