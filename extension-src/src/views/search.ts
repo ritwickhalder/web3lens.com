@@ -30,7 +30,11 @@ export function openAction(action: ExplorerAction) {
   form.remove();
 }
 
-export function searchView(ctx: Ctx, initial: { query?: string; chain?: string } = {}): HTMLElement {
+/**
+ * `recentInto` renders the recent list into an element the caller places (the popup's side column);
+ * `idle` is hidden together with it while there is a query.
+ */
+export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; recentInto?: HTMLElement; idle?: HTMLElement } = {}): HTMLElement {
   const { state } = ctx;
   setApiBase(state.settings.apiBase);
   let userPicked = Boolean(initial.chain && getChain(initial.chain));
@@ -59,7 +63,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   });
   const info = h('div', { class: 'detect', 'aria-live': 'polite' });
   const results = h('div', { class: 'stack' });
-  const recentBox = h('div', null);
+  const recentBox = initial.recentInto ?? h('div', null);
 
   const current = () => {
     const { query } = extractQuery(input.value);
@@ -139,6 +143,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
     syncPicker();
     renderInfo();
     recentBox.hidden = Boolean(query);
+    if (initial.idle) initial.idle.hidden = Boolean(query);
   }
 
   function goExplorer(chain: Chain, query: string) {
@@ -201,7 +206,11 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   }
 
   function renderRecent() {
-    if (!state.recent.length) return clear(recentBox);
+    if (!state.recent.length) {
+      return initial.recentInto
+        ? clear(recentBox, h('section', { class: 'recent' }, h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), 'Recent')), h('p', { class: 'hint' }, 'Your last searches show up here, kept only in this browser.')))
+        : clear(recentBox);
+    }
     clear(
       recentBox,
       h(
@@ -211,7 +220,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
         h(
           'ul',
           { class: 'recent-list' },
-          state.recent.map((r) => {
+          state.recent.slice(0, initial.recentInto ? 4 : undefined).map((r) => {
             const c = getChain(r.chainId);
             return h(
               'li',
@@ -299,5 +308,5 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   renderRecent();
   queueMicrotask(() => input.focus());
   if (initial.query) queueMicrotask(() => void submit());
-  return h('div', { class: 'stack' }, form, info, actions, results, recentBox);
+  return h('div', { class: 'stack' }, form, info, actions, results, initial.recentInto ? null : recentBox);
 }

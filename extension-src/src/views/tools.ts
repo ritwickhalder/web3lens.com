@@ -24,7 +24,7 @@ function outputs(rows: Out) {
   return h(
     'div',
     { class: 'outputs' },
-    rows.filter(([, v]) => v !== null).map(([l, v]) => h('div', { class: 'output' }, h('span', { class: 'olabel' }, l), h('span', { class: 'mono ovalue' }, v!), copyBtn(v!, 'Copy'))),
+    rows.filter(([, v]) => v !== null).map(([l, v]) => h('div', { class: 'output' }, h('span', { class: 'olabel' }, l), h('span', { class: 'mono ovalue', title: v! }, v!), copyBtn(v!, 'Copy'))),
   );
 }
 

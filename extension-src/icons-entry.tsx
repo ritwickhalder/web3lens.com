@@ -42,6 +42,14 @@ import {
   Warning,
   Wrench,
   X,
+  CaretRight,
+  Code,
+  EnvelopeSimple,
+  Globe,
+  Layout,
+  PlayCircle,
+  SlidersHorizontal,
+  Stack,
 } from '@phosphor-icons/react/dist/ssr';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { CHAIN_ICONS } from '@/components/search/ChainGlyph';
@@ -85,6 +93,14 @@ const UI = {
   warning: Warning,
   wrench: Wrench,
   x: X,
+  caretRight: CaretRight,
+  code: Code,
+  envelope: EnvelopeSimple,
+  globe: Globe,
+  layout: Layout,
+  play: PlayCircle,
+  sliders: SlidersHorizontal,
+  stack: Stack,
 };
 
 export type UiIconName = keyof typeof UI;

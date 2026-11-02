@@ -28,7 +28,7 @@ export type IconName =
   | 'arrowRight' | 'external' | 'refresh' | 'bookmark' | 'brackets' | 'caret' | 'check' | 'checkCircle' | 'clock' | 'history' | 'cloudSlash'
   | 'copy' | 'cube' | 'cursor' | 'desktop' | 'gas' | 'gear' | 'hash' | 'info' | 'keyboard' | 'lightbulb' | 'link' | 'list' | 'search'
   | 'moon' | 'qr' | 'receipt' | 'scales' | 'scan' | 'shield' | 'shieldWarning' | 'sparkle' | 'star' | 'sun' | 'trash' | 'warning'
-  | 'wrench' | 'x';
+  | 'wrench' | 'x' | 'caretRight' | 'code' | 'envelope' | 'globe' | 'layout' | 'play' | 'sliders' | 'stack';
 
 /** Tool icons, as components/tools/ToolIcon.tsx on the website. */
 export const TOOL_ICONS: Record<string, IconName> = {

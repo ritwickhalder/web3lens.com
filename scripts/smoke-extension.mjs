@@ -79,6 +79,19 @@ try {
   await popup.waitForSelector('.gas-list, .error, .empty', { timeout: 20000 });
   check('popup gas tab renders live data or a clear error', /Ethereum|Offline|error|fetch/i.test(await popup.textContent('.popup-main')));
   await popup.click('#tab-lookup');
+  const overflow = await popup.evaluate(() => {
+    const m = document.querySelector('.popup-main');
+    return m.scrollHeight - m.clientHeight;
+  });
+  check('popup lookup tab fits without scrolling', overflow <= 0, `${overflow}px`);
+
+  // Dialogs: settings and info open over the popup.
+  await popup.click('button[aria-label="Settings"]');
+  check('popup settings dialog opens', (await popup.textContent('dialog.modal')).includes('Online lookups'));
+  await popup.keyboard.press('Escape');
+  await popup.click('button[aria-label="About, shortcuts and more tools"]');
+  check('popup info dialog lists shortcuts and other tools', /Alt[\s\S]*SummaryTube/.test(await popup.textContent('dialog.modal')));
+  await popup.keyboard.press('Escape');
 
   const app = await open('app.html#saved');
   await app.waitForSelector('.saved-item', { timeout: 5000 });
