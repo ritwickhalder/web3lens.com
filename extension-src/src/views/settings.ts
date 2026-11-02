@@ -23,6 +23,26 @@ export function settingsView(ctx: Ctx): HTMLElement {
     'div',
     { class: 'stack' },
     h('h1', null, 'Settings'),
+    card(
+      'Appearance',
+      h(
+        'div',
+        { class: 'chips', role: 'radiogroup', 'aria-label': 'Theme' },
+        (['dark', 'light', 'system'] as const).map((t) =>
+          h(
+            'button',
+            {
+              type: 'button',
+              role: 'radio',
+              'aria-checked': String(settings.theme === t),
+              class: `chip${settings.theme === t ? ' primary' : ''}`,
+              on: { click: () => void setSettings({ ...settings, theme: t }) },
+            },
+            t === 'dark' ? 'Dark (default)' : t === 'light' ? 'Light' : 'System',
+          ),
+        ),
+      ),
+    ),
     card('When I press Search', radio('results', 'Show Web3Lens results first', 'Balances, tokens and risk checks for 14 major chains; other chains open their explorer.'), radio('explorer', 'Always open the block explorer', 'Go straight to the explorer in a new tab.')),
     card(
       'Privacy',

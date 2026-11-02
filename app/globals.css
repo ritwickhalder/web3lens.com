@@ -24,6 +24,52 @@
   --color-danger: #ff6b6b;
 }
 
+/*
+ * Light theme: same roles, re-tuned for a light page (accent and warnings darkened for contrast on
+ * white). Dark stays the default; <html data-theme> is set before paint by the script in
+ * app/layout.tsx from the visitor's choice (lib/theme.ts). "system" follows the OS setting.
+ * --glyph-mix pulls brand colours (coin tickers, directory icons) towards the foreground so pale
+ * ones stay readable on light backgrounds.
+ */
+:root {
+  --glyph-mix: 0%;
+}
+/* Keep these two blocks identical (plain CSS has no mixins). */
+:root[data-theme="light"] {
+  --color-ink: #f5f8fb;
+  --color-ink-2: #ffffff;
+  --color-ink-3: #e9f0f6;
+  --color-line: #d5e0ea;
+  --color-line-strong: #b4c6d6;
+  --color-fg: #0a1520;
+  --color-muted: #3d5368;
+  --color-faint: #5b7288;
+  --color-accent: #00729c;
+  --color-accent-hover: #005b7d;
+  --color-redline: #b8460f;
+  --color-danger: #c42121;
+  --glyph-mix: 45%;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --color-ink: #f5f8fb;
+    --color-ink-2: #ffffff;
+    --color-ink-3: #e9f0f6;
+    --color-line: #d5e0ea;
+    --color-line-strong: #b4c6d6;
+    --color-fg: #0a1520;
+    --color-muted: #3d5368;
+    --color-faint: #5b7288;
+    --color-accent: #00729c;
+    --color-accent-hover: #005b7d;
+    --color-redline: #b8460f;
+    --color-danger: #c42121;
+    --glyph-mix: 45%;
+    color-scheme: light;
+  }
+}
+
 @layer base {
   html {
     color-scheme: dark;
@@ -61,7 +107,7 @@
 
   /* Quiet dot grid, used once behind the hero. */
   .dot-grid {
-    background-image: radial-gradient(rgb(79 209 255 / 0.14) 1px, transparent 1.2px);
+    background-image: radial-gradient(color-mix(in oklab, var(--color-accent) 14%, transparent) 1px, transparent 1.2px);
     background-size: 28px 28px;
     -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
@@ -120,7 +166,7 @@
     color: var(--color-accent);
     font-weight: 700;
     text-decoration: underline;
-    text-decoration-color: rgb(79 209 255 / 0.4);
+    text-decoration-color: color-mix(in oklab, var(--color-accent) 40%, transparent);
     text-underline-offset: 3px;
   }
   .prose-bp a:hover {

@@ -143,6 +143,14 @@
   }
   var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
 
+  // lib/theme.ts
+  var THEME_KEY = "w3l:theme";
+  function sanitizeTheme(raw) {
+    return raw === "light" || raw === "system" ? raw : "dark";
+  }
+  var themeStore = createLocalStore(THEME_KEY, "dark", sanitizeTheme);
+  var THEME_INIT_SCRIPT = `try{var t=JSON.parse(localStorage.getItem(${JSON.stringify(THEME_KEY)}));if(t==='light'||t==='system')document.documentElement.dataset.theme=t}catch(e){}`;
+
   // lib/saved.ts
   var MAX_SAVED = 500;
   var EMPTY = [];
@@ -195,7 +203,7 @@
   }
 
   // extension-src/src/store.ts
-  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com" };
+  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "dark" };
   function sanitizeSettings(raw) {
     const r = raw ?? {};
     let apiBase = DEFAULT_SETTINGS.apiBase;
@@ -206,7 +214,7 @@
       } catch {
       }
     }
-    return { network: r.network !== false, apiBase };
+    return { network: r.network !== false, apiBase, theme: sanitizeTheme(r.theme) };
   }
   async function load() {
     const raw = await ext.storage.local.get(["prefs", "saved", "recent", "settings"]);
@@ -11903,6 +11911,26 @@
       "div",
       { class: "stack" },
       h("h1", null, "Settings"),
+      card(
+        "Appearance",
+        h(
+          "div",
+          { class: "chips", role: "radiogroup", "aria-label": "Theme" },
+          ["dark", "light", "system"].map(
+            (t) => h(
+              "button",
+              {
+                type: "button",
+                role: "radio",
+                "aria-checked": String(settings.theme === t),
+                class: `chip${settings.theme === t ? " primary" : ""}`,
+                on: { click: () => void setSettings({ ...settings, theme: t }) }
+              },
+              t === "dark" ? "Dark (default)" : t === "light" ? "Light" : "System"
+            )
+          )
+        )
+      ),
       card("When I press Search", radio("results", "Show Web3Lens results first", "Balances, tokens and risk checks for 14 major chains; other chains open their explorer."), radio("explorer", "Always open the block explorer", "Go straight to the explorer in a new tab.")),
       card(
         "Privacy",
@@ -13187,6 +13215,7 @@
   async function render() {
     const state = await load();
     setApiBase(state.settings.apiBase);
+    document.documentElement.dataset.theme = state.settings.theme;
     const ctx = { state, nav, compact: false };
     const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
     lastView = view;

@@ -94,6 +94,11 @@ try {
   // Settings page renders as the options page.
   const options = await open('options.html');
   check('options page', (await options.textContent('main')).includes('Online lookups'));
+  await options.click('text=Light');
+  await options.waitForFunction(() => document.documentElement.dataset.theme === 'light', null, { timeout: 5000 }).catch(() => {});
+  const optionsBg = await options.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  check('light theme setting applies', optionsBg === 'rgb(245, 248, 251)', optionsBg);
+  await options.click('text=Dark (default)');
 
   // Native lookups degrade cleanly when the API is unreachable (no deployment yet / offline).
   await app.goto(`chrome-extension://${id}/app.html#result/address/ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`);

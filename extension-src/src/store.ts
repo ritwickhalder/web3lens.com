@@ -3,6 +3,7 @@
  * plus extension-only settings. Nothing is synced or sent anywhere.
  */
 import { DEFAULT_PREFS, sanitizePrefs, type Prefs } from '@/lib/prefs';
+import { sanitizeTheme } from '@/lib/theme';
 import type { RecentSearch } from '@/lib/recent';
 import { MAX_SAVED, sanitizeSaved, savedId, type SavedItem } from '@/lib/saved';
 import { ext } from './browser';
@@ -12,9 +13,11 @@ export type ExtSettings = {
   network: boolean;
   /** Web3Lens API origin (for self-hosting); must be https. */
   apiBase: string;
+  /** Colour theme; dark is the default, as on the website. */
+  theme: 'dark' | 'light' | 'system';
 };
 
-export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com' };
+export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com', theme: 'dark' };
 
 export function sanitizeSettings(raw: unknown): ExtSettings {
   const r = (raw ?? {}) as Partial<ExtSettings>;
@@ -27,7 +30,7 @@ export function sanitizeSettings(raw: unknown): ExtSettings {
       // keep default
     }
   }
-  return { network: r.network !== false, apiBase };
+  return { network: r.network !== false, apiBase, theme: sanitizeTheme(r.theme) };
 }
 
 export async function load(): Promise<{ prefs: Prefs; saved: SavedItem[]; recent: RecentSearch[]; settings: ExtSettings }> {

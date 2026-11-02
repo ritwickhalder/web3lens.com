@@ -16,6 +16,39 @@
   --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   color-scheme: dark;
 }
+/* Light theme: same values as the website (app/globals.css). Dark is the default. */
+:root[data-theme="light"] {
+  --ink: #f5f8fb;
+  --ink-2: #ffffff;
+  --ink-3: #e9f0f6;
+  --line: #d5e0ea;
+  --line-strong: #b4c6d6;
+  --fg: #0a1520;
+  --muted: #3d5368;
+  --faint: #5b7288;
+  --accent: #00729c;
+  --accent-hover: #005b7d;
+  --redline: #b8460f;
+  --danger: #c42121;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --ink: #f5f8fb;
+    --ink-2: #ffffff;
+    --ink-3: #e9f0f6;
+    --line: #d5e0ea;
+    --line-strong: #b4c6d6;
+    --fg: #0a1520;
+    --muted: #3d5368;
+    --faint: #5b7288;
+    --accent: #00729c;
+    --accent-hover: #005b7d;
+    --redline: #b8460f;
+    --danger: #c42121;
+    color-scheme: light;
+  }
+}
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--ink); color: var(--fg); font: 500 14px/1.5 var(--sans); }
 body.popup { width: 400px; min-height: 480px; }
@@ -55,9 +88,9 @@ h3 { font-size: 13px; font-weight: 800; margin: 12px 0 6px; color: var(--muted);
 .linkish { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--fg); background: transparent; font: 700 12.5px var(--sans); text-decoration: none; cursor: pointer; }
-.chip.primary { border-color: var(--accent); color: var(--accent); background: rgb(79 209 255 / 0.1); }
+.chip.primary { border-color: var(--accent); color: var(--accent); background: color-mix(in oklab, var(--accent) 10%, transparent); }
 .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-.badge.good { border-color: rgb(79 209 255 / 0.5); color: var(--accent); }
+.badge.good { border-color: color-mix(in oklab, var(--accent) 50%, transparent); color: var(--accent); }
 .badge.warn { border-color: rgb(255 138 92 / 0.5); color: var(--redline); }
 .badge.danger { border-color: var(--danger); color: var(--danger); background: rgb(255 107 107 / 0.1); }
 .note { margin: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--ink); color: var(--muted); font-weight: 600; }
@@ -105,5 +138,5 @@ h3 { font-size: 13px; font-weight: 800; margin: 12px 0 6px; color: var(--muted);
 .recent { display: flex; flex-direction: column; gap: 6px; }
 @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
 .qr { margin-top: 8px; }
-.qr svg { width: 176px; height: 176px; background: var(--fg); border-radius: 8px; display: block; }
-.qr path { fill: var(--ink); }
+.qr svg { width: 176px; height: 176px; background: #fff; border-radius: 8px; display: block; } /* QR stays black on white */
+.qr path { fill: #000; }

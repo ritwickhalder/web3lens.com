@@ -51,6 +51,7 @@ try {
   for (const [width, label] of [
     [390, 'phone'],
     [1024, 'laptop'],
+    [1280, 'wide'],
     [1440, 'desktop'],
   ]) {
     const page = await browser.newPage({ viewport: { width, height: 900 } });
@@ -64,6 +65,27 @@ try {
       check(`${label} ${p}`, res?.status() === 200 && overflow <= 0 && errors.length === 0, `${res?.status()}${overflow > 0 ? `, overflows by ${overflow}px` : ''}${errors.length ? `, ${errors[0]}` : ''}`);
     }
     await page.close();
+  }
+
+  // Light theme: every page renders, and the stored choice applies before React loads (no dark flash).
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    await ctx.addInitScript(() => localStorage.setItem('w3l:theme', '"light"'));
+    const lp = await ctx.newPage();
+    const errors = [];
+    lp.on('pageerror', (e) => errors.push(e.message));
+    for (const p of PAGES) {
+      errors.length = 0;
+      await lp.goto(BASE + p, { waitUntil: 'domcontentloaded' });
+      const early = await lp.evaluate(() => document.documentElement.dataset.theme);
+      await lp.waitForLoadState('load');
+      const bg = await lp.evaluate(() => getComputedStyle(document.body).backgroundColor);
+      check(`light ${p}`, early === 'light' && bg === 'rgb(245, 248, 251)' && errors.length === 0, `${early} ${bg}${errors.length ? `, ${errors[0]}` : ''}`);
+    }
+    await lp.goto(`${BASE}/`);
+    await lp.getByRole('button', { name: /^Theme: Light/ }).click();
+    check('theme toggle cycles to System', (await lp.evaluate(() => document.documentElement.dataset.theme)) === 'system');
+    await ctx.close();
   }
 
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });

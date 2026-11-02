@@ -4,6 +4,7 @@ import { IBM_Plex_Mono, Manrope } from 'next/font/google';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SITE } from '@/config/site';
+import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import './globals.css';
 
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' });
@@ -43,8 +44,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
-    <html lang="en" className={`${manrope.variable} ${plexMono.variable}`}>
+    // data-theme may be changed by the init script before hydration, hence suppressHydrationWarning.
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${manrope.variable} ${plexMono.variable}`}>
       <head>
+        {/* Applies a stored light/system theme before first paint; static string (lib/theme.ts). */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <link rel="search" type="application/opensearchdescription+xml" title={SITE.name} href="/opensearch.xml" />
         <script
           type="application/ld+json"

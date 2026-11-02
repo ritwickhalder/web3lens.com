@@ -46,6 +46,7 @@ let lastView = '';
 async function render() {
   const state = await load();
   setApiBase(state.settings.apiBase);
+  document.documentElement.dataset.theme = state.settings.theme;
   const ctx: Ctx = { state, nav, compact: false };
   const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
   lastView = view;

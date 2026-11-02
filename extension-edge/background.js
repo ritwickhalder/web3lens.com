@@ -10356,6 +10356,14 @@
   }
   var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
 
+  // lib/theme.ts
+  var THEME_KEY = "w3l:theme";
+  function sanitizeTheme(raw) {
+    return raw === "light" || raw === "system" ? raw : "dark";
+  }
+  var themeStore = createLocalStore(THEME_KEY, "dark", sanitizeTheme);
+  var THEME_INIT_SCRIPT = `try{var t=JSON.parse(localStorage.getItem(${JSON.stringify(THEME_KEY)}));if(t==='light'||t==='system')document.documentElement.dataset.theme=t}catch(e){}`;
+
   // lib/saved.ts
   var MAX_SAVED = 500;
   var EMPTY = [];
@@ -10392,7 +10400,7 @@
   var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
 
   // extension-src/src/store.ts
-  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com" };
+  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "dark" };
   function sanitizeSettings(raw) {
     const r = raw ?? {};
     let apiBase = DEFAULT_SETTINGS.apiBase;
@@ -10403,7 +10411,7 @@
       } catch {
       }
     }
-    return { network: r.network !== false, apiBase };
+    return { network: r.network !== false, apiBase, theme: sanitizeTheme(r.theme) };
   }
   async function load() {
     const raw = await ext.storage.local.get(["prefs", "saved", "recent", "settings"]);

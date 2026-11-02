@@ -149,7 +149,7 @@ export function ChainGlyph({ id, name, size = 'md' }: { id: string; name: string
     <span
       aria-hidden
       className={`${SIZES[size]} grid shrink-0 place-items-center rounded-full font-extrabold tracking-tight`}
-      style={{ color, background: `color-mix(in oklab, ${color} 18%, var(--color-ink-3))` }}
+      style={{ color: `color-mix(in oklab, ${color}, var(--color-fg) var(--glyph-mix))`, background: `color-mix(in oklab, ${color} 18%, var(--color-ink-3))` }}
     >
       {symbol.slice(0, size === 'xs' ? 1 : size === 'lg' ? 4 : 3)}
     </span>

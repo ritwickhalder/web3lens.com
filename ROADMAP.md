@@ -48,7 +48,7 @@ What is live is listed in [FEATURES.md](FEATURES.md).
 | 1 | Seven-day sprint (above) | ✅ |
 | 2 | Explorer landing pages, gas tracker, "also fits" links | ✅ |
 | 3 | QR codes for addresses (native encoder verified against a reference implementation); streaming result sections so a slow provider doesn't hold up the page | ✅ |
-| 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | Planned |
+| 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | ✅ |
 | 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | Planned |
 | 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | Planned |
 
@@ -69,7 +69,7 @@ The biggest user-facing jump: people shouldn't have to know which chain an addre
   Cosmos, Cardano, Stellar, Solana, ENS/.sol names, tx hashes, block numbers. Pre-selects the chain and offers
   alternatives. Next: more Cosmos-SDK prefixes (`osmo1`, `celestia1`…), Unstoppable domains, Polkadot SS58.
 - ✅ **Recent searches and popular chains** under the search bar (localStorage, clearable).
-- **Light theme** toggle (tokens are ready; dark stays the default).
+- ✅ **Light theme** toggle (Dark default / Light / System; site and extensions).
 - ✅ **Correct paths per input type.** Explorer templates become `{ address, tx, block, search }` so Bitcoin
   transactions, Solana addresses, etc. go to the right page (fixes the quirks listed in FEATURES.md).
 - ✅ **Several explorers per chain** (e.g. Etherscan / Blockscout / Blockchair), with a remembered preference.

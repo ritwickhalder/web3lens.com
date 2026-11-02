@@ -42,6 +42,7 @@ async function scan(out: HTMLElement) {
 async function render(query?: string) {
   const state = await load();
   setApiBase(state.settings.apiBase);
+  document.documentElement.dataset.theme = state.settings.theme;
   const ctx: Ctx = { state, nav: (hash) => void openTab(appUrl(hash)), compact: true };
   const scanOut = h('div');
   clear(

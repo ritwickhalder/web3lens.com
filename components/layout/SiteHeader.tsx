@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { MAIN_NAV, MARKET_LINK, NEWS_LINKS } from '@/config/site';
 
 const navItem =
@@ -92,20 +93,22 @@ export function SiteHeader() {
             Markets
             <ArrowUpRight aria-hidden weight="bold" className="size-3.5" />
           </a>
+          <ThemeToggle />
           <Link
             href="/contact"
-            className="ml-3 flex h-10 items-center rounded-md bg-accent px-5 text-[15px] font-bold text-ink transition-colors hover:bg-accent-hover"
+            className="ml-2 flex h-10 items-center rounded-md bg-accent px-5 text-[15px] font-bold text-ink transition-colors hover:bg-accent-hover"
           >
             Contact
           </Link>
         </div>
 
+        <ThemeToggle className="ml-auto xl:hidden" />
         <button
           type="button"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((o) => !o)}
-          className="ml-auto grid size-11 place-items-center rounded-md border border-line-strong text-fg xl:hidden"
+          className="grid size-11 place-items-center rounded-md border border-line-strong text-fg xl:hidden"
         >
           {menuOpen ? <X weight="bold" className="size-5" /> : <List weight="bold" className="size-5" />}
         </button>

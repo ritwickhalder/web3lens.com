@@ -1,6 +1,7 @@
 'use client';
 
 import { useSyncExternalStore } from 'react';
+import { ThemePicker } from '@/components/layout/ThemeToggle';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { ghostBtnCls, Panel } from '@/components/tools/ui';
 import { allExplorerRoutes, getChain } from '@/lib/chains';
@@ -16,6 +17,10 @@ export function SettingsForm() {
 
   return (
     <div className="space-y-4">
+      <Panel title="Appearance">
+        <ThemePicker />
+      </Panel>
+
       <Panel title="When I press Search">
         <div className="space-y-3" role="radiogroup" aria-label="Search action">
           {(

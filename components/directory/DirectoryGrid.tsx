@@ -117,7 +117,7 @@ export function DirectoryGrid({ entries }: { entries: DirectoryEntry[] }) {
                 >
                   <span
                     className="grid size-12 shrink-0 place-items-center rounded-xl"
-                    style={{ color: style.color, background: `color-mix(in oklab, ${style.color} 14%, transparent)` }}
+                    style={{ color: `color-mix(in oklab, ${style.color}, var(--color-fg) var(--glyph-mix))`, background: `color-mix(in oklab, ${style.color} 14%, transparent)` }}
                   >
                     <SourceIcon aria-hidden weight="duotone" className="size-7" />
                   </span>
