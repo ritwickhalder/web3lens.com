@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 import { ExplorerLinks } from '@/components/results/ExplorerLinks';
 import { ResultActions } from '@/components/results/ResultActions';
 import { Badge, ResultHeader } from '@/components/results/ResultHeader';
-import { Card } from '@/components/results/ResultSection';
+import { Card, Note } from '@/components/results/ResultSection';
 import { ResultError } from '@/components/results/ResultSkeleton';
 import { TxLocator } from '@/components/results/TxLocator';
 import { TxView } from '@/components/results/TxView';
@@ -34,36 +35,53 @@ export default async function TxPage({ params }: Props) {
   if (!check.ok || !chain) return <ResultError title="Can't look this up" message={check.ok ? 'Unknown chain.' : check.error} query={raw} />;
   if (check.query !== raw) redirect(`/tx/${chainId}/${encodeURIComponent(check.query)}`);
 
-  let result;
-  try {
-    result = await lookupTx(chainId, check.query);
-  } catch (e) {
-    if (e instanceof LookupError) return <ResultError title="Can't look this up" message={e.message} query={raw} />;
-    throw e;
-  }
-  const notFound = result.tx.status === 'ok' && result.tx.data === null;
-
+  const hashValue = check.query;
   return (
     <main className="wrap pt-10 sm:pt-14">
       <ResultHeader
         chainId={chainId}
         chainName={chain.name}
         kindLabel="Transaction"
-        value={result.hash}
+        value={hashValue}
         badges={<Badge>{check.detection.label}</Badge>}
-        actions={<ResultActions query={result.hash} chainId={chainId} />}
+        actions={<ResultActions query={hashValue} chainId={chainId} />}
       />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="min-w-0 space-y-4">
-          <TxView result={result} />
-          {result.family === 'evm' && notFound && <TxLocator hash={result.hash} />}
+          <Suspense
+            fallback={
+              <div aria-busy className="h-64 animate-pulse rounded-2xl border border-line bg-ink-2">
+                <p className="sr-only">Loading transaction…</p>
+              </div>
+            }
+          >
+            <TxData chainId={chainId} hash={hashValue} />
+          </Suspense>
         </div>
         <aside className="min-w-0 space-y-4">
           <Card title="Open in an explorer">
-            <ExplorerLinks links={explorerLinks(chain, result.hash)} />
+            <ExplorerLinks links={explorerLinks(chain, hashValue)} />
           </Card>
         </aside>
       </div>
     </main>
+  );
+}
+
+/** The provider-backed part, streamed in after the header and explorer links. */
+async function TxData({ chainId, hash }: { chainId: string; hash: string }) {
+  let result;
+  try {
+    result = await lookupTx(chainId, hash);
+  } catch (e) {
+    if (e instanceof LookupError) return <Note tone="warn">{e.message}</Note>;
+    throw e;
+  }
+  const notFound = result.tx.status === 'ok' && result.tx.data === null;
+  return (
+    <>
+      <TxView result={result} />
+      {result.family === 'evm' && notFound && <TxLocator hash={result.hash} />}
+    </>
   );
 }

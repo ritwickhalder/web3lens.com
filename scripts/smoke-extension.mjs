@@ -99,6 +99,8 @@ try {
   await app.goto(`chrome-extension://${id}/app.html#result/address/ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`);
   await app.waitForSelector('.error, .card h2', { timeout: 20000 });
   const text = await app.textContent('main');
+  await app.click('text=QR');
+  check('result view shows a QR code', (await app.$('.qr svg path')) !== null);
   check('result view renders data or a clear error', /Balance|could not be reached|lookup service is unavailable|Too many/.test(text), text.slice(0, 120).replace(/\s+/g, ' '));
 
   check('no uncaught page errors', errors.length === 0, errors.join(' | '));

@@ -134,15 +134,23 @@ export function SecurityPanel({ chainId, address }: { chainId: string; address: 
             <Row label={`OFAC sanctions (snapshot ${formatUtc(state.data.sanctions.snapshotAt).slice(0, 10)})`} tone={state.data.sanctions.listed ? 'danger' : 'neutral'}>
               {state.data.sanctions.listed ? `Listed on the OFAC SDN list (${state.data.sanctions.lists.join(', ')})` : 'Not on the SDN list snapshot'}
             </Row>
-            <Row
-              label="Blockscout reputation"
-              tone={state.data.reputation.status === 'ok' && (state.data.reputation.data.isScam || (state.data.reputation.data.reputation ?? 'ok') !== 'ok') ? 'danger' : 'neutral'}
-            >
-              {sec(state.data.reputation, (r) => (r.isScam ? 'Marked as a scam' : r.reputation && r.reputation !== 'ok' ? `Reputation: ${r.reputation}` : 'Not flagged'))}
-            </Row>
-            <Row label="GoPlus reports" tone={state.data.goplus.status === 'ok' && state.data.goplus.data.flags.length ? 'danger' : 'neutral'}>
-              {sec(state.data.goplus, (g) => (g.flags.length ? `${g.flags.join(', ')}${g.dataSource ? ` (reported by ${g.dataSource})` : ''}` : 'No reports'))}
-            </Row>
+            {isEvm ? (
+              <>
+                <Row
+                  label="Blockscout reputation"
+                  tone={state.data.reputation.status === 'ok' && (state.data.reputation.data.isScam || (state.data.reputation.data.reputation ?? 'ok') !== 'ok') ? 'danger' : 'neutral'}
+                >
+                  {sec(state.data.reputation, (r) => (r.isScam ? 'Marked as a scam' : r.reputation && r.reputation !== 'ok' ? `Reputation: ${r.reputation}` : 'Not flagged'))}
+                </Row>
+                <Row label="GoPlus reports" tone={state.data.goplus.status === 'ok' && state.data.goplus.data.flags.length ? 'danger' : 'neutral'}>
+                  {sec(state.data.goplus, (g) => (g.flags.length ? `${g.flags.join(', ')}${g.dataSource ? ` (reported by ${g.dataSource})` : ''}` : 'No reports'))}
+                </Row>
+              </>
+            ) : (
+              <Row label="Scam reports">
+                <span className="text-muted">Not checked: the free report sources Web3Lens uses (Blockscout, GoPlus) cover EVM chains only.</span>
+              </Row>
+            )}
             {state.data.contract && (
               <>
                 <Row

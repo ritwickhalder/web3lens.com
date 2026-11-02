@@ -3,6 +3,7 @@
  * (balances, tokens, activity, transactions, cross-chain, risk checks, approvals).
  */
 import { apiGet, setApiBase } from '@/lib/api-client';
+import { encodeQr, qrSvgPath } from '@/lib/codec/qr';
 import { formatAmount, formatCount, formatUsd, shortHash, timeAgo } from '@/lib/format';
 import type { AddressResult, ApprovalsResult, LocateResult, MultichainResult, SecurityReport, Section, TxResult } from '@/lib/lookup-types';
 import { checkSanctions } from '@/lib/security/sanctions';
@@ -12,6 +13,25 @@ import type { ExtSettings } from '../store';
 import { badge, card, errorText, explorerList, facts, loading, mono, note, sectionBody, sourcedCard, when } from './common';
 
 export type Nav = (hash: string) => void;
+
+/** QR code as an SVG element (same encoder as the website). */
+function qrSvg(value: string): Node {
+  try {
+    const { path, viewBox } = qrSvgPath(encodeQr(value));
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', viewBox);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'QR code');
+    svg.setAttribute('shape-rendering', 'crispEdges');
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', path);
+    svg.append(p);
+    return svg;
+  } catch (e) {
+    return errorText((e as Error).message);
+  }
+}
 
 function usd(amount: string, price: Section<number>) {
   return price.status === 'ok' ? ` ≈ ${formatUsd(Number(amount) * price.data)}` : '';
@@ -210,8 +230,12 @@ export function securityCard(chainId: string, address: string): HTMLElement {
         s.flagCount > 0 ? note(`${s.flagCount} risk signal(s) found. Don't send funds or sign anything without checking.`, 'danger') : note('No reports in the sources below. That does not mean it is safe: most scams are never reported.', 'info'),
         facts([
           ['OFAC', s.sanctions.listed ? `LISTED (${s.sanctions.lists.join(', ')})` : `not listed (snapshot ${s.sanctions.snapshotAt.slice(0, 10)})`],
-          ['Blockscout', s.reputation.status === 'ok' ? (s.reputation.data.isScam ? 'marked as scam' : s.reputation.data.reputation && s.reputation.data.reputation !== 'ok' ? s.reputation.data.reputation : 'not flagged') : `unavailable (${s.reputation.reason})`],
-          ['GoPlus', s.goplus.status === 'ok' ? (s.goplus.data.flags.length ? s.goplus.data.flags.join(', ') : 'no reports') : `unavailable (${s.goplus.reason})`],
+          ...((/^0x[0-9a-fA-F]{40}$/.test(address)
+            ? [
+                ['Blockscout', s.reputation.status === 'ok' ? (s.reputation.data.isScam ? 'marked as scam' : s.reputation.data.reputation && s.reputation.data.reputation !== 'ok' ? s.reputation.data.reputation : 'not flagged') : `unavailable (${s.reputation.reason})`],
+                ['GoPlus', s.goplus.status === 'ok' ? (s.goplus.data.flags.length ? s.goplus.data.flags.join(', ') : 'no reports') : `unavailable (${s.goplus.reason})`],
+              ]
+            : [['Scam reports', 'not checked: the free sources cover EVM chains only']]) as [string, string][]),
           ...(s.contract
             ? ([
                 ['Verified', [s.contract.verification.blockscout, s.contract.verification.sourcify].map((v, i) => `${i ? 'Sourcify' : 'Blockscout'}: ${v.status === 'ok' ? ('verified' in v.data ? (v.data.verified ? 'yes' : 'no') : v.data.match ? v.data.match : 'no') : 'unavailable'}`).join(' · ')],
@@ -305,7 +329,20 @@ export function locateCard(hash: string, nav: Nav): HTMLElement {
 export function resultView(kind: 'address' | 'tx', chainId: string, query: string, settings: ExtSettings, nav: Nav, compact = false): HTMLElement {
   setApiBase(settings.apiBase);
   const root = h('div', { class: 'stack' });
-  const header = h('div', { class: 'result-head' }, h('p', { class: 'label' }, `${chainId} · ${kind}`), h('p', { class: 'mono value' }, query), h('div', { class: 'row' }, copyBtn(query, 'Copy'), explorerList(chainId, query)));
+  const qrBox = h('div', { class: 'qr', hidden: true });
+  const qrBtn = h('button', { type: 'button', class: 'btn-ghost sm' }, 'QR');
+  qrBtn.addEventListener('click', () => {
+    if (!qrBox.firstChild) qrBox.append(qrSvg(query));
+    qrBox.hidden = !qrBox.hidden;
+  });
+  const header = h(
+    'div',
+    { class: 'result-head' },
+    h('p', { class: 'label' }, `${chainId} · ${kind}`),
+    h('p', { class: 'mono value' }, query),
+    h('div', { class: 'row wrap' }, copyBtn(query, 'Copy'), kind === 'address' ? qrBtn : null, explorerList(chainId, query)),
+    qrBox,
+  );
   root.append(header);
   if (!settings.network) {
     root.append(note('Online lookups are turned off in settings. Explorer links and local checks still work.', 'info'));

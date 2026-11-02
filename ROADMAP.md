@@ -38,9 +38,19 @@ After the sprint shipped to production (verified live: all `/api/v1` providers r
 reads the live API): per-chain explorer landing pages (`/explorer/[chain]`, 44 chains, in the sitemap), a live gas
 tracker (`/gas`, also in the extension), and "this format also fits …" links on native address pages.
 
-Next batch candidates: light theme; QR codes for addresses (needs a verified encoder); streaming result sections so
-slow providers don't hold the whole page; a token-list source for BNB Chain/Avalanche/Linea holdings; ENS CCIP-read;
-Ontology and other legacy explorers verified by hand; store submissions.
+## Remaining batches
+
+Progress is tracked here: each batch is marked ✅ when it is on `main` and verified on web3lens.com.
+What is live is listed in [FEATURES.md](FEATURES.md).
+
+| Batch | Scope | Status |
+|---|---|---|
+| 1 | Seven-day sprint (above) | ✅ |
+| 2 | Explorer landing pages, gas tracker, "also fits" links | ✅ |
+| 3 | QR codes for addresses (native encoder verified against a reference implementation); streaming result sections so a slow provider doesn't hold up the page | ✅ |
+| 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | Planned |
+| 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | Planned |
+| 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | Planned |
 
 ## Phase 0 — Next.js migration ✅
 
@@ -85,7 +95,7 @@ Blockchair, CoinGecko.
 - Name resolution: ✅ ENS forward and reverse (on-chain resolvers). Next: CCIP-read ENS, SNS, Unstoppable Domains.
 - ✅ Gas tracker (`/gas`, 11 EVM chains + Bitcoin) and gas calculator.
 - Price ticker for the selected chain (USD values are shown on result pages already).
-- QR code for any address; copy and share buttons.
+- ✅ QR code for any address (native encoder, matches a reference implementation for versions 1–10); copy and share buttons.
 
 ## Phase 3 — Tools and content hub
 

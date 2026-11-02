@@ -104,3 +104,6 @@ h3 { font-size: 13px; font-weight: 800; margin: 12px 0 6px; color: var(--muted);
 .saved-item { display: grid !important; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; }
 .recent { display: flex; flex-direction: column; gap: 6px; }
 @media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
+.qr { margin-top: 8px; }
+.qr svg { width: 176px; height: 176px; background: var(--fg); border-radius: 8px; display: block; }
+.qr path { fill: var(--ink); }
