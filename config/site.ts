@@ -3,7 +3,7 @@
 export const SITE = {
   name: 'Web3Lens',
   domain: 'Web3Lens.com',
-  url: 'https://www.web3lens.com',
+  url: 'https://web3lens.com',
   title: 'Web3Lens - Blockchain Explorer | Blockchain Search Engine',
   tagline: 'Look up anything, on any chain.',
   description:

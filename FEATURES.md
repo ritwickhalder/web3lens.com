@@ -28,7 +28,7 @@ All colours and fonts are tokens in `app/globals.css`.
 | **Contact form** (name, email, subject, message) that emails the site owner. Honeypot, minimum fill time, spam/link checks, per-IP and per-email rate limit. | `app/contact/page.tsx`, `components/contact/ContactForm.tsx`, `app/api/contact/route.ts`, `lib/contact.ts` | `contact.html` + `contact.php` |
 | **Static pages:** About (with stats), Terms of Use, Privacy Policy, Bookmark how-to, HTML sitemap, 404; sticky title block on the left, numbered sections on the right. | `app/{about,terms,privacy-policy,bookmark,site-map}/page.tsx`, `components/content/PageShell.tsx` | `*.html` |
 | **SEO:** per-page title/description/canonical/Open Graph/Twitter tags, generated OG image and app icons, `sitemap.xml`, `robots.txt`, Google Search Console verification files. | `app/layout.tsx`, `lib/metadata.ts`, `app/opengraph-image.tsx`, `app/icon.svg`, `app/sitemap.ts`, `app/robots.ts`, `public/google*.html` | `<head>` tags in `index.html` |
-| **Old URLs keep working:** `/about.html`, `/mobile.html`, `/contact.php`, etc. redirect permanently to the new routes; `web3lens.com` redirects to `www.web3lens.com`. | `next.config.ts` | — |
+| **Old URLs keep working:** `/about.html`, `/mobile.html`, `/contact.php`, etc. redirect permanently to the new routes; `www.web3lens.com` redirects to `web3lens.com` (Vercel domain setting). | `next.config.ts` | — |
 | **Accessibility:** skip link, visible focus rings, labelled controls, `prefers-reduced-motion` respected. | `app/layout.tsx`, `app/globals.css` | — |
 | **Analytics:** GA4, loaded only when `NEXT_PUBLIC_GA_ID` is set. | `app/layout.tsx` | dead Universal Analytics tag |
 

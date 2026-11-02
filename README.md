@@ -1,6 +1,6 @@
 # Web3Lens — Blockchain Search Engine
 
-Website: https://www.web3lens.com/ · Developer: Ritwick Halder (https://www.ritwick.com)
+Website: https://web3lens.com/ · Developer: Ritwick Halder (https://www.ritwick.com)
 
 Search any of 769 blockchains for an address, transaction hash, block or data, plus a crypto directory
 and a beginner's guide. Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind v4;
@@ -42,4 +42,4 @@ Environment variables (see `.env.example`):
 - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`, `CONTACT_NOTIFY_TO` —
   contact form email. Without `SMTP_USER`/`SMTP_PASSWORD` the form still validates but sends nothing.
 
-Add both `web3lens.com` and `www.web3lens.com` to the project; the app redirects the apex domain to `www`.
+Add both `web3lens.com` and `www.web3lens.com` to the project; set `www.web3lens.com` to redirect (308) to `web3lens.com` in Vercel Domains. The app itself has no host redirect.

@@ -17,14 +17,9 @@ const LEGACY_PAGES: Record<string, string> = {
 
 const nextConfig: NextConfig = {
   async redirects() {
+    // Canonical host is web3lens.com; www → apex is a Vercel domain redirect, so don't add a host redirect here
+    // (an apex → www rule here made the two loop).
     return [
-      // Canonical host is www.web3lens.com (what the legacy canonical/OG tags used).
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'web3lens.com' }],
-        destination: 'https://www.web3lens.com/:path*',
-        permanent: true,
-      },
       ...Object.entries(LEGACY_PAGES).map(([source, destination]) => ({ source, destination, permanent: true })),
     ];
   },

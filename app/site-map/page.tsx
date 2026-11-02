@@ -10,7 +10,7 @@ export const metadata = pageMetadata({
 });
 
 export default function SiteMapPage() {
-  const host = SITE.url.replace('https://www.', '');
+  const host = SITE.url.replace(/^https?:\/\//, '');
   return (
     <PageShell eyebrow="Information" title="Sitemap">
       <InfoSection heading="Website map (links)">
