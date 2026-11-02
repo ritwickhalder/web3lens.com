@@ -88,42 +88,40 @@ export default function HomePage() {
           <h1 className="heading mx-auto mt-7 text-[2.6rem] sm:text-6xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,5.2vw,5.5rem)]">
             Look up anything, on <span className="text-accent">any chain.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg font-medium leading-relaxed text-muted sm:text-xl">
-            Paste an address, transaction, block or name. Web3Lens recognises it, picks the chain and opens the right
-            block explorer.
+          <p className="mx-auto mt-5 max-w-5xl text-base font-medium leading-relaxed text-muted sm:text-lg xl:whitespace-nowrap xl:text-xl">
+            Paste an address, transaction, block or name. Web3Lens recognises it, picks the chain and opens the right block
+            explorer.
           </p>
-          <div className="mx-auto mt-10 max-w-6xl">
-            <SmartSearch />
+          <div className="mx-auto mt-9 max-w-6xl">
+            <SmartSearch hidePopular />
           </div>
-          <p className="mt-3 hidden text-sm font-semibold text-faint md:block">
-            Press <kbd className="rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">/</kbd> or{' '}
-            <kbd className="rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">Ctrl K</kbd> to search
-            from anywhere on the page
-          </p>
 
-          <dl className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="flex flex-col-reverse rounded-xl border border-line bg-ink-2/70 px-4 py-4">
-                <dt className="mt-1 text-sm font-bold text-muted">{s.label}</dt>
-                <dd className="text-3xl font-extrabold tracking-tight text-fg">{s.value}</dd>
+          {/* Pick a chain first: sets it in the search bar above */}
+          <div className="mx-auto mt-7 max-w-6xl text-left">
+            <div className="mb-3 flex items-center gap-4">
+              <p className="label shrink-0">Or start with a chain</p>
+              <span aria-hidden className="h-px flex-1 bg-line" />
+              <p className="hidden shrink-0 text-sm font-semibold text-faint sm:block">Pick one, then paste your address</p>
+            </div>
+            <PopularChains />
+          </div>
+
+          <dl className="mx-auto mt-10 grid max-w-6xl grid-cols-2 divide-line rounded-2xl border border-line bg-ink-2/60 sm:grid-cols-4 sm:divide-x">
+            {STATS.map((s, i) => (
+              <div
+                key={s.label}
+                className={`flex items-baseline justify-center gap-3 px-4 py-4 ${i > 1 ? 'border-t border-line sm:border-t-0' : ''} ${i % 2 === 1 ? 'border-l border-line sm:border-l-0' : ''}`}
+              >
+                <dd className="text-2xl font-extrabold tracking-tight text-accent">{s.value}</dd>
+                <dt className="text-sm font-bold text-muted">{s.label}</dt>
               </div>
             ))}
           </dl>
         </div>
       </section>
 
-      {/* Popular chains */}
-      <section className="wrap mt-16">
-        <SectionHead
-          label="Popular chains"
-          title="Start with a chain"
-          aside={<p className="max-w-sm text-[15px] font-medium text-muted">Pick one to set it in the search bar, then paste your address.</p>}
-        />
-        <PopularChains />
-      </section>
-
       {/* Try it */}
-      <section className="wrap mt-24">
+      <section className="wrap mt-20">
         <SectionHead label="Try it" title="Click an example, watch it detect" />
         <TryExamples />
       </section>

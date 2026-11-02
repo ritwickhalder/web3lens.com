@@ -58,7 +58,7 @@ function RowLabel({ icon: Icon, children }: { icon?: typeof X; children: React.R
  * The main search: chain picker + query box. Recognises what was pasted (lib/detect) and,
  * until the user picks a chain themselves, switches to the matching chain automatically.
  */
-export function SmartSearch() {
+export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) {
   const [picked, setPicked] = useState<Chain>(CHAINS[0]);
   const [userPicked, setUserPicked] = useState(false);
   const [query, setQuery] = useState('');
@@ -188,7 +188,7 @@ export function SmartSearch() {
         </button>
       </form>
 
-      <div className="mt-4 flex min-h-[36px] justify-center" aria-live="polite">
+      <div className="mt-4 flex min-h-[36px] items-center justify-center" aria-live="polite">
         {notice ? (
           <p
             role={notice.tone === 'error' ? 'alert' : 'status'}
@@ -239,6 +239,12 @@ export function SmartSearch() {
               Clear
             </button>
           </div>
+        ) : hidePopular ? (
+          <p className="hidden items-center text-sm font-semibold text-faint md:flex">
+            Press <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">/</kbd> or
+            <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">Ctrl K</kbd> to search from
+            anywhere on the page
+          </p>
         ) : (
           <div className="flex flex-wrap items-center justify-center gap-2">
             <RowLabel>Popular</RowLabel>
