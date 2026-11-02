@@ -16,7 +16,7 @@ Router), React 19, TypeScript and Tailwind v4; hosted on Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 84 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
+npm test           # 89 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
 npm run lint
 npm run typecheck
 npm run build
@@ -75,11 +75,8 @@ provider fails the page says "unavailable" (or "stale" when an older cached answ
 
 ## Releasing the extensions
 
-1. Bump `version` in all three `manifest.json` files (tests require them to match), run `npm run ext:build`, `npm test`,
-   `npm run ext:lint:firefox` and `node scripts/smoke-extension.mjs`.
-2. Deploy the website first: the extensions call `https://web3lens.com/api/v1/*` for native lookups (everything else works offline).
-3. `npm run ext:pack`, then upload `dist-extensions/web3lens-<browser>-<version>.zip` to the Chrome Web Store,
-   Microsoft Edge Add-ons and Firefox AMO. For AMO also upload `web3lens-extension-source-<version>.zip`.
-4. Store listing: single purpose "look up blockchain addresses and transactions"; permissions as listed on `/extension`;
-   privacy policy https://web3lens.com/privacy-policy; data use: lookups the user runs are sent to web3lens.com, nothing is sold or used for ads.
-5. Link the store pages from `app/extension/page.tsx`.
+Everything for the stores (listing copy, screenshots, promo tiles, privacy answers and a per-store checklist) is in
+[store/README.md](store/README.md). In short: bump the version in all three manifests, `npm run ext:build`,
+`npm test`, `npm run ext:lint:firefox`, the extension smoke test and a manual Firefox check, then `npm run ext:pack`
+and upload `dist-extensions/web3lens-<browser>-<version>.zip` (plus the source zip for AMO). Deploy the website first:
+the extensions call `https://web3lens.com/api/v1/*` for native lookups (everything else works offline).

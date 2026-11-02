@@ -50,7 +50,7 @@ What is live is listed in [FEATURES.md](FEATURES.md).
 | 3 | QR codes for addresses (native encoder verified against a reference implementation); streaming result sections so a slow provider doesn't hold up the page | ✅ |
 | 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | ✅ |
 | 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | ✅ (Ontology and Zilliqa explorers couldn't be verified; see FEATURES.md) |
-| 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | Planned |
+| 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | ✅ Kit in [store/](store/README.md); extensions redesigned in the website's style; uploads pending (owner) |
 
 ## Phase 0 — Next.js migration ✅
 

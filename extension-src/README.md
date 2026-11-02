@@ -13,7 +13,9 @@ hand-written `manifest.json`; everything else there is generated.
 | `src/views/*` | Search, results, risk checks, tools, batch, saved, settings (plain DOM, text nodes only) |
 | `src/store.ts` | `storage.local`: preferences, saved items, recents, extension settings (same shapes as the website) |
 | `src/browser.ts` | Chrome/Firefox adapter |
-| `static/` | HTML shells and CSS |
+| `src/ui.ts` | Look and feel shared with the website: lens logo, Phosphor icons, official coin logos, searchable chain picker |
+| `icons-entry.tsx` | Build-time only: renders the website's React icon components (coin logos, Phosphor) to SVG strings that the build compiles in; no React ships |
+| `static/` | HTML shells, CSS (the website's tokens, dark/light) and `fonts/` (Manrope and IBM Plex Mono, SIL OFL, bundled so nothing loads remotely) |
 | `icons/` | PNG icons, rendered by `scripts/make-extension-icons.mjs` |
 
 Rules: no remote code (all scripts are local; CSP `script-src 'self'`), no host permissions, no

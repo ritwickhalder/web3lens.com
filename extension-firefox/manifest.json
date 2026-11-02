@@ -3,7 +3,7 @@
   "name": "Web3Lens: Blockchain Search",
   "short_name": "Web3Lens",
   "version": "1.0.0",
-  "description": "Look up any blockchain address or transaction: auto-detect 30+ formats, open the right explorer, see balances, risk checks and dev tools.",
+  "description": "Look up any blockchain address or transaction: auto-detects 30+ formats, opens the right explorer, shows balances and risk checks.",
   "homepage_url": "https://web3lens.com",
   "icons": {
     "16": "icons/icon-16.png",

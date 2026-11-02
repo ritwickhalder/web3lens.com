@@ -14,6 +14,7 @@ import { bitcoinFee, calculateFee, GAS_PRESETS } from '@/lib/tools/gas';
 import { parseTime } from '@/lib/tools/time';
 import { convertUnits, formatUnits } from '@/lib/tools/units';
 import { clear, copyBtn, h } from '../dom';
+import { icon, type IconName } from '../ui';
 import type { ExtSettings } from '../store';
 import { badge, card, errorText, note } from './common';
 
@@ -266,12 +267,23 @@ function txDecoder() {
   return [field('Signed raw transaction', raw, 'Decoded locally; nothing is broadcast.'), out];
 }
 
+const TOOL_ICONS: Record<string, IconName> = {
+  'unit-converter': 'scales',
+  'address-validator': 'checkCircle',
+  'hex-converter': 'hash',
+  'timestamp-converter': 'clock',
+  'gas-calculator': 'gas',
+  'abi-decoder': 'brackets',
+  'transaction-decoder': 'receipt',
+  'gas-tracker': 'gas',
+};
+
 function toolTabs(current: string, nav: (hash: string) => void) {
   return h(
     'nav',
     { class: 'chips', 'aria-label': 'Tools' },
     [...TOOLS.map((t) => [t.slug, t.title] as const), ['gas-tracker', 'Gas tracker'] as const].map(([s, title]) =>
-      h('button', { type: 'button', class: `chip${s === current ? ' primary' : ''}`, on: { click: () => nav(`#tools/${s}`) } }, title),
+      h('button', { type: 'button', class: `chip${s === current ? ' primary' : ''}`, 'aria-current': s === current ? 'page' : undefined, on: { click: () => nav(`#tools/${s}`) } }, icon(TOOL_ICONS[s] ?? 'wrench'), title),
     ),
   );
 }
@@ -322,7 +334,7 @@ function gasTracker(settings: ExtSettings) {
 
 export function toolsView(slug: string | undefined, settings: ExtSettings, nav: (hash: string) => void): HTMLElement {
   if (slug === 'gas-tracker') {
-    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('h1', null, 'Gas tracker'), h('p', { class: 'muted' }, 'Live fees on 11 EVM chains and Bitcoin.'), ...gasTracker(settings));
+    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, 'Gas tracker'), h('p', { class: 'lead' }, 'Live fees on 11 EVM chains and Bitcoin.'), ...gasTracker(settings));
   }
   const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
   const tabs = toolTabs(tool.slug, nav);
@@ -344,5 +356,5 @@ export function toolsView(slug: string | undefined, settings: ExtSettings, nav: 
         return txDecoder();
     }
   })();
-  return h('div', { class: 'stack' }, tabs, h('h1', null, tool.title), h('p', { class: 'muted' }, tool.description), ...body);
+  return h('div', { class: 'stack' }, tabs, h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, tool.title), h('p', { class: 'lead' }, tool.description), ...body);
 }

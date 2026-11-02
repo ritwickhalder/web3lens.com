@@ -42,3 +42,9 @@ interface ExtApi {
 
 declare const chrome: ExtApi | undefined;
 declare const browser: ExtApi | undefined;
+
+/** SVG strings rendered at build time from the website's icon components (scripts/build-extensions.mjs). */
+declare module 'virtual:svg-icons' {
+  const icons: { ui: Record<string, string>; uiDuotone: Record<string, string>; chains: Record<string, string> };
+  export default icons;
+}

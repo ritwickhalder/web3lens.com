@@ -87,7 +87,7 @@ for (const browser of ['chrome', 'edge', 'firefox']) {
 }
 
 // Source archive for reviewers: everything needed to reproduce the bundles with `npm ci && npm run ext:build`.
-const SOURCE = ['extension-src', 'lib', 'data', 'config/tools.ts', 'scripts/build-extensions.mjs', 'package.json', 'package-lock.json', 'tsconfig.json', 'extension-firefox/COMPATIBILITY.md'];
+const SOURCE = ['extension-src', 'lib', 'data', 'config/tools.ts', 'components/search/ChainGlyph.tsx', 'scripts/build-extensions.mjs', 'package.json', 'package-lock.json', 'tsconfig.json', 'extension-firefox/COMPATIBILITY.md'];
 const sourceFiles = [];
 for (const p of SOURCE) {
   const full = path.join(ROOT, p);

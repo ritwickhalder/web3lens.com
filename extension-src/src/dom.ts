@@ -39,7 +39,7 @@ export function clear(el: Element, ...children: Child[]) {
   return el;
 }
 
-export function ext_link(href: string, text: Child, cls = 'link') {
+export function ext_link(href: string, text: Child, cls = 'link'): HTMLAnchorElement {
   return h('a', { href, target: '_blank', rel: 'noopener noreferrer', class: cls }, text);
 }
 
@@ -57,7 +57,7 @@ export async function copy(text: string, btn?: HTMLElement) {
 }
 
 export function copyBtn(text: string, label = 'Copy') {
-  const b: HTMLButtonElement = h('button', { type: 'button', class: 'btn-ghost sm', title: label });
+  const b: HTMLButtonElement = h('button', { type: 'button', class: 'btn-ghost sm copy', title: label, 'aria-label': label });
   b.textContent = label;
   b.addEventListener('click', () => copy(text, b));
   return b;

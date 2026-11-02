@@ -40,25 +40,32 @@ try {
 
   // Popup: detection, checksum, secret refusal.
   const popup = await open('popup.html');
-  await popup.fill('input.input', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
+  await popup.fill('.search-input', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
   check('popup detects EVM address', (await popup.textContent('.detect')).includes('EVM address'));
-  await popup.fill('input.input', '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB4a');
+  await popup.fill('.search-input', '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB4a');
   check('popup flags bad checksum', (await popup.textContent('.detect')).toLowerCase().includes('bad checksum'));
-  await popup.fill('input.input', 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about');
+  await popup.fill('.search-input', 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about');
   check('popup refuses recovery phrase', (await popup.textContent('.detect')).includes('recovery phrase'));
-  await popup.fill('input.input', 'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=1');
-  check('popup unwraps payment URI', (await popup.inputValue('input.input')) === '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa');
-  const selected = await popup.$eval('select.select', (s) => s.value);
-  check('popup auto-selects chain', selected === 'bitcoin', selected);
+  await popup.fill('.search-input', 'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=1');
+  check('popup unwraps payment URI', (await popup.inputValue('.search-input')) === '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa');
+  const selected = await popup.textContent('.picker-name');
+  check('popup auto-selects chain', selected === 'Bitcoin', selected);
+  check('popup shows official coin logos (build-time SVG)', (await popup.$$('.picker-glyph svg.glyph')).length === 1);
+  await popup.click('.picker-btn');
+  await popup.fill('.picker-filter', 'solana');
+  await popup.keyboard.press('Enter');
+  check('chain picker filters and picks with the keyboard', (await popup.textContent('.picker-name')) === 'Solana');
+  await popup.fill('.search-input', 'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa?amount=1');
+  await popup.click('.chain-chip:has-text("Bitcoin")');
 
   // Explorer handoff opens the right page type in a new tab.
-  const [tab] = await Promise.all([ctx.waitForEvent('page'), popup.click('text=Open in explorer ↗')]);
+  const [tab] = await Promise.all([ctx.waitForEvent('page'), popup.click('text=Open in explorer')]);
   await tab.waitForLoadState('commit').catch(() => {});
   check('explorer handoff uses per-type route', tab.url().startsWith('https://mempool.space/address/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'), tab.url());
   await tab.close();
 
   // Saved + recent persist in storage.local.
-  await popup.click('text=Save');
+  await popup.click('button:has-text("Save")');
   const app = await open('app.html#saved');
   await app.waitForSelector('.saved-item', { timeout: 5000 });
   check('saved item stored and listed', (await app.textContent('.list')).includes('1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'));

@@ -1,6 +1,5 @@
-/** Search with auto-detect, chain picker, explorer handoff and native results — popup and full page. */
+/** Search with auto-detect, chain picker, explorer handoff and native results: popup and full page. */
 import { setApiBase } from '@/lib/api-client';
-import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { CHAINS, getChain, type Chain } from '@/lib/chains';
 import { detectAll, extractQuery, type Detection } from '@/lib/detect';
 import { detectionFor, fallbackNotice, isSafeExternalUrl, resolveExplorer, toQueryKind, webSearchLink, type ExplorerAction } from '@/lib/explorer';
@@ -10,28 +9,13 @@ import { labelFor } from '@/lib/saved';
 import { checkSanctions } from '@/lib/security/sanctions';
 import { appUrl, openTab } from '../browser';
 import { clear, ext_link, h } from '../dom';
-import { addRecent, clearRecent, upsertSaved, type load } from '../store';
+import { addRecent, clearRecent, setPrefs, upsertSaved, type load } from '../store';
+import { chainPicker, glyph, icon } from '../ui';
 import { badge, errorText, explorerList, note } from './common';
 import { locateCard, multichainCard, resultView, type Nav } from './results';
 
 export type State = Awaited<ReturnType<typeof load>>;
 export type Ctx = { state: State; nav: Nav; compact: boolean };
-
-function chainSelect(state: State, selected: Chain, candidates: string[]): HTMLSelectElement {
-  const opt = (c: Chain) => h('option', { value: c.id, selected: c.id === selected.id ? true : undefined }, c.name);
-  const group = (label: string, ids: string[]) => {
-    const chains = ids.map((id) => getChain(id)).filter((c): c is Chain => Boolean(c));
-    return chains.length ? h('optgroup', { label }, chains.map(opt)) : null;
-  };
-  return h(
-    'select',
-    { class: 'select', 'aria-label': 'Blockchain' },
-    group('Detected', candidates),
-    group('Favourites', state.prefs.favouriteChains),
-    group('Popular', POPULAR_CHAIN_IDS),
-    h('optgroup', { label: `All chains · ${CHAINS.length}` }, CHAINS.map(opt)),
-  );
-}
 
 /** Opens an explorer action from an extension page. Form explorers are submitted from a hidden form. */
 export function openAction(action: ExplorerAction) {
@@ -49,12 +33,31 @@ export function openAction(action: ExplorerAction) {
 export function searchView(ctx: Ctx, initial: { query?: string; chain?: string } = {}): HTMLElement {
   const { state } = ctx;
   setApiBase(state.settings.apiBase);
-  let picked: Chain = (initial.chain && getChain(initial.chain)) || CHAINS[0];
   let userPicked = Boolean(initial.chain && getChain(initial.chain));
 
-  const input = h('input', { class: 'input mono', type: 'text', placeholder: 'Address, tx hash, block or ENS name', 'aria-label': 'Search', autocomplete: 'off', spellcheck: 'false', value: initial.query ?? '' });
-  const selectWrap = h('div', { class: 'select-wrap' });
-  const info = h('div', { class: 'detect' });
+  const input = h('input', {
+    class: 'search-input',
+    type: 'text',
+    placeholder: 'Address, tx hash, block or ENS name',
+    'aria-label': 'Address, transaction hash, block or name',
+    autocomplete: 'off',
+    spellcheck: 'false',
+    value: initial.query ?? '',
+  });
+  const picker = chainPicker({
+    value: (initial.chain && getChain(initial.chain)) || CHAINS[0],
+    favourites: state.prefs.favouriteChains,
+    onChange: () => {
+      userPicked = true;
+      renderInfo();
+    },
+    onToggleFavourite: (id) => {
+      const fav = state.prefs.favouriteChains;
+      state.prefs = { ...state.prefs, favouriteChains: fav.includes(id) ? fav.filter((x) => x !== id) : [...fav, id] };
+      void setPrefs(state.prefs);
+    },
+  });
+  const info = h('div', { class: 'detect', 'aria-live': 'polite' });
   const results = h('div', { class: 'stack' });
   const recentBox = h('div', null);
 
@@ -65,43 +68,66 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   };
 
   const effectiveChain = (best: Detection | null): Chain => {
+    const picked = picker.value();
     if (userPicked || !best?.chains.length) return picked;
     return best.chains.includes(picked.id) ? picked : (getChain(best.chains[0]) ?? picked);
   };
 
-  function renderSelect() {
+  function syncPicker() {
     const { best } = current();
+    picker.setDetected(best?.kind === 'secret' ? [] : (best?.chains.slice(0, 14) ?? []));
     const chain = effectiveChain(best);
-    const sel = chainSelect(state, chain, best?.chains.slice(0, 14) ?? []);
-    sel.addEventListener('change', () => {
-      picked = getChain(sel.value) ?? picked;
-      userPicked = true;
-      renderInfo();
-    });
-    clear(selectWrap, sel);
+    if (chain.id !== picker.value().id || (!userPicked && best?.chains.includes(chain.id))) picker.set(chain, { auto: !userPicked && Boolean(best?.chains.includes(chain.id)) });
+    else if (!best) picker.set(chain, { auto: false });
   }
 
   function renderInfo() {
     const { query, best, all } = current();
     if (!query) return clear(info);
-    if (!best) return clear(info, h('p', { class: 'muted' }, 'Not a format Web3Lens recognises: it will go to the chosen chain’s explorer search.'));
+    if (!best) return clear(info, h('p', { class: 'hint' }, 'Not a format Web3Lens recognises: it will go to the chosen chain’s explorer search.'));
     if (best.kind === 'secret') return clear(info, note(best.note ?? 'Secret detected.', 'danger'));
     const chain = effectiveChain(best);
     const saved = labelFor(state.saved, best.normalized, chain.id);
     const sanctions = best.kind === 'address' ? checkSanctions(best.normalized) : null;
+    const candidates = best.chains.map((id) => getChain(id)).filter((c): c is Chain => Boolean(c));
     clear(
       info,
       h(
         'div',
         { class: 'row wrap' },
-        badge(best.label, 'neutral'),
-        best.checksum === 'valid' ? badge('checksum ok', 'good') : null,
+        h('span', { class: 'detect-pill' }, icon('scan'), best.label, best.checksum === 'valid' ? h('span', { class: 'pill-sub' }, '· checksum ok') : null),
         best.checksum === 'invalid' ? badge('bad checksum', 'danger') : null,
         best.network === 'testnet' ? badge('testnet', 'warn') : null,
         sanctions?.listed ? badge('OFAC listed', 'danger') : null,
         saved?.label ? badge(`★ ${saved.label}`, 'good') : null,
-        all.length > 1 ? h('span', { class: 'muted' }, `also: ${all.slice(1).map((d) => d.label).join(', ')}`) : null,
       ),
+      candidates.length > 1 || !candidates.includes(chain)
+        ? h(
+            'div',
+            { class: 'row wrap chips-row' },
+            h('span', { class: 'row-label' }, candidates.includes(chain) ? 'Search on' : 'Switch to'),
+            candidates.slice(0, ctx.compact ? 4 : 8).map((c) =>
+              h(
+                'button',
+                {
+                  type: 'button',
+                  class: `chain-chip${c.id === chain.id ? ' active' : ''}`,
+                  'aria-pressed': String(c.id === chain.id),
+                  on: {
+                    click: () => {
+                      picker.set(c);
+                      userPicked = true;
+                      renderInfo();
+                    },
+                  },
+                },
+                glyph(c.id, c.name, 'xs'),
+                c.name,
+              ),
+            ),
+          )
+        : null,
+      all.length > 1 ? h('p', { class: 'hint' }, `Could also be: ${all.slice(1).map((d) => d.label).join(', ')}`) : null,
       best.note ? note(best.note, best.checksum === 'invalid' ? 'danger' : 'warn') : null,
     );
   }
@@ -109,8 +135,8 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   function refresh() {
     const { query } = extractQuery(input.value);
     if (query !== input.value.trim() && input.value.trim()) input.value = query;
-    if (!query) userPicked = Boolean(initial.chain) && userPicked;
-    renderSelect();
+    if (!query && !initial.chain) userPicked = false;
+    syncPicker();
     renderInfo();
     recentBox.hidden = Boolean(query);
   }
@@ -122,10 +148,15 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
         h(
           'div',
           { class: 'note warn' },
-          `${chain.name}'s explorer did not respond at the last health check. `,
-          ext_link(webSearchLink(chain, query), 'Search the web'),
-          ' · ',
-          h('button', { type: 'button', class: 'linkish', on: { click: () => openAction(r.action) } }, 'open anyway'),
+          icon('warning'),
+          h(
+            'span',
+            null,
+            `${chain.name}'s explorer did not respond at the last health check. `,
+            ext_link(webSearchLink(chain, query), 'Search the web'),
+            ' · ',
+            h('button', { type: 'button', class: 'linkish', on: { click: () => openAction(r.action) } }, 'open anyway'),
+          ),
         ),
       );
       return;
@@ -159,7 +190,11 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
     const k = kind === 'tx' ? 'tx' : 'address';
     if (ctx.compact) {
       results.append(
-        h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`)) } }, 'Open full view ↗')),
+        h(
+          'div',
+          { class: 'row' },
+          h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`)) } }, icon('external'), 'Open full view'),
+        ),
         resultView(k, chain.id, d!.normalized, state.settings, (hash) => void openTab(appUrl(hash)), true),
       );
     } else ctx.nav(`#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`);
@@ -170,38 +205,39 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
     clear(
       recentBox,
       h(
-        'div',
+        'section',
         { class: 'recent' },
-        h('p', { class: 'label' }, 'Recent'),
+        h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), 'Recent'), h('button', { type: 'button', class: 'linkish muted small', on: { click: async () => (await clearRecent(), (state.recent = []), renderRecent()) } }, 'Clear')),
         h(
           'ul',
-          { class: 'list' },
-          state.recent.map((r) =>
-            h(
+          { class: 'recent-list' },
+          state.recent.map((r) => {
+            const c = getChain(r.chainId);
+            return h(
               'li',
               null,
               h(
                 'button',
                 {
                   type: 'button',
-                  class: 'linkish mono',
+                  class: 'recent-item',
                   on: {
                     click: () => {
                       input.value = r.query;
-                      picked = getChain(r.chainId) ?? picked;
+                      if (c) picker.set(c);
                       userPicked = true;
                       refresh();
                       void submit();
                     },
                   },
                 },
-                shortHash(r.query, 10, 8),
+                c ? glyph(c.id, c.name, 'sm') : null,
+                h('span', { class: 'mono' }, shortHash(r.query, 10, 8)),
+                h('span', { class: 'muted small' }, c?.name ?? r.chainId),
               ),
-              h('span', { class: 'muted' }, getChain(r.chainId)?.name ?? r.chainId),
-            ),
-          ),
+            );
+          }),
         ),
-        h('button', { type: 'button', class: 'linkish muted', on: { click: async () => (await clearRecent(), (state.recent = []), renderRecent()) } }, 'Clear'),
       ),
     );
   }
@@ -209,35 +245,40 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
   input.addEventListener('input', refresh);
   const form = h(
     'form',
-    { class: 'search', on: { submit: (e: Event) => void submit(e) } },
+    { class: 'searchbar marks', on: { submit: (e: Event) => void submit(e) } },
+    picker.el,
+    h('span', { class: 'divider', 'aria-hidden': 'true' }),
     input,
-    h('div', { class: 'row' }, selectWrap, h('button', { type: 'submit', class: 'btn' }, 'Search')),
+    h('button', { type: 'submit', class: 'btn search-btn' }, 'Search', icon('arrowRight')),
+  );
+  const actions = h(
+    'div',
+    { class: 'row wrap actions' },
+    h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void submit(undefined, true) } }, icon('external'), 'Open in explorer'),
     h(
-      'div',
-      { class: 'row' },
-      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void submit(undefined, true) } }, 'Open in explorer ↗'),
-      h(
-        'button',
-        {
-          type: 'button',
-          class: 'btn-ghost sm',
-          on: {
-            click: async (e: Event) => {
-              const { best, query } = current();
-              if (!query || best?.kind === 'secret') return;
-              const chain = effectiveChain(best);
-              await upsertSaved({ query: best?.normalized ?? query, chainId: chain.id });
-              (e.target as HTMLElement).textContent = 'Saved ★';
-            },
+      'button',
+      {
+        type: 'button',
+        class: 'btn-ghost sm',
+        on: {
+          click: async (e: Event) => {
+            // currentTarget is reset once the event finishes dispatching, so read it before awaiting.
+            const btn = e.currentTarget as HTMLElement;
+            const { best, query } = current();
+            if (!query || best?.kind === 'secret') return;
+            const chain = effectiveChain(best);
+            await upsertSaved({ query: best?.normalized ?? query, chainId: chain.id });
+            btn.replaceChildren(icon('check'), 'Saved');
           },
         },
-        'Save',
-      ),
+      },
+      icon('bookmark'),
+      'Save',
     ),
   );
   refresh();
   renderRecent();
   queueMicrotask(() => input.focus());
   if (initial.query) queueMicrotask(() => void submit());
-  return h('div', { class: 'stack' }, form, info, results, recentBox);
+  return h('div', { class: 'stack' }, form, info, actions, results, recentBox);
 }

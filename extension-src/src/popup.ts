@@ -1,15 +1,19 @@
-/** Toolbar popup: search with detection, compact results, recent searches, page scan. */
+/** Toolbar popup: search with detection, compact results, quick actions, recent searches, page scan. */
 import { setApiBase } from '@/lib/api-client';
 import { detectAll } from '@/lib/detect';
 import { shortHash } from '@/lib/format';
 import { appUrl, ext, openTab } from './browser';
 import { clear, h } from './dom';
 import { scanPageForCandidates } from './scan';
-import { load } from './store';
+import { load, setSettings, type ExtSettings } from './store';
+import { brand, glyph, icon, iconButton, type IconName } from './ui';
 import { errorText, loading } from './views/common';
 import { searchView, type Ctx } from './views/search';
+import { getChain } from '@/lib/chains';
 
 const root = document.getElementById('app')!;
+const THEME_NEXT: Record<ExtSettings['theme'], ExtSettings['theme']> = { dark: 'light', light: 'system', system: 'dark' };
+const THEME_ICON: Record<ExtSettings['theme'], IconName> = { dark: 'moon', light: 'sun', system: 'desktop' };
 
 async function scan(out: HTMLElement) {
   clear(out, loading('Reading this page…'));
@@ -21,22 +25,35 @@ async function scan(out: HTMLElement) {
       .map((s) => ({ s, d: detectAll(s)[0] }))
       .filter((x) => x.d && x.d.kind !== 'secret' && x.d.kind !== 'block' && x.d.format !== 'hex64')
       .slice(0, 40);
-    if (!found.length) return clear(out, h('p', { class: 'muted' }, 'No addresses or hashes found on this page.'));
+    if (!found.length) return clear(out, h('p', { class: 'hint' }, 'No addresses or hashes found on this page.'));
     clear(
       out,
-      h('p', { class: 'label' }, `${found.length} found on this page`),
       h(
-        'ul',
-        { class: 'list' },
-        found.map(({ s, d }) =>
-          h('li', null, h('button', { type: 'button', class: 'linkish mono', on: { click: () => void render(s) } }, shortHash(d!.normalized, 10, 6)), h('span', { class: 'muted small' }, d!.label)),
+        'section',
+        { class: 'card' },
+        h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('scan'), `${found.length} found on this page`)),
+        h(
+          'ul',
+          { class: 'recent-list' },
+          found.map(({ s, d }) => {
+            const c = d!.chains[0] ? getChain(d!.chains[0]) : undefined;
+            return h(
+              'li',
+              null,
+              h('button', { type: 'button', class: 'recent-item', on: { click: () => void render(s) } }, c ? glyph(c.id, c.name, 'sm') : null, h('span', { class: 'mono' }, shortHash(d!.normalized, 10, 6)), h('span', { class: 'muted small' }, d!.label)),
+            );
+          }),
         ),
+        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#batch?q=${encodeURIComponent(found.map((f) => f.d!.normalized).join('\n'))}`)) } }, icon('list'), 'Check all in batch'),
       ),
-      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#batch?q=${encodeURIComponent(found.map((f) => f.d!.normalized).join('\n'))}`)) } }, 'Check all in batch ↗'),
     );
   } catch (e) {
     clear(out, errorText(`Can't read this page: ${(e as Error).message}. Browser pages (settings, stores) can't be scanned.`));
   }
+}
+
+function tile(name: IconName, label: string, onClick: () => void) {
+  return h('button', { type: 'button', class: 'tile', on: { click: onClick } }, icon(name, 'ic tile-ic', true), h('span', null, label));
 }
 
 async function render(query?: string) {
@@ -49,23 +66,38 @@ async function render(query?: string) {
     root,
     h(
       'header',
-      { class: 'topbar' },
-      h('span', { class: 'brand' }, h('span', { class: 'mark' }, '◎'), 'Web3', h('span', { class: 'accent' }, 'Lens')),
-      h('button', { type: 'button', class: 'linkish small', on: { click: () => void openTab(appUrl('#search')) } }, 'Full app ↗'),
+      { class: 'popup-head' },
+      brand(),
+      h(
+        'div',
+        { class: 'row tight' },
+        iconButton(THEME_ICON[state.settings.theme], `Theme: ${state.settings.theme}. Change`, async () => {
+          await setSettings({ ...state.settings, theme: THEME_NEXT[state.settings.theme] });
+          void render(query);
+        }),
+        iconButton('gear', 'Settings', () => void openTab(appUrl('#settings'))),
+        iconButton('external', 'Open the full app', () => void openTab(appUrl('#search'))),
+      ),
     ),
-    h('main', { class: 'page' }, searchView(ctx, query ? { query } : {}), h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void scan(scanOut) } }, 'Find addresses on this page')), scanOut),
+    h(
+      'main',
+      { class: 'popup-main' },
+      searchView(ctx, query ? { query } : {}),
+      scanOut,
+      h(
+        'nav',
+        { class: 'tiles', 'aria-label': 'More' },
+        tile('scan', 'Scan page', () => void scan(scanOut)),
+        tile('list', 'Batch', () => void openTab(appUrl('#batch'))),
+        tile('wrench', 'Tools', () => void openTab(appUrl('#tools'))),
+        tile('bookmark', 'Saved', () => void openTab(appUrl('#saved'))),
+      ),
+    ),
     h(
       'footer',
-      { class: 'footer' },
-      ...(
-        [
-          ['#batch', 'Batch'],
-          ['#tools', 'Tools'],
-          ['#saved', 'Saved'],
-          ['#settings', 'Settings'],
-        ] as const
-      ).map(([hash, label]) => h('button', { type: 'button', class: 'linkish', on: { click: () => void openTab(appUrl(hash)) } }, label)),
-      h('p', { class: 'muted small' }, state.settings.network ? `Lookups you run are sent to ${new URL(state.settings.apiBase).host}.` : 'Offline mode: nothing leaves your browser.'),
+      { class: 'popup-foot' },
+      icon(state.settings.network ? 'shield' : 'cloudSlash'),
+      h('span', null, state.settings.network ? `Lookups you run go to ${new URL(state.settings.apiBase).host}. Nothing else leaves your browser.` : 'Offline mode: nothing leaves your browser.'),
     ),
   );
 }

@@ -22,7 +22,8 @@ export function settingsView(ctx: Ctx): HTMLElement {
   return h(
     'div',
     { class: 'stack' },
-    h('h1', null, 'Settings'),
+    h('p', { class: 'label' }, 'Settings'),
+    h('h1', { class: 'heading' }, 'Search your way'),
     card(
       'Appearance',
       h(

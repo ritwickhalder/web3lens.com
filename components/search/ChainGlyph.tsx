@@ -36,7 +36,6 @@ import TokenMKR from '@web3icons/react/icons/tokens/TokenMKR';
 import TokenMNT from '@web3icons/react/icons/tokens/TokenMNT';
 import TokenNEAR from '@web3icons/react/icons/tokens/TokenNEAR';
 import TokenNEO from '@web3icons/react/icons/tokens/TokenNEO';
-import TokenOMG from '@web3icons/react/icons/tokens/TokenOMG';
 import TokenONT from '@web3icons/react/icons/tokens/TokenONT';
 import TokenOSMO from '@web3icons/react/icons/tokens/TokenOSMO';
 import TokenPOL from '@web3icons/react/icons/tokens/TokenPOL';
@@ -65,7 +64,7 @@ import TokenZRX from '@web3icons/react/icons/tokens/TokenZRX';
 import { chainMeta } from '@/lib/chain-meta';
 
 /** Official coin logos (web3icons) for the chains that have one; imported one by one to keep the bundle small. */
-const ICONS: Record<string, React.ComponentType<{ variant?: 'background' | 'mono' | 'branded'; className?: string; 'aria-hidden'?: boolean }>> = {
+export const CHAIN_ICONS: Record<string, React.ComponentType<{ variant?: 'background' | 'mono' | 'branded'; className?: string; 'aria-hidden'?: boolean }>> = {
   bitcoin: TokenBTC,
   ethereum: TokenETH,
   solana: TokenSOL,
@@ -100,7 +99,6 @@ const ICONS: Record<string, React.ComponentType<{ variant?: 'background' | 'mono
   siacoin: TokenSC,
   steem: TokenSTEEM,
   lisk: TokenLSK,
-  omisego: TokenOMG,
   bat: TokenBAT,
   '0x': TokenZRX,
   augur: TokenREP,
@@ -135,12 +133,12 @@ const ICONS: Record<string, React.ComponentType<{ variant?: 'background' | 'mono
 const SIZES = { xs: 'size-5 text-[8px]', sm: 'size-6 text-[9px]', md: 'size-8 text-[10px]', lg: 'size-11 text-xs' };
 
 export function hasChainIcon(id: string) {
-  return id in ICONS;
+  return id in CHAIN_ICONS;
 }
 
 /** Round coin badge: the official logo when we have one, otherwise the ticker on a tinted disc. */
 export function ChainGlyph({ id, name, size = 'md' }: { id: string; name: string; size?: keyof typeof SIZES }) {
-  const Icon = ICONS[id];
+  const Icon = CHAIN_ICONS[id];
   if (Icon) {
     return <Icon aria-hidden variant="background" className={`${SIZES[size]} shrink-0 rounded-full`} />;
   }

@@ -93,3 +93,19 @@ test('generated files are up to date with extension-src (npm run ext:build)', as
     for (const [name, buf] of Object.entries(want)) assert.ok(have[name].equals(buf), `${dir}/${name} is stale: run npm run ext:build`);
   }
 });
+
+test('every official coin logo and UI icon renders (no empty icon variants)', async () => {
+  const { renderIcons } = await import('../build-extensions.mjs');
+  const icons = (await renderIcons()) as { ui: Record<string, string>; chains: Record<string, string> };
+  assert.ok(Object.keys(icons.chains).length > 50);
+  for (const [id, svg] of Object.entries({ ...icons.chains, ...icons.ui })) assert.ok(svg.startsWith('<svg') && svg.length > 150, `${id} renders an empty icon`);
+});
+
+test('store limits: name ≤ 75, short name ≤ 12, description ≤ 132 characters (Chrome Web Store rejects longer)', () => {
+  for (const dir of TARGETS) {
+    const m = manifest(dir) as Manifest & { name: string; short_name: string; description: string };
+    assert.ok(m.name.length <= 75, `${dir}: name`);
+    assert.ok(m.short_name.length <= 12, `${dir}: short_name`);
+    assert.ok(m.description.length <= 132, `${dir}: description is ${m.description.length} characters`);
+  }
+});

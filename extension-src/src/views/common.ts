@@ -5,6 +5,7 @@ import type { Detection } from '@/lib/detect';
 import { formatUtc, timeAgo } from '@/lib/format';
 import type { Section } from '@/lib/lookup-types';
 import { ext_link, h } from '../dom';
+import { icon } from '../ui';
 
 export function card(title: string | null, ...children: (Node | null | false)[]) {
   return h('section', { class: 'card' }, title ? h('h2', null, title) : null, ...children);
@@ -15,7 +16,7 @@ export function badge(text: string, tone: 'neutral' | 'good' | 'warn' | 'danger'
 }
 
 export function note(text: string, tone: 'info' | 'warn' | 'danger' = 'info') {
-  return h('p', { class: `note ${tone}` }, text);
+  return h('p', { class: `note ${tone}` }, icon(tone === 'info' ? 'info' : tone === 'danger' ? 'shieldWarning' : 'warning'), h('span', null, text));
 }
 
 export function facts(rows: [string, Node | string | null][]) {
@@ -56,7 +57,11 @@ export function explorerList(chainId: string, query: string, detection?: Detecti
   return h(
     'div',
     { class: 'chips' },
-    links.map((l, i) => ext_link(l.href, `${l.unreachable ? '⚠ ' : ''}${l.name} ↗`, i === 0 ? 'chip primary' : 'chip')),
+    links.map((l, i) => {
+      const a = ext_link(l.href, [l.unreachable ? icon('warning', 'ic warn') : null, l.name, icon('external', 'ic xs')], i === 0 && !l.unreachable ? 'chip primary' : 'chip');
+      if (l.unreachable) a.setAttribute('title', 'Did not respond at the last health check');
+      return a;
+    }),
   );
 }
 

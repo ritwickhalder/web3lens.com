@@ -8,7 +8,9 @@ import { formatAmount, formatCount, formatUsd, shortHash, timeAgo } from '@/lib/
 import type { AddressResult, ApprovalsResult, LocateResult, MultichainResult, SecurityReport, Section, TxResult } from '@/lib/lookup-types';
 import { checkSanctions } from '@/lib/security/sanctions';
 import { formatUnits } from '@/lib/tools/units';
+import { getChain } from '@/lib/chains';
 import { clear, copyBtn, ext_link, h } from '../dom';
+import { glyph, icon } from '../ui';
 import type { ExtSettings } from '../store';
 import { badge, card, errorText, explorerList, facts, loading, mono, note, sectionBody, sourcedCard, when } from './common';
 
@@ -333,7 +335,7 @@ export function resultView(kind: 'address' | 'tx', chainId: string, query: strin
   setApiBase(settings.apiBase);
   const root = h('div', { class: 'stack' });
   const qrBox = h('div', { class: 'qr', hidden: true });
-  const qrBtn = h('button', { type: 'button', class: 'btn-ghost sm' }, 'QR');
+  const qrBtn = h('button', { type: 'button', class: 'btn-ghost sm' }, icon('qr'), 'QR');
   qrBtn.addEventListener('click', () => {
     if (!qrBox.firstChild) qrBox.append(qrSvg(query));
     qrBox.hidden = !qrBox.hidden;
@@ -341,8 +343,8 @@ export function resultView(kind: 'address' | 'tx', chainId: string, query: strin
   const header = h(
     'div',
     { class: 'result-head' },
-    h('p', { class: 'label' }, `${chainId} · ${kind}`),
-    h('p', { class: 'mono value' }, query),
+    h('p', { class: 'result-chain' }, glyph(chainId, getChain(chainId)?.name ?? chainId, 'md'), h('span', { class: 'label' }, `${getChain(chainId)?.name ?? chainId} · ${kind === 'tx' ? 'Transaction' : 'Address'}`)),
+    h('h1', { class: 'mono value' }, query),
     h('div', { class: 'row wrap' }, copyBtn(query, 'Copy'), kind === 'address' ? qrBtn : null, explorerList(chainId, query)),
     qrBox,
   );

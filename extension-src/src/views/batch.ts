@@ -144,7 +144,8 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
   return h(
     'div',
     { class: 'stack' },
-    h('h1', null, 'Batch search'),
+    h('p', { class: 'label' }, 'Batch search'),
+    h('h1', { class: 'heading' }, 'Check a list at once'),
     h('p', { class: 'muted' }, `Up to ${BATCH_MAX} addresses, hashes or names: one per line, or separated by commas or spaces.`),
     text,
     h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn', on: { click: render } }, 'Check all')),

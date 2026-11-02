@@ -45,6 +45,9 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
   Only each directory's `manifest.json` (and `*.md`) is hand-written; never edit the generated JS/HTML there.
 - `npm test` fails if the builds are stale, the manifests drift apart, or permissions/CSP loosen. Keep: no host
   permissions, no content scripts, no remote code, `connect-src https://web3lens.com`, text nodes only (no innerHTML).
+- The extensions share the website's look: icons/coin logos come from the site's React components rendered at build
+  time (`extension-src/icons-entry.tsx`); UI kit in `extension-src/src/ui.ts`; tokens in `extension-src/static/styles.css`
+  must match `app/globals.css` (tested). Store kit: `store/`; refresh screenshots with `node scripts/make-store-assets.mjs`.
 - `npm run ext:lint:firefox` (web-ext), `node scripts/smoke-extension.mjs` and `node scripts/smoke-site.mjs <url>`
   need Playwright/Chromium locally; `npm run ext:pack` builds store zips into `dist-extensions/` (gitignored).
 

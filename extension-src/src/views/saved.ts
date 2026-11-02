@@ -76,7 +76,8 @@ export function savedView(ctx: Ctx): HTMLElement {
   return h(
     'div',
     { class: 'stack' },
-    h('h1', null, 'Saved'),
+    h('p', { class: 'label' }, 'Saved'),
+    h('h1', { class: 'heading' }, 'Your labels and notes'),
     h('p', { class: 'muted' }, 'Labels and notes stay in this browser (extension storage). Nothing is synced.'),
     h(
       'div',
