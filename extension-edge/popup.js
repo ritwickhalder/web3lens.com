@@ -620,7 +620,8 @@
     22: { label: "Dogecoin address", chains: ["dogecoin"], format: "doge-p2sh" },
     76: { label: "Dash address", chains: ["dash"], format: "dash-p2pkh" },
     16: { label: "Dash address", chains: ["dash"], format: "dash-p2sh" },
-    65: { label: "Tron address", chains: ["tron"], format: "tron-address" }
+    65: { label: "Tron address", chains: ["tron"], format: "tron-address" },
+    53: { label: "NEO address", chains: ["neo"], format: "neo-address" }
   };
   var BASE58_LEADS = [
     [/^1/, 0],
@@ -729,6 +730,17 @@
         const v = BASE58_VERSIONS[lead[1]];
         return make(q, { kind: "address", label: v.label, chains: v.chains, format: v.format, checksum: "invalid", note: BAD_CHECKSUM });
       }
+    }
+    if (raw.length === 26 && raw[0] === 1 && raw[1] === 87) {
+      const ok = equalBytes(keccak256(blake2b(raw.slice(0, 22), 32)).slice(0, 4), raw.slice(22));
+      return make(q, {
+        kind: "address",
+        label: "Waves address",
+        chains: ["waves"],
+        format: "waves-address",
+        checksum: ok ? "valid" : "invalid",
+        note: ok ? void 0 : BAD_CHECKSUM
+      });
     }
     if (raw.length === 26 && /^t[13]/.test(q)) {
       const ok = base58CheckDecode(q) !== null;
@@ -844,6 +856,7 @@
       out.push(
         make(q, { kind: "transaction", label: "Polkadot / Kusama extrinsic hash", chains: ["polkadot", "kusama"], format: "substrate-hash", normalized })
       );
+      out.push(make(q, { kind: "transaction", label: "NEO transaction hash", chains: ["neo"], format: "neo-tx", normalized }));
       return out;
     }
     const name = /^[a-z0-9-]+(\.[a-z0-9-]+)*\.(eth|sol|near|ton)$/i.exec(q);
@@ -9168,6 +9181,24 @@
           tx: "https://etherscan.io/tx/{q}",
           search: "https://etherscan.io/search?q={q}"
         }
+      ],
+      neo: [
+        {
+          name: "NeoTube",
+          home: "https://neotube.io",
+          address: "https://neotube.io/address/{q}",
+          tx: "https://neotube.io/transaction/{q}",
+          block: "https://neotube.io/block/{q}"
+        }
+      ],
+      waves: [
+        {
+          name: "Waves Explorer",
+          home: "https://wavesexplorer.com",
+          address: "https://wavesexplorer.com/addresses/{q}",
+          tx: "https://wavesexplorer.com/transactions/{q}",
+          block: "https://wavesexplorer.com/blocks/{q}"
+        }
       ]
     }
   };
@@ -9207,7 +9238,7 @@
 
   // data/explorer-health.json
   var explorer_health_default = {
-    checkedAt: "2026-11-02T05:46:37.802Z",
+    checkedAt: "2026-11-02T14:17:04.206Z",
     hosts: {
       "104.238.153.140": {
         ok: false,
@@ -9329,8 +9360,8 @@
       "blockchain.gulden.com": {
         ok: false,
         https: false,
-        status: null,
-        error: "timeout"
+        status: 503,
+        error: "HTTP 503"
       },
       "blockchain.mn": {
         ok: true,
@@ -9374,8 +9405,8 @@
       "blockexplorer.lavajumper.com": {
         ok: false,
         https: false,
-        status: null,
-        error: "timeout"
+        status: 503,
+        error: "HTTP 503"
       },
       "blockexplorer.obsidianplatform.com": {
         ok: false,
@@ -9703,8 +9734,8 @@
       "explorer.cryptocarbon.co.uk": {
         ok: false,
         https: false,
-        status: 503,
-        error: "HTTP 503"
+        status: null,
+        error: "timeout"
       },
       "explorer.cryptonex.org": {
         ok: true,
@@ -9804,7 +9835,7 @@
       "explorer.lbry.io": {
         ok: true,
         https: true,
-        status: 403
+        status: 200
       },
       "explorer.lisk.io": {
         ok: true,
@@ -10171,6 +10202,11 @@
         https: false,
         status: null,
         error: "EAI_AGAIN"
+      },
+      "neotube.io": {
+        ok: true,
+        https: true,
+        status: 200
       },
       "node2.rupayacoin.org": {
         ok: false,
@@ -10697,7 +10733,7 @@
     { family: "evm", id: "optimism", chainId: 10, name: "OP Mainnet", symbol: "ETH", rpc: [pn("optimism-rpc"), "https://mainnet.optimism.io"], blockscout: "https://explorer.optimism.io", coingecko: "ethereum" },
     { family: "evm", id: "polygon", chainId: 137, name: "Polygon", symbol: "POL", rpc: [pn("polygon-bor-rpc"), "https://polygon-rpc.com"], blockscout: "https://polygon.blockscout.com", coingecko: "polygon-ecosystem-token" },
     { family: "evm", id: "binancecoin", chainId: 56, name: "BNB Smart Chain", symbol: "BNB", rpc: [pn("bsc-rpc"), "https://bsc-dataseed.bnbchain.org"], coingecko: "binancecoin" },
-    { family: "evm", id: "avalanche", chainId: 43114, name: "Avalanche C-Chain", symbol: "AVAX", rpc: [pn("avalanche-c-chain-rpc"), "https://api.avax.network/ext/bc/C/rpc"], coingecko: "avalanche-2" },
+    { family: "evm", id: "avalanche", chainId: 43114, name: "Avalanche C-Chain", symbol: "AVAX", rpc: [pn("avalanche-c-chain-rpc"), "https://api.avax.network/ext/bc/C/rpc"], routescan: true, coingecko: "avalanche-2" },
     { family: "evm", id: "linea", chainId: 59144, name: "Linea", symbol: "ETH", rpc: [pn("linea-rpc"), "https://rpc.linea.build"], coingecko: "ethereum" },
     { family: "evm", id: "zksync", chainId: 324, name: "zkSync Era", symbol: "ETH", rpc: ["https://mainnet.era.zksync.io"], blockscout: "https://zksync.blockscout.com", coingecko: "ethereum" },
     { family: "evm", id: "scroll", chainId: 534352, name: "Scroll", symbol: "ETH", rpc: [pn("scroll-rpc"), "https://rpc.scroll.io"], blockscout: "https://scroll.blockscout.com", coingecko: "ethereum" },
@@ -11069,7 +11105,8 @@
                 (tk) => h("li", null, h("span", null, h("b", null, tk.symbol ?? shortHash(tk.contract)), " ", h("span", { class: "muted" }, tk.name ?? "")), h("span", { class: "num" }, tk.balance ? formatAmount(tk.balance, null, 4) : tk.balanceRaw, tk.priceUsd && tk.balance ? h("span", { class: "muted" }, ` ${formatUsd(Number(tk.balance) * tk.priceUsd)}`) : null))
               )
             ) : h("p", { class: "muted" }, "No ERC-20 tokens."),
-            flagged ? note(`${flagged} token(s) flagged by Blockscout as spam/scam are hidden. Don't interact with tokens you didn't expect.`, "warn") : null
+            flagged ? note(`${flagged} token(s) hidden: flagged as spam by the indexer, or with no name or symbol. Don't interact with tokens you didn't expect.`, "warn") : null,
+            t.coverage?.kind === "known-list" ? note(`Only ${t.coverage.checked} well-known tokens were checked (no free token index covers ${r.chain.name}); other holdings aren't shown.`, "warn") : null
           ].filter(Boolean);
         })
       );

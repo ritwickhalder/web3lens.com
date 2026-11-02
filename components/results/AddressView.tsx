@@ -83,9 +83,23 @@ function EvmView({ r }: { r: EvmAddressResult }) {
         {(t) => {
           const shown = t.items.filter((i) => !i.flagged);
           const flagged = t.items.filter((i) => i.flagged);
-          if (!t.items.length) return <p className="text-sm font-semibold text-muted">No ERC-20 tokens held.</p>;
+          const knownOnly = t.coverage?.kind === 'known-list' ? t.coverage.checked : null;
+          const scope = knownOnly !== null ? (
+            <p className="text-xs font-semibold text-redline">
+              No free token index covers {r.chain.name}, so only {knownOnly} well-known tokens (verified contracts such as USDT, USDC and wrapped coins) were checked, with
+              balances read live from the chain. Other tokens this address holds are not shown; use the explorer links for the full list.
+            </p>
+          ) : null;
+          if (!t.items.length)
+            return (
+              <div className="space-y-3">
+                <p className="text-sm font-semibold text-muted">{knownOnly !== null ? 'None of the checked tokens are held.' : 'No ERC-20 tokens held.'}</p>
+                {scope}
+              </div>
+            );
           return (
             <div className="space-y-3">
+              {scope}
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[480px] text-left text-sm">
                   <thead className="text-xs font-bold uppercase tracking-wider text-faint">
@@ -116,7 +130,7 @@ function EvmView({ r }: { r: EvmAddressResult }) {
               {flagged.length > 0 && (
                 <details className="rounded-lg border border-redline/40 px-4 py-2">
                   <summary className="cursor-pointer text-sm font-bold text-redline">
-                    {flagged.length} token{flagged.length > 1 ? 's' : ''} flagged by Blockscout as spam or scam (hidden)
+                    {flagged.length} token{flagged.length > 1 ? 's' : ''} hidden: flagged as spam by {r.tokens.status === 'ok' ? r.tokens.source.name : 'the indexer'}, or with no name or symbol
                   </summary>
                   <ul className="mt-2 space-y-1 text-sm text-muted">
                     {flagged.map((tk) => (
@@ -128,7 +142,7 @@ function EvmView({ r }: { r: EvmAddressResult }) {
                   <p className="mt-2 text-xs font-semibold text-faint">Don't interact with tokens you didn't expect to receive; many are phishing lures.</p>
                 </details>
               )}
-              <p className="text-xs font-semibold text-faint">Values use Blockscout's token prices where it has one; they are estimates, not quotes.</p>
+              {knownOnly === null && <p className="text-xs font-semibold text-faint">Values use the indexer's token prices where it has one; they are estimates, not quotes.</p>}
             </div>
           );
         }}

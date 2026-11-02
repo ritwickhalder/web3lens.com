@@ -15,6 +15,8 @@ export type EvmNetwork = {
   rpc: string[];
   /** Blockscout instance (token holdings, history, contract verification); absent where none is public. */
   blockscout?: string;
+  /** Routescan covers this chain (holdings, history, logs) when there's no public Blockscout. */
+  routescan?: boolean;
   coingecko?: string;
 };
 
@@ -41,7 +43,7 @@ export const EVM_NETWORKS: EvmNetwork[] = [
   { family: 'evm', id: 'optimism', chainId: 10, name: 'OP Mainnet', symbol: 'ETH', rpc: [pn('optimism-rpc'), 'https://mainnet.optimism.io'], blockscout: 'https://explorer.optimism.io', coingecko: 'ethereum' },
   { family: 'evm', id: 'polygon', chainId: 137, name: 'Polygon', symbol: 'POL', rpc: [pn('polygon-bor-rpc'), 'https://polygon-rpc.com'], blockscout: 'https://polygon.blockscout.com', coingecko: 'polygon-ecosystem-token' },
   { family: 'evm', id: 'binancecoin', chainId: 56, name: 'BNB Smart Chain', symbol: 'BNB', rpc: [pn('bsc-rpc'), 'https://bsc-dataseed.bnbchain.org'], coingecko: 'binancecoin' },
-  { family: 'evm', id: 'avalanche', chainId: 43114, name: 'Avalanche C-Chain', symbol: 'AVAX', rpc: [pn('avalanche-c-chain-rpc'), 'https://api.avax.network/ext/bc/C/rpc'], coingecko: 'avalanche-2' },
+  { family: 'evm', id: 'avalanche', chainId: 43114, name: 'Avalanche C-Chain', symbol: 'AVAX', rpc: [pn('avalanche-c-chain-rpc'), 'https://api.avax.network/ext/bc/C/rpc'], routescan: true, coingecko: 'avalanche-2' },
   { family: 'evm', id: 'linea', chainId: 59144, name: 'Linea', symbol: 'ETH', rpc: [pn('linea-rpc'), 'https://rpc.linea.build'], coingecko: 'ethereum' },
   { family: 'evm', id: 'zksync', chainId: 324, name: 'zkSync Era', symbol: 'ETH', rpc: ['https://mainnet.era.zksync.io'], blockscout: 'https://zksync.blockscout.com', coingecko: 'ethereum' },
   { family: 'evm', id: 'scroll', chainId: 534352, name: 'Scroll', symbol: 'ETH', rpc: [pn('scroll-rpc'), 'https://rpc.scroll.io'], blockscout: 'https://scroll.blockscout.com', coingecko: 'ethereum' },

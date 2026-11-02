@@ -34,7 +34,8 @@ export type EvmAddressResult = {
   ensName: Section<string | null>;
   account: Section<{ balanceWei: string; balance: string; nonce: number; isContract: boolean; codeSize: number; delegatedTo: string | null; block: number }>;
   priceUsd: Section<number>;
-  tokens: Section<{ items: TokenHolding[]; more: boolean }>;
+  /** `coverage` says how complete the list is: every ERC-20 an indexer knows, or only a checked list of well-known tokens. */
+  tokens: Section<{ items: TokenHolding[]; more: boolean; coverage?: { kind: 'indexed' } | { kind: 'known-list'; checked: number } }>;
   info: Section<AddressInfo>;
   activity: Section<{ txCount: number | null; transfers: number | null; recent: ActivityItem[] }>;
 };

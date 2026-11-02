@@ -76,7 +76,10 @@ export function renderAddressResult(r: AddressResult, nav: Nav, compact: boolean
                 ),
               )
             : h('p', { class: 'muted' }, 'No ERC-20 tokens.'),
-          flagged ? note(`${flagged} token(s) flagged by Blockscout as spam/scam are hidden. Don't interact with tokens you didn't expect.`, 'warn') : null,
+          flagged ? note(`${flagged} token(s) hidden: flagged as spam by the indexer, or with no name or symbol. Don't interact with tokens you didn't expect.`, 'warn') : null,
+          t.coverage?.kind === 'known-list'
+            ? note(`Only ${t.coverage.checked} well-known tokens were checked (no free token index covers ${r.chain.name}); other holdings aren't shown.`, 'warn')
+            : null,
         ].filter(Boolean) as Node[];
       }),
     );

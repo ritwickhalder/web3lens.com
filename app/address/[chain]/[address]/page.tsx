@@ -71,7 +71,7 @@ export default async function AddressPage({ params }: Props) {
   if (d.format === 'ens') {
     const r = await resolveName(check.query);
     if (r.status !== 'ok') return <ResultError title="Can't resolve this name" message={`${check.query}: ${r.reason}.`} query={raw} />;
-    if (!r.data) return <ResultError title="No address for this name" message={`${check.query} has no address set on-chain (off-chain/CCIP names aren't supported yet).`} query={raw} />;
+    if (!r.data) return <ResultError title="No address for this name" message={`${check.query} has no Ethereum address set (checked on-chain and through its off-chain gateway, if it has one).`} query={raw} />;
     addr = r.data;
     resolvedFrom = check.query;
   }

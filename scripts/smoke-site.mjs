@@ -125,6 +125,9 @@ try {
   const main = await page.textContent('main');
   check('risk panel loads and never says safe', main.includes('does not mean it is safe') || main.includes('risk signal'));
 
+  await page.goto(`${BASE}/address/ethereum/jesse.base.eth`);
+  check('off-chain ENS name resolves via CCIP-read (live)', (await page.textContent('main')).includes('jesse.base.eth resolves to this address'));
+
   await page.goto(`${BASE}/batch`);
   await page.fill('#batch-input', 'vitalik.eth\n0x098B716B8Aaf21512996dC57EB0615e2383E2f96');
   await page.click('text=Check all');

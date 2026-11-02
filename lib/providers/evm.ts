@@ -1,7 +1,7 @@
 /** EVM JSON-RPC over public endpoints, with failover and batching. Server-side only. */
 import { bytesToHex } from '@/lib/codec/bytes';
 import { keccak256 } from '@/lib/codec/keccak';
-import { decodeParams, encodeCall, parseType } from '@/lib/evm/abi';
+import { decodeParams, encodeCall, encodeParams, parseType } from '@/lib/evm/abi';
 import type { EvmNetwork } from '@/lib/networks';
 import { fetchJson, ProviderError } from '@/lib/providers/http';
 
@@ -182,7 +182,7 @@ export async function getGas(net: EvmNetwork): Promise<GasInfo> {
 }
 
 // ---------------------------------------------------------------------------------------------
-// ENS (on-chain resolution through the registry; off-chain CCIP-read names are not supported)
+// ENS: registry, ENSIP-10 wildcard resolvers and EIP-3668 CCIP-read
 
 const ENS_REGISTRY = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -210,16 +210,144 @@ async function resolverOf(net: EvmNetwork, node: string): Promise<string | null>
   return addr === ZERO_ADDRESS ? null : addr;
 }
 
-/** name.eth → address, or null when the name has no on-chain resolver/address. */
-export async function resolveEns(net: EvmNetwork, name: string): Promise<string | null> {
-  const node = namehash(name);
-  const resolver = await resolverOf(net, node);
-  if (!resolver) return null;
-  const out = await ethCall(net, resolver, encodeCall('addr(bytes32)', [node]));
-  if (out === '0x') return null;
+/** eth_call that hands back revert data instead of throwing it away (needed for CCIP-read). */
+async function ethCallRaw(net: EvmNetwork, to: string, data: string): Promise<{ ok: true; result: string } | { ok: false; revert: string | null; message: string }> {
+  let last: unknown;
+  for (const url of rpcUrls(net)) {
+    try {
+      const res = await fetchJson<{ result?: string; error?: { message: string; data?: unknown } }>(`${net.name} RPC`, url, {
+        method: 'POST',
+        body: { jsonrpc: '2.0', id: 1, method: 'eth_call', params: [{ to, data }, 'latest'] },
+      });
+      if (res.error) {
+        const d = res.error.data;
+        const hex = typeof d === 'string' ? d : typeof (d as { data?: unknown })?.data === 'string' ? (d as { data: string }).data : null;
+        return { ok: false, revert: hex && /^0x[0-9a-f]*$/i.test(hex) ? hex : null, message: res.error.message };
+      }
+      return { ok: true, result: res.result ?? '0x' };
+    } catch (e) {
+      last = e;
+    }
+  }
+  throw last instanceof Error ? last : new ProviderError(`${net.name} RPC`, 'all endpoints failed');
+}
+
+/** DNS wire format of a name (ENSIP-10): each label prefixed by its length, then a zero byte. */
+export function dnsEncode(name: string): string {
+  const parts: number[] = [];
+  for (const label of name.split('.')) {
+    const bytes = new TextEncoder().encode(label);
+    if (bytes.length < 1 || bytes.length > 255) throw new Error('Invalid name');
+    parts.push(bytes.length, ...bytes);
+  }
+  parts.push(0);
+  return bytesToHex(Uint8Array.from(parts));
+}
+
+const OFFCHAIN_LOOKUP = '0x556f1830';
+const OFFCHAIN_LOOKUP_TYPES = ['address', 'string[]', 'bytes', 'bytes4', 'bytes'].map((t) => ({ type: parseType(t) }));
+const MAX_CCIP_ROUNDS = 4;
+const MAX_GATEWAY_RESPONSE = 64 * 1024;
+
+/**
+ * Gateway URLs come from on-chain data anyone can set, so only public https hosts by name are
+ * allowed (no IP literals, no internal names) to keep the server from being pointed at itself.
+ */
+export function isAllowedGatewayUrl(template: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(template.replace('{sender}', '0x').replace('{data}', '0x'));
+  } catch {
+    return false;
+  }
+  const host = url.hostname.toLowerCase();
+  if (url.protocol !== 'https:' || url.username || url.password || (url.port && url.port !== '443')) return false;
+  if (/^[\d.]+$/.test(host) || host.includes(':') || host.startsWith('[')) return false;
+  if (!host.includes('.') || /(^|\.)(localhost|local|internal|intranet|lan|home|corp)$/.test(host)) return false;
+  return true;
+}
+
+async function ccipFetch(urls: string[], sender: string, callData: string): Promise<string> {
+  const hosts: string[] = [];
+  for (const template of urls.slice(0, 5)) {
+    if (!isAllowedGatewayUrl(template)) continue;
+    const url = template.replace('{sender}', sender.toLowerCase()).replace('{data}', callData.toLowerCase());
+    hosts.push(new URL(url).hostname);
+    try {
+      const res = template.includes('{data}')
+        ? await fetchJson<{ data?: string }>('ENS gateway', url, { timeoutMs: 8000 })
+        : await fetchJson<{ data?: string }>('ENS gateway', url, { method: 'POST', body: { data: callData.toLowerCase(), sender: sender.toLowerCase() }, timeoutMs: 8000 });
+      if (typeof res.data === 'string' && /^0x[0-9a-f]*$/i.test(res.data) && res.data.length <= MAX_GATEWAY_RESPONSE * 2) return res.data;
+    } catch {
+      // Try the next gateway.
+    }
+  }
+  throw new ProviderError('ENS', hosts.length ? `the name's off-chain gateway (${hosts.join(', ')}) returned no address` : 'the name points to an off-chain gateway Web3Lens does not call (not public https)');
+}
+
+/**
+ * eth_call with EIP-3668 (CCIP-read): when the contract reverts with OffchainLookup, ask its
+ * gateway and pass the answer to the callback on the same contract, which verifies it on-chain.
+ */
+async function callWithCcip(net: EvmNetwork, to: string, data: string): Promise<string | null> {
+  let callData = data;
+  for (let round = 0; round <= MAX_CCIP_ROUNDS; round++) {
+    const r = await ethCallRaw(net, to, callData);
+    if (r.ok) return r.result;
+    if (!r.revert?.toLowerCase().startsWith(OFFCHAIN_LOOKUP)) return null;
+    const [sender, urls, lookupData, callback, extraData] = decodeParams(OFFCHAIN_LOOKUP_TYPES, `0x${r.revert.slice(10)}`);
+    const senderAddr = 'value' in sender ? sender.value : '';
+    // EIP-3668: the lookup must come from the contract we called.
+    if (senderAddr.toLowerCase() !== to.toLowerCase()) throw new ProviderError('ENS', 'offchain lookup from an unexpected contract');
+    const urlList = 'items' in urls ? urls.items.map((u) => ('value' in u ? u.value : '')) : [];
+    const response = await ccipFetch(urlList, senderAddr, 'value' in lookupData ? lookupData.value : '0x');
+    const cb = 'value' in callback ? callback.value : '0x';
+    callData = `${cb}${bytesToHex(encodeParams(['bytes', 'bytes'], [response, 'value' in extraData ? extraData.value : '0x']), false)}`;
+  }
+  throw new ProviderError('ENS', 'too many offchain lookups');
+}
+
+/** The resolver for `name` or, per ENSIP-10, the nearest parent's (wildcard resolvers). */
+async function findResolver(net: EvmNetwork, name: string): Promise<{ resolver: string; exact: boolean } | null> {
+  const labels = name.split('.');
+  for (let i = 0; i < labels.length - 1; i++) {
+    const resolver = await resolverOf(net, namehash(labels.slice(i).join('.')));
+    if (resolver) return { resolver, exact: i === 0 };
+  }
+  return null;
+}
+
+async function supportsWildcard(net: EvmNetwork, resolver: string): Promise<boolean> {
+  const r = await ethCallRaw(net, resolver, encodeCall('supportsInterface(bytes4)', ['0x9061b923']));
+  return r.ok && r.result.length >= 66 && BigInt(r.result.slice(0, 66)) === BigInt(1);
+}
+
+const BYTES = [{ type: parseType('bytes') }];
+
+function decodeAddress(out: string | null): string | null {
+  if (!out || out === '0x' || out.length < 66) return null;
   const [r] = decodeParams(ADDRESS, out);
   const addr = 'value' in r ? r.value : ZERO_ADDRESS;
   return addr === ZERO_ADDRESS ? null : addr;
+}
+
+/**
+ * name.eth → address. Handles on-chain resolvers, ENSIP-10 wildcard resolvers and off-chain names
+ * via CCIP-read (EIP-3668), e.g. many subnames and Base names. Null when the name has no address.
+ */
+export async function resolveEns(net: EvmNetwork, name: string): Promise<string | null> {
+  const node = namehash(name);
+  const found = await findResolver(net, name);
+  if (!found) return null;
+  const addrCall = encodeCall('addr(bytes32)', [node]);
+  if (await supportsWildcard(net, found.resolver)) {
+    const out = await callWithCcip(net, found.resolver, encodeCall('resolve(bytes,bytes)', [dnsEncode(name), addrCall]));
+    if (!out || out === '0x') return null;
+    const [inner] = decodeParams(BYTES, out);
+    return decodeAddress('value' in inner ? inner.value : null);
+  }
+  if (!found.exact) return null;
+  return decodeAddress(await ethCall(net, found.resolver, addrCall));
 }
 
 /** address → primary ENS name, verified by resolving it forward again. */

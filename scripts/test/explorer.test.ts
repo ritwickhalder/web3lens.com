@@ -70,6 +70,13 @@ test('routes each query type to the right page (fixes the legacy single-path qui
   assert.equal(href('ethereum', 'hello'), 'https://etherscan.io/search?q=hello');
 });
 
+test('hand-verified routes for NEO and Waves (batch 5)', () => {
+  assert.equal(href('neo', 'Nb7pfeqsqhjFJa2ALDfqsTGA4bw43kpEwT'), 'https://neotube.io/address/Nb7pfeqsqhjFJa2ALDfqsTGA4bw43kpEwT');
+  assert.equal(href('neo', `0x${'ab'.repeat(32)}`), `https://neotube.io/transaction/0x${'ab'.repeat(32)}`);
+  // The legacy Waves route used /address/; the explorer serves /addresses/.
+  assert.equal(href('waves', '3PPfYtEw8dSNdmw2pV18BySmTZrTEaMNQDE'), 'https://wavesexplorer.com/addresses/3PPfYtEw8dSNdmw2pV18BySmTZrTEaMNQDE');
+});
+
 test('odd legacy mappings are fixed', () => {
   assert.match(href('usdc', USDC), /^https:\/\/etherscan\.io\/token\/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\?a=/);
   assert.match(href('internetcomputer', 'abc'), /^https:\/\/dashboard\.internetcomputer\.org\//);

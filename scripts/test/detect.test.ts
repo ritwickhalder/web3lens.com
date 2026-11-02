@@ -25,6 +25,12 @@ test('recognises common address formats', () => {
   assert.equal(label('EQDtFpEwcFAEcRe5mLVh2N6C0x-_hJEM7W61_JLnSF74p4q2'), 'TON address');
   assert.equal(label('tz1VSUr8wwNhLAzempoch5d6hLRiTh8Cjcjb'), 'Tezos address');
   assert.equal(label('alice.near'), 'NEAR account');
+  // Taken from the chains' own explorers (batch 5 hand check).
+  assert.equal(label('3PPfYtEw8dSNdmw2pV18BySmTZrTEaMNQDE'), 'Waves address');
+  assert.equal(checksum('3PPfYtEw8dSNdmw2pV18BySmTZrTEaMNQDE'), 'valid');
+  assert.equal(checksum('3PPfYtEw8dSNdmw2pV18BySmTZrTEaMNQDF'), 'invalid');
+  assert.equal(label('Nb7pfeqsqhjFJa2ALDfqsTGA4bw43kpEwT'), 'NEO address');
+  assert.equal(checksum('Nb7pfeqsqhjFJa2ALDfqsTGA4bw43kpEwT'), 'valid');
 });
 
 test('verifies checksums and flags mistakes instead of guessing another chain', () => {
@@ -59,7 +65,7 @@ test('recognises hashes, names and block numbers', () => {
 
 test('offers every interpretation of an ambiguous query', () => {
   const all = detectAll(`0x${'ab'.repeat(32)}`).map((d) => d.format);
-  assert.deepEqual(all, ['evm-tx', 'move-address', 'substrate-hash']);
+  assert.deepEqual(all, ['evm-tx', 'move-address', 'substrate-hash', 'neo-tx']);
 });
 
 test('refuses to search secrets', () => {

@@ -21,6 +21,8 @@ import { EVM_NETWORKS, getNetwork, UTXO_NETWORKS, type EvmNetwork, type Network 
 import * as bs from '@/lib/providers/blockscout';
 import * as evm from '@/lib/providers/evm';
 import * as esplora from '@/lib/providers/esplora';
+import { getKnownTokenBalances, knownTokensFor } from '@/lib/providers/known-tokens';
+import { getRoutescanTokens, getRoutescanTransactions } from '@/lib/providers/routescan';
 import { ProviderError } from '@/lib/providers/http';
 import { getUsdPrices } from '@/lib/providers/prices';
 import * as sol from '@/lib/providers/solana';
@@ -82,25 +84,41 @@ async function evmAddress(net: EvmNetwork, address: string, resolvedFrom?: strin
   const key = `${net.id}:${address.toLowerCase()}`;
   const base = net.blockscout;
   const noIndex = unavailable<never>(`no free token/history index for ${net.name}; use the explorer links`);
-  const [account, priceUsd, tokens, info, activity, ensName] = await Promise.all([
+  const routescan: Source = { name: 'Routescan', url: 'https://routescan.io' };
+
+  const tokens = base
+    ? section(`tok:${key}`, TTL.tokens, blockscoutSource(base), async () => ({ ...(await bs.getTokens(base, address)), coverage: { kind: 'indexed' as const } }))
+    : net.routescan
+      ? section(`tok:${key}`, TTL.tokens, routescan, async () => ({ ...(await getRoutescanTokens(net.chainId, address)), coverage: { kind: 'indexed' as const } }))
+      : knownTokensFor(net.id).length
+        ? section(`tok:${key}`, TTL.tokens, { name: `${evm.rpcSourceName(net)} (well-known tokens only)` }, async () => {
+            const r = await getKnownTokenBalances(net, address);
+            return { items: r.items, more: false, coverage: { kind: 'known-list' as const, checked: r.checked } };
+          })
+        : noIndex;
+  const activity = base
+    ? section(`act:${key}`, TTL.activity, blockscoutSource(base), async () => {
+        const [counters, recent] = await Promise.all([bs.getCounters(base, address).catch(() => ({ txCount: null, transfers: null })), bs.getRecentTransactions(base, address)]);
+        return { ...counters, recent };
+      })
+    : net.routescan
+      ? section(`act:${key}`, TTL.activity, routescan, async () => ({ txCount: null, transfers: null, recent: await getRoutescanTransactions(net.chainId, address) }))
+      : noIndex;
+
+  const [account, priceUsd, tokensS, info, activityS, ensName] = await Promise.all([
     section(`acct:${key}`, TTL.account, rpcSource(net), async () => {
       const a = await evm.getAccount(net, address);
       return { ...a, balance: formatUnits(BigInt(a.balanceWei), 18) };
     }),
     price(net.coingecko),
-    base ? section(`tok:${key}`, TTL.tokens, blockscoutSource(base), () => bs.getTokens(base, address)) : noIndex,
-    base ? section(`info:${key}`, TTL.info, blockscoutSource(base), () => bs.getAddressInfo(base, address)) : noIndex,
-    base
-      ? section(`act:${key}`, TTL.activity, blockscoutSource(base), async () => {
-          const [counters, recent] = await Promise.all([bs.getCounters(base, address).catch(() => ({ txCount: null, transfers: null })), bs.getRecentTransactions(base, address)]);
-          return { ...counters, recent };
-        })
-      : noIndex,
+    tokens,
+    base ? section(`info:${key}`, TTL.info, blockscoutSource(base), () => bs.getAddressInfo(base, address)) : Promise.resolve(unavailable<bs.AddressInfo>(`no free label/contract index for ${net.name}`)),
+    activity,
     net.id === 'ethereum'
       ? section(`ens:${address.toLowerCase()}`, TTL.info, { name: 'ENS (on-chain)', url: 'https://ens.domains' }, () => evm.reverseEns(net, address))
       : Promise.resolve(unavailable<string | null>('ENS reverse records are read on Ethereum only')),
   ]);
-  return { family: 'evm', chain: chainRef(net), address, resolvedFrom, ensName, account, priceUsd, tokens, info, activity };
+  return { family: 'evm', chain: chainRef(net), address, resolvedFrom, ensName, account, priceUsd, tokens: tokensS, info, activity: activityS };
 }
 
 export async function resolveName(name: string): Promise<Section<string | null>> {
@@ -126,7 +144,7 @@ export async function lookupAddress(chainId: string, query: string): Promise<Add
       if (net.id !== 'ethereum') throw new LookupError('ENS names resolve on Ethereum.');
       const r = await resolveName(query);
       if (r.status !== 'ok') throw new LookupError(`Couldn't resolve ${query}: ${r.reason}.`, 502);
-      if (!r.data) throw new LookupError(`${query} has no address set on-chain (off-chain/CCIP names aren't supported yet).`, 404);
+      if (!r.data) throw new LookupError(`${query} has no Ethereum address set (checked on-chain and through its off-chain gateway, if it has one).`, 404);
       return evmAddress(net, r.data, query.toLowerCase());
     }
     return evmAddress(net, query);

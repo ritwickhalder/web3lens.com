@@ -12,6 +12,7 @@ import { bech32Decode, isSegwitAddress } from '@/lib/codec/bech32';
 import { blake2b } from '@/lib/codec/blake2b';
 import { concatBytes, equalBytes, utf8ToBytes } from '@/lib/codec/bytes';
 import { isCashAddr } from '@/lib/codec/cashaddr';
+import { keccak256 } from '@/lib/codec/keccak';
 import { evmChecksumStatus, toChecksumAddress } from '@/lib/evm/address';
 
 export type DetectionKind = 'address' | 'transaction' | 'name' | 'block' | 'secret';
@@ -76,6 +77,7 @@ const BASE58_VERSIONS: Record<number, { label: string; chains: string[]; format:
   0x4c: { label: 'Dash address', chains: ['dash'], format: 'dash-p2pkh' },
   0x10: { label: 'Dash address', chains: ['dash'], format: 'dash-p2sh' },
   0x41: { label: 'Tron address', chains: ['tron'], format: 'tron-address' },
+  0x35: { label: 'NEO address', chains: ['neo'], format: 'neo-address' },
 };
 
 /** First characters each base58check version produces, to label an address whose checksum fails. */
@@ -198,6 +200,19 @@ function detectBase58(q: string): Detection | null {
       const v = BASE58_VERSIONS[lead[1]];
       return make(q, { kind: 'address', label: v.label, chains: v.chains, format: v.format, checksum: 'invalid', note: BAD_CHECKSUM });
     }
+  }
+
+  // Waves: [0x01, 'W', 20-byte hash, 4-byte checksum = keccak256(blake2b256(first 22 bytes))[0..4]].
+  if (raw.length === 26 && raw[0] === 0x01 && raw[1] === 0x57) {
+    const ok = equalBytes(keccak256(blake2b(raw.slice(0, 22), 32)).slice(0, 4), raw.slice(22));
+    return make(q, {
+      kind: 'address',
+      label: 'Waves address',
+      chains: ['waves'],
+      format: 'waves-address',
+      checksum: ok ? 'valid' : 'invalid',
+      note: ok ? undefined : BAD_CHECKSUM,
+    });
   }
 
   // Zcash transparent addresses have a two-byte version.
@@ -334,6 +349,7 @@ export function detectAll(query: string): Detection[] {
     out.push(
       make(q, { kind: 'transaction', label: 'Polkadot / Kusama extrinsic hash', chains: ['polkadot', 'kusama'], format: 'substrate-hash', normalized }),
     );
+    out.push(make(q, { kind: 'transaction', label: 'NEO transaction hash', chains: ['neo'], format: 'neo-tx', normalized }));
     return out;
   }
 

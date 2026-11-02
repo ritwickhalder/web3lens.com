@@ -16,7 +16,7 @@ Router), React 19, TypeScript and Tailwind v4; hosted on Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 75 unit tests: codecs, QR, theme contrast, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
+npm test           # 84 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
 npm run lint
 npm run typecheck
 npm run build

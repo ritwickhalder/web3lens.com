@@ -49,7 +49,7 @@ What is live is listed in [FEATURES.md](FEATURES.md).
 | 2 | Explorer landing pages, gas tracker, "also fits" links | ✅ |
 | 3 | QR codes for addresses (native encoder verified against a reference implementation); streaming result sections so a slow provider doesn't hold up the page | ✅ |
 | 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | ✅ |
-| 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | Planned |
+| 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | ✅ (Ontology and Zilliqa explorers couldn't be verified; see FEATURES.md) |
 | 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | Planned |
 
 ## Phase 0 — Next.js migration ✅
@@ -92,7 +92,7 @@ Blockchair, CoinGecko.
 
 - ✅ Address summary: native balance, USD value, tx count, recent activity, tokens (EVM, Bitcoin, Litecoin, Solana).
 - ✅ Transaction view: status, from/to, value, fee, decoded method name.
-- Name resolution: ✅ ENS forward and reverse (on-chain resolvers). Next: CCIP-read ENS, SNS, Unstoppable Domains.
+- Name resolution: ✅ ENS forward and reverse, including wildcard (ENSIP-10) and off-chain names via CCIP-read (EIP-3668). Next: SNS, Unstoppable Domains.
 - ✅ Gas tracker (`/gas`, 11 EVM chains + Bitcoin) and gas calculator.
 - Price ticker for the selected chain (USD values are shown on result pages already).
 - ✅ QR code for any address (native encoder, matches a reference implementation for versions 1–10); copy and share buttons.

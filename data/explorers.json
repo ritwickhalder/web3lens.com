@@ -535,6 +535,24 @@
         "tx": "https://etherscan.io/tx/{q}",
         "search": "https://etherscan.io/search?q={q}"
       }
+    ],
+    "neo": [
+      {
+        "name": "NeoTube",
+        "home": "https://neotube.io",
+        "address": "https://neotube.io/address/{q}",
+        "tx": "https://neotube.io/transaction/{q}",
+        "block": "https://neotube.io/block/{q}"
+      }
+    ],
+    "waves": [
+      {
+        "name": "Waves Explorer",
+        "home": "https://wavesexplorer.com",
+        "address": "https://wavesexplorer.com/addresses/{q}",
+        "tx": "https://wavesexplorer.com/transactions/{q}",
+        "block": "https://wavesexplorer.com/blocks/{q}"
+      }
     ]
   }
 }
