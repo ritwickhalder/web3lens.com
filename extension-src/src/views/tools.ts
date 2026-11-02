@@ -1,5 +1,5 @@
 /** The website's developer tools, as plain DOM for the extension. Same libraries, same results. */
-import { TOOLS } from '@/config/tools';
+import { TOOLS, type ToolSlug } from '@/config/tools';
 import { apiGet } from '@/lib/api-client';
 import { getChain } from '@/lib/chains';
 import { detectAll, extractQuery } from '@/lib/detect';
@@ -338,23 +338,25 @@ export function toolsView(slug: string | undefined, settings: ExtSettings, nav: 
   }
   const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
   const tabs = toolTabs(tool.slug, nav);
-  const body = (() => {
-    switch (tool.slug) {
-      case 'unit-converter':
-        return unitConverter();
-      case 'address-validator':
-        return addressValidator();
-      case 'hex-converter':
-        return hexConverter();
-      case 'timestamp-converter':
-        return timestampConverter();
-      case 'gas-calculator':
-        return gasCalculator(settings);
-      case 'abi-decoder':
-        return abiDecoder(settings);
-      case 'transaction-decoder':
-        return txDecoder();
-    }
-  })();
-  return h('div', { class: 'stack' }, tabs, h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, tool.title), h('p', { class: 'lead' }, tool.description), ...body);
+  return h('div', { class: 'stack' }, tabs, h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, tool.title), h('p', { class: 'lead' }, tool.description), ...toolBody(tool.slug, settings));
+}
+
+/** One tool's controls and live output, without the page chrome (the popup's Tools tab uses it too). */
+export function toolBody(slug: ToolSlug, settings: ExtSettings): Node[] {
+  switch (slug) {
+    case 'unit-converter':
+      return unitConverter();
+    case 'address-validator':
+      return addressValidator();
+    case 'hex-converter':
+      return hexConverter();
+    case 'timestamp-converter':
+      return timestampConverter();
+    case 'gas-calculator':
+      return gasCalculator(settings);
+    case 'abi-decoder':
+      return abiDecoder(settings);
+    case 'transaction-decoder':
+      return txDecoder();
+  }
 }

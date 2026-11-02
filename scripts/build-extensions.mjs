@@ -10,6 +10,7 @@
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const SRC = path.join(ROOT, 'extension-src');
@@ -131,7 +132,7 @@ async function main() {
   console.log(`${check ? 'Up to date' : 'Built'}: ${TARGETS.join(', ')} (popup.js ${size('popup.js')}, app.js ${size('app.js')}, background.js ${size('background.js')})`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((e) => {
     console.error(e);
     process.exit(1);

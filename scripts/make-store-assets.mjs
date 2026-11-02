@@ -101,7 +101,7 @@ await seed.close();
 
 // 1. Popup: detection with chain chips.
 const popup = await capture(ext('popup.html'), {
-  width: 420,
+  width: 600,
   height: 600,
   prepare: async (p) => {
     await p.fill('.search-input', '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045');
@@ -147,7 +147,7 @@ const batch = await capture(ext(`app.html#batch?q=${encodeURIComponent(['vitalik
 
 const W = 1280;
 const H = 800;
-await render(frame({ w: W, h: H, label: 'Search any chain', title: 'Paste anything. It’s <span class="accent">recognised and checked.</span>', lead: '30+ address and hash formats with checksum validation, 789 chains, and the right page of the right explorer.', shot: dataUrl(popup), shotWidth: 420 }), 'screenshots/1-search.png', W, H);
+await render(frame({ w: W, h: H, label: 'Search any chain', title: 'Paste anything. It’s <span class="accent">recognised and checked.</span>', lead: '30+ address and hash formats with checksum validation, 789 chains, and the right page of the right explorer.', shot: dataUrl(popup), shotWidth: 560 }), 'screenshots/1-search.png', W, H);
 await render(frame({ w: W, h: H, label: 'Native results', title: 'Balances, tokens and activity, <span class="accent">with sources.</span>', lead: 'Every number says where it came from and when. Unavailable data is shown as unavailable, never guessed.', shot: dataUrl(result), shotWidth: 660 }), 'screenshots/2-results.png', W, H);
 await render(frame({ w: W, h: H, label: 'Risk checks', title: 'Sanctions, scam reports and <span class="accent">approvals.</span>', lead: 'OFAC snapshot, reported scams, contract checks and token approvals. “No reports” is never called safe.', shot: dataUrl(risk), shotWidth: 660 }), 'screenshots/3-risk.png', W, H);
 await render(frame({ w: W, h: H, label: 'Developer tools', title: 'Decode transactions <span class="accent">locally.</span>', lead: 'Raw transactions, calldata, units, hashes, timestamps and gas: in your browser, nothing broadcast.', shot: dataUrl(tools), shotWidth: 660 }), 'screenshots/4-tools.png', W, H);

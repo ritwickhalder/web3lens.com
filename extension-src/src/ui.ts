@@ -25,9 +25,23 @@ function svgFrom(key: string, markup: string | undefined): SVGElement | null {
 }
 
 export type IconName =
-  | 'arrowRight' | 'external' | 'bookmark' | 'brackets' | 'caret' | 'check' | 'checkCircle' | 'clock' | 'history' | 'cloudSlash'
-  | 'copy' | 'desktop' | 'gas' | 'gear' | 'hash' | 'info' | 'link' | 'list' | 'search' | 'moon' | 'qr' | 'receipt' | 'scales'
-  | 'scan' | 'shield' | 'shieldWarning' | 'star' | 'sun' | 'trash' | 'warning' | 'wrench' | 'x';
+  | 'arrowRight' | 'external' | 'refresh' | 'bookmark' | 'brackets' | 'caret' | 'check' | 'checkCircle' | 'clock' | 'history' | 'cloudSlash'
+  | 'copy' | 'cube' | 'cursor' | 'desktop' | 'gas' | 'gear' | 'hash' | 'info' | 'keyboard' | 'lightbulb' | 'link' | 'list' | 'search'
+  | 'moon' | 'qr' | 'receipt' | 'scales' | 'scan' | 'shield' | 'shieldWarning' | 'sparkle' | 'star' | 'sun' | 'trash' | 'warning'
+  | 'wrench' | 'x';
+
+/** Tool icons, as components/tools/ToolIcon.tsx on the website. */
+export const TOOL_ICONS: Record<string, IconName> = {
+  'unit-converter': 'scales',
+  'address-validator': 'checkCircle',
+  'hex-converter': 'hash',
+  'timestamp-converter': 'clock',
+  'gas-calculator': 'gas',
+  'abi-decoder': 'brackets',
+  'transaction-decoder': 'receipt',
+  batch: 'list',
+  'gas-tracker': 'gas',
+};
 
 /** Phosphor icon: bold for UI glyphs, duotone for illustrations (as on the website). */
 export function icon(name: IconName, cls = 'ic', duotone = false): Element {
@@ -65,6 +79,38 @@ export function logoMark(cls = 'logo-mark'): SVGElement {
   const svg = svgFrom('logo', markup)!;
   svg.setAttribute('class', cls);
   return svg;
+}
+
+/**
+ * Popup hero illustration: three linked blocks under the lens, the last one checked. Flat shapes
+ * coloured by CSS classes (.il-*) so it follows the theme.
+ */
+export function heroIllustration(cls = 'illus'): SVGElement {
+  const block = (x: number, hi = false) =>
+    `<rect class="il-block${hi ? ' hi' : ''}" x="${x}" y="38" width="44" height="44" rx="10"/>` +
+    `<path class="il-cube${hi ? ' hi' : ''}" d="M${x + 22} 50l9 5v10l-9 5-9-5V55zM${x + 22} 60v10M${x + 22} 60l9-5M${x + 22} 60l-9-5"/>`;
+  const markup =
+    '<svg viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+    '<path class="il-rail" d="M8 104h204"/>' +
+    '<path class="il-link" d="M54 56h22M54 64h22M142 56h22M142 64h22"/>' +
+    block(10) +
+    block(88, true) +
+    block(166) +
+    '<circle class="il-badge" cx="206" cy="40" r="10"/><path class="il-check" d="M201.5 40.5l3 3 6-6.5"/>' +
+    '<circle class="il-glass" cx="110" cy="60" r="31"/>' +
+    '<circle class="il-dash" cx="110" cy="60" r="24"/>' +
+    '<path class="il-handle" d="M132 82l16 16"/>' +
+    '<path class="il-tick" d="M110 18v8M110 94v8M68 60h8M144 60h8"/>' +
+    '<path class="il-spark" d="M30 14v10M25 19h10M184 92v8M180 96h8"/>' +
+    '</svg>';
+  const svg = svgFrom('hero', markup)!;
+  svg.setAttribute('class', cls);
+  return svg;
+}
+
+/** Duotone icon on a tinted square: the small "spot illustrations" used in empty states and tiles. */
+export function spot(name: IconName, size: 'sm' | 'lg' = 'sm'): HTMLElement {
+  return h('span', { class: `spot ${size}`, 'aria-hidden': 'true' }, icon(name, 'ic', true));
 }
 
 export function brand(): HTMLElement {

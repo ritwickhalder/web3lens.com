@@ -3,7 +3,7 @@
  * plus extension-only settings. Nothing is synced or sent anywhere.
  */
 import { DEFAULT_PREFS, sanitizePrefs, type Prefs } from '@/lib/prefs';
-import { sanitizeTheme } from '@/lib/theme';
+import type { Theme } from '@/lib/theme';
 import type { RecentSearch } from '@/lib/recent';
 import { MAX_SAVED, sanitizeSaved, savedId, type SavedItem } from '@/lib/saved';
 import { ext } from './browser';
@@ -13,11 +13,11 @@ export type ExtSettings = {
   network: boolean;
   /** Web3Lens API origin (for self-hosting); must be https. */
   apiBase: string;
-  /** Colour theme; dark is the default, as on the website. */
-  theme: 'dark' | 'light' | 'system';
+  /** Colour theme; light is the extensions' default (the website defaults to dark). */
+  theme: Theme;
 };
 
-export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com', theme: 'dark' };
+export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com', theme: 'light' };
 
 export function sanitizeSettings(raw: unknown): ExtSettings {
   const r = (raw ?? {}) as Partial<ExtSettings>;
@@ -30,7 +30,7 @@ export function sanitizeSettings(raw: unknown): ExtSettings {
       // keep default
     }
   }
-  return { network: r.network !== false, apiBase, theme: sanitizeTheme(r.theme) };
+  return { network: r.network !== false, apiBase, theme: r.theme === 'dark' || r.theme === 'system' ? r.theme : 'light' };
 }
 
 export async function load(): Promise<{ prefs: Prefs; saved: SavedItem[]; recent: RecentSearch[]; settings: ExtSettings }> {

@@ -8,7 +8,7 @@ import { hasNativeSupport } from '@/lib/networks';
 import { labelFor } from '@/lib/saved';
 import { checkSanctions } from '@/lib/security/sanctions';
 import { appUrl, openTab } from '../browser';
-import { clear, ext_link, h } from '../dom';
+import { clear, copy, ext_link, h } from '../dom';
 import { addRecent, clearRecent, setPrefs, upsertSaved, type load } from '../store';
 import { chainPicker, glyph, icon } from '../ui';
 import { badge, errorText, explorerList, note } from './common';
@@ -274,6 +274,25 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string }
       },
       icon('bookmark'),
       'Save',
+    ),
+    h(
+      'button',
+      {
+        type: 'button',
+        class: 'btn-ghost sm',
+        on: {
+          click: async (e: Event) => {
+            const btn = e.currentTarget as HTMLElement;
+            const { best, query } = current();
+            if (!query || best?.kind === 'secret') return;
+            await copy(best?.normalized ?? query);
+            btn.replaceChildren(icon('check'), 'Copied');
+            setTimeout(() => btn.replaceChildren(icon('copy'), 'Copy'), 1200);
+          },
+        },
+      },
+      icon('copy'),
+      'Copy',
     ),
   );
   refresh();

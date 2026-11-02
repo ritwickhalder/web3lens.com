@@ -29,7 +29,7 @@ export function settingsView(ctx: Ctx): HTMLElement {
       h(
         'div',
         { class: 'chips', role: 'radiogroup', 'aria-label': 'Theme' },
-        (['dark', 'light', 'system'] as const).map((t) =>
+        (['light', 'dark', 'system'] as const).map((t) =>
           h(
             'button',
             {
@@ -39,7 +39,7 @@ export function settingsView(ctx: Ctx): HTMLElement {
               class: `chip${settings.theme === t ? ' primary' : ''}`,
               on: { click: () => void setSettings({ ...settings, theme: t }) },
             },
-            t === 'dark' ? 'Dark (default)' : t === 'light' ? 'Light' : 'System',
+            t === 'light' ? 'Light (default)' : t === 'dark' ? 'Dark' : 'System',
           ),
         ),
       ),
