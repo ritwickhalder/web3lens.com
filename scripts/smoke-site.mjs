@@ -96,6 +96,8 @@ try {
   check('tx locator finds the chain (live)', (await page.textContent('main')).includes('Found on Ethereum'));
   await page.goto(`${BASE}/search?q=1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa&chain=bitcoin`);
   check('/search with a chain redirects to the native page', page.url().includes('/address/bitcoin/1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'));
+  // The route streams: a loading skeleton first, then the data.
+  await page.waitForSelector('text=Source:', { timeout: 30000 }).catch(() => {});
   check('native page shows a sourced balance (live)', (await page.textContent('main')).includes('Source:'));
   await page.waitForSelector('text=OFAC sanctions', { timeout: 30000 }).catch(() => {});
   const main = await page.textContent('main');
