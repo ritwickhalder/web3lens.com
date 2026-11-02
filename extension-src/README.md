@@ -6,10 +6,10 @@ hand-written `manifest.json`; everything else there is generated.
 
 | File | What |
 |---|---|
-| `src/popup.ts` | Toolbar popup: search with auto-detect, compact results, recent searches, “find addresses on this page” |
+| `src/popup.ts` | Toolbar popup: search with auto-detect, compact results, recent searches, “Scan page” tab (finds addresses on the current tab) |
 | `src/app.ts` | Full-page app (`app.html#search`, `#result/…`, `#batch`, `#tools/<slug>`, `#saved`, `#settings`); also the options page |
 | `src/background.ts` | Right-click “Look up on Web3Lens” / “Open in block explorer”, and the `w3` omnibox keyword |
-| `src/scan.ts` | Function injected (activeTab + scripting) only when the user asks to scan the current page |
+| `src/scan.ts` | Function injected (activeTab + scripting) only when the user opens the popup's Scan page tab |
 | `src/views/*` | Search, results, risk checks, tools, batch, saved, settings (plain DOM, text nodes only) |
 | `src/store.ts` | `storage.local`: preferences, saved items, recents, extension settings (same shapes as the website) |
 | `src/browser.ts` | Chrome/Firefox adapter |

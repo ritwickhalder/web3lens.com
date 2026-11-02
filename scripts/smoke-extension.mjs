@@ -15,7 +15,8 @@ const { chromium } = require('playwright');
 const dir = path.resolve(process.argv[2] ?? 'extension-chrome');
 const userDir = fs.mkdtempSync(path.join(os.tmpdir(), 'w3l-ext-'));
 const ctx = await chromium.launchPersistentContext(userDir, {
-  channel: 'chromium',
+  // PW_CHANNEL=msedge runs the same checks in the installed Microsoft Edge.
+  channel: process.env.PW_CHANNEL ?? 'chromium',
   headless: true,
   args: [`--disable-extensions-except=${dir}`, `--load-extension=${dir}`],
 });

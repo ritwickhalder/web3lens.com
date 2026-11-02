@@ -4,9 +4,12 @@ Use the same copy in all three stores unless a field below says otherwise.
 
 ## Name
 
-Comes from the manifest (Chrome limit 75 characters; 59 used):
+Comes from each manifest:
 
-> Blockchain Explorer – Scan Blockchain & Web3 Block Explorer
+- Chrome (limit 75 characters; 59 used):
+  > Blockchain Explorer – Scan Blockchain & Web3 Block Explorer
+- Edge and Firefox (Edge Add-ons and AMO cap the name at 45 characters; 37 used; AMO's validator rejects longer):
+  > Web3Lens – Blockchain Explorer Search
 
 ## Short description / summary
 
@@ -42,7 +45,8 @@ owners, and the token approvals an address has granted. "No reports" is never pr
 **Web3 tools and shortcuts**
 • Right-click any selected address or hash: "Look up on Web3Lens" or "Open in its block explorer"
 • Type w3 and a space in the address bar to search from there
-• "Find addresses on this page" (reads the page only when you click it)
+• "Scan page" tab in the popup: lists the addresses and hashes on the current page (reads the page only when you
+  open that tab; nothing is sent)
 • Developer tools: unit converter (wei/gwei/ETH, sats/BTC), address validator, hex and hashes, timestamps,
   gas calculator and live gas tracker, calldata decoder/encoder, raw transaction decoder with sender recovery
 • Batch search for up to 50 values with CSV export
@@ -72,7 +76,7 @@ explorer page, and show public on-chain data and risk information about it.
 |---|---|
 | `storage` | Saves the user's settings, saved address labels and notes, and recent searches on their device. |
 | `contextMenus` | Adds "Look up on Web3Lens" and "Open in its block explorer" to the right-click menu for selected text. |
-| `activeTab` | Lets the user scan the current tab for addresses and hashes, only when they click "Find addresses on this page". |
+| `activeTab` | Lets the user scan the current tab for addresses and hashes, only when they open the popup's "Scan page" tab (a click on the toolbar icon, then on the tab). |
 | `scripting` | Runs the bundled page-scan function in the active tab for that same user-initiated action; no other script is injected. |
 | Host permissions | None requested. |
 | Remote code | None. All JavaScript is packaged; network access is limited to https://web3lens.com by the extension's CSP. |

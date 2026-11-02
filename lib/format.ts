@@ -18,7 +18,9 @@ export function timeAgo(t: number | string | null | undefined, now = Date.now())
   const ms = typeof t === 'number' ? (t < 1e12 ? t * 1000 : t) : new Date(t).getTime();
   const s = Math.round((now - ms) / 1000);
   if (!Number.isFinite(s)) return '';
-  if (s < 0) return 'in the future';
+  // Server and browser clocks drift a little; a fetch time just "ahead" of this clock was just now.
+  if (s < -300) return 'in the future';
+  if (s < 1) return 'just now';
   if (s < 60) return `${s}s ago`;
   if (s < 3600) return `${Math.floor(s / 60)} min ago`;
   if (s < 86400) return `${Math.floor(s / 3600)} h ago`;

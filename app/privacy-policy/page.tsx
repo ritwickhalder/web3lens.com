@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
       </InfoSection>
       <InfoSection index={4} heading="Browser extension">
         The Web3Lens extension for Chrome, Firefox and Edge stores its data on your device only. It reads the text you select when you use
-        the right-click menu, and reads the current page only when you click “Find addresses on this page”. When online lookups are on (the
+        the right-click menu, and reads the current page only when you open the “Scan page” tab in its popup (the text is searched for addresses on your device and not sent anywhere). When online lookups are on (the
         default; you can turn them off in its settings), the addresses and hashes you look up are sent to web3lens.com as described above.
         It contains no analytics, ads or remote code, and needs no account or wallet.
       </InfoSection>

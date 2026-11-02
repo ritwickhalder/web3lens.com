@@ -18,10 +18,12 @@ locally; it captures the real extension and live data from web3lens.com).
 ## Before each submission
 
 1. Bump `version` in all three `extension-*/manifest.json` (tests require them to match).
-2. `npm run ext:build`, `npm test`, `npm run ext:lint:firefox`, `node scripts/smoke-extension.mjs extension-chrome`
-   and `node scripts/smoke-extension.mjs extension-edge`.
-3. Load `extension-firefox/` in Firefox (about:debugging → This Firefox → Load Temporary Add-on) and try the popup,
-   right-click lookup, the `w3` keyword and the full app once by hand. The automated browser test runs Chromium only.
+2. `npm run ext:build`, `npm test`, `npm run ext:lint:firefox` (must report 0 errors: AMO rejects names over 45
+   characters), `node scripts/smoke-extension.mjs extension-chrome`, `PW_CHANNEL=msedge node scripts/smoke-extension.mjs
+   extension-edge` (in the installed Edge) and `node scripts/smoke-extension-firefox.mjs` (in the installed Firefox).
+3. By hand, in each browser: right-click a selected address (both menu items), the `w3` keyword, and the popup's
+   Scan page tab on a normal web page. Automation can't click native menus or the toolbar icon (which is what grants
+   `activeTab`).
 4. `npm run ext:pack` → `dist-extensions/web3lens-{chrome,edge,firefox}-<version>.zip` and
    `web3lens-extension-source-<version>.zip`.
 5. Make sure https://web3lens.com is deployed from the same commit (the extensions call its `/api/v1`).

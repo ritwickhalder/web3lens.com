@@ -12,7 +12,7 @@ privacy policy (https://web3lens.com/privacy-policy, section "Browser extension"
   fetches public blockchain data from public sources and returns it. Nothing else is sent: no browsing history, no
   page content, no identifiers, no analytics.
 - **Read from pages:** only the text the user selects for the right-click menu, and the visible text of the current
-  tab when the user clicks "Find addresses on this page" (processed locally; only candidates the user then clicks are
+  tab when the user opens the popup's "Scan page" tab (processed locally; only candidates the user then clicks are
   looked up).
 - **Not done:** no account, no wallet connection, no tracking, no ads, no sale or transfer of data, no use for
   credit or lending decisions.

@@ -19,8 +19,9 @@ type Manifest = Record<string, unknown> & {
 };
 const manifest = (dir: string) => JSON.parse(fs.readFileSync(path.join(ROOT, dir, 'manifest.json'), 'utf8')) as Manifest;
 const ALLOWED_PERMISSIONS = ['storage', 'contextMenus', 'activeTab', 'scripting'];
-// Keys that must be identical in every browser's manifest (feature parity).
-const SHARED_KEYS = ['manifest_version', 'name', 'short_name', 'version', 'description', 'homepage_url', 'icons', 'action', 'options_ui', 'permissions', 'omnibox', 'commands', 'content_security_policy'];
+// Keys that must be identical in every browser's manifest (feature parity). `name` differs: Edge Add-ons and
+// Firefox AMO cap it at 45 characters, Chrome at 75.
+const SHARED_KEYS = ['manifest_version', 'short_name', 'version', 'description', 'homepage_url', 'icons', 'action', 'options_ui', 'permissions', 'omnibox', 'commands', 'content_security_policy'];
 
 test('three extension directories with MV3 manifests', () => {
   assert.deepEqual(TARGETS, ['extension-chrome', 'extension-firefox', 'extension-edge']);
@@ -101,10 +102,12 @@ test('every official coin logo and UI icon renders (no empty icon variants)', as
   for (const [id, svg] of Object.entries({ ...icons.chains, ...icons.ui })) assert.ok(svg.startsWith('<svg') && svg.length > 150, `${id} renders an empty icon`);
 });
 
-test('store limits: name ≤ 75, short name ≤ 12, description ≤ 132 characters (Chrome Web Store rejects longer)', () => {
+test('store limits: name ≤ 75 (Chrome) or ≤ 45 (Edge, Firefox AMO), short name ≤ 12, description ≤ 132 characters', () => {
+  const NAME_MAX: Record<string, number> = { 'extension-chrome': 75, 'extension-edge': 45, 'extension-firefox': 45 };
   for (const dir of TARGETS) {
     const m = manifest(dir) as Manifest & { name: string; short_name: string; description: string };
-    assert.ok(m.name.length <= 75, `${dir}: name`);
+    assert.ok(m.name.length <= NAME_MAX[dir], `${dir}: name is ${m.name.length} characters (max ${NAME_MAX[dir]})`);
+    assert.match(m.name, /Web3Lens|Blockchain/, `${dir}: name`);
     assert.ok(m.short_name.length <= 12, `${dir}: short_name`);
     assert.ok(m.description.length <= 132, `${dir}: description is ${m.description.length} characters`);
   }

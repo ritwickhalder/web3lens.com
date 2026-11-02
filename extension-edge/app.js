@@ -9,24 +9,64 @@
     }
   };
   var base = "";
+  var API_TIMEOUT_MS = 65e3;
   function setApiBase(url) {
     base = url.replace(/\/$/, "");
   }
-  async function apiGet(path, params, signal) {
+  async function apiGet(path, params, signal, timeoutMs = API_TIMEOUT_MS) {
     const url = `${base}/api/v1/${path}?${new URLSearchParams(params)}`;
+    const timeout = AbortSignal.timeout(timeoutMs);
     let res;
+    let body;
     try {
-      res = await fetch(url, { signal, headers: { accept: "application/json" } });
+      res = await fetch(url, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout, headers: { accept: "application/json" } });
+      body = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
     } catch (e) {
-      if (e.name === "AbortError") throw e;
+      if (signal?.aborted) throw e;
+      if (timeout.aborted) throw new ApiError("Web3Lens took too long to answer. Try again in a moment; explorer links and local checks still work.", 0);
       throw new ApiError("Web3Lens could not be reached. Check your connection.", 0);
     }
-    const body = await res.json().catch(() => null);
     if (!res.ok || !body) {
       const fallback = res.status === 429 ? "Too many lookups in a short time. Wait a minute and try again." : `The Web3Lens lookup service is unavailable right now (HTTP ${res.status}). Explorer links and local checks still work.`;
       throw new ApiError(body?.error ?? fallback, res.status);
     }
     return body;
+  }
+
+  // lib/networks.ts
+  var pn = (slug) => `https://${slug}.publicnode.com`;
+  var EVM_NETWORKS = [
+    { family: "evm", id: "ethereum", chainId: 1, name: "Ethereum", symbol: "ETH", rpc: [pn("ethereum-rpc")], blockscout: "https://eth.blockscout.com", coingecko: "ethereum" },
+    { family: "evm", id: "base", chainId: 8453, name: "Base", symbol: "ETH", rpc: [pn("base-rpc"), "https://mainnet.base.org"], blockscout: "https://base.blockscout.com", coingecko: "ethereum" },
+    { family: "evm", id: "arbitrum", chainId: 42161, name: "Arbitrum One", symbol: "ETH", rpc: [pn("arbitrum-one-rpc"), "https://arb1.arbitrum.io/rpc"], blockscout: "https://arbitrum.blockscout.com", coingecko: "ethereum" },
+    { family: "evm", id: "optimism", chainId: 10, name: "OP Mainnet", symbol: "ETH", rpc: [pn("optimism-rpc"), "https://mainnet.optimism.io"], blockscout: "https://explorer.optimism.io", coingecko: "ethereum" },
+    { family: "evm", id: "polygon", chainId: 137, name: "Polygon", symbol: "POL", rpc: [pn("polygon-bor-rpc"), "https://polygon-rpc.com"], blockscout: "https://polygon.blockscout.com", coingecko: "polygon-ecosystem-token" },
+    { family: "evm", id: "binancecoin", chainId: 56, name: "BNB Smart Chain", symbol: "BNB", rpc: [pn("bsc-rpc"), "https://bsc-dataseed.bnbchain.org"], coingecko: "binancecoin" },
+    { family: "evm", id: "avalanche", chainId: 43114, name: "Avalanche C-Chain", symbol: "AVAX", rpc: [pn("avalanche-c-chain-rpc"), "https://api.avax.network/ext/bc/C/rpc"], routescan: true, coingecko: "avalanche-2" },
+    { family: "evm", id: "linea", chainId: 59144, name: "Linea", symbol: "ETH", rpc: [pn("linea-rpc"), "https://rpc.linea.build"], coingecko: "ethereum" },
+    { family: "evm", id: "zksync", chainId: 324, name: "zkSync Era", symbol: "ETH", rpc: ["https://mainnet.era.zksync.io"], blockscout: "https://zksync.blockscout.com", coingecko: "ethereum" },
+    { family: "evm", id: "scroll", chainId: 534352, name: "Scroll", symbol: "ETH", rpc: [pn("scroll-rpc"), "https://rpc.scroll.io"], blockscout: "https://scroll.blockscout.com", coingecko: "ethereum" },
+    { family: "evm", id: "gnosischain", chainId: 100, name: "Gnosis Chain", symbol: "xDAI", rpc: [pn("gnosis-rpc"), "https://rpc.gnosischain.com"], blockscout: "https://gnosis.blockscout.com", coingecko: "xdai" }
+  ];
+  var UTXO_NETWORKS = [
+    { family: "utxo", id: "bitcoin", name: "Bitcoin", symbol: "BTC", esplora: ["https://mempool.space/api", "https://blockstream.info/api"], coingecko: "bitcoin" },
+    { family: "utxo", id: "litecoin", name: "Litecoin", symbol: "LTC", esplora: ["https://litecoinspace.org/api"], coingecko: "litecoin" }
+  ];
+  var SOLANA_NETWORK = {
+    family: "solana",
+    id: "solana",
+    name: "Solana",
+    symbol: "SOL",
+    rpc: ["https://solana-rpc.publicnode.com", "https://api.mainnet-beta.solana.com"],
+    coingecko: "solana"
+  };
+  var NETWORKS = [...EVM_NETWORKS, ...UTXO_NETWORKS, SOLANA_NETWORK];
+  var BY_ID = new Map(NETWORKS.map((n) => [n.id, n]));
+  function hasNativeSupport(chainId, kind) {
+    const n = BY_ID.get(chainId);
+    if (!n) return false;
+    if (kind === "address" || kind === "tx") return true;
+    return kind === "name" && chainId === "ethereum";
   }
 
   // extension-src/src/dom.ts
@@ -8262,9 +8302,9 @@
   var LEGACY_CHAINS = chains_default;
   var EXTRA_CHAINS = chains_extra_default;
   var CHAINS = [...LEGACY_CHAINS, ...EXTRA_CHAINS];
-  var BY_ID = new Map(CHAINS.map((c) => [c.id, c]));
+  var BY_ID2 = new Map(CHAINS.map((c) => [c.id, c]));
   function getChain(id) {
-    return BY_ID.get(id);
+    return BY_ID2.get(id);
   }
   var ROUTES = explorers_default.routes;
   var INHERIT_BY_PREFIX = [
@@ -10990,7 +11030,8 @@
     const ms = typeof t === "number" ? t < 1e12 ? t * 1e3 : t : new Date(t).getTime();
     const s = Math.round((now - ms) / 1e3);
     if (!Number.isFinite(s)) return "";
-    if (s < 0) return "in the future";
+    if (s < -300) return "in the future";
+    if (s < 1) return "just now";
     if (s < 60) return `${s}s ago`;
     if (s < 3600) return `${Math.floor(s / 60)} min ago`;
     if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
@@ -11100,6 +11141,9 @@
   function errorText(text) {
     return h("p", { class: "error", role: "alert" }, text);
   }
+  function failMessage(e) {
+    return e instanceof ApiError ? e.message : "Web3Lens sent an answer this version of the extension can’t read. Explorer links and local checks still work; updating the extension should fix it.";
+  }
 
   // extension-src/src/views/batch.ts
   function batchView(ctx, initial = "") {
@@ -11155,7 +11199,7 @@
                     try {
                       const m = await apiGet("multichain", { q });
                       const ok = m.rows.filter((x) => x.status === "ok");
-                      balances.set(q, `${ok.filter((x) => x.balanceWei !== "0" || (x.nonce ?? 0) > 0).length}/11 active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || "$0"}`);
+                      balances.set(q, `${ok.filter((x) => x.balanceWei !== "0" || (x.nonce ?? 0) > 0).length}/${m.rows.length} active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || "$0"}`);
                     } catch (e) {
                       balances.set(q, `unavailable: ${e.message}`);
                     }
@@ -11716,7 +11760,7 @@
       clear(body, ...rows);
     }).catch((e) => {
       const s = checkSanctions(address);
-      clear(body, errorText(`Online checks unavailable: ${e.message}`), facts([["OFAC (local)", s.listed ? `LISTED (${s.lists.join(", ")})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
+      clear(body, errorText(`Online checks unavailable: ${failMessage(e)}`), facts([["OFAC (local)", s.listed ? `LISTED (${s.lists.join(", ")})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
     });
     if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
       const approvals = h("div", null);
@@ -11737,14 +11781,14 @@
             ]),
             ext_link(a.revokeUrl, "Review or revoke on revoke.cash ↗")
           )
-        ).catch((e) => clear(approvals, errorText(e.message)));
+        ).catch((e) => clear(approvals, errorText(failMessage(e))));
       });
       el.append(btn, approvals);
     }
     return el;
   }
   function multichainCard(address, nav2) {
-    const body = h("div", null, loading("Checking 11 EVM chains…"));
+    const body = h("div", null, loading(`Checking ${EVM_NETWORKS.length} EVM chains…`));
     apiGet("multichain", { q: address }).then(
       (m) => clear(
         body,
@@ -11762,18 +11806,18 @@
         ),
         h("p", { class: "source" }, `Public RPCs · prices ${m.priceSource?.name ?? "unavailable"} · ${timeAgo(m.fetchedAt)}`)
       )
-    ).catch((e) => clear(body, errorText(e.message)));
+    ).catch((e) => clear(body, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, "Same address on other EVM chains"), body);
   }
   function locateCard(hash, nav2) {
-    const body = h("div", null, loading("Asking 11 EVM chains…"));
+    const body = h("div", null, loading(`Asking ${EVM_NETWORKS.length} EVM chains…`));
     apiGet("locate-tx", { q: hash }).then((l) => {
       const found = l.rows.filter((r) => r.status === "found");
       clear(
         body,
-        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`))) : h("p", { class: "muted" }, "Not found on the 11 supported EVM chains; try the explorer links.")
+        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`))) : h("p", { class: "muted" }, `Not found on the ${EVM_NETWORKS.length} supported EVM chains; try the explorer links.`)
       );
-    }).catch((e) => clear(body, errorText(e.message)));
+    }).catch((e) => clear(body, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, "Which chain is it on?"), body);
   }
   function resultView(kind, chainId, query, settings, nav2, compact = false) {
@@ -11807,12 +11851,12 @@
         clear(body, ...renderAddressResult(r, nav2, compact));
         body.append(securityCard(chainId, r.address));
         if (!compact && r.family === "evm") body.append(multichainCard(r.address, nav2));
-      }).catch((e) => clear(body, errorText(e.message)));
+      }).catch((e) => clear(body, errorText(failMessage(e))));
     } else {
       apiGet("tx", { chain: chainId, q: query }).then((r) => {
         clear(body, ...renderTxResult(r, nav2));
         if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body.append(locateCard(query, nav2));
-      }).catch((e) => clear(body, errorText(e.message)));
+      }).catch((e) => clear(body, errorText(failMessage(e))));
     }
     return root2;
   }
@@ -11914,42 +11958,6 @@
       filter,
       list
     );
-  }
-
-  // lib/networks.ts
-  var pn = (slug) => `https://${slug}.publicnode.com`;
-  var EVM_NETWORKS = [
-    { family: "evm", id: "ethereum", chainId: 1, name: "Ethereum", symbol: "ETH", rpc: [pn("ethereum-rpc")], blockscout: "https://eth.blockscout.com", coingecko: "ethereum" },
-    { family: "evm", id: "base", chainId: 8453, name: "Base", symbol: "ETH", rpc: [pn("base-rpc"), "https://mainnet.base.org"], blockscout: "https://base.blockscout.com", coingecko: "ethereum" },
-    { family: "evm", id: "arbitrum", chainId: 42161, name: "Arbitrum One", symbol: "ETH", rpc: [pn("arbitrum-one-rpc"), "https://arb1.arbitrum.io/rpc"], blockscout: "https://arbitrum.blockscout.com", coingecko: "ethereum" },
-    { family: "evm", id: "optimism", chainId: 10, name: "OP Mainnet", symbol: "ETH", rpc: [pn("optimism-rpc"), "https://mainnet.optimism.io"], blockscout: "https://explorer.optimism.io", coingecko: "ethereum" },
-    { family: "evm", id: "polygon", chainId: 137, name: "Polygon", symbol: "POL", rpc: [pn("polygon-bor-rpc"), "https://polygon-rpc.com"], blockscout: "https://polygon.blockscout.com", coingecko: "polygon-ecosystem-token" },
-    { family: "evm", id: "binancecoin", chainId: 56, name: "BNB Smart Chain", symbol: "BNB", rpc: [pn("bsc-rpc"), "https://bsc-dataseed.bnbchain.org"], coingecko: "binancecoin" },
-    { family: "evm", id: "avalanche", chainId: 43114, name: "Avalanche C-Chain", symbol: "AVAX", rpc: [pn("avalanche-c-chain-rpc"), "https://api.avax.network/ext/bc/C/rpc"], routescan: true, coingecko: "avalanche-2" },
-    { family: "evm", id: "linea", chainId: 59144, name: "Linea", symbol: "ETH", rpc: [pn("linea-rpc"), "https://rpc.linea.build"], coingecko: "ethereum" },
-    { family: "evm", id: "zksync", chainId: 324, name: "zkSync Era", symbol: "ETH", rpc: ["https://mainnet.era.zksync.io"], blockscout: "https://zksync.blockscout.com", coingecko: "ethereum" },
-    { family: "evm", id: "scroll", chainId: 534352, name: "Scroll", symbol: "ETH", rpc: [pn("scroll-rpc"), "https://rpc.scroll.io"], blockscout: "https://scroll.blockscout.com", coingecko: "ethereum" },
-    { family: "evm", id: "gnosischain", chainId: 100, name: "Gnosis Chain", symbol: "xDAI", rpc: [pn("gnosis-rpc"), "https://rpc.gnosischain.com"], blockscout: "https://gnosis.blockscout.com", coingecko: "xdai" }
-  ];
-  var UTXO_NETWORKS = [
-    { family: "utxo", id: "bitcoin", name: "Bitcoin", symbol: "BTC", esplora: ["https://mempool.space/api", "https://blockstream.info/api"], coingecko: "bitcoin" },
-    { family: "utxo", id: "litecoin", name: "Litecoin", symbol: "LTC", esplora: ["https://litecoinspace.org/api"], coingecko: "litecoin" }
-  ];
-  var SOLANA_NETWORK = {
-    family: "solana",
-    id: "solana",
-    name: "Solana",
-    symbol: "SOL",
-    rpc: ["https://solana-rpc.publicnode.com", "https://api.mainnet-beta.solana.com"],
-    coingecko: "solana"
-  };
-  var NETWORKS = [...EVM_NETWORKS, ...UTXO_NETWORKS, SOLANA_NETWORK];
-  var BY_ID2 = new Map(NETWORKS.map((n) => [n.id, n]));
-  function hasNativeSupport(chainId, kind) {
-    const n = BY_ID2.get(chainId);
-    if (!n) return false;
-    if (kind === "address" || kind === "tx") return true;
-    return kind === "name" && chainId === "ethereum";
   }
 
   // extension-src/src/views/search.ts
@@ -12262,11 +12270,11 @@
           )
         )
       ),
-      card("When I press Search", radio("results", "Show Web3Lens results first", "Balances, tokens and risk checks for 14 major chains; other chains open their explorer."), radio("explorer", "Always open the block explorer", "Go straight to the explorer in a new tab.")),
+      card("When I press Search", radio("results", "Show Web3Lens results first", `Balances, tokens and risk checks for ${NETWORKS.length} major chains; other chains open their explorer.`), radio("explorer", "Always open the block explorer", "Go straight to the explorer in a new tab.")),
       card(
         "Privacy",
         h("label", { class: "choice" }, network, h("span", null, h("b", null, "Online lookups"), h("small", null, `Balances, transactions, risk checks and live gas are fetched from ${settings.apiBase} when you ask. Turn off to keep everything in the browser: detection, checksums, explorer links, tools and the bundled OFAC snapshot still work.`))),
-        note("The extension has no host permissions and never reads pages unless you click “Find addresses on this page”.", "info")
+        note("The extension has no host permissions and only reads a page when you open the popup’s “Scan page” tab on it.", "info")
       ),
       card(
         "Preferred explorers",
@@ -13492,13 +13500,13 @@
           g.bitcoin.status === "ok" ? card("Bitcoin (sat/vB)", outputs([["Next block", String(g.bitcoin.data.fastest)], ["~30 min", String(g.bitcoin.data.halfHour)], ["~1 hour", String(g.bitcoin.data.hour)], ["Economy", String(g.bitcoin.data.economy)]])) : note(`Bitcoin fees unavailable: ${g.bitcoin.reason}`, "warn"),
           h("p", { class: "source" }, `Public RPCs, mempool.space, CoinGecko · ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`)
         )
-      ).catch((e) => clear(out, errorText(e.message)));
+      ).catch((e) => clear(out, errorText(failMessage(e))));
     }
     return [out];
   }
   function toolsView(slug, settings, nav2) {
     if (slug === "gas-tracker") {
-      return h("div", { class: "stack" }, toolTabs(slug, nav2), h("p", { class: "label" }, "Developer tools"), h("h1", { class: "heading" }, "Gas tracker"), h("p", { class: "lead" }, "Live fees on 11 EVM chains and Bitcoin."), ...gasTracker(settings));
+      return h("div", { class: "stack" }, toolTabs(slug, nav2), h("p", { class: "label" }, "Developer tools"), h("h1", { class: "heading" }, "Gas tracker"), h("p", { class: "lead" }, `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin.`), ...gasTracker(settings));
     }
     const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
     const tabs = toolTabs(tool.slug, nav2);
@@ -13590,7 +13598,7 @@
             { class: "feature-grid", "aria-label": "More tools" },
             [
               ["#batch", "list", "Batch search", "Check up to 50 addresses at once, export CSV"],
-              ["#tools/gas-tracker", "gas", "Gas tracker", "Live fees on 11 EVM chains and Bitcoin"],
+              ["#tools/gas-tracker", "gas", "Gas tracker", `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin`],
               ["#tools", "wrench", "Developer tools", "Units, checksums, decoders, timestamps"],
               ["#saved", "bookmark", "Saved", "Your labels and notes, private to this browser"]
             ].map(([hash, ic, title, body2]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body2)))

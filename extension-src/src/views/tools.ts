@@ -16,7 +16,7 @@ import { convertUnits, formatUnits } from '@/lib/tools/units';
 import { clear, copyBtn, h } from '../dom';
 import { icon, type IconName } from '../ui';
 import type { ExtSettings } from '../store';
-import { badge, card, errorText, note } from './common';
+import { badge, card, errorText, failMessage, note } from './common';
 
 type Out = [label: string, value: string | null][];
 
@@ -327,14 +327,14 @@ function gasTracker(settings: ExtSettings) {
           h('p', { class: 'source' }, `Public RPCs, mempool.space, CoinGecko · ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`),
         ),
       )
-      .catch((e: Error) => clear(out, errorText(e.message)));
+      .catch((e: unknown) => clear(out, errorText(failMessage(e))));
   }
   return [out];
 }
 
 export function toolsView(slug: string | undefined, settings: ExtSettings, nav: (hash: string) => void): HTMLElement {
   if (slug === 'gas-tracker') {
-    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, 'Gas tracker'), h('p', { class: 'lead' }, 'Live fees on 11 EVM chains and Bitcoin.'), ...gasTracker(settings));
+    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, 'Gas tracker'), h('p', { class: 'lead' }, `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin.`), ...gasTracker(settings));
   }
   const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
   const tabs = toolTabs(tool.slug, nav);

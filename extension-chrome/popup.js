@@ -55,19 +55,23 @@
     }
   };
   var base = "";
+  var API_TIMEOUT_MS = 65e3;
   function setApiBase(url) {
     base = url.replace(/\/$/, "");
   }
-  async function apiGet(path, params, signal) {
+  async function apiGet(path, params, signal, timeoutMs = API_TIMEOUT_MS) {
     const url = `${base}/api/v1/${path}?${new URLSearchParams(params)}`;
+    const timeout = AbortSignal.timeout(timeoutMs);
     let res;
+    let body;
     try {
-      res = await fetch(url, { signal, headers: { accept: "application/json" } });
+      res = await fetch(url, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout, headers: { accept: "application/json" } });
+      body = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
     } catch (e) {
-      if (e.name === "AbortError") throw e;
+      if (signal?.aborted) throw e;
+      if (timeout.aborted) throw new ApiError("Web3Lens took too long to answer. Try again in a moment; explorer links and local checks still work.", 0);
       throw new ApiError("Web3Lens could not be reached. Check your connection.", 0);
     }
-    const body = await res.json().catch(() => null);
     if (!res.ok || !body) {
       const fallback = res.status === 429 ? "Too many lookups in a short time. Wait a minute and try again." : `The Web3Lens lookup service is unavailable right now (HTTP ${res.status}). Explorer links and local checks still work.`;
       throw new ApiError(body?.error ?? fallback, res.status);
@@ -9079,7 +9083,8 @@
     const ms = typeof t === "number" ? t < 1e12 ? t * 1e3 : t : new Date(t).getTime();
     const s = Math.round((now - ms) / 1e3);
     if (!Number.isFinite(s)) return "";
-    if (s < 0) return "in the future";
+    if (s < -300) return "in the future";
+    if (s < 1) return "just now";
     if (s < 60) return `${s}s ago`;
     if (s < 3600) return `${Math.floor(s / 60)} min ago`;
     if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
@@ -11161,6 +11166,9 @@
   function errorText(text) {
     return h("p", { class: "error", role: "alert" }, text);
   }
+  function failMessage(e) {
+    return e instanceof ApiError ? e.message : "Web3Lens sent an answer this version of the extension can’t read. Explorer links and local checks still work; updating the extension should fix it.";
+  }
 
   // lib/codec/qr.ts
   var BLOCKS = [
@@ -11647,7 +11655,7 @@
       clear(body, ...rows);
     }).catch((e) => {
       const s = checkSanctions(address);
-      clear(body, errorText(`Online checks unavailable: ${e.message}`), facts([["OFAC (local)", s.listed ? `LISTED (${s.lists.join(", ")})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
+      clear(body, errorText(`Online checks unavailable: ${failMessage(e)}`), facts([["OFAC (local)", s.listed ? `LISTED (${s.lists.join(", ")})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
     });
     if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
       const approvals = h("div", null);
@@ -11668,14 +11676,14 @@
             ]),
             ext_link(a.revokeUrl, "Review or revoke on revoke.cash ↗")
           )
-        ).catch((e) => clear(approvals, errorText(e.message)));
+        ).catch((e) => clear(approvals, errorText(failMessage(e))));
       });
       el.append(btn, approvals);
     }
     return el;
   }
   function multichainCard(address, nav) {
-    const body = h("div", null, loading("Checking 11 EVM chains…"));
+    const body = h("div", null, loading(`Checking ${EVM_NETWORKS.length} EVM chains…`));
     apiGet("multichain", { q: address }).then(
       (m) => clear(
         body,
@@ -11693,18 +11701,18 @@
         ),
         h("p", { class: "source" }, `Public RPCs · prices ${m.priceSource?.name ?? "unavailable"} · ${timeAgo(m.fetchedAt)}`)
       )
-    ).catch((e) => clear(body, errorText(e.message)));
+    ).catch((e) => clear(body, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, "Same address on other EVM chains"), body);
   }
   function locateCard(hash, nav) {
-    const body = h("div", null, loading("Asking 11 EVM chains…"));
+    const body = h("div", null, loading(`Asking ${EVM_NETWORKS.length} EVM chains…`));
     apiGet("locate-tx", { q: hash }).then((l) => {
       const found = l.rows.filter((r) => r.status === "found");
       clear(
         body,
-        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`))) : h("p", { class: "muted" }, "Not found on the 11 supported EVM chains; try the explorer links.")
+        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`))) : h("p", { class: "muted" }, `Not found on the ${EVM_NETWORKS.length} supported EVM chains; try the explorer links.`)
       );
-    }).catch((e) => clear(body, errorText(e.message)));
+    }).catch((e) => clear(body, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, "Which chain is it on?"), body);
   }
   function resultView(kind, chainId, query, settings, nav, compact = false) {
@@ -11738,12 +11746,12 @@
         clear(body, ...renderAddressResult(r, nav, compact));
         body.append(securityCard(chainId, r.address));
         if (!compact && r.family === "evm") body.append(multichainCard(r.address, nav));
-      }).catch((e) => clear(body, errorText(e.message)));
+      }).catch((e) => clear(body, errorText(failMessage(e))));
     } else {
       apiGet("tx", { chain: chainId, q: query }).then((r) => {
         clear(body, ...renderTxResult(r, nav));
         if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body.append(locateCard(query, nav));
-      }).catch((e) => clear(body, errorText(e.message)));
+      }).catch((e) => clear(body, errorText(failMessage(e))));
     }
     return root2;
   }
@@ -13384,7 +13392,7 @@
           h("p", { class: "source" }, `Public RPCs, mempool.space, CoinGecko · fetched ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`)
         );
       } catch (e) {
-        clear(out, errorText(e.message));
+        clear(out, errorText(failMessage(e)));
       }
     };
     void run();

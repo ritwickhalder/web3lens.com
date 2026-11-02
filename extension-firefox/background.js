@@ -10455,10 +10455,13 @@
   // extension-src/src/background.ts
   var MENU_LOOKUP = "w3l-lookup";
   var MENU_EXPLORER = "w3l-explorer";
+  var menus = ext.contextMenus;
+  var omnibox = ext.omnibox;
   ext.runtime.onInstalled.addListener(() => {
-    void ext.contextMenus.removeAll().then(() => {
-      ext.contextMenus.create({ id: MENU_LOOKUP, title: "Look up “%s” on Web3Lens", contexts: ["selection"] });
-      ext.contextMenus.create({ id: MENU_EXPLORER, title: "Open “%s” in its block explorer", contexts: ["selection"] });
+    if (!menus) return;
+    void menus.removeAll().then(() => {
+      menus.create({ id: MENU_LOOKUP, title: "Look up “%s” on Web3Lens", contexts: ["selection"] });
+      menus.create({ id: MENU_EXPLORER, title: "Open “%s” in its block explorer", contexts: ["selection"] });
     });
   });
   async function destination(text, mode, chainId) {
@@ -10479,19 +10482,19 @@
     const r = resolveExplorer(chain, query, { explorer: prefs.explorers[chain.id] });
     return r.action.kind === "url" && !r.unreachable ? r.action.href : appUrl(`#search?q=${encodeURIComponent(query)}&chain=${chain.id}`);
   }
-  ext.contextMenus.onClicked.addListener((info) => {
+  menus?.onClicked.addListener((info) => {
     const text = info.selectionText ?? "";
     if (!text.trim()) return;
     void destination(text, info.menuItemId === MENU_EXPLORER ? "explorer" : "lookup").then((url) => ext.tabs.create({ url }));
   });
-  ext.omnibox.setDefaultSuggestion({ description: omniboxText("Web3Lens: paste an address, transaction hash, block or ENS name") });
-  ext.omnibox.onInputChanged.addListener((text, suggest) => {
+  omnibox?.setDefaultSuggestion({ description: omniboxText("Web3Lens: paste an address, transaction hash, block or ENS name") });
+  omnibox?.onInputChanged.addListener((text, suggest) => {
     const { query } = extractQuery(text);
     const all = detectAll(query);
     const out = [];
     for (const d of all) {
       if (d.kind === "secret") {
-        ext.omnibox.setDefaultSuggestion({ description: omniboxText(`⚠ ${d.label}: never paste secrets anywhere. Not searched.`) });
+        omnibox.setDefaultSuggestion({ description: omniboxText(`⚠ ${d.label}: never paste secrets anywhere. Not searched.`) });
         return suggest([]);
       }
       for (const id of d.chains.slice(0, 5)) {
@@ -10499,10 +10502,10 @@
         if (chain) out.push({ content: `w3l:${id}:${d.normalized}`, description: omniboxText(`${d.label} on ${chain.name}${d.checksum === "invalid" ? " (checksum does not match!)" : ""}`) });
       }
     }
-    ext.omnibox.setDefaultSuggestion({ description: omniboxText(all[0] ? `${all[0].label}: look up on Web3Lens` : "Web3Lens: search") });
+    omnibox.setDefaultSuggestion({ description: omniboxText(all[0] ? `${all[0].label}: look up on Web3Lens` : "Web3Lens: search") });
     suggest(out.slice(0, 6));
   });
-  ext.omnibox.onInputEntered.addListener((text, disposition) => {
+  omnibox?.onInputEntered.addListener((text, disposition) => {
     const m = /^w3l:([a-z0-9-]+):(.+)$/.exec(text);
     void destination(m ? m[2] : text, "lookup", m?.[1]).then((url) => disposition === "currentTab" ? ext.tabs.update({ url }) : ext.tabs.create({ url }));
   });

@@ -16,7 +16,7 @@ import { clear, ext_link, h } from './dom';
 import { scanPageForCandidates } from './scan';
 import { clearRecent, load, onStorageChange, setPrefs, setSettings, upsertSaved, type ExtSettings } from './store';
 import { brand, glyph, heroIllustration, icon, iconButton, spot, TOOL_ICONS, type IconName } from './ui';
-import { errorText, loading, note } from './views/common';
+import { errorText, failMessage, loading, note } from './views/common';
 import { searchView, type Ctx, type State } from './views/search';
 import { toolBody } from './views/tools';
 
@@ -311,7 +311,7 @@ function gasPanel(): HTMLElement {
         h('p', { class: 'source' }, `Public RPCs, mempool.space, CoinGecko · fetched ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`),
       );
     } catch (e) {
-      clear(out, errorText((e as Error).message));
+      clear(out, errorText(failMessage(e)));
     }
   };
   void run();

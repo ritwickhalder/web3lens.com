@@ -1,4 +1,5 @@
 /** Small building blocks shared by the extension views. */
+import { ApiError } from '@/lib/api-client';
 import { getChain } from '@/lib/chains';
 import { explorerLinks } from '@/lib/explorer';
 import type { Detection } from '@/lib/detect';
@@ -76,4 +77,9 @@ export function loading(text: string) {
 
 export function errorText(text: string) {
   return h('p', { class: 'error', role: 'alert' }, text);
+}
+
+/** API errors already read well; anything else means the answer couldn't be shown (e.g. site and extension out of step). */
+export function failMessage(e: unknown): string {
+  return e instanceof ApiError ? e.message : 'Web3Lens sent an answer this version of the extension can’t read. Explorer links and local checks still work; updating the extension should fix it.';
 }

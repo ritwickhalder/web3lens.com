@@ -69,7 +69,7 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
                       try {
                         const m = await apiGet<MultichainResult>('multichain', { q });
                         const ok = m.rows.filter((x) => x.status === 'ok');
-                        balances.set(q, `${ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length}/11 active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || '$0'}`);
+                        balances.set(q, `${ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length}/${m.rows.length} active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || '$0'}`);
                       } catch (e) {
                         balances.set(q, `unavailable: ${(e as Error).message}`);
                       }

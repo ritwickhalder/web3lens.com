@@ -15,7 +15,7 @@ const FEATURES = [
   { icon: MagnifyingGlass, title: 'Search from the toolbar', body: 'Paste anything; it is detected, checksum-verified and sent to the right explorer page, or shown with balances and risk checks.' },
   { icon: CursorClick, title: 'Right-click any address', body: 'Select an address or hash on any page and choose “Look up on Web3Lens” or “Open in its block explorer”.' },
   { icon: Keyboard, title: 'Type w3 in the address bar', body: 'w3, space, then the address. Suggestions show what was detected and on which chains.' },
-  { icon: Scan, title: 'Find addresses on a page', body: 'One click lists every address and hash on the current page. The page is only read when you click.' },
+  { icon: Scan, title: 'Find addresses on a page', body: 'Open the popup’s Scan page tab to list every address and hash on the current page. The page is only read when you open that tab.' },
   { icon: ShieldCheck, title: 'Risk checks', body: 'OFAC snapshot works offline; reported scams, contract checks and token approvals when online lookups are on.' },
   { icon: Wrench, title: 'All the developer tools', body: 'Unit converter, validator, hex and hashes, timestamps, gas, calldata and raw-transaction decoders, batch search, saved labels.' },
 ];
@@ -74,7 +74,7 @@ export default function ExtensionPage() {
             <strong className="text-fg">contextMenus</strong>: the right-click “Look up” entries. The extension only sees the text you selected, when you click.
           </li>
           <li>
-            <strong className="text-fg">activeTab + scripting</strong>: “Find addresses on this page”, and only for the tab you're on when you click it.
+            <strong className="text-fg">activeTab + scripting</strong>: the popup’s “Scan page” tab, and only for the tab you're on when you open it.
           </li>
           <li>No host permissions, no content scripts, no access to your browsing history, no wallet connection, no account.</li>
         </ul>

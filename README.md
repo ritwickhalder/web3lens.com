@@ -38,11 +38,14 @@ npm run explorers:check    # probes explorer hosts → data/explorer-health.json
 npm run sanctions:update   # OFAC SDN addresses → data/sanctions.json
 ```
 
-Browser smoke tests (need Playwright + Chromium installed locally; not project dependencies):
+Browser smoke tests (Playwright + Chromium installed locally, not project dependencies; the Firefox one needs only
+an installed Firefox):
 
 ```bash
 node scripts/smoke-site.mjs http://localhost:3000   # against `npm run build && npm start`
 node scripts/smoke-extension.mjs extension-chrome   # loads the unpacked extension in Chromium
+PW_CHANNEL=msedge node scripts/smoke-extension.mjs extension-edge   # same checks in the installed Edge
+node scripts/smoke-extension-firefox.mjs            # extension-firefox/ in the installed Firefox (Marionette)
 ```
 
 ## Layout

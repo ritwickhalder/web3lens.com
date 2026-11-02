@@ -1,6 +1,6 @@
 /**
- * "Find addresses on this page": injected with activeTab + scripting only when the user clicks the
- * button. It must be self-contained (it is serialised into the page) and only returns candidate
+ * The popup's "Scan page" tab: injected with activeTab + scripting only when the user opens that tab
+ * (or presses Rescan). It must be self-contained (it is serialised into the page) and only returns candidate
  * strings; detection and checksum checks run back in the extension.
  */
 export function scanPageForCandidates(): string[] {

@@ -25,12 +25,13 @@ interface ExtApi {
     update(props: { url: string }): Promise<ExtTab>;
     query(q: { active: boolean; currentWindow: boolean }): Promise<ExtTab[]>;
   };
-  contextMenus: {
+  /** Missing on Firefox for Android, like `omnibox`. */
+  contextMenus?: {
     create(props: { id: string; title: string; contexts: string[] }): void;
     removeAll(): Promise<void>;
     onClicked: ExtEvent<(info: { menuItemId: string | number; selectionText?: string; linkUrl?: string }, tab?: ExtTab) => void>;
   };
-  omnibox: {
+  omnibox?: {
     setDefaultSuggestion(s: { description: string }): void;
     onInputChanged: ExtEvent<(text: string, suggest: (s: { content: string; description: string }[]) => void) => void>;
     onInputEntered: ExtEvent<(text: string, disposition: 'currentTab' | 'newForegroundTab' | 'newBackgroundTab') => void>;

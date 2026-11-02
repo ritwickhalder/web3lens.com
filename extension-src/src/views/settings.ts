@@ -1,5 +1,6 @@
 /** Extension settings: search behaviour, explorers, favourite chains, privacy, data. */
 import { allExplorerRoutes, getChain } from '@/lib/chains';
+import { NETWORKS } from '@/lib/networks';
 import { DEFAULT_PREFS } from '@/lib/prefs';
 import { h } from '../dom';
 import { clearRecent, setPrefs, setSaved, setSettings } from '../store';
@@ -44,11 +45,11 @@ export function settingsView(ctx: Ctx): HTMLElement {
         ),
       ),
     ),
-    card('When I press Search', radio('results', 'Show Web3Lens results first', 'Balances, tokens and risk checks for 14 major chains; other chains open their explorer.'), radio('explorer', 'Always open the block explorer', 'Go straight to the explorer in a new tab.')),
+    card('When I press Search', radio('results', 'Show Web3Lens results first', `Balances, tokens and risk checks for ${NETWORKS.length} major chains; other chains open their explorer.`), radio('explorer', 'Always open the block explorer', 'Go straight to the explorer in a new tab.')),
     card(
       'Privacy',
       h('label', { class: 'choice' }, network, h('span', null, h('b', null, 'Online lookups'), h('small', null, `Balances, transactions, risk checks and live gas are fetched from ${settings.apiBase} when you ask. Turn off to keep everything in the browser: detection, checksums, explorer links, tools and the bundled OFAC snapshot still work.`))),
-      note('The extension has no host permissions and never reads pages unless you click “Find addresses on this page”.', 'info'),
+      note('The extension has no host permissions and only reads a page when you open the popup’s “Scan page” tab on it.', 'info'),
     ),
     card(
       'Preferred explorers',

@@ -1,5 +1,6 @@
 /** Full-page extension app (app.html) and options page (options.html, fixed to settings). */
 import { setApiBase } from '@/lib/api-client';
+import { EVM_NETWORKS } from '@/lib/networks';
 import { clear, h } from './dom';
 import { load, onStorageChange, setSettings, type ExtSettings } from './store';
 import { brand, icon, type IconName } from './ui';
@@ -82,7 +83,7 @@ async function render() {
           (
             [
               ['#batch', 'list', 'Batch search', 'Check up to 50 addresses at once, export CSV'],
-              ['#tools/gas-tracker', 'gas', 'Gas tracker', 'Live fees on 11 EVM chains and Bitcoin'],
+              ['#tools/gas-tracker', 'gas', 'Gas tracker', `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin`],
               ['#tools', 'wrench', 'Developer tools', 'Units, checksums, decoders, timestamps'],
               ['#saved', 'bookmark', 'Saved', 'Your labels and notes, private to this browser'],
             ] as [string, IconName, string, string][]

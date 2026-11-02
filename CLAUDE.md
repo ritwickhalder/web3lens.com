@@ -49,7 +49,8 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
   time (`extension-src/icons-entry.tsx`); UI kit in `extension-src/src/ui.ts`; tokens in `extension-src/static/styles.css`
   must match `app/globals.css` (tested). Store kit: `store/`; refresh screenshots with `node scripts/make-store-assets.mjs`.
 - `npm run ext:lint:firefox` (web-ext), `node scripts/smoke-extension.mjs` and `node scripts/smoke-site.mjs <url>`
-  need Playwright/Chromium locally; `npm run ext:pack` builds store zips into `dist-extensions/` (gitignored).
+  need Playwright/Chromium locally (`PW_CHANNEL=msedge` uses the installed Edge; branded Chrome ignores unpacked
+  extensions); `node scripts/smoke-extension-firefox.mjs` needs only an installed Firefox; `npm run ext:pack` builds store zips into `dist-extensions/` (gitignored).
 
 ## Vercel
 

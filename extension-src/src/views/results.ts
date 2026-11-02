@@ -9,10 +9,11 @@ import type { AddressResult, ApprovalsResult, LocateResult, MultichainResult, Se
 import { checkSanctions } from '@/lib/security/sanctions';
 import { formatUnits } from '@/lib/tools/units';
 import { getChain } from '@/lib/chains';
+import { EVM_NETWORKS } from '@/lib/networks';
 import { clear, copyBtn, ext_link, h } from '../dom';
 import { glyph, icon } from '../ui';
 import type { ExtSettings } from '../store';
-import { badge, card, errorText, explorerList, facts, loading, mono, note, sectionBody, sourcedCard, when } from './common';
+import { badge, card, errorText, explorerList, facts, failMessage, loading, mono, note, sectionBody, sourcedCard, when } from './common';
 
 export type Nav = (hash: string) => void;
 
@@ -254,10 +255,10 @@ export function securityCard(chainId: string, address: string): HTMLElement {
       ];
       clear(body, ...rows);
     })
-    .catch((e: Error) => {
+    .catch((e: unknown) => {
       // The local OFAC snapshot still works when the API doesn't.
       const s = checkSanctions(address);
-      clear(body, errorText(`Online checks unavailable: ${e.message}`), facts([['OFAC (local)', s.listed ? `LISTED (${s.lists.join(', ')})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
+      clear(body, errorText(`Online checks unavailable: ${failMessage(e)}`), facts([['OFAC (local)', s.listed ? `LISTED (${s.lists.join(', ')})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
     });
   if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
     const approvals = h('div', null);
@@ -282,7 +283,7 @@ export function securityCard(chainId: string, address: string): HTMLElement {
             ext_link(a.revokeUrl, 'Review or revoke on revoke.cash ↗'),
           ),
         )
-        .catch((e: Error) => clear(approvals, errorText(e.message)));
+        .catch((e: unknown) => clear(approvals, errorText(failMessage(e))));
     });
     el.append(btn, approvals);
   }
@@ -290,7 +291,7 @@ export function securityCard(chainId: string, address: string): HTMLElement {
 }
 
 export function multichainCard(address: string, nav: Nav): HTMLElement {
-  const body = h('div', null, loading('Checking 11 EVM chains…'));
+  const body = h('div', null, loading(`Checking ${EVM_NETWORKS.length} EVM chains…`));
   apiGet<MultichainResult>('multichain', { q: address })
     .then((m) =>
       clear(
@@ -310,12 +311,12 @@ export function multichainCard(address: string, nav: Nav): HTMLElement {
         h('p', { class: 'source' }, `Public RPCs · prices ${m.priceSource?.name ?? 'unavailable'} · ${timeAgo(m.fetchedAt)}`),
       ),
     )
-    .catch((e: Error) => clear(body, errorText(e.message)));
+    .catch((e: unknown) => clear(body, errorText(failMessage(e))));
   return h('section', { class: 'card' }, h('h2', null, 'Same address on other EVM chains'), body);
 }
 
 export function locateCard(hash: string, nav: Nav): HTMLElement {
-  const body = h('div', null, loading('Asking 11 EVM chains…'));
+  const body = h('div', null, loading(`Asking ${EVM_NETWORKS.length} EVM chains…`));
   apiGet<LocateResult>('locate-tx', { q: hash })
     .then((l) => {
       const found = l.rows.filter((r) => r.status === 'found');
@@ -323,10 +324,10 @@ export function locateCard(hash: string, nav: Nav): HTMLElement {
         body,
         found.length
           ? h('div', { class: 'chips' }, found.map((r) => h('button', { type: 'button', class: 'chip primary', on: { click: () => nav(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`)))
-          : h('p', { class: 'muted' }, 'Not found on the 11 supported EVM chains; try the explorer links.'),
+          : h('p', { class: 'muted' }, `Not found on the ${EVM_NETWORKS.length} supported EVM chains; try the explorer links.`),
       );
     })
-    .catch((e: Error) => clear(body, errorText(e.message)));
+    .catch((e: unknown) => clear(body, errorText(failMessage(e))));
   return h('section', { class: 'card' }, h('h2', null, 'Which chain is it on?'), body);
 }
 
@@ -364,14 +365,14 @@ export function resultView(kind: 'address' | 'tx', chainId: string, query: strin
         body.append(securityCard(chainId, r.address));
         if (!compact && r.family === 'evm') body.append(multichainCard(r.address, nav));
       })
-      .catch((e: Error) => clear(body, errorText(e.message)));
+      .catch((e: unknown) => clear(body, errorText(failMessage(e))));
   } else {
     apiGet<TxResult>('tx', { chain: chainId, q: query })
       .then((r) => {
         clear(body, ...renderTxResult(r, nav));
         if (r.family === 'evm' && r.tx.status === 'ok' && !r.tx.data) body.append(locateCard(query, nav));
       })
-      .catch((e: Error) => clear(body, errorText(e.message)));
+      .catch((e: unknown) => clear(body, errorText(failMessage(e))));
   }
   return root;
 }
