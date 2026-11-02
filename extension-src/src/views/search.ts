@@ -62,7 +62,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     },
   });
   const info = h('div', { class: 'detect', 'aria-live': 'polite' });
-  const results = h('div', { class: 'stack' });
+  const results = h('div', { class: 'stack results' });
   const recentBox = initial.recentInto ?? h('div', null);
 
   const current = () => {
@@ -174,6 +174,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     e?.preventDefault();
     const { query, best } = current();
     clear(results);
+    fullBtn.hidden = true;
     if (!query) return results.append(errorText('Paste an address, transaction hash, block number or name first.'));
     if (best?.kind === 'secret') return results.append(note(best.note ?? 'Not searched.', 'danger'));
     const chain = effectiveChain(best);
@@ -194,14 +195,9 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     }
     const k = kind === 'tx' ? 'tx' : 'address';
     if (ctx.compact) {
-      results.append(
-        h(
-          'div',
-          { class: 'row' },
-          h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`)) } }, icon('external'), 'Open full view'),
-        ),
-        resultView(k, chain.id, d!.normalized, state.settings, (hash) => void openTab(appUrl(hash)), true),
-      );
+      fullView = `#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`;
+      fullBtn.hidden = false;
+      results.append(resultView(k, chain.id, d!.normalized, state.settings, (hash) => void openTab(appUrl(hash)), true));
     } else ctx.nav(`#result/${k}/${chain.id}/${encodeURIComponent(d!.normalized)}`);
   }
 
@@ -260,6 +256,9 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     input,
     h('button', { type: 'submit', class: 'btn search-btn' }, 'Search', icon('arrowRight')),
   );
+  // In the popup, the compact result's "Open full view" sits at the end of the action row.
+  let fullView = '';
+  const fullBtn = h('button', { type: 'button', class: 'btn-ghost sm full-view', hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, 'Open full view', icon('arrowRight'));
   const actions = h(
     'div',
     { class: 'row wrap actions' },
@@ -308,5 +307,6 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
   renderRecent();
   queueMicrotask(() => input.focus());
   if (initial.query) queueMicrotask(() => void submit());
+  actions.append(fullBtn);
   return h('div', { class: 'stack' }, form, info, actions, results, initial.recentInto ? null : recentBox);
 }

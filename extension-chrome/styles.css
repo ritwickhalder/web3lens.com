@@ -484,3 +484,20 @@ body.popup { width: 780px; height: 600px; overflow: hidden; }
 .popup .tool-body .chip { padding: 2px 8px; font-size: 11.5px; }
 .popup .tool-body .note { padding: 6px 9px; font-size: 12px; }
 .popup .tool-body > .card > .field:only-of-type { grid-column: 1 / -1; }
+
+/* Header tagline: on the wordmark's line, set off by a hairline. */
+.head-brand { align-items: center; gap: 12px; }
+.tagline { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding-left: 12px; border-left: 1px solid var(--line-strong); color: var(--faint); font-size: 12px; font-weight: 600; letter-spacing: 0.01em; }
+.tagline b { color: var(--accent); font-weight: 800; }
+
+/* Tools sidebar fills the panel height; its links share the space evenly. */
+.tools-layout { min-height: 100%; align-items: stretch; }
+.tool-nav { position: static; padding: 8px 6px; }
+.tool-link { flex: 1 1 0; max-height: 52px; }
+.tool-pane { align-self: start; }
+
+/* Lookup: detection, actions and the result read as separate bands. */
+.popup .detect:not(:empty) { padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--ink-2); }
+.popup .actions .full-view { margin-left: auto; border-color: color-mix(in oklab, var(--accent) 45%, transparent); background: color-mix(in oklab, var(--accent) 8%, var(--ink-2)); color: var(--accent); }
+.popup .actions .full-view[hidden] { display: none; }
+.popup .results:not(:empty) { margin-top: 2px; padding-top: 12px; border-top: 1px solid var(--line); }

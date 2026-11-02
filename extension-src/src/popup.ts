@@ -570,7 +570,7 @@ function header(): HTMLElement {
   return h(
     'header',
     { class: 'popup-head' },
-    h('div', { class: 'head-brand' }, brand(), h('span', { class: 'tagline' }, 'Blockchain search for every chain')),
+    h('div', { class: 'head-brand' }, brand(), h('span', { class: 'tagline' }, 'Blockchain search for ', h('b', null, 'every chain'))),
     h(
       'div',
       { class: 'row' },

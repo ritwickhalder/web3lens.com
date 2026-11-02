@@ -11787,7 +11787,7 @@
       }
     });
     const info = h("div", { class: "detect", "aria-live": "polite" });
-    const results = h("div", { class: "stack" });
+    const results = h("div", { class: "stack results" });
     const recentBox = initial.recentInto ?? h("div", null);
     const current = () => {
       const { query } = extractQuery(input2.value);
@@ -11890,6 +11890,7 @@
       e?.preventDefault();
       const { query, best } = current();
       clear(results);
+      fullBtn.hidden = true;
       if (!query) return results.append(errorText("Paste an address, transaction hash, block number or name first."));
       if (best?.kind === "secret") return results.append(note(best.note ?? "Not searched.", "danger"));
       const chain = effectiveChain(best);
@@ -11910,14 +11911,9 @@
       }
       const k = kind === "tx" ? "tx" : "address";
       if (ctx2.compact) {
-        results.append(
-          h(
-            "div",
-            { class: "row" },
-            h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void openTab(appUrl(`#result/${k}/${chain.id}/${encodeURIComponent(d.normalized)}`)) } }, icon("external"), "Open full view")
-          ),
-          resultView(k, chain.id, d.normalized, state2.settings, (hash) => void openTab(appUrl(hash)), true)
-        );
+        fullView = `#result/${k}/${chain.id}/${encodeURIComponent(d.normalized)}`;
+        fullBtn.hidden = false;
+        results.append(resultView(k, chain.id, d.normalized, state2.settings, (hash) => void openTab(appUrl(hash)), true));
       } else ctx2.nav(`#result/${k}/${chain.id}/${encodeURIComponent(d.normalized)}`);
     }
     function renderRecent() {
@@ -11972,6 +11968,8 @@
       input2,
       h("button", { type: "submit", class: "btn search-btn" }, "Search", icon("arrowRight"))
     );
+    let fullView = "";
+    const fullBtn = h("button", { type: "button", class: "btn-ghost sm full-view", hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, "Open full view", icon("arrowRight"));
     const actions = h(
       "div",
       { class: "row wrap actions" },
@@ -12019,6 +12017,7 @@
     renderRecent();
     queueMicrotask(() => input2.focus());
     if (initial.query) queueMicrotask(() => void submit());
+    actions.append(fullBtn);
     return h("div", { class: "stack" }, form, info, actions, results, initial.recentInto ? null : recentBox);
   }
 
@@ -13625,7 +13624,7 @@
     return h(
       "header",
       { class: "popup-head" },
-      h("div", { class: "head-brand" }, brand(), h("span", { class: "tagline" }, "Blockchain search for every chain")),
+      h("div", { class: "head-brand" }, brand(), h("span", { class: "tagline" }, "Blockchain search for ", h("b", null, "every chain"))),
       h(
         "div",
         { class: "row" },
