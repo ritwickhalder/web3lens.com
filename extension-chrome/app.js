@@ -12785,13 +12785,59 @@
     });
     return [field("Signed raw transaction", raw, "Decoded locally; nothing is broadcast."), out];
   }
-  function toolsView(slug, settings, nav2) {
-    const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
-    const tabs = h(
+  function toolTabs(current, nav2) {
+    return h(
       "nav",
       { class: "chips", "aria-label": "Tools" },
-      TOOLS.map((t) => h("button", { type: "button", class: `chip${t.slug === tool.slug ? " primary" : ""}`, on: { click: () => nav2(`#tools/${t.slug}`) } }, t.title))
+      [...TOOLS.map((t) => [t.slug, t.title]), ["gas-tracker", "Gas tracker"]].map(
+        ([s, title]) => h("button", { type: "button", class: `chip${s === current ? " primary" : ""}`, on: { click: () => nav2(`#tools/${s}`) } }, title)
+      )
     );
+  }
+  function gasTracker(settings) {
+    const out = h("div", null, settings.network ? h("p", { class: "muted pulse" }, "Loading live gas prices…") : note("Online lookups are off in settings.", "info"));
+    if (settings.network) {
+      apiGet("gas", {}).then(
+        (g) => clear(
+          out,
+          h(
+            "div",
+            { class: "scroll-x" },
+            h(
+              "table",
+              { class: "table" },
+              h("thead", null, h("tr", null, h("th", null, "Chain"), h("th", null, "Gas price (gwei)"), h("th", null, "Transfer (USD)"))),
+              h(
+                "tbody",
+                null,
+                g.evm.map((r) => {
+                  const net = EVM_NETWORKS.find((n) => n.id === r.chain.id);
+                  const price = net?.coingecko ? g.prices[net.coingecko] : void 0;
+                  const eff = r.status === "ok" ? r.baseFeeGwei ? Number(r.baseFeeGwei) + Number(r.priorityFeeGwei ?? 0) : Number(r.gasPriceGwei) : null;
+                  return h(
+                    "tr",
+                    null,
+                    h("td", null, r.chain.name),
+                    h("td", null, r.status === "ok" ? `${Number(r.gasPriceGwei) < 1e-4 ? "<0.0001" : Number(Number(r.gasPriceGwei).toPrecision(3)).toString()}${r.stale ? " (stale)" : ""}` : `unavailable: ${r.reason}`),
+                    h("td", null, eff !== null && price !== void 0 ? `$${(eff * 1e-9 * 21e3 * price).toFixed(4)}` : "—")
+                  );
+                })
+              )
+            )
+          ),
+          g.bitcoin.status === "ok" ? card("Bitcoin (sat/vB)", outputs([["Next block", String(g.bitcoin.data.fastest)], ["~30 min", String(g.bitcoin.data.halfHour)], ["~1 hour", String(g.bitcoin.data.hour)], ["Economy", String(g.bitcoin.data.economy)]])) : note(`Bitcoin fees unavailable: ${g.bitcoin.reason}`, "warn"),
+          h("p", { class: "source" }, `Public RPCs, mempool.space, CoinGecko · ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`)
+        )
+      ).catch((e) => clear(out, errorText(e.message)));
+    }
+    return [out];
+  }
+  function toolsView(slug, settings, nav2) {
+    if (slug === "gas-tracker") {
+      return h("div", { class: "stack" }, toolTabs(slug, nav2), h("h1", null, "Gas tracker"), h("p", { class: "muted" }, "Live fees on 11 EVM chains and Bitcoin."), ...gasTracker(settings));
+    }
+    const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
+    const tabs = toolTabs(tool.slug, nav2);
     const body = (() => {
       switch (tool.slug) {
         case "unit-converter":

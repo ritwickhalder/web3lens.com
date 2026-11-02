@@ -32,6 +32,16 @@ names aren't shown (no trusted free token list); rate limiting and caching are p
 browser test runs in Chromium only (Firefox is linted with web-ext and must be tried by hand); store listings are
 not submitted yet.
 
+## Batch 2 (November 2026) ✅
+
+After the sprint shipped to production (verified live: all `/api/v1` providers respond from Vercel, the extension
+reads the live API): per-chain explorer landing pages (`/explorer/[chain]`, 44 chains, in the sitemap), a live gas
+tracker (`/gas`, also in the extension), and "this format also fits …" links on native address pages.
+
+Next batch candidates: light theme; QR codes for addresses (needs a verified encoder); streaming result sections so
+slow providers don't hold the whole page; a token-list source for BNB Chain/Avalanche/Linea holdings; ENS CCIP-read;
+Ontology and other legacy explorers verified by hand; store submissions.
+
 ## Phase 0 — Next.js migration ✅
 
 Same features and look as the 2018 site, on Next.js 16 / React 19 / Tailwind v4, deployed on Vercel.
@@ -56,7 +66,7 @@ The biggest user-facing jump: people shouldn't have to know which chain an addre
 - ✅ **EVM fan-out.** One `0x` address checked across Ethereum, Base, Arbitrum, Optimism, Polygon, BNB Chain,
   Avalanche, Linea, zkSync, Scroll…, each with a direct link.
 - ✅ **Shareable search URLs:** `/search?chain=ethereum&q=0x…`.
-- **Per-chain landing pages** `/explorer/[chain]`, statically generated: "Bitcoin block explorer" pages with
+- ✅ **Per-chain landing pages** `/explorer/[chain]`, statically generated: "Bitcoin block explorer" pages with
   the search box pre-set. Large SEO surface.
 - ✅ **OpenSearch descriptor** (`/opensearch.xml`) so browsers offer "Search Web3Lens" from the address bar. Quick win.
 - ✅ **Favourite chains** pinned to the top of the picker (localStorage).
@@ -73,7 +83,7 @@ Blockchair, CoinGecko.
 - ✅ Address summary: native balance, USD value, tx count, recent activity, tokens (EVM, Bitcoin, Litecoin, Solana).
 - ✅ Transaction view: status, from/to, value, fee, decoded method name.
 - Name resolution: ✅ ENS forward and reverse (on-chain resolvers). Next: CCIP-read ENS, SNS, Unstoppable Domains.
-- ✅ Gas prices (11 EVM chains) and Bitcoin fee estimates (gas calculator, `/api/v1/gas`). Next: a dedicated gas page.
+- ✅ Gas tracker (`/gas`, 11 EVM chains + Bitcoin) and gas calculator.
 - Price ticker for the selected chain (USD values are shown on result pages already).
 - QR code for any address; copy and share buttons.
 

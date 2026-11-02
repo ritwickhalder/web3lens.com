@@ -14,6 +14,10 @@ const BASE = process.argv[2] ?? 'http://localhost:3000';
 const PAGES = [
   '/',
   '/search',
+  '/explorer',
+  '/explorer/bitcoin',
+  '/explorer/base',
+  '/gas',
   '/tools',
   '/tools/unit-converter',
   '/tools/address-validator',

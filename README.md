@@ -16,7 +16,7 @@ Router), React 19, TypeScript and Tailwind v4; hosted on Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 67 unit tests: codecs, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
+npm test           # 68 unit tests: codecs, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
 npm run lint
 npm run typecheck
 npm run build
@@ -49,7 +49,7 @@ node scripts/smoke-extension.mjs extension-chrome   # loads the unpacked extensi
 
 | Path | What |
 |---|---|
-| `app/` | Routes: home, `search`, `address/[chain]/[address]`, `tx/[chain]/[hash]`, `tools/[tool]`, `batch`, `saved`, `settings`, `investigate`, `extension`, content pages; `api/v1/*` and `api/contact`; `opensearch.xml`, sitemap/robots/OG image |
+| `app/` | Routes: home, `search`, `explorer/[chain]`, `gas`, `address/[chain]/[address]`, `tx/[chain]/[hash]`, `tools/[tool]`, `batch`, `saved`, `settings`, `investigate`, `extension`, content pages; `api/v1/*` and `api/contact`; `opensearch.xml`, sitemap/robots/OG image |
 | `components/` | UI: `layout/`, `brand/`, `search/` (smart search, chain picker), `results/` (result pages, risk panel), `tools/`, `usability/` (batch, saved, settings, investigations), `home/`, `directory/`, `guide/`, `contact/`, `content/`, `ui/` |
 | `lib/` | Browser-safe shared logic (also bundled into the extensions): `detect.ts`, `explorer.ts`, `chains.ts`, `codec/*`, `evm/*` (ABI, signatures, tx decoder), `tools/*`, `security/*`, `batch.ts`, `saved.ts`, `prefs.ts`, `investigation.ts`. Server-only: `providers/*` (RPC, Blockscout, Esplora, Solana, CoinGecko, GoPlus, Sourcify, selector DBs), `server/*` (lookups, security, cache, rate limit, API helpers) |
 | `config/` | `site.ts` (brand, nav, donation addresses), `tools.ts` |

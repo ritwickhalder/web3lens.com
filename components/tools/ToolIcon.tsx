@@ -9,6 +9,7 @@ const ICONS = {
   'abi-decoder': BracketsCurly,
   'transaction-decoder': Receipt,
   batch: ListChecks,
+  'gas-tracker': GasPump,
 } as const;
 
 export function ToolIcon({ slug, className }: { slug: string; className?: string }) {

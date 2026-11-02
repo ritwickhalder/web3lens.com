@@ -113,3 +113,13 @@ test('fetchJson maps HTTP failures to ProviderError', async () => {
   assert.deepEqual(await fetchJson('X', 'https://example.com'), { a: 1 });
   setFetch(null);
 });
+
+test('sitemap lists static pages and per-chain explorer pages, not per-browser pages', async () => {
+  const { default: sitemap } = await import('../../app/sitemap');
+  const urls = sitemap().map((e) => e.url);
+  assert.ok(urls.includes('https://web3lens.com/explorer/bitcoin'));
+  assert.ok(urls.includes('https://web3lens.com/gas'));
+  assert.ok(urls.includes('https://web3lens.com/tools/abi-decoder'));
+  assert.ok(!urls.some((u) => u.endsWith('/saved') || u.endsWith('/settings')));
+  assert.equal(new Set(urls).size, urls.length, 'no duplicates');
+});

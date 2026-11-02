@@ -67,6 +67,8 @@ export const INFO_LINKS: NavLink[] = [
 export const PAGES = [
   { label: 'Index/Home Page', href: '/' },
   { label: 'Search', href: '/search' },
+  { label: 'Block Explorers by Chain', href: '/explorer' },
+  { label: 'Gas Tracker', href: '/gas' },
   { label: 'Developer Tools', href: '/tools' },
   { label: 'Unit Converter', href: '/tools/unit-converter' },
   { label: 'Address Validator', href: '/tools/address-validator' },

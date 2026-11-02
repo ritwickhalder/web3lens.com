@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { AddressView } from '@/components/results/AddressView';
 import { ExplorerLinks } from '@/components/results/ExplorerLinks';
@@ -11,6 +12,7 @@ import { getChain } from '@/lib/chains';
 import { explorerLinks } from '@/lib/explorer';
 import { shortHash } from '@/lib/format';
 import { pageMetadata } from '@/lib/metadata';
+import { searchUrl } from '@/lib/search-url';
 import { LookupError, lookupAddress } from '@/lib/server/lookup';
 import { checkAddressQuery } from '@/lib/validate-query';
 
@@ -53,7 +55,29 @@ export default async function AddressPage({ params }: Props) {
         chainName={chain.name}
         kindLabel={result.family === 'evm' && result.account.status === 'ok' && result.account.data.isContract && !result.account.data.delegatedTo ? 'Contract' : 'Address'}
         value={result.address}
-        sub={result.family === 'evm' && result.resolvedFrom ? `${result.resolvedFrom} resolves to this address` : undefined}
+        sub={
+          (result.family === 'evm' && result.resolvedFrom) || (d.format !== 'evm-address' && d.chains.length > 1) ? (
+          <>
+            {result.family === 'evm' && result.resolvedFrom && <span className="block">{result.resolvedFrom} resolves to this address.</span>}
+            {d.format !== 'evm-address' && d.chains.length > 1 && (
+              <span className="block">
+                This format also fits{' '}
+                {d.chains
+                  .filter((c) => c !== chainId)
+                  .map((c, i) => (
+                    <span key={c}>
+                      {i > 0 && ', '}
+                      <Link href={searchUrl(result.address, c)} className="font-bold text-accent hover:underline">
+                        {getChain(c)?.name ?? c}
+                      </Link>
+                    </span>
+                  ))}
+                .
+              </span>
+            )}
+          </>
+          ) : undefined
+        }
         badges={
           <>
             <Badge>{d.label}</Badge>

@@ -82,6 +82,10 @@ try {
   await app.fill('textarea', '0xa9059cbb000000000000000000000000000000000000000000000000000000000000dead00000000000000000000000000000000000000000000000000000000000003e8');
   check('calldata decoder', (await app.textContent('main')).includes('transfer(address,uint256)'));
 
+  await app.goto(`chrome-extension://${id}/app.html#tools/gas-tracker`);
+  await app.waitForSelector('table, .error, .note', { timeout: 20000 });
+  check('gas tracker renders live data or a clear error', /Ethereum|unavailable|Online lookups/.test(await app.textContent('main')));
+
   // Batch.
   await app.goto(`chrome-extension://${id}/app.html#batch?q=${encodeURIComponent('vitalik.eth\n1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa\nnonsense')}`);
   await app.click('text=Check all');

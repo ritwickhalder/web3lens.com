@@ -10,7 +10,11 @@ export const metadata = pageMetadata({
   path: '/tools',
 });
 
-const ALL = [...TOOLS, { slug: 'batch', title: 'Batch search', short: 'Check up to 50 addresses at once', href: '/batch' }];
+const ALL = [
+  ...TOOLS,
+  { slug: 'gas-tracker', title: 'Gas tracker', short: 'Live fees on 11 chains + Bitcoin', href: '/gas' },
+  { slug: 'batch', title: 'Batch search', short: 'Check up to 50 addresses at once', href: '/batch' },
+];
 
 export default function ToolsPage() {
   return (
