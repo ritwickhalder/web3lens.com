@@ -123,3 +123,37 @@ test('sitemap lists static pages and per-chain explorer pages, not per-browser p
   assert.ok(!urls.some((u) => u.endsWith('/saved') || u.endsWith('/settings')));
   assert.equal(new Set(urls).size, urls.length, 'no duplicates');
 });
+
+test('provider requests identify Web3Lens in a UA form public APIs accept', async () => {
+  const { USER_AGENT } = await import('../../lib/providers/http');
+  // Blockscout returns 403 for UAs not starting with Mozilla/5.0 (found in the batch 6 audit).
+  assert.match(USER_AGENT, /^Mozilla\/5\.0 \(compatible; Web3Lens\/[\d.]+; \+https:\/\/web3lens\.com\)$/);
+});
+
+test('error messages use the right article', async () => {
+  const { checkAddressQuery } = await import('../../lib/validate-query');
+  const e = checkAddressQuery('ethereum', 'nope');
+  assert.ok(!e.ok && e.error === "That isn't an Ethereum address.");
+  const b = checkAddressQuery('bitcoin', 'nope');
+  assert.ok(!b.ok && b.error === "That isn't a Bitcoin address.");
+});
+
+test('RPC failover: an endpoint that refuses every call hands over to the next one', async () => {
+  const { rpcBatch } = await import('../../lib/providers/evm');
+  const { setFetch } = await import('../../lib/providers/http');
+  const net = { family: 'evm' as const, id: 'x', chainId: 1, name: 'X', symbol: 'X', rpc: ['https://first.test', 'https://second.test'] };
+  const hits: string[] = [];
+  setFetch(async (input, init) => {
+    hits.push(String(input));
+    const body = JSON.parse(String(init?.body)) as { id: number }[];
+    return String(input).includes('first')
+      ? Response.json(body.map((b) => ({ jsonrpc: '2.0', id: b.id, error: { code: -32000, message: 'Archive requests require a personal token' } })))
+      : Response.json(body.map((b) => ({ jsonrpc: '2.0', id: b.id, result: '0x1' })));
+  });
+  try {
+    assert.deepEqual(await rpcBatch(net, [{ method: 'eth_blockNumber', params: [] }]), ['0x1']);
+    assert.deepEqual(hits, ['https://first.test', 'https://second.test']);
+  } finally {
+    setFetch(null);
+  }
+});

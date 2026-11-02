@@ -128,6 +128,13 @@ try {
   await page.goto(`${BASE}/address/ethereum/jesse.base.eth`);
   check('off-chain ENS name resolves via CCIP-read (live)', (await page.textContent('main')).includes('jesse.base.eth resolves to this address'));
 
+  // Every Blockscout-backed chain must actually return token data (a provider-side block once broke this silently).
+  for (const chain of ['ethereum', 'base', 'arbitrum', 'optimism', 'polygon', 'zksync', 'scroll', 'gnosischain']) {
+    const r = await page.request.get(`${BASE}/api/v1/address?chain=${chain}&q=0x0E678aCf9988e284f448C6224Ea36bb9E9d56803`, { timeout: 60000 });
+    const body = await r.json().catch(() => ({}));
+    check(`tokens section loads on ${chain} (live)`, body.tokens?.status === 'ok', body.tokens?.reason ?? String(r.status()));
+  }
+
   await page.goto(`${BASE}/batch`);
   await page.fill('#batch-input', 'vitalik.eth\n0x098B716B8Aaf21512996dC57EB0615e2383E2f96');
   await page.click('text=Check all');

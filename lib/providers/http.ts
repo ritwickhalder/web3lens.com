@@ -11,7 +11,8 @@ export class ProviderError extends Error {
   }
 }
 
-export const USER_AGENT = 'Web3Lens/1.0 (+https://web3lens.com)';
+/** Bot-style UA in the standard form: Blockscout's protection rejects UAs that don't start with Mozilla/5.0 (403). */
+export const USER_AGENT = 'Mozilla/5.0 (compatible; Web3Lens/1.0; +https://web3lens.com)';
 
 export type FetchLike = typeof fetch;
 

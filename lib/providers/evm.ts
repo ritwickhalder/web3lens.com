@@ -25,21 +25,30 @@ export function rpcSourceName(net: EvmNetwork): string {
 export async function rpcBatch(net: EvmNetwork, calls: RpcRequest[]): Promise<(unknown | Error)[]> {
   const body = calls.map((c, i) => ({ jsonrpc: '2.0', id: i + 1, method: c.method, params: c.params }));
   let lastError: unknown;
+  let lastResults: (unknown | Error)[] | null = null;
   for (const url of rpcUrls(net)) {
     try {
       const res = await fetchJson<RpcResponse[] | RpcResponse>(`${net.name} RPC`, url, { method: 'POST', body, timeoutMs: 8000 });
       if (!Array.isArray(res)) throw new ProviderError(`${net.name} RPC`, res.error?.message ?? 'unexpected batch response');
       const byId = new Map(res.map((r) => [r.id, r]));
-      return calls.map((_, i) => {
+      const results = calls.map((_, i) => {
         const r = byId.get(i + 1);
         if (!r) return new Error('missing response');
         if (r.error) return new Error(r.error.message);
         return r.result;
       });
+      // An endpoint that refuses every call (rate limit, "archive requests need a key") is treated like a
+      // failure, so the next endpoint gets a chance; if all refuse, the last answers are returned.
+      if (results.length && results.every((r) => r instanceof Error)) {
+        lastResults = results;
+        continue;
+      }
+      return results;
     } catch (e) {
       lastError = e;
     }
   }
+  if (lastResults) return lastResults;
   throw lastError instanceof Error ? lastError : new ProviderError(`${net.name} RPC`, 'all endpoints failed');
 }
 

@@ -10,6 +10,9 @@ export type QueryCheck = { ok: true; query: string; detection: Detection } | { o
 
 const MAX_LEN = 200;
 
+/** "an Ethereum", "a Bitcoin" (by spelling; good enough for chain names). */
+export const article = (word: string) => (/^[aeiou]/i.test(word) ? 'an' : 'a');
+
 export function checkAddressQuery(chainId: string, raw: string): QueryCheck {
   const net = getNetwork(chainId);
   const chain = getChain(chainId);
@@ -19,7 +22,7 @@ export function checkAddressQuery(chainId: string, raw: string): QueryCheck {
   const all = detectAll(q);
   if (all.some((d) => d.kind === 'secret')) return { ok: false, error: 'That looks like a private key or recovery phrase. It was not searched.' };
   const d = all.find((x) => (x.kind === 'address' || (x.kind === 'name' && x.format === 'ens' && chainId === 'ethereum')) && x.chains.includes(chainId));
-  if (!d) return { ok: false, error: `That isn't a ${chain.name} address.` };
+  if (!d) return { ok: false, error: `That isn't ${article(chain.name)} ${chain.name} address.` };
   if (d.network === 'testnet') return { ok: false, error: 'Testnet addresses are not supported; Web3Lens reads mainnet only.' };
   if (d.checksum === 'invalid') return { ok: false, error: `The address checksum doesn't match, so it probably contains a typo.` };
   return { ok: true, query: d.normalized, detection: d };
@@ -32,7 +35,7 @@ export function checkTxQuery(chainId: string, raw: string): QueryCheck {
   const q = raw.trim();
   if (!q || q.length > MAX_LEN) return { ok: false, error: 'Enter a transaction hash.' };
   const d = detectAll(q).find((x) => x.kind === 'transaction' && (x.chains.includes(chainId) || (net.family === 'evm' && x.format === 'evm-tx')));
-  if (!d) return { ok: false, error: `That isn't a ${chain.name} transaction hash.` };
+  if (!d) return { ok: false, error: `That isn't ${article(chain.name)} ${chain.name} transaction hash.` };
   return { ok: true, query: d.normalized, detection: d };
 }
 
