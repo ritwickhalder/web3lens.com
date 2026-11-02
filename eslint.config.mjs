@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "legacy/**",
     "next-env.d.ts",
     "scripts/**",
+    "extension-chrome/**",
+    "extension-firefox/**",
+    "extension-edge/**",
+    "dist-extensions/**",
   ]),
   {
     rules: {

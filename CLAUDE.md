@@ -14,14 +14,39 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 - Responsive grids need an explicit base `grid-cols-1` (or `minmax(0,1fr)`), otherwise long hashes widen the column past the screen on phones.
 - Inner pages use `PageShell` (`components/content/PageShell.tsx`): `split` (sticky title block left, content right) or `stacked`.
 - Every page sets metadata with `pageMetadata()` from `lib/metadata.ts`.
-- Tests: `scripts/test/*.test.ts` with `node:test`, run by `npm test`. Run `npm test`, `npm run lint` and `npm run typecheck` before finishing.
+- Tests: `scripts/test/*.test.ts` with `node:test`, run by `npm test`. Run `npm test`, `npm run lint`, `npm run typecheck` and (when extension-src or shared lib code changed) `npm run ext:build` before finishing.
 - Keep `public/google*.html` (Search Console verification) and the legacy URL redirects in `next.config.ts`.
 
 ## Chain data
 
 - `data/chains.json` is **generated** from `legacy/select.js` by `npm run chains:convert`. Don't hand-edit it
-  while `legacy/` exists; the parity test (`scripts/test/chains-parity.test.ts`) compares it to the legacy code.
+  while `legacy/` exists; the parity test (`scripts/test/chains-parity.test.ts`) compares it to the legacy code
+  through `resolveLegacyExplorer`.
+- Hand-edited overlays instead: `data/chains-extra.json` (chains added since, e.g. L2s) and `data/explorers.json`
+  (per-type explorer routes `address`/`tx`/`block`/`names`/`search`, several explorers per chain, first = default).
+  `resolveExplorer` uses the routes and falls back to the legacy explorer. Tests validate every template.
+- `data/explorer-health.json` (`npm run explorers:check`) and `data/sanctions.json` (`npm run sanctions:update`)
+  are generated snapshots; refresh them, don't hand-edit.
 - When ROADMAP Phase 1 starts editing chains by hand, delete the converter, the parity test and `legacy/` together.
+
+## Native data and safety rules
+
+- Providers live in `lib/providers/*` (free public APIs; optional server-only keys via env, see `.env.example`).
+  `lib/server/lookup.ts` / `security.ts` combine them per section behind `lib/server/cache.ts`; routes in
+  `app/api/v1/*` add rate limiting, CORS and CDN caching (`lib/server/api.ts`).
+- Every section carries its source and fetch time and is shown as stale or unavailable when it is. Never fill gaps
+  with guesses, and never word a "no reports" result as safe.
+- Shared, browser-safe logic (detection, codecs, ABI, tools, batch, saved/prefs shapes) stays free of Node and
+  React so the extensions bundle the same files.
+
+## Browser extensions
+
+- Source in `extension-src/`; `npm run ext:build` writes `extension-chrome/`, `extension-firefox/`, `extension-edge/`.
+  Only each directory's `manifest.json` (and `*.md`) is hand-written; never edit the generated JS/HTML there.
+- `npm test` fails if the builds are stale, the manifests drift apart, or permissions/CSP loosen. Keep: no host
+  permissions, no content scripts, no remote code, `connect-src https://web3lens.com`, text nodes only (no innerHTML).
+- `npm run ext:lint:firefox` (web-ext), `node scripts/smoke-extension.mjs` and `node scripts/smoke-site.mjs <url>`
+  need Playwright/Chromium locally; `npm run ext:pack` builds store zips into `dist-extensions/` (gitignored).
 
 ## Vercel
 

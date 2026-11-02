@@ -22,6 +22,26 @@ export const CHAIN_META: Record<string, ChainMeta> = {
   bitcoincash: { symbol: 'BCH', color: '#4cc947' },
   tether: { symbol: 'USDT', color: '#26a17b' },
   usdc: { symbol: 'USDC', color: '#4b8fe0' },
+  arbitrum: { symbol: 'ARB', color: '#4fa3f7' },
+  optimism: { symbol: 'OP', color: '#ff5a66' },
+  base: { symbol: 'ETH', color: '#3d7bff' },
+  avalanche: { symbol: 'AVAX', color: '#ff5c5c' },
+  linea: { symbol: 'ETH', color: '#d9e2ec' },
+  zksync: { symbol: 'ETH', color: '#a9b4ff' },
+  scroll: { symbol: 'ETH', color: '#f5c58a' },
+  gnosischain: { symbol: 'xDAI', color: '#3fb58a' },
+  celo: { symbol: 'CELO', color: '#f5e663' },
+  mantle: { symbol: 'MNT', color: '#d9e2ec' },
+  osmosis: { symbol: 'OSMO', color: '#b07cf5' },
+  celestia: { symbol: 'TIA', color: '#9b7cf5' },
+  injective: { symbol: 'INJ', color: '#4fc3f7' },
+  kusama: { symbol: 'KSM', color: '#d9e2ec' },
+  near: { symbol: 'NEAR', color: '#d9e2ec' },
+  tezos: { symbol: 'XTZ', color: '#4d8bf5' },
+  toncoin: { symbol: 'TON', color: '#4fb3ff' },
+  sui: { symbol: 'SUI', color: '#6fb8ff' },
+  aptos: { symbol: 'APT', color: '#d9e2ec' },
+  algorand: { symbol: 'ALGO', color: '#d9e2ec' },
 };
 
 /** Shown first in the chain picker and as quick picks under the search bar. */
@@ -38,7 +58,7 @@ export const POPULAR_CHAIN_IDS = [
   'litecoin',
   'dogecoin',
   'polkadot',
-  'stellar',
+  'base',
 ];
 
 export function chainMeta(id: string, name: string): ChainMeta {

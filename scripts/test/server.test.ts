@@ -1,0 +1,115 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import { cached, clearCache } from '../../lib/server/cache';
+import { clientIp, createLimiter } from '../../lib/server/rate-limit';
+import { checkAddressQuery, checkEvmAddress, checkEvmTx, checkTxQuery } from '../../lib/validate-query';
+import { checkSanctions } from '../../lib/security/sanctions';
+import { sanitizeSaved, savedId } from '../../lib/saved';
+import { sanitizePrefs } from '../../lib/prefs';
+import { hasNativeSupport, NETWORKS } from '../../lib/networks';
+import { getChain } from '../../lib/chains';
+import { fetchJson, ProviderError, setFetch } from '../../lib/providers/http';
+
+test('cache: fresh hit, refetch after TTL, stale-if-error, error without stale copy', async () => {
+  clearCache();
+  let t = 1000;
+  const now = () => t;
+  let calls = 0;
+  const ok = async () => ++calls;
+  assert.deepEqual(await cached('k', 100, 1000, ok, now), { value: 1, fetchedAt: 1000, stale: false, cached: false });
+  assert.equal((await cached('k', 100, 1000, ok, now)).cached, true);
+  t = 1200;
+  assert.equal((await cached('k', 100, 1000, ok, now)).value, 2);
+  t = 1400;
+  const failing = async () => {
+    throw new Error('down');
+  };
+  const stale = await cached('k', 100, 1000, failing, now);
+  assert.deepEqual([stale.value, stale.stale], [2, true]);
+  t = 5000;
+  await assert.rejects(cached('k', 100, 1000, failing, now), /down/);
+  await assert.rejects(cached('other', 100, 1000, failing, now), /down/);
+});
+
+test('cache de-duplicates concurrent requests', async () => {
+  clearCache();
+  let calls = 0;
+  const slow = () => new Promise<number>((r) => setTimeout(() => r(++calls), 10));
+  const [a, b] = await Promise.all([cached('d', 1000, 1000, slow), cached('d', 1000, 1000, slow)]);
+  assert.equal(calls, 1);
+  assert.equal(a.value, b.value);
+});
+
+test('rate limiter allows max per window per key', () => {
+  const check = createLimiter({ windowMs: 1000, max: 2 });
+  assert.ok(check('a', 0).ok && check('a', 1).ok);
+  const third = check('a', 2);
+  assert.ok(!third.ok && third.retryAfter === 1);
+  assert.ok(check('b', 2).ok);
+  assert.ok(check('a', 1001).ok);
+  assert.equal(clientIp(new Headers({ 'x-forwarded-for': '1.2.3.4, 10.0.0.1' })), '1.2.3.4');
+  assert.equal(clientIp(new Headers()), 'unknown');
+});
+
+test('query validation for native lookups', () => {
+  const ok = checkAddressQuery('ethereum', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
+  assert.ok(ok.ok && ok.query === '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48');
+  assert.ok(checkAddressQuery('ethereum', 'vitalik.eth').ok);
+  assert.ok(!checkAddressQuery('base', 'vitalik.eth').ok);
+  assert.ok(!checkAddressQuery('ethereum', '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB4a').ok, 'bad checksum');
+  assert.ok(checkAddressQuery('bitcoin', '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa').ok);
+  assert.ok(!checkAddressQuery('bitcoin', 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx').ok, 'testnet');
+  assert.ok(!checkAddressQuery('bitcoin', '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48').ok, 'wrong chain');
+  assert.ok(checkAddressQuery('solana', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v').ok);
+  assert.ok(!checkAddressQuery('tron', 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t').ok, 'no native support');
+  assert.ok(!checkAddressQuery('ethereum', 'abandon '.repeat(11) + 'about').ok, 'secret');
+  assert.ok(checkTxQuery('ethereum', `0x${'ab'.repeat(32)}`).ok);
+  assert.ok(checkTxQuery('bitcoin', 'a'.repeat(64)).ok);
+  assert.ok(!checkTxQuery('solana', 'a'.repeat(64)).ok);
+  assert.ok(checkEvmAddress('0x000000000000000000000000000000000000dead').ok);
+  assert.ok(!checkEvmTx('0x1234').ok);
+});
+
+test('every native network maps to a known chain', () => {
+  for (const n of NETWORKS) {
+    assert.ok(getChain(n.id), n.id);
+    if (n.family === 'evm') for (const u of n.rpc) assert.match(u, /^https:\/\//);
+  }
+  assert.ok(hasNativeSupport('ethereum', 'name') && !hasNativeSupport('base', 'name') && !hasNativeSupport('tron', 'address'));
+});
+
+test('OFAC snapshot lookup', () => {
+  // Ronin bridge exploiter, sanctioned April 2022.
+  const hit = checkSanctions('0x098B716B8Aaf21512996dC57EB0615e2383E2f96');
+  assert.ok(hit.listed && hit.lists.includes('ETH'));
+  assert.ok(checkSanctions('0x098b716b8aaf21512996dc57eb0615e2383e2f96').listed, 'case-insensitive for 0x');
+  assert.ok(!checkSanctions('0x000000000000000000000000000000000000dEaD').listed);
+  assert.match(hit.snapshotAt, /^\d{4}-\d\d-\d\d/);
+});
+
+test('saved items and prefs sanitise untrusted JSON', () => {
+  const items = sanitizeSaved([
+    { query: '0xABC', chainId: 'ethereum', label: 'x'.repeat(200) },
+    { query: '0xabc', chainId: 'ethereum' },
+    { query: '' },
+    'junk',
+    { query: 'bc1q', chainId: null, favourite: true },
+  ]);
+  assert.equal(items.length, 2);
+  assert.equal(items[0].label.length, 80);
+  assert.equal(savedId('0xABC', 'ethereum'), 'ethereum:0xabc');
+  assert.equal(savedId('1A1zP', null), '*:1A1zP');
+  assert.deepEqual(sanitizeSaved({ not: 'a list' }), []);
+  const prefs = sanitizePrefs({ explorers: { ethereum: 'Blockscout', bad: 5 }, favouriteChains: ['bitcoin', 3], searchAction: 'nope' });
+  assert.deepEqual(prefs, { explorers: { ethereum: 'Blockscout' }, favouriteChains: ['bitcoin'], searchAction: 'results' });
+});
+
+test('fetchJson maps HTTP failures to ProviderError', async () => {
+  setFetch(async () => new Response('x', { status: 429 }));
+  await assert.rejects(fetchJson('X', 'https://example.com'), (e: unknown) => e instanceof ProviderError && e.status === 429);
+  setFetch(async () => new Response('not json', { status: 200 }));
+  await assert.rejects(fetchJson('X', 'https://example.com'), /invalid JSON/);
+  setFetch(async () => Response.json({ a: 1 }));
+  assert.deepEqual(await fetchJson('X', 'https://example.com'), { a: 1 });
+  setFetch(null);
+});

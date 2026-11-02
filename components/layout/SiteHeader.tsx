@@ -63,7 +63,7 @@ function NewsMenu() {
   );
 }
 
-/** Full-width sticky navbar. Below lg it collapses into a sheet. */
+/** Full-width sticky navbar. Below xl it collapses into a sheet. */
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -76,7 +76,7 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <div className="ml-auto hidden items-center gap-1 lg:flex">
+        <div className="ml-auto hidden items-center gap-1 xl:flex">
           {MAIN_NAV.map((link) => (
             <Link
               key={link.href}
@@ -105,14 +105,14 @@ export function SiteHeader() {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((o) => !o)}
-          className="ml-auto grid size-11 place-items-center rounded-md border border-line-strong text-fg lg:hidden"
+          className="ml-auto grid size-11 place-items-center rounded-md border border-line-strong text-fg xl:hidden"
         >
           {menuOpen ? <X weight="bold" className="size-5" /> : <List weight="bold" className="size-5" />}
         </button>
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-line bg-ink-2 lg:hidden">
+        <div className="border-t border-line bg-ink-2 xl:hidden">
           <div className="wrap grid grid-cols-1 gap-8 py-6 sm:grid-cols-2">
             <div>
               {[...MAIN_NAV, { label: 'Contact', href: '/contact' }].map((link) => (

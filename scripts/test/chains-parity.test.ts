@@ -4,8 +4,8 @@
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { CHAINS } from '../../lib/chains';
-import { resolveExplorer } from '../../lib/explorer';
+import { LEGACY_CHAINS as CHAINS } from '../../lib/chains';
+import { resolveLegacyExplorer as resolveExplorer } from '../../lib/explorer';
 import { loadLegacyExplorer, readLegacyOptions } from '../lib/legacy-select.mjs';
 
 const SAMPLE = '0xAbC123def456';

@@ -44,6 +44,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html lang="en" className={`${manrope.variable} ${plexMono.variable}`}>
+      <head>
+        <link rel="search" type="application/opensearchdescription+xml" title={SITE.name} href="/opensearch.xml" />
+        <script
+          type="application/ld+json"
+          // Structured data for a sitelinks search box; static, no user input.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: SITE.name,
+              url: SITE.url,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/search?q={search_term_string}` },
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"

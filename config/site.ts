@@ -44,6 +44,9 @@ export const NEWS_LINKS: NavLink[] = [
 /** Primary navigation. */
 export const MAIN_NAV: NavLink[] = [
   { label: 'Search', href: '/' },
+  { label: 'Tools', href: '/tools' },
+  { label: 'Saved', href: '/saved' },
+  { label: 'Extension', href: '/extension' },
   { label: 'Directory', href: '/directory' },
   { label: 'Learn', href: '/blockchain-guide' },
   { label: 'About', href: '/about' },
@@ -56,12 +59,26 @@ export const INFO_LINKS: NavLink[] = [
   { label: 'Terms of use', href: '/terms' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Sitemap', href: '/site-map' },
+  { label: 'Settings', href: '/settings' },
   { label: 'About', href: '/about' },
 ];
 
 /** Internal pages, in sitemap order. Shared by the HTML sitemap and app/sitemap.ts. */
 export const PAGES = [
   { label: 'Index/Home Page', href: '/' },
+  { label: 'Search', href: '/search' },
+  { label: 'Developer Tools', href: '/tools' },
+  { label: 'Unit Converter', href: '/tools/unit-converter' },
+  { label: 'Address Validator', href: '/tools/address-validator' },
+  { label: 'Hex, Text and Hashes', href: '/tools/hex-converter' },
+  { label: 'Timestamp Converter', href: '/tools/timestamp-converter' },
+  { label: 'Gas and Fee Calculator', href: '/tools/gas-calculator' },
+  { label: 'Calldata and ABI Decoder', href: '/tools/abi-decoder' },
+  { label: 'Raw Transaction Decoder', href: '/tools/transaction-decoder' },
+  { label: 'Batch Address Search', href: '/batch' },
+  { label: 'Browser Extension', href: '/extension' },
+  { label: 'Saved Addresses', href: '/saved' },
+  { label: 'Settings', href: '/settings' },
   { label: 'Crypto/Blockchain Directory', href: '/directory' },
   { label: 'Blockchain Guide', href: '/blockchain-guide' },
   { label: 'Bookmark this page', href: '/bookmark' },

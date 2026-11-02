@@ -1,14 +1,23 @@
 'use client';
 
-import { ArrowRight, ClockCounterClockwise, Scan, X } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, ArrowSquareOut, ClockCounterClockwise, Scan, Warning, X } from '@phosphor-icons/react/dist/ssr';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { ChainCombobox } from '@/components/search/ChainCombobox';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { CHAINS, getChain, type Chain } from '@/lib/chains';
-import { detectQuery } from '@/lib/detect';
-import { fallbackNotice, openExplorer, resolveExplorer } from '@/lib/explorer';
+import { detectQuery, extractQuery } from '@/lib/detect';
+import { detectionFor, fallbackNotice, openExplorer, resolveExplorer, toQueryKind, webSearchLink, type ExplorerAction } from '@/lib/explorer';
+import { hasNativeSupport } from '@/lib/networks';
+import { prefsStore, toggleFavouriteChain } from '@/lib/prefs';
 import { recentStore } from '@/lib/recent';
+import { nativeResultUrl, searchUrl } from '@/lib/search-url';
+
+type Notice =
+  | { tone: 'error' | 'info'; text: string }
+  | { tone: 'down'; text: string; open: ExplorerAction; web: string };
 
 /** Fired by the "try an example" cards: `window.dispatchEvent(new CustomEvent(TRY_EVENT, { detail: query }))`. */
 export const TRY_EVENT = 'w3l:try';
@@ -58,14 +67,27 @@ function RowLabel({ icon: Icon, children }: { icon?: typeof X; children: React.R
  * The main search: chain picker + query box. Recognises what was pasted (lib/detect) and,
  * until the user picks a chain themselves, switches to the matching chain automatically.
  */
-export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) {
-  const [picked, setPicked] = useState<Chain>(CHAINS[0]);
-  const [userPicked, setUserPicked] = useState(false);
-  const [query, setQuery] = useState('');
-  const [notice, setNotice] = useState<{ tone: 'error' | 'info'; text: string } | null>(null);
+export function SmartSearch({
+  hidePopular = false,
+  initialQuery = '',
+  initialChainId,
+}: {
+  hidePopular?: boolean;
+  /** Pre-fills the bar (result pages). */
+  initialQuery?: string;
+  initialChainId?: string;
+}) {
+  const initialChain = initialChainId ? getChain(initialChainId) : undefined;
+  const [picked, setPicked] = useState<Chain>(initialChain ?? CHAINS[0]);
+  const [userPicked, setUserPicked] = useState(Boolean(initialChain));
+  const [query, setQuery] = useState(initialQuery);
+  const [notice, setNotice] = useState<Notice | null>(null);
+  const [extractedFrom, setExtractedFrom] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
   const recent = useSyncExternalStore(recentStore.subscribe, recentStore.getSnapshot, recentStore.getServerSnapshot);
+  const prefs = useSyncExternalStore(prefsStore.subscribe, prefsStore.getSnapshot, prefsStore.getServerSnapshot);
 
   const detection = useMemo(() => detectQuery(query), [query]);
   const candidates = useMemo(
@@ -119,17 +141,54 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
     setNotice(null);
   }
 
+  /** Pasted payment URIs and explorer links are reduced to the address or hash inside them. */
+  function setFromInput(value: string) {
+    const extracted = extractQuery(value);
+    if (extracted.from && extracted.query !== value.trim()) {
+      setQuery(extracted.query);
+      setExtractedFrom(extracted.from === 'url' ? `Taken from the ${extracted.host} link you pasted` : 'Taken from the payment link you pasted');
+    } else {
+      setQuery(value);
+      setExtractedFrom(null);
+    }
+  }
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const q = query.trim();
+    const q = extractQuery(query).query.trim();
     if (!q) {
       setNotice({ tone: 'error', text: 'Paste an address, transaction hash, block number or name first.' });
       inputRef.current?.focus();
       return;
     }
-    setNotice(chain.fallback ? { tone: 'info', text: fallbackNotice(chain) } : null);
-    openExplorer(resolveExplorer(chain, q));
+    const d = detectQuery(q);
+    if (d?.kind === 'secret') {
+      setNotice({ tone: 'error', text: d.note ?? 'This looks like a secret. Web3Lens will not search it.' });
+      return;
+    }
+    const resolved = resolveExplorer(chain, q, { explorer: prefs.explorers[chain.id] });
     recentStore.add({ chainId: chain.id, query: q });
+    const dc = detectionFor(chain, q);
+    const kind = toQueryKind(dc);
+    if (prefs.searchAction === 'results' && dc && dc.checksum !== 'invalid' && dc.network !== 'testnet' && hasNativeSupport(chain.id, kind)) {
+      // A 0x value with an auto-picked chain gets the cross-chain overview; otherwise the chain's own page.
+      const evmFormat = dc.format === 'evm-address' || dc.format === 'evm-tx';
+      router.push(evmFormat && !userPicked ? searchUrl(dc.normalized) : (nativeResultUrl(chain.id, kind, dc.normalized) ?? searchUrl(q, chain.id)));
+      return;
+    }
+    if (resolved.unreachable) {
+      const host = new URL(resolved.action.kind === 'url' ? resolved.action.href : resolved.action.action).hostname;
+      const when = resolved.unreachable.checkedAt ? new Date(resolved.unreachable.checkedAt).toLocaleDateString() : 'the last check';
+      setNotice({
+        tone: 'down',
+        text: `${chain.name}'s explorer (${host}) did not respond on ${when}. It may be offline for good.`,
+        open: resolved.action,
+        web: webSearchLink(chain, q),
+      });
+      return;
+    }
+    setNotice(resolved.fallback ? { tone: 'info', text: fallbackNotice(chain) } : null);
+    openExplorer(resolved.action);
   }
 
   return (
@@ -140,7 +199,14 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
         noValidate
         className="marks relative flex flex-col gap-1 rounded-2xl border border-line-strong bg-ink-2 p-2 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.8)] transition-colors focus-within:border-accent md:flex-row md:items-center"
       >
-        <ChainCombobox chains={CHAINS} value={chain} onChange={pickChain} auto={!userPicked && candidates.includes(chain)} />
+        <ChainCombobox
+          chains={CHAINS}
+          value={chain}
+          onChange={pickChain}
+          auto={!userPicked && candidates.includes(chain)}
+          favourites={prefs.favouriteChains}
+          onToggleFavourite={toggleFavouriteChain}
+        />
         <span aria-hidden className="mx-1 hidden h-10 w-px bg-line md:block" />
         <div className="relative flex min-w-0 flex-1 items-center border-t border-line md:border-t-0">
           <input
@@ -154,7 +220,7 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
             autoComplete="off"
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value);
+              setFromInput(e.target.value);
               if (!e.target.value) setUserPicked(false);
               setNotice(null);
             }}
@@ -168,6 +234,7 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
               aria-label="Clear"
               onClick={() => {
                 setQuery('');
+                setExtractedFrom(null);
                 setUserPicked(false);
                 inputRef.current?.focus();
               }}
@@ -189,7 +256,18 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
       </form>
 
       <div className="mt-4 flex min-h-[36px] items-center justify-center" aria-live="polite">
-        {notice ? (
+        {notice?.tone === 'down' ? (
+          <div role="status" className="flex w-full flex-wrap items-center gap-3 rounded-lg border border-redline/40 bg-redline/10 px-4 py-2.5 text-[15px] font-semibold text-redline">
+            <Warning aria-hidden weight="bold" className="size-5 shrink-0" />
+            <span className="min-w-0 flex-1">{notice.text}</span>
+            <a href={notice.web} target="_blank" rel="noopener noreferrer" className="rounded-md bg-redline px-3 py-1 text-sm font-extrabold text-ink">
+              Search the web
+            </a>
+            <button type="button" onClick={() => openExplorer(notice.open)} className="text-sm font-bold underline underline-offset-2">
+              Open anyway
+            </button>
+          </div>
+        ) : notice ? (
           <p
             role={notice.tone === 'error' ? 'alert' : 'status'}
             className={`w-full rounded-lg border px-4 py-2.5 text-[15px] font-semibold ${
@@ -198,20 +276,37 @@ export function SmartSearch({ hidePopular = false }: { hidePopular?: boolean }) 
           >
             {notice.text}
           </p>
+        ) : detection?.kind === 'secret' ? (
+          <p role="alert" className="w-full rounded-lg border border-danger/40 bg-danger/10 px-4 py-2.5 text-[15px] font-semibold text-danger">
+            {detection.note}
+          </p>
         ) : detection && candidates.length > 0 ? (
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="mr-1 flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-sm font-bold text-accent">
-              <Scan aria-hidden weight="bold" className="size-4" />
-              {detection.label}
-            </span>
-            {/* Offer the matching chains when there are several, or when the user's pick doesn't match the input. */}
-            {(candidates.length > 1 || !candidates.includes(chain)) && (
-              <>
-                <RowLabel>{candidates.includes(chain) ? 'Search on' : 'Switch to'}</RowLabel>
-                {candidates.map((c) => (
-                  <Chip key={c.id} chain={c} active={c.id === chain.id} onClick={() => pickChain(c)} />
-                ))}
-              </>
+          <div className="flex w-full flex-col items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <span className="mr-1 flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-sm font-bold text-accent">
+                <Scan aria-hidden weight="bold" className="size-4" />
+                {detection.label}
+                {detection.checksum === 'valid' && <span className="font-semibold text-accent/80">· checksum ok</span>}
+              </span>
+              {/* Offer the matching chains when there are several, or when the user's pick doesn't match the input. */}
+              {(candidates.length > 1 || !candidates.includes(chain)) && (
+                <>
+                  <RowLabel>{candidates.includes(chain) ? 'Search on' : 'Switch to'}</RowLabel>
+                  {candidates.slice(0, 6).map((c) => (
+                    <Chip key={c.id} chain={c} active={c.id === chain.id} onClick={() => pickChain(c)} />
+                  ))}
+                </>
+              )}
+              <Link
+                href={searchUrl(detection.normalized, candidates.includes(chain) ? chain.id : undefined)}
+                className="flex items-center gap-1 px-2 text-sm font-bold text-muted hover:text-accent"
+              >
+                {candidates.length > 6 ? `All ${candidates.length} chains` : 'Results page'}
+                <ArrowSquareOut aria-hidden weight="bold" className="size-3.5" />
+              </Link>
+            </div>
+            {(detection.note || extractedFrom) && (
+              <p className={`text-sm font-semibold ${detection.note ? 'text-redline' : 'text-faint'}`}>{detection.note ?? extractedFrom}</p>
             )}
           </div>
         ) : recent.length > 0 && !query ? (

@@ -1,10 +1,11 @@
 'use client';
 
-import { CaretDown, Check, MagnifyingGlass } from '@phosphor-icons/react/dist/ssr';
+import { CaretDown, Check, MagnifyingGlass, Star } from '@phosphor-icons/react/dist/ssr';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import type { Chain } from '@/lib/chains';
+import { explorerDown } from '@/lib/explorer';
 
 type Section = { title: string; chains: Chain[] };
 
@@ -30,12 +31,17 @@ export function ChainCombobox({
   value,
   onChange,
   auto,
+  favourites = [],
+  onToggleFavourite,
 }: {
   chains: Chain[];
   value: Chain;
   onChange: (chain: Chain) => void;
   /** True when the chain was picked by auto-detect rather than by the user. */
   auto?: boolean;
+  /** Chain ids pinned to the top (lib/prefs). */
+  favourites?: string[];
+  onToggleFavourite?: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
@@ -50,15 +56,21 @@ export function ChainCombobox({
     [chains],
   );
 
+  const pinned = useMemo(
+    () => favourites.map((id) => chains.find((c) => c.id === id)).filter((c): c is Chain => Boolean(c)),
+    [chains, favourites],
+  );
+
   const sections: Section[] = useMemo(
     () =>
       filter.trim()
         ? [{ title: 'Results', chains: filterChains(chains, filter) }]
         : [
+            ...(pinned.length ? [{ title: 'Favourites', chains: pinned }] : []),
             { title: 'Popular', chains: popular },
             { title: `All chains · ${chains.length}`, chains },
           ],
-    [chains, filter, popular],
+    [chains, filter, popular, pinned],
   );
   const options = useMemo(() => sections.flatMap((s) => s.chains), [sections]);
 
@@ -174,8 +186,26 @@ export function ChainCombobox({
                       >
                         <ChainGlyph id={chain.id} name={chain.name} size="sm" />
                         <span className="flex-1 truncate">{chain.name}</span>
-                        {chain.fallback && <span className="text-[11px] font-bold uppercase tracking-wider text-redline/80">limited</span>}
+                        {explorerDown(chain) ? (
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-redline/80">explorer down</span>
+                        ) : (
+                          chain.fallback && <span className="text-[11px] font-bold uppercase tracking-wider text-redline/80">limited</span>
+                        )}
                         {chain.id === value.id && <Check aria-hidden weight="bold" className="size-4 text-accent" />}
+                        {onToggleFavourite && (
+                          <button
+                            type="button"
+                            tabIndex={-1}
+                            aria-label={favourites.includes(chain.id) ? `Unpin ${chain.name}` : `Pin ${chain.name} to favourites`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onToggleFavourite(chain.id);
+                            }}
+                            className="grid size-7 place-items-center rounded-md text-faint hover:bg-ink hover:text-accent"
+                          >
+                            <Star aria-hidden weight={favourites.includes(chain.id) ? 'fill' : 'bold'} className={`size-3.5 ${favourites.includes(chain.id) ? 'text-accent' : ''}`} />
+                          </button>
+                        )}
                       </div>
                     );
                   })}

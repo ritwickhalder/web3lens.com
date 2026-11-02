@@ -1,0 +1,192 @@
+[
+  {
+    "id": "arbitrum",
+    "name": "Arbitrum One",
+    "symbol": "ARB",
+    "explorer": {
+      "kind": "url",
+      "url": "https://arbiscan.io/search?q={q}"
+    },
+    "evmChainId": 42161
+  },
+  {
+    "id": "optimism",
+    "name": "OP Mainnet",
+    "symbol": "OP",
+    "explorer": {
+      "kind": "url",
+      "url": "https://optimistic.etherscan.io/search?q={q}"
+    },
+    "evmChainId": 10
+  },
+  {
+    "id": "base",
+    "name": "Base",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://basescan.org/search?q={q}"
+    },
+    "evmChainId": 8453
+  },
+  {
+    "id": "avalanche",
+    "name": "Avalanche C-Chain",
+    "symbol": "AVAX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://snowtrace.io/search?q={q}"
+    },
+    "evmChainId": 43114
+  },
+  {
+    "id": "linea",
+    "name": "Linea",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://lineascan.build/search?q={q}"
+    },
+    "evmChainId": 59144
+  },
+  {
+    "id": "zksync",
+    "name": "zkSync Era",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.zksync.io/address/{q}"
+    },
+    "evmChainId": 324
+  },
+  {
+    "id": "scroll",
+    "name": "Scroll",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scrollscan.com/search?q={q}"
+    },
+    "evmChainId": 534352
+  },
+  {
+    "id": "gnosischain",
+    "name": "Gnosis Chain",
+    "symbol": "xDAI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://gnosisscan.io/search?q={q}"
+    },
+    "evmChainId": 100
+  },
+  {
+    "id": "celo",
+    "name": "Celo",
+    "symbol": "CELO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://celoscan.io/search?q={q}"
+    },
+    "evmChainId": 42220
+  },
+  {
+    "id": "mantle",
+    "name": "Mantle",
+    "symbol": "MNT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.mantle.xyz/search-results?q={q}"
+    },
+    "evmChainId": 5000
+  },
+  {
+    "id": "osmosis",
+    "name": "Osmosis",
+    "symbol": "OSMO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/osmosis/address/{q}"
+    }
+  },
+  {
+    "id": "celestia",
+    "name": "Celestia",
+    "symbol": "TIA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/celestia/address/{q}"
+    }
+  },
+  {
+    "id": "injective",
+    "name": "Injective",
+    "symbol": "INJ",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/injective/address/{q}"
+    }
+  },
+  {
+    "id": "kusama",
+    "name": "Kusama",
+    "symbol": "KSM",
+    "explorer": {
+      "kind": "url",
+      "url": "https://kusama.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "near",
+    "name": "NEAR Protocol",
+    "symbol": "NEAR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://nearblocks.io/address/{q}"
+    }
+  },
+  {
+    "id": "tezos",
+    "name": "Tezos",
+    "symbol": "XTZ",
+    "explorer": {
+      "kind": "url",
+      "url": "https://tzkt.io/{q}"
+    }
+  },
+  {
+    "id": "toncoin",
+    "name": "TON",
+    "symbol": "TON",
+    "explorer": {
+      "kind": "url",
+      "url": "https://tonviewer.com/{q}"
+    }
+  },
+  {
+    "id": "sui",
+    "name": "Sui",
+    "symbol": "SUI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://suiscan.xyz/mainnet/account/{q}"
+    }
+  },
+  {
+    "id": "aptos",
+    "name": "Aptos",
+    "symbol": "APT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.aptoslabs.com/account/{q}?network=mainnet"
+    }
+  },
+  {
+    "id": "algorand",
+    "name": "Algorand",
+    "symbol": "ALGO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://allo.info/account/{q}"
+    }
+  }
+]

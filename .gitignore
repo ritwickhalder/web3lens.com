@@ -32,3 +32,6 @@ next-env.d.ts
 .vercel
 .env*
 !.env.example
+
+# extension store packages (npm run ext:pack)
+/dist-extensions

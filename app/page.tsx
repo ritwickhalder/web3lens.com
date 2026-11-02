@@ -24,7 +24,7 @@ const HERO_COINS = ['bitcoin', 'ethereum', 'solana', 'binancecoin', 'ripple'];
 
 const STATS = [
   { value: String(CHAINS.length), label: 'Blockchains' },
-  { value: '15+', label: 'Formats detected' },
+  { value: '30+', label: 'Formats detected' },
   { value: '0', label: 'Ads or sign-ups' },
   { value: '2018', label: 'Online since' },
 ];
@@ -42,18 +42,18 @@ const STEPS = [
   },
   {
     icon: CursorClick,
-    title: 'Land on the right explorer',
-    body: 'Your search opens on that chain’s block explorer in a new tab. No sign-up, no ads, no tracking of what you search.',
+    title: 'Get the answer',
+    body: 'Balances, tokens, transaction details and risk checks on Web3Lens for 14 major chains, or the right page of the chain’s block explorer for the rest. No sign-up, no ads.',
   },
 ];
 
 const ROADMAP = [
-  { icon: Wallet, title: 'Address snapshot', body: 'Balance, token holdings and recent activity, right here before you click out.' },
-  { icon: TreeStructure, title: 'Multichain lookup', body: 'One 0x address checked across Ethereum, Base, Arbitrum, Optimism and more.' },
-  { icon: PuzzlePiece, title: 'Browser extension', body: 'Right-click any address on any page, or type w3 in the address bar.' },
-  { icon: ShieldCheck, title: 'Risk flags', body: 'Warnings for sanctioned and reported scam addresses before you send funds.' },
-  { icon: GasPump, title: 'Gas & fees', body: 'Live gas prices and Bitcoin fee estimates at a glance.' },
-  { icon: Wrench, title: 'Developer toolkit', body: 'Unit converter, calldata decoder, checksum and timestamp tools.' },
+  { icon: Wallet, title: 'Address snapshot', body: 'Balance, token holdings and recent activity, right here before you click out.', href: '/search?q=vitalik.eth' },
+  { icon: TreeStructure, title: 'Multichain lookup', body: 'One 0x address checked across Ethereum, Base, Arbitrum, Optimism and 7 more.', href: '/search?q=0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045' },
+  { icon: PuzzlePiece, title: 'Browser extension', body: 'Right-click any address on any page, or type w3 in the address bar. Chrome, Firefox, Edge.', href: '/extension' },
+  { icon: ShieldCheck, title: 'Risk flags', body: 'OFAC sanctions, reported scams, contract checks and token approvals, with sources.', href: '/address/ethereum/0x098B716B8Aaf21512996dC57EB0615e2383E2f96' },
+  { icon: GasPump, title: 'Gas & fees', body: 'Live gas prices on 11 EVM chains and Bitcoin fee estimates.', href: '/tools/gas-calculator' },
+  { icon: Wrench, title: 'Developer toolkit', body: 'Unit converter, calldata and transaction decoders, checksum and timestamp tools.', href: '/tools' },
 ];
 
 function SectionHead({ label, title, aside }: { label: string; title: React.ReactNode; aside?: React.ReactNode }) {
@@ -89,8 +89,7 @@ export default function HomePage() {
             Look up anything, on <span className="text-accent">any chain.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-5xl text-base font-medium leading-relaxed text-muted sm:text-lg xl:whitespace-nowrap xl:text-xl">
-            Paste an address, transaction, block or name. Web3Lens recognises it, picks the chain and opens the right block
-            explorer.
+            Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer.
           </p>
           <div className="mx-auto mt-9 max-w-6xl">
             <SmartSearch hidePopular />
@@ -196,8 +195,8 @@ export default function HomePage() {
       {/* Roadmap */}
       <section className="wrap mt-24">
         <SectionHead
-          label="Roadmap"
-          title="Where Web3Lens is heading"
+          label="New"
+          title="More than a link to an explorer"
           aside={
             <Link href="/contact" className="text-[15px] font-bold text-muted hover:text-accent">
               Suggest a feature →
@@ -206,15 +205,15 @@ export default function HomePage() {
         />
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ROADMAP.map((item) => (
-            <li key={item.title} className="rounded-2xl border border-line bg-ink-2 p-6">
-              <div className="flex items-start justify-between">
-                <item.icon aria-hidden weight="duotone" className="size-10 text-accent" />
-                <span className="rounded-full border border-redline/50 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.12em] text-redline">
-                  Planned
-                </span>
-              </div>
-              <h3 className="mt-5 text-lg font-extrabold tracking-tight">{item.title}</h3>
-              <p className="mt-1.5 text-[15px] font-medium leading-relaxed text-muted">{item.body}</p>
+            <li key={item.title}>
+              <Link href={item.href} className="group block h-full rounded-2xl border border-line bg-ink-2 p-6 transition-colors hover:border-accent/60 hover:bg-ink-3">
+                <div className="flex items-start justify-between">
+                  <item.icon aria-hidden weight="duotone" className="size-10 text-accent" />
+                  <span className="rounded-full border border-accent/50 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.12em] text-accent">Live</span>
+                </div>
+                <h3 className="mt-5 text-lg font-extrabold tracking-tight group-hover:text-accent">{item.title}</h3>
+                <p className="mt-1.5 text-[15px] font-medium leading-relaxed text-muted">{item.body}</p>
+              </Link>
             </li>
           ))}
         </ul>

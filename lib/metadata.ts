@@ -6,10 +6,13 @@ export function pageMetadata({
   title,
   description = SITE.shortDescription,
   path,
+  noindex = false,
 }: {
   title: string;
   description?: string;
   path: string;
+  /** Per-query result pages: keep them out of search indexes but let crawlers follow links. */
+  noindex?: boolean;
 }): Metadata {
   return {
     title,
@@ -17,5 +20,6 @@ export function pageMetadata({
     alternates: { canonical: path },
     openGraph: { title, description, url: path },
     twitter: { title, description },
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }

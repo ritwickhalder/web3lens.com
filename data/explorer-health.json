@@ -1,0 +1,1295 @@
+{
+  "checkedAt": "2026-11-02T05:46:37.802Z",
+  "hosts": {
+    "104.238.153.140": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "144.76.113.28": {
+      "ok": true,
+      "https": false,
+      "status": 404
+    },
+    "173.254.204.74": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "193.70.109.114": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "69.141.235.64": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "94.130.35.230": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ERR_TLS_CERT_ALTNAME_INVALID"
+    },
+    "allo.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "altmix.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "arbiscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "arbitrum.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "ardorportal.org": {
+      "ok": false,
+      "https": false,
+      "status": 502,
+      "error": "HTTP 502"
+    },
+    "atomscan.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "base.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "basescan.org": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "bchain.info": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "bithomp.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "bitwhite.info": {
+      "ok": true,
+      "https": true,
+      "status": 404
+    },
+    "block-explorer.biocoin.bio": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "block.bitcoinplus.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "block.gxb.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "fetch failed"
+    },
+    "block.monacocoin.net": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockchain.gulden.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "blockchain.mn": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "blockchain.prizm.space": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockchainexplorer.lykke.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockchair.com": {
+      "ok": true,
+      "https": true,
+      "status": 401
+    },
+    "blockexplorer.electroneum.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "blockexplorer.gamecredits.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockexplorer.graft.network": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "EAI_AGAIN"
+    },
+    "blockexplorer.lavajumper.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "blockexplorer.obsidianplatform.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockexplorer.revolutionvr.live": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockexplorer.xtrabytes.global": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "blockstream.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "bloks.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "bosradar.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "browser.achain.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "bscscan.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "btczexplorer.blockhub.info": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "bts.ai": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "bunnycoin.thecryptochat.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "cardanoscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "celoscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "chain.breakoutcoin.com": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "chain.fair.to": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "chain.hollywoodcoin.biz": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "chain.nem.ninja": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "chain.sibcoin.net": {
+      "ok": true,
+      "https": true,
+      "status": 202
+    },
+    "chainradar.com": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "chainz.cryptoid.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "condensate.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "cryptobe.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "UND_ERR_CONNECT_TIMEOUT"
+    },
+    "cryptoblock.xyz": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "cryptofresh.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "dashboard.internetcomputer.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "dbixscan.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "decent-db.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "dimexplorer.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "EAI_AGAIN"
+    },
+    "dogechain.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "dyn.blocksandchain.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "elasticexplorer.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "eosflare.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "era.cryptonode.online": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "etc.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "eth.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "etherscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "explore.burst.cryptoguru.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explore.jiyo.io": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explore.sia.tech": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explore.vechain.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.alqo.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.aptoslabs.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.arcticcoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.ark.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.artbyte.me": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.asch.io": {
+      "ok": true,
+      "https": true,
+      "status": 202
+    },
+    "explorer.atbcoin.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.biblepay-central.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.bitcoinatom.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.btcd.io": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explorer.btcdraft.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.bulwarkcrypto.com": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "explorer.buzzcoin.info": {
+      "ok": false,
+      "https": false,
+      "status": 502,
+      "error": "HTTP 502"
+    },
+    "explorer.byteball.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.campuscoinproject.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.canadaecoin.ca": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.casinocoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.chips.cash": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.coinpayments.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.cryptocarbon.co.uk": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "explorer.cryptonex.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.dcrdata.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.deeponion.org": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "explorer.deuscoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "explorer.discovermoin.com": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explorer.ellaism.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.emercoin.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.factom.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.flashcoin.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.forcenetwork.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.fujicoin.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.golos.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.h.cash": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.ignitioncoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "explorer.innovacoin.info": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.interstellarcoin.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.ipbc.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.lbry.io": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "explorer.lisk.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.litecoin.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.lomocoin.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.luxcore.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.magiccoin.io": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explorer.magnetwork.io": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explorer.mantle.xyz": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.maxcoinproject.net": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "explorer.memetic.ai": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "explorer.monkey.community": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.mvs.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.myhush.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.nebl.io": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "explorer.novaco.in": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.nubits.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.nycoin.community": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.optimism.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.oxycoin.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.pascalcoin.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.polispay.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.qtum.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.rise.vision": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.sagacoin.net": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.shiftnrg.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.skycoin.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.solana.com": {
+      "ok": true,
+      "https": true,
+      "status": 429
+    },
+    "explorer.startcoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.sumokoin.com": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "explorer.threeeyed.info": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.travelflex.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.unitus.online": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.wanchain.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.whitecoin.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.woodcoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "explorer.zcha.in": {
+      "ok": false,
+      "https": false,
+      "status": 520,
+      "error": "HTTP 520"
+    },
+    "explorer.zensystem.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer.zksync.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "explorer3.smartcash.cc": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "gander.tech": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "ganja.bilbotel.fr": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "gastracker.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "gnosis.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "gnosisscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "gobyte.ezmine.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "html.mastercalls.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "insight.leocoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "insight.terracoin.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "intensecoin.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "khashier.com": {
+      "ok": true,
+      "https": true,
+      "status": 404
+    },
+    "kmd.komodochainz.info": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "krm-db.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "kusama.subscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "ldoge.miningalts.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "lineascan.build": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "litecoinspace.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "live.reddcoin.com": {
+      "ok": false,
+      "https": false,
+      "status": 502,
+      "error": "HTTP 502"
+    },
+    "livenet.xrpl.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "mainnet.iop.cash": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "mempool.space": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "minexexplorer.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "mona.chainseeker.info": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "mtnc.snodo.de": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "mynxt.info": {
+      "ok": true,
+      "https": true,
+      "status": 401
+    },
+    "namecha.in": {
+      "ok": false,
+      "https": false,
+      "status": 523,
+      "error": "HTTP 523"
+    },
+    "nearblocks.io": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "neotracker.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "EAI_AGAIN"
+    },
+    "node2.rupayacoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "nolimitcoin.info": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "nxs.efficienthash.com": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "omniexplorer.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "optimistic.etherscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "orbiter.musicoin.org": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "peerplaysdb.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "poaexplorer.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "polkadot.subscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "polkascan.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "EAI_AGAIN"
+    },
+    "polygon.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "polygonscan.com": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "poseidon.pirl.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "poswallet.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "prohashing.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "purexplorer.dynu.net": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "qtumexplorer.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "scrollscan.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "seq.blocksandchain.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "shekelchain.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "snowtrace.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "solscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "sphr.network": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "steemblockexplorer.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "steexp.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "stellar.expert": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "stellarchain.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "straks.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "suiscan.xyz": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "thetangle.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "tipsbe.netcraft.ch": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "tokesplatform.org": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "tonviewer.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "tracker.icon.community": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "tronscan.org": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "tzkt.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "ubiqscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 202
+    },
+    "unifyexplorer.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "verge-blockchain.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "vtrchains.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "fetch failed"
+    },
+    "wavesexplorer.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "wavesgo.com": {
+      "ok": true,
+      "https": false,
+      "status": 200
+    },
+    "www.blockchain.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.blockexperts.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "www.btgblocks.com": {
+      "ok": true,
+      "https": true,
+      "status": 202
+    },
+    "www.centurionexplorer.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.coinexplorer.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.gcnchain.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "www.gridcoinstats.eu": {
+      "ok": true,
+      "https": true,
+      "status": 403
+    },
+    "www.huntercoin.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.mintscan.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.nanode.co": {
+      "ok": false,
+      "https": false,
+      "status": 503,
+      "error": "HTTP 503"
+    },
+    "www.omniexplorer.info": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "www.taoexplorer.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "timeout"
+    },
+    "www.wdcexplorer.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "xchain.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "xmrchain.net": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "xptx.io": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    },
+    "yoscan.io": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "zcl-explorer.com": {
+      "ok": false,
+      "https": false,
+      "status": null,
+      "error": "ENOTFOUND"
+    },
+    "zeny.insight.monaco-ex.org": {
+      "ok": true,
+      "https": true,
+      "status": 404
+    },
+    "zksync.blockscout.com": {
+      "ok": true,
+      "https": true,
+      "status": 200
+    }
+  }
+}
