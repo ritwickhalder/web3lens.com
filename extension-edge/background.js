@@ -7943,6 +7943,10 @@
   var LEGACY_CHAINS = chains_default;
   var EXTRA_CHAINS = chains_extra_default;
   var CHAINS = [...LEGACY_CHAINS, ...EXTRA_CHAINS];
+  function countLabel(n) {
+    return n < 100 ? String(n) : `${Math.floor(n / 100) * 100}+`;
+  }
+  var CHAIN_COUNT_LABEL = countLabel(CHAINS.length);
   var BY_ID = new Map(CHAINS.map((c) => [c.id, c]));
   function getChain(id) {
     return BY_ID.get(id);

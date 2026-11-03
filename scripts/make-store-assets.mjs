@@ -147,7 +147,7 @@ const batch = await capture(ext(`app.html#batch?q=${encodeURIComponent(['vitalik
 
 const W = 1280;
 const H = 800;
-await render(frame({ w: W, h: H, label: 'Search any chain', title: 'Paste anything. It’s <span class="accent">recognised and checked.</span>', lead: '30+ address and hash formats with checksum validation, 789 chains, and the right page of the right explorer.', shot: dataUrl(popup), shotWidth: 640 }), 'screenshots/1-search.png', W, H);
+await render(frame({ w: W, h: H, label: 'Search any chain', title: 'Paste anything. It’s <span class="accent">recognised and checked.</span>', lead: '30+ address and hash formats with checksum validation, 700+ chains, and the right page of the right explorer.', shot: dataUrl(popup), shotWidth: 640 }), 'screenshots/1-search.png', W, H);
 await render(frame({ w: W, h: H, label: 'Native results', title: 'Balances, tokens and activity, <span class="accent">with sources.</span>', lead: 'Every number says where it came from and when. Unavailable data is shown as unavailable, never guessed.', shot: dataUrl(result), shotWidth: 660 }), 'screenshots/2-results.png', W, H);
 await render(frame({ w: W, h: H, label: 'Risk checks', title: 'Sanctions, scam reports and <span class="accent">approvals.</span>', lead: 'OFAC snapshot, reported scams, contract checks and token approvals. “No reports” is never called safe.', shot: dataUrl(risk), shotWidth: 660 }), 'screenshots/3-risk.png', W, H);
 await render(frame({ w: W, h: H, label: 'Developer tools', title: 'Decode transactions <span class="accent">locally.</span>', lead: 'Raw transactions, calldata, units, hashes, timestamps and gas: in your browser, nothing broadcast.', shot: dataUrl(tools), shotWidth: 660 }), 'screenshots/4-tools.png', W, H);
@@ -155,7 +155,7 @@ await render(frame({ w: W, h: H, label: 'Batch search', title: 'Check a whole li
 
 // Promo tiles.
 const tile = (w, h, size) =>
-  `<!doctype html><html><head><style>:root{--w:${w}px;--h:${h}px}${frameCss}</style></head><body><div style="height:100%;display:flex;flex-direction:column;justify-content:center;gap:${size > 1 ? 22 : 12}px;padding:0 ${size > 1 ? 90 : 34}px"><div class="brand" style="font-size:${size > 1 ? 40 : 24}px">${LOGO.replace('<svg', `<svg style="width:${size > 1 ? 60 : 36}px;height:${size > 1 ? 60 : 36}px"`)}<span>Web3<span class="accent">Lens</span></span></div><h1 style="font-size:${size > 1 ? 58 : 27}px">Look up anything,<br>on <span class="accent">any chain.</span></h1>${size > 1 ? '<p class="lead" style="font-size:22px">Auto-detect · 789 chains · balances · risk checks · dev tools</p>' : ''}</div></body></html>`;
+  `<!doctype html><html><head><style>:root{--w:${w}px;--h:${h}px}${frameCss}</style></head><body><div style="height:100%;display:flex;flex-direction:column;justify-content:center;gap:${size > 1 ? 22 : 12}px;padding:0 ${size > 1 ? 90 : 34}px"><div class="brand" style="font-size:${size > 1 ? 40 : 24}px">${LOGO.replace('<svg', `<svg style="width:${size > 1 ? 60 : 36}px;height:${size > 1 ? 60 : 36}px"`)}<span>Web3<span class="accent">Lens</span></span></div><h1 style="font-size:${size > 1 ? 58 : 27}px">Look up anything,<br>on <span class="accent">any chain.</span></h1>${size > 1 ? '<p class="lead" style="font-size:22px">Auto-detect · 700+ chains · balances · risk checks · dev tools</p>' : ''}</div></body></html>`;
 await render(tile(440, 280, 1), 'promo/small-tile-440x280.png', 440, 280);
 await render(tile(1400, 560, 2), 'promo/marquee-1400x560.png', 1400, 560);
 await render(

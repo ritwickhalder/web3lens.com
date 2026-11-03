@@ -16,7 +16,7 @@ Comes from each manifest:
 
 Chrome (comes from the manifest, ≤132 characters; 130 used):
 
-> Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 789+ blockchains with Web3Lens.
+> Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 700+ blockchains with Web3Lens.
 
 Firefox summary (≤250 characters):
 
@@ -31,7 +31,7 @@ to the right block explorer for any address, transaction or block.
 Paste an address, transaction hash, block number or ENS name and Web3Lens works out what it is and which chain it
 belongs to (30+ formats across Bitcoin, Ethereum and EVM chains, Solana, Tron, XRP, Cosmos, Cardano, Polkadot,
 TON and more), verifies the checksum so typos are caught before you send anything, and opens the right page on the
-right block explorer. 789 blockchain networks are covered in total.
+right block explorer. 700+ blockchain networks are covered in total.
 
 **Multichain explorer results in the extension**
 For 14 major chains (Ethereum, Base, Arbitrum, OP Mainnet, Polygon, BNB Chain, Avalanche, Linea, zkSync, Scroll,

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { SITE } from '@/config/site';
-import chains from '@/data/chains.json';
+import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 
 export const alt = 'Web3Lens: look up anything, on any chain';
 export const size = { width: 1200, height: 630 };
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
           <span style={{ color: '#4fd1ff' }}>on any chain.</span>
         </div>
         <div style={{ display: 'flex', fontSize: 26, color: '#8fa6bc', borderTop: '2px solid #2d5273', paddingTop: 24 }}>
-          {chains.length} blockchains · addresses, transactions, blocks · {SITE.domain}
+          {CHAIN_COUNT_LABEL} blockchains · addresses, transactions, blocks · {SITE.domain}
         </div>
       </div>
     ),

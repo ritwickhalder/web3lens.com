@@ -47,6 +47,12 @@ export const LEGACY_CHAINS = chainsJson as Chain[];
 /** Chains added after the migration (hand-edited, data/chains-extra.json). */
 export const EXTRA_CHAINS = extraJson as Chain[];
 export const CHAINS: Chain[] = [...LEGACY_CHAINS, ...EXTRA_CHAINS];
+/** A count as shown to people: rounded down to the hundred ("700+") rather than an exact, odd-looking number. */
+export function countLabel(n: number): string {
+  return n < 100 ? String(n) : `${Math.floor(n / 100) * 100}+`;
+}
+/** The chain count for copy: "700+". */
+export const CHAIN_COUNT_LABEL = countLabel(CHAINS.length);
 
 const BY_ID = new Map(CHAINS.map((c) => [c.id, c]));
 

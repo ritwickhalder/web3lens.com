@@ -4,7 +4,7 @@ import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { CHAIN_EVENT } from '@/components/search/SmartSearch';
 import { chainMeta, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
-import { CHAINS, getChain, type Chain } from '@/lib/chains';
+import { CHAINS, countLabel, getChain, type Chain } from '@/lib/chains';
 
 const POPULAR = POPULAR_CHAIN_IDS.map((id) => getChain(id)).filter((c): c is Chain => Boolean(c));
 
@@ -36,7 +36,7 @@ export function PopularChains() {
           <MagnifyingGlass weight="bold" className="size-5" />
         </span>
         <span>
-          <span className="block text-[15px] font-extrabold">+{CHAINS.length - POPULAR.length} more</span>
+          <span className="block text-[15px] font-extrabold">{countLabel(CHAINS.length - POPULAR.length)} more</span>
           <span className="block text-xs font-bold">all chains</span>
         </span>
       </button>

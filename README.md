@@ -2,7 +2,7 @@
 
 Website: https://web3lens.com/ · Developer: Ritwick Halder (https://www.ritwick.com)
 
-Search any of 789 blockchains for an address, transaction hash, block or name. Web3Lens detects and checksum-checks
+Search any of 700+ blockchains for an address, transaction hash, block or name. Web3Lens detects and checksum-checks
 what you paste, shows balances, tokens, transactions and risk checks for 14 major chains, and opens the right block
 explorer page for the rest. Also: developer tools, batch search, saved labels, shareable investigations, a crypto
 directory, a beginner's guide, and browser extensions for Chrome, Firefox and Edge. Built with Next.js 16 (App

@@ -5,7 +5,7 @@
  */
 import icons from 'virtual:svg-icons';
 import { chainMeta, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
-import { CHAINS, getChain, type Chain } from '@/lib/chains';
+import { CHAIN_COUNT_LABEL, CHAINS, getChain, type Chain } from '@/lib/chains';
 import { explorerDown } from '@/lib/explorer';
 import { h } from './dom';
 import { t } from './i18n';
@@ -146,7 +146,7 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
   const nameEl = h('span', { class: 'picker-name' });
   const glyphSlot = h('span', { class: 'picker-glyph' });
   const button = h('button', { type: 'button', class: 'picker-btn', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, glyphSlot, h('span', { class: 'picker-text' }, label, nameEl), icon('caret', 'ic caret'));
-  const filter = h('input', { class: 'picker-filter', placeholder: t('picker.filterPlaceholder', { count: CHAINS.length }), 'aria-label': t('picker.filterLabel'), autocomplete: 'off', spellcheck: 'false' });
+  const filter = h('input', { class: 'picker-filter', placeholder: t('picker.filterPlaceholder', { count: CHAIN_COUNT_LABEL }), 'aria-label': t('picker.filterLabel'), autocomplete: 'off', spellcheck: 'false' });
   const list = h('div', { class: 'picker-list', role: 'listbox', 'aria-label': t('picker.listLabel') });
   const panel = h('div', { class: 'picker-panel', hidden: true }, h('div', { class: 'picker-search' }, icon('search'), filter), list);
   const el = h('div', { class: 'picker' }, button, panel);
@@ -171,7 +171,7 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
       ...(detected.length ? ([[t('picker.detected'), byIds(detected)]] as [string, Chain[]][]) : []),
       ...(favourites.length ? ([[t('picker.favourites'), byIds(favourites)]] as [string, Chain[]][]) : []),
       [t('picker.popular'), byIds(POPULAR_CHAIN_IDS)],
-      [t('picker.allChains', { count: CHAINS.length }), CHAINS],
+      [t('picker.allChains', { count: CHAIN_COUNT_LABEL }), CHAINS],
     ];
   };
 

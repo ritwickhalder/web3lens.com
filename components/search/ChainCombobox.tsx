@@ -4,7 +4,7 @@ import { CaretDown, Check, MagnifyingGlass, Star } from '@phosphor-icons/react/d
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
-import type { Chain } from '@/lib/chains';
+import { countLabel, type Chain } from '@/lib/chains';
 import { explorerDown } from '@/lib/explorer';
 
 type Section = { title: string; chains: Chain[] };
@@ -68,7 +68,7 @@ export function ChainCombobox({
         : [
             ...(pinned.length ? [{ title: 'Favourites', chains: pinned }] : []),
             { title: 'Popular', chains: popular },
-            { title: `All chains · ${chains.length}`, chains },
+            { title: `All chains · ${countLabel(chains.length)}`, chains },
           ],
     [chains, filter, popular, pinned],
   );
@@ -150,7 +150,7 @@ export function ChainCombobox({
               aria-controls={listId}
               aria-activedescendant={options[active] ? `${listId}-${options[active].id}` : undefined}
               aria-label="Filter blockchains"
-              placeholder={`Search ${chains.length} chains…`}
+              placeholder={`Search ${countLabel(chains.length)} chains…`}
               autoComplete="off"
               spellCheck={false}
               value={filter}

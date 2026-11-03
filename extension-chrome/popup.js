@@ -8021,6 +8021,10 @@
   var LEGACY_CHAINS = chains_default;
   var EXTRA_CHAINS = chains_extra_default;
   var CHAINS = [...LEGACY_CHAINS, ...EXTRA_CHAINS];
+  function countLabel(n) {
+    return n < 100 ? String(n) : `${Math.floor(n / 100) * 100}+`;
+  }
+  var CHAIN_COUNT_LABEL = countLabel(CHAINS.length);
   var BY_ID = new Map(CHAINS.map((c) => [c.id, c]));
   function getChain(id) {
     return BY_ID.get(id);
@@ -20068,7 +20072,7 @@
     const nameEl = h("span", { class: "picker-name" });
     const glyphSlot = h("span", { class: "picker-glyph" });
     const button = h("button", { type: "button", class: "picker-btn", "aria-haspopup": "listbox", "aria-expanded": "false" }, glyphSlot, h("span", { class: "picker-text" }, label, nameEl), icon("caret", "ic caret"));
-    const filter = h("input", { class: "picker-filter", placeholder: t("picker.filterPlaceholder", { count: CHAINS.length }), "aria-label": t("picker.filterLabel"), autocomplete: "off", spellcheck: "false" });
+    const filter = h("input", { class: "picker-filter", placeholder: t("picker.filterPlaceholder", { count: CHAIN_COUNT_LABEL }), "aria-label": t("picker.filterLabel"), autocomplete: "off", spellcheck: "false" });
     const list = h("div", { class: "picker-list", role: "listbox", "aria-label": t("picker.listLabel") });
     const panel = h("div", { class: "picker-panel", hidden: true }, h("div", { class: "picker-search" }, icon("search"), filter), list);
     const el = h("div", { class: "picker" }, button, panel);
@@ -20091,7 +20095,7 @@
         ...detected.length ? [[t("picker.detected"), byIds(detected)]] : [],
         ...favourites.length ? [[t("picker.favourites"), byIds(favourites)]] : [],
         [t("picker.popular"), byIds(POPULAR_CHAIN_IDS)],
-        [t("picker.allChains", { count: CHAINS.length }), CHAINS]
+        [t("picker.allChains", { count: CHAIN_COUNT_LABEL }), CHAINS]
       ];
     };
     const renderList = () => {
@@ -22326,7 +22330,7 @@
         "div",
         { class: "p-hero-text" },
         h("h1", null, ...tx("hero.title", { accent: h("span", { class: "accent" }, t("hero.titleAccent")) })),
-        h("p", null, t("hero.popupLead", { count: CHAINS.length }))
+        h("p", null, t("hero.popupLead", { count: CHAIN_COUNT_LABEL }))
       ),
       heroIllustration()
     );
@@ -22743,7 +22747,7 @@
       h(
         "div",
         { class: "stats" },
-        h("div", { class: "stat" }, h("b", null, String(CHAINS.length)), h("span", null, t("info.statChains"))),
+        h("div", { class: "stat" }, h("b", null, CHAIN_COUNT_LABEL), h("span", null, t("info.statChains"))),
         h("div", { class: "stat" }, h("b", null, String(NETWORKS.length)), h("span", null, t("info.statNative"))),
         h("div", { class: "stat" }, h("b", null, new Date(sanctionsSnapshotAt()).toISOString().slice(0, 10)), h("span", null, t("info.statOfac")))
       ),

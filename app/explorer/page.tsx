@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PageShell } from '@/components/content/PageShell';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
-import { allExplorerRoutes, getChain } from '@/lib/chains';
+import { allExplorerRoutes, CHAIN_COUNT_LABEL, countLabel, getChain } from '@/lib/chains';
 import { pageMetadata } from '@/lib/metadata';
 import { getNetwork } from '@/lib/networks';
 
@@ -21,7 +21,7 @@ export default function ExplorerIndex() {
       layout="stacked"
       eyebrow="Block explorers"
       title="Pick a chain"
-      lead={`${chains.length} chains with explorer routes for addresses, transactions and blocks. The search bar on the home page covers all 789.`}
+      lead={`${countLabel(chains.length)} chains with explorer routes for addresses, transactions and blocks. The search bar on the home page covers all ${CHAIN_COUNT_LABEL}.`}
     >
       <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {chains.map((c) => (

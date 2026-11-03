@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { InfoSection, PageShell } from '@/components/content/PageShell';
 import { SITE } from '@/config/site';
-import { CHAINS } from '@/lib/chains';
+import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
   title: 'About',
-  description: `${SITE.name} is an all-in-one search engine for addresses, transactions and blocks across ${CHAINS.length}+ blockchains.`,
+  description: `${SITE.name} is an all-in-one search engine for addresses, transactions and blocks across ${CHAIN_COUNT_LABEL} blockchains.`,
   path: '/about',
 });
 
 const STATS = [
-  { value: String(CHAINS.length), label: 'Chains searchable' },
+  { value: CHAIN_COUNT_LABEL, label: 'Chains searchable' },
   { value: '2018', label: 'Online since' },
   { value: '0', label: 'Ads or sign-ups' },
 ];
@@ -44,7 +44,7 @@ export default function AboutPage() {
       </InfoSection>
       <InfoSection index={2} heading="What can you do with this website">
         <ul className="list-disc space-y-1.5 pl-5 marker:text-accent">
-          <li>Search the blockchain for addresses on over {Math.floor(CHAINS.length / 50) * 50} cryptocurrencies.</li>
+          <li>Search the blockchain for addresses on {CHAIN_COUNT_LABEL} cryptocurrencies.</li>
           <li>Search transactions on the blockchain for any cryptocurrency.</li>
           <li>Search block data & history for any cryptocurrency on the blockchain.</li>
           <li>

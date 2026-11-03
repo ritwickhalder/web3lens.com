@@ -18,12 +18,12 @@ import { PopularChains } from '@/components/home/PopularChains';
 import { TryExamples } from '@/components/home/TryExamples';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { SmartSearch } from '@/components/search/SmartSearch';
-import { CHAINS } from '@/lib/chains';
+import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 
 const HERO_COINS = ['bitcoin', 'ethereum', 'solana', 'binancecoin', 'ripple'];
 
 const STATS = [
-  { value: String(CHAINS.length), label: 'Blockchains' },
+  { value: CHAIN_COUNT_LABEL, label: 'Blockchains' },
   { value: '30+', label: 'Formats detected' },
   { value: '0', label: 'Ads or sign-ups' },
   { value: '2018', label: 'Online since' },
@@ -38,7 +38,7 @@ const STEPS = [
   {
     icon: Stack,
     title: 'Pick the chain, or let us',
-    body: `The matching chain is pre-selected and alternatives are one click away. Or choose any of ${CHAINS.length} chains yourself.`,
+    body: `The matching chain is pre-selected and alternatives are one click away. Or choose any of ${CHAIN_COUNT_LABEL} chains yourself.`,
   },
   {
     icon: CursorClick,
@@ -83,7 +83,7 @@ export default function HomePage() {
                 </span>
               ))}
             </span>
-            {CHAINS.length} blockchains<span className="hidden sm:inline"> · one search box</span>
+            {CHAIN_COUNT_LABEL} blockchains<span className="hidden sm:inline"> · one search box</span>
           </p>
           <h1 className="heading mx-auto mt-7 text-[2.6rem] sm:text-6xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,5.2vw,5.5rem)]">
             Look up anything, on <span className="text-accent">any chain.</span>
@@ -131,7 +131,7 @@ export default function HomePage() {
           label="How it works"
           title={
             <>
-              One search box instead of <span className="text-accent">{CHAINS.length} bookmarks</span>
+              One search box instead of <span className="text-accent">{CHAIN_COUNT_LABEL} bookmarks</span>
             </>
           }
         />

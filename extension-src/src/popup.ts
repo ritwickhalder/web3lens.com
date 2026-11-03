@@ -5,7 +5,7 @@
  */
 import { TOOLS, type ToolSlug } from '@/config/tools';
 import { apiGet, setApiBase } from '@/lib/api-client';
-import { CHAINS, getChain } from '@/lib/chains';
+import { CHAIN_COUNT_LABEL, getChain } from '@/lib/chains';
 import { detectAll, detectQuery, EXAMPLES } from '@/lib/detect';
 import { shortHash } from '@/lib/format';
 import type { GasResult } from '@/lib/lookup-types';
@@ -122,7 +122,7 @@ function lookupPanel(query?: string, chain?: string): HTMLElement {
       'div',
       { class: 'p-hero-text' },
       h('h1', null, ...tx('hero.title', { accent: h('span', { class: 'accent' }, t('hero.titleAccent')) })),
-      h('p', null, t('hero.popupLead', { count: CHAINS.length })),
+      h('p', null, t('hero.popupLead', { count: CHAIN_COUNT_LABEL })),
     ),
     heroIllustration(),
   );
@@ -572,7 +572,7 @@ function openInfo() {
     h(
       'div',
       { class: 'stats' },
-      h('div', { class: 'stat' }, h('b', null, String(CHAINS.length)), h('span', null, t('info.statChains'))),
+      h('div', { class: 'stat' }, h('b', null, CHAIN_COUNT_LABEL), h('span', null, t('info.statChains'))),
       h('div', { class: 'stat' }, h('b', null, String(NETWORKS.length)), h('span', null, t('info.statNative'))),
       h('div', { class: 'stat' }, h('b', null, new Date(sanctionsSnapshotAt()).toISOString().slice(0, 10)), h('span', null, t('info.statOfac'))),
     ),
