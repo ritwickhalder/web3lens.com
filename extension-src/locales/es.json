@@ -119,7 +119,7 @@
   },
   "toolsNav": {
     "more": "Más",
-    "batchCheck": "Comprobación por lotes"
+    "batchCheck": "Consulta por lotes"
   },
   "tool": {
     "unit-converter": {
@@ -153,7 +153,7 @@
       "description": "Decodifica calldata de Ethereum con el ABI de un contrato, una firma de función o la lista integrada de funciones comunes, y codifica llamadas a partir de una firma."
     },
     "transaction-decoder": {
-      "title": "Decodificador de transacciones en bruto",
+      "title": "Decodificador de tx en bruto",
       "short": "tx firmada → campos y remitente",
       "description": "Decodifica localmente una transacción EVM firmada en bruto (legacy, EIP-1559, blob, EIP-7702) y recupera el remitente, sin difundirla."
     }

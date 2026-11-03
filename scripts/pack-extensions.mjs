@@ -87,7 +87,8 @@ for (const browser of ['chrome', 'edge', 'firefox']) {
 }
 
 // Source archive for reviewers: everything needed to reproduce the bundles with `npm ci && npm run ext:build`.
-const SOURCE = ['extension-src', 'lib', 'data', 'config/tools.ts', 'components/search/ChainGlyph.tsx', 'scripts/build-extensions.mjs', 'package.json', 'package-lock.json', 'tsconfig.json', 'extension-firefox/COMPATIBILITY.md'];
+// The hand-written Firefox manifest is included so the rebuilt extension-firefox/ is the complete, loadable add-on.
+const SOURCE = ['extension-src', 'lib', 'data', 'config/tools.ts', 'components/search/ChainGlyph.tsx', 'scripts/build-extensions.mjs', 'package.json', 'package-lock.json', 'tsconfig.json', 'extension-firefox/manifest.json', 'extension-firefox/COMPATIBILITY.md'];
 const sourceFiles = [];
 for (const p of SOURCE) {
   const full = path.join(ROOT, p);
@@ -97,7 +98,7 @@ for (const p of SOURCE) {
 sourceFiles.push({
   name: 'BUILD.md',
   data: Buffer.from(
-    `# Building the Web3Lens extension from source\n\nRequires Node.js 22+.\n\n    npm ci\n    npm run ext:build\n\nThe output is written to extension-chrome/, extension-firefox/ and extension-edge/. The bundles are produced by esbuild (bundled, not minified) from extension-src/ and lib/.\n`,
+    `# Building the Web3Lens extension from source\n\nRequires Node.js 22+.\n\n    npm ci\n    npm run ext:build\n\nThe output is written to extension-chrome/, extension-firefox/ and extension-edge/. The bundles are produced by esbuild (bundled, not minified) from extension-src/ and lib/. extension-firefox/manifest.json is hand-written and included here, so extension-firefox/ is then the same add-on as the submitted package.\n`,
   ),
 });
 const srcFile = path.join(OUT, `web3lens-extension-source-${version}.zip`);
