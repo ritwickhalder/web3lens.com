@@ -18,7 +18,14 @@ function hangingFetch(): typeof fetch {
 test('apiGet: a hung request ends with a timeout error instead of loading forever', async () => {
   globalThis.fetch = hangingFetch();
   setApiBase('https://web3lens.com');
-  await assert.rejects(apiGet('gas', {}, undefined, 30), (e: unknown) => e instanceof ApiError && /too long/.test(e.message));
+  // AbortSignal.timeout() uses an unref'd timer in Node: with nothing else pending the process would exit
+  // (cancelling every test) before it fires. A ref'd timer keeps the event loop alive while we wait.
+  const keepAlive = setTimeout(() => {}, 5000);
+  try {
+    await assert.rejects(apiGet('gas', {}, undefined, 30), (e: unknown) => e instanceof ApiError && /too long/.test(e.message));
+  } finally {
+    clearTimeout(keepAlive);
+  }
 });
 
 test("apiGet: the caller's own abort is passed through, not reported as a timeout", async () => {
