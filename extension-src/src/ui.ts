@@ -8,6 +8,7 @@ import { chainMeta, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { CHAINS, getChain, type Chain } from '@/lib/chains';
 import { explorerDown } from '@/lib/explorer';
 import { h } from './dom';
+import { t } from './i18n';
 
 const parser = typeof DOMParser !== 'undefined' ? new DOMParser() : null;
 const cache = new Map<string, Element>();
@@ -145,17 +146,17 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
   const nameEl = h('span', { class: 'picker-name' });
   const glyphSlot = h('span', { class: 'picker-glyph' });
   const button = h('button', { type: 'button', class: 'picker-btn', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' }, glyphSlot, h('span', { class: 'picker-text' }, label, nameEl), icon('caret', 'ic caret'));
-  const filter = h('input', { class: 'picker-filter', placeholder: `Search ${CHAINS.length} chains…`, 'aria-label': 'Filter blockchains', autocomplete: 'off', spellcheck: 'false' });
-  const list = h('div', { class: 'picker-list', role: 'listbox', 'aria-label': 'Blockchains' });
+  const filter = h('input', { class: 'picker-filter', placeholder: t('picker.filterPlaceholder', { count: CHAINS.length }), 'aria-label': t('picker.filterLabel'), autocomplete: 'off', spellcheck: 'false' });
+  const list = h('div', { class: 'picker-list', role: 'listbox', 'aria-label': t('picker.listLabel') });
   const panel = h('div', { class: 'picker-panel', hidden: true }, h('div', { class: 'picker-search' }, icon('search'), filter), list);
   const el = h('div', { class: 'picker' }, button, panel);
 
   const paintButton = () => {
     glyphSlot.replaceChildren(glyph(current.id, current.name, 'md'));
-    label.textContent = auto ? 'Auto-detected' : 'Blockchain';
+    label.textContent = auto ? t('picker.autoDetected') : t('picker.blockchain');
     label.classList.toggle('accent', auto);
     nameEl.textContent = current.name;
-    button.setAttribute('aria-label', `Blockchain: ${current.name}${auto ? ' (auto-detected)' : ''}. Change blockchain`);
+    button.setAttribute('aria-label', t(auto ? 'picker.buttonLabelAuto' : 'picker.buttonLabel', { chain: current.name }));
   };
 
   const sections = (): [string, Chain[]][] => {
@@ -164,13 +165,13 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
     if (f) {
       const starts = CHAINS.filter((c) => c.name.toLowerCase().startsWith(f));
       const contains = CHAINS.filter((c) => !c.name.toLowerCase().startsWith(f) && (c.name.toLowerCase().includes(f) || c.id.includes(f)));
-      return [['Results', [...starts, ...contains]]];
+      return [[t('picker.results'), [...starts, ...contains]]];
     }
     return [
-      ...(detected.length ? ([['Detected', byIds(detected)]] as [string, Chain[]][]) : []),
-      ...(favourites.length ? ([['Favourites', byIds(favourites)]] as [string, Chain[]][]) : []),
-      ['Popular', byIds(POPULAR_CHAIN_IDS)],
-      [`All chains · ${CHAINS.length}`, CHAINS],
+      ...(detected.length ? ([[t('picker.detected'), byIds(detected)]] as [string, Chain[]][]) : []),
+      ...(favourites.length ? ([[t('picker.favourites'), byIds(favourites)]] as [string, Chain[]][]) : []),
+      [t('picker.popular'), byIds(POPULAR_CHAIN_IDS)],
+      [t('picker.allChains', { count: CHAINS.length }), CHAINS],
     ];
   };
 
@@ -188,7 +189,7 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
           { class: `picker-row${i === active ? ' active' : ''}`, role: 'option', 'aria-selected': String(c.id === current.id), 'data-i': String(i) },
           glyph(c.id, c.name, 'sm'),
           h('span', { class: 'picker-row-name' }, c.name),
-          explorerDown(c) ? h('span', { class: 'tag warn' }, 'explorer down') : c.fallback ? h('span', { class: 'tag warn' }, 'limited') : null,
+          explorerDown(c) ? h('span', { class: 'tag warn' }, t('picker.explorerDown')) : c.fallback ? h('span', { class: 'tag warn' }, t('picker.limited')) : null,
           c.id === current.id ? icon('check', 'ic accent') : null,
           opts.onToggleFavourite
             ? h(
@@ -197,7 +198,7 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
                   type: 'button',
                   class: `star${fav ? ' on' : ''}`,
                   tabindex: '-1',
-                  'aria-label': fav ? `Unpin ${c.name}` : `Pin ${c.name}`,
+                  'aria-label': t(fav ? 'picker.unpin' : 'picker.pin', { chain: c.name }),
                   on: {
                     click: (e: Event) => {
                       e.stopPropagation();
@@ -216,7 +217,7 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
         list.append(row);
       }
     }
-    if (!options.length) list.append(h('p', { class: 'picker-empty' }, `No chain matches “${filter.value}”`));
+    if (!options.length) list.append(h('p', { class: 'picker-empty' }, t('picker.noMatch', { query: filter.value })));
   };
 
   const setActive = (i: number, scroll = true) => {

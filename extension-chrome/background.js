@@ -10427,8 +10427,30 @@
   }
   var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
 
+  // extension-src/src/locales.ts
+  var LOCALES = [
+    { code: "en", name: "English" },
+    { code: "es", name: "Español" },
+    { code: "pt", name: "Português" },
+    { code: "fr", name: "Français" },
+    { code: "de", name: "Deutsch" },
+    { code: "ja", name: "日本語" },
+    { code: "ko", name: "한국어" },
+    { code: "zh-CN", name: "简体中文" },
+    { code: "ru", name: "Русский" },
+    { code: "id", name: "Bahasa Indonesia" },
+    { code: "tr", name: "Türkçe" },
+    { code: "it", name: "Italiano" },
+    { code: "pl", name: "Polski" },
+    { code: "nl", name: "Nederlands" },
+    { code: "th", name: "ไทย" }
+  ];
+  function isLocale(v) {
+    return typeof v === "string" && LOCALES.some((l) => l.code === v);
+  }
+
   // extension-src/src/store.ts
-  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "light" };
+  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "light", language: "auto" };
   function sanitizeSettings(raw) {
     const r = raw ?? {};
     let apiBase = DEFAULT_SETTINGS.apiBase;
@@ -10439,7 +10461,12 @@
       } catch {
       }
     }
-    return { network: r.network !== false, apiBase, theme: r.theme === "dark" || r.theme === "system" ? r.theme : "light" };
+    return {
+      network: r.network !== false,
+      apiBase,
+      theme: r.theme === "dark" || r.theme === "system" ? r.theme : "light",
+      language: isLocale(r.language) ? r.language : "auto"
+    };
   }
   async function load() {
     const raw = await ext.storage.local.get(["prefs", "saved", "recent", "settings"]);

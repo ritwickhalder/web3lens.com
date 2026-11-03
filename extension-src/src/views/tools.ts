@@ -14,17 +14,35 @@ import { bitcoinFee, calculateFee, GAS_PRESETS } from '@/lib/tools/gas';
 import { parseTime } from '@/lib/tools/time';
 import { convertUnits, formatUnits } from '@/lib/tools/units';
 import { clear, copyBtn, h } from '../dom';
+import { detectLabel, detectNote, relTime, t, type MessageKey } from '../i18n';
 import { icon, type IconName } from '../ui';
 import type { ExtSettings } from '../store';
 import { badge, card, errorText, failMessage, note } from './common';
 
 type Out = [label: string, value: string | null][];
 
+/** lib/tools/gas presets and lib/tools/time kinds, by their English label. */
+const PRESETS: Record<string, MessageKey> = {
+  'ETH transfer': 'gascalc.preset.ethTransfer',
+  'ERC-20 transfer': 'gascalc.preset.erc20Transfer',
+  'ERC-20 approve': 'gascalc.preset.erc20Approve',
+  'Uniswap swap': 'gascalc.preset.uniswapSwap',
+  'NFT mint': 'gascalc.preset.nftMint',
+};
+const TIME_KINDS: Record<string, MessageKey> = {
+  'hex seconds': 'time.kind.hexSeconds',
+  nanoseconds: 'time.kind.nanoseconds',
+  microseconds: 'time.kind.microseconds',
+  milliseconds: 'time.kind.milliseconds',
+  seconds: 'time.kind.seconds',
+  date: 'time.kind.date',
+};
+
 function outputs(rows: Out) {
   return h(
     'div',
     { class: 'outputs' },
-    rows.filter(([, v]) => v !== null).map(([l, v]) => h('div', { class: 'output' }, h('span', { class: 'olabel' }, l), h('span', { class: 'mono ovalue', title: v! }, v!), copyBtn(v!, 'Copy'))),
+    rows.filter(([, v]) => v !== null).map(([l, v]) => h('div', { class: 'output' }, h('span', { class: 'olabel' }, l), h('span', { class: 'mono ovalue', title: v! }, v!), copyBtn(v!, t('common.copy')))),
   );
 }
 
@@ -54,18 +72,18 @@ function live(controls: HTMLElement[], out: HTMLElement, compute: () => Node | N
 
 function unitConverter() {
   const amount = input('1');
-  const family = h('select', { class: 'select' }, h('option', { value: 'evm' }, 'wei / gwei / ether'), h('option', { value: 'btc' }, 'sat / BTC'), h('option', { value: 'sol' }, 'lamport / SOL'), h('option', { value: 'custom' }, 'any token'));
+  const family = h('select', { class: 'select' }, h('option', { value: 'evm' }, 'wei / gwei / ether'), h('option', { value: 'btc' }, 'sat / BTC'), h('option', { value: 'sol' }, 'lamport / SOL'), h('option', { value: 'custom' }, t('unit.anyToken')));
   const unit = h('select', { class: 'select' });
   const decimals = input('6');
   const out = h('div');
   const units = () =>
-    family.value === 'evm' ? [['wei', 0], ['gwei', 9], ['ether', 18]] : family.value === 'btc' ? [['sat', 0], ['BTC', 8]] : family.value === 'sol' ? [['lamport', 0], ['SOL', 9]] : [['raw units', 0], ['tokens', Math.min(77, Number(decimals.value) || 0)]];
+    family.value === 'evm' ? [['wei', 0], ['gwei', 9], ['ether', 18]] : family.value === 'btc' ? [['sat', 0], ['BTC', 8]] : family.value === 'sol' ? [['lamport', 0], ['SOL', 9]] : [[t('unit.rawUnits'), 0], [t('unit.tokens'), Math.min(77, Number(decimals.value) || 0)]];
   const fillUnits = () => clear(unit, ...units().map(([n, d]) => h('option', { value: String(d) }, String(n))));
   fillUnits();
   unit.value = String(units()[units().length - 1][1]);
   family.addEventListener('change', () => (fillUnits(), (unit.value = String(units()[units().length - 1][1]))));
   live([amount, family, unit, decimals], out, () => outputs(units().map(([n, d]) => [String(n), convertUnits(amount.value || '0', Number(unit.value), Number(d))])));
-  return [field('Amount', amount), field('Unit family', family), field('From unit', unit), field('Token decimals (any token)', decimals), out];
+  return [field(t('unit.amount'), amount), field(t('unit.family'), family), field(t('unit.from'), unit), field(t('unit.decimals'), decimals), out];
 }
 
 function addressValidator() {
@@ -75,18 +93,18 @@ function addressValidator() {
     const { query } = extractQuery(q.value);
     if (!query) return h('span');
     const all = detectAll(query);
-    if (!all.length) return errorText('Not a valid address or hash in any format Web3Lens knows.');
+    if (!all.length) return errorText(t('validator.invalid'));
     return all.map((d) => {
       const s = d.kind === 'address' ? checkSanctions(d.normalized) : null;
       return card(
-        d.label,
-        d.kind === 'secret' ? note(d.note!, 'danger') : h('div', { class: 'row wrap' }, badge(d.checksum === 'valid' ? 'checksum valid' : d.checksum === 'invalid' ? 'checksum does NOT match' : d.checksum === 'none' ? 'no checksum' : 'format only', d.checksum === 'valid' ? 'good' : d.checksum === 'invalid' ? 'danger' : 'neutral'), s ? badge(s.listed ? 'OFAC listed' : 'not on OFAC snapshot', s.listed ? 'danger' : 'neutral') : null),
-        d.kind !== 'secret' ? outputs([['Normalised', d.normalized]]) : null,
+        detectLabel(d.label),
+        d.kind === 'secret' ? note(detectNote(d.note!), 'danger') : h('div', { class: 'row wrap' }, badge(d.checksum === 'valid' ? t('validator.checksumValid') : d.checksum === 'invalid' ? t('validator.checksumInvalid') : d.checksum === 'none' ? t('validator.noChecksum') : t('validator.formatOnly'), d.checksum === 'valid' ? 'good' : d.checksum === 'invalid' ? 'danger' : 'neutral'), s ? badge(s.listed ? t('search.ofacListed') : t('validator.notOnOfac'), s.listed ? 'danger' : 'neutral') : null),
+        d.kind !== 'secret' ? outputs([[t('validator.normalised'), d.normalized]]) : null,
         d.chains.length ? h('p', { class: 'muted' }, d.chains.map((c) => getChain(c)?.name ?? c).join(', ')) : null,
       );
     });
   });
-  return [field('Address, hash or name', q, 'A valid checksum means it was copied correctly, not that it is trustworthy.'), out];
+  return [field(t('validator.field'), q, t('validator.hint')), out];
 }
 
 function hexConverter() {
@@ -102,64 +120,64 @@ function hexConverter() {
     } catch {
       signed = null;
     }
-    return outputs([['Decimal', dec], ['Hex', hex], ['int256', signed !== dec ? signed : null]]);
+    return outputs([[t('hex.decimal'), dec], ['Hex', hex], ['int256', signed !== dec ? signed : null]]);
   });
   const text = area('Hello, Web3Lens');
   const textOut = h('div');
   live([text], textOut, () => outputs([['Hex', textToHex(text.value)]]));
   const hexText = area('', '0x48656c6c6f');
   const hexTextOut = h('div');
-  live([hexText], hexTextOut, () => (hexText.value.trim() ? outputs([['Text', hexToText(hexText.value)]]) : h('span')));
+  live([hexText], hexTextOut, () => (hexText.value.trim() ? outputs([[t('hex.text'), hexToText(hexText.value)]]) : h('span')));
   const hashIn = input('transfer(address,uint256)');
-  const hashKind = h('select', { class: 'select' }, h('option', { value: 'text' }, 'text'), h('option', { value: 'hex' }, 'hex bytes'));
+  const hashKind = h('select', { class: 'select' }, h('option', { value: 'text' }, t('hex.textOption')), h('option', { value: 'hex' }, t('hex.hexBytes')));
   const hashOut = h('div');
   live([hashIn, hashKind], hashOut, () => {
     const r = hashes({ kind: hashKind.value as 'text' | 'hex', value: hashIn.value });
-    return outputs([['keccak256', r.keccak256], ['SHA-256', r.sha256], ['Selector', r.selector]]);
+    return outputs([['keccak256', r.keccak256], ['SHA-256', r.sha256], [t('hex.selector'), r.selector]]);
   });
-  return [card('Number', field('Hex or decimal', num), numOut), card('Text → hex', text, textOut), card('Hex → text', hexText, hexTextOut), card('Hashes', field('Input', hashIn), field('Input is', hashKind), hashOut)];
+  return [card(t('hex.number'), field(t('hex.hexOrDecimal'), num), numOut), card(t('hex.textToHex'), text, textOut), card(t('hex.hexToText'), hexText, hexTextOut), card(t('hex.hashes'), field(t('hex.input'), hashIn), field(t('hex.inputIs'), hashKind), hashOut)];
 }
 
 function timestampConverter() {
-  const t = input('', '1231006505');
-  const now = h('button', { type: 'button', class: 'btn-ghost sm' }, 'Now');
+  const ts = input('', '1231006505');
+  const now = h('button', { type: 'button', class: 'btn-ghost sm' }, t('time.now'));
   const out = h('div');
   now.addEventListener('click', () => {
-    t.value = String(Math.floor(Date.now() / 1000));
-    t.dispatchEvent(new Event('input'));
+    ts.value = String(Math.floor(Date.now() / 1000));
+    ts.dispatchEvent(new Event('input'));
   });
-  live([t], out, () => {
-    if (!t.value.trim()) return h('span');
-    const r = parseTime(t.value);
-    return [h('p', { class: 'muted' }, `Read as ${r.interpretedAs}`), outputs([['Unix seconds', String(r.seconds)], ['Milliseconds', String(r.ms)], ['Hex', `0x${r.seconds.toString(16)}`], ['ISO (UTC)', r.iso], ['Local', r.local], ['Relative', r.relative]])];
+  live([ts], out, () => {
+    if (!ts.value.trim()) return h('span');
+    const r = parseTime(ts.value);
+    return [h('p', { class: 'muted' }, t('time.readAs', { kind: TIME_KINDS[r.interpretedAs] ? t(TIME_KINDS[r.interpretedAs]) : r.interpretedAs })), outputs([[t('time.unixSeconds'), String(r.seconds)], [t('time.milliseconds'), String(r.ms)], ['Hex', `0x${r.seconds.toString(16)}`], ['ISO (UTC)', r.iso], [t('time.local'), r.local], [t('time.relative'), relTime(r.ms)]])];
   });
-  return [field('Timestamp or date', t), now, out];
+  return [field(t('time.field'), ts), now, out];
 }
 
 function gasCalculator(settings: ExtSettings) {
   const chain = h('select', { class: 'select' }, EVM_NETWORKS.map((n) => h('option', { value: n.id }, n.name)));
   const gas = input('21000');
-  const presets = h('div', { class: 'chips' }, GAS_PRESETS.map((p) => h('button', { type: 'button', class: 'chip', on: { click: () => ((gas.value = p.gas), gas.dispatchEvent(new Event('input'))) } }, p.label)));
+  const presets = h('div', { class: 'chips' }, GAS_PRESETS.map((p) => h('button', { type: 'button', class: 'chip', on: { click: () => ((gas.value = p.gas), gas.dispatchEvent(new Event('input'))) } }, PRESETS[p.label] ? t(PRESETS[p.label]) : p.label)));
   const base = input('', 'gwei');
-  const tip = input('', 'gwei (optional)');
-  const max = input('', 'gwei (optional)');
+  const tip = input('', t('gascalc.optional'));
+  const max = input('', t('gascalc.optional'));
   const status = h('p', { class: 'muted' });
   const out = h('div');
   let live_: GasResult | null = null;
-  const loadBtn = h('button', { type: 'button', class: 'btn-ghost sm' }, 'Use live gas price');
+  const loadBtn = h('button', { type: 'button', class: 'btn-ghost sm' }, t('gascalc.useLive'));
   loadBtn.addEventListener('click', async () => {
-    if (!settings.network) return clear(status, 'Online lookups are off in settings.');
-    clear(status, 'Loading…');
+    if (!settings.network) return clear(status, t('common.offInSettings'));
+    clear(status, t('common.loading'));
     try {
       live_ = live_ ?? (await apiGet<GasResult>('gas', {}));
       const row = live_.evm.find((r) => r.chain.id === chain.value);
-      if (!row || row.status !== 'ok') return clear(status, `Unavailable: ${row?.reason ?? 'unknown'}`);
+      if (!row || row.status !== 'ok') return clear(status, t('common.unavailableCap', { reason: row?.reason ?? t('common.unknown') }));
       base.value = row.baseFeeGwei ?? row.gasPriceGwei ?? '';
       tip.value = row.baseFeeGwei ? (row.priorityFeeGwei ?? '0') : '';
-      clear(status, `Live from ${row.chain.name}${row.stale ? ' (stale)' : ''}`);
+      clear(status, `${t('gascalc.liveFrom', { chain: row.chain.name })}${row.stale ? ` ${t('common.staleParen')}` : ''}`);
       base.dispatchEvent(new Event('input'));
     } catch (e) {
-      clear(status, `Unavailable: ${(e as Error).message}`);
+      clear(status, t('common.unavailableCap', { reason: (e as Error).message }));
     }
   });
   live([chain, gas, base, tip, max], out, () => {
@@ -167,7 +185,7 @@ function gasCalculator(settings: ExtSettings) {
     const net = EVM_NETWORKS.find((n) => n.id === chain.value)!;
     const price = live_ && net.coingecko ? (live_.prices[net.coingecko] ?? null) : null;
     const r = calculateFee({ gasLimit: gas.value, baseFeeGwei: base.value, priorityFeeGwei: tip.value || undefined, maxFeeGwei: max.value || undefined, priceUsd: price });
-    return outputs([['Gas price', `${r.effectiveGasPriceGwei} gwei`], [`Fee (${net.symbol})`, r.fee], ['Fee (wei)', r.feeWei], ['Fee (USD)', r.feeUsd !== null ? `$${r.feeUsd.toFixed(2)}` : null], ['Max to hold', r.maxFee]]);
+    return outputs([[t('gascalc.gasPrice'), `${r.effectiveGasPriceGwei} gwei`], [t('gascalc.feeSymbol', { symbol: net.symbol }), r.fee], [t('gascalc.feeWei'), r.feeWei], [t('gascalc.feeUsd'), r.feeUsd !== null ? `$${r.feeUsd.toFixed(2)}` : null], [t('gascalc.maxToHold'), r.maxFee]]);
   });
   const vb = input('141');
   const rate = input('', 'sat/vB');
@@ -175,11 +193,11 @@ function gasCalculator(settings: ExtSettings) {
   live([vb, rate], btcOut, () => {
     if (!rate.value) return h('span');
     const r = bitcoinFee(Number(vb.value), Number(rate.value));
-    return outputs([['Fee (sats)', String(r.sats)], ['Fee (BTC)', r.btc]]);
+    return outputs([[t('gascalc.feeSats'), String(r.sats)], [t('gascalc.feeBtc'), r.btc]]);
   });
   return [
-    card('EVM fee', field('Chain', chain), field('Gas limit', gas), presets, field('Base fee / gas price', base), field('Priority fee', tip), field('Max fee', max), h('div', { class: 'row' }, loadBtn, status), out, note('Rollups also charge an L1 data fee not included here.', 'info')),
-    card('Bitcoin fee', field('Size (vbytes)', vb), field('Fee rate', rate), btcOut),
+    card(t('gascalc.evmFee'), field(t('gas.chain'), chain), field(t('gascalc.gasLimit'), gas), presets, field(t('gascalc.baseFee'), base), field(t('gascalc.priorityFee'), tip), field(t('gascalc.maxFee'), max), h('div', { class: 'row' }, loadBtn, status), out, note(t('gascalc.l1Note'), 'info')),
+    card(t('gascalc.btcFee'), field(t('gascalc.size'), vb), field(t('gascalc.feeRate'), rate), btcOut),
   ];
 }
 
@@ -196,21 +214,21 @@ function renderCalls(calls: DecodedCall[], guess: string | null) {
 
 function abiDecoder(settings: ExtSettings) {
   const data = area('', '0xa9059cbb…');
-  const abi = area('', 'JSON ABI or one signature per line (optional)');
+  const abi = area('', t('abi.abiPlaceholder'));
   const out = h('div');
   const parseAbi = (t: string): AbiFunction[] => (!t.trim() ? [] : t.trim().startsWith('[') || t.trim().startsWith('{') ? parseJsonAbi(t).functions : t.split('\n').map((l) => l.trim()).filter(Boolean).map(parseSignature));
   live([data, abi], out, () => {
     const d = data.value.trim();
     if (!d) return h('span');
-    if (!/^0x[0-9a-fA-F]{8,}$/.test(d)) return errorText('Calldata must be 0x followed by at least a 4-byte selector.');
+    if (!/^0x[0-9a-fA-F]{8,}$/.test(d)) return errorText(t('abi.badCalldata'));
     const fns = parseAbi(abi.value);
     const calls = decodeCalldata(d, fns.length ? fns : undefined);
-    if (calls.length) return renderCalls(calls, fns.length ? null : 'Matched a common signature (no ABI given).');
-    const btn = h('button', { type: 'button', class: 'btn-ghost sm' }, 'Look up selector online');
+    if (calls.length) return renderCalls(calls, fns.length ? null : t('abi.commonMatch'));
+    const btn = h('button', { type: 'button', class: 'btn-ghost sm' }, t('abi.lookupSelector'));
     const res = h('div');
     btn.addEventListener('click', async () => {
-      if (!settings.network) return clear(res, note('Online lookups are off in settings.', 'info'));
-      clear(res, h('p', { class: 'muted' }, 'Asking openchain.xyz / 4byte.directory…'));
+      if (!settings.network) return clear(res, note(t('common.offInSettings'), 'info'));
+      clear(res, h('p', { class: 'muted' }, t('abi.asking')));
       try {
         const r = await apiGet<{ signatures: string[]; source: string }>('selector', { q: d.slice(0, 10).toLowerCase() });
         const cands = r.signatures.flatMap((s) => {
@@ -221,18 +239,18 @@ function abiDecoder(settings: ExtSettings) {
           }
         });
         const found = decodeCalldata(d, cands);
-        clear(res, ...(found.length ? renderCalls(found, `Community-submitted signature (${r.source}): treat as a guess.`) : [h('p', { class: 'muted' }, 'No submitted signature decodes this data.')]));
+        clear(res, ...(found.length ? renderCalls(found, t('abi.community', { source: r.source })) : [h('p', { class: 'muted' }, t('abi.noneDecodes'))]));
       } catch (e) {
         clear(res, errorText((e as Error).message));
       }
     });
-    return [h('p', { class: 'muted' }, `Selector ${d.slice(0, 10)} isn't known.`), btn, res];
+    return [h('p', { class: 'muted' }, t('abi.unknownSelector', { selector: d.slice(0, 10) })), btn, res];
   });
   const sig = input('transfer(address to, uint256 amount)');
   const args = input('["0x000000000000000000000000000000000000dEaD", "1000000000000000000"]');
   const encOut = h('div');
-  live([sig, args], encOut, () => outputs([['Calldata', encodeCall(sig.value, JSON.parse(args.value) as EncodableValue[])]]));
-  return [card('Decode', field('Calldata', data), field('ABI', abi), out), card('Encode', field('Function signature', sig), field('Arguments (JSON array)', args), encOut)];
+  live([sig, args], encOut, () => outputs([[t('abi.calldata'), encodeCall(sig.value, JSON.parse(args.value) as EncodableValue[])]]));
+  return [card(t('abi.decode'), field(t('abi.calldata'), data), field('ABI', abi), out), card(t('abi.encode'), field(t('abi.signature'), sig), field(t('abi.args'), args), encOut)];
 }
 
 function txDecoder() {
@@ -247,24 +265,24 @@ function txDecoder() {
       card(
         d.typeName,
         outputs([
-          ['Hash', d.hash],
-          ['From (recovered)', d.from],
-          ['To', d.to ?? '(contract creation)'],
-          ['Chain id', d.chainId === null ? 'none (replayable)' : String(d.chainId)],
-          ['Value', `${d.value} (${d.valueWei} wei)`],
-          ['Nonce', d.nonce],
-          ['Gas limit', d.gasLimit],
-          ['Gas price', gwei(d.gasPriceWei)],
-          ['Max fee', gwei(d.maxFeePerGasWei)],
-          ['Priority fee', gwei(d.maxPriorityFeePerGasWei)],
-          ['Data', d.data],
+          [t('txdec.hash'), d.hash],
+          [t('txdec.fromRecovered'), d.from],
+          [t('result.to'), d.to ?? t('txdec.creation')],
+          [t('txdec.chainId'), d.chainId === null ? t('txdec.replayable') : String(d.chainId)],
+          [t('result.value'), `${d.value} (${d.valueWei} wei)`],
+          [t('txdec.nonce'), d.nonce],
+          [t('gascalc.gasLimit'), d.gasLimit],
+          [t('gascalc.gasPrice'), gwei(d.gasPriceWei)],
+          [t('gascalc.maxFee'), gwei(d.maxFeePerGasWei)],
+          [t('gascalc.priorityFee'), gwei(d.maxPriorityFeePerGasWei)],
+          [t('txdec.data'), d.data],
         ]),
       ),
-      ...renderCalls(d.call, 'Matched a common signature; a best guess without the ABI.'),
-      ...(d.authorizations ?? []).map((a) => card('EIP-7702 authorization', outputs([['Signer', a.signer], ['Delegates to', a.address], ['Chain / nonce', `${a.chainId === '0' ? '0 (any chain!)' : a.chainId} / ${a.nonce}`]]))),
+      ...renderCalls(d.call, t('txdec.bestGuess')),
+      ...(d.authorizations ?? []).map((a) => card(t('txdec.authorization'), outputs([[t('result.signer'), a.signer], [t('txdec.delegatesTo'), a.address], [t('txdec.chainNonce'), `${a.chainId === '0' ? t('txdec.anyChain') : a.chainId} / ${a.nonce}`]]))),
     ];
   });
-  return [field('Signed raw transaction', raw, 'Decoded locally; nothing is broadcast.'), out];
+  return [field(t('txdec.field'), raw, t('txdec.hint')), out];
 }
 
 const TOOL_ICONS: Record<string, IconName> = {
@@ -281,8 +299,8 @@ const TOOL_ICONS: Record<string, IconName> = {
 function toolTabs(current: string, nav: (hash: string) => void) {
   return h(
     'nav',
-    { class: 'chips', 'aria-label': 'Tools' },
-    [...TOOLS.map((t) => [t.slug, t.title] as const), ['gas-tracker', 'Gas tracker'] as const].map(([s, title]) =>
+    { class: 'chips', 'aria-label': t('common.tools') },
+    [...TOOLS.map((x) => [x.slug, t(`tool.${x.slug}.title`)] as const), ['gas-tracker', t('common.gasTracker')] as const].map(([s, title]) =>
       h('button', { type: 'button', class: `chip${s === current ? ' primary' : ''}`, 'aria-current': s === current ? 'page' : undefined, on: { click: () => nav(`#tools/${s}`) } }, icon(TOOL_ICONS[s] ?? 'wrench'), title),
     ),
   );
@@ -290,7 +308,7 @@ function toolTabs(current: string, nav: (hash: string) => void) {
 
 /** Live gas on every supported chain (the website's /gas page). */
 function gasTracker(settings: ExtSettings) {
-  const out = h('div', null, settings.network ? h('p', { class: 'muted pulse' }, 'Loading live gas prices…') : note('Online lookups are off in settings.', 'info'));
+  const out = h('div', null, settings.network ? h('p', { class: 'muted pulse' }, t('gas.loading')) : note(t('common.offInSettings'), 'info'));
   if (settings.network) {
     apiGet<GasResult>('gas', {})
       .then((g) =>
@@ -302,7 +320,7 @@ function gasTracker(settings: ExtSettings) {
             h(
               'table',
               { class: 'table' },
-              h('thead', null, h('tr', null, h('th', null, 'Chain'), h('th', null, 'Gas price (gwei)'), h('th', null, 'Transfer (USD)'))),
+              h('thead', null, h('tr', null, h('th', null, t('gas.chain')), h('th', null, t('gas.priceCol')), h('th', null, t('gas.transferCol')))),
               h(
                 'tbody',
                 null,
@@ -314,7 +332,7 @@ function gasTracker(settings: ExtSettings) {
                     'tr',
                     null,
                     h('td', null, r.chain.name),
-                    h('td', null, r.status === 'ok' ? `${Number(r.gasPriceGwei) < 0.0001 ? '<0.0001' : Number(Number(r.gasPriceGwei).toPrecision(3)).toString()}${r.stale ? ' (stale)' : ''}` : `unavailable: ${r.reason}`),
+                    h('td', null, r.status === 'ok' ? `${Number(r.gasPriceGwei) < 0.0001 ? '<0.0001' : Number(Number(r.gasPriceGwei).toPrecision(3)).toString()}${r.stale ? ` ${t('common.staleParen')}` : ''}` : t('common.unavailableReason', { reason: r.reason ?? t('common.unknown') })),
                     h('td', null, eff !== null && price !== undefined ? `$${(eff * 1e-9 * 21000 * price).toFixed(4)}` : '—'),
                   );
                 }),
@@ -322,9 +340,9 @@ function gasTracker(settings: ExtSettings) {
             ),
           ),
           g.bitcoin.status === 'ok'
-            ? card('Bitcoin (sat/vB)', outputs([['Next block', String(g.bitcoin.data.fastest)], ['~30 min', String(g.bitcoin.data.halfHour)], ['~1 hour', String(g.bitcoin.data.hour)], ['Economy', String(g.bitcoin.data.economy)]]))
-            : note(`Bitcoin fees unavailable: ${g.bitcoin.reason}`, 'warn'),
-          h('p', { class: 'source' }, `Public RPCs, mempool.space, CoinGecko · ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`),
+            ? card(t('gas.btcCard'), outputs([[t('gas.nextBlock'), String(g.bitcoin.data.fastest)], [t('gas.halfHour'), String(g.bitcoin.data.halfHour)], [t('gas.hour'), String(g.bitcoin.data.hour)], [t('gas.economy'), String(g.bitcoin.data.economy)]]))
+            : note(t('gas.btcUnavailable', { reason: g.bitcoin.reason }), 'warn'),
+          h('p', { class: 'source' }, t('gas.source', { time: new Date(g.fetchedAt).toISOString().slice(11, 19) })),
         ),
       )
       .catch((e: unknown) => clear(out, errorText(failMessage(e))));
@@ -334,11 +352,11 @@ function gasTracker(settings: ExtSettings) {
 
 export function toolsView(slug: string | undefined, settings: ExtSettings, nav: (hash: string) => void): HTMLElement {
   if (slug === 'gas-tracker') {
-    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, 'Gas tracker'), h('p', { class: 'lead' }, `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin.`), ...gasTracker(settings));
+    return h('div', { class: 'stack' }, toolTabs(slug, nav), h('p', { class: 'label' }, t('common.developerTools')), h('h1', { class: 'heading' }, t('common.gasTracker')), h('p', { class: 'lead' }, `${t('common.liveFees', { count: EVM_NETWORKS.length })}.`), ...gasTracker(settings));
   }
-  const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
+  const tool = TOOLS.find((x) => x.slug === slug) ?? TOOLS[0];
   const tabs = toolTabs(tool.slug, nav);
-  return h('div', { class: 'stack' }, tabs, h('p', { class: 'label' }, 'Developer tools'), h('h1', { class: 'heading' }, tool.title), h('p', { class: 'lead' }, tool.description), ...toolBody(tool.slug, settings));
+  return h('div', { class: 'stack' }, tabs, h('p', { class: 'label' }, t('common.developerTools')), h('h1', { class: 'heading' }, t(`tool.${tool.slug}.title`)), h('p', { class: 'lead' }, t(`tool.${tool.slug}.description`)), ...toolBody(tool.slug, settings));
 }
 
 /** One tool's controls and live output, without the page chrome (the popup's Tools tab uses it too). */

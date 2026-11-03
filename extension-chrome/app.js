@@ -69,6 +69,9112 @@
     return kind === "name" && chainId === "ethereum";
   }
 
+  // extension-src/locales/en.json
+  var en_default = {
+    common: {
+      copy: "Copy",
+      copied: "Copied",
+      close: "Close",
+      loading: "Loading…",
+      refresh: "Refresh",
+      clear: "Clear",
+      save: "Save",
+      saved: "Saved",
+      search: "Search",
+      tools: "Tools",
+      settings: "Settings",
+      sections: "Sections",
+      yes: "Yes",
+      no: "No",
+      yesLower: "yes",
+      noLower: "no",
+      unavailable: "unavailable",
+      unavailableReason: "unavailable: {reason}",
+      unavailableParen: "unavailable ({reason})",
+      unavailableCap: "Unavailable: {reason}",
+      unknown: "unknown",
+      pending: "pending",
+      staleParen: "(stale)",
+      offInSettings: "Online lookups are off in settings.",
+      openInFullTab: "Open in a full tab",
+      developerTools: "Developer tools",
+      gasTracker: "Gas tracker",
+      feeCalculator: "Fee calculator",
+      unrecognised: "unrecognised",
+      offlineMode: "Offline mode",
+      onlineLookups: "Online lookups",
+      explorers: "Explorers",
+      liveFees: "Live fees on {count} EVM chains and Bitcoin"
+    },
+    theme: {
+      label: "Theme",
+      light: "Light",
+      dark: "Dark",
+      system: "System",
+      lightDefault: "Light (default)",
+      lightTheme: "Light theme",
+      darkTheme: "Dark theme",
+      systemTheme: "System theme",
+      current: "Theme: {theme}"
+    },
+    language: {
+      label: "Language",
+      hint: "Automatic follows your browser.",
+      fallbackNote: "Anything not yet translated shows in English.",
+      auto: "Automatic ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Search {count} chains…",
+      filterLabel: "Filter blockchains",
+      listLabel: "Blockchains",
+      autoDetected: "Auto-detected",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Change blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (auto-detected). Change blockchain",
+      results: "Results",
+      detected: "Detected",
+      favourites: "Favourites",
+      popular: "Popular",
+      allChains: "All chains · {count}",
+      explorerDown: "explorer down",
+      limited: "limited",
+      pin: "Pin {chain}",
+      unpin: "Unpin {chain}",
+      noMatch: "No chain matches “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Lookup",
+        scan: "Scan page",
+        tools: "Tools",
+        gas: "Gas",
+        saved: "Saved"
+      },
+      tagline: "Blockchain search for {strong}",
+      taglineStrong: "every chain",
+      online: "Online",
+      statusOnline: "Lookups go to {host}. Change in settings",
+      statusOffline: "Nothing leaves your browser. Change in settings",
+      aboutButton: "About, shortcuts and more tools",
+      openApp: "Open the full app in a tab",
+      footOnline: "Lookups you run go to {host}. Nothing else leaves your browser.",
+      footOffline: "Offline mode: nothing leaves your browser.",
+      footLink: "Shortcuts and more tools"
+    },
+    hero: {
+      title: "Look up anything, on {accent}",
+      titleAccent: "any chain.",
+      popupLead: "Paste an address, transaction, block or name. Web3Lens finds its chain among {count}.",
+      appLead: "Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer."
+    },
+    examples: {
+      title: "Try an example",
+      vitalik: "Vitalik Buterin's ENS",
+      usdc: "USDC contract",
+      genesis: "Bitcoin genesis address",
+      usdtTron: "USDT on Tron"
+    },
+    scan: {
+      reading: "Reading this page…",
+      noTab: "No active tab",
+      thisTab: "this tab",
+      nothingTitle: "Nothing found",
+      nothingBody: "No addresses, transaction hashes or names on this page. Select text and right-click to look it up instead.",
+      found: "{count} found",
+      copyAll: "Copy all",
+      checkAll: "Check all in batch",
+      cantReadTitle: "Can’t read this page",
+      cantReadBody: "{error}. Browser pages (settings, extension stores, new tabs) can’t be scanned.",
+      bannerTitle: "Addresses on {host}",
+      bannerBody: "Reads the visible text of this tab once, when you open this tab. Nothing is sent anywhere.",
+      rescan: "Rescan"
+    },
+    toolsNav: {
+      more: "More",
+      batchCheck: "Batch check"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Unit converter",
+        short: "wei · gwei · ETH, sats · BTC, any decimals",
+        description: "Convert between wei, gwei and ether, satoshis and bitcoin, lamports and SOL, or any token decimals, exactly (no rounding)."
+      },
+      "address-validator": {
+        title: "Address validator",
+        short: "Checksums for 25+ address formats",
+        description: "Check whether an address is valid for its chain: EIP-55 checksums, base58check, bech32, CashAddr, SS58, Stellar and TON, plus the OFAC sanctions snapshot."
+      },
+      "hex-converter": {
+        title: "Hex, text and hashes",
+        short: "hex ↔ decimal, UTF-8, keccak256, SHA-256",
+        description: "Convert hex to decimal and back, text to hex, read int256 words, and hash text or bytes with keccak256 and SHA-256 (with function selectors)."
+      },
+      "timestamp-converter": {
+        title: "Timestamp converter",
+        short: "Unix seconds, ms, hex ↔ date",
+        description: "Convert Unix timestamps (seconds, milliseconds, hex block timestamps) to dates in UTC and your time zone, and dates back to timestamps."
+      },
+      "gas-calculator": {
+        title: "Gas and fee calculator",
+        short: "EIP-1559 fees with live gas prices",
+        description: "Work out transaction fees from gas limit, base fee and tip, with live gas prices for 11 EVM chains and Bitcoin fee rates."
+      },
+      "abi-decoder": {
+        title: "Calldata and ABI decoder",
+        short: "Decode or encode function calls",
+        description: "Decode Ethereum calldata with a contract ABI, a function signature or the built-in list of common functions, and encode calls from a signature."
+      },
+      "transaction-decoder": {
+        title: "Raw transaction decoder",
+        short: "Signed tx → fields and sender",
+        description: "Decode a signed raw EVM transaction (legacy, EIP-1559, blob, EIP-7702) locally and recover the sender, without broadcasting it."
+      }
+    },
+    gas: {
+      offlineBody: "Live gas needs an online lookup. Turn on online lookups in settings, or use the fee calculator with your own numbers.",
+      loading: "Loading live gas prices…",
+      btcRate: "fee rate, sat/vB",
+      nextBlock: "Next block",
+      halfHour: "~30 min",
+      hour: "~1 hour",
+      economy: "Economy",
+      btcUnavailable: "Bitcoin fees unavailable: {reason}",
+      transfer: "{usd} transfer",
+      noUsd: "no USD price",
+      gweiStale: "gwei · stale",
+      na: "n/a",
+      source: "Public RPCs, mempool.space, CoinGecko · fetched {time} UTC. Rollups add an L1 data fee.",
+      head: "Live fees · {count} EVM chains and Bitcoin",
+      chain: "Chain",
+      priceCol: "Gas price (gwei)",
+      transferCol: "Transfer (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filter by label, address or note",
+      filterLabel: "Filter saved items",
+      emptyTitle: "Nothing saved yet",
+      emptyBody: "Press Save after a search to keep an address or transaction here with a label and notes. Saved items stay in this browser.",
+      noMatch: "Nothing matches “{query}”.",
+      unpin: "Unpin",
+      pin: "Pin to the top",
+      manageTitle: "Edit labels and notes, export, import or share",
+      manage: "Manage"
+    },
+    settings: {
+      appearance: "Appearance",
+      appearanceHint: "Light is the default. System follows your browser.",
+      whenSearch: "When I press Search",
+      whenSearchHint: "Right-click lookups and the w3 keyword follow this too.",
+      resultsFirst: "Show Web3Lens results first",
+      resultsFirstHint: "Balances, tokens and risk checks on {count} chains; other chains open their explorer.",
+      alwaysExplorer: "Always open the block explorer",
+      alwaysExplorerHint: "Go straight to the explorer in a new tab.",
+      onlineOn: "On: balances, transactions, risk checks and gas come from {host} when you ask.",
+      onlineOff: "Off: detection, checksums, explorer links, tools and the OFAC snapshot still work locally.",
+      recent: "Recent searches",
+      recentKept: "{count} kept in this browser.",
+      more: "More settings",
+      moreHint: "Preferred explorers, favourite chains, data and reset",
+      pageTitle: "Search your way",
+      privacy: "Privacy",
+      privacyBody: "Balances, transactions, risk checks and live gas are fetched from {host} when you ask. Turn off to keep everything in the browser: detection, checksums, explorer links, tools and the bundled OFAC snapshot still work.",
+      privacyNote: "The extension has no host permissions and only reads a page when you open the popup’s “Scan page” tab on it.",
+      preferredExplorers: "Preferred explorers",
+      favouriteChains: "Favourite chains",
+      noneYet: "None yet.",
+      addChain: "Add a chain by name",
+      data: "Data",
+      dataBody: "Everything is in this browser’s extension storage.",
+      clearRecent: "Clear recent searches",
+      deleteSaved: "Delete saved items",
+      resetPrefs: "Reset preferences",
+      confirmDelete: "Delete all saved items?",
+      options: "Extension options"
+    },
+    info: {
+      title: "About Web3Lens",
+      fasterWays: "Faster ways in",
+      shortcut: "Keyboard shortcut",
+      shortcutBody: "Open this popup with {keys}.",
+      rightClick: "Right-click",
+      rightClickBody: "Select an address or hash on any page and choose {menu}.",
+      addressBar: "Address bar",
+      addressBarBody: "Type {key}, a space, then paste to search.",
+      statChains: "blockchains detected and routed",
+      statNative: "with live balances and risk checks",
+      statOfac: "OFAC list snapshot, checked locally",
+      website: "Website",
+      contact: "Contact us",
+      contactSub: "Send feedback",
+      privacy: "Privacy policy",
+      privacySub: "Data stored and sent",
+      moreFrom: "More from the same developer",
+      summarytube: "YouTube video summaries",
+      centpage: "The best internet startpage",
+      sessionmanager: "Save and restore tabs",
+      webdevtools: "Tools for web developers",
+      foot: "Web3Lens extension v{version} · no account needed, saved data stays in this browser"
+    },
+    search: {
+      placeholder: "Address, tx hash, block or ENS name",
+      inputLabel: "Address, transaction hash, block or name",
+      unknownFormat: "Not a format Web3Lens recognises: it will go to the chosen chain’s explorer search.",
+      secret: "Secret detected.",
+      checksumOk: "· checksum ok",
+      badChecksum: "bad checksum",
+      testnet: "testnet",
+      ofacListed: "OFAC listed",
+      searchOn: "Search on",
+      switchTo: "Switch to",
+      couldBe: "Could also be: {list}",
+      explorerDown: "The {chain} explorer did not respond at the last health check.",
+      searchWeb: "Search the web",
+      openAnyway: "open anyway",
+      fallback: "{chain} is one of the very few blockchains not yet supported. Redirecting you to a {chain} explorer instead...",
+      empty: "Paste an address, transaction hash, block number or name first.",
+      notSearched: "Not searched.",
+      offlineExplorers: "Online lookups are off (settings), so here are the explorers:",
+      recent: "Recent",
+      recentEmpty: "Your last searches show up here, kept only in this browser.",
+      openFull: "Open full view",
+      openExplorer: "Open in explorer"
+    },
+    source: {
+      unavailableFrom: "Unavailable from {source}: {reason}. Nothing is shown rather than a guess.",
+      unavailable: "Unavailable: {reason}. Nothing is shown rather than a guess.",
+      line: "Source: {source} · fetched {ago}",
+      stale: "· stale (source not responding)",
+      explorerDown: "Did not respond at the last health check"
+    },
+    api: {
+      badAnswer: "Web3Lens sent an answer this version of the extension can’t read. Explorer links and local checks still work; updating the extension should fix it.",
+      timeout: "Web3Lens took too long to answer. Try again in a moment; explorer links and local checks still work.",
+      unreachable: "Web3Lens could not be reached. Check your connection.",
+      rateLimited: "Too many lookups in a short time. Wait a minute and try again.",
+      serviceDown: "The Web3Lens lookup service is unavailable right now (HTTP {status}). Explorer links and local checks still work."
+    },
+    result: {
+      qr: "QR code",
+      transaction: "Transaction",
+      address: "Address",
+      offline: "Online lookups are turned off in settings. Explorer links and local checks still work.",
+      onOfac: "On the OFAC sanctions list ({lists}).",
+      balance: "Balance",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "USD value unavailable",
+      type: "Type",
+      delegated: "EIP-7702 delegated to {address}",
+      contractBytes: "Contract ({count} bytes)",
+      walletNoCode: "Wallet (no code)",
+      sentTxs: "Sent txs",
+      resolvedFrom: "Resolved from",
+      tokens: "Tokens",
+      noErc20: "No ERC-20 tokens.",
+      hiddenTokens: "{count} token(s) hidden: flagged as spam by the indexer, or with no name or symbol. Don't interact with tokens you didn't expect.",
+      knownOnly: "Only {count} well-known tokens were checked (no free token index covers {chain}); other holdings aren't shown.",
+      activity: "Activity",
+      transactions: "Transactions",
+      tokenTransfers: "Token transfers",
+      labelsContract: "Labels and contract",
+      flagged: "Blockscout flags this address ({reason}).",
+      scam: "scam",
+      name: "Name",
+      tags: "Tags",
+      verifiedSource: "Verified source",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "{count} unconfirmed transaction(s) pending, not included above.",
+      received: "Received",
+      sent: "Sent",
+      recentTxs: "Recent transactions",
+      account: "Account",
+      program: "Program",
+      notFound: "Not found on-chain",
+      owner: "Owner",
+      splTokens: "SPL tokens",
+      noSpl: "No SPL token balances.",
+      token2022: "Token-2022 balances could not be read from the public RPC.",
+      recentSigs: "Recent signatures",
+      unknownTx: "{chain} doesn't know this transaction.",
+      unknownSig: "Solana doesn't know this signature.",
+      status: "Status",
+      block: "Block",
+      conf: "{block} · {count} conf.",
+      time: "Time",
+      from: "From",
+      to: "To",
+      value: "Value",
+      fee: "Fee",
+      input: "Input",
+      verifiedAbi: "verified ABI",
+      guessed: "guessed",
+      success: "success",
+      failed: "failed",
+      confirmed: "confirmed",
+      unconfirmedBadge: "unconfirmed",
+      mempool: "mempool",
+      output: "Output",
+      outputs: "Outputs ({count})",
+      slot: "Slot",
+      signer: "Signer"
+    },
+    risk: {
+      checking: "Checking sanctions, reports and contract…",
+      title: "Risk checks",
+      signals: "{count} risk signal(s) found. Don't send funds or sign anything without checking.",
+      noReports: "No reports in the sources below. That does not mean it is safe: most scams are never reported.",
+      listed: "LISTED ({lists})",
+      notListed: "not listed (snapshot {date})",
+      markedScam: "marked as scam",
+      notFlagged: "not flagged",
+      noReportsShort: "no reports",
+      scamReports: "Scam reports",
+      notChecked: "not checked: the free sources cover EVM chains only",
+      verified: "Verified",
+      upgradeable: "Upgradeable",
+      yesArrow: "yes → {address}",
+      noSlots: "no EIP-1967 slots",
+      noOwner: "no owner()",
+      renounced: "renounced",
+      contract: "contract",
+      wallet: "wallet",
+      admin: "Admin functions",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "none found",
+      tokenRisk: "Token risk",
+      noFlags: "no flags",
+      onlineUnavailable: "Online checks unavailable: {error}",
+      ofacLocal: "OFAC (local)",
+      checkApprovals: "Check token approvals",
+      scanningApprovals: "Scanning approvals and reading allowances…",
+      aWallet: "(a wallet!)",
+      unlimited: "unlimited",
+      allItems: "all items",
+      noApprovals: "No active approvals found in the events scanned.",
+      capped: "Log search hit its limit: older approvals may be missing.",
+      revoke: "Review or revoke on revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Checking {count} EVM chains…",
+      code: "code",
+      txCount: "{count} tx",
+      source: "Public RPCs · prices {source} · {ago}",
+      title: "Same address on other EVM chains"
+    },
+    locate: {
+      asking: "Asking {count} EVM chains…",
+      foundOn: "Found on {chain} →",
+      notFound: "Not found on the {count} supported EVM chains; try the explorer links.",
+      title: "Which chain is it on?"
+    },
+    unit: {
+      anyToken: "any token",
+      rawUnits: "raw units",
+      tokens: "tokens",
+      amount: "Amount",
+      family: "Unit family",
+      from: "From unit",
+      decimals: "Token decimals (any token)"
+    },
+    validator: {
+      invalid: "Not a valid address or hash in any format Web3Lens knows.",
+      checksumValid: "checksum valid",
+      checksumInvalid: "checksum does NOT match",
+      noChecksum: "no checksum",
+      formatOnly: "format only",
+      notOnOfac: "not on OFAC snapshot",
+      normalised: "Normalised",
+      field: "Address, hash or name",
+      hint: "A valid checksum means it was copied correctly, not that it is trustworthy."
+    },
+    hex: {
+      decimal: "Decimal",
+      text: "Text",
+      textOption: "text",
+      hexBytes: "hex bytes",
+      selector: "Selector",
+      number: "Number",
+      hexOrDecimal: "Hex or decimal",
+      textToHex: "Text → hex",
+      hexToText: "Hex → text",
+      hashes: "Hashes",
+      input: "Input",
+      inputIs: "Input is"
+    },
+    time: {
+      now: "Now",
+      readAs: "Read as {kind}",
+      unixSeconds: "Unix seconds",
+      milliseconds: "Milliseconds",
+      local: "Local",
+      relative: "Relative",
+      field: "Timestamp or date",
+      future: "in the future",
+      kind: {
+        hexSeconds: "hex seconds",
+        nanoseconds: "nanoseconds",
+        microseconds: "microseconds",
+        milliseconds: "milliseconds",
+        seconds: "seconds",
+        date: "date"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH transfer",
+        erc20Transfer: "ERC-20 transfer",
+        erc20Approve: "ERC-20 approve",
+        uniswapSwap: "Uniswap swap",
+        nftMint: "NFT mint"
+      },
+      optional: "gwei (optional)",
+      useLive: "Use live gas price",
+      liveFrom: "Live from {chain}",
+      gasPrice: "Gas price",
+      feeSymbol: "Fee ({symbol})",
+      feeWei: "Fee (wei)",
+      feeUsd: "Fee (USD)",
+      maxToHold: "Max to hold",
+      feeSats: "Fee (sats)",
+      feeBtc: "Fee (BTC)",
+      evmFee: "EVM fee",
+      gasLimit: "Gas limit",
+      baseFee: "Base fee / gas price",
+      priorityFee: "Priority fee",
+      maxFee: "Max fee",
+      l1Note: "Rollups also charge an L1 data fee not included here.",
+      btcFee: "Bitcoin fee",
+      size: "Size (vbytes)",
+      feeRate: "Fee rate"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI or one signature per line (optional)",
+      badCalldata: "Calldata must be 0x followed by at least a 4-byte selector.",
+      commonMatch: "Matched a common signature (no ABI given).",
+      lookupSelector: "Look up selector online",
+      asking: "Asking openchain.xyz / 4byte.directory…",
+      community: "Community-submitted signature ({source}): treat as a guess.",
+      noneDecodes: "No submitted signature decodes this data.",
+      unknownSelector: "Selector {selector} isn't known.",
+      calldata: "Calldata",
+      decode: "Decode",
+      encode: "Encode",
+      signature: "Function signature",
+      args: "Arguments (JSON array)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "From (recovered)",
+      creation: "(contract creation)",
+      chainId: "Chain id",
+      replayable: "none (replayable)",
+      nonce: "Nonce",
+      data: "Data",
+      bestGuess: "Matched a common signature; a best guess without the ABI.",
+      authorization: "EIP-7702 authorization",
+      delegatesTo: "Delegates to",
+      chainNonce: "Chain / nonce",
+      anyChain: "0 (any chain!)",
+      field: "Signed raw transaction",
+      hint: "Decoded locally; nothing is broadcast."
+    },
+    app: {
+      batch: "Batch",
+      moreTools: "More tools",
+      batchSearch: "Batch search",
+      batchSearchBody: "Check up to 50 addresses at once, export CSV",
+      devToolsBody: "Units, checksums, decoders, timestamps",
+      savedBody: "Your labels and notes, private to this browser",
+      view: {
+        search: "Search",
+        result: "Result",
+        batch: "Batch",
+        tools: "Tools",
+        saved: "Saved",
+        settings: "Settings"
+      }
+    },
+    batch: {
+      valueCol: "Value",
+      typeCol: "Type",
+      checksCol: "Checks",
+      notRecognised: "not recognised",
+      secret: "secret",
+      ok: "ok",
+      leftOut: "{count} more left out (limit {max}).",
+      checking: "checking…",
+      active: "{active}/{total} active · {usd}",
+      fetchBalances: "Fetch EVM balances ({count})",
+      exportCsv: "Export CSV",
+      savedMsg: "Saved to this browser.",
+      saveAll: "Save all",
+      shareCopied: "Share link copied (opens on web3lens.com; the list is inside the link).",
+      copyShare: "Copy share link",
+      checked: "{count} checked",
+      title: "Check a list at once",
+      intro: "Up to {max} addresses, hashes or names: one per line, or separated by commas or spaces.",
+      checkAll: "Check all"
+    },
+    savedPage: {
+      filter: "Filter",
+      empty: "Nothing saved yet. Use Save in search or batch.",
+      label: "Label",
+      notes: "Notes",
+      select: "Select",
+      remove: "Remove",
+      tooLarge: "File too large",
+      imported: "Imported {count} items.",
+      importFailed: "Import failed: {error}",
+      title: "Your labels and notes",
+      intro: "Labels and notes stay in this browser (extension storage). Nothing is synced.",
+      exportJson: "Export JSON",
+      importJson: "Import JSON",
+      selectFirst: "Select items first.",
+      shareCopied: "Share link copied. Labels and notes are inside the link: anyone with it can read them.",
+      shareSelected: "Share selected"
+    },
+    detect: {
+      address: "{chain} address",
+      testnetAddress: "{chain} testnet address",
+      stakeAddress: "{chain} stake address",
+      addressRaw: "{chain} address (raw)",
+      bech32: "Bech32 address ({hrp})",
+      txHashOf: "{chain} transaction hash",
+      extrinsicHash: "{chain} extrinsic hash",
+      operationHash: "{chain} operation hash",
+      blockHash: "{chain} block hash",
+      secretKey: "{chain} secret key",
+      signature: "{chain} signature",
+      dnsName: "{chain} DNS name",
+      name: "{chain} name",
+      account: "{chain} account",
+      contract: "{chain} contract",
+      transactionHash: "Transaction hash",
+      blockNumber: "Block number",
+      recoveryPhrase: "Recovery phrase",
+      privateKey: "Private key (WIF)",
+      note: {
+        badChecksum: "The checksum does not match. The value may contain a typo; check it before sending funds.",
+        privateKey: "This looks like a private key. Anyone who has it controls the funds. Web3Lens will not search it.",
+        stellarSecret: "This is a Stellar secret key. Anyone who has it controls the account. Web3Lens will not search it.",
+        recoveryPhrase: "This looks like a wallet recovery phrase. Anyone who has it controls the wallet. Web3Lens will not search it; never paste it into a website.",
+        bech32Unknown: `A valid bech32 address for "{hrp}", a network Web3Lens doesn't list yet.`,
+        versionByte: "Version byte {byte} isn't one Web3Lens recognises."
+      }
+    }
+  };
+
+  // extension-src/locales/es.json
+  var es_default = {
+    common: {
+      copy: "Copiar",
+      copied: "Copiado",
+      close: "Cerrar",
+      loading: "Cargando…",
+      refresh: "Actualizar",
+      clear: "Borrar",
+      save: "Guardar",
+      saved: "Guardados",
+      search: "Buscar",
+      tools: "Herramientas",
+      settings: "Ajustes",
+      sections: "Secciones",
+      yes: "Sí",
+      no: "No",
+      yesLower: "sí",
+      noLower: "no",
+      unavailable: "no disponible",
+      unavailableReason: "no disponible: {reason}",
+      unavailableParen: "no disponible ({reason})",
+      unavailableCap: "No disponible: {reason}",
+      unknown: "desconocido",
+      pending: "pendiente",
+      staleParen: "(desactualizado)",
+      offInSettings: "Las consultas en línea están desactivadas en los ajustes.",
+      openInFullTab: "Abrir en una pestaña completa",
+      developerTools: "Herramientas para desarrolladores",
+      gasTracker: "Monitor de gas",
+      feeCalculator: "Calculadora de comisiones",
+      unrecognised: "no reconocido",
+      offlineMode: "Modo sin conexión",
+      onlineLookups: "Consultas en línea",
+      explorers: "Exploradores",
+      liveFees: "Comisiones en vivo en {count} cadenas EVM y Bitcoin"
+    },
+    theme: {
+      label: "Tema",
+      light: "Claro",
+      dark: "Oscuro",
+      system: "Sistema",
+      lightDefault: "Claro (predeterminado)",
+      lightTheme: "Tema claro",
+      darkTheme: "Tema oscuro",
+      systemTheme: "Tema del sistema",
+      current: "Tema: {theme}"
+    },
+    language: {
+      label: "Idioma",
+      hint: "Automático sigue a tu navegador.",
+      fallbackNote: "Lo que aún no está traducido se muestra en inglés.",
+      auto: "Automático ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Buscar entre {count} cadenas…",
+      filterLabel: "Filtrar blockchains",
+      listLabel: "Blockchains",
+      autoDetected: "Detectada automáticamente",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Cambiar blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (detectada automáticamente). Cambiar blockchain",
+      results: "Resultados",
+      detected: "Detectadas",
+      favourites: "Favoritas",
+      popular: "Populares",
+      allChains: "Todas las cadenas · {count}",
+      explorerDown: "explorador caído",
+      limited: "limitada",
+      pin: "Fijar {chain}",
+      unpin: "Desfijar {chain}",
+      noMatch: "Ninguna cadena coincide con “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Consulta",
+        scan: "Escanear página",
+        tools: "Herramientas",
+        gas: "Gas",
+        saved: "Guardados"
+      },
+      tagline: "Búsqueda blockchain para {strong}",
+      taglineStrong: "cada cadena",
+      online: "En línea",
+      statusOnline: "Las consultas van a {host}. Cámbialo en los ajustes",
+      statusOffline: "Nada sale de tu navegador. Cámbialo en los ajustes",
+      aboutButton: "Acerca de, atajos y más herramientas",
+      openApp: "Abrir la app completa en una pestaña",
+      footOnline: "Las consultas que hagas van a {host}. Nada más sale de tu navegador.",
+      footOffline: "Modo sin conexión: nada sale de tu navegador.",
+      footLink: "Atajos y más herramientas"
+    },
+    hero: {
+      title: "Busca lo que sea, en {accent}",
+      titleAccent: "cualquier cadena.",
+      popupLead: "Pega una dirección, transacción, bloque o nombre. Web3Lens encuentra su cadena entre {count}.",
+      appLead: "Pega una dirección, transacción, bloque o nombre. Web3Lens lo reconoce, lo comprueba y te muestra la respuesta."
+    },
+    examples: {
+      title: "Prueba un ejemplo",
+      vitalik: "ENS de Vitalik Buterin",
+      usdc: "Contrato de USDC",
+      genesis: "Dirección génesis de Bitcoin",
+      usdtTron: "USDT en Tron"
+    },
+    scan: {
+      reading: "Leyendo esta página…",
+      noTab: "No hay ninguna pestaña activa",
+      thisTab: "esta pestaña",
+      nothingTitle: "No se encontró nada",
+      nothingBody: "No hay direcciones, hashes de transacción ni nombres en esta página. Selecciona texto y haz clic derecho para buscarlo.",
+      found: "Encontrados: {count}",
+      copyAll: "Copiar todo",
+      checkAll: "Comprobar todo en lote",
+      cantReadTitle: "No se puede leer esta página",
+      cantReadBody: "{error}. Las páginas del navegador (ajustes, tiendas de extensiones, pestañas nuevas) no se pueden escanear.",
+      bannerTitle: "Direcciones en {host}",
+      bannerBody: "Lee el texto visible de esta pestaña una vez, al abrir esta sección. No se envía nada a ningún sitio.",
+      rescan: "Volver a escanear"
+    },
+    toolsNav: {
+      more: "Más",
+      batchCheck: "Comprobación por lotes"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Conversor de unidades",
+        short: "wei · gwei · ETH, sats · BTC, cualquier número de decimales",
+        description: "Convierte entre wei, gwei y ether, satoshis y bitcoin, lamports y SOL, o cualquier número de decimales de un token, con exactitud (sin redondeo)."
+      },
+      "address-validator": {
+        title: "Validador de direcciones",
+        short: "Checksums para más de 25 formatos de dirección",
+        description: "Comprueba si una dirección es válida para su cadena: checksums EIP-55, base58check, bech32, CashAddr, SS58, Stellar y TON, además de la instantánea de sanciones de la OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, texto y hashes",
+        short: "hex ↔ decimal, UTF-8, keccak256, SHA-256",
+        description: "Convierte hex a decimal y viceversa, texto a hex, lee palabras int256 y calcula hashes de texto o bytes con keccak256 y SHA-256 (con selectores de función)."
+      },
+      "timestamp-converter": {
+        title: "Conversor de marcas de tiempo",
+        short: "segundos Unix, ms, hex ↔ fecha",
+        description: "Convierte marcas de tiempo Unix (segundos, milisegundos, marcas de bloque en hex) a fechas en UTC y en tu zona horaria, y fechas a marcas de tiempo."
+      },
+      "gas-calculator": {
+        title: "Calculadora de gas y comisiones",
+        short: "Comisiones EIP-1559 con precios de gas en vivo",
+        description: "Calcula comisiones de transacción a partir del límite de gas, la comisión base y la propina, con precios de gas en vivo para 11 cadenas EVM y tarifas de Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Decodificador de calldata y ABI",
+        short: "Decodifica o codifica llamadas a funciones",
+        description: "Decodifica calldata de Ethereum con el ABI de un contrato, una firma de función o la lista integrada de funciones comunes, y codifica llamadas a partir de una firma."
+      },
+      "transaction-decoder": {
+        title: "Decodificador de transacciones en bruto",
+        short: "tx firmada → campos y remitente",
+        description: "Decodifica localmente una transacción EVM firmada en bruto (legacy, EIP-1559, blob, EIP-7702) y recupera el remitente, sin difundirla."
+      }
+    },
+    gas: {
+      offlineBody: "El gas en vivo necesita una consulta en línea. Activa las consultas en línea en los ajustes o usa la calculadora de comisiones con tus propios valores.",
+      loading: "Cargando precios de gas en vivo…",
+      btcRate: "tarifa, sat/vB",
+      nextBlock: "Próximo bloque",
+      halfHour: "~30 min",
+      hour: "~1 hora",
+      economy: "Económica",
+      btcUnavailable: "Comisiones de Bitcoin no disponibles: {reason}",
+      transfer: "transferencia {usd}",
+      noUsd: "sin precio en USD",
+      gweiStale: "gwei · desactualizado",
+      na: "n/d",
+      source: "RPC públicos, mempool.space, CoinGecko · obtenido a las {time} UTC. Los rollups añaden una comisión de datos L1.",
+      head: "Comisiones en vivo · {count} cadenas EVM y Bitcoin",
+      chain: "Cadena",
+      priceCol: "Precio del gas (gwei)",
+      transferCol: "Transferencia (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filtrar por etiqueta, dirección o nota",
+      filterLabel: "Filtrar elementos guardados",
+      emptyTitle: "Aún no hay nada guardado",
+      emptyBody: "Pulsa Guardar después de una búsqueda para conservar aquí una dirección o transacción con etiqueta y notas. Los elementos guardados se quedan en este navegador.",
+      noMatch: "Nada coincide con “{query}”.",
+      unpin: "Desfijar",
+      pin: "Fijar arriba",
+      manageTitle: "Editar etiquetas y notas, exportar, importar o compartir",
+      manage: "Gestionar"
+    },
+    settings: {
+      appearance: "Apariencia",
+      appearanceHint: "Claro por defecto. Sistema sigue a tu navegador.",
+      whenSearch: "Al pulsar Buscar",
+      whenSearchHint: "Las búsquedas con clic derecho y la palabra clave w3 también siguen esta opción.",
+      resultsFirst: "Resultados de Web3Lens primero",
+      resultsFirstHint: "Saldos, tokens y riesgos en {count} cadenas; las demás abren su explorador.",
+      alwaysExplorer: "Abrir siempre el explorador",
+      alwaysExplorerHint: "Ir directamente al explorador en una pestaña nueva.",
+      onlineOn: "Activadas: saldos, transacciones, comprobaciones de riesgo y gas llegan desde {host} cuando lo pides.",
+      onlineOff: "Desactivadas: detección, checksums, enlaces, herramientas e instantánea OFAC funcionan en local.",
+      recent: "Búsquedas recientes",
+      recentKept: "Guardadas en este navegador: {count}.",
+      more: "Más ajustes",
+      moreHint: "Exploradores preferidos, cadenas favoritas, datos y restablecer",
+      pageTitle: "Busca a tu manera",
+      privacy: "Privacidad",
+      privacyBody: "Los saldos, las transacciones, las comprobaciones de riesgo y el gas en vivo se obtienen de {host} cuando lo pides. Desactívalo para mantenerlo todo en el navegador: la detección, los checksums, los enlaces a exploradores, las herramientas y la instantánea de la OFAC incluida siguen funcionando.",
+      privacyNote: "La extensión no tiene permisos de host y solo lee una página cuando abres en ella la pestaña “Escanear página” de la ventana emergente.",
+      preferredExplorers: "Exploradores preferidos",
+      favouriteChains: "Cadenas favoritas",
+      noneYet: "Ninguna todavía.",
+      addChain: "Añadir una cadena por nombre",
+      data: "Datos",
+      dataBody: "Todo está en el almacenamiento de extensiones de este navegador.",
+      clearRecent: "Borrar búsquedas recientes",
+      deleteSaved: "Eliminar elementos guardados",
+      resetPrefs: "Restablecer preferencias",
+      confirmDelete: "¿Eliminar todos los elementos guardados?",
+      options: "Opciones de la extensión"
+    },
+    info: {
+      title: "Acerca de Web3Lens",
+      fasterWays: "Accesos más rápidos",
+      shortcut: "Atajo de teclado",
+      shortcutBody: "Abre esta ventana con {keys}.",
+      rightClick: "Clic derecho",
+      rightClickBody: "Selecciona una dirección o hash en cualquier página y elige {menu}.",
+      addressBar: "Barra de direcciones",
+      addressBarBody: "Escribe {key}, un espacio y pega para buscar.",
+      statChains: "blockchains detectadas y enrutadas",
+      statNative: "con saldos en vivo y comprobaciones de riesgo",
+      statOfac: "instantánea de la lista OFAC, comprobada localmente",
+      website: "Sitio web",
+      contact: "Contacto",
+      contactSub: "Enviar comentarios",
+      privacy: "Política de privacidad",
+      privacySub: "Datos guardados y enviados",
+      moreFrom: "Más del mismo desarrollador",
+      summarytube: "Resúmenes de vídeos de YouTube",
+      centpage: "La mejor página de inicio de internet",
+      sessionmanager: "Guarda y restaura pestañas",
+      webdevtools: "Herramientas para desarrolladores web",
+      foot: "Extensión Web3Lens v{version} · sin cuenta, los datos guardados se quedan en este navegador"
+    },
+    search: {
+      placeholder: "Dirección, hash de tx, bloque o nombre ENS",
+      inputLabel: "Dirección, hash de transacción, bloque o nombre",
+      unknownFormat: "Web3Lens no reconoce este formato: se enviará a la búsqueda del explorador de la cadena elegida.",
+      secret: "Secreto detectado.",
+      checksumOk: "· checksum correcto",
+      badChecksum: "checksum incorrecto",
+      testnet: "testnet",
+      ofacListed: "En la lista OFAC",
+      searchOn: "Buscar en",
+      switchTo: "Cambiar a",
+      couldBe: "También podría ser: {list}",
+      explorerDown: "El explorador de {chain} no respondió en la última comprobación.",
+      searchWeb: "Buscar en la web",
+      openAnyway: "abrir de todos modos",
+      fallback: "{chain} es una de las pocas blockchains que aún no son compatibles. Te redirigimos a un explorador de {chain}...",
+      empty: "Primero pega una dirección, hash de transacción, número de bloque o nombre.",
+      notSearched: "No se ha buscado.",
+      offlineExplorers: "Las consultas en línea están desactivadas (ajustes), así que aquí tienes los exploradores:",
+      recent: "Recientes",
+      recentEmpty: "Tus últimas búsquedas aparecen aquí y solo se guardan en este navegador.",
+      openFull: "Abrir vista completa",
+      openExplorer: "Abrir en el explorador"
+    },
+    source: {
+      unavailableFrom: "No disponible desde {source}: {reason}. No se muestra nada en lugar de una suposición.",
+      unavailable: "No disponible: {reason}. No se muestra nada en lugar de una suposición.",
+      line: "Fuente: {source} · obtenido {ago}",
+      stale: "· desactualizado (la fuente no responde)",
+      explorerDown: "No respondió en la última comprobación"
+    },
+    api: {
+      badAnswer: "Web3Lens envió una respuesta que esta versión de la extensión no puede leer. Los enlaces a exploradores y las comprobaciones locales siguen funcionando; actualizar la extensión debería solucionarlo.",
+      timeout: "Web3Lens tardó demasiado en responder. Inténtalo de nuevo en un momento; los enlaces a exploradores y las comprobaciones locales siguen funcionando.",
+      unreachable: "No se pudo contactar con Web3Lens. Comprueba tu conexión.",
+      rateLimited: "Demasiadas consultas en poco tiempo. Espera un minuto e inténtalo de nuevo.",
+      serviceDown: "El servicio de consultas de Web3Lens no está disponible ahora mismo (HTTP {status}). Los enlaces a exploradores y las comprobaciones locales siguen funcionando."
+    },
+    result: {
+      qr: "Código QR",
+      transaction: "Transacción",
+      address: "Dirección",
+      offline: "Las consultas en línea están desactivadas en los ajustes. Los enlaces a exploradores y las comprobaciones locales siguen funcionando.",
+      onOfac: "En la lista de sanciones de la OFAC ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Valor en USD no disponible",
+      type: "Tipo",
+      delegated: "EIP-7702 delegada a {address}",
+      contractBytes: "Contrato ({count} bytes)",
+      walletNoCode: "Billetera (sin código)",
+      sentTxs: "Tx enviadas",
+      resolvedFrom: "Resuelto desde",
+      tokens: "Tokens",
+      noErc20: "Sin tokens ERC-20.",
+      hiddenTokens: "Tokens ocultos: {count}. Marcados como spam por el indexador o sin nombre ni símbolo. No interactúes con tokens que no esperabas.",
+      knownOnly: "Solo se comprobaron {count} tokens conocidos (ningún índice gratuito de tokens cubre {chain}); no se muestran otras tenencias.",
+      activity: "Actividad",
+      transactions: "Transacciones",
+      tokenTransfers: "Transferencias de tokens",
+      labelsContract: "Etiquetas y contrato",
+      flagged: "Blockscout marca esta dirección ({reason}).",
+      scam: "estafa",
+      name: "Nombre",
+      tags: "Etiquetas",
+      verifiedSource: "Código fuente verificado",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Transacciones sin confirmar pendientes: {count}. No incluidas arriba.",
+      received: "Recibido",
+      sent: "Enviado",
+      recentTxs: "Transacciones recientes",
+      account: "Cuenta",
+      program: "Programa",
+      notFound: "No encontrada en la cadena",
+      owner: "Propietario",
+      splTokens: "Tokens SPL",
+      noSpl: "Sin saldos de tokens SPL.",
+      token2022: "No se pudieron leer los saldos Token-2022 desde el RPC público.",
+      recentSigs: "Firmas recientes",
+      unknownTx: "{chain} no conoce esta transacción.",
+      unknownSig: "Solana no conoce esta firma.",
+      status: "Estado",
+      block: "Bloque",
+      conf: "{block} · {count} conf.",
+      time: "Hora",
+      from: "De",
+      to: "Para",
+      value: "Valor",
+      fee: "Comisión",
+      input: "Entrada",
+      verifiedAbi: "ABI verificado",
+      guessed: "estimado",
+      success: "correcta",
+      failed: "fallida",
+      confirmed: "confirmada",
+      unconfirmedBadge: "sin confirmar",
+      mempool: "mempool",
+      output: "Salida",
+      outputs: "Salidas ({count})",
+      slot: "Slot",
+      signer: "Firmante"
+    },
+    risk: {
+      checking: "Comprobando sanciones, reportes y contrato…",
+      title: "Comprobaciones de riesgo",
+      signals: "Señales de riesgo encontradas: {count}. No envíes fondos ni firmes nada sin comprobarlo.",
+      noReports: "No hay reportes en las fuentes de abajo. Eso no significa que sea seguro: la mayoría de las estafas nunca se reportan.",
+      listed: "EN LA LISTA ({lists})",
+      notListed: "no está en la lista (instantánea {date})",
+      markedScam: "marcada como estafa",
+      notFlagged: "sin marcar",
+      noReportsShort: "sin reportes",
+      scamReports: "Reportes de estafa",
+      notChecked: "no comprobado: las fuentes gratuitas solo cubren cadenas EVM",
+      verified: "Verificado",
+      upgradeable: "Actualizable",
+      yesArrow: "sí → {address}",
+      noSlots: "sin slots EIP-1967",
+      noOwner: "sin owner()",
+      renounced: "renunciado",
+      contract: "contrato",
+      wallet: "billetera",
+      admin: "Funciones de administrador",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "ninguna encontrada",
+      tokenRisk: "Riesgo del token",
+      noFlags: "sin alertas",
+      onlineUnavailable: "Comprobaciones en línea no disponibles: {error}",
+      ofacLocal: "OFAC (local)",
+      checkApprovals: "Comprobar aprobaciones de tokens",
+      scanningApprovals: "Escaneando aprobaciones y leyendo asignaciones…",
+      aWallet: "(¡una billetera!)",
+      unlimited: "ilimitada",
+      allItems: "todos los elementos",
+      noApprovals: "No se encontraron aprobaciones activas en los eventos escaneados.",
+      capped: "La búsqueda de registros alcanzó su límite: pueden faltar aprobaciones antiguas.",
+      revoke: "Revisar o revocar en revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Comprobando {count} cadenas EVM…",
+      code: "código",
+      txCount: "{count} tx",
+      source: "RPC públicos · precios {source} · {ago}",
+      title: "La misma dirección en otras cadenas EVM"
+    },
+    locate: {
+      asking: "Consultando {count} cadenas EVM…",
+      foundOn: "Encontrada en {chain} →",
+      notFound: "No se encontró en las {count} cadenas EVM compatibles; prueba con los enlaces a exploradores.",
+      title: "¿En qué cadena está?"
+    },
+    unit: {
+      anyToken: "cualquier token",
+      rawUnits: "unidades en bruto",
+      tokens: "tokens",
+      amount: "Cantidad",
+      family: "Familia de unidades",
+      from: "Unidad de origen",
+      decimals: "Decimales del token (cualquier token)"
+    },
+    validator: {
+      invalid: "No es una dirección ni un hash válido en ningún formato que Web3Lens conozca.",
+      checksumValid: "checksum válido",
+      checksumInvalid: "el checksum NO coincide",
+      noChecksum: "sin checksum",
+      formatOnly: "solo formato",
+      notOnOfac: "no está en la instantánea OFAC",
+      normalised: "Normalizada",
+      field: "Dirección, hash o nombre",
+      hint: "Un checksum válido significa que se copió correctamente, no que sea de confianza."
+    },
+    hex: {
+      decimal: "Decimal",
+      text: "Texto",
+      textOption: "texto",
+      hexBytes: "bytes hex",
+      selector: "Selector",
+      number: "Número",
+      hexOrDecimal: "Hex o decimal",
+      textToHex: "Texto → hex",
+      hexToText: "Hex → texto",
+      hashes: "Hashes",
+      input: "Entrada",
+      inputIs: "La entrada es"
+    },
+    time: {
+      now: "Ahora",
+      readAs: "Interpretado como {kind}",
+      unixSeconds: "Segundos Unix",
+      milliseconds: "Milisegundos",
+      local: "Local",
+      relative: "Relativo",
+      field: "Marca de tiempo o fecha",
+      future: "en el futuro",
+      kind: {
+        hexSeconds: "segundos en hex",
+        nanoseconds: "nanosegundos",
+        microseconds: "microsegundos",
+        milliseconds: "milisegundos",
+        seconds: "segundos",
+        date: "fecha"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Transferencia de ETH",
+        erc20Transfer: "Transferencia ERC-20",
+        erc20Approve: "Aprobación ERC-20",
+        uniswapSwap: "Intercambio en Uniswap",
+        nftMint: "Acuñación de NFT"
+      },
+      optional: "gwei (opcional)",
+      useLive: "Usar precio de gas en vivo",
+      liveFrom: "En vivo desde {chain}",
+      gasPrice: "Precio del gas",
+      feeSymbol: "Comisión ({symbol})",
+      feeWei: "Comisión (wei)",
+      feeUsd: "Comisión (USD)",
+      maxToHold: "Máximo a reservar",
+      feeSats: "Comisión (sats)",
+      feeBtc: "Comisión (BTC)",
+      evmFee: "Comisión EVM",
+      gasLimit: "Límite de gas",
+      baseFee: "Comisión base / precio del gas",
+      priorityFee: "Comisión de prioridad",
+      maxFee: "Comisión máxima",
+      l1Note: "Los rollups también cobran una comisión de datos L1 que no se incluye aquí.",
+      btcFee: "Comisión de Bitcoin",
+      size: "Tamaño (vbytes)",
+      feeRate: "Tarifa"
+    },
+    abi: {
+      abiPlaceholder: "ABI en JSON o una firma por línea (opcional)",
+      badCalldata: "El calldata debe ser 0x seguido de al menos un selector de 4 bytes.",
+      commonMatch: "Coincide con una firma común (no se dio ABI).",
+      lookupSelector: "Buscar el selector en línea",
+      asking: "Consultando openchain.xyz / 4byte.directory…",
+      community: "Firma enviada por la comunidad ({source}): trátala como una suposición.",
+      noneDecodes: "Ninguna firma enviada decodifica estos datos.",
+      unknownSelector: "El selector {selector} no es conocido.",
+      calldata: "Calldata",
+      decode: "Decodificar",
+      encode: "Codificar",
+      signature: "Firma de la función",
+      args: "Argumentos (array JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "De (recuperado)",
+      creation: "(creación de contrato)",
+      chainId: "Chain id",
+      replayable: "ninguno (reproducible)",
+      nonce: "Nonce",
+      data: "Datos",
+      bestGuess: "Coincide con una firma común; una estimación sin el ABI.",
+      authorization: "Autorización EIP-7702",
+      delegatesTo: "Delega en",
+      chainNonce: "Cadena / nonce",
+      anyChain: "0 (¡cualquier cadena!)",
+      field: "Transacción firmada en bruto",
+      hint: "Decodificada localmente; no se difunde nada."
+    },
+    app: {
+      batch: "Lote",
+      moreTools: "Más herramientas",
+      batchSearch: "Búsqueda por lotes",
+      batchSearchBody: "Comprueba hasta 50 direcciones a la vez y exporta a CSV",
+      devToolsBody: "Unidades, checksums, decodificadores, marcas de tiempo",
+      savedBody: "Tus etiquetas y notas, privadas en este navegador",
+      view: {
+        search: "Buscar",
+        result: "Resultado",
+        batch: "Lote",
+        tools: "Herramientas",
+        saved: "Guardados",
+        settings: "Ajustes"
+      }
+    },
+    batch: {
+      valueCol: "Valor",
+      typeCol: "Tipo",
+      checksCol: "Comprobaciones",
+      notRecognised: "no reconocido",
+      secret: "secreto",
+      ok: "ok",
+      leftOut: "Omitidos: {count} (límite {max}).",
+      checking: "comprobando…",
+      active: "{active}/{total} activas · {usd}",
+      fetchBalances: "Obtener saldos EVM ({count})",
+      exportCsv: "Exportar CSV",
+      savedMsg: "Guardado en este navegador.",
+      saveAll: "Guardar todo",
+      shareCopied: "Enlace copiado (se abre en web3lens.com; la lista va dentro del enlace).",
+      copyShare: "Copiar enlace para compartir",
+      checked: "Comprobados: {count}",
+      title: "Comprueba una lista de una vez",
+      intro: "Hasta {max} direcciones, hashes o nombres: uno por línea, o separados por comas o espacios.",
+      checkAll: "Comprobar todo"
+    },
+    savedPage: {
+      filter: "Filtrar",
+      empty: "Aún no hay nada guardado. Usa Guardar en la búsqueda o en el lote.",
+      label: "Etiqueta",
+      notes: "Notas",
+      select: "Seleccionar",
+      remove: "Eliminar",
+      tooLarge: "Archivo demasiado grande",
+      imported: "Elementos importados: {count}.",
+      importFailed: "Error al importar: {error}",
+      title: "Tus etiquetas y notas",
+      intro: "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). No se sincroniza nada.",
+      exportJson: "Exportar JSON",
+      importJson: "Importar JSON",
+      selectFirst: "Primero selecciona elementos.",
+      shareCopied: "Enlace copiado. Las etiquetas y notas van dentro del enlace: cualquiera que lo tenga puede leerlas.",
+      shareSelected: "Compartir seleccionados"
+    },
+    detect: {
+      address: "Dirección de {chain}",
+      testnetAddress: "Dirección de testnet de {chain}",
+      stakeAddress: "Dirección de staking de {chain}",
+      addressRaw: "Dirección de {chain} (raw)",
+      bech32: "Dirección Bech32 ({hrp})",
+      txHashOf: "Hash de transacción de {chain}",
+      extrinsicHash: "Hash de extrínseco de {chain}",
+      operationHash: "Hash de operación de {chain}",
+      blockHash: "Hash de bloque de {chain}",
+      secretKey: "Clave secreta de {chain}",
+      signature: "Firma de {chain}",
+      dnsName: "Nombre DNS de {chain}",
+      name: "Nombre {chain}",
+      account: "Cuenta de {chain}",
+      contract: "Contrato de {chain}",
+      transactionHash: "Hash de transacción",
+      blockNumber: "Número de bloque",
+      recoveryPhrase: "Frase de recuperación",
+      privateKey: "Clave privada (WIF)",
+      note: {
+        badChecksum: "El checksum no coincide. El valor puede tener un error tipográfico; compruébalo antes de enviar fondos.",
+        privateKey: "Esto parece una clave privada. Quien la tenga controla los fondos. Web3Lens no la buscará.",
+        stellarSecret: "Esta es una clave secreta de Stellar. Quien la tenga controla la cuenta. Web3Lens no la buscará.",
+        recoveryPhrase: "Esto parece una frase de recuperación de billetera. Quien la tenga controla la billetera. Web3Lens no la buscará; nunca la pegues en un sitio web.",
+        bech32Unknown: "Una dirección bech32 válida para “{hrp}”, una red que Web3Lens aún no incluye.",
+        versionByte: "El byte de versión {byte} no es uno que Web3Lens reconozca."
+      }
+    }
+  };
+
+  // extension-src/locales/pt.json
+  var pt_default = {
+    common: {
+      copy: "Copiar",
+      copied: "Copiado",
+      close: "Fechar",
+      loading: "Carregando…",
+      refresh: "Atualizar",
+      clear: "Limpar",
+      save: "Salvar",
+      saved: "Salvos",
+      search: "Pesquisar",
+      tools: "Ferramentas",
+      settings: "Configurações",
+      sections: "Seções",
+      yes: "Sim",
+      no: "Não",
+      yesLower: "sim",
+      noLower: "não",
+      unavailable: "indisponível",
+      unavailableReason: "indisponível: {reason}",
+      unavailableParen: "indisponível ({reason})",
+      unavailableCap: "Indisponível: {reason}",
+      unknown: "desconhecido",
+      pending: "pendente",
+      staleParen: "(desatualizado)",
+      offInSettings: "As consultas online estão desativadas nas configurações.",
+      openInFullTab: "Abrir em uma aba inteira",
+      developerTools: "Ferramentas para desenvolvedores",
+      gasTracker: "Monitor de gas",
+      feeCalculator: "Calculadora de taxas",
+      unrecognised: "não reconhecido",
+      offlineMode: "Modo offline",
+      onlineLookups: "Consultas online",
+      explorers: "Exploradores",
+      liveFees: "Taxas ao vivo em {count} redes EVM e Bitcoin"
+    },
+    theme: {
+      label: "Tema",
+      light: "Claro",
+      dark: "Escuro",
+      system: "Sistema",
+      lightDefault: "Claro (padrão)",
+      lightTheme: "Tema claro",
+      darkTheme: "Tema escuro",
+      systemTheme: "Tema do sistema",
+      current: "Tema: {theme}"
+    },
+    language: {
+      label: "Idioma",
+      hint: "Automático segue o seu navegador.",
+      fallbackNote: "O que ainda não foi traduzido aparece em inglês.",
+      auto: "Automático ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Pesquisar entre {count} redes…",
+      filterLabel: "Filtrar blockchains",
+      listLabel: "Blockchains",
+      autoDetected: "Detectada automaticamente",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Trocar blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (detectada automaticamente). Trocar blockchain",
+      results: "Resultados",
+      detected: "Detectadas",
+      favourites: "Favoritas",
+      popular: "Populares",
+      allChains: "Todas as redes · {count}",
+      explorerDown: "explorador fora do ar",
+      limited: "limitada",
+      pin: "Fixar {chain}",
+      unpin: "Desafixar {chain}",
+      noMatch: "Nenhuma rede corresponde a “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Consulta",
+        scan: "Escanear página",
+        tools: "Ferramentas",
+        gas: "Gas",
+        saved: "Salvos"
+      },
+      tagline: "Busca em blockchain para {strong}",
+      taglineStrong: "todas as redes",
+      online: "Online",
+      statusOnline: "As consultas vão para {host}. Altere nas configurações",
+      statusOffline: "Nada sai do seu navegador. Altere nas configurações",
+      aboutButton: "Sobre, atalhos e mais ferramentas",
+      openApp: "Abrir o app completo em uma aba",
+      footOnline: "As consultas que você faz vão para {host}. Nada mais sai do seu navegador.",
+      footOffline: "Modo offline: nada sai do seu navegador.",
+      footLink: "Atalhos e mais ferramentas"
+    },
+    hero: {
+      title: "Consulte qualquer coisa, em {accent}",
+      titleAccent: "qualquer rede.",
+      popupLead: "Cole um endereço, transação, bloco ou nome. O Web3Lens encontra a rede dele entre {count}.",
+      appLead: "Cole um endereço, transação, bloco ou nome. O Web3Lens reconhece, verifica e mostra a resposta."
+    },
+    examples: {
+      title: "Experimente um exemplo",
+      vitalik: "ENS de Vitalik Buterin",
+      usdc: "Contrato do USDC",
+      genesis: "Endereço gênese do Bitcoin",
+      usdtTron: "USDT na Tron"
+    },
+    scan: {
+      reading: "Lendo esta página…",
+      noTab: "Nenhuma aba ativa",
+      thisTab: "esta aba",
+      nothingTitle: "Nada encontrado",
+      nothingBody: "Nenhum endereço, hash de transação ou nome nesta página. Selecione um texto e clique com o botão direito para consultá-lo.",
+      found: "Encontrados: {count}",
+      copyAll: "Copiar tudo",
+      checkAll: "Verificar tudo em lote",
+      cantReadTitle: "Não é possível ler esta página",
+      cantReadBody: "{error}. Páginas do navegador (configurações, lojas de extensões, novas abas) não podem ser escaneadas.",
+      bannerTitle: "Endereços em {host}",
+      bannerBody: "Lê o texto visível desta aba uma vez, quando você abre esta seção. Nada é enviado a lugar nenhum.",
+      rescan: "Escanear de novo"
+    },
+    toolsNav: {
+      more: "Mais",
+      batchCheck: "Verificação em lote"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Conversor de unidades",
+        short: "wei · gwei · ETH, sats · BTC, quaisquer decimais",
+        description: "Converta entre wei, gwei e ether, satoshis e bitcoin, lamports e SOL, ou quaisquer decimais de token, com exatidão (sem arredondamento)."
+      },
+      "address-validator": {
+        title: "Validador de endereços",
+        short: "Checksums para mais de 25 formatos de endereço",
+        description: "Verifique se um endereço é válido para a sua rede: checksums EIP-55, base58check, bech32, CashAddr, SS58, Stellar e TON, além do snapshot de sanções da OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, texto e hashes",
+        short: "hex ↔ decimal, UTF-8, keccak256, SHA-256",
+        description: "Converta hex para decimal e vice-versa, texto para hex, leia palavras int256 e gere hashes de texto ou bytes com keccak256 e SHA-256 (com seletores de função)."
+      },
+      "timestamp-converter": {
+        title: "Conversor de timestamps",
+        short: "segundos Unix, ms, hex ↔ data",
+        description: "Converta timestamps Unix (segundos, milissegundos, timestamps de bloco em hex) em datas em UTC e no seu fuso horário, e datas de volta em timestamps."
+      },
+      "gas-calculator": {
+        title: "Calculadora de gas e taxas",
+        short: "Taxas EIP-1559 com preços de gas ao vivo",
+        description: "Calcule taxas de transação a partir do limite de gas, da taxa base e da gorjeta, com preços de gas ao vivo para 11 redes EVM e taxas do Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Decodificador de calldata e ABI",
+        short: "Decodifique ou codifique chamadas de função",
+        description: "Decodifique calldata do Ethereum com o ABI de um contrato, uma assinatura de função ou a lista embutida de funções comuns, e codifique chamadas a partir de uma assinatura."
+      },
+      "transaction-decoder": {
+        title: "Decodificador de transação bruta",
+        short: "tx assinada → campos e remetente",
+        description: "Decodifique localmente uma transação EVM bruta assinada (legacy, EIP-1559, blob, EIP-7702) e recupere o remetente, sem transmiti-la."
+      }
+    },
+    gas: {
+      offlineBody: "O gas ao vivo precisa de uma consulta online. Ative as consultas online nas configurações ou use a calculadora de taxas com seus próprios valores.",
+      loading: "Carregando preços de gas ao vivo…",
+      btcRate: "taxa, sat/vB",
+      nextBlock: "Próximo bloco",
+      halfHour: "~30 min",
+      hour: "~1 hora",
+      economy: "Econômica",
+      btcUnavailable: "Taxas do Bitcoin indisponíveis: {reason}",
+      transfer: "transferência {usd}",
+      noUsd: "sem preço em USD",
+      gweiStale: "gwei · desatualizado",
+      na: "n/d",
+      source: "RPCs públicos, mempool.space, CoinGecko · obtido às {time} UTC. Rollups adicionam uma taxa de dados L1.",
+      head: "Taxas ao vivo · {count} redes EVM e Bitcoin",
+      chain: "Rede",
+      priceCol: "Preço do gas (gwei)",
+      transferCol: "Transferência (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filtrar por rótulo, endereço ou nota",
+      filterLabel: "Filtrar itens salvos",
+      emptyTitle: "Nada salvo ainda",
+      emptyBody: "Clique em Salvar depois de uma pesquisa para guardar aqui um endereço ou transação com rótulo e notas. Os itens salvos ficam neste navegador.",
+      noMatch: "Nada corresponde a “{query}”.",
+      unpin: "Desafixar",
+      pin: "Fixar no topo",
+      manageTitle: "Editar rótulos e notas, exportar, importar ou compartilhar",
+      manage: "Gerenciar"
+    },
+    settings: {
+      appearance: "Aparência",
+      appearanceHint: "Claro é o padrão. Sistema segue o navegador.",
+      whenSearch: "Quando eu clicar em Pesquisar",
+      whenSearchHint: "As consultas pelo botão direito e a palavra-chave w3 também seguem esta opção.",
+      resultsFirst: "Resultados do Web3Lens primeiro",
+      resultsFirstHint: "Saldos, tokens e verificações de risco em {count} redes; as outras redes abrem o seu explorador.",
+      alwaysExplorer: "Sempre abrir o explorador",
+      alwaysExplorerHint: "Ir direto para o explorador em uma nova aba.",
+      onlineOn: "Ativadas: saldos, transações, verificações de risco e gas vêm de {host} quando você pede.",
+      onlineOff: "Desativadas: detecção, checksums, links, ferramentas e o snapshot da OFAC funcionam localmente.",
+      recent: "Pesquisas recentes",
+      recentKept: "Guardadas neste navegador: {count}.",
+      more: "Mais configurações",
+      moreHint: "Exploradores preferidos, redes favoritas, dados e redefinição",
+      pageTitle: "Pesquise do seu jeito",
+      privacy: "Privacidade",
+      privacyBody: "Saldos, transações, verificações de risco e gas ao vivo são obtidos de {host} quando você pede. Desative para manter tudo no navegador: detecção, checksums, links de exploradores, ferramentas e o snapshot da OFAC incluído continuam funcionando.",
+      privacyNote: "A extensão não tem permissões de host e só lê uma página quando você abre nela a aba “Escanear página” do pop-up.",
+      preferredExplorers: "Exploradores preferidos",
+      favouriteChains: "Redes favoritas",
+      noneYet: "Nenhuma ainda.",
+      addChain: "Adicionar uma rede pelo nome",
+      data: "Dados",
+      dataBody: "Tudo fica no armazenamento de extensões deste navegador.",
+      clearRecent: "Limpar pesquisas recentes",
+      deleteSaved: "Excluir itens salvos",
+      resetPrefs: "Redefinir preferências",
+      confirmDelete: "Excluir todos os itens salvos?",
+      options: "Opções da extensão"
+    },
+    info: {
+      title: "Sobre o Web3Lens",
+      fasterWays: "Atalhos mais rápidos",
+      shortcut: "Atalho de teclado",
+      shortcutBody: "Abra este pop-up com {keys}.",
+      rightClick: "Botão direito",
+      rightClickBody: "Selecione um endereço ou hash em qualquer página e escolha {menu}.",
+      addressBar: "Barra de endereços",
+      addressBarBody: "Digite {key}, um espaço e cole para pesquisar.",
+      statChains: "blockchains detectadas e direcionadas",
+      statNative: "com saldos ao vivo e verificações de risco",
+      statOfac: "snapshot da lista OFAC, verificado localmente",
+      website: "Site",
+      contact: "Fale conosco",
+      contactSub: "Enviar feedback",
+      privacy: "Política de privacidade",
+      privacySub: "Dados armazenados e enviados",
+      moreFrom: "Mais do mesmo desenvolvedor",
+      summarytube: "Resumos de vídeos do YouTube",
+      centpage: "A melhor página inicial da internet",
+      sessionmanager: "Salve e restaure abas",
+      webdevtools: "Ferramentas para desenvolvedores web",
+      foot: "Extensão Web3Lens v{version} · sem conta, os dados salvos ficam neste navegador"
+    },
+    search: {
+      placeholder: "Endereço, hash de tx, bloco ou nome ENS",
+      inputLabel: "Endereço, hash de transação, bloco ou nome",
+      unknownFormat: "O Web3Lens não reconhece este formato: ele irá para a pesquisa do explorador da rede escolhida.",
+      secret: "Segredo detectado.",
+      checksumOk: "· checksum ok",
+      badChecksum: "checksum inválido",
+      testnet: "testnet",
+      ofacListed: "Na lista OFAC",
+      searchOn: "Pesquisar em",
+      switchTo: "Trocar para",
+      couldBe: "Também pode ser: {list}",
+      explorerDown: "O explorador da {chain} não respondeu na última verificação.",
+      searchWeb: "Pesquisar na web",
+      openAnyway: "abrir mesmo assim",
+      fallback: "{chain} é uma das poucas blockchains ainda não suportadas. Redirecionando você para um explorador da {chain}...",
+      empty: "Cole primeiro um endereço, hash de transação, número de bloco ou nome.",
+      notSearched: "Não pesquisado.",
+      offlineExplorers: "As consultas online estão desativadas (configurações), então aqui estão os exploradores:",
+      recent: "Recentes",
+      recentEmpty: "Suas últimas pesquisas aparecem aqui, guardadas apenas neste navegador.",
+      openFull: "Abrir visualização completa",
+      openExplorer: "Abrir no explorador"
+    },
+    source: {
+      unavailableFrom: "Indisponível em {source}: {reason}. Nada é mostrado em vez de um palpite.",
+      unavailable: "Indisponível: {reason}. Nada é mostrado em vez de um palpite.",
+      line: "Fonte: {source} · obtido {ago}",
+      stale: "· desatualizado (a fonte não responde)",
+      explorerDown: "Não respondeu na última verificação"
+    },
+    api: {
+      badAnswer: "O Web3Lens enviou uma resposta que esta versão da extensão não consegue ler. Links de exploradores e verificações locais continuam funcionando; atualizar a extensão deve resolver.",
+      timeout: "O Web3Lens demorou demais para responder. Tente de novo em instantes; links de exploradores e verificações locais continuam funcionando.",
+      unreachable: "Não foi possível acessar o Web3Lens. Verifique sua conexão.",
+      rateLimited: "Consultas demais em pouco tempo. Aguarde um minuto e tente de novo.",
+      serviceDown: "O serviço de consultas do Web3Lens está indisponível no momento (HTTP {status}). Links de exploradores e verificações locais continuam funcionando."
+    },
+    result: {
+      qr: "Código QR",
+      transaction: "Transação",
+      address: "Endereço",
+      offline: "As consultas online estão desativadas nas configurações. Links de exploradores e verificações locais continuam funcionando.",
+      onOfac: "Na lista de sanções da OFAC ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Valor em USD indisponível",
+      type: "Tipo",
+      delegated: "EIP-7702 delegado para {address}",
+      contractBytes: "Contrato ({count} bytes)",
+      walletNoCode: "Carteira (sem código)",
+      sentTxs: "Txs enviadas",
+      resolvedFrom: "Resolvido de",
+      tokens: "Tokens",
+      noErc20: "Nenhum token ERC-20.",
+      hiddenTokens: "Tokens ocultos: {count}. Marcados como spam pelo indexador ou sem nome ou símbolo. Não interaja com tokens que você não esperava.",
+      knownOnly: "Apenas {count} tokens conhecidos foram verificados (nenhum índice gratuito de tokens cobre {chain}); outros ativos não são mostrados.",
+      activity: "Atividade",
+      transactions: "Transações",
+      tokenTransfers: "Transferências de tokens",
+      labelsContract: "Rótulos e contrato",
+      flagged: "O Blockscout sinaliza este endereço ({reason}).",
+      scam: "golpe",
+      name: "Nome",
+      tags: "Tags",
+      verifiedSource: "Código-fonte verificado",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Transações não confirmadas pendentes: {count}. Não incluídas acima.",
+      received: "Recebido",
+      sent: "Enviado",
+      recentTxs: "Transações recentes",
+      account: "Conta",
+      program: "Programa",
+      notFound: "Não encontrada na rede",
+      owner: "Proprietário",
+      splTokens: "Tokens SPL",
+      noSpl: "Nenhum saldo de token SPL.",
+      token2022: "Não foi possível ler os saldos Token-2022 do RPC público.",
+      recentSigs: "Assinaturas recentes",
+      unknownTx: "A {chain} não conhece esta transação.",
+      unknownSig: "A Solana não conhece esta assinatura.",
+      status: "Status",
+      block: "Bloco",
+      conf: "{block} · {count} conf.",
+      time: "Horário",
+      from: "De",
+      to: "Para",
+      value: "Valor",
+      fee: "Taxa",
+      input: "Entrada",
+      verifiedAbi: "ABI verificado",
+      guessed: "estimado",
+      success: "sucesso",
+      failed: "falhou",
+      confirmed: "confirmada",
+      unconfirmedBadge: "não confirmada",
+      mempool: "mempool",
+      output: "Saída",
+      outputs: "Saídas ({count})",
+      slot: "Slot",
+      signer: "Assinante"
+    },
+    risk: {
+      checking: "Verificando sanções, denúncias e contrato…",
+      title: "Verificações de risco",
+      signals: "Sinais de risco encontrados: {count}. Não envie fundos nem assine nada sem verificar.",
+      noReports: "Nenhuma denúncia nas fontes abaixo. Isso não significa que seja seguro: a maioria dos golpes nunca é denunciada.",
+      listed: "NA LISTA ({lists})",
+      notListed: "fora da lista (snapshot {date})",
+      markedScam: "marcado como golpe",
+      notFlagged: "não sinalizado",
+      noReportsShort: "nenhuma denúncia",
+      scamReports: "Denúncias de golpe",
+      notChecked: "não verificado: as fontes gratuitas cobrem apenas redes EVM",
+      verified: "Verificado",
+      upgradeable: "Atualizável",
+      yesArrow: "sim → {address}",
+      noSlots: "sem slots EIP-1967",
+      noOwner: "sem owner()",
+      renounced: "renunciado",
+      contract: "contrato",
+      wallet: "carteira",
+      admin: "Funções de administrador",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "nenhuma encontrada",
+      tokenRisk: "Risco do token",
+      noFlags: "sem alertas",
+      onlineUnavailable: "Verificações online indisponíveis: {error}",
+      ofacLocal: "OFAC (local)",
+      checkApprovals: "Verificar aprovações de tokens",
+      scanningApprovals: "Escaneando aprovações e lendo permissões…",
+      aWallet: "(uma carteira!)",
+      unlimited: "ilimitada",
+      allItems: "todos os itens",
+      noApprovals: "Nenhuma aprovação ativa encontrada nos eventos escaneados.",
+      capped: "A busca de logs atingiu o limite: aprovações mais antigas podem estar faltando.",
+      revoke: "Revisar ou revogar em revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Verificando {count} redes EVM…",
+      code: "código",
+      txCount: "{count} tx",
+      source: "RPCs públicos · preços {source} · {ago}",
+      title: "Mesmo endereço em outras redes EVM"
+    },
+    locate: {
+      asking: "Consultando {count} redes EVM…",
+      foundOn: "Encontrada na {chain} →",
+      notFound: "Não encontrada nas {count} redes EVM suportadas; tente os links de exploradores.",
+      title: "Em qual rede ela está?"
+    },
+    unit: {
+      anyToken: "qualquer token",
+      rawUnits: "unidades brutas",
+      tokens: "tokens",
+      amount: "Quantidade",
+      family: "Família de unidades",
+      from: "Unidade de origem",
+      decimals: "Decimais do token (qualquer token)"
+    },
+    validator: {
+      invalid: "Não é um endereço ou hash válido em nenhum formato que o Web3Lens conheça.",
+      checksumValid: "checksum válido",
+      checksumInvalid: "checksum NÃO confere",
+      noChecksum: "sem checksum",
+      formatOnly: "apenas formato",
+      notOnOfac: "fora do snapshot OFAC",
+      normalised: "Normalizado",
+      field: "Endereço, hash ou nome",
+      hint: "Um checksum válido significa que foi copiado corretamente, não que seja confiável."
+    },
+    hex: {
+      decimal: "Decimal",
+      text: "Texto",
+      textOption: "texto",
+      hexBytes: "bytes hex",
+      selector: "Seletor",
+      number: "Número",
+      hexOrDecimal: "Hex ou decimal",
+      textToHex: "Texto → hex",
+      hexToText: "Hex → texto",
+      hashes: "Hashes",
+      input: "Entrada",
+      inputIs: "A entrada é"
+    },
+    time: {
+      now: "Agora",
+      readAs: "Interpretado como {kind}",
+      unixSeconds: "Segundos Unix",
+      milliseconds: "Milissegundos",
+      local: "Local",
+      relative: "Relativo",
+      field: "Timestamp ou data",
+      future: "no futuro",
+      kind: {
+        hexSeconds: "segundos em hex",
+        nanoseconds: "nanossegundos",
+        microseconds: "microssegundos",
+        milliseconds: "milissegundos",
+        seconds: "segundos",
+        date: "data"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Transferência de ETH",
+        erc20Transfer: "Transferência ERC-20",
+        erc20Approve: "Aprovação ERC-20",
+        uniswapSwap: "Swap na Uniswap",
+        nftMint: "Mint de NFT"
+      },
+      optional: "gwei (opcional)",
+      useLive: "Usar preço de gas ao vivo",
+      liveFrom: "Ao vivo da {chain}",
+      gasPrice: "Preço do gas",
+      feeSymbol: "Taxa ({symbol})",
+      feeWei: "Taxa (wei)",
+      feeUsd: "Taxa (USD)",
+      maxToHold: "Máximo a reservar",
+      feeSats: "Taxa (sats)",
+      feeBtc: "Taxa (BTC)",
+      evmFee: "Taxa EVM",
+      gasLimit: "Limite de gas",
+      baseFee: "Taxa base / preço do gas",
+      priorityFee: "Taxa de prioridade",
+      maxFee: "Taxa máxima",
+      l1Note: "Rollups também cobram uma taxa de dados L1 que não está incluída aqui.",
+      btcFee: "Taxa do Bitcoin",
+      size: "Tamanho (vbytes)",
+      feeRate: "Taxa por vbyte"
+    },
+    abi: {
+      abiPlaceholder: "ABI em JSON ou uma assinatura por linha (opcional)",
+      badCalldata: "O calldata deve ser 0x seguido de pelo menos um seletor de 4 bytes.",
+      commonMatch: "Corresponde a uma assinatura comum (nenhum ABI informado).",
+      lookupSelector: "Consultar seletor online",
+      asking: "Consultando openchain.xyz / 4byte.directory…",
+      community: "Assinatura enviada pela comunidade ({source}): trate como um palpite.",
+      noneDecodes: "Nenhuma assinatura enviada decodifica estes dados.",
+      unknownSelector: "O seletor {selector} não é conhecido.",
+      calldata: "Calldata",
+      decode: "Decodificar",
+      encode: "Codificar",
+      signature: "Assinatura da função",
+      args: "Argumentos (array JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "De (recuperado)",
+      creation: "(criação de contrato)",
+      chainId: "Chain id",
+      replayable: "nenhum (reproduzível)",
+      nonce: "Nonce",
+      data: "Dados",
+      bestGuess: "Corresponde a uma assinatura comum; uma estimativa sem o ABI.",
+      authorization: "Autorização EIP-7702",
+      delegatesTo: "Delega para",
+      chainNonce: "Rede / nonce",
+      anyChain: "0 (qualquer rede!)",
+      field: "Transação bruta assinada",
+      hint: "Decodificada localmente; nada é transmitido."
+    },
+    app: {
+      batch: "Lote",
+      moreTools: "Mais ferramentas",
+      batchSearch: "Pesquisa em lote",
+      batchSearchBody: "Verifique até 50 endereços de uma vez e exporte CSV",
+      devToolsBody: "Unidades, checksums, decodificadores, timestamps",
+      savedBody: "Seus rótulos e notas, privados neste navegador",
+      view: {
+        search: "Pesquisar",
+        result: "Resultado",
+        batch: "Lote",
+        tools: "Ferramentas",
+        saved: "Salvos",
+        settings: "Configurações"
+      }
+    },
+    batch: {
+      valueCol: "Valor",
+      typeCol: "Tipo",
+      checksCol: "Verificações",
+      notRecognised: "não reconhecido",
+      secret: "segredo",
+      ok: "ok",
+      leftOut: "Deixados de fora: {count} (limite {max}).",
+      checking: "verificando…",
+      active: "{active}/{total} ativas · {usd}",
+      fetchBalances: "Buscar saldos EVM ({count})",
+      exportCsv: "Exportar CSV",
+      savedMsg: "Salvo neste navegador.",
+      saveAll: "Salvar tudo",
+      shareCopied: "Link copiado (abre em web3lens.com; a lista está dentro do link).",
+      copyShare: "Copiar link de compartilhamento",
+      checked: "Verificados: {count}",
+      title: "Verifique uma lista de uma vez",
+      intro: "Até {max} endereços, hashes ou nomes: um por linha, ou separados por vírgulas ou espaços.",
+      checkAll: "Verificar tudo"
+    },
+    savedPage: {
+      filter: "Filtrar",
+      empty: "Nada salvo ainda. Use Salvar na pesquisa ou no lote.",
+      label: "Rótulo",
+      notes: "Notas",
+      select: "Selecionar",
+      remove: "Remover",
+      tooLarge: "Arquivo grande demais",
+      imported: "Itens importados: {count}.",
+      importFailed: "Falha na importação: {error}",
+      title: "Seus rótulos e notas",
+      intro: "Rótulos e notas ficam neste navegador (armazenamento da extensão). Nada é sincronizado.",
+      exportJson: "Exportar JSON",
+      importJson: "Importar JSON",
+      selectFirst: "Selecione itens primeiro.",
+      shareCopied: "Link copiado. Rótulos e notas estão dentro do link: qualquer pessoa com ele pode lê-los.",
+      shareSelected: "Compartilhar selecionados"
+    },
+    detect: {
+      address: "Endereço {chain}",
+      testnetAddress: "Endereço de testnet {chain}",
+      stakeAddress: "Endereço de staking {chain}",
+      addressRaw: "Endereço {chain} (raw)",
+      bech32: "Endereço Bech32 ({hrp})",
+      txHashOf: "Hash de transação {chain}",
+      extrinsicHash: "Hash de extrínseco {chain}",
+      operationHash: "Hash de operação {chain}",
+      blockHash: "Hash de bloco {chain}",
+      secretKey: "Chave secreta {chain}",
+      signature: "Assinatura {chain}",
+      dnsName: "Nome DNS {chain}",
+      name: "Nome {chain}",
+      account: "Conta {chain}",
+      contract: "Contrato {chain}",
+      transactionHash: "Hash de transação",
+      blockNumber: "Número do bloco",
+      recoveryPhrase: "Frase de recuperação",
+      privateKey: "Chave privada (WIF)",
+      note: {
+        badChecksum: "O checksum não confere. O valor pode ter um erro de digitação; verifique antes de enviar fundos.",
+        privateKey: "Isto parece uma chave privada. Quem a tiver controla os fundos. O Web3Lens não vai pesquisá-la.",
+        stellarSecret: "Esta é uma chave secreta da Stellar. Quem a tiver controla a conta. O Web3Lens não vai pesquisá-la.",
+        recoveryPhrase: "Isto parece uma frase de recuperação de carteira. Quem a tiver controla a carteira. O Web3Lens não vai pesquisá-la; nunca a cole em um site.",
+        bech32Unknown: "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
+        versionByte: "O byte de versão {byte} não é um que o Web3Lens reconheça."
+      }
+    }
+  };
+
+  // extension-src/locales/fr.json
+  var fr_default = {
+    common: {
+      copy: "Copier",
+      copied: "Copié",
+      close: "Fermer",
+      loading: "Chargement…",
+      refresh: "Actualiser",
+      clear: "Effacer",
+      save: "Enregistrer",
+      saved: "Enregistrés",
+      search: "Rechercher",
+      tools: "Outils",
+      settings: "Paramètres",
+      sections: "Sections",
+      yes: "Oui",
+      no: "Non",
+      yesLower: "oui",
+      noLower: "non",
+      unavailable: "indisponible",
+      unavailableReason: "indisponible : {reason}",
+      unavailableParen: "indisponible ({reason})",
+      unavailableCap: "Indisponible : {reason}",
+      unknown: "inconnu",
+      pending: "en attente",
+      staleParen: "(périmé)",
+      offInSettings: "Les recherches en ligne sont désactivées dans les paramètres.",
+      openInFullTab: "Ouvrir dans un onglet complet",
+      developerTools: "Outils pour développeurs",
+      gasTracker: "Suivi du gas",
+      feeCalculator: "Calculateur de frais",
+      unrecognised: "non reconnu",
+      offlineMode: "Mode hors ligne",
+      onlineLookups: "Recherches en ligne",
+      explorers: "Explorateurs",
+      liveFees: "Frais en direct sur {count} chaînes EVM et Bitcoin"
+    },
+    theme: {
+      label: "Thème",
+      light: "Clair",
+      dark: "Sombre",
+      system: "Système",
+      lightDefault: "Clair (par défaut)",
+      lightTheme: "Thème clair",
+      darkTheme: "Thème sombre",
+      systemTheme: "Thème du système",
+      current: "Thème : {theme}"
+    },
+    language: {
+      label: "Langue",
+      hint: "Automatique suit votre navigateur.",
+      fallbackNote: "Ce qui n’est pas encore traduit s’affiche en anglais.",
+      auto: "Automatique ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Rechercher parmi {count} chaînes…",
+      filterLabel: "Filtrer les blockchains",
+      listLabel: "Blockchains",
+      autoDetected: "Détectée automatiquement",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain : {chain}. Changer de blockchain",
+      buttonLabelAuto: "Blockchain : {chain} (détectée automatiquement). Changer de blockchain",
+      results: "Résultats",
+      detected: "Détectées",
+      favourites: "Favorites",
+      popular: "Populaires",
+      allChains: "Toutes les chaînes · {count}",
+      explorerDown: "explorateur en panne",
+      limited: "limitée",
+      pin: "Épingler {chain}",
+      unpin: "Désépingler {chain}",
+      noMatch: "Aucune chaîne ne correspond à « {query} »"
+    },
+    popup: {
+      tab: {
+        lookup: "Recherche",
+        scan: "Scanner la page",
+        tools: "Outils",
+        gas: "Gas",
+        saved: "Enregistrés"
+      },
+      tagline: "Recherche blockchain pour {strong}",
+      taglineStrong: "toutes les chaînes",
+      online: "En ligne",
+      statusOnline: "Les recherches vont vers {host}. Modifiable dans les paramètres",
+      statusOffline: "Rien ne quitte votre navigateur. Modifiable dans les paramètres",
+      aboutButton: "À propos, raccourcis et autres outils",
+      openApp: "Ouvrir l’application complète dans un onglet",
+      footOnline: "Les recherches que vous lancez vont vers {host}. Rien d’autre ne quitte votre navigateur.",
+      footOffline: "Mode hors ligne : rien ne quitte votre navigateur.",
+      footLink: "Raccourcis et autres outils"
+    },
+    hero: {
+      title: "Recherchez n’importe quoi, sur {accent}",
+      titleAccent: "n’importe quelle chaîne.",
+      popupLead: "Collez une adresse, une transaction, un bloc ou un nom. Web3Lens trouve sa chaîne parmi {count}.",
+      appLead: "Collez une adresse, une transaction, un bloc ou un nom. Web3Lens le reconnaît, le vérifie et vous montre la réponse."
+    },
+    examples: {
+      title: "Essayez un exemple",
+      vitalik: "ENS de Vitalik Buterin",
+      usdc: "Contrat USDC",
+      genesis: "Adresse genesis de Bitcoin",
+      usdtTron: "USDT sur Tron"
+    },
+    scan: {
+      reading: "Lecture de cette page…",
+      noTab: "Aucun onglet actif",
+      thisTab: "cet onglet",
+      nothingTitle: "Rien trouvé",
+      nothingBody: "Aucune adresse, aucun hash de transaction ni aucun nom sur cette page. Sélectionnez du texte et faites un clic droit pour le rechercher.",
+      found: "Trouvés : {count}",
+      copyAll: "Tout copier",
+      checkAll: "Tout vérifier en lot",
+      cantReadTitle: "Impossible de lire cette page",
+      cantReadBody: "{error}. Les pages du navigateur (paramètres, boutiques d’extensions, nouveaux onglets) ne peuvent pas être scannées.",
+      bannerTitle: "Adresses sur {host}",
+      bannerBody: "Lit une seule fois le texte visible de cet onglet, à l’ouverture de cette section. Rien n’est envoyé nulle part.",
+      rescan: "Rescanner"
+    },
+    toolsNav: {
+      more: "Plus",
+      batchCheck: "Vérification par lot"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Convertisseur d’unités",
+        short: "wei · gwei · ETH, sats · BTC, toutes décimales",
+        description: "Convertissez entre wei, gwei et ether, satoshis et bitcoin, lamports et SOL, ou n’importe quelles décimales de token, exactement (sans arrondi)."
+      },
+      "address-validator": {
+        title: "Validateur d’adresses",
+        short: "Checksums pour plus de 25 formats d’adresse",
+        description: "Vérifiez qu’une adresse est valide pour sa chaîne : checksums EIP-55, base58check, bech32, CashAddr, SS58, Stellar et TON, plus l’instantané des sanctions OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, texte et hashes",
+        short: "hex ↔ décimal, UTF-8, keccak256, SHA-256",
+        description: "Convertissez l’hex en décimal et inversement, le texte en hex, lisez des mots int256 et hachez du texte ou des octets avec keccak256 et SHA-256 (avec sélecteurs de fonction)."
+      },
+      "timestamp-converter": {
+        title: "Convertisseur d’horodatages",
+        short: "secondes Unix, ms, hex ↔ date",
+        description: "Convertissez des horodatages Unix (secondes, millisecondes, horodatages de bloc en hex) en dates UTC et dans votre fuseau horaire, et des dates en horodatages."
+      },
+      "gas-calculator": {
+        title: "Calculateur de gas et de frais",
+        short: "Frais EIP-1559 avec prix du gas en direct",
+        description: "Calculez les frais de transaction à partir de la limite de gas, des frais de base et du pourboire, avec les prix du gas en direct pour 11 chaînes EVM et les taux de frais Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Décodeur de calldata et d’ABI",
+        short: "Décoder ou encoder des appels de fonction",
+        description: "Décodez le calldata Ethereum avec l’ABI d’un contrat, une signature de fonction ou la liste intégrée de fonctions courantes, et encodez des appels à partir d’une signature."
+      },
+      "transaction-decoder": {
+        title: "Décodeur de transaction brute",
+        short: "tx signée → champs et expéditeur",
+        description: "Décodez localement une transaction EVM brute signée (legacy, EIP-1559, blob, EIP-7702) et retrouvez l’expéditeur, sans la diffuser."
+      }
+    },
+    gas: {
+      offlineBody: "Le gas en direct nécessite une recherche en ligne. Activez les recherches en ligne dans les paramètres, ou utilisez le calculateur de frais avec vos propres valeurs.",
+      loading: "Chargement des prix du gas en direct…",
+      btcRate: "taux de frais, sat/vB",
+      nextBlock: "Prochain bloc",
+      halfHour: "~30 min",
+      hour: "~1 heure",
+      economy: "Économique",
+      btcUnavailable: "Frais Bitcoin indisponibles : {reason}",
+      transfer: "transfert {usd}",
+      noUsd: "pas de prix en USD",
+      gweiStale: "gwei · périmé",
+      na: "n/d",
+      source: "RPC publics, mempool.space, CoinGecko · récupéré à {time} UTC. Les rollups ajoutent des frais de données L1.",
+      head: "Frais en direct · {count} chaînes EVM et Bitcoin",
+      chain: "Chaîne",
+      priceCol: "Prix du gas (gwei)",
+      transferCol: "Transfert (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filtrer par libellé, adresse ou note",
+      filterLabel: "Filtrer les éléments enregistrés",
+      emptyTitle: "Rien d’enregistré pour l’instant",
+      emptyBody: "Appuyez sur Enregistrer après une recherche pour garder ici une adresse ou une transaction avec un libellé et des notes. Les éléments enregistrés restent dans ce navigateur.",
+      noMatch: "Rien ne correspond à « {query} ».",
+      unpin: "Désépingler",
+      pin: "Épingler en haut",
+      manageTitle: "Modifier libellés et notes, exporter, importer ou partager",
+      manage: "Gérer"
+    },
+    settings: {
+      appearance: "Apparence",
+      appearanceHint: "Clair par défaut. Système suit le navigateur.",
+      whenSearch: "Quand j’appuie sur Rechercher",
+      whenSearchHint: "Les recherches par clic droit et le mot-clé w3 suivent aussi ce choix.",
+      resultsFirst: "D’abord les résultats Web3Lens",
+      resultsFirstHint: "Soldes, tokens et contrôles de risque sur {count} chaînes ; les autres chaînes ouvrent leur explorateur.",
+      alwaysExplorer: "Toujours ouvrir l’explorateur",
+      alwaysExplorerHint: "Aller directement à l’explorateur dans un nouvel onglet.",
+      onlineOn: "Activées : soldes, transactions, risques et gas viennent de {host} à votre demande.",
+      onlineOff: "Désactivées : détection, checksums, liens, outils et instantané OFAC fonctionnent en local.",
+      recent: "Recherches récentes",
+      recentKept: "Conservées dans ce navigateur : {count}.",
+      more: "Plus de paramètres",
+      moreHint: "Explorateurs préférés, chaînes favorites, données et réinitialisation",
+      pageTitle: "Recherchez à votre façon",
+      privacy: "Confidentialité",
+      privacyBody: "Les soldes, transactions, contrôles de risque et le gas en direct sont récupérés depuis {host} quand vous le demandez. Désactivez pour tout garder dans le navigateur : la détection, les checksums, les liens vers les explorateurs, les outils et l’instantané OFAC intégré fonctionnent toujours.",
+      privacyNote: "L’extension n’a aucune permission d’hôte et ne lit une page que lorsque vous y ouvrez l’onglet « Scanner la page » de la fenêtre contextuelle.",
+      preferredExplorers: "Explorateurs préférés",
+      favouriteChains: "Chaînes favorites",
+      noneYet: "Aucune pour l’instant.",
+      addChain: "Ajouter une chaîne par son nom",
+      data: "Données",
+      dataBody: "Tout est dans le stockage d’extension de ce navigateur.",
+      clearRecent: "Effacer les recherches récentes",
+      deleteSaved: "Supprimer les éléments enregistrés",
+      resetPrefs: "Réinitialiser les préférences",
+      confirmDelete: "Supprimer tous les éléments enregistrés ?",
+      options: "Options de l’extension"
+    },
+    info: {
+      title: "À propos de Web3Lens",
+      fasterWays: "Accès plus rapides",
+      shortcut: "Raccourci clavier",
+      shortcutBody: "Ouvrez cette fenêtre avec {keys}.",
+      rightClick: "Clic droit",
+      rightClickBody: "Sélectionnez une adresse ou un hash sur n’importe quelle page et choisissez {menu}.",
+      addressBar: "Barre d’adresse",
+      addressBarBody: "Tapez {key}, un espace, puis collez pour rechercher.",
+      statChains: "blockchains détectées et routées",
+      statNative: "avec soldes en direct et contrôles de risque",
+      statOfac: "instantané de la liste OFAC, vérifié en local",
+      website: "Site web",
+      contact: "Nous contacter",
+      contactSub: "Envoyer un avis",
+      privacy: "Politique de confidentialité",
+      privacySub: "Données stockées et envoyées",
+      moreFrom: "Du même développeur",
+      summarytube: "Résumés de vidéos YouTube",
+      centpage: "La meilleure page de démarrage du web",
+      sessionmanager: "Enregistrer et restaurer des onglets",
+      webdevtools: "Outils pour développeurs web",
+      foot: "Extension Web3Lens v{version} · aucun compte requis, les données enregistrées restent dans ce navigateur"
+    },
+    search: {
+      placeholder: "Adresse, hash de tx, bloc ou nom ENS",
+      inputLabel: "Adresse, hash de transaction, bloc ou nom",
+      unknownFormat: "Format non reconnu par Web3Lens : la recherche ira dans l’explorateur de la chaîne choisie.",
+      secret: "Secret détecté.",
+      checksumOk: "· checksum correct",
+      badChecksum: "checksum incorrect",
+      testnet: "testnet",
+      ofacListed: "Sur la liste OFAC",
+      searchOn: "Rechercher sur",
+      switchTo: "Passer à",
+      couldBe: "Pourrait aussi être : {list}",
+      explorerDown: "L’explorateur de {chain} n’a pas répondu lors du dernier contrôle.",
+      searchWeb: "Rechercher sur le web",
+      openAnyway: "ouvrir quand même",
+      fallback: "{chain} fait partie des rares blockchains pas encore prises en charge. Redirection vers un explorateur {chain}...",
+      empty: "Collez d’abord une adresse, un hash de transaction, un numéro de bloc ou un nom.",
+      notSearched: "Non recherché.",
+      offlineExplorers: "Les recherches en ligne sont désactivées (paramètres), voici donc les explorateurs :",
+      recent: "Récentes",
+      recentEmpty: "Vos dernières recherches s’affichent ici, conservées uniquement dans ce navigateur.",
+      openFull: "Ouvrir la vue complète",
+      openExplorer: "Ouvrir dans l’explorateur"
+    },
+    source: {
+      unavailableFrom: "Indisponible via {source} : {reason}. Rien n’est affiché plutôt qu’une supposition.",
+      unavailable: "Indisponible : {reason}. Rien n’est affiché plutôt qu’une supposition.",
+      line: "Source : {source} · récupéré {ago}",
+      stale: "· périmé (la source ne répond pas)",
+      explorerDown: "N’a pas répondu lors du dernier contrôle"
+    },
+    api: {
+      badAnswer: "Web3Lens a envoyé une réponse que cette version de l’extension ne sait pas lire. Les liens vers les explorateurs et les contrôles locaux fonctionnent toujours ; mettre à jour l’extension devrait régler le problème.",
+      timeout: "Web3Lens a mis trop de temps à répondre. Réessayez dans un instant ; les liens vers les explorateurs et les contrôles locaux fonctionnent toujours.",
+      unreachable: "Impossible de joindre Web3Lens. Vérifiez votre connexion.",
+      rateLimited: "Trop de recherches en peu de temps. Attendez une minute et réessayez.",
+      serviceDown: "Le service de recherche Web3Lens est indisponible pour le moment (HTTP {status}). Les liens vers les explorateurs et les contrôles locaux fonctionnent toujours."
+    },
+    result: {
+      qr: "Code QR",
+      transaction: "Transaction",
+      address: "Adresse",
+      offline: "Les recherches en ligne sont désactivées dans les paramètres. Les liens vers les explorateurs et les contrôles locaux fonctionnent toujours.",
+      onOfac: "Sur la liste des sanctions OFAC ({lists}).",
+      balance: "Solde",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Valeur en USD indisponible",
+      type: "Type",
+      delegated: "EIP-7702 délégué à {address}",
+      contractBytes: "Contrat ({count} octets)",
+      walletNoCode: "Portefeuille (sans code)",
+      sentTxs: "Tx envoyées",
+      resolvedFrom: "Résolu depuis",
+      tokens: "Tokens",
+      noErc20: "Aucun token ERC-20.",
+      hiddenTokens: "Tokens masqués : {count}. Signalés comme spam par l’indexeur, ou sans nom ni symbole. N’interagissez pas avec des tokens inattendus.",
+      knownOnly: "Seuls {count} tokens connus ont été vérifiés (aucun index gratuit de tokens ne couvre {chain}) ; les autres avoirs ne sont pas affichés.",
+      activity: "Activité",
+      transactions: "Transactions",
+      tokenTransfers: "Transferts de tokens",
+      labelsContract: "Libellés et contrat",
+      flagged: "Blockscout signale cette adresse ({reason}).",
+      scam: "arnaque",
+      name: "Nom",
+      tags: "Étiquettes",
+      verifiedSource: "Code source vérifié",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Transactions non confirmées en attente : {count}. Non incluses ci-dessus.",
+      received: "Reçu",
+      sent: "Envoyé",
+      recentTxs: "Transactions récentes",
+      account: "Compte",
+      program: "Programme",
+      notFound: "Introuvable on-chain",
+      owner: "Propriétaire",
+      splTokens: "Tokens SPL",
+      noSpl: "Aucun solde de token SPL.",
+      token2022: "Impossible de lire les soldes Token-2022 depuis le RPC public.",
+      recentSigs: "Signatures récentes",
+      unknownTx: "{chain} ne connaît pas cette transaction.",
+      unknownSig: "Solana ne connaît pas cette signature.",
+      status: "Statut",
+      block: "Bloc",
+      conf: "{block} · {count} conf.",
+      time: "Heure",
+      from: "De",
+      to: "À",
+      value: "Valeur",
+      fee: "Frais",
+      input: "Entrée",
+      verifiedAbi: "ABI vérifié",
+      guessed: "deviné",
+      success: "réussie",
+      failed: "échouée",
+      confirmed: "confirmée",
+      unconfirmedBadge: "non confirmée",
+      mempool: "mempool",
+      output: "Sortie",
+      outputs: "Sorties ({count})",
+      slot: "Slot",
+      signer: "Signataire"
+    },
+    risk: {
+      checking: "Vérification des sanctions, signalements et du contrat…",
+      title: "Contrôles de risque",
+      signals: "Signaux de risque trouvés : {count}. N’envoyez pas de fonds et ne signez rien sans vérifier.",
+      noReports: "Aucun signalement dans les sources ci-dessous. Cela ne veut pas dire que c’est sûr : la plupart des arnaques ne sont jamais signalées.",
+      listed: "LISTÉE ({lists})",
+      notListed: "non listée (instantané du {date})",
+      markedScam: "marquée comme arnaque",
+      notFlagged: "non signalée",
+      noReportsShort: "aucun signalement",
+      scamReports: "Signalements d’arnaque",
+      notChecked: "non vérifié : les sources gratuites ne couvrent que les chaînes EVM",
+      verified: "Vérifié",
+      upgradeable: "Évolutif",
+      yesArrow: "oui → {address}",
+      noSlots: "pas de slots EIP-1967",
+      noOwner: "pas de owner()",
+      renounced: "renoncé",
+      contract: "contrat",
+      wallet: "portefeuille",
+      admin: "Fonctions d’administration",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "aucune trouvée",
+      tokenRisk: "Risque du token",
+      noFlags: "aucune alerte",
+      onlineUnavailable: "Contrôles en ligne indisponibles : {error}",
+      ofacLocal: "OFAC (local)",
+      checkApprovals: "Vérifier les approbations de tokens",
+      scanningApprovals: "Analyse des approbations et lecture des autorisations…",
+      aWallet: "(un portefeuille !)",
+      unlimited: "illimitée",
+      allItems: "tous les éléments",
+      noApprovals: "Aucune approbation active trouvée dans les événements analysés.",
+      capped: "La recherche dans les logs a atteint sa limite : des approbations plus anciennes peuvent manquer.",
+      revoke: "Vérifier ou révoquer sur revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Vérification de {count} chaînes EVM…",
+      code: "code",
+      txCount: "{count} tx",
+      source: "RPC publics · prix {source} · {ago}",
+      title: "Même adresse sur d’autres chaînes EVM"
+    },
+    locate: {
+      asking: "Interrogation de {count} chaînes EVM…",
+      foundOn: "Trouvée sur {chain} →",
+      notFound: "Introuvable sur les {count} chaînes EVM prises en charge ; essayez les liens vers les explorateurs.",
+      title: "Sur quelle chaîne se trouve-t-elle ?"
+    },
+    unit: {
+      anyToken: "n’importe quel token",
+      rawUnits: "unités brutes",
+      tokens: "tokens",
+      amount: "Montant",
+      family: "Famille d’unités",
+      from: "Unité de départ",
+      decimals: "Décimales du token (tout token)"
+    },
+    validator: {
+      invalid: "Ni une adresse ni un hash valide dans un format connu de Web3Lens.",
+      checksumValid: "checksum valide",
+      checksumInvalid: "le checksum ne correspond PAS",
+      noChecksum: "pas de checksum",
+      formatOnly: "format uniquement",
+      notOnOfac: "absente de l’instantané OFAC",
+      normalised: "Normalisée",
+      field: "Adresse, hash ou nom",
+      hint: "Un checksum valide signifie qu’elle a été copiée correctement, pas qu’elle est digne de confiance."
+    },
+    hex: {
+      decimal: "Décimal",
+      text: "Texte",
+      textOption: "texte",
+      hexBytes: "octets hex",
+      selector: "Sélecteur",
+      number: "Nombre",
+      hexOrDecimal: "Hex ou décimal",
+      textToHex: "Texte → hex",
+      hexToText: "Hex → texte",
+      hashes: "Hashes",
+      input: "Entrée",
+      inputIs: "L’entrée est"
+    },
+    time: {
+      now: "Maintenant",
+      readAs: "Lu comme {kind}",
+      unixSeconds: "Secondes Unix",
+      milliseconds: "Millisecondes",
+      local: "Local",
+      relative: "Relatif",
+      field: "Horodatage ou date",
+      future: "dans le futur",
+      kind: {
+        hexSeconds: "secondes en hex",
+        nanoseconds: "nanosecondes",
+        microseconds: "microsecondes",
+        milliseconds: "millisecondes",
+        seconds: "secondes",
+        date: "date"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Transfert d’ETH",
+        erc20Transfer: "Transfert ERC-20",
+        erc20Approve: "Approbation ERC-20",
+        uniswapSwap: "Swap Uniswap",
+        nftMint: "Mint de NFT"
+      },
+      optional: "gwei (facultatif)",
+      useLive: "Utiliser le prix du gas en direct",
+      liveFrom: "En direct de {chain}",
+      gasPrice: "Prix du gas",
+      feeSymbol: "Frais ({symbol})",
+      feeWei: "Frais (wei)",
+      feeUsd: "Frais (USD)",
+      maxToHold: "Maximum à prévoir",
+      feeSats: "Frais (sats)",
+      feeBtc: "Frais (BTC)",
+      evmFee: "Frais EVM",
+      gasLimit: "Limite de gas",
+      baseFee: "Frais de base / prix du gas",
+      priorityFee: "Frais de priorité",
+      maxFee: "Frais maximum",
+      l1Note: "Les rollups facturent aussi des frais de données L1 non inclus ici.",
+      btcFee: "Frais Bitcoin",
+      size: "Taille (vbytes)",
+      feeRate: "Taux de frais"
+    },
+    abi: {
+      abiPlaceholder: "ABI JSON ou une signature par ligne (facultatif)",
+      badCalldata: "Le calldata doit être 0x suivi d’au moins un sélecteur de 4 octets.",
+      commonMatch: "Correspond à une signature courante (aucun ABI fourni).",
+      lookupSelector: "Rechercher le sélecteur en ligne",
+      asking: "Interrogation de openchain.xyz / 4byte.directory…",
+      community: "Signature proposée par la communauté ({source}) : à traiter comme une supposition.",
+      noneDecodes: "Aucune signature proposée ne décode ces données.",
+      unknownSelector: "Le sélecteur {selector} est inconnu.",
+      calldata: "Calldata",
+      decode: "Décoder",
+      encode: "Encoder",
+      signature: "Signature de fonction",
+      args: "Arguments (tableau JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "De (récupéré)",
+      creation: "(création de contrat)",
+      chainId: "Chain id",
+      replayable: "aucun (rejouable)",
+      nonce: "Nonce",
+      data: "Données",
+      bestGuess: "Correspond à une signature courante ; meilleure estimation sans l’ABI.",
+      authorization: "Autorisation EIP-7702",
+      delegatesTo: "Délègue à",
+      chainNonce: "Chaîne / nonce",
+      anyChain: "0 (toute chaîne !)",
+      field: "Transaction brute signée",
+      hint: "Décodée localement ; rien n’est diffusé."
+    },
+    app: {
+      batch: "Lot",
+      moreTools: "Plus d’outils",
+      batchSearch: "Recherche par lot",
+      batchSearchBody: "Vérifiez jusqu’à 50 adresses d’un coup, export CSV",
+      devToolsBody: "Unités, checksums, décodeurs, horodatages",
+      savedBody: "Vos libellés et notes, privés dans ce navigateur",
+      view: {
+        search: "Recherche",
+        result: "Résultat",
+        batch: "Lot",
+        tools: "Outils",
+        saved: "Enregistrés",
+        settings: "Paramètres"
+      }
+    },
+    batch: {
+      valueCol: "Valeur",
+      typeCol: "Type",
+      checksCol: "Contrôles",
+      notRecognised: "non reconnu",
+      secret: "secret",
+      ok: "ok",
+      leftOut: "Écartés : {count} (limite {max}).",
+      checking: "vérification…",
+      active: "{active}/{total} actives · {usd}",
+      fetchBalances: "Récupérer les soldes EVM ({count})",
+      exportCsv: "Exporter en CSV",
+      savedMsg: "Enregistré dans ce navigateur.",
+      saveAll: "Tout enregistrer",
+      shareCopied: "Lien de partage copié (s’ouvre sur web3lens.com ; la liste est dans le lien).",
+      copyShare: "Copier le lien de partage",
+      checked: "Vérifiés : {count}",
+      title: "Vérifiez une liste d’un coup",
+      intro: "Jusqu’à {max} adresses, hashes ou noms : un par ligne, ou séparés par des virgules ou des espaces.",
+      checkAll: "Tout vérifier"
+    },
+    savedPage: {
+      filter: "Filtrer",
+      empty: "Rien d’enregistré pour l’instant. Utilisez Enregistrer dans la recherche ou le lot.",
+      label: "Libellé",
+      notes: "Notes",
+      select: "Sélectionner",
+      remove: "Supprimer",
+      tooLarge: "Fichier trop volumineux",
+      imported: "Éléments importés : {count}.",
+      importFailed: "Échec de l’import : {error}",
+      title: "Vos libellés et notes",
+      intro: "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Rien n’est synchronisé.",
+      exportJson: "Exporter en JSON",
+      importJson: "Importer un JSON",
+      selectFirst: "Sélectionnez d’abord des éléments.",
+      shareCopied: "Lien de partage copié. Les libellés et notes sont dans le lien : toute personne qui l’a peut les lire.",
+      shareSelected: "Partager la sélection"
+    },
+    detect: {
+      address: "Adresse {chain}",
+      testnetAddress: "Adresse testnet {chain}",
+      stakeAddress: "Adresse de staking {chain}",
+      addressRaw: "Adresse {chain} (brute)",
+      bech32: "Adresse Bech32 ({hrp})",
+      txHashOf: "Hash de transaction {chain}",
+      extrinsicHash: "Hash d’extrinsèque {chain}",
+      operationHash: "Hash d’opération {chain}",
+      blockHash: "Hash de bloc {chain}",
+      secretKey: "Clé secrète {chain}",
+      signature: "Signature {chain}",
+      dnsName: "Nom DNS {chain}",
+      name: "Nom {chain}",
+      account: "Compte {chain}",
+      contract: "Contrat {chain}",
+      transactionHash: "Hash de transaction",
+      blockNumber: "Numéro de bloc",
+      recoveryPhrase: "Phrase de récupération",
+      privateKey: "Clé privée (WIF)",
+      note: {
+        badChecksum: "Le checksum ne correspond pas. La valeur contient peut-être une faute de frappe ; vérifiez-la avant d’envoyer des fonds.",
+        privateKey: "Ceci ressemble à une clé privée. Quiconque la possède contrôle les fonds. Web3Lens ne la recherchera pas.",
+        stellarSecret: "Ceci est une clé secrète Stellar. Quiconque la possède contrôle le compte. Web3Lens ne la recherchera pas.",
+        recoveryPhrase: "Ceci ressemble à une phrase de récupération de portefeuille. Quiconque la possède contrôle le portefeuille. Web3Lens ne la recherchera pas ; ne la collez jamais sur un site web.",
+        bech32Unknown: "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
+        versionByte: "L’octet de version {byte} n’est pas reconnu par Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/de.json
+  var de_default = {
+    common: {
+      copy: "Kopieren",
+      copied: "Kopiert",
+      close: "Schließen",
+      loading: "Wird geladen…",
+      refresh: "Aktualisieren",
+      clear: "Leeren",
+      save: "Speichern",
+      saved: "Gespeichert",
+      search: "Suchen",
+      tools: "Tools",
+      settings: "Einstellungen",
+      sections: "Bereiche",
+      yes: "Ja",
+      no: "Nein",
+      yesLower: "ja",
+      noLower: "nein",
+      unavailable: "nicht verfügbar",
+      unavailableReason: "nicht verfügbar: {reason}",
+      unavailableParen: "nicht verfügbar ({reason})",
+      unavailableCap: "Nicht verfügbar: {reason}",
+      unknown: "unbekannt",
+      pending: "ausstehend",
+      staleParen: "(veraltet)",
+      offInSettings: "Online-Abfragen sind in den Einstellungen deaktiviert.",
+      openInFullTab: "In eigenem Tab öffnen",
+      developerTools: "Entwickler-Tools",
+      gasTracker: "Gas-Tracker",
+      feeCalculator: "Gebührenrechner",
+      unrecognised: "nicht erkannt",
+      offlineMode: "Offline-Modus",
+      onlineLookups: "Online-Abfragen",
+      explorers: "Explorer",
+      liveFees: "Live-Gebühren auf {count} EVM-Chains und Bitcoin"
+    },
+    theme: {
+      label: "Design",
+      light: "Hell",
+      dark: "Dunkel",
+      system: "System",
+      lightDefault: "Hell (Standard)",
+      lightTheme: "Helles Design",
+      darkTheme: "Dunkles Design",
+      systemTheme: "Systemdesign",
+      current: "Design: {theme}"
+    },
+    language: {
+      label: "Sprache",
+      hint: "Automatisch folgt deinem Browser.",
+      fallbackNote: "Noch nicht Übersetztes erscheint auf Englisch.",
+      auto: "Automatisch ({language})"
+    },
+    picker: {
+      filterPlaceholder: "{count} Chains durchsuchen…",
+      filterLabel: "Blockchains filtern",
+      listLabel: "Blockchains",
+      autoDetected: "Automatisch erkannt",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Blockchain ändern",
+      buttonLabelAuto: "Blockchain: {chain} (automatisch erkannt). Blockchain ändern",
+      results: "Ergebnisse",
+      detected: "Erkannt",
+      favourites: "Favoriten",
+      popular: "Beliebt",
+      allChains: "Alle Chains · {count}",
+      explorerDown: "Explorer offline",
+      limited: "eingeschränkt",
+      pin: "{chain} anheften",
+      unpin: "{chain} lösen",
+      noMatch: "Keine Chain passt zu „{query}“"
+    },
+    popup: {
+      tab: {
+        lookup: "Abfrage",
+        scan: "Seite scannen",
+        tools: "Tools",
+        gas: "Gas",
+        saved: "Gespeichert"
+      },
+      tagline: "Blockchain-Suche für {strong}",
+      taglineStrong: "jede Chain",
+      online: "Online",
+      statusOnline: "Abfragen gehen an {host}. In den Einstellungen änderbar",
+      statusOffline: "Nichts verlässt deinen Browser. In den Einstellungen änderbar",
+      aboutButton: "Info, Tastenkürzel und weitere Tools",
+      openApp: "Die vollständige App in einem Tab öffnen",
+      footOnline: "Deine Abfragen gehen an {host}. Sonst verlässt nichts deinen Browser.",
+      footOffline: "Offline-Modus: Nichts verlässt deinen Browser.",
+      footLink: "Tastenkürzel und weitere Tools"
+    },
+    hero: {
+      title: "Alles nachschlagen, auf {accent}",
+      titleAccent: "jeder Chain.",
+      popupLead: "Füge eine Adresse, Transaktion, einen Block oder Namen ein. Web3Lens findet die Chain unter {count}.",
+      appLead: "Füge eine Adresse, Transaktion, einen Block oder Namen ein. Web3Lens erkennt und prüft ihn und zeigt dir die Antwort."
+    },
+    examples: {
+      title: "Beispiel ausprobieren",
+      vitalik: "ENS von Vitalik Buterin",
+      usdc: "USDC-Contract",
+      genesis: "Bitcoin-Genesis-Adresse",
+      usdtTron: "USDT auf Tron"
+    },
+    scan: {
+      reading: "Diese Seite wird gelesen…",
+      noTab: "Kein aktiver Tab",
+      thisTab: "dieser Tab",
+      nothingTitle: "Nichts gefunden",
+      nothingBody: "Keine Adressen, Transaktions-Hashes oder Namen auf dieser Seite. Markiere Text und nutze das Kontextmenü, um ihn nachzuschlagen.",
+      found: "Gefunden: {count}",
+      copyAll: "Alle kopieren",
+      checkAll: "Alle im Stapel prüfen",
+      cantReadTitle: "Diese Seite kann nicht gelesen werden",
+      cantReadBody: "{error}. Browserseiten (Einstellungen, Erweiterungs-Stores, neue Tabs) können nicht gescannt werden.",
+      bannerTitle: "Adressen auf {host}",
+      bannerBody: "Liest den sichtbaren Text dieses Tabs einmal, wenn du diesen Bereich öffnest. Es wird nichts gesendet.",
+      rescan: "Neu scannen"
+    },
+    toolsNav: {
+      more: "Mehr",
+      batchCheck: "Stapelprüfung"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Einheitenrechner",
+        short: "wei · gwei · ETH, sats · BTC, beliebige Dezimalstellen",
+        description: "Rechne exakt (ohne Rundung) zwischen wei, gwei und ether, Satoshis und bitcoin, Lamports und SOL oder beliebigen Token-Dezimalstellen um."
+      },
+      "address-validator": {
+        title: "Adressprüfer",
+        short: "Checksummen für über 25 Adressformate",
+        description: "Prüfe, ob eine Adresse für ihre Chain gültig ist: EIP-55-Checksummen, base58check, bech32, CashAddr, SS58, Stellar und TON, plus der OFAC-Sanktions-Snapshot."
+      },
+      "hex-converter": {
+        title: "Hex, Text und Hashes",
+        short: "hex ↔ dezimal, UTF-8, keccak256, SHA-256",
+        description: "Wandle Hex in Dezimal und zurück, Text in Hex, lies int256-Wörter und hashe Text oder Bytes mit keccak256 und SHA-256 (mit Funktionsselektoren)."
+      },
+      "timestamp-converter": {
+        title: "Zeitstempel-Rechner",
+        short: "Unix-Sekunden, ms, hex ↔ Datum",
+        description: "Wandle Unix-Zeitstempel (Sekunden, Millisekunden, Hex-Block-Zeitstempel) in Daten in UTC und deiner Zeitzone um und Daten zurück in Zeitstempel."
+      },
+      "gas-calculator": {
+        title: "Gas- und Gebührenrechner",
+        short: "EIP-1559-Gebühren mit Live-Gaspreisen",
+        description: "Berechne Transaktionsgebühren aus Gaslimit, Basisgebühr und Trinkgeld, mit Live-Gaspreisen für 11 EVM-Chains und Bitcoin-Gebührensätzen."
+      },
+      "abi-decoder": {
+        title: "Calldata- und ABI-Decoder",
+        short: "Funktionsaufrufe dekodieren oder kodieren",
+        description: "Dekodiere Ethereum-Calldata mit einem Contract-ABI, einer Funktionssignatur oder der eingebauten Liste gängiger Funktionen und kodiere Aufrufe aus einer Signatur."
+      },
+      "transaction-decoder": {
+        title: "Rohtransaktions-Decoder",
+        short: "Signierte tx → Felder und Absender",
+        description: "Dekodiere eine signierte rohe EVM-Transaktion (legacy, EIP-1559, blob, EIP-7702) lokal und ermittle den Absender, ohne sie zu senden."
+      }
+    },
+    gas: {
+      offlineBody: "Live-Gas braucht eine Online-Abfrage. Aktiviere Online-Abfragen in den Einstellungen oder nutze den Gebührenrechner mit eigenen Werten.",
+      loading: "Live-Gaspreise werden geladen…",
+      btcRate: "Gebührensatz, sat/vB",
+      nextBlock: "Nächster Block",
+      halfHour: "~30 Min.",
+      hour: "~1 Stunde",
+      economy: "Sparsam",
+      btcUnavailable: "Bitcoin-Gebühren nicht verfügbar: {reason}",
+      transfer: "{usd} Überweisung",
+      noUsd: "kein USD-Preis",
+      gweiStale: "gwei · veraltet",
+      na: "k. A.",
+      source: "Öffentliche RPCs, mempool.space, CoinGecko · abgerufen um {time} UTC. Rollups berechnen zusätzlich eine L1-Datengebühr.",
+      head: "Live-Gebühren · {count} EVM-Chains und Bitcoin",
+      chain: "Chain",
+      priceCol: "Gaspreis (gwei)",
+      transferCol: "Überweisung (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Nach Label, Adresse oder Notiz filtern",
+      filterLabel: "Gespeicherte Einträge filtern",
+      emptyTitle: "Noch nichts gespeichert",
+      emptyBody: "Klicke nach einer Suche auf Speichern, um eine Adresse oder Transaktion mit Label und Notizen hier aufzubewahren. Gespeicherte Einträge bleiben in diesem Browser.",
+      noMatch: "Nichts passt zu „{query}“.",
+      unpin: "Lösen",
+      pin: "Oben anheften",
+      manageTitle: "Labels und Notizen bearbeiten, exportieren, importieren oder teilen",
+      manage: "Verwalten"
+    },
+    settings: {
+      appearance: "Darstellung",
+      appearanceHint: "Hell ist der Standard. System folgt deinem Browser.",
+      whenSearch: "Beim Klick auf Suchen",
+      whenSearchHint: "Abfragen per Rechtsklick und das Schlüsselwort w3 folgen dieser Einstellung ebenfalls.",
+      resultsFirst: "Zuerst Web3Lens-Ergebnisse zeigen",
+      resultsFirstHint: "Guthaben, Tokens und Risikoprüfungen auf {count} Chains; andere Chains öffnen ihren Explorer.",
+      alwaysExplorer: "Immer den Block-Explorer öffnen",
+      alwaysExplorerHint: "Direkt zum Explorer in einem neuen Tab.",
+      onlineOn: "An: Guthaben, Transaktionen, Risikoprüfungen und Gas kommen auf Anfrage von {host}.",
+      onlineOff: "Aus: Erkennung, Checksummen, Explorer-Links, Tools und der OFAC-Snapshot funktionieren weiter lokal.",
+      recent: "Letzte Suchen",
+      recentKept: "In diesem Browser gespeichert: {count}.",
+      more: "Weitere Einstellungen",
+      moreHint: "Bevorzugte Explorer, Lieblings-Chains, Daten und Zurücksetzen",
+      pageTitle: "Suche auf deine Art",
+      privacy: "Datenschutz",
+      privacyBody: "Guthaben, Transaktionen, Risikoprüfungen und Live-Gas werden auf Anfrage von {host} abgerufen. Deaktiviere es, um alles im Browser zu behalten: Erkennung, Checksummen, Explorer-Links, Tools und der mitgelieferte OFAC-Snapshot funktionieren weiterhin.",
+      privacyNote: "Die Erweiterung hat keine Host-Berechtigungen und liest eine Seite nur, wenn du dort im Popup den Tab „Seite scannen“ öffnest.",
+      preferredExplorers: "Bevorzugte Explorer",
+      favouriteChains: "Lieblings-Chains",
+      noneYet: "Noch keine.",
+      addChain: "Chain nach Namen hinzufügen",
+      data: "Daten",
+      dataBody: "Alles liegt im Erweiterungsspeicher dieses Browsers.",
+      clearRecent: "Letzte Suchen löschen",
+      deleteSaved: "Gespeicherte Einträge löschen",
+      resetPrefs: "Einstellungen zurücksetzen",
+      confirmDelete: "Alle gespeicherten Einträge löschen?",
+      options: "Erweiterungsoptionen"
+    },
+    info: {
+      title: "Über Web3Lens",
+      fasterWays: "Schneller ans Ziel",
+      shortcut: "Tastenkürzel",
+      shortcutBody: "Öffne dieses Popup mit {keys}.",
+      rightClick: "Rechtsklick",
+      rightClickBody: "Markiere eine Adresse oder einen Hash auf einer beliebigen Seite und wähle {menu}.",
+      addressBar: "Adressleiste",
+      addressBarBody: "Tippe {key}, ein Leerzeichen und füge dann zum Suchen ein.",
+      statChains: "Blockchains erkannt und zugeordnet",
+      statNative: "mit Live-Guthaben und Risikoprüfungen",
+      statOfac: "OFAC-Listen-Snapshot, lokal geprüft",
+      website: "Website",
+      contact: "Kontakt",
+      contactSub: "Feedback senden",
+      privacy: "Datenschutzerklärung",
+      privacySub: "Gespeicherte und gesendete Daten",
+      moreFrom: "Mehr vom selben Entwickler",
+      summarytube: "YouTube-Videozusammenfassungen",
+      centpage: "Die beste Startseite im Internet",
+      sessionmanager: "Tabs speichern und wiederherstellen",
+      webdevtools: "Tools für Webentwickler",
+      foot: "Web3Lens-Erweiterung v{version} · kein Konto nötig, gespeicherte Daten bleiben in diesem Browser"
+    },
+    search: {
+      placeholder: "Adresse, Tx-Hash, Block oder ENS-Name",
+      inputLabel: "Adresse, Transaktions-Hash, Block oder Name",
+      unknownFormat: "Web3Lens erkennt dieses Format nicht: Es geht an die Explorer-Suche der gewählten Chain.",
+      secret: "Geheimnis erkannt.",
+      checksumOk: "· Checksumme ok",
+      badChecksum: "falsche Checksumme",
+      testnet: "Testnet",
+      ofacListed: "Auf der OFAC-Liste",
+      searchOn: "Suchen auf",
+      switchTo: "Wechseln zu",
+      couldBe: "Könnte auch sein: {list}",
+      explorerDown: "Der {chain}-Explorer hat bei der letzten Prüfung nicht geantwortet.",
+      searchWeb: "Im Web suchen",
+      openAnyway: "trotzdem öffnen",
+      fallback: "{chain} gehört zu den wenigen Blockchains, die noch nicht unterstützt werden. Du wirst stattdessen zu einem {chain}-Explorer weitergeleitet...",
+      empty: "Füge zuerst eine Adresse, einen Transaktions-Hash, eine Blocknummer oder einen Namen ein.",
+      notSearched: "Nicht gesucht.",
+      offlineExplorers: "Online-Abfragen sind aus (Einstellungen), hier sind die Explorer:",
+      recent: "Zuletzt",
+      recentEmpty: "Deine letzten Suchen erscheinen hier und bleiben nur in diesem Browser.",
+      openFull: "Vollansicht öffnen",
+      openExplorer: "Im Explorer öffnen"
+    },
+    source: {
+      unavailableFrom: "Nicht verfügbar von {source}: {reason}. Statt einer Vermutung wird nichts angezeigt.",
+      unavailable: "Nicht verfügbar: {reason}. Statt einer Vermutung wird nichts angezeigt.",
+      line: "Quelle: {source} · abgerufen {ago}",
+      stale: "· veraltet (Quelle antwortet nicht)",
+      explorerDown: "Hat bei der letzten Prüfung nicht geantwortet"
+    },
+    api: {
+      badAnswer: "Web3Lens hat eine Antwort gesendet, die diese Version der Erweiterung nicht lesen kann. Explorer-Links und lokale Prüfungen funktionieren weiter; ein Update der Erweiterung sollte das beheben.",
+      timeout: "Web3Lens hat zu lange gebraucht. Versuche es gleich noch einmal; Explorer-Links und lokale Prüfungen funktionieren weiter.",
+      unreachable: "Web3Lens ist nicht erreichbar. Prüfe deine Verbindung.",
+      rateLimited: "Zu viele Abfragen in kurzer Zeit. Warte eine Minute und versuche es erneut.",
+      serviceDown: "Der Web3Lens-Abfragedienst ist gerade nicht verfügbar (HTTP {status}). Explorer-Links und lokale Prüfungen funktionieren weiter."
+    },
+    result: {
+      qr: "QR-Code",
+      transaction: "Transaktion",
+      address: "Adresse",
+      offline: "Online-Abfragen sind in den Einstellungen deaktiviert. Explorer-Links und lokale Prüfungen funktionieren weiter.",
+      onOfac: "Auf der OFAC-Sanktionsliste ({lists}).",
+      balance: "Guthaben",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "USD-Wert nicht verfügbar",
+      type: "Typ",
+      delegated: "EIP-7702 delegiert an {address}",
+      contractBytes: "Contract ({count} Bytes)",
+      walletNoCode: "Wallet (kein Code)",
+      sentTxs: "Gesendete Txs",
+      resolvedFrom: "Aufgelöst von",
+      tokens: "Tokens",
+      noErc20: "Keine ERC-20-Tokens.",
+      hiddenTokens: "Ausgeblendete Tokens: {count}. Vom Indexer als Spam markiert oder ohne Name bzw. Symbol. Interagiere nicht mit Tokens, die du nicht erwartet hast.",
+      knownOnly: "Nur {count} bekannte Tokens wurden geprüft (kein kostenloser Token-Index deckt {chain} ab); weitere Bestände werden nicht angezeigt.",
+      activity: "Aktivität",
+      transactions: "Transaktionen",
+      tokenTransfers: "Token-Transfers",
+      labelsContract: "Labels und Contract",
+      flagged: "Blockscout markiert diese Adresse ({reason}).",
+      scam: "Betrug",
+      name: "Name",
+      tags: "Tags",
+      verifiedSource: "Verifizierter Quellcode",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Ausstehende unbestätigte Transaktionen: {count}. Oben nicht enthalten.",
+      received: "Empfangen",
+      sent: "Gesendet",
+      recentTxs: "Letzte Transaktionen",
+      account: "Konto",
+      program: "Programm",
+      notFound: "On-Chain nicht gefunden",
+      owner: "Eigentümer",
+      splTokens: "SPL-Tokens",
+      noSpl: "Keine SPL-Token-Guthaben.",
+      token2022: "Token-2022-Guthaben konnten nicht vom öffentlichen RPC gelesen werden.",
+      recentSigs: "Letzte Signaturen",
+      unknownTx: "{chain} kennt diese Transaktion nicht.",
+      unknownSig: "Solana kennt diese Signatur nicht.",
+      status: "Status",
+      block: "Block",
+      conf: "{block} · {count} Best.",
+      time: "Zeit",
+      from: "Von",
+      to: "An",
+      value: "Wert",
+      fee: "Gebühr",
+      input: "Eingabe",
+      verifiedAbi: "verifiziertes ABI",
+      guessed: "geschätzt",
+      success: "erfolgreich",
+      failed: "fehlgeschlagen",
+      confirmed: "bestätigt",
+      unconfirmedBadge: "unbestätigt",
+      mempool: "Mempool",
+      output: "Ausgabe",
+      outputs: "Ausgaben ({count})",
+      slot: "Slot",
+      signer: "Unterzeichner"
+    },
+    risk: {
+      checking: "Sanktionen, Meldungen und Contract werden geprüft…",
+      title: "Risikoprüfungen",
+      signals: "Gefundene Risikosignale: {count}. Sende kein Geld und signiere nichts, ohne es zu prüfen.",
+      noReports: "Keine Meldungen in den unten genannten Quellen. Das heißt nicht, dass es sicher ist: Die meisten Betrugsfälle werden nie gemeldet.",
+      listed: "GELISTET ({lists})",
+      notListed: "nicht gelistet (Snapshot {date})",
+      markedScam: "als Betrug markiert",
+      notFlagged: "nicht markiert",
+      noReportsShort: "keine Meldungen",
+      scamReports: "Betrugsmeldungen",
+      notChecked: "nicht geprüft: Die kostenlosen Quellen decken nur EVM-Chains ab",
+      verified: "Verifiziert",
+      upgradeable: "Upgradefähig",
+      yesArrow: "ja → {address}",
+      noSlots: "keine EIP-1967-Slots",
+      noOwner: "kein owner()",
+      renounced: "aufgegeben",
+      contract: "Contract",
+      wallet: "Wallet",
+      admin: "Admin-Funktionen",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "keine gefunden",
+      tokenRisk: "Token-Risiko",
+      noFlags: "keine Warnungen",
+      onlineUnavailable: "Online-Prüfungen nicht verfügbar: {error}",
+      ofacLocal: "OFAC (lokal)",
+      checkApprovals: "Token-Freigaben prüfen",
+      scanningApprovals: "Freigaben werden gescannt und Allowances gelesen…",
+      aWallet: "(eine Wallet!)",
+      unlimited: "unbegrenzt",
+      allItems: "alle Einträge",
+      noApprovals: "In den gescannten Events wurden keine aktiven Freigaben gefunden.",
+      capped: "Die Log-Suche hat ihr Limit erreicht: Ältere Freigaben können fehlen.",
+      revoke: "Auf revoke.cash prüfen oder widerrufen ↗"
+    },
+    multichain: {
+      checking: "{count} EVM-Chains werden geprüft…",
+      code: "Code",
+      txCount: "{count} Tx",
+      source: "Öffentliche RPCs · Preise {source} · {ago}",
+      title: "Gleiche Adresse auf anderen EVM-Chains"
+    },
+    locate: {
+      asking: "{count} EVM-Chains werden abgefragt…",
+      foundOn: "Gefunden auf {chain} →",
+      notFound: "Auf den {count} unterstützten EVM-Chains nicht gefunden; versuche die Explorer-Links.",
+      title: "Auf welcher Chain liegt sie?"
+    },
+    unit: {
+      anyToken: "beliebiger Token",
+      rawUnits: "Roheinheiten",
+      tokens: "Tokens",
+      amount: "Betrag",
+      family: "Einheitenfamilie",
+      from: "Ausgangseinheit",
+      decimals: "Token-Dezimalstellen (beliebiger Token)"
+    },
+    validator: {
+      invalid: "Keine gültige Adresse und kein gültiger Hash in einem Format, das Web3Lens kennt.",
+      checksumValid: "Checksumme gültig",
+      checksumInvalid: "Checksumme stimmt NICHT",
+      noChecksum: "keine Checksumme",
+      formatOnly: "nur Format",
+      notOnOfac: "nicht im OFAC-Snapshot",
+      normalised: "Normalisiert",
+      field: "Adresse, Hash oder Name",
+      hint: "Eine gültige Checksumme bedeutet, dass korrekt kopiert wurde, nicht, dass sie vertrauenswürdig ist."
+    },
+    hex: {
+      decimal: "Dezimal",
+      text: "Text",
+      textOption: "Text",
+      hexBytes: "Hex-Bytes",
+      selector: "Selektor",
+      number: "Zahl",
+      hexOrDecimal: "Hex oder dezimal",
+      textToHex: "Text → Hex",
+      hexToText: "Hex → Text",
+      hashes: "Hashes",
+      input: "Eingabe",
+      inputIs: "Eingabe ist"
+    },
+    time: {
+      now: "Jetzt",
+      readAs: "Gelesen als {kind}",
+      unixSeconds: "Unix-Sekunden",
+      milliseconds: "Millisekunden",
+      local: "Lokal",
+      relative: "Relativ",
+      field: "Zeitstempel oder Datum",
+      future: "in der Zukunft",
+      kind: {
+        hexSeconds: "Hex-Sekunden",
+        nanoseconds: "Nanosekunden",
+        microseconds: "Mikrosekunden",
+        milliseconds: "Millisekunden",
+        seconds: "Sekunden",
+        date: "Datum"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH-Überweisung",
+        erc20Transfer: "ERC-20-Transfer",
+        erc20Approve: "ERC-20-Freigabe",
+        uniswapSwap: "Uniswap-Swap",
+        nftMint: "NFT-Mint"
+      },
+      optional: "gwei (optional)",
+      useLive: "Live-Gaspreis verwenden",
+      liveFrom: "Live von {chain}",
+      gasPrice: "Gaspreis",
+      feeSymbol: "Gebühr ({symbol})",
+      feeWei: "Gebühr (wei)",
+      feeUsd: "Gebühr (USD)",
+      maxToHold: "Maximal vorzuhalten",
+      feeSats: "Gebühr (sats)",
+      feeBtc: "Gebühr (BTC)",
+      evmFee: "EVM-Gebühr",
+      gasLimit: "Gaslimit",
+      baseFee: "Basisgebühr / Gaspreis",
+      priorityFee: "Prioritätsgebühr",
+      maxFee: "Maximalgebühr",
+      l1Note: "Rollups berechnen zusätzlich eine L1-Datengebühr, die hier nicht enthalten ist.",
+      btcFee: "Bitcoin-Gebühr",
+      size: "Größe (vbytes)",
+      feeRate: "Gebührensatz"
+    },
+    abi: {
+      abiPlaceholder: "JSON-ABI oder eine Signatur pro Zeile (optional)",
+      badCalldata: "Calldata muss 0x sein, gefolgt von mindestens einem 4-Byte-Selektor.",
+      commonMatch: "Passt zu einer gängigen Signatur (kein ABI angegeben).",
+      lookupSelector: "Selektor online nachschlagen",
+      asking: "openchain.xyz / 4byte.directory wird abgefragt…",
+      community: "Von der Community eingereichte Signatur ({source}): als Vermutung behandeln.",
+      noneDecodes: "Keine eingereichte Signatur dekodiert diese Daten.",
+      unknownSelector: "Selektor {selector} ist unbekannt.",
+      calldata: "Calldata",
+      decode: "Dekodieren",
+      encode: "Kodieren",
+      signature: "Funktionssignatur",
+      args: "Argumente (JSON-Array)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Von (ermittelt)",
+      creation: "(Contract-Erstellung)",
+      chainId: "Chain-ID",
+      replayable: "keine (wiederholbar)",
+      nonce: "Nonce",
+      data: "Daten",
+      bestGuess: "Passt zu einer gängigen Signatur; beste Schätzung ohne das ABI.",
+      authorization: "EIP-7702-Autorisierung",
+      delegatesTo: "Delegiert an",
+      chainNonce: "Chain / Nonce",
+      anyChain: "0 (jede Chain!)",
+      field: "Signierte Rohtransaktion",
+      hint: "Lokal dekodiert; es wird nichts gesendet."
+    },
+    app: {
+      batch: "Stapel",
+      moreTools: "Weitere Tools",
+      batchSearch: "Stapelsuche",
+      batchSearchBody: "Bis zu 50 Adressen auf einmal prüfen, CSV-Export",
+      devToolsBody: "Einheiten, Checksummen, Decoder, Zeitstempel",
+      savedBody: "Deine Labels und Notizen, privat in diesem Browser",
+      view: {
+        search: "Suche",
+        result: "Ergebnis",
+        batch: "Stapel",
+        tools: "Tools",
+        saved: "Gespeichert",
+        settings: "Einstellungen"
+      }
+    },
+    batch: {
+      valueCol: "Wert",
+      typeCol: "Typ",
+      checksCol: "Prüfungen",
+      notRecognised: "nicht erkannt",
+      secret: "Geheimnis",
+      ok: "ok",
+      leftOut: "Ausgelassen: {count} (Limit {max}).",
+      checking: "wird geprüft…",
+      active: "{active}/{total} aktiv · {usd}",
+      fetchBalances: "EVM-Guthaben abrufen ({count})",
+      exportCsv: "CSV exportieren",
+      savedMsg: "In diesem Browser gespeichert.",
+      saveAll: "Alle speichern",
+      shareCopied: "Link kopiert (öffnet auf web3lens.com; die Liste steckt im Link).",
+      copyShare: "Teilen-Link kopieren",
+      checked: "Geprüft: {count}",
+      title: "Eine Liste auf einmal prüfen",
+      intro: "Bis zu {max} Adressen, Hashes oder Namen: einer pro Zeile oder durch Kommas oder Leerzeichen getrennt.",
+      checkAll: "Alle prüfen"
+    },
+    savedPage: {
+      filter: "Filtern",
+      empty: "Noch nichts gespeichert. Nutze Speichern in der Suche oder im Stapel.",
+      label: "Label",
+      notes: "Notizen",
+      select: "Auswählen",
+      remove: "Entfernen",
+      tooLarge: "Datei zu groß",
+      imported: "Importierte Einträge: {count}.",
+      importFailed: "Import fehlgeschlagen: {error}",
+      title: "Deine Labels und Notizen",
+      intro: "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Es wird nichts synchronisiert.",
+      exportJson: "JSON exportieren",
+      importJson: "JSON importieren",
+      selectFirst: "Wähle zuerst Einträge aus.",
+      shareCopied: "Link kopiert. Labels und Notizen stecken im Link: Jeder mit dem Link kann sie lesen.",
+      shareSelected: "Auswahl teilen"
+    },
+    detect: {
+      address: "{chain}-Adresse",
+      testnetAddress: "{chain}-Testnet-Adresse",
+      stakeAddress: "{chain}-Staking-Adresse",
+      addressRaw: "{chain}-Adresse (roh)",
+      bech32: "Bech32-Adresse ({hrp})",
+      txHashOf: "{chain}-Transaktions-Hash",
+      extrinsicHash: "{chain}-Extrinsic-Hash",
+      operationHash: "{chain}-Operations-Hash",
+      blockHash: "{chain}-Block-Hash",
+      secretKey: "{chain}-Secret-Key",
+      signature: "{chain}-Signatur",
+      dnsName: "{chain}-DNS-Name",
+      name: "{chain}-Name",
+      account: "{chain}-Konto",
+      contract: "{chain}-Contract",
+      transactionHash: "Transaktions-Hash",
+      blockNumber: "Blocknummer",
+      recoveryPhrase: "Wiederherstellungsphrase",
+      privateKey: "Privater Schlüssel (WIF)",
+      note: {
+        badChecksum: "Die Checksumme stimmt nicht. Der Wert enthält vielleicht einen Tippfehler; prüfe ihn, bevor du Geld sendest.",
+        privateKey: "Das sieht wie ein privater Schlüssel aus. Wer ihn hat, kontrolliert das Guthaben. Web3Lens sucht nicht danach.",
+        stellarSecret: "Das ist ein geheimer Stellar-Schlüssel. Wer ihn hat, kontrolliert das Konto. Web3Lens sucht nicht danach.",
+        recoveryPhrase: "Das sieht wie eine Wallet-Wiederherstellungsphrase aus. Wer sie hat, kontrolliert die Wallet. Web3Lens sucht nicht danach; füge sie niemals auf einer Website ein.",
+        bech32Unknown: "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
+        versionByte: "Das Versionsbyte {byte} erkennt Web3Lens nicht."
+      }
+    }
+  };
+
+  // extension-src/locales/ja.json
+  var ja_default = {
+    common: {
+      copy: "コピー",
+      copied: "コピーしました",
+      close: "閉じる",
+      loading: "読み込み中…",
+      refresh: "更新",
+      clear: "消去",
+      save: "保存",
+      saved: "保存済み",
+      search: "検索",
+      tools: "ツール",
+      settings: "設定",
+      sections: "セクション",
+      yes: "はい",
+      no: "いいえ",
+      yesLower: "はい",
+      noLower: "いいえ",
+      unavailable: "利用不可",
+      unavailableReason: "利用不可: {reason}",
+      unavailableParen: "利用不可（{reason}）",
+      unavailableCap: "利用不可: {reason}",
+      unknown: "不明",
+      pending: "保留中",
+      staleParen: "（古いデータ）",
+      offInSettings: "オンライン照会は設定でオフになっています。",
+      openInFullTab: "新しいタブで開く",
+      developerTools: "開発者ツール",
+      gasTracker: "ガストラッカー",
+      feeCalculator: "手数料計算",
+      unrecognised: "認識できません",
+      offlineMode: "オフラインモード",
+      onlineLookups: "オンライン照会",
+      explorers: "エクスプローラー",
+      liveFees: "{count} の EVM チェーンと Bitcoin のリアルタイム手数料"
+    },
+    theme: {
+      label: "テーマ",
+      light: "ライト",
+      dark: "ダーク",
+      system: "システム",
+      lightDefault: "ライト（既定）",
+      lightTheme: "ライトテーマ",
+      darkTheme: "ダークテーマ",
+      systemTheme: "システムのテーマ",
+      current: "テーマ: {theme}"
+    },
+    language: {
+      label: "言語",
+      hint: "自動はブラウザの言語に従います。",
+      fallbackNote: "未翻訳の部分は英語で表示されます。",
+      auto: "自動（{language}）"
+    },
+    picker: {
+      filterPlaceholder: "{count} チェーンを検索…",
+      filterLabel: "ブロックチェーンを絞り込む",
+      listLabel: "ブロックチェーン",
+      autoDetected: "自動検出",
+      blockchain: "ブロックチェーン",
+      buttonLabel: "ブロックチェーン: {chain}。ブロックチェーンを変更",
+      buttonLabelAuto: "ブロックチェーン: {chain}（自動検出）。ブロックチェーンを変更",
+      results: "結果",
+      detected: "検出済み",
+      favourites: "お気に入り",
+      popular: "人気",
+      allChains: "すべてのチェーン · {count}",
+      explorerDown: "エクスプローラー停止中",
+      limited: "制限あり",
+      pin: "{chain} をピン留め",
+      unpin: "{chain} のピン留めを解除",
+      noMatch: "「{query}」に一致するチェーンはありません"
+    },
+    popup: {
+      tab: {
+        lookup: "照会",
+        scan: "ページをスキャン",
+        tools: "ツール",
+        gas: "ガス",
+        saved: "保存済み"
+      },
+      tagline: "{strong}のブロックチェーン検索",
+      taglineStrong: "あらゆるチェーン",
+      online: "オンライン",
+      statusOnline: "照会は {host} に送信されます。設定で変更できます",
+      statusOffline: "ブラウザの外には何も送信されません。設定で変更できます",
+      aboutButton: "概要、ショートカット、その他のツール",
+      openApp: "フルアプリをタブで開く",
+      footOnline: "実行した照会は {host} に送信されます。それ以外はブラウザの外に出ません。",
+      footOffline: "オフラインモード: ブラウザの外には何も送信されません。",
+      footLink: "ショートカットとその他のツール"
+    },
+    hero: {
+      title: "{accent}何でも検索",
+      titleAccent: "どのチェーンでも、",
+      popupLead: "アドレス、トランザクション、ブロック、名前を貼り付けてください。Web3Lens が {count} のチェーンから該当するものを見つけます。",
+      appLead: "アドレス、トランザクション、ブロック、名前を貼り付けてください。Web3Lens が識別・確認して答えを表示します。"
+    },
+    examples: {
+      title: "例を試す",
+      vitalik: "Vitalik Buterin の ENS",
+      usdc: "USDC コントラクト",
+      genesis: "Bitcoin のジェネシスアドレス",
+      usdtTron: "Tron 上の USDT"
+    },
+    scan: {
+      reading: "このページを読み取り中…",
+      noTab: "アクティブなタブがありません",
+      thisTab: "このタブ",
+      nothingTitle: "見つかりませんでした",
+      nothingBody: "このページにはアドレス、トランザクションハッシュ、名前がありません。テキストを選択して右クリックすると照会できます。",
+      found: "{count} 件見つかりました",
+      copyAll: "すべてコピー",
+      checkAll: "すべて一括チェック",
+      cantReadTitle: "このページを読み取れません",
+      cantReadBody: "{error}。ブラウザのページ（設定、拡張機能ストア、新しいタブ）はスキャンできません。",
+      bannerTitle: "{host} 上のアドレス",
+      bannerBody: "このセクションを開いたときに、このタブの表示テキストを一度だけ読み取ります。どこにも送信されません。",
+      rescan: "再スキャン"
+    },
+    toolsNav: {
+      more: "その他",
+      batchCheck: "一括チェック"
+    },
+    tool: {
+      "unit-converter": {
+        title: "単位換算",
+        short: "wei · gwei · ETH、sats · BTC、任意の小数桁",
+        description: "wei・gwei・ether、satoshi・bitcoin、lamport・SOL、任意のトークン小数桁の間を正確に（丸めなしで）換算します。"
+      },
+      "address-validator": {
+        title: "アドレス検証",
+        short: "25 種類以上のアドレス形式のチェックサム",
+        description: "アドレスがそのチェーンで有効かを確認します: EIP-55 チェックサム、base58check、bech32、CashAddr、SS58、Stellar、TON、さらに OFAC 制裁リストのスナップショット。"
+      },
+      "hex-converter": {
+        title: "16 進・テキスト・ハッシュ",
+        short: "hex ↔ 10 進、UTF-8、keccak256、SHA-256",
+        description: "16 進と 10 進の相互変換、テキストから 16 進への変換、int256 ワードの読み取り、keccak256 と SHA-256 によるテキストやバイトのハッシュ化（関数セレクタ付き）を行います。"
+      },
+      "timestamp-converter": {
+        title: "タイムスタンプ変換",
+        short: "Unix 秒、ms、hex ↔ 日付",
+        description: "Unix タイムスタンプ（秒、ミリ秒、16 進のブロックタイムスタンプ）を UTC とお使いのタイムゾーンの日時に変換し、日時をタイムスタンプに戻します。"
+      },
+      "gas-calculator": {
+        title: "ガス・手数料計算",
+        short: "リアルタイムのガス価格で EIP-1559 手数料",
+        description: "ガスリミット、ベース手数料、チップから取引手数料を計算します。11 の EVM チェーンのリアルタイムガス価格と Bitcoin の手数料率に対応。"
+      },
+      "abi-decoder": {
+        title: "Calldata・ABI デコーダー",
+        short: "関数呼び出しのデコードとエンコード",
+        description: "コントラクトの ABI、関数シグネチャ、または内蔵の一般的な関数リストで Ethereum の calldata をデコードし、シグネチャから呼び出しをエンコードします。"
+      },
+      "transaction-decoder": {
+        title: "生トランザクションデコーダー",
+        short: "署名済み tx → 各フィールドと送信者",
+        description: "署名済みの生 EVM トランザクション（legacy、EIP-1559、blob、EIP-7702）をブロードキャストせずにローカルでデコードし、送信者を復元します。"
+      }
+    },
+    gas: {
+      offlineBody: "リアルタイムのガスにはオンライン照会が必要です。設定でオンライン照会をオンにするか、手数料計算に自分の値を入力してください。",
+      loading: "リアルタイムのガス価格を読み込み中…",
+      btcRate: "手数料率、sat/vB",
+      nextBlock: "次のブロック",
+      halfHour: "約 30 分",
+      hour: "約 1 時間",
+      economy: "エコノミー",
+      btcUnavailable: "Bitcoin の手数料を取得できません: {reason}",
+      transfer: "送金 {usd}",
+      noUsd: "USD 価格なし",
+      gweiStale: "gwei · 古いデータ",
+      na: "該当なし",
+      source: "公開 RPC、mempool.space、CoinGecko · {time} UTC に取得。ロールアップでは L1 データ手数料が加算されます。",
+      head: "リアルタイム手数料 · {count} の EVM チェーンと Bitcoin",
+      chain: "チェーン",
+      priceCol: "ガス価格（gwei）",
+      transferCol: "送金（USD）",
+      btcCard: "Bitcoin（sat/vB）"
+    },
+    saved: {
+      filterPlaceholder: "ラベル、アドレス、メモで絞り込み",
+      filterLabel: "保存済み項目を絞り込む",
+      emptyTitle: "まだ何も保存されていません",
+      emptyBody: "検索後に「保存」を押すと、アドレスやトランザクションをラベルとメモ付きでここに残せます。保存した項目はこのブラウザ内にとどまります。",
+      noMatch: "「{query}」に一致する項目はありません。",
+      unpin: "ピン留めを解除",
+      pin: "先頭にピン留め",
+      manageTitle: "ラベルとメモの編集、エクスポート、インポート、共有",
+      manage: "管理"
+    },
+    settings: {
+      appearance: "外観",
+      appearanceHint: "既定はライトです。システムはブラウザの設定に従います。",
+      whenSearch: "「検索」を押したとき",
+      whenSearchHint: "右クリックからの照会と w3 キーワードもこの設定に従います。",
+      resultsFirst: "Web3Lens の結果を先に表示",
+      resultsFirstHint: "{count} チェーンで残高、トークン、リスクチェックを表示します。その他のチェーンはエクスプローラーを開きます。",
+      alwaysExplorer: "常にブロックエクスプローラーを開く",
+      alwaysExplorerHint: "新しいタブで直接エクスプローラーに移動します。",
+      onlineOn: "オン: 残高、トランザクション、リスクチェック、ガスは、リクエスト時に {host} から取得します。",
+      onlineOff: "オフ: 検出、チェックサム、エクスプローラーへのリンク、ツール、OFAC スナップショットはローカルで引き続き動作します。",
+      recent: "最近の検索",
+      recentKept: "このブラウザに保存中: {count} 件。",
+      more: "その他の設定",
+      moreHint: "優先エクスプローラー、お気に入りチェーン、データ、リセット",
+      pageTitle: "自分好みの検索に",
+      privacy: "プライバシー",
+      privacyBody: "残高、トランザクション、リスクチェック、リアルタイムのガスは、リクエスト時に {host} から取得します。オフにするとすべてブラウザ内で完結します: 検出、チェックサム、エクスプローラーへのリンク、ツール、同梱の OFAC スナップショットは引き続き動作します。",
+      privacyNote: "この拡張機能にはホスト権限がなく、ページを読み取るのはそのページでポップアップの「ページをスキャン」タブを開いたときだけです。",
+      preferredExplorers: "優先エクスプローラー",
+      favouriteChains: "お気に入りのチェーン",
+      noneYet: "まだありません。",
+      addChain: "名前でチェーンを追加",
+      data: "データ",
+      dataBody: "すべてこのブラウザの拡張機能ストレージに保存されています。",
+      clearRecent: "最近の検索を消去",
+      deleteSaved: "保存済み項目を削除",
+      resetPrefs: "設定をリセット",
+      confirmDelete: "保存済みの項目をすべて削除しますか？",
+      options: "拡張機能のオプション"
+    },
+    info: {
+      title: "Web3Lens について",
+      fasterWays: "すばやく使う方法",
+      shortcut: "キーボードショートカット",
+      shortcutBody: "{keys} でこのポップアップを開きます。",
+      rightClick: "右クリック",
+      rightClickBody: "任意のページでアドレスやハッシュを選択し、{menu} を選びます。",
+      addressBar: "アドレスバー",
+      addressBarBody: "{key} とスペースを入力し、貼り付けて検索します。",
+      statChains: "検出・振り分けに対応するブロックチェーン",
+      statNative: "リアルタイム残高とリスクチェックに対応",
+      statOfac: "OFAC リストのスナップショット（ローカルで確認）",
+      website: "ウェブサイト",
+      contact: "お問い合わせ",
+      contactSub: "フィードバックを送る",
+      privacy: "プライバシーポリシー",
+      privacySub: "保存・送信されるデータ",
+      moreFrom: "同じ開発者のその他の製品",
+      summarytube: "YouTube 動画の要約",
+      centpage: "最高のスタートページ",
+      sessionmanager: "タブの保存と復元",
+      webdevtools: "ウェブ開発者向けツール",
+      foot: "Web3Lens 拡張機能 v{version} · アカウント不要、保存データはこのブラウザ内にとどまります"
+    },
+    search: {
+      placeholder: "アドレス、tx ハッシュ、ブロック、ENS 名",
+      inputLabel: "アドレス、トランザクションハッシュ、ブロック、名前",
+      unknownFormat: "Web3Lens が認識できない形式です。選択したチェーンのエクスプローラー検索に送られます。",
+      secret: "秘密情報を検出しました。",
+      checksumOk: "· チェックサム OK",
+      badChecksum: "チェックサム不一致",
+      testnet: "テストネット",
+      ofacListed: "OFAC リスト掲載",
+      searchOn: "検索先",
+      switchTo: "切り替え先",
+      couldBe: "ほかの可能性: {list}",
+      explorerDown: "{chain} のエクスプローラーは前回のヘルスチェックで応答しませんでした。",
+      searchWeb: "ウェブで検索",
+      openAnyway: "それでも開く",
+      fallback: "{chain} はまだ対応していない数少ないブロックチェーンの 1 つです。代わりに {chain} のエクスプローラーに移動します...",
+      empty: "まずアドレス、トランザクションハッシュ、ブロック番号、名前のいずれかを貼り付けてください。",
+      notSearched: "検索していません。",
+      offlineExplorers: "オンライン照会がオフ（設定）のため、エクスプローラーを表示します:",
+      recent: "最近",
+      recentEmpty: "最近の検索がここに表示されます。このブラウザ内にのみ保存されます。",
+      openFull: "全画面で開く",
+      openExplorer: "エクスプローラーで開く"
+    },
+    source: {
+      unavailableFrom: "{source} から取得できません: {reason}。推測で埋めずに何も表示しません。",
+      unavailable: "取得できません: {reason}。推測で埋めずに何も表示しません。",
+      line: "ソース: {source} · {ago}に取得",
+      stale: "· 古いデータ（ソースが応答していません）",
+      explorerDown: "前回のヘルスチェックで応答しませんでした"
+    },
+    api: {
+      badAnswer: "Web3Lens から、このバージョンの拡張機能では読み取れない応答が返されました。エクスプローラーへのリンクとローカルチェックは引き続き使えます。拡張機能を更新すると解決するはずです。",
+      timeout: "Web3Lens の応答に時間がかかりすぎています。少し待ってから再試行してください。エクスプローラーへのリンクとローカルチェックは引き続き使えます。",
+      unreachable: "Web3Lens に接続できません。接続を確認してください。",
+      rateLimited: "短時間に照会が多すぎます。1 分待ってから再試行してください。",
+      serviceDown: "Web3Lens の照会サービスは現在利用できません（HTTP {status}）。エクスプローラーへのリンクとローカルチェックは引き続き使えます。"
+    },
+    result: {
+      qr: "QR コード",
+      transaction: "トランザクション",
+      address: "アドレス",
+      offline: "オンライン照会は設定でオフになっています。エクスプローラーへのリンクとローカルチェックは引き続き使えます。",
+      onOfac: "OFAC 制裁リストに掲載されています（{lists}）。",
+      balance: "残高",
+      usdApprox: "≈ {usd}（CoinGecko）",
+      noUsd: "USD 換算額は取得できません",
+      type: "種類",
+      delegated: "EIP-7702 で {address} に委任",
+      contractBytes: "コントラクト（{count} バイト）",
+      walletNoCode: "ウォレット（コードなし）",
+      sentTxs: "送信 tx 数",
+      resolvedFrom: "解決元",
+      tokens: "トークン",
+      noErc20: "ERC-20 トークンはありません。",
+      hiddenTokens: "非表示のトークン: {count} 件。インデクサーがスパムと判定したか、名前やシンボルがありません。心当たりのないトークンには触れないでください。",
+      knownOnly: "確認したのは主要トークン {count} 件のみです（{chain} に対応する無料のトークンインデックスがありません）。その他の保有資産は表示されません。",
+      activity: "アクティビティ",
+      transactions: "トランザクション",
+      tokenTransfers: "トークン送金",
+      labelsContract: "ラベルとコントラクト",
+      flagged: "Blockscout がこのアドレスを警告しています（{reason}）。",
+      scam: "詐欺",
+      name: "名前",
+      tags: "タグ",
+      verifiedSource: "検証済みソース",
+      proxy: "プロキシ",
+      token: "トークン",
+      unconfirmed: "未承認の保留中トランザクション: {count} 件。上記には含まれていません。",
+      received: "受信",
+      sent: "送信",
+      recentTxs: "最近のトランザクション",
+      account: "アカウント",
+      program: "プログラム",
+      notFound: "オンチェーンで見つかりません",
+      owner: "所有者",
+      splTokens: "SPL トークン",
+      noSpl: "SPL トークンの残高はありません。",
+      token2022: "公開 RPC から Token-2022 の残高を読み取れませんでした。",
+      recentSigs: "最近の署名",
+      unknownTx: "{chain} はこのトランザクションを認識していません。",
+      unknownSig: "Solana はこの署名を認識していません。",
+      status: "ステータス",
+      block: "ブロック",
+      conf: "{block} · {count} 承認",
+      time: "時刻",
+      from: "送信元",
+      to: "送信先",
+      value: "金額",
+      fee: "手数料",
+      input: "入力",
+      verifiedAbi: "検証済み ABI",
+      guessed: "推定",
+      success: "成功",
+      failed: "失敗",
+      confirmed: "承認済み",
+      unconfirmedBadge: "未承認",
+      mempool: "メモリプール",
+      output: "出力",
+      outputs: "出力（{count}）",
+      slot: "スロット",
+      signer: "署名者"
+    },
+    risk: {
+      checking: "制裁、報告、コントラクトを確認中…",
+      title: "リスクチェック",
+      signals: "リスクシグナル: {count} 件。確認するまで送金や署名をしないでください。",
+      noReports: "以下のソースに報告はありません。安全という意味ではありません: ほとんどの詐欺は報告されません。",
+      listed: "掲載あり（{lists}）",
+      notListed: "掲載なし（スナップショット {date}）",
+      markedScam: "詐欺として報告済み",
+      notFlagged: "警告なし",
+      noReportsShort: "報告なし",
+      scamReports: "詐欺の報告",
+      notChecked: "未確認: 無料のソースは EVM チェーンのみ対応",
+      verified: "検証",
+      upgradeable: "アップグレード可能",
+      yesArrow: "はい → {address}",
+      noSlots: "EIP-1967 スロットなし",
+      noOwner: "owner() なし",
+      renounced: "放棄済み",
+      contract: "コントラクト",
+      wallet: "ウォレット",
+      admin: "管理者機能",
+      adminCount: "{count} 個（mint/pause/blacklist/upgrade…）",
+      noneFound: "見つかりません",
+      tokenRisk: "トークンのリスク",
+      noFlags: "警告なし",
+      onlineUnavailable: "オンラインチェックは利用できません: {error}",
+      ofacLocal: "OFAC（ローカル）",
+      checkApprovals: "トークンの承認を確認",
+      scanningApprovals: "承認をスキャンして許可額を読み取り中…",
+      aWallet: "（ウォレットです！）",
+      unlimited: "無制限",
+      allItems: "すべてのアイテム",
+      noApprovals: "スキャンしたイベントに有効な承認は見つかりませんでした。",
+      capped: "ログ検索が上限に達しました: 古い承認が漏れている可能性があります。",
+      revoke: "revoke.cash で確認・取り消し ↗"
+    },
+    multichain: {
+      checking: "{count} の EVM チェーンを確認中…",
+      code: "コード",
+      txCount: "{count} tx",
+      source: "公開 RPC · 価格 {source} · {ago}",
+      title: "他の EVM チェーン上の同じアドレス"
+    },
+    locate: {
+      asking: "{count} の EVM チェーンに問い合わせ中…",
+      foundOn: "{chain} で見つかりました →",
+      notFound: "対応する {count} の EVM チェーンでは見つかりませんでした。エクスプローラーへのリンクをお試しください。",
+      title: "どのチェーンにありますか？"
+    },
+    unit: {
+      anyToken: "任意のトークン",
+      rawUnits: "最小単位",
+      tokens: "トークン",
+      amount: "数量",
+      family: "単位の種類",
+      from: "変換元の単位",
+      decimals: "トークンの小数桁（任意のトークン）"
+    },
+    validator: {
+      invalid: "Web3Lens が知っているどの形式でも、有効なアドレスやハッシュではありません。",
+      checksumValid: "チェックサム有効",
+      checksumInvalid: "チェックサムが一致しません",
+      noChecksum: "チェックサムなし",
+      formatOnly: "形式のみ",
+      notOnOfac: "OFAC スナップショットに掲載なし",
+      normalised: "正規化",
+      field: "アドレス、ハッシュ、名前",
+      hint: "チェックサムが有効でも、正しくコピーされたことを示すだけで、信頼できるという意味ではありません。"
+    },
+    hex: {
+      decimal: "10 進",
+      text: "テキスト",
+      textOption: "テキスト",
+      hexBytes: "16 進バイト",
+      selector: "セレクタ",
+      number: "数値",
+      hexOrDecimal: "16 進または 10 進",
+      textToHex: "テキスト → 16 進",
+      hexToText: "16 進 → テキスト",
+      hashes: "ハッシュ",
+      input: "入力",
+      inputIs: "入力の種類"
+    },
+    time: {
+      now: "現在",
+      readAs: "{kind} として解釈",
+      unixSeconds: "Unix 秒",
+      milliseconds: "ミリ秒",
+      local: "ローカル",
+      relative: "相対",
+      field: "タイムスタンプまたは日付",
+      future: "未来の時刻",
+      kind: {
+        hexSeconds: "16 進の秒",
+        nanoseconds: "ナノ秒",
+        microseconds: "マイクロ秒",
+        milliseconds: "ミリ秒",
+        seconds: "秒",
+        date: "日付"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH 送金",
+        erc20Transfer: "ERC-20 送金",
+        erc20Approve: "ERC-20 承認",
+        uniswapSwap: "Uniswap スワップ",
+        nftMint: "NFT ミント"
+      },
+      optional: "gwei（任意）",
+      useLive: "リアルタイムのガス価格を使う",
+      liveFrom: "{chain} のリアルタイム値",
+      gasPrice: "ガス価格",
+      feeSymbol: "手数料（{symbol}）",
+      feeWei: "手数料（wei）",
+      feeUsd: "手数料（USD）",
+      maxToHold: "必要な最大額",
+      feeSats: "手数料（sats）",
+      feeBtc: "手数料（BTC）",
+      evmFee: "EVM 手数料",
+      gasLimit: "ガスリミット",
+      baseFee: "ベース手数料 / ガス価格",
+      priorityFee: "優先手数料",
+      maxFee: "最大手数料",
+      l1Note: "ロールアップでは、ここに含まれない L1 データ手数料もかかります。",
+      btcFee: "Bitcoin 手数料",
+      size: "サイズ（vbytes）",
+      feeRate: "手数料率"
+    },
+    abi: {
+      abiPlaceholder: "JSON 形式の ABI、または 1 行に 1 つのシグネチャ（任意）",
+      badCalldata: "calldata は 0x の後に少なくとも 4 バイトのセレクタが必要です。",
+      commonMatch: "一般的なシグネチャに一致しました（ABI 指定なし）。",
+      lookupSelector: "セレクタをオンラインで検索",
+      asking: "openchain.xyz / 4byte.directory に問い合わせ中…",
+      community: "コミュニティが登録したシグネチャ（{source}）: 推測として扱ってください。",
+      noneDecodes: "このデータをデコードできる登録済みシグネチャはありません。",
+      unknownSelector: "セレクタ {selector} は不明です。",
+      calldata: "Calldata",
+      decode: "デコード",
+      encode: "エンコード",
+      signature: "関数シグネチャ",
+      args: "引数（JSON 配列）"
+    },
+    txdec: {
+      hash: "ハッシュ",
+      fromRecovered: "送信元（復元）",
+      creation: "（コントラクト作成）",
+      chainId: "チェーン ID",
+      replayable: "なし（リプレイ可能）",
+      nonce: "ナンス",
+      data: "データ",
+      bestGuess: "一般的なシグネチャに一致しました。ABI なしでの推定です。",
+      authorization: "EIP-7702 の認可",
+      delegatesTo: "委任先",
+      chainNonce: "チェーン / ナンス",
+      anyChain: "0（すべてのチェーン！）",
+      field: "署名済みの生トランザクション",
+      hint: "ローカルでデコードします。何もブロードキャストされません。"
+    },
+    app: {
+      batch: "一括",
+      moreTools: "その他のツール",
+      batchSearch: "一括検索",
+      batchSearchBody: "最大 50 件のアドレスをまとめてチェックし、CSV で出力",
+      devToolsBody: "単位、チェックサム、デコーダー、タイムスタンプ",
+      savedBody: "ラベルとメモ（このブラウザ内のみ）",
+      view: {
+        search: "検索",
+        result: "結果",
+        batch: "一括",
+        tools: "ツール",
+        saved: "保存済み",
+        settings: "設定"
+      }
+    },
+    batch: {
+      valueCol: "値",
+      typeCol: "種類",
+      checksCol: "チェック",
+      notRecognised: "認識できません",
+      secret: "秘密情報",
+      ok: "OK",
+      leftOut: "除外: {count} 件（上限 {max}）。",
+      checking: "確認中…",
+      active: "{active}/{total} 件で利用あり · {usd}",
+      fetchBalances: "EVM 残高を取得（{count}）",
+      exportCsv: "CSV をエクスポート",
+      savedMsg: "このブラウザに保存しました。",
+      saveAll: "すべて保存",
+      shareCopied: "共有リンクをコピーしました（web3lens.com で開きます。リストはリンク内に含まれます）。",
+      copyShare: "共有リンクをコピー",
+      checked: "チェック済み: {count} 件",
+      title: "リストをまとめてチェック",
+      intro: "最大 {max} 件のアドレス、ハッシュ、名前: 1 行に 1 つ、またはカンマやスペースで区切って入力します。",
+      checkAll: "すべてチェック"
+    },
+    savedPage: {
+      filter: "絞り込み",
+      empty: "まだ何も保存されていません。検索または一括で「保存」を使ってください。",
+      label: "ラベル",
+      notes: "メモ",
+      select: "選択",
+      remove: "削除",
+      tooLarge: "ファイルが大きすぎます",
+      imported: "{count} 件をインポートしました。",
+      importFailed: "インポートに失敗しました: {error}",
+      title: "ラベルとメモ",
+      intro: "ラベルとメモはこのブラウザ（拡張機能ストレージ）内にとどまります。同期はされません。",
+      exportJson: "JSON をエクスポート",
+      importJson: "JSON をインポート",
+      selectFirst: "先に項目を選択してください。",
+      shareCopied: "共有リンクをコピーしました。ラベルとメモはリンク内に含まれ、リンクを持つ人は誰でも読めます。",
+      shareSelected: "選択した項目を共有"
+    },
+    detect: {
+      address: "{chain} アドレス",
+      testnetAddress: "{chain} テストネットアドレス",
+      stakeAddress: "{chain} ステークアドレス",
+      addressRaw: "{chain} アドレス（raw）",
+      bech32: "Bech32 アドレス（{hrp}）",
+      txHashOf: "{chain} トランザクションハッシュ",
+      extrinsicHash: "{chain} エクストリンシックハッシュ",
+      operationHash: "{chain} オペレーションハッシュ",
+      blockHash: "{chain} ブロックハッシュ",
+      secretKey: "{chain} 秘密鍵",
+      signature: "{chain} 署名",
+      dnsName: "{chain} DNS 名",
+      name: "{chain} 名",
+      account: "{chain} アカウント",
+      contract: "{chain} コントラクト",
+      transactionHash: "トランザクションハッシュ",
+      blockNumber: "ブロック番号",
+      recoveryPhrase: "リカバリーフレーズ",
+      privateKey: "秘密鍵（WIF）",
+      note: {
+        badChecksum: "チェックサムが一致しません。入力ミスの可能性があります。送金前に確認してください。",
+        privateKey: "秘密鍵のようです。これを持つ人は誰でも資金を動かせます。Web3Lens は検索しません。",
+        stellarSecret: "Stellar の秘密鍵です。これを持つ人は誰でもアカウントを操作できます。Web3Lens は検索しません。",
+        recoveryPhrase: "ウォレットのリカバリーフレーズのようです。これを持つ人は誰でもウォレットを操作できます。Web3Lens は検索しません。決してウェブサイトに貼り付けないでください。",
+        bech32Unknown: "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
+        versionByte: "バージョンバイト {byte} は Web3Lens が認識できないものです。"
+      }
+    }
+  };
+
+  // extension-src/locales/ko.json
+  var ko_default = {
+    common: {
+      copy: "복사",
+      copied: "복사됨",
+      close: "닫기",
+      loading: "불러오는 중…",
+      refresh: "새로고침",
+      clear: "지우기",
+      save: "저장",
+      saved: "저장됨",
+      search: "검색",
+      tools: "도구",
+      settings: "설정",
+      sections: "섹션",
+      yes: "예",
+      no: "아니요",
+      yesLower: "예",
+      noLower: "아니요",
+      unavailable: "사용할 수 없음",
+      unavailableReason: "사용할 수 없음: {reason}",
+      unavailableParen: "사용할 수 없음({reason})",
+      unavailableCap: "사용할 수 없음: {reason}",
+      unknown: "알 수 없음",
+      pending: "대기 중",
+      staleParen: "(오래된 데이터)",
+      offInSettings: "온라인 조회가 설정에서 꺼져 있습니다.",
+      openInFullTab: "전체 탭에서 열기",
+      developerTools: "개발자 도구",
+      gasTracker: "가스 트래커",
+      feeCalculator: "수수료 계산기",
+      unrecognised: "인식할 수 없음",
+      offlineMode: "오프라인 모드",
+      onlineLookups: "온라인 조회",
+      explorers: "익스플로러",
+      liveFees: "{count}개 EVM 체인과 Bitcoin의 실시간 수수료"
+    },
+    theme: {
+      label: "테마",
+      light: "라이트",
+      dark: "다크",
+      system: "시스템",
+      lightDefault: "라이트(기본값)",
+      lightTheme: "라이트 테마",
+      darkTheme: "다크 테마",
+      systemTheme: "시스템 테마",
+      current: "테마: {theme}"
+    },
+    language: {
+      label: "언어",
+      hint: "자동은 브라우저 언어를 따릅니다.",
+      fallbackNote: "아직 번역되지 않은 부분은 영어로 표시됩니다.",
+      auto: "자동({language})"
+    },
+    picker: {
+      filterPlaceholder: "{count}개 체인 검색…",
+      filterLabel: "블록체인 필터",
+      listLabel: "블록체인",
+      autoDetected: "자동 감지됨",
+      blockchain: "블록체인",
+      buttonLabel: "블록체인: {chain}. 블록체인 변경",
+      buttonLabelAuto: "블록체인: {chain}(자동 감지됨). 블록체인 변경",
+      results: "결과",
+      detected: "감지됨",
+      favourites: "즐겨찾기",
+      popular: "인기",
+      allChains: "모든 체인 · {count}",
+      explorerDown: "익스플로러 중단",
+      limited: "제한됨",
+      pin: "{chain} 고정",
+      unpin: "{chain} 고정 해제",
+      noMatch: "“{query}”와 일치하는 체인이 없습니다"
+    },
+    popup: {
+      tab: {
+        lookup: "조회",
+        scan: "페이지 스캔",
+        tools: "도구",
+        gas: "가스",
+        saved: "저장됨"
+      },
+      tagline: "{strong}을 위한 블록체인 검색",
+      taglineStrong: "모든 체인",
+      online: "온라인",
+      statusOnline: "조회는 {host}(으)로 전송됩니다. 설정에서 변경",
+      statusOffline: "브라우저 밖으로 아무것도 나가지 않습니다. 설정에서 변경",
+      aboutButton: "정보, 단축키 및 더 많은 도구",
+      openApp: "전체 앱을 탭에서 열기",
+      footOnline: "실행한 조회는 {host}(으)로 전송됩니다. 그 외에는 브라우저 밖으로 나가지 않습니다.",
+      footOffline: "오프라인 모드: 브라우저 밖으로 아무것도 나가지 않습니다.",
+      footLink: "단축키 및 더 많은 도구"
+    },
+    hero: {
+      title: "{accent} 무엇이든 조회하세요",
+      titleAccent: "어떤 체인에서든",
+      popupLead: "주소, 트랜잭션, 블록 또는 이름을 붙여넣으세요. Web3Lens가 {count}개 체인 중에서 찾아냅니다.",
+      appLead: "주소, 트랜잭션, 블록 또는 이름을 붙여넣으세요. Web3Lens가 인식하고 확인한 뒤 결과를 보여줍니다."
+    },
+    examples: {
+      title: "예시 사용해 보기",
+      vitalik: "Vitalik Buterin의 ENS",
+      usdc: "USDC 컨트랙트",
+      genesis: "Bitcoin 제네시스 주소",
+      usdtTron: "Tron의 USDT"
+    },
+    scan: {
+      reading: "이 페이지를 읽는 중…",
+      noTab: "활성 탭이 없습니다",
+      thisTab: "이 탭",
+      nothingTitle: "찾은 항목 없음",
+      nothingBody: "이 페이지에 주소, 트랜잭션 해시 또는 이름이 없습니다. 텍스트를 선택하고 마우스 오른쪽 버튼을 눌러 조회하세요.",
+      found: "{count}개 발견",
+      copyAll: "모두 복사",
+      checkAll: "일괄 확인으로 모두 검사",
+      cantReadTitle: "이 페이지를 읽을 수 없습니다",
+      cantReadBody: "{error}. 브라우저 페이지(설정, 확장 프로그램 스토어, 새 탭)는 스캔할 수 없습니다.",
+      bannerTitle: "{host}의 주소",
+      bannerBody: "이 섹션을 열 때 이 탭의 보이는 텍스트를 한 번 읽습니다. 어디에도 전송되지 않습니다.",
+      rescan: "다시 스캔"
+    },
+    toolsNav: {
+      more: "더 보기",
+      batchCheck: "일괄 확인"
+    },
+    tool: {
+      "unit-converter": {
+        title: "단위 변환기",
+        short: "wei · gwei · ETH, sats · BTC, 모든 소수 자릿수",
+        description: "wei, gwei, ether, satoshi와 bitcoin, lamport와 SOL 또는 임의의 토큰 소수 자릿수 사이를 반올림 없이 정확하게 변환합니다."
+      },
+      "address-validator": {
+        title: "주소 검증기",
+        short: "25가지 이상 주소 형식의 체크섬",
+        description: "주소가 해당 체인에서 유효한지 확인합니다: EIP-55 체크섬, base58check, bech32, CashAddr, SS58, Stellar, TON, 그리고 OFAC 제재 스냅샷."
+      },
+      "hex-converter": {
+        title: "16진수, 텍스트, 해시",
+        short: "hex ↔ 10진수, UTF-8, keccak256, SHA-256",
+        description: "16진수와 10진수를 상호 변환하고, 텍스트를 16진수로 바꾸고, int256 워드를 읽고, keccak256과 SHA-256으로 텍스트나 바이트를 해시합니다(함수 셀렉터 포함)."
+      },
+      "timestamp-converter": {
+        title: "타임스탬프 변환기",
+        short: "Unix 초, ms, hex ↔ 날짜",
+        description: "Unix 타임스탬프(초, 밀리초, 16진수 블록 타임스탬프)를 UTC 및 현지 시간대의 날짜로 변환하고, 날짜를 다시 타임스탬프로 변환합니다."
+      },
+      "gas-calculator": {
+        title: "가스 및 수수료 계산기",
+        short: "실시간 가스 가격으로 EIP-1559 수수료 계산",
+        description: "가스 한도, 기본 수수료, 팁으로 트랜잭션 수수료를 계산합니다. 11개 EVM 체인의 실시간 가스 가격과 Bitcoin 수수료율을 지원합니다."
+      },
+      "abi-decoder": {
+        title: "Calldata 및 ABI 디코더",
+        short: "함수 호출 디코딩 또는 인코딩",
+        description: "컨트랙트 ABI, 함수 시그니처 또는 내장된 일반 함수 목록으로 Ethereum calldata를 디코딩하고, 시그니처로 호출을 인코딩합니다."
+      },
+      "transaction-decoder": {
+        title: "원시 트랜잭션 디코더",
+        short: "서명된 tx → 필드와 발신자",
+        description: "서명된 원시 EVM 트랜잭션(legacy, EIP-1559, blob, EIP-7702)을 브로드캐스트하지 않고 로컬에서 디코딩하고 발신자를 복원합니다."
+      }
+    },
+    gas: {
+      offlineBody: "실시간 가스는 온라인 조회가 필요합니다. 설정에서 온라인 조회를 켜거나 직접 입력한 값으로 수수료 계산기를 사용하세요.",
+      loading: "실시간 가스 가격을 불러오는 중…",
+      btcRate: "수수료율, sat/vB",
+      nextBlock: "다음 블록",
+      halfHour: "~30분",
+      hour: "~1시간",
+      economy: "이코노미",
+      btcUnavailable: "Bitcoin 수수료를 사용할 수 없음: {reason}",
+      transfer: "전송 {usd}",
+      noUsd: "USD 가격 없음",
+      gweiStale: "gwei · 오래됨",
+      na: "해당 없음",
+      source: "공개 RPC, mempool.space, CoinGecko · {time} UTC에 가져옴. 롤업은 L1 데이터 수수료가 추가됩니다.",
+      head: "실시간 수수료 · {count}개 EVM 체인과 Bitcoin",
+      chain: "체인",
+      priceCol: "가스 가격(gwei)",
+      transferCol: "전송(USD)",
+      btcCard: "Bitcoin(sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "라벨, 주소 또는 메모로 필터",
+      filterLabel: "저장된 항목 필터",
+      emptyTitle: "아직 저장된 항목이 없습니다",
+      emptyBody: "검색 후 저장을 누르면 주소나 트랜잭션을 라벨, 메모와 함께 여기에 보관할 수 있습니다. 저장된 항목은 이 브라우저에만 남습니다.",
+      noMatch: "“{query}”와 일치하는 항목이 없습니다.",
+      unpin: "고정 해제",
+      pin: "맨 위에 고정",
+      manageTitle: "라벨과 메모 편집, 내보내기, 가져오기 또는 공유",
+      manage: "관리"
+    },
+    settings: {
+      appearance: "모양",
+      appearanceHint: "기본값은 라이트입니다. 시스템은 브라우저 설정을 따릅니다.",
+      whenSearch: "검색을 누를 때",
+      whenSearchHint: "마우스 오른쪽 버튼 조회와 w3 키워드도 이 설정을 따릅니다.",
+      resultsFirst: "Web3Lens 결과를 먼저 표시",
+      resultsFirstHint: "{count}개 체인에서 잔액, 토큰, 위험 검사를 표시하고, 다른 체인은 해당 익스플로러를 엽니다.",
+      alwaysExplorer: "항상 블록 익스플로러 열기",
+      alwaysExplorerHint: "새 탭에서 바로 익스플로러로 이동합니다.",
+      onlineOn: "켜짐: 요청할 때 잔액, 트랜잭션, 위험 검사, 가스를 {host}에서 가져옵니다.",
+      onlineOff: "꺼짐: 감지, 체크섬, 익스플로러 링크, 도구, OFAC 스냅샷은 로컬에서 계속 작동합니다.",
+      recent: "최근 검색",
+      recentKept: "이 브라우저에 {count}개 보관 중.",
+      more: "추가 설정",
+      moreHint: "선호 익스플로러, 즐겨찾는 체인, 데이터 및 초기화",
+      pageTitle: "나에게 맞는 검색",
+      privacy: "개인정보 보호",
+      privacyBody: "잔액, 트랜잭션, 위험 검사, 실시간 가스는 요청할 때 {host}에서 가져옵니다. 끄면 모든 것이 브라우저 안에 머뭅니다: 감지, 체크섬, 익스플로러 링크, 도구, 내장된 OFAC 스냅샷은 계속 작동합니다.",
+      privacyNote: "이 확장 프로그램에는 호스트 권한이 없으며, 페이지에서 팝업의 “페이지 스캔” 탭을 열 때만 해당 페이지를 읽습니다.",
+      preferredExplorers: "선호 익스플로러",
+      favouriteChains: "즐겨찾는 체인",
+      noneYet: "아직 없습니다.",
+      addChain: "이름으로 체인 추가",
+      data: "데이터",
+      dataBody: "모든 데이터는 이 브라우저의 확장 프로그램 저장소에 있습니다.",
+      clearRecent: "최근 검색 지우기",
+      deleteSaved: "저장된 항목 삭제",
+      resetPrefs: "환경설정 초기화",
+      confirmDelete: "저장된 항목을 모두 삭제할까요?",
+      options: "확장 프로그램 옵션"
+    },
+    info: {
+      title: "Web3Lens 정보",
+      fasterWays: "더 빠르게 사용하기",
+      shortcut: "키보드 단축키",
+      shortcutBody: "{keys}(으)로 이 팝업을 엽니다.",
+      rightClick: "마우스 오른쪽 버튼",
+      rightClickBody: "아무 페이지에서나 주소나 해시를 선택하고 {menu}을(를) 선택하세요.",
+      addressBar: "주소 표시줄",
+      addressBarBody: "{key}와 공백을 입력한 뒤 붙여넣어 검색하세요.",
+      statChains: "감지 및 연결되는 블록체인",
+      statNative: "실시간 잔액 및 위험 검사 지원",
+      statOfac: "OFAC 목록 스냅샷, 로컬에서 확인",
+      website: "웹사이트",
+      contact: "문의하기",
+      contactSub: "의견 보내기",
+      privacy: "개인정보처리방침",
+      privacySub: "저장 및 전송되는 데이터",
+      moreFrom: "같은 개발자의 다른 제품",
+      summarytube: "YouTube 동영상 요약",
+      centpage: "최고의 인터넷 시작 페이지",
+      sessionmanager: "탭 저장 및 복원",
+      webdevtools: "웹 개발자를 위한 도구",
+      foot: "Web3Lens 확장 프로그램 v{version} · 계정 불필요, 저장된 데이터는 이 브라우저에만 남습니다"
+    },
+    search: {
+      placeholder: "주소, tx 해시, 블록 또는 ENS 이름",
+      inputLabel: "주소, 트랜잭션 해시, 블록 또는 이름",
+      unknownFormat: "Web3Lens가 인식하지 못하는 형식입니다. 선택한 체인의 익스플로러 검색으로 이동합니다.",
+      secret: "비밀 정보가 감지되었습니다.",
+      checksumOk: "· 체크섬 정상",
+      badChecksum: "체크섬 오류",
+      testnet: "테스트넷",
+      ofacListed: "OFAC 등재",
+      searchOn: "검색할 체인",
+      switchTo: "전환할 체인",
+      couldBe: "다음일 수도 있음: {list}",
+      explorerDown: "{chain} 익스플로러가 마지막 상태 확인에서 응답하지 않았습니다.",
+      searchWeb: "웹에서 검색",
+      openAnyway: "그래도 열기",
+      fallback: "{chain}은(는) 아직 지원되지 않는 몇 안 되는 블록체인 중 하나입니다. 대신 {chain} 익스플로러로 이동합니다...",
+      empty: "먼저 주소, 트랜잭션 해시, 블록 번호 또는 이름을 붙여넣으세요.",
+      notSearched: "검색하지 않았습니다.",
+      offlineExplorers: "온라인 조회가 꺼져 있어(설정) 익스플로러를 표시합니다:",
+      recent: "최근",
+      recentEmpty: "최근 검색이 여기에 표시되며 이 브라우저에만 보관됩니다.",
+      openFull: "전체 보기 열기",
+      openExplorer: "익스플로러에서 열기"
+    },
+    source: {
+      unavailableFrom: "{source}에서 사용할 수 없음: {reason}. 추측 대신 아무것도 표시하지 않습니다.",
+      unavailable: "사용할 수 없음: {reason}. 추측 대신 아무것도 표시하지 않습니다.",
+      line: "출처: {source} · {ago} 가져옴",
+      stale: "· 오래됨(출처가 응답하지 않음)",
+      explorerDown: "마지막 상태 확인에서 응답하지 않음"
+    },
+    api: {
+      badAnswer: "Web3Lens가 이 버전의 확장 프로그램에서 읽을 수 없는 응답을 보냈습니다. 익스플로러 링크와 로컬 검사는 계속 작동하며, 확장 프로그램을 업데이트하면 해결됩니다.",
+      timeout: "Web3Lens 응답이 너무 오래 걸립니다. 잠시 후 다시 시도하세요. 익스플로러 링크와 로컬 검사는 계속 작동합니다.",
+      unreachable: "Web3Lens에 연결할 수 없습니다. 연결 상태를 확인하세요.",
+      rateLimited: "짧은 시간에 조회가 너무 많습니다. 1분 후 다시 시도하세요.",
+      serviceDown: "Web3Lens 조회 서비스를 지금 사용할 수 없습니다(HTTP {status}). 익스플로러 링크와 로컬 검사는 계속 작동합니다."
+    },
+    result: {
+      qr: "QR 코드",
+      transaction: "트랜잭션",
+      address: "주소",
+      offline: "온라인 조회가 설정에서 꺼져 있습니다. 익스플로러 링크와 로컬 검사는 계속 작동합니다.",
+      onOfac: "OFAC 제재 목록에 있습니다({lists}).",
+      balance: "잔액",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "USD 가치를 사용할 수 없음",
+      type: "유형",
+      delegated: "EIP-7702로 {address}에 위임됨",
+      contractBytes: "컨트랙트({count}바이트)",
+      walletNoCode: "지갑(코드 없음)",
+      sentTxs: "보낸 tx",
+      resolvedFrom: "확인한 이름",
+      tokens: "토큰",
+      noErc20: "ERC-20 토큰이 없습니다.",
+      hiddenTokens: "숨겨진 토큰: {count}개. 인덱서가 스팸으로 표시했거나 이름이나 심볼이 없습니다. 예상하지 못한 토큰과 상호작용하지 마세요.",
+      knownOnly: "잘 알려진 토큰 {count}개만 확인했습니다({chain}을(를) 지원하는 무료 토큰 인덱스가 없음). 다른 보유 자산은 표시되지 않습니다.",
+      activity: "활동",
+      transactions: "트랜잭션",
+      tokenTransfers: "토큰 전송",
+      labelsContract: "라벨 및 컨트랙트",
+      flagged: "Blockscout가 이 주소를 경고합니다({reason}).",
+      scam: "사기",
+      name: "이름",
+      tags: "태그",
+      verifiedSource: "검증된 소스",
+      proxy: "프록시",
+      token: "토큰",
+      unconfirmed: "대기 중인 미확인 트랜잭션: {count}개. 위 금액에 포함되지 않았습니다.",
+      received: "받음",
+      sent: "보냄",
+      recentTxs: "최근 트랜잭션",
+      account: "계정",
+      program: "프로그램",
+      notFound: "온체인에서 찾을 수 없음",
+      owner: "소유자",
+      splTokens: "SPL 토큰",
+      noSpl: "SPL 토큰 잔액이 없습니다.",
+      token2022: "공개 RPC에서 Token-2022 잔액을 읽을 수 없습니다.",
+      recentSigs: "최근 서명",
+      unknownTx: "{chain}에 이 트랜잭션이 없습니다.",
+      unknownSig: "Solana에 이 서명이 없습니다.",
+      status: "상태",
+      block: "블록",
+      conf: "{block} · {count} 컨펌",
+      time: "시간",
+      from: "보낸 주소",
+      to: "받는 주소",
+      value: "금액",
+      fee: "수수료",
+      input: "입력",
+      verifiedAbi: "검증된 ABI",
+      guessed: "추정",
+      success: "성공",
+      failed: "실패",
+      confirmed: "확인됨",
+      unconfirmedBadge: "미확인",
+      mempool: "멤풀",
+      output: "출력",
+      outputs: "출력({count})",
+      slot: "슬롯",
+      signer: "서명자"
+    },
+    risk: {
+      checking: "제재, 신고, 컨트랙트 확인 중…",
+      title: "위험 검사",
+      signals: "위험 신호 {count}개 발견. 확인하기 전에는 자금을 보내거나 서명하지 마세요.",
+      noReports: "아래 출처에 신고가 없습니다. 안전하다는 뜻은 아닙니다: 대부분의 사기는 신고되지 않습니다.",
+      listed: "등재됨({lists})",
+      notListed: "등재되지 않음(스냅샷 {date})",
+      markedScam: "사기로 표시됨",
+      notFlagged: "표시 없음",
+      noReportsShort: "신고 없음",
+      scamReports: "사기 신고",
+      notChecked: "확인 안 함: 무료 출처는 EVM 체인만 지원",
+      verified: "검증",
+      upgradeable: "업그레이드 가능",
+      yesArrow: "예 → {address}",
+      noSlots: "EIP-1967 슬롯 없음",
+      noOwner: "owner() 없음",
+      renounced: "포기됨",
+      contract: "컨트랙트",
+      wallet: "지갑",
+      admin: "관리자 기능",
+      adminCount: "{count}개(mint/pause/blacklist/upgrade…)",
+      noneFound: "없음",
+      tokenRisk: "토큰 위험",
+      noFlags: "경고 없음",
+      onlineUnavailable: "온라인 검사를 사용할 수 없음: {error}",
+      ofacLocal: "OFAC(로컬)",
+      checkApprovals: "토큰 승인 확인",
+      scanningApprovals: "승인을 스캔하고 허용량을 읽는 중…",
+      aWallet: "(지갑입니다!)",
+      unlimited: "무제한",
+      allItems: "모든 항목",
+      noApprovals: "스캔한 이벤트에서 활성 승인을 찾지 못했습니다.",
+      capped: "로그 검색이 한도에 도달했습니다: 오래된 승인이 누락되었을 수 있습니다.",
+      revoke: "revoke.cash에서 검토 또는 취소 ↗"
+    },
+    multichain: {
+      checking: "{count}개 EVM 체인 확인 중…",
+      code: "코드",
+      txCount: "{count} tx",
+      source: "공개 RPC · 가격 {source} · {ago}",
+      title: "다른 EVM 체인의 같은 주소"
+    },
+    locate: {
+      asking: "{count}개 EVM 체인에 문의 중…",
+      foundOn: "{chain}에서 발견 →",
+      notFound: "지원되는 {count}개 EVM 체인에서 찾을 수 없습니다. 익스플로러 링크를 사용해 보세요.",
+      title: "어느 체인에 있나요?"
+    },
+    unit: {
+      anyToken: "임의의 토큰",
+      rawUnits: "원시 단위",
+      tokens: "토큰",
+      amount: "수량",
+      family: "단위 종류",
+      from: "변환할 단위",
+      decimals: "토큰 소수 자릿수(임의의 토큰)"
+    },
+    validator: {
+      invalid: "Web3Lens가 아는 어떤 형식으로도 유효한 주소나 해시가 아닙니다.",
+      checksumValid: "체크섬 유효",
+      checksumInvalid: "체크섬 불일치",
+      noChecksum: "체크섬 없음",
+      formatOnly: "형식만 확인",
+      notOnOfac: "OFAC 스냅샷에 없음",
+      normalised: "정규화",
+      field: "주소, 해시 또는 이름",
+      hint: "체크섬이 유효하다는 것은 올바르게 복사되었다는 뜻일 뿐, 신뢰할 수 있다는 뜻은 아닙니다."
+    },
+    hex: {
+      decimal: "10진수",
+      text: "텍스트",
+      textOption: "텍스트",
+      hexBytes: "16진수 바이트",
+      selector: "셀렉터",
+      number: "숫자",
+      hexOrDecimal: "16진수 또는 10진수",
+      textToHex: "텍스트 → 16진수",
+      hexToText: "16진수 → 텍스트",
+      hashes: "해시",
+      input: "입력",
+      inputIs: "입력 형식"
+    },
+    time: {
+      now: "지금",
+      readAs: "{kind}(으)로 해석",
+      unixSeconds: "Unix 초",
+      milliseconds: "밀리초",
+      local: "현지",
+      relative: "상대 시간",
+      field: "타임스탬프 또는 날짜",
+      future: "미래",
+      kind: {
+        hexSeconds: "16진수 초",
+        nanoseconds: "나노초",
+        microseconds: "마이크로초",
+        milliseconds: "밀리초",
+        seconds: "초",
+        date: "날짜"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH 전송",
+        erc20Transfer: "ERC-20 전송",
+        erc20Approve: "ERC-20 승인",
+        uniswapSwap: "Uniswap 스왑",
+        nftMint: "NFT 민팅"
+      },
+      optional: "gwei(선택)",
+      useLive: "실시간 가스 가격 사용",
+      liveFrom: "{chain} 실시간 값",
+      gasPrice: "가스 가격",
+      feeSymbol: "수수료({symbol})",
+      feeWei: "수수료(wei)",
+      feeUsd: "수수료(USD)",
+      maxToHold: "최대 필요 금액",
+      feeSats: "수수료(sats)",
+      feeBtc: "수수료(BTC)",
+      evmFee: "EVM 수수료",
+      gasLimit: "가스 한도",
+      baseFee: "기본 수수료 / 가스 가격",
+      priorityFee: "우선 수수료",
+      maxFee: "최대 수수료",
+      l1Note: "롤업은 여기에 포함되지 않은 L1 데이터 수수료도 부과합니다.",
+      btcFee: "Bitcoin 수수료",
+      size: "크기(vbytes)",
+      feeRate: "수수료율"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI 또는 한 줄에 하나의 시그니처(선택)",
+      badCalldata: "Calldata는 0x 뒤에 최소 4바이트 셀렉터가 있어야 합니다.",
+      commonMatch: "일반적인 시그니처와 일치합니다(ABI 없음).",
+      lookupSelector: "셀렉터 온라인 조회",
+      asking: "openchain.xyz / 4byte.directory에 문의 중…",
+      community: "커뮤니티가 등록한 시그니처({source}): 추정으로 취급하세요.",
+      noneDecodes: "이 데이터를 디코딩하는 등록된 시그니처가 없습니다.",
+      unknownSelector: "셀렉터 {selector}은(는) 알 수 없습니다.",
+      calldata: "Calldata",
+      decode: "디코딩",
+      encode: "인코딩",
+      signature: "함수 시그니처",
+      args: "인수(JSON 배열)"
+    },
+    txdec: {
+      hash: "해시",
+      fromRecovered: "보낸 주소(복원됨)",
+      creation: "(컨트랙트 생성)",
+      chainId: "체인 ID",
+      replayable: "없음(재실행 가능)",
+      nonce: "논스",
+      data: "데이터",
+      bestGuess: "일반적인 시그니처와 일치합니다. ABI 없이 추정한 결과입니다.",
+      authorization: "EIP-7702 권한 부여",
+      delegatesTo: "위임 대상",
+      chainNonce: "체인 / 논스",
+      anyChain: "0(모든 체인!)",
+      field: "서명된 원시 트랜잭션",
+      hint: "로컬에서 디코딩하며 아무것도 브로드캐스트하지 않습니다."
+    },
+    app: {
+      batch: "일괄",
+      moreTools: "더 많은 도구",
+      batchSearch: "일괄 검색",
+      batchSearchBody: "최대 50개 주소를 한 번에 확인하고 CSV로 내보내기",
+      devToolsBody: "단위, 체크섬, 디코더, 타임스탬프",
+      savedBody: "라벨과 메모, 이 브라우저에만 비공개 보관",
+      view: {
+        search: "검색",
+        result: "결과",
+        batch: "일괄",
+        tools: "도구",
+        saved: "저장됨",
+        settings: "설정"
+      }
+    },
+    batch: {
+      valueCol: "값",
+      typeCol: "유형",
+      checksCol: "검사",
+      notRecognised: "인식할 수 없음",
+      secret: "비밀 정보",
+      ok: "정상",
+      leftOut: "{count}개 제외됨(한도 {max}).",
+      checking: "확인 중…",
+      active: "{active}/{total} 활성 · {usd}",
+      fetchBalances: "EVM 잔액 가져오기({count})",
+      exportCsv: "CSV 내보내기",
+      savedMsg: "이 브라우저에 저장했습니다.",
+      saveAll: "모두 저장",
+      shareCopied: "공유 링크를 복사했습니다(web3lens.com에서 열리며 목록은 링크 안에 있습니다).",
+      copyShare: "공유 링크 복사",
+      checked: "{count}개 확인됨",
+      title: "목록을 한 번에 확인",
+      intro: "최대 {max}개의 주소, 해시 또는 이름: 한 줄에 하나씩 또는 쉼표나 공백으로 구분하세요.",
+      checkAll: "모두 확인"
+    },
+    savedPage: {
+      filter: "필터",
+      empty: "아직 저장된 항목이 없습니다. 검색이나 일괄에서 저장을 사용하세요.",
+      label: "라벨",
+      notes: "메모",
+      select: "선택",
+      remove: "삭제",
+      tooLarge: "파일이 너무 큽니다",
+      imported: "{count}개 항목을 가져왔습니다.",
+      importFailed: "가져오기 실패: {error}",
+      title: "라벨과 메모",
+      intro: "라벨과 메모는 이 브라우저(확장 프로그램 저장소)에 남습니다. 동기화되지 않습니다.",
+      exportJson: "JSON 내보내기",
+      importJson: "JSON 가져오기",
+      selectFirst: "먼저 항목을 선택하세요.",
+      shareCopied: "공유 링크를 복사했습니다. 라벨과 메모가 링크 안에 있어 링크를 가진 누구나 읽을 수 있습니다.",
+      shareSelected: "선택 항목 공유"
+    },
+    detect: {
+      address: "{chain} 주소",
+      testnetAddress: "{chain} 테스트넷 주소",
+      stakeAddress: "{chain} 스테이킹 주소",
+      addressRaw: "{chain} 주소(raw)",
+      bech32: "Bech32 주소({hrp})",
+      txHashOf: "{chain} 트랜잭션 해시",
+      extrinsicHash: "{chain} 익스트린식 해시",
+      operationHash: "{chain} 오퍼레이션 해시",
+      blockHash: "{chain} 블록 해시",
+      secretKey: "{chain} 비밀 키",
+      signature: "{chain} 서명",
+      dnsName: "{chain} DNS 이름",
+      name: "{chain} 이름",
+      account: "{chain} 계정",
+      contract: "{chain} 컨트랙트",
+      transactionHash: "트랜잭션 해시",
+      blockNumber: "블록 번호",
+      recoveryPhrase: "복구 문구",
+      privateKey: "개인 키(WIF)",
+      note: {
+        badChecksum: "체크섬이 일치하지 않습니다. 오타가 있을 수 있으니 자금을 보내기 전에 확인하세요.",
+        privateKey: "개인 키로 보입니다. 이 키를 가진 사람은 누구나 자금을 제어할 수 있습니다. Web3Lens는 이를 검색하지 않습니다.",
+        stellarSecret: "Stellar 비밀 키입니다. 이 키를 가진 사람은 누구나 계정을 제어할 수 있습니다. Web3Lens는 이를 검색하지 않습니다.",
+        recoveryPhrase: "지갑 복구 문구로 보입니다. 이 문구를 가진 사람은 누구나 지갑을 제어할 수 있습니다. Web3Lens는 이를 검색하지 않으며, 절대 웹사이트에 붙여넣지 마세요.",
+        bech32Unknown: "“{hrp}”에 대한 유효한 bech32 주소이지만, Web3Lens가 아직 지원하지 않는 네트워크입니다.",
+        versionByte: "버전 바이트 {byte}은(는) Web3Lens가 인식하지 못합니다."
+      }
+    }
+  };
+
+  // extension-src/locales/zh-CN.json
+  var zh_CN_default = {
+    common: {
+      copy: "复制",
+      copied: "已复制",
+      close: "关闭",
+      loading: "加载中…",
+      refresh: "刷新",
+      clear: "清除",
+      save: "保存",
+      saved: "已保存",
+      search: "搜索",
+      tools: "工具",
+      settings: "设置",
+      sections: "分区",
+      yes: "是",
+      no: "否",
+      yesLower: "是",
+      noLower: "否",
+      unavailable: "不可用",
+      unavailableReason: "不可用：{reason}",
+      unavailableParen: "不可用（{reason}）",
+      unavailableCap: "不可用：{reason}",
+      unknown: "未知",
+      pending: "待处理",
+      staleParen: "（数据过期）",
+      offInSettings: "在线查询已在设置中关闭。",
+      openInFullTab: "在完整标签页中打开",
+      developerTools: "开发者工具",
+      gasTracker: "Gas 追踪器",
+      feeCalculator: "手续费计算器",
+      unrecognised: "无法识别",
+      offlineMode: "离线模式",
+      onlineLookups: "在线查询",
+      explorers: "浏览器",
+      liveFees: "{count} 条 EVM 链和 Bitcoin 的实时手续费"
+    },
+    theme: {
+      label: "主题",
+      light: "浅色",
+      dark: "深色",
+      system: "跟随系统",
+      lightDefault: "浅色（默认）",
+      lightTheme: "浅色主题",
+      darkTheme: "深色主题",
+      systemTheme: "系统主题",
+      current: "主题：{theme}"
+    },
+    language: {
+      label: "语言",
+      hint: "自动会跟随浏览器语言。",
+      fallbackNote: "尚未翻译的内容以英文显示。",
+      auto: "自动（{language}）"
+    },
+    picker: {
+      filterPlaceholder: "搜索 {count} 条链…",
+      filterLabel: "筛选区块链",
+      listLabel: "区块链",
+      autoDetected: "自动识别",
+      blockchain: "区块链",
+      buttonLabel: "区块链：{chain}。更换区块链",
+      buttonLabelAuto: "区块链：{chain}（自动识别）。更换区块链",
+      results: "结果",
+      detected: "已识别",
+      favourites: "收藏",
+      popular: "热门",
+      allChains: "全部链 · {count}",
+      explorerDown: "浏览器无响应",
+      limited: "受限",
+      pin: "置顶 {chain}",
+      unpin: "取消置顶 {chain}",
+      noMatch: "没有与“{query}”匹配的链"
+    },
+    popup: {
+      tab: {
+        lookup: "查询",
+        scan: "扫描页面",
+        tools: "工具",
+        gas: "Gas",
+        saved: "已保存"
+      },
+      tagline: "覆盖{strong}的区块链搜索",
+      taglineStrong: "所有链",
+      online: "在线",
+      statusOnline: "查询会发送到 {host}。可在设置中更改",
+      statusOffline: "任何数据都不会离开浏览器。可在设置中更改",
+      aboutButton: "关于、快捷方式和更多工具",
+      openApp: "在标签页中打开完整应用",
+      footOnline: "你发起的查询会发送到 {host}。其他数据不会离开浏览器。",
+      footOffline: "离线模式：任何数据都不会离开浏览器。",
+      footLink: "快捷方式和更多工具"
+    },
+    hero: {
+      title: "查询任何内容，{accent}",
+      titleAccent: "任意链皆可。",
+      popupLead: "粘贴地址、交易、区块或名称。Web3Lens 会在 {count} 条链中找到它所在的链。",
+      appLead: "粘贴地址、交易、区块或名称。Web3Lens 会识别、检查并给出结果。"
+    },
+    examples: {
+      title: "试试示例",
+      vitalik: "Vitalik Buterin 的 ENS",
+      usdc: "USDC 合约",
+      genesis: "Bitcoin 创世地址",
+      usdtTron: "Tron 上的 USDT"
+    },
+    scan: {
+      reading: "正在读取此页面…",
+      noTab: "没有活动标签页",
+      thisTab: "此标签页",
+      nothingTitle: "未找到内容",
+      nothingBody: "此页面上没有地址、交易哈希或名称。选中文本后右键即可查询。",
+      found: "找到 {count} 个",
+      copyAll: "全部复制",
+      checkAll: "全部批量检查",
+      cantReadTitle: "无法读取此页面",
+      cantReadBody: "{error}。浏览器页面（设置、扩展商店、新标签页）无法扫描。",
+      bannerTitle: "{host} 上的地址",
+      bannerBody: "打开此分区时读取一次该标签页的可见文本。不会发送任何内容。",
+      rescan: "重新扫描"
+    },
+    toolsNav: {
+      more: "更多",
+      batchCheck: "批量检查"
+    },
+    tool: {
+      "unit-converter": {
+        title: "单位换算",
+        short: "wei · gwei · ETH，sats · BTC，任意小数位",
+        description: "在 wei、gwei 与 ether，satoshi 与 bitcoin，lamport 与 SOL，或任意代币小数位之间精确换算（不四舍五入）。"
+      },
+      "address-validator": {
+        title: "地址校验",
+        short: "25 种以上地址格式的校验和",
+        description: "检查地址在其链上是否有效：EIP-55 校验和、base58check、bech32、CashAddr、SS58、Stellar 和 TON，并对照 OFAC 制裁快照。"
+      },
+      "hex-converter": {
+        title: "十六进制、文本与哈希",
+        short: "hex ↔ 十进制、UTF-8、keccak256、SHA-256",
+        description: "十六进制与十进制互转，文本转十六进制，读取 int256 字，并用 keccak256 和 SHA-256 计算文本或字节的哈希（含函数选择器）。"
+      },
+      "timestamp-converter": {
+        title: "时间戳转换",
+        short: "Unix 秒、毫秒、hex ↔ 日期",
+        description: "将 Unix 时间戳（秒、毫秒、十六进制区块时间戳）转换为 UTC 及你所在时区的日期，也可将日期转回时间戳。"
+      },
+      "gas-calculator": {
+        title: "Gas 与手续费计算器",
+        short: "使用实时 Gas 价格计算 EIP-1559 手续费",
+        description: "根据 Gas 上限、基础费用和小费计算交易手续费，支持 11 条 EVM 链的实时 Gas 价格和 Bitcoin 费率。"
+      },
+      "abi-decoder": {
+        title: "Calldata 与 ABI 解码器",
+        short: "解码或编码函数调用",
+        description: "使用合约 ABI、函数签名或内置常用函数列表解码 Ethereum calldata，并根据签名编码调用。"
+      },
+      "transaction-decoder": {
+        title: "原始交易解码器",
+        short: "已签名 tx → 字段和发送方",
+        description: "在本地解码已签名的原始 EVM 交易（legacy、EIP-1559、blob、EIP-7702）并恢复发送方，不会广播。"
+      }
+    },
+    gas: {
+      offlineBody: "实时 Gas 需要在线查询。请在设置中开启在线查询，或用手续费计算器输入你自己的数值。",
+      loading: "正在加载实时 Gas 价格…",
+      btcRate: "费率，sat/vB",
+      nextBlock: "下一个区块",
+      halfHour: "约 30 分钟",
+      hour: "约 1 小时",
+      economy: "经济",
+      btcUnavailable: "Bitcoin 手续费不可用：{reason}",
+      transfer: "转账 {usd}",
+      noUsd: "无 USD 价格",
+      gweiStale: "gwei · 数据过期",
+      na: "无",
+      source: "公共 RPC、mempool.space、CoinGecko · 获取于 {time} UTC。Rollup 还会收取 L1 数据费。",
+      head: "实时手续费 · {count} 条 EVM 链和 Bitcoin",
+      chain: "链",
+      priceCol: "Gas 价格（gwei）",
+      transferCol: "转账（USD）",
+      btcCard: "Bitcoin（sat/vB）"
+    },
+    saved: {
+      filterPlaceholder: "按标签、地址或备注筛选",
+      filterLabel: "筛选已保存项",
+      emptyTitle: "尚未保存任何内容",
+      emptyBody: "搜索后点击“保存”，即可把地址或交易连同标签和备注保存在这里。已保存的项目只留在此浏览器中。",
+      noMatch: "没有与“{query}”匹配的内容。",
+      unpin: "取消置顶",
+      pin: "置顶",
+      manageTitle: "编辑标签和备注、导出、导入或分享",
+      manage: "管理"
+    },
+    settings: {
+      appearance: "外观",
+      appearanceHint: "默认为浅色。“跟随系统”会随浏览器设置变化。",
+      whenSearch: "点击搜索时",
+      whenSearchHint: "右键查询和 w3 关键字同样遵循此设置。",
+      resultsFirst: "优先显示 Web3Lens 结果",
+      resultsFirstHint: "在 {count} 条链上显示余额、代币和风险检查；其他链会打开其浏览器。",
+      alwaysExplorer: "始终打开区块浏览器",
+      alwaysExplorerHint: "直接在新标签页中打开浏览器。",
+      onlineOn: "开启：余额、交易、风险检查和 Gas 会在你请求时从 {host} 获取。",
+      onlineOff: "关闭：识别、校验和、浏览器链接、工具和 OFAC 快照仍可在本地使用。",
+      recent: "最近搜索",
+      recentKept: "此浏览器中保存了 {count} 条。",
+      more: "更多设置",
+      moreHint: "首选浏览器、收藏的链、数据和重置",
+      pageTitle: "按你的方式搜索",
+      privacy: "隐私",
+      privacyBody: "余额、交易、风险检查和实时 Gas 会在你请求时从 {host} 获取。关闭后所有内容都留在浏览器中：识别、校验和、浏览器链接、工具和内置的 OFAC 快照仍可使用。",
+      privacyNote: "此扩展没有主机权限，只有当你在某个页面上打开弹出窗口的“扫描页面”标签时才会读取该页面。",
+      preferredExplorers: "首选浏览器",
+      favouriteChains: "收藏的链",
+      noneYet: "暂无。",
+      addChain: "按名称添加链",
+      data: "数据",
+      dataBody: "所有内容都保存在此浏览器的扩展存储中。",
+      clearRecent: "清除最近搜索",
+      deleteSaved: "删除已保存项",
+      resetPrefs: "重置偏好设置",
+      confirmDelete: "删除所有已保存项？",
+      options: "扩展选项"
+    },
+    info: {
+      title: "关于 Web3Lens",
+      fasterWays: "更快的使用方式",
+      shortcut: "键盘快捷键",
+      shortcutBody: "按 {keys} 打开此弹出窗口。",
+      rightClick: "右键",
+      rightClickBody: "在任意页面选中地址或哈希，然后选择 {menu}。",
+      addressBar: "地址栏",
+      addressBarBody: "输入 {key} 和一个空格，然后粘贴即可搜索。",
+      statChains: "条区块链可识别并跳转",
+      statNative: "条支持实时余额和风险检查",
+      statOfac: "OFAC 名单快照，本地检查",
+      website: "网站",
+      contact: "联系我们",
+      contactSub: "发送反馈",
+      privacy: "隐私政策",
+      privacySub: "存储和发送的数据",
+      moreFrom: "同一开发者的更多产品",
+      summarytube: "YouTube 视频摘要",
+      centpage: "最好用的浏览器起始页",
+      sessionmanager: "保存和恢复标签页",
+      webdevtools: "面向 Web 开发者的工具",
+      foot: "Web3Lens 扩展 v{version} · 无需账户，已保存的数据只留在此浏览器中"
+    },
+    search: {
+      placeholder: "地址、tx 哈希、区块或 ENS 名称",
+      inputLabel: "地址、交易哈希、区块或名称",
+      unknownFormat: "Web3Lens 无法识别此格式：将转到所选链的浏览器搜索。",
+      secret: "检测到机密信息。",
+      checksumOk: "· 校验和正确",
+      badChecksum: "校验和错误",
+      testnet: "测试网",
+      ofacListed: "在 OFAC 名单中",
+      searchOn: "搜索链",
+      switchTo: "切换到",
+      couldBe: "也可能是：{list}",
+      explorerDown: "{chain} 浏览器在上次健康检查时没有响应。",
+      searchWeb: "在网上搜索",
+      openAnyway: "仍然打开",
+      fallback: "{chain} 是少数尚不支持的区块链之一。正在为你跳转到 {chain} 浏览器...",
+      empty: "请先粘贴地址、交易哈希、区块号或名称。",
+      notSearched: "未搜索。",
+      offlineExplorers: "在线查询已关闭（设置），以下是可用的浏览器：",
+      recent: "最近",
+      recentEmpty: "最近的搜索会显示在这里，只保存在此浏览器中。",
+      openFull: "打开完整视图",
+      openExplorer: "在浏览器中打开"
+    },
+    source: {
+      unavailableFrom: "无法从 {source} 获取：{reason}。宁可不显示也不猜测。",
+      unavailable: "不可用：{reason}。宁可不显示也不猜测。",
+      line: "来源：{source} · 获取于{ago}",
+      stale: "· 数据过期（来源无响应）",
+      explorerDown: "上次健康检查时没有响应"
+    },
+    api: {
+      badAnswer: "Web3Lens 返回了此版本扩展无法读取的响应。浏览器链接和本地检查仍可使用；更新扩展应可解决。",
+      timeout: "Web3Lens 响应时间过长。请稍后重试；浏览器链接和本地检查仍可使用。",
+      unreachable: "无法连接 Web3Lens。请检查网络连接。",
+      rateLimited: "短时间内查询过多。请等待一分钟后重试。",
+      serviceDown: "Web3Lens 查询服务暂时不可用（HTTP {status}）。浏览器链接和本地检查仍可使用。"
+    },
+    result: {
+      qr: "二维码（QR）",
+      transaction: "交易",
+      address: "地址",
+      offline: "在线查询已在设置中关闭。浏览器链接和本地检查仍可使用。",
+      onOfac: "在 OFAC 制裁名单中（{lists}）。",
+      balance: "余额",
+      usdApprox: "≈ {usd}（CoinGecko）",
+      noUsd: "USD 价值不可用",
+      type: "类型",
+      delegated: "EIP-7702 已委托给 {address}",
+      contractBytes: "合约（{count} 字节）",
+      walletNoCode: "钱包（无代码）",
+      sentTxs: "已发送交易数",
+      resolvedFrom: "解析自",
+      tokens: "代币",
+      noErc20: "没有 ERC-20 代币。",
+      hiddenTokens: "已隐藏 {count} 个代币：被索引器标记为垃圾代币，或没有名称或符号。不要与你不认识的代币交互。",
+      knownOnly: "仅检查了 {count} 个知名代币（没有覆盖 {chain} 的免费代币索引）；其他持仓不会显示。",
+      activity: "活动",
+      transactions: "交易",
+      tokenTransfers: "代币转账",
+      labelsContract: "标签和合约",
+      flagged: "Blockscout 标记了此地址（{reason}）。",
+      scam: "诈骗",
+      name: "名称",
+      tags: "标签",
+      verifiedSource: "已验证源码",
+      proxy: "代理",
+      token: "代币",
+      unconfirmed: "有 {count} 笔未确认交易待处理，未计入上方数据。",
+      received: "已接收",
+      sent: "已发送",
+      recentTxs: "最近交易",
+      account: "账户",
+      program: "程序",
+      notFound: "链上未找到",
+      owner: "所有者",
+      splTokens: "SPL 代币",
+      noSpl: "没有 SPL 代币余额。",
+      token2022: "无法从公共 RPC 读取 Token-2022 余额。",
+      recentSigs: "最近签名",
+      unknownTx: "{chain} 上没有这笔交易。",
+      unknownSig: "Solana 上没有这个签名。",
+      status: "状态",
+      block: "区块",
+      conf: "{block} · {count} 次确认",
+      time: "时间",
+      from: "发送方",
+      to: "接收方",
+      value: "金额",
+      fee: "手续费",
+      input: "输入数据",
+      verifiedAbi: "已验证 ABI",
+      guessed: "推测",
+      success: "成功",
+      failed: "失败",
+      confirmed: "已确认",
+      unconfirmedBadge: "未确认",
+      mempool: "内存池",
+      output: "输出",
+      outputs: "输出（{count}）",
+      slot: "Slot",
+      signer: "签名者"
+    },
+    risk: {
+      checking: "正在检查制裁、举报和合约…",
+      title: "风险检查",
+      signals: "发现 {count} 个风险信号。核实之前不要转账或签名。",
+      noReports: "下列来源中没有举报。这并不代表安全：大多数诈骗从未被举报。",
+      listed: "已列入（{lists}）",
+      notListed: "未列入（快照 {date}）",
+      markedScam: "被标记为诈骗",
+      notFlagged: "未被标记",
+      noReportsShort: "无举报",
+      scamReports: "诈骗举报",
+      notChecked: "未检查：免费来源仅覆盖 EVM 链",
+      verified: "已验证",
+      upgradeable: "可升级",
+      yesArrow: "是 → {address}",
+      noSlots: "无 EIP-1967 槽位",
+      noOwner: "无 owner()",
+      renounced: "已放弃",
+      contract: "合约",
+      wallet: "钱包",
+      admin: "管理员函数",
+      adminCount: "{count} 个（mint/pause/blacklist/upgrade…）",
+      noneFound: "未发现",
+      tokenRisk: "代币风险",
+      noFlags: "无警告",
+      onlineUnavailable: "在线检查不可用：{error}",
+      ofacLocal: "OFAC（本地）",
+      checkApprovals: "检查代币授权",
+      scanningApprovals: "正在扫描授权并读取额度…",
+      aWallet: "（是钱包！）",
+      unlimited: "无限额",
+      allItems: "全部物品",
+      noApprovals: "在扫描的事件中未发现有效授权。",
+      capped: "日志搜索已达上限：较早的授权可能缺失。",
+      revoke: "在 revoke.cash 上查看或撤销 ↗"
+    },
+    multichain: {
+      checking: "正在检查 {count} 条 EVM 链…",
+      code: "代码",
+      txCount: "{count} 笔交易",
+      source: "公共 RPC · 价格 {source} · {ago}",
+      title: "其他 EVM 链上的同一地址"
+    },
+    locate: {
+      asking: "正在查询 {count} 条 EVM 链…",
+      foundOn: "在 {chain} 上找到 →",
+      notFound: "在支持的 {count} 条 EVM 链上均未找到；请尝试浏览器链接。",
+      title: "它在哪条链上？"
+    },
+    unit: {
+      anyToken: "任意代币",
+      rawUnits: "原始单位",
+      tokens: "代币",
+      amount: "数量",
+      family: "单位类别",
+      from: "原单位",
+      decimals: "代币小数位（任意代币）"
+    },
+    validator: {
+      invalid: "不是 Web3Lens 已知任何格式的有效地址或哈希。",
+      checksumValid: "校验和有效",
+      checksumInvalid: "校验和不匹配",
+      noChecksum: "无校验和",
+      formatOnly: "仅格式",
+      notOnOfac: "不在 OFAC 快照中",
+      normalised: "规范化",
+      field: "地址、哈希或名称",
+      hint: "校验和有效只说明复制正确，并不代表可信。"
+    },
+    hex: {
+      decimal: "十进制",
+      text: "文本",
+      textOption: "文本",
+      hexBytes: "十六进制字节",
+      selector: "选择器",
+      number: "数字",
+      hexOrDecimal: "十六进制或十进制",
+      textToHex: "文本 → 十六进制",
+      hexToText: "十六进制 → 文本",
+      hashes: "哈希",
+      input: "输入",
+      inputIs: "输入类型"
+    },
+    time: {
+      now: "现在",
+      readAs: "解析为{kind}",
+      unixSeconds: "Unix 秒",
+      milliseconds: "毫秒",
+      local: "本地",
+      relative: "相对时间",
+      field: "时间戳或日期",
+      future: "未来",
+      kind: {
+        hexSeconds: "十六进制秒",
+        nanoseconds: "纳秒",
+        microseconds: "微秒",
+        milliseconds: "毫秒",
+        seconds: "秒",
+        date: "日期"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH 转账",
+        erc20Transfer: "ERC-20 转账",
+        erc20Approve: "ERC-20 授权",
+        uniswapSwap: "Uniswap 兑换",
+        nftMint: "NFT 铸造"
+      },
+      optional: "gwei（可选）",
+      useLive: "使用实时 Gas 价格",
+      liveFrom: "{chain} 实时数据",
+      gasPrice: "Gas 价格",
+      feeSymbol: "手续费（{symbol}）",
+      feeWei: "手续费（wei）",
+      feeUsd: "手续费（USD）",
+      maxToHold: "最多需预留",
+      feeSats: "手续费（sats）",
+      feeBtc: "手续费（BTC）",
+      evmFee: "EVM 手续费",
+      gasLimit: "Gas 上限",
+      baseFee: "基础费用 / Gas 价格",
+      priorityFee: "优先费",
+      maxFee: "最高费用",
+      l1Note: "Rollup 还会收取此处未包含的 L1 数据费。",
+      btcFee: "Bitcoin 手续费",
+      size: "大小（vbytes）",
+      feeRate: "费率"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI，或每行一个签名（可选）",
+      badCalldata: "Calldata 必须以 0x 开头，后跟至少 4 字节的选择器。",
+      commonMatch: "匹配到常见签名（未提供 ABI）。",
+      lookupSelector: "在线查询选择器",
+      asking: "正在查询 openchain.xyz / 4byte.directory…",
+      community: "社区提交的签名（{source}）：请视为推测。",
+      noneDecodes: "没有已提交的签名能解码这些数据。",
+      unknownSelector: "选择器 {selector} 未知。",
+      calldata: "Calldata",
+      decode: "解码",
+      encode: "编码",
+      signature: "函数签名",
+      args: "参数（JSON 数组）"
+    },
+    txdec: {
+      hash: "哈希",
+      fromRecovered: "发送方（已恢复）",
+      creation: "（创建合约）",
+      chainId: "链 ID",
+      replayable: "无（可重放）",
+      nonce: "Nonce",
+      data: "数据",
+      bestGuess: "匹配到常见签名；这是没有 ABI 时的最佳推测。",
+      authorization: "EIP-7702 授权",
+      delegatesTo: "委托给",
+      chainNonce: "链 / nonce",
+      anyChain: "0（任意链！）",
+      field: "已签名的原始交易",
+      hint: "在本地解码，不会广播任何内容。"
+    },
+    app: {
+      batch: "批量",
+      moreTools: "更多工具",
+      batchSearch: "批量搜索",
+      batchSearchBody: "一次检查最多 50 个地址，并导出 CSV",
+      devToolsBody: "单位、校验和、解码器、时间戳",
+      savedBody: "你的标签和备注，仅保存在此浏览器中",
+      view: {
+        search: "搜索",
+        result: "结果",
+        batch: "批量",
+        tools: "工具",
+        saved: "已保存",
+        settings: "设置"
+      }
+    },
+    batch: {
+      valueCol: "值",
+      typeCol: "类型",
+      checksCol: "检查",
+      notRecognised: "无法识别",
+      secret: "机密",
+      ok: "正确",
+      leftOut: "已省略 {count} 个（上限 {max}）。",
+      checking: "检查中…",
+      active: "{active}/{total} 条活跃 · {usd}",
+      fetchBalances: "获取 EVM 余额（{count}）",
+      exportCsv: "导出 CSV",
+      savedMsg: "已保存到此浏览器。",
+      saveAll: "全部保存",
+      shareCopied: "分享链接已复制（在 web3lens.com 打开；列表包含在链接中）。",
+      copyShare: "复制分享链接",
+      checked: "已检查 {count} 个",
+      title: "一次检查整个列表",
+      intro: "最多 {max} 个地址、哈希或名称：每行一个，或用逗号、空格分隔。",
+      checkAll: "全部检查"
+    },
+    savedPage: {
+      filter: "筛选",
+      empty: "尚未保存任何内容。在搜索或批量页面中使用“保存”。",
+      label: "标签",
+      notes: "备注",
+      select: "选择",
+      remove: "移除",
+      tooLarge: "文件过大",
+      imported: "已导入 {count} 项。",
+      importFailed: "导入失败：{error}",
+      title: "你的标签和备注",
+      intro: "标签和备注保存在此浏览器中（扩展存储），不会同步。",
+      exportJson: "导出 JSON",
+      importJson: "导入 JSON",
+      selectFirst: "请先选择项目。",
+      shareCopied: "分享链接已复制。标签和备注包含在链接中：任何拿到链接的人都能看到。",
+      shareSelected: "分享所选项"
+    },
+    detect: {
+      address: "{chain} 地址",
+      testnetAddress: "{chain} 测试网地址",
+      stakeAddress: "{chain} 质押地址",
+      addressRaw: "{chain} 地址（raw）",
+      bech32: "Bech32 地址（{hrp}）",
+      txHashOf: "{chain} 交易哈希",
+      extrinsicHash: "{chain} 外部交易哈希",
+      operationHash: "{chain} 操作哈希",
+      blockHash: "{chain} 区块哈希",
+      secretKey: "{chain} 私密密钥",
+      signature: "{chain} 签名",
+      dnsName: "{chain} DNS 名称",
+      name: "{chain} 名称",
+      account: "{chain} 账户",
+      contract: "{chain} 合约",
+      transactionHash: "交易哈希",
+      blockNumber: "区块号",
+      recoveryPhrase: "助记词",
+      privateKey: "私钥（WIF）",
+      note: {
+        badChecksum: "校验和不匹配。该值可能有拼写错误；转账前请核对。",
+        privateKey: "这看起来是私钥。任何拥有它的人都能控制资金。Web3Lens 不会搜索它。",
+        stellarSecret: "这是 Stellar 私密密钥。任何拥有它的人都能控制该账户。Web3Lens 不会搜索它。",
+        recoveryPhrase: "这看起来是钱包助记词。任何拥有它的人都能控制钱包。Web3Lens 不会搜索它；切勿把它粘贴到任何网站。",
+        bech32Unknown: "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
+        versionByte: "Web3Lens 无法识别版本字节 {byte}。"
+      }
+    }
+  };
+
+  // extension-src/locales/ru.json
+  var ru_default = {
+    common: {
+      copy: "Копировать",
+      copied: "Скопировано",
+      close: "Закрыть",
+      loading: "Загрузка…",
+      refresh: "Обновить",
+      clear: "Очистить",
+      save: "Сохранить",
+      saved: "Сохранённое",
+      search: "Поиск",
+      tools: "Инструменты",
+      settings: "Настройки",
+      sections: "Разделы",
+      yes: "Да",
+      no: "Нет",
+      yesLower: "да",
+      noLower: "нет",
+      unavailable: "недоступно",
+      unavailableReason: "недоступно: {reason}",
+      unavailableParen: "недоступно ({reason})",
+      unavailableCap: "Недоступно: {reason}",
+      unknown: "неизвестно",
+      pending: "ожидает",
+      staleParen: "(устарело)",
+      offInSettings: "Онлайн-запросы отключены в настройках.",
+      openInFullTab: "Открыть в отдельной вкладке",
+      developerTools: "Инструменты разработчика",
+      gasTracker: "Трекер газа",
+      feeCalculator: "Калькулятор комиссий",
+      unrecognised: "не распознано",
+      offlineMode: "Офлайн-режим",
+      onlineLookups: "Онлайн-запросы",
+      explorers: "Обозреватели",
+      liveFees: "Комиссии в реальном времени: EVM-сети ({count}) и Bitcoin"
+    },
+    theme: {
+      label: "Тема",
+      light: "Светлая",
+      dark: "Тёмная",
+      system: "Системная",
+      lightDefault: "Светлая (по умолчанию)",
+      lightTheme: "Светлая тема",
+      darkTheme: "Тёмная тема",
+      systemTheme: "Системная тема",
+      current: "Тема: {theme}"
+    },
+    language: {
+      label: "Язык",
+      hint: "«Автоматически» следует языку браузера.",
+      fallbackNote: "Ещё не переведённое показывается на английском.",
+      auto: "Автоматически ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Поиск среди сетей: {count}…",
+      filterLabel: "Фильтр блокчейнов",
+      listLabel: "Блокчейны",
+      autoDetected: "Определено автоматически",
+      blockchain: "Блокчейн",
+      buttonLabel: "Блокчейн: {chain}. Сменить блокчейн",
+      buttonLabelAuto: "Блокчейн: {chain} (определён автоматически). Сменить блокчейн",
+      results: "Результаты",
+      detected: "Определённые",
+      favourites: "Избранные",
+      popular: "Популярные",
+      allChains: "Все сети · {count}",
+      explorerDown: "обозреватель недоступен",
+      limited: "ограничено",
+      pin: "Закрепить {chain}",
+      unpin: "Открепить {chain}",
+      noMatch: "Нет сетей по запросу «{query}»"
+    },
+    popup: {
+      tab: {
+        lookup: "Поиск",
+        scan: "Сканировать",
+        tools: "Инструменты",
+        gas: "Газ",
+        saved: "Сохранённое"
+      },
+      tagline: "Блокчейн-поиск по {strong}",
+      taglineStrong: "любой сети",
+      online: "Онлайн",
+      statusOnline: "Запросы отправляются на {host}. Изменить в настройках",
+      statusOffline: "Ничего не покидает браузер. Изменить в настройках",
+      aboutButton: "О расширении, горячие клавиши и другие инструменты",
+      openApp: "Открыть полное приложение во вкладке",
+      footOnline: "Ваши запросы отправляются на {host}. Больше ничего не покидает браузер.",
+      footOffline: "Офлайн-режим: ничего не покидает браузер.",
+      footLink: "Горячие клавиши и инструменты"
+    },
+    hero: {
+      title: "Найдите что угодно в {accent}",
+      titleAccent: "любой сети.",
+      popupLead: "Вставьте адрес, транзакцию, блок или имя. Web3Lens найдёт нужную сеть среди {count}.",
+      appLead: "Вставьте адрес, транзакцию, блок или имя. Web3Lens распознает, проверит и покажет ответ."
+    },
+    examples: {
+      title: "Попробуйте пример",
+      vitalik: "ENS Vitalik Buterin",
+      usdc: "Контракт USDC",
+      genesis: "Генезис-адрес Bitcoin",
+      usdtTron: "USDT в Tron"
+    },
+    scan: {
+      reading: "Читаем страницу…",
+      noTab: "Нет активной вкладки",
+      thisTab: "эта вкладка",
+      nothingTitle: "Ничего не найдено",
+      nothingBody: "На странице нет адресов, хешей транзакций или имён. Выделите текст и нажмите правой кнопкой, чтобы найти его.",
+      found: "Найдено: {count}",
+      copyAll: "Копировать всё",
+      checkAll: "Проверить всё пакетом",
+      cantReadTitle: "Не удаётся прочитать страницу",
+      cantReadBody: "{error}. Страницы браузера (настройки, магазины расширений, новые вкладки) сканировать нельзя.",
+      bannerTitle: "Адреса на {host}",
+      bannerBody: "Видимый текст вкладки читается один раз, когда вы открываете этот раздел. Ничего никуда не отправляется.",
+      rescan: "Пересканировать"
+    },
+    toolsNav: {
+      more: "Ещё",
+      batchCheck: "Пакетная проверка"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Конвертер единиц",
+        short: "wei · gwei · ETH, sats · BTC, любые десятичные",
+        description: "Точный (без округления) перевод между wei, gwei и ether, сатоши и bitcoin, лампортами и SOL, а также для токенов с любым числом десятичных знаков."
+      },
+      "address-validator": {
+        title: "Проверка адресов",
+        short: "Контрольные суммы для 25+ форматов адресов",
+        description: "Проверьте, действителен ли адрес для своей сети: контрольные суммы EIP-55, base58check, bech32, CashAddr, SS58, Stellar и TON, а также снимок санкционного списка OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, текст и хеши",
+        short: "hex ↔ десятичные, UTF-8, keccak256, SHA-256",
+        description: "Перевод hex в десятичные и обратно, текста в hex, чтение слов int256 и хеширование текста или байтов через keccak256 и SHA-256 (с селекторами функций)."
+      },
+      "timestamp-converter": {
+        title: "Конвертер меток времени",
+        short: "секунды Unix, мс, hex ↔ дата",
+        description: "Перевод меток времени Unix (секунды, миллисекунды, hex-метки блоков) в даты по UTC и вашему часовому поясу и обратно."
+      },
+      "gas-calculator": {
+        title: "Калькулятор газа и комиссий",
+        short: "Комиссии EIP-1559 по текущим ценам газа",
+        description: "Расчёт комиссии транзакции по лимиту газа, базовой комиссии и чаевым, с текущими ценами газа для 11 EVM-сетей и ставками комиссий Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Декодер calldata и ABI",
+        short: "Декодирование и кодирование вызовов функций",
+        description: "Декодируйте calldata Ethereum по ABI контракта, сигнатуре функции или встроенному списку распространённых функций и кодируйте вызовы по сигнатуре."
+      },
+      "transaction-decoder": {
+        title: "Декодер сырых транзакций",
+        short: "Подписанная tx → поля и отправитель",
+        description: "Локально декодирует подписанную сырую EVM-транзакцию (legacy, EIP-1559, blob, EIP-7702) и восстанавливает отправителя, не отправляя её в сеть."
+      }
+    },
+    gas: {
+      offlineBody: "Для текущих цен газа нужен онлайн-запрос. Включите онлайн-запросы в настройках или используйте калькулятор комиссий со своими значениями.",
+      loading: "Загружаем текущие цены газа…",
+      btcRate: "ставка комиссии, sat/vB",
+      nextBlock: "Следующий блок",
+      halfHour: "~30 мин",
+      hour: "~1 час",
+      economy: "Эконом",
+      btcUnavailable: "Комиссии Bitcoin недоступны: {reason}",
+      transfer: "перевод {usd}",
+      noUsd: "нет цены в USD",
+      gweiStale: "gwei · устарело",
+      na: "н/д",
+      source: "Публичные RPC, mempool.space, CoinGecko · получено в {time} UTC. Роллапы добавляют комиссию за данные L1.",
+      head: "Комиссии сейчас · EVM-сети ({count}) и Bitcoin",
+      chain: "Сеть",
+      priceCol: "Цена газа (gwei)",
+      transferCol: "Перевод (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Фильтр по метке, адресу или заметке",
+      filterLabel: "Фильтр сохранённого",
+      emptyTitle: "Пока ничего не сохранено",
+      emptyBody: "Нажмите «Сохранить» после поиска, чтобы оставить здесь адрес или транзакцию с меткой и заметками. Сохранённое остаётся в этом браузере.",
+      noMatch: "Ничего не найдено по запросу «{query}».",
+      unpin: "Открепить",
+      pin: "Закрепить сверху",
+      manageTitle: "Изменить метки и заметки, экспорт, импорт или отправка",
+      manage: "Управлять"
+    },
+    settings: {
+      appearance: "Оформление",
+      appearanceHint: "По умолчанию светлая. «Системная» — как в браузере.",
+      whenSearch: "При нажатии «Поиск»",
+      whenSearchHint: "Поиск через контекстное меню и ключевое слово w3 тоже следуют этой настройке.",
+      resultsFirst: "Сначала результаты Web3Lens",
+      resultsFirstHint: "Балансы, токены и риски в сетях ({count}); остальные открывают обозреватель.",
+      alwaysExplorer: "Всегда открывать обозреватель",
+      alwaysExplorerHint: "Сразу в обозреватель в новой вкладке.",
+      onlineOn: "Вкл.: балансы, транзакции, проверки рисков и газ загружаются с {host} по вашему запросу.",
+      onlineOff: "Выкл.: распознавание, суммы, ссылки, инструменты и снимок OFAC работают локально.",
+      recent: "Недавние запросы",
+      recentKept: "Хранится в этом браузере: {count}.",
+      more: "Другие настройки",
+      moreHint: "Предпочитаемые обозреватели, избранные сети, данные и сброс",
+      pageTitle: "Поиск по-вашему",
+      privacy: "Конфиденциальность",
+      privacyBody: "Балансы, транзакции, проверки рисков и текущий газ загружаются с {host}, когда вы просите. Отключите, чтобы всё оставалось в браузере: распознавание, контрольные суммы, ссылки на обозреватели, инструменты и встроенный снимок OFAC продолжат работать.",
+      privacyNote: "У расширения нет разрешений на доступ к сайтам, и оно читает страницу, только когда вы открываете на ней вкладку «Сканировать» во всплывающем окне.",
+      preferredExplorers: "Предпочитаемые обозреватели",
+      favouriteChains: "Избранные сети",
+      noneYet: "Пока нет.",
+      addChain: "Добавить сеть по названию",
+      data: "Данные",
+      dataBody: "Всё хранится в хранилище расширений этого браузера.",
+      clearRecent: "Очистить недавние запросы",
+      deleteSaved: "Удалить сохранённое",
+      resetPrefs: "Сбросить настройки",
+      confirmDelete: "Удалить всё сохранённое?",
+      options: "Параметры расширения"
+    },
+    info: {
+      title: "О Web3Lens",
+      fasterWays: "Быстрый доступ",
+      shortcut: "Горячие клавиши",
+      shortcutBody: "Откройте это окно сочетанием {keys}.",
+      rightClick: "Правая кнопка мыши",
+      rightClickBody: "Выделите адрес или хеш на любой странице и выберите {menu}.",
+      addressBar: "Адресная строка",
+      addressBarBody: "Введите {key}, пробел и вставьте запрос.",
+      statChains: "блокчейнов распознаётся",
+      statNative: "с балансами и проверками рисков",
+      statOfac: "снимок списка OFAC, проверка локально",
+      website: "Сайт",
+      contact: "Связаться",
+      contactSub: "Оставить отзыв",
+      privacy: "Политика конфиденциальности",
+      privacySub: "Какие данные хранятся и отправляются",
+      moreFrom: "Ещё от того же разработчика",
+      summarytube: "Краткие пересказы видео YouTube",
+      centpage: "Лучшая стартовая страница",
+      sessionmanager: "Сохранение и восстановление вкладок",
+      webdevtools: "Инструменты для веб-разработчиков",
+      foot: "Расширение Web3Lens v{version} · без аккаунта, сохранённые данные остаются в этом браузере"
+    },
+    search: {
+      placeholder: "Адрес, хеш tx, блок или имя ENS",
+      inputLabel: "Адрес, хеш транзакции, блок или имя",
+      unknownFormat: "Web3Lens не распознаёт этот формат: запрос уйдёт в поиск обозревателя выбранной сети.",
+      secret: "Обнаружены секретные данные.",
+      checksumOk: "· контрольная сумма верна",
+      badChecksum: "неверная контрольная сумма",
+      testnet: "тестнет",
+      ofacListed: "В списке OFAC",
+      searchOn: "Искать в",
+      switchTo: "Переключиться на",
+      couldBe: "Возможно также: {list}",
+      explorerDown: "Обозреватель {chain} не ответил при последней проверке.",
+      searchWeb: "Искать в интернете",
+      openAnyway: "всё равно открыть",
+      fallback: "{chain} — один из немногих блокчейнов, которые пока не поддерживаются. Перенаправляем в обозреватель {chain}...",
+      empty: "Сначала вставьте адрес, хеш транзакции, номер блока или имя.",
+      notSearched: "Поиск не выполнен.",
+      offlineExplorers: "Онлайн-запросы отключены (настройки), поэтому вот обозреватели:",
+      recent: "Недавние",
+      recentEmpty: "Здесь появятся ваши последние запросы; они хранятся только в этом браузере.",
+      openFull: "Открыть полностью",
+      openExplorer: "Открыть в обозревателе"
+    },
+    source: {
+      unavailableFrom: "Недоступно из {source}: {reason}. Вместо догадок ничего не показываем.",
+      unavailable: "Недоступно: {reason}. Вместо догадок ничего не показываем.",
+      line: "Источник: {source} · получено {ago}",
+      stale: "· устарело (источник не отвечает)",
+      explorerDown: "Не ответил при последней проверке"
+    },
+    api: {
+      badAnswer: "Web3Lens прислал ответ, который эта версия расширения не может прочитать. Ссылки на обозреватели и локальные проверки работают; обновление расширения должно помочь.",
+      timeout: "Web3Lens слишком долго не отвечает. Повторите чуть позже; ссылки на обозреватели и локальные проверки работают.",
+      unreachable: "Не удаётся подключиться к Web3Lens. Проверьте соединение.",
+      rateLimited: "Слишком много запросов за короткое время. Подождите минуту и повторите.",
+      serviceDown: "Сервис запросов Web3Lens сейчас недоступен (HTTP {status}). Ссылки на обозреватели и локальные проверки работают."
+    },
+    result: {
+      qr: "QR-код",
+      transaction: "Транзакция",
+      address: "Адрес",
+      offline: "Онлайн-запросы отключены в настройках. Ссылки на обозреватели и локальные проверки работают.",
+      onOfac: "В санкционном списке OFAC ({lists}).",
+      balance: "Баланс",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Стоимость в USD недоступна",
+      type: "Тип",
+      delegated: "EIP-7702: делегирован {address}",
+      contractBytes: "Контракт ({count} байт)",
+      walletNoCode: "Кошелёк (без кода)",
+      sentTxs: "Отправлено tx",
+      resolvedFrom: "Получен из",
+      tokens: "Токены",
+      noErc20: "Нет токенов ERC-20.",
+      hiddenTokens: "Скрыто токенов: {count}. Помечены индексатором как спам или не имеют названия или символа. Не взаимодействуйте с неожиданными токенами.",
+      knownOnly: "Проверены только известные токены ({count}): ни один бесплатный индекс токенов не охватывает {chain}; другие активы не показаны.",
+      activity: "Активность",
+      transactions: "Транзакции",
+      tokenTransfers: "Переводы токенов",
+      labelsContract: "Метки и контракт",
+      flagged: "Blockscout помечает этот адрес ({reason}).",
+      scam: "мошенничество",
+      name: "Название",
+      tags: "Теги",
+      verifiedSource: "Проверенный исходный код",
+      proxy: "Прокси",
+      token: "Токен",
+      unconfirmed: "Неподтверждённых транзакций в ожидании: {count}. Они не учтены выше.",
+      received: "Получено",
+      sent: "Отправлено",
+      recentTxs: "Недавние транзакции",
+      account: "Аккаунт",
+      program: "Программа",
+      notFound: "Не найден в сети",
+      owner: "Владелец",
+      splTokens: "Токены SPL",
+      noSpl: "Нет балансов токенов SPL.",
+      token2022: "Не удалось получить балансы Token-2022 через публичный RPC.",
+      recentSigs: "Недавние подписи",
+      unknownTx: "{chain} не знает эту транзакцию.",
+      unknownSig: "Solana не знает эту подпись.",
+      status: "Статус",
+      block: "Блок",
+      conf: "{block} · подтв.: {count}",
+      time: "Время",
+      from: "От",
+      to: "Кому",
+      value: "Сумма",
+      fee: "Комиссия",
+      input: "Входные данные",
+      verifiedAbi: "проверенный ABI",
+      guessed: "предположение",
+      success: "успешно",
+      failed: "ошибка",
+      confirmed: "подтверждена",
+      unconfirmedBadge: "не подтверждена",
+      mempool: "мемпул",
+      output: "Выход",
+      outputs: "Выходы ({count})",
+      slot: "Слот",
+      signer: "Подписант"
+    },
+    risk: {
+      checking: "Проверяем санкции, жалобы и контракт…",
+      title: "Проверка рисков",
+      signals: "Найдено сигналов риска: {count}. Не отправляйте средства и ничего не подписывайте без проверки.",
+      noReports: "В источниках ниже жалоб нет. Это не значит, что адрес безопасен: о большинстве мошенничеств никогда не сообщают.",
+      listed: "В СПИСКЕ ({lists})",
+      notListed: "нет в списке (снимок {date})",
+      markedScam: "помечен как мошенничество",
+      notFlagged: "без пометок",
+      noReportsShort: "жалоб нет",
+      scamReports: "Жалобы на мошенничество",
+      notChecked: "не проверено: бесплатные источники охватывают только EVM-сети",
+      verified: "Проверено",
+      upgradeable: "Обновляемый",
+      yesArrow: "да → {address}",
+      noSlots: "нет слотов EIP-1967",
+      noOwner: "нет owner()",
+      renounced: "отказ от владения",
+      contract: "контракт",
+      wallet: "кошелёк",
+      admin: "Админ-функции",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "не найдены",
+      tokenRisk: "Риски токена",
+      noFlags: "нет пометок",
+      onlineUnavailable: "Онлайн-проверки недоступны: {error}",
+      ofacLocal: "OFAC (локально)",
+      checkApprovals: "Проверить разрешения токенов",
+      scanningApprovals: "Сканируем разрешения и читаем лимиты…",
+      aWallet: "(это кошелёк!)",
+      unlimited: "без лимита",
+      allItems: "все предметы",
+      noApprovals: "В просканированных событиях активных разрешений не найдено.",
+      capped: "Поиск по логам достиг лимита: старые разрешения могут отсутствовать.",
+      revoke: "Проверить или отозвать на revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Проверяем EVM-сети ({count})…",
+      code: "код",
+      txCount: "tx: {count}",
+      source: "Публичные RPC · цены {source} · {ago}",
+      title: "Тот же адрес в других EVM-сетях"
+    },
+    locate: {
+      asking: "Опрашиваем EVM-сети ({count})…",
+      foundOn: "Найдено в {chain} →",
+      notFound: "Не найдено в поддерживаемых EVM-сетях ({count}); попробуйте ссылки на обозреватели.",
+      title: "В какой она сети?"
+    },
+    unit: {
+      anyToken: "любой токен",
+      rawUnits: "минимальные единицы",
+      tokens: "токены",
+      amount: "Количество",
+      family: "Семейство единиц",
+      from: "Исходная единица",
+      decimals: "Десятичные знаки токена (любой токен)"
+    },
+    validator: {
+      invalid: "Это не действительный адрес или хеш ни в одном формате, известном Web3Lens.",
+      checksumValid: "контрольная сумма верна",
+      checksumInvalid: "контрольная сумма НЕ совпадает",
+      noChecksum: "без контрольной суммы",
+      formatOnly: "только формат",
+      notOnOfac: "нет в снимке OFAC",
+      normalised: "Нормализованный",
+      field: "Адрес, хеш или имя",
+      hint: "Верная контрольная сумма означает, что адрес скопирован правильно, а не что ему можно доверять."
+    },
+    hex: {
+      decimal: "Десятичное",
+      text: "Текст",
+      textOption: "текст",
+      hexBytes: "hex-байты",
+      selector: "Селектор",
+      number: "Число",
+      hexOrDecimal: "Hex или десятичное",
+      textToHex: "Текст → hex",
+      hexToText: "Hex → текст",
+      hashes: "Хеши",
+      input: "Ввод",
+      inputIs: "Тип ввода"
+    },
+    time: {
+      now: "Сейчас",
+      readAs: "Распознано как: {kind}",
+      unixSeconds: "Секунды Unix",
+      milliseconds: "Миллисекунды",
+      local: "Местное",
+      relative: "Относительно",
+      field: "Метка времени или дата",
+      future: "в будущем",
+      kind: {
+        hexSeconds: "секунды в hex",
+        nanoseconds: "наносекунды",
+        microseconds: "микросекунды",
+        milliseconds: "миллисекунды",
+        seconds: "секунды",
+        date: "дата"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Перевод ETH",
+        erc20Transfer: "Перевод ERC-20",
+        erc20Approve: "Разрешение ERC-20",
+        uniswapSwap: "Обмен в Uniswap",
+        nftMint: "Минт NFT"
+      },
+      optional: "gwei (необязательно)",
+      useLive: "Взять текущую цену газа",
+      liveFrom: "Текущие данные {chain}",
+      gasPrice: "Цена газа",
+      feeSymbol: "Комиссия ({symbol})",
+      feeWei: "Комиссия (wei)",
+      feeUsd: "Комиссия (USD)",
+      maxToHold: "Максимум к резерву",
+      feeSats: "Комиссия (sats)",
+      feeBtc: "Комиссия (BTC)",
+      evmFee: "Комиссия EVM",
+      gasLimit: "Лимит газа",
+      baseFee: "Базовая комиссия / цена газа",
+      priorityFee: "Комиссия за приоритет",
+      maxFee: "Макс. комиссия",
+      l1Note: "Роллапы также берут комиссию за данные L1, она здесь не учтена.",
+      btcFee: "Комиссия Bitcoin",
+      size: "Размер (vbytes)",
+      feeRate: "Ставка комиссии"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI или по одной сигнатуре на строку (необязательно)",
+      badCalldata: "Calldata должна начинаться с 0x и содержать хотя бы 4-байтовый селектор.",
+      commonMatch: "Совпадает с распространённой сигнатурой (ABI не указан).",
+      lookupSelector: "Найти селектор онлайн",
+      asking: "Запрашиваем openchain.xyz / 4byte.directory…",
+      community: "Сигнатура от сообщества ({source}): считайте её предположением.",
+      noneDecodes: "Ни одна присланная сигнатура не декодирует эти данные.",
+      unknownSelector: "Селектор {selector} неизвестен.",
+      calldata: "Calldata",
+      decode: "Декодировать",
+      encode: "Закодировать",
+      signature: "Сигнатура функции",
+      args: "Аргументы (массив JSON)"
+    },
+    txdec: {
+      hash: "Хеш",
+      fromRecovered: "От (восстановлен)",
+      creation: "(создание контракта)",
+      chainId: "Chain id",
+      replayable: "нет (можно повторить)",
+      nonce: "Nonce",
+      data: "Данные",
+      bestGuess: "Совпадает с распространённой сигнатурой; лучшее предположение без ABI.",
+      authorization: "Авторизация EIP-7702",
+      delegatesTo: "Делегирует",
+      chainNonce: "Сеть / nonce",
+      anyChain: "0 (любая сеть!)",
+      field: "Подписанная сырая транзакция",
+      hint: "Декодируется локально; ничего не отправляется в сеть."
+    },
+    app: {
+      batch: "Пакет",
+      moreTools: "Другие инструменты",
+      batchSearch: "Пакетный поиск",
+      batchSearchBody: "Проверьте до 50 адресов сразу, экспорт в CSV",
+      devToolsBody: "Единицы, контрольные суммы, декодеры, метки времени",
+      savedBody: "Ваши метки и заметки, только в этом браузере",
+      view: {
+        search: "Поиск",
+        result: "Результат",
+        batch: "Пакет",
+        tools: "Инструменты",
+        saved: "Сохранённое",
+        settings: "Настройки"
+      }
+    },
+    batch: {
+      valueCol: "Значение",
+      typeCol: "Тип",
+      checksCol: "Проверки",
+      notRecognised: "не распознано",
+      secret: "секрет",
+      ok: "ок",
+      leftOut: "Пропущено: {count} (лимит {max}).",
+      checking: "проверяем…",
+      active: "активно {active}/{total} · {usd}",
+      fetchBalances: "Загрузить балансы EVM ({count})",
+      exportCsv: "Экспорт CSV",
+      savedMsg: "Сохранено в этом браузере.",
+      saveAll: "Сохранить всё",
+      shareCopied: "Ссылка скопирована (открывается на web3lens.com; список внутри ссылки).",
+      copyShare: "Копировать ссылку",
+      checked: "Проверено: {count}",
+      title: "Проверьте список целиком",
+      intro: "До {max} адресов, хешей или имён: по одному в строке или через запятую или пробел.",
+      checkAll: "Проверить всё"
+    },
+    savedPage: {
+      filter: "Фильтр",
+      empty: "Пока ничего не сохранено. Используйте «Сохранить» в поиске или пакетной проверке.",
+      label: "Метка",
+      notes: "Заметки",
+      select: "Выбрать",
+      remove: "Удалить",
+      tooLarge: "Файл слишком большой",
+      imported: "Импортировано: {count}.",
+      importFailed: "Ошибка импорта: {error}",
+      title: "Ваши метки и заметки",
+      intro: "Метки и заметки хранятся в этом браузере (хранилище расширения). Ничего не синхронизируется.",
+      exportJson: "Экспорт JSON",
+      importJson: "Импорт JSON",
+      selectFirst: "Сначала выберите элементы.",
+      shareCopied: "Ссылка скопирована. Метки и заметки находятся внутри ссылки: их может прочитать любой, у кого она есть.",
+      shareSelected: "Поделиться выбранным"
+    },
+    detect: {
+      address: "Адрес {chain}",
+      testnetAddress: "Адрес тестнета {chain}",
+      stakeAddress: "Стейкинг-адрес {chain}",
+      addressRaw: "Адрес {chain} (raw)",
+      bech32: "Адрес Bech32 ({hrp})",
+      txHashOf: "Хеш транзакции {chain}",
+      extrinsicHash: "Хеш экстринсика {chain}",
+      operationHash: "Хеш операции {chain}",
+      blockHash: "Хеш блока {chain}",
+      secretKey: "Секретный ключ {chain}",
+      signature: "Подпись {chain}",
+      dnsName: "DNS-имя {chain}",
+      name: "Имя {chain}",
+      account: "Аккаунт {chain}",
+      contract: "Контракт {chain}",
+      transactionHash: "Хеш транзакции",
+      blockNumber: "Номер блока",
+      recoveryPhrase: "Фраза восстановления",
+      privateKey: "Приватный ключ (WIF)",
+      note: {
+        badChecksum: "Контрольная сумма не совпадает. Возможно, в значении опечатка; проверьте его перед отправкой средств.",
+        privateKey: "Похоже на приватный ключ. Любой, у кого он есть, распоряжается средствами. Web3Lens не будет его искать.",
+        stellarSecret: "Это секретный ключ Stellar. Любой, у кого он есть, управляет аккаунтом. Web3Lens не будет его искать.",
+        recoveryPhrase: "Похоже на фразу восстановления кошелька. Любой, у кого она есть, управляет кошельком. Web3Lens не будет её искать; никогда не вставляйте её на сайты.",
+        bech32Unknown: "Действительный адрес bech32 для «{hrp}» — сети, которой пока нет в Web3Lens.",
+        versionByte: "Байт версии {byte} не распознаётся Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/id.json
+  var id_default = {
+    common: {
+      copy: "Salin",
+      copied: "Disalin",
+      close: "Tutup",
+      loading: "Memuat…",
+      refresh: "Muat ulang",
+      clear: "Hapus",
+      save: "Simpan",
+      saved: "Tersimpan",
+      search: "Cari",
+      tools: "Alat",
+      settings: "Pengaturan",
+      sections: "Bagian",
+      yes: "Ya",
+      no: "Tidak",
+      yesLower: "ya",
+      noLower: "tidak",
+      unavailable: "tidak tersedia",
+      unavailableReason: "tidak tersedia: {reason}",
+      unavailableParen: "tidak tersedia ({reason})",
+      unavailableCap: "Tidak tersedia: {reason}",
+      unknown: "tidak diketahui",
+      pending: "tertunda",
+      staleParen: "(usang)",
+      offInSettings: "Pencarian online dimatikan di pengaturan.",
+      openInFullTab: "Buka di tab penuh",
+      developerTools: "Alat developer",
+      gasTracker: "Pelacak gas",
+      feeCalculator: "Kalkulator biaya",
+      unrecognised: "tidak dikenali",
+      offlineMode: "Mode offline",
+      onlineLookups: "Pencarian online",
+      explorers: "Explorer",
+      liveFees: "Biaya langsung di {count} chain EVM dan Bitcoin"
+    },
+    theme: {
+      label: "Tema",
+      light: "Terang",
+      dark: "Gelap",
+      system: "Sistem",
+      lightDefault: "Terang (default)",
+      lightTheme: "Tema terang",
+      darkTheme: "Tema gelap",
+      systemTheme: "Tema sistem",
+      current: "Tema: {theme}"
+    },
+    language: {
+      label: "Bahasa",
+      hint: "Otomatis mengikuti browser Anda.",
+      fallbackNote: "Bagian yang belum diterjemahkan tampil dalam bahasa Inggris.",
+      auto: "Otomatis ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Cari di antara {count} chain…",
+      filterLabel: "Filter blockchain",
+      listLabel: "Blockchain",
+      autoDetected: "Terdeteksi otomatis",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Ganti blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (terdeteksi otomatis). Ganti blockchain",
+      results: "Hasil",
+      detected: "Terdeteksi",
+      favourites: "Favorit",
+      popular: "Populer",
+      allChains: "Semua chain · {count}",
+      explorerDown: "explorer mati",
+      limited: "terbatas",
+      pin: "Sematkan {chain}",
+      unpin: "Lepas sematan {chain}",
+      noMatch: "Tidak ada chain yang cocok dengan “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Pencarian",
+        scan: "Pindai halaman",
+        tools: "Alat",
+        gas: "Gas",
+        saved: "Tersimpan"
+      },
+      tagline: "Pencarian blockchain untuk {strong}",
+      taglineStrong: "setiap chain",
+      online: "Online",
+      statusOnline: "Pencarian dikirim ke {host}. Ubah di pengaturan",
+      statusOffline: "Tidak ada yang keluar dari browser Anda. Ubah di pengaturan",
+      aboutButton: "Tentang, pintasan, dan alat lainnya",
+      openApp: "Buka aplikasi lengkap di tab",
+      footOnline: "Pencarian Anda dikirim ke {host}. Data lain tetap di browser Anda.",
+      footOffline: "Mode offline: tidak ada yang keluar dari browser Anda.",
+      footLink: "Pintasan dan alat lainnya"
+    },
+    hero: {
+      title: "Cari apa saja, di {accent}",
+      titleAccent: "chain mana pun.",
+      popupLead: "Tempel alamat, transaksi, blok, atau nama. Web3Lens menemukan chain-nya di antara {count}.",
+      appLead: "Tempel alamat, transaksi, blok, atau nama. Web3Lens mengenalinya, memeriksanya, dan menunjukkan jawabannya."
+    },
+    examples: {
+      title: "Coba contoh",
+      vitalik: "ENS milik Vitalik Buterin",
+      usdc: "Kontrak USDC",
+      genesis: "Alamat genesis Bitcoin",
+      usdtTron: "USDT di Tron"
+    },
+    scan: {
+      reading: "Membaca halaman ini…",
+      noTab: "Tidak ada tab aktif",
+      thisTab: "tab ini",
+      nothingTitle: "Tidak ada yang ditemukan",
+      nothingBody: "Tidak ada alamat, hash transaksi, atau nama di halaman ini. Pilih teks lalu klik kanan untuk mencarinya.",
+      found: "Ditemukan: {count}",
+      copyAll: "Salin semua",
+      checkAll: "Periksa semua secara massal",
+      cantReadTitle: "Halaman ini tidak dapat dibaca",
+      cantReadBody: "{error}. Halaman browser (pengaturan, toko ekstensi, tab baru) tidak dapat dipindai.",
+      bannerTitle: "Alamat di {host}",
+      bannerBody: "Membaca teks yang terlihat di tab ini sekali, saat Anda membuka bagian ini. Tidak ada yang dikirim ke mana pun.",
+      rescan: "Pindai ulang"
+    },
+    toolsNav: {
+      more: "Lainnya",
+      batchCheck: "Pemeriksaan massal"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Konverter satuan",
+        short: "wei · gwei · ETH, sats · BTC, desimal apa pun",
+        description: "Konversi antara wei, gwei, dan ether, satoshi dan bitcoin, lamport dan SOL, atau desimal token apa pun secara tepat (tanpa pembulatan)."
+      },
+      "address-validator": {
+        title: "Validator alamat",
+        short: "Checksum untuk 25+ format alamat",
+        description: "Periksa apakah alamat valid untuk chain-nya: checksum EIP-55, base58check, bech32, CashAddr, SS58, Stellar, dan TON, ditambah snapshot sanksi OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, teks, dan hash",
+        short: "hex ↔ desimal, UTF-8, keccak256, SHA-256",
+        description: "Konversi hex ke desimal dan sebaliknya, teks ke hex, baca word int256, dan hash teks atau byte dengan keccak256 dan SHA-256 (dengan selector fungsi)."
+      },
+      "timestamp-converter": {
+        title: "Konverter timestamp",
+        short: "detik Unix, ms, hex ↔ tanggal",
+        description: "Konversi timestamp Unix (detik, milidetik, timestamp blok dalam hex) ke tanggal dalam UTC dan zona waktu Anda, serta tanggal kembali ke timestamp."
+      },
+      "gas-calculator": {
+        title: "Kalkulator gas dan biaya",
+        short: "Biaya EIP-1559 dengan harga gas langsung",
+        description: "Hitung biaya transaksi dari batas gas, biaya dasar, dan tip, dengan harga gas langsung untuk 11 chain EVM dan tarif biaya Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Dekoder calldata dan ABI",
+        short: "Dekode atau enkode panggilan fungsi",
+        description: "Dekode calldata Ethereum dengan ABI kontrak, signature fungsi, atau daftar fungsi umum bawaan, dan enkode panggilan dari signature."
+      },
+      "transaction-decoder": {
+        title: "Dekoder transaksi mentah",
+        short: "tx bertanda tangan → kolom dan pengirim",
+        description: "Dekode transaksi EVM mentah yang sudah ditandatangani (legacy, EIP-1559, blob, EIP-7702) secara lokal dan pulihkan pengirimnya, tanpa menyiarkannya."
+      }
+    },
+    gas: {
+      offlineBody: "Gas langsung memerlukan pencarian online. Aktifkan pencarian online di pengaturan, atau gunakan kalkulator biaya dengan angka Anda sendiri.",
+      loading: "Memuat harga gas langsung…",
+      btcRate: "tarif biaya, sat/vB",
+      nextBlock: "Blok berikutnya",
+      halfHour: "~30 mnt",
+      hour: "~1 jam",
+      economy: "Ekonomis",
+      btcUnavailable: "Biaya Bitcoin tidak tersedia: {reason}",
+      transfer: "transfer {usd}",
+      noUsd: "tidak ada harga USD",
+      gweiStale: "gwei · usang",
+      na: "t/a",
+      source: "RPC publik, mempool.space, CoinGecko · diambil pukul {time} UTC. Rollup menambahkan biaya data L1.",
+      head: "Biaya langsung · {count} chain EVM dan Bitcoin",
+      chain: "Chain",
+      priceCol: "Harga gas (gwei)",
+      transferCol: "Transfer (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filter berdasarkan label, alamat, atau catatan",
+      filterLabel: "Filter item tersimpan",
+      emptyTitle: "Belum ada yang disimpan",
+      emptyBody: "Tekan Simpan setelah mencari untuk menyimpan alamat atau transaksi di sini dengan label dan catatan. Item tersimpan tetap di browser ini.",
+      noMatch: "Tidak ada yang cocok dengan “{query}”.",
+      unpin: "Lepas sematan",
+      pin: "Sematkan di atas",
+      manageTitle: "Edit label dan catatan, ekspor, impor, atau bagikan",
+      manage: "Kelola"
+    },
+    settings: {
+      appearance: "Tampilan",
+      appearanceHint: "Terang adalah default. Sistem mengikuti browser Anda.",
+      whenSearch: "Saat saya menekan Cari",
+      whenSearchHint: "Pencarian lewat klik kanan dan kata kunci w3 juga mengikuti ini.",
+      resultsFirst: "Tampilkan hasil Web3Lens terlebih dahulu",
+      resultsFirstHint: "Saldo, token, dan pemeriksaan risiko di {count} chain; chain lain membuka explorer-nya.",
+      alwaysExplorer: "Selalu buka block explorer",
+      alwaysExplorerHint: "Langsung ke explorer di tab baru.",
+      onlineOn: "Aktif: saldo, transaksi, pemeriksaan risiko, dan gas diambil dari {host} saat Anda meminta.",
+      onlineOff: "Nonaktif: deteksi, checksum, tautan explorer, alat, dan snapshot OFAC tetap berfungsi secara lokal.",
+      recent: "Pencarian terbaru",
+      recentKept: "Disimpan di browser ini: {count}.",
+      more: "Pengaturan lainnya",
+      moreHint: "Explorer pilihan, chain favorit, data, dan reset",
+      pageTitle: "Cari dengan cara Anda",
+      privacy: "Privasi",
+      privacyBody: "Saldo, transaksi, pemeriksaan risiko, dan gas langsung diambil dari {host} saat Anda meminta. Matikan untuk menyimpan semuanya di browser: deteksi, checksum, tautan explorer, alat, dan snapshot OFAC bawaan tetap berfungsi.",
+      privacyNote: "Ekstensi ini tidak memiliki izin host dan hanya membaca halaman saat Anda membuka tab “Pindai halaman” pada popup di halaman tersebut.",
+      preferredExplorers: "Explorer pilihan",
+      favouriteChains: "Chain favorit",
+      noneYet: "Belum ada.",
+      addChain: "Tambahkan chain berdasarkan nama",
+      data: "Data",
+      dataBody: "Semuanya ada di penyimpanan ekstensi browser ini.",
+      clearRecent: "Hapus pencarian terbaru",
+      deleteSaved: "Hapus item tersimpan",
+      resetPrefs: "Reset preferensi",
+      confirmDelete: "Hapus semua item tersimpan?",
+      options: "Opsi ekstensi"
+    },
+    info: {
+      title: "Tentang Web3Lens",
+      fasterWays: "Cara lebih cepat",
+      shortcut: "Pintasan keyboard",
+      shortcutBody: "Buka popup ini dengan {keys}.",
+      rightClick: "Klik kanan",
+      rightClickBody: "Pilih alamat atau hash di halaman mana pun lalu pilih {menu}.",
+      addressBar: "Bilah alamat",
+      addressBarBody: "Ketik {key}, spasi, lalu tempel untuk mencari.",
+      statChains: "blockchain terdeteksi dan diarahkan",
+      statNative: "dengan saldo langsung dan pemeriksaan risiko",
+      statOfac: "snapshot daftar OFAC, diperiksa secara lokal",
+      website: "Situs web",
+      contact: "Hubungi kami",
+      contactSub: "Kirim masukan",
+      privacy: "Kebijakan privasi",
+      privacySub: "Data yang disimpan dan dikirim",
+      moreFrom: "Lainnya dari developer yang sama",
+      summarytube: "Ringkasan video YouTube",
+      centpage: "Halaman awal internet terbaik",
+      sessionmanager: "Simpan dan pulihkan tab",
+      webdevtools: "Alat untuk developer web",
+      foot: "Ekstensi Web3Lens v{version} · tanpa akun, data tersimpan tetap di browser ini"
+    },
+    search: {
+      placeholder: "Alamat, hash tx, blok, atau nama ENS",
+      inputLabel: "Alamat, hash transaksi, blok, atau nama",
+      unknownFormat: "Format ini tidak dikenali Web3Lens: akan diarahkan ke pencarian explorer chain yang dipilih.",
+      secret: "Rahasia terdeteksi.",
+      checksumOk: "· checksum ok",
+      badChecksum: "checksum salah",
+      testnet: "testnet",
+      ofacListed: "Terdaftar di OFAC",
+      searchOn: "Cari di",
+      switchTo: "Beralih ke",
+      couldBe: "Bisa juga: {list}",
+      explorerDown: "Explorer {chain} tidak merespons pada pemeriksaan terakhir.",
+      searchWeb: "Cari di web",
+      openAnyway: "tetap buka",
+      fallback: "{chain} adalah salah satu dari sedikit blockchain yang belum didukung. Mengarahkan Anda ke explorer {chain}...",
+      empty: "Tempel alamat, hash transaksi, nomor blok, atau nama terlebih dahulu.",
+      notSearched: "Tidak dicari.",
+      offlineExplorers: "Pencarian online dimatikan (pengaturan), jadi berikut explorer-nya:",
+      recent: "Terbaru",
+      recentEmpty: "Pencarian terakhir Anda muncul di sini, hanya disimpan di browser ini.",
+      openFull: "Buka tampilan penuh",
+      openExplorer: "Buka di explorer"
+    },
+    source: {
+      unavailableFrom: "Tidak tersedia dari {source}: {reason}. Tidak ada yang ditampilkan daripada menebak.",
+      unavailable: "Tidak tersedia: {reason}. Tidak ada yang ditampilkan daripada menebak.",
+      line: "Sumber: {source} · diambil {ago}",
+      stale: "· usang (sumber tidak merespons)",
+      explorerDown: "Tidak merespons pada pemeriksaan terakhir"
+    },
+    api: {
+      badAnswer: "Web3Lens mengirim jawaban yang tidak dapat dibaca versi ekstensi ini. Tautan explorer dan pemeriksaan lokal tetap berfungsi; memperbarui ekstensi seharusnya memperbaikinya.",
+      timeout: "Web3Lens terlalu lama menjawab. Coba lagi sebentar lagi; tautan explorer dan pemeriksaan lokal tetap berfungsi.",
+      unreachable: "Web3Lens tidak dapat dihubungi. Periksa koneksi Anda.",
+      rateLimited: "Terlalu banyak pencarian dalam waktu singkat. Tunggu satu menit lalu coba lagi.",
+      serviceDown: "Layanan pencarian Web3Lens sedang tidak tersedia (HTTP {status}). Tautan explorer dan pemeriksaan lokal tetap berfungsi."
+    },
+    result: {
+      qr: "Kode QR",
+      transaction: "Transaksi",
+      address: "Alamat",
+      offline: "Pencarian online dimatikan di pengaturan. Tautan explorer dan pemeriksaan lokal tetap berfungsi.",
+      onOfac: "Ada di daftar sanksi OFAC ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Nilai USD tidak tersedia",
+      type: "Jenis",
+      delegated: "EIP-7702 didelegasikan ke {address}",
+      contractBytes: "Kontrak ({count} byte)",
+      walletNoCode: "Dompet (tanpa kode)",
+      sentTxs: "Tx terkirim",
+      resolvedFrom: "Diresolusi dari",
+      tokens: "Token",
+      noErc20: "Tidak ada token ERC-20.",
+      hiddenTokens: "Token disembunyikan: {count}. Ditandai sebagai spam oleh indexer, atau tanpa nama atau simbol. Jangan berinteraksi dengan token yang tidak Anda harapkan.",
+      knownOnly: "Hanya {count} token terkenal yang diperiksa (tidak ada indeks token gratis yang mencakup {chain}); aset lain tidak ditampilkan.",
+      activity: "Aktivitas",
+      transactions: "Transaksi",
+      tokenTransfers: "Transfer token",
+      labelsContract: "Label dan kontrak",
+      flagged: "Blockscout menandai alamat ini ({reason}).",
+      scam: "penipuan",
+      name: "Nama",
+      tags: "Tag",
+      verifiedSource: "Kode sumber terverifikasi",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Transaksi belum terkonfirmasi yang tertunda: {count}. Tidak termasuk di atas.",
+      received: "Diterima",
+      sent: "Dikirim",
+      recentTxs: "Transaksi terbaru",
+      account: "Akun",
+      program: "Program",
+      notFound: "Tidak ditemukan on-chain",
+      owner: "Pemilik",
+      splTokens: "Token SPL",
+      noSpl: "Tidak ada saldo token SPL.",
+      token2022: "Saldo Token-2022 tidak dapat dibaca dari RPC publik.",
+      recentSigs: "Signature terbaru",
+      unknownTx: "{chain} tidak mengenali transaksi ini.",
+      unknownSig: "Solana tidak mengenali signature ini.",
+      status: "Status",
+      block: "Blok",
+      conf: "{block} · {count} konf.",
+      time: "Waktu",
+      from: "Dari",
+      to: "Ke",
+      value: "Nilai",
+      fee: "Biaya",
+      input: "Input",
+      verifiedAbi: "ABI terverifikasi",
+      guessed: "tebakan",
+      success: "berhasil",
+      failed: "gagal",
+      confirmed: "terkonfirmasi",
+      unconfirmedBadge: "belum terkonfirmasi",
+      mempool: "mempool",
+      output: "Output",
+      outputs: "Output ({count})",
+      slot: "Slot",
+      signer: "Penanda tangan"
+    },
+    risk: {
+      checking: "Memeriksa sanksi, laporan, dan kontrak…",
+      title: "Pemeriksaan risiko",
+      signals: "Sinyal risiko ditemukan: {count}. Jangan kirim dana atau menandatangani apa pun tanpa memeriksa.",
+      noReports: "Tidak ada laporan di sumber di bawah. Itu tidak berarti aman: sebagian besar penipuan tidak pernah dilaporkan.",
+      listed: "TERDAFTAR ({lists})",
+      notListed: "tidak terdaftar (snapshot {date})",
+      markedScam: "ditandai sebagai penipuan",
+      notFlagged: "tidak ditandai",
+      noReportsShort: "tidak ada laporan",
+      scamReports: "Laporan penipuan",
+      notChecked: "tidak diperiksa: sumber gratis hanya mencakup chain EVM",
+      verified: "Terverifikasi",
+      upgradeable: "Dapat di-upgrade",
+      yesArrow: "ya → {address}",
+      noSlots: "tidak ada slot EIP-1967",
+      noOwner: "tidak ada owner()",
+      renounced: "dilepaskan",
+      contract: "kontrak",
+      wallet: "dompet",
+      admin: "Fungsi admin",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "tidak ditemukan",
+      tokenRisk: "Risiko token",
+      noFlags: "tidak ada peringatan",
+      onlineUnavailable: "Pemeriksaan online tidak tersedia: {error}",
+      ofacLocal: "OFAC (lokal)",
+      checkApprovals: "Periksa persetujuan token",
+      scanningApprovals: "Memindai persetujuan dan membaca allowance…",
+      aWallet: "(sebuah dompet!)",
+      unlimited: "tanpa batas",
+      allItems: "semua item",
+      noApprovals: "Tidak ada persetujuan aktif yang ditemukan di event yang dipindai.",
+      capped: "Pencarian log mencapai batasnya: persetujuan lama mungkin terlewat.",
+      revoke: "Tinjau atau cabut di revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Memeriksa {count} chain EVM…",
+      code: "kode",
+      txCount: "{count} tx",
+      source: "RPC publik · harga {source} · {ago}",
+      title: "Alamat yang sama di chain EVM lain"
+    },
+    locate: {
+      asking: "Menanyakan {count} chain EVM…",
+      foundOn: "Ditemukan di {chain} →",
+      notFound: "Tidak ditemukan di {count} chain EVM yang didukung; coba tautan explorer.",
+      title: "Ada di chain mana?"
+    },
+    unit: {
+      anyToken: "token apa pun",
+      rawUnits: "satuan mentah",
+      tokens: "token",
+      amount: "Jumlah",
+      family: "Kelompok satuan",
+      from: "Dari satuan",
+      decimals: "Desimal token (token apa pun)"
+    },
+    validator: {
+      invalid: "Bukan alamat atau hash yang valid dalam format apa pun yang dikenal Web3Lens.",
+      checksumValid: "checksum valid",
+      checksumInvalid: "checksum TIDAK cocok",
+      noChecksum: "tanpa checksum",
+      formatOnly: "hanya format",
+      notOnOfac: "tidak ada di snapshot OFAC",
+      normalised: "Dinormalisasi",
+      field: "Alamat, hash, atau nama",
+      hint: "Checksum yang valid berarti disalin dengan benar, bukan berarti dapat dipercaya."
+    },
+    hex: {
+      decimal: "Desimal",
+      text: "Teks",
+      textOption: "teks",
+      hexBytes: "byte hex",
+      selector: "Selector",
+      number: "Angka",
+      hexOrDecimal: "Hex atau desimal",
+      textToHex: "Teks → hex",
+      hexToText: "Hex → teks",
+      hashes: "Hash",
+      input: "Input",
+      inputIs: "Input berupa"
+    },
+    time: {
+      now: "Sekarang",
+      readAs: "Dibaca sebagai {kind}",
+      unixSeconds: "Detik Unix",
+      milliseconds: "Milidetik",
+      local: "Lokal",
+      relative: "Relatif",
+      field: "Timestamp atau tanggal",
+      future: "di masa depan",
+      kind: {
+        hexSeconds: "detik hex",
+        nanoseconds: "nanodetik",
+        microseconds: "mikrodetik",
+        milliseconds: "milidetik",
+        seconds: "detik",
+        date: "tanggal"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Transfer ETH",
+        erc20Transfer: "Transfer ERC-20",
+        erc20Approve: "Approve ERC-20",
+        uniswapSwap: "Swap Uniswap",
+        nftMint: "Mint NFT"
+      },
+      optional: "gwei (opsional)",
+      useLive: "Gunakan harga gas langsung",
+      liveFrom: "Langsung dari {chain}",
+      gasPrice: "Harga gas",
+      feeSymbol: "Biaya ({symbol})",
+      feeWei: "Biaya (wei)",
+      feeUsd: "Biaya (USD)",
+      maxToHold: "Maksimum yang perlu disiapkan",
+      feeSats: "Biaya (sats)",
+      feeBtc: "Biaya (BTC)",
+      evmFee: "Biaya EVM",
+      gasLimit: "Batas gas",
+      baseFee: "Biaya dasar / harga gas",
+      priorityFee: "Biaya prioritas",
+      maxFee: "Biaya maksimum",
+      l1Note: "Rollup juga mengenakan biaya data L1 yang tidak termasuk di sini.",
+      btcFee: "Biaya Bitcoin",
+      size: "Ukuran (vbytes)",
+      feeRate: "Tarif biaya"
+    },
+    abi: {
+      abiPlaceholder: "ABI JSON atau satu signature per baris (opsional)",
+      badCalldata: "Calldata harus berupa 0x diikuti setidaknya selector 4 byte.",
+      commonMatch: "Cocok dengan signature umum (tidak ada ABI yang diberikan).",
+      lookupSelector: "Cari selector secara online",
+      asking: "Menanyakan openchain.xyz / 4byte.directory…",
+      community: "Signature kiriman komunitas ({source}): anggap sebagai tebakan.",
+      noneDecodes: "Tidak ada signature kiriman yang dapat mendekode data ini.",
+      unknownSelector: "Selector {selector} tidak dikenal.",
+      calldata: "Calldata",
+      decode: "Dekode",
+      encode: "Enkode",
+      signature: "Signature fungsi",
+      args: "Argumen (array JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Dari (dipulihkan)",
+      creation: "(pembuatan kontrak)",
+      chainId: "Chain id",
+      replayable: "tidak ada (dapat diputar ulang)",
+      nonce: "Nonce",
+      data: "Data",
+      bestGuess: "Cocok dengan signature umum; tebakan terbaik tanpa ABI.",
+      authorization: "Otorisasi EIP-7702",
+      delegatesTo: "Didelegasikan ke",
+      chainNonce: "Chain / nonce",
+      anyChain: "0 (chain mana pun!)",
+      field: "Transaksi mentah bertanda tangan",
+      hint: "Didekode secara lokal; tidak ada yang disiarkan."
+    },
+    app: {
+      batch: "Massal",
+      moreTools: "Alat lainnya",
+      batchSearch: "Pencarian massal",
+      batchSearchBody: "Periksa hingga 50 alamat sekaligus, ekspor CSV",
+      devToolsBody: "Satuan, checksum, dekoder, timestamp",
+      savedBody: "Label dan catatan Anda, privat di browser ini",
+      view: {
+        search: "Cari",
+        result: "Hasil",
+        batch: "Massal",
+        tools: "Alat",
+        saved: "Tersimpan",
+        settings: "Pengaturan"
+      }
+    },
+    batch: {
+      valueCol: "Nilai",
+      typeCol: "Jenis",
+      checksCol: "Pemeriksaan",
+      notRecognised: "tidak dikenali",
+      secret: "rahasia",
+      ok: "ok",
+      leftOut: "Dilewati: {count} (batas {max}).",
+      checking: "memeriksa…",
+      active: "{active}/{total} aktif · {usd}",
+      fetchBalances: "Ambil saldo EVM ({count})",
+      exportCsv: "Ekspor CSV",
+      savedMsg: "Disimpan ke browser ini.",
+      saveAll: "Simpan semua",
+      shareCopied: "Tautan berbagi disalin (dibuka di web3lens.com; daftarnya ada di dalam tautan).",
+      copyShare: "Salin tautan berbagi",
+      checked: "Diperiksa: {count}",
+      title: "Periksa daftar sekaligus",
+      intro: "Hingga {max} alamat, hash, atau nama: satu per baris, atau dipisahkan koma atau spasi.",
+      checkAll: "Periksa semua"
+    },
+    savedPage: {
+      filter: "Filter",
+      empty: "Belum ada yang disimpan. Gunakan Simpan di pencarian atau massal.",
+      label: "Label",
+      notes: "Catatan",
+      select: "Pilih",
+      remove: "Hapus",
+      tooLarge: "File terlalu besar",
+      imported: "Item diimpor: {count}.",
+      importFailed: "Impor gagal: {error}",
+      title: "Label dan catatan Anda",
+      intro: "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Tidak ada yang disinkronkan.",
+      exportJson: "Ekspor JSON",
+      importJson: "Impor JSON",
+      selectFirst: "Pilih item terlebih dahulu.",
+      shareCopied: "Tautan berbagi disalin. Label dan catatan ada di dalam tautan: siapa pun yang memilikinya dapat membacanya.",
+      shareSelected: "Bagikan yang dipilih"
+    },
+    detect: {
+      address: "Alamat {chain}",
+      testnetAddress: "Alamat testnet {chain}",
+      stakeAddress: "Alamat staking {chain}",
+      addressRaw: "Alamat {chain} (mentah)",
+      bech32: "Alamat Bech32 ({hrp})",
+      txHashOf: "Hash transaksi {chain}",
+      extrinsicHash: "Hash extrinsic {chain}",
+      operationHash: "Hash operasi {chain}",
+      blockHash: "Hash blok {chain}",
+      secretKey: "Kunci rahasia {chain}",
+      signature: "Signature {chain}",
+      dnsName: "Nama DNS {chain}",
+      name: "Nama {chain}",
+      account: "Akun {chain}",
+      contract: "Kontrak {chain}",
+      transactionHash: "Hash transaksi",
+      blockNumber: "Nomor blok",
+      recoveryPhrase: "Frasa pemulihan",
+      privateKey: "Kunci privat (WIF)",
+      note: {
+        badChecksum: "Checksum tidak cocok. Nilainya mungkin salah ketik; periksa sebelum mengirim dana.",
+        privateKey: "Ini terlihat seperti kunci privat. Siapa pun yang memilikinya menguasai dananya. Web3Lens tidak akan mencarinya.",
+        stellarSecret: "Ini adalah kunci rahasia Stellar. Siapa pun yang memilikinya menguasai akunnya. Web3Lens tidak akan mencarinya.",
+        recoveryPhrase: "Ini terlihat seperti frasa pemulihan dompet. Siapa pun yang memilikinya menguasai dompetnya. Web3Lens tidak akan mencarinya; jangan pernah menempelkannya di situs web.",
+        bech32Unknown: "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
+        versionByte: "Byte versi {byte} tidak dikenali Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/tr.json
+  var tr_default = {
+    common: {
+      copy: "Kopyala",
+      copied: "Kopyalandı",
+      close: "Kapat",
+      loading: "Yükleniyor…",
+      refresh: "Yenile",
+      clear: "Temizle",
+      save: "Kaydet",
+      saved: "Kaydedilenler",
+      search: "Ara",
+      tools: "Araçlar",
+      settings: "Ayarlar",
+      sections: "Bölümler",
+      yes: "Evet",
+      no: "Hayır",
+      yesLower: "evet",
+      noLower: "hayır",
+      unavailable: "kullanılamıyor",
+      unavailableReason: "kullanılamıyor: {reason}",
+      unavailableParen: "kullanılamıyor ({reason})",
+      unavailableCap: "Kullanılamıyor: {reason}",
+      unknown: "bilinmiyor",
+      pending: "beklemede",
+      staleParen: "(eski veri)",
+      offInSettings: "Çevrimiçi sorgular ayarlarda kapalı.",
+      openInFullTab: "Tam sekmede aç",
+      developerTools: "Geliştirici araçları",
+      gasTracker: "Gas takipçisi",
+      feeCalculator: "Ücret hesaplayıcı",
+      unrecognised: "tanınmadı",
+      offlineMode: "Çevrimdışı mod",
+      onlineLookups: "Çevrimiçi sorgular",
+      explorers: "Gezginler",
+      liveFees: "{count} EVM zinciri ve Bitcoin için canlı ücretler"
+    },
+    theme: {
+      label: "Tema",
+      light: "Açık",
+      dark: "Koyu",
+      system: "Sistem",
+      lightDefault: "Açık (varsayılan)",
+      lightTheme: "Açık tema",
+      darkTheme: "Koyu tema",
+      systemTheme: "Sistem teması",
+      current: "Tema: {theme}"
+    },
+    language: {
+      label: "Dil",
+      hint: "Otomatik, tarayıcınızın dilini izler.",
+      fallbackNote: "Henüz çevrilmemiş metinler İngilizce gösterilir.",
+      auto: "Otomatik ({language})"
+    },
+    picker: {
+      filterPlaceholder: "{count} zincirde ara…",
+      filterLabel: "Blok zincirlerini filtrele",
+      listLabel: "Blok zincirleri",
+      autoDetected: "Otomatik algılandı",
+      blockchain: "Blok zinciri",
+      buttonLabel: "Blok zinciri: {chain}. Blok zincirini değiştir",
+      buttonLabelAuto: "Blok zinciri: {chain} (otomatik algılandı). Blok zincirini değiştir",
+      results: "Sonuçlar",
+      detected: "Algılananlar",
+      favourites: "Favoriler",
+      popular: "Popüler",
+      allChains: "Tüm zincirler · {count}",
+      explorerDown: "gezgin çalışmıyor",
+      limited: "sınırlı",
+      pin: "{chain} sabitle",
+      unpin: "{chain} sabitlemesini kaldır",
+      noMatch: "“{query}” ile eşleşen zincir yok"
+    },
+    popup: {
+      tab: {
+        lookup: "Sorgu",
+        scan: "Sayfayı tara",
+        tools: "Araçlar",
+        gas: "Gas",
+        saved: "Kaydedilenler"
+      },
+      tagline: "{strong} için blok zinciri araması",
+      taglineStrong: "her zincir",
+      online: "Çevrimiçi",
+      statusOnline: "Sorgular {host} adresine gider. Ayarlardan değiştirin",
+      statusOffline: "Tarayıcınızdan hiçbir şey çıkmaz. Ayarlardan değiştirin",
+      aboutButton: "Hakkında, kısayollar ve diğer araçlar",
+      openApp: "Tam uygulamayı sekmede aç",
+      footOnline: "Çalıştırdığınız sorgular {host} adresine gider. Başka hiçbir şey tarayıcınızdan çıkmaz.",
+      footOffline: "Çevrimdışı mod: tarayıcınızdan hiçbir şey çıkmaz.",
+      footLink: "Kısayollar ve diğer araçlar"
+    },
+    hero: {
+      title: "{accent} her şeyi sorgulayın",
+      titleAccent: "Herhangi bir zincirde",
+      popupLead: "Bir adres, işlem, blok veya ad yapıştırın. Web3Lens, {count} zincir arasından doğru olanı bulur.",
+      appLead: "Bir adres, işlem, blok veya ad yapıştırın. Web3Lens onu tanır, kontrol eder ve yanıtı gösterir."
+    },
+    examples: {
+      title: "Bir örnek deneyin",
+      vitalik: "Vitalik Buterin'in ENS adı",
+      usdc: "USDC sözleşmesi",
+      genesis: "Bitcoin genesis adresi",
+      usdtTron: "Tron üzerinde USDT"
+    },
+    scan: {
+      reading: "Bu sayfa okunuyor…",
+      noTab: "Etkin sekme yok",
+      thisTab: "bu sekme",
+      nothingTitle: "Hiçbir şey bulunamadı",
+      nothingBody: "Bu sayfada adres, işlem hash'i veya ad yok. Sorgulamak için metni seçip sağ tıklayın.",
+      found: "Bulunan: {count}",
+      copyAll: "Tümünü kopyala",
+      checkAll: "Tümünü toplu kontrol et",
+      cantReadTitle: "Bu sayfa okunamıyor",
+      cantReadBody: "{error}. Tarayıcı sayfaları (ayarlar, eklenti mağazaları, yeni sekmeler) taranamaz.",
+      bannerTitle: "{host} üzerindeki adresler",
+      bannerBody: "Bu bölümü açtığınızda bu sekmenin görünür metnini bir kez okur. Hiçbir yere bir şey gönderilmez.",
+      rescan: "Yeniden tara"
+    },
+    toolsNav: {
+      more: "Daha fazla",
+      batchCheck: "Toplu kontrol"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Birim dönüştürücü",
+        short: "wei · gwei · ETH, sats · BTC, istenen ondalık",
+        description: "wei, gwei ve ether, satoshi ve bitcoin, lamport ve SOL ya da istediğiniz token ondalıkları arasında yuvarlama olmadan tam dönüştürme yapın."
+      },
+      "address-validator": {
+        title: "Adres doğrulayıcı",
+        short: "25'ten fazla adres biçimi için sağlama toplamı",
+        description: "Bir adresin zinciri için geçerli olup olmadığını kontrol edin: EIP-55 sağlama toplamları, base58check, bech32, CashAddr, SS58, Stellar ve TON, ayrıca OFAC yaptırım anlık görüntüsü."
+      },
+      "hex-converter": {
+        title: "Hex, metin ve hash'ler",
+        short: "hex ↔ ondalık, UTF-8, keccak256, SHA-256",
+        description: "Hex'i ondalığa ve tersine, metni hex'e dönüştürün, int256 kelimelerini okuyun ve metin ya da baytları keccak256 ve SHA-256 ile hash'leyin (fonksiyon seçicileriyle)."
+      },
+      "timestamp-converter": {
+        title: "Zaman damgası dönüştürücü",
+        short: "Unix saniye, ms, hex ↔ tarih",
+        description: "Unix zaman damgalarını (saniye, milisaniye, hex blok zaman damgaları) UTC ve kendi saat diliminizdeki tarihlere, tarihleri de zaman damgalarına dönüştürün."
+      },
+      "gas-calculator": {
+        title: "Gas ve ücret hesaplayıcı",
+        short: "Canlı gas fiyatlarıyla EIP-1559 ücretleri",
+        description: "Gas limiti, taban ücret ve bahşişten işlem ücretlerini hesaplayın; 11 EVM zinciri için canlı gas fiyatları ve Bitcoin ücret oranlarıyla."
+      },
+      "abi-decoder": {
+        title: "Calldata ve ABI çözücü",
+        short: "Fonksiyon çağrılarını çözün veya kodlayın",
+        description: "Ethereum calldata'sını bir sözleşme ABI'si, fonksiyon imzası veya yerleşik yaygın fonksiyon listesiyle çözün ve bir imzadan çağrı kodlayın."
+      },
+      "transaction-decoder": {
+        title: "Ham işlem çözücü",
+        short: "İmzalı tx → alanlar ve gönderen",
+        description: "İmzalı ham bir EVM işlemini (legacy, EIP-1559, blob, EIP-7702) yayınlamadan yerel olarak çözün ve göndereni bulun."
+      }
+    },
+    gas: {
+      offlineBody: "Canlı gas için çevrimiçi sorgu gerekir. Ayarlardan çevrimiçi sorguları açın veya ücret hesaplayıcıyı kendi değerlerinizle kullanın.",
+      loading: "Canlı gas fiyatları yükleniyor…",
+      btcRate: "ücret oranı, sat/vB",
+      nextBlock: "Sonraki blok",
+      halfHour: "~30 dk",
+      hour: "~1 saat",
+      economy: "Ekonomik",
+      btcUnavailable: "Bitcoin ücretleri kullanılamıyor: {reason}",
+      transfer: "{usd} transfer",
+      noUsd: "USD fiyatı yok",
+      gweiStale: "gwei · eski veri",
+      na: "yok",
+      source: "Herkese açık RPC'ler, mempool.space, CoinGecko · {time} UTC'de alındı. Rollup'lar bir L1 veri ücreti ekler.",
+      head: "Canlı ücretler · {count} EVM zinciri ve Bitcoin",
+      chain: "Zincir",
+      priceCol: "Gas fiyatı (gwei)",
+      transferCol: "Transfer (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Etiket, adres veya nota göre filtrele",
+      filterLabel: "Kaydedilenleri filtrele",
+      emptyTitle: "Henüz kaydedilen bir şey yok",
+      emptyBody: "Bir aramadan sonra Kaydet'e basarak bir adresi veya işlemi etiket ve notlarla burada tutun. Kaydedilenler bu tarayıcıda kalır.",
+      noMatch: "“{query}” ile eşleşen bir şey yok.",
+      unpin: "Sabitlemeyi kaldır",
+      pin: "En üste sabitle",
+      manageTitle: "Etiketleri ve notları düzenleyin, dışa aktarın, içe aktarın veya paylaşın",
+      manage: "Yönet"
+    },
+    settings: {
+      appearance: "Görünüm",
+      appearanceHint: "Varsayılan açık temadır. Sistem, tarayıcınızı izler.",
+      whenSearch: "Ara'ya bastığımda",
+      whenSearchHint: "Sağ tık sorguları ve w3 anahtar kelimesi de bu ayarı izler.",
+      resultsFirst: "Önce Web3Lens sonuçlarını göster",
+      resultsFirstHint: "{count} zincirde bakiyeler, tokenlar ve risk kontrolleri; diğer zincirler kendi gezginlerini açar.",
+      alwaysExplorer: "Her zaman blok gezginini aç",
+      alwaysExplorerHint: "Doğrudan yeni sekmede gezgine git.",
+      onlineOn: "Açık: bakiyeler, işlemler, risk kontrolleri ve gas, istediğinizde {host} adresinden gelir.",
+      onlineOff: "Kapalı: algılama, sağlama toplamları, gezgin bağlantıları, araçlar ve OFAC anlık görüntüsü yerel olarak çalışmaya devam eder.",
+      recent: "Son aramalar",
+      recentKept: "Bu tarayıcıda tutulan: {count}.",
+      more: "Diğer ayarlar",
+      moreHint: "Tercih edilen gezginler, favori zincirler, veriler ve sıfırlama",
+      pageTitle: "Kendi tarzınızla arayın",
+      privacy: "Gizlilik",
+      privacyBody: "Bakiyeler, işlemler, risk kontrolleri ve canlı gas, istediğinizde {host} adresinden alınır. Her şeyi tarayıcıda tutmak için kapatın: algılama, sağlama toplamları, gezgin bağlantıları, araçlar ve yerleşik OFAC anlık görüntüsü çalışmaya devam eder.",
+      privacyNote: "Eklentinin site izni yoktur ve bir sayfayı yalnızca o sayfada açılır penceredeki “Sayfayı tara” sekmesini açtığınızda okur.",
+      preferredExplorers: "Tercih edilen gezginler",
+      favouriteChains: "Favori zincirler",
+      noneYet: "Henüz yok.",
+      addChain: "Adıyla zincir ekle",
+      data: "Veriler",
+      dataBody: "Her şey bu tarayıcının eklenti depolamasında.",
+      clearRecent: "Son aramaları temizle",
+      deleteSaved: "Kaydedilenleri sil",
+      resetPrefs: "Tercihleri sıfırla",
+      confirmDelete: "Tüm kaydedilenler silinsin mi?",
+      options: "Eklenti seçenekleri"
+    },
+    info: {
+      title: "Web3Lens hakkında",
+      fasterWays: "Daha hızlı erişim",
+      shortcut: "Klavye kısayolu",
+      shortcutBody: "Bu pencereyi {keys} ile açın.",
+      rightClick: "Sağ tık",
+      rightClickBody: "Herhangi bir sayfada bir adres veya hash seçip {menu} öğesini seçin.",
+      addressBar: "Adres çubuğu",
+      addressBarBody: "{key} yazın, bir boşluk bırakın, ardından aramak için yapıştırın.",
+      statChains: "blok zinciri algılanıp yönlendiriliyor",
+      statNative: "canlı bakiye ve risk kontrolüyle",
+      statOfac: "OFAC listesi anlık görüntüsü, yerel olarak kontrol edilir",
+      website: "Web sitesi",
+      contact: "Bize ulaşın",
+      contactSub: "Geri bildirim gönder",
+      privacy: "Gizlilik politikası",
+      privacySub: "Saklanan ve gönderilen veriler",
+      moreFrom: "Aynı geliştiriciden diğerleri",
+      summarytube: "YouTube video özetleri",
+      centpage: "İnternetin en iyi başlangıç sayfası",
+      sessionmanager: "Sekmeleri kaydedin ve geri yükleyin",
+      webdevtools: "Web geliştiricileri için araçlar",
+      foot: "Web3Lens eklentisi v{version} · hesap gerekmez, kaydedilen veriler bu tarayıcıda kalır"
+    },
+    search: {
+      placeholder: "Adres, tx hash'i, blok veya ENS adı",
+      inputLabel: "Adres, işlem hash'i, blok veya ad",
+      unknownFormat: "Web3Lens bu biçimi tanımıyor: seçilen zincirin gezgin aramasına gönderilecek.",
+      secret: "Gizli bilgi algılandı.",
+      checksumOk: "· sağlama toplamı doğru",
+      badChecksum: "hatalı sağlama toplamı",
+      testnet: "testnet",
+      ofacListed: "OFAC listesinde",
+      searchOn: "Aranacak zincir",
+      switchTo: "Geç",
+      couldBe: "Şu da olabilir: {list}",
+      explorerDown: "{chain} gezgini son durum kontrolünde yanıt vermedi.",
+      searchWeb: "Web'de ara",
+      openAnyway: "yine de aç",
+      fallback: "{chain}, henüz desteklenmeyen çok az sayıdaki blok zincirinden biri. Bunun yerine bir {chain} gezginine yönlendiriliyorsunuz...",
+      empty: "Önce bir adres, işlem hash'i, blok numarası veya ad yapıştırın.",
+      notSearched: "Aranmadı.",
+      offlineExplorers: "Çevrimiçi sorgular kapalı (ayarlar), gezginler şunlar:",
+      recent: "Son aramalar",
+      recentEmpty: "Son aramalarınız burada görünür ve yalnızca bu tarayıcıda tutulur.",
+      openFull: "Tam görünümü aç",
+      openExplorer: "Gezginde aç"
+    },
+    source: {
+      unavailableFrom: "{source} kaynağından alınamadı: {reason}. Tahmin yerine hiçbir şey gösterilmez.",
+      unavailable: "Kullanılamıyor: {reason}. Tahmin yerine hiçbir şey gösterilmez.",
+      line: "Kaynak: {source} · {ago} alındı",
+      stale: "· eski veri (kaynak yanıt vermiyor)",
+      explorerDown: "Son durum kontrolünde yanıt vermedi"
+    },
+    api: {
+      badAnswer: "Web3Lens, eklentinin bu sürümünün okuyamadığı bir yanıt gönderdi. Gezgin bağlantıları ve yerel kontroller çalışmaya devam eder; eklentiyi güncellemek sorunu çözmelidir.",
+      timeout: "Web3Lens yanıt vermekte çok gecikti. Biraz sonra tekrar deneyin; gezgin bağlantıları ve yerel kontroller çalışmaya devam eder.",
+      unreachable: "Web3Lens'e ulaşılamadı. Bağlantınızı kontrol edin.",
+      rateLimited: "Kısa sürede çok fazla sorgu yapıldı. Bir dakika bekleyip tekrar deneyin.",
+      serviceDown: "Web3Lens sorgu hizmeti şu anda kullanılamıyor (HTTP {status}). Gezgin bağlantıları ve yerel kontroller çalışmaya devam eder."
+    },
+    result: {
+      qr: "QR kodu",
+      transaction: "İşlem",
+      address: "Adres",
+      offline: "Çevrimiçi sorgular ayarlarda kapalı. Gezgin bağlantıları ve yerel kontroller çalışmaya devam eder.",
+      onOfac: "OFAC yaptırım listesinde ({lists}).",
+      balance: "Bakiye",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "USD değeri kullanılamıyor",
+      type: "Tür",
+      delegated: "EIP-7702 ile {address} adresine devredildi",
+      contractBytes: "Sözleşme ({count} bayt)",
+      walletNoCode: "Cüzdan (kod yok)",
+      sentTxs: "Gönderilen tx",
+      resolvedFrom: "Çözümlenen ad",
+      tokens: "Tokenlar",
+      noErc20: "ERC-20 token yok.",
+      hiddenTokens: "Gizlenen token: {count}. Dizinleyici tarafından spam olarak işaretlendi veya adı ya da sembolü yok. Beklemediğiniz tokenlarla etkileşime girmeyin.",
+      knownOnly: "Yalnızca {count} bilinen token kontrol edildi ({chain} için ücretsiz token dizini yok); diğer varlıklar gösterilmez.",
+      activity: "Etkinlik",
+      transactions: "İşlemler",
+      tokenTransfers: "Token transferleri",
+      labelsContract: "Etiketler ve sözleşme",
+      flagged: "Blockscout bu adresi işaretliyor ({reason}).",
+      scam: "dolandırıcılık",
+      name: "Ad",
+      tags: "Etiketler",
+      verifiedSource: "Doğrulanmış kaynak kodu",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Bekleyen onaylanmamış işlem: {count}. Yukarıya dahil değil.",
+      received: "Alınan",
+      sent: "Gönderilen",
+      recentTxs: "Son işlemler",
+      account: "Hesap",
+      program: "Program",
+      notFound: "Zincirde bulunamadı",
+      owner: "Sahip",
+      splTokens: "SPL tokenları",
+      noSpl: "SPL token bakiyesi yok.",
+      token2022: "Token-2022 bakiyeleri herkese açık RPC'den okunamadı.",
+      recentSigs: "Son imzalar",
+      unknownTx: "{chain} bu işlemi tanımıyor.",
+      unknownSig: "Solana bu imzayı tanımıyor.",
+      status: "Durum",
+      block: "Blok",
+      conf: "{block} · {count} onay",
+      time: "Zaman",
+      from: "Gönderen",
+      to: "Alıcı",
+      value: "Tutar",
+      fee: "Ücret",
+      input: "Girdi",
+      verifiedAbi: "doğrulanmış ABI",
+      guessed: "tahmini",
+      success: "başarılı",
+      failed: "başarısız",
+      confirmed: "onaylandı",
+      unconfirmedBadge: "onaylanmadı",
+      mempool: "mempool",
+      output: "Çıktı",
+      outputs: "Çıktılar ({count})",
+      slot: "Slot",
+      signer: "İmzalayan"
+    },
+    risk: {
+      checking: "Yaptırımlar, şikâyetler ve sözleşme kontrol ediliyor…",
+      title: "Risk kontrolleri",
+      signals: "Bulunan risk sinyali: {count}. Kontrol etmeden para göndermeyin veya bir şey imzalamayın.",
+      noReports: "Aşağıdaki kaynaklarda şikâyet yok. Bu güvenli olduğu anlamına gelmez: dolandırıcılıkların çoğu hiç bildirilmez.",
+      listed: "LİSTEDE ({lists})",
+      notListed: "listede değil (anlık görüntü {date})",
+      markedScam: "dolandırıcılık olarak işaretli",
+      notFlagged: "işaretli değil",
+      noReportsShort: "şikâyet yok",
+      scamReports: "Dolandırıcılık şikâyetleri",
+      notChecked: "kontrol edilmedi: ücretsiz kaynaklar yalnızca EVM zincirlerini kapsar",
+      verified: "Doğrulandı",
+      upgradeable: "Yükseltilebilir",
+      yesArrow: "evet → {address}",
+      noSlots: "EIP-1967 slotu yok",
+      noOwner: "owner() yok",
+      renounced: "feragat edildi",
+      contract: "sözleşme",
+      wallet: "cüzdan",
+      admin: "Yönetici fonksiyonları",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "bulunamadı",
+      tokenRisk: "Token riski",
+      noFlags: "uyarı yok",
+      onlineUnavailable: "Çevrimiçi kontroller kullanılamıyor: {error}",
+      ofacLocal: "OFAC (yerel)",
+      checkApprovals: "Token onaylarını kontrol et",
+      scanningApprovals: "Onaylar taranıyor ve izinler okunuyor…",
+      aWallet: "(bir cüzdan!)",
+      unlimited: "sınırsız",
+      allItems: "tüm öğeler",
+      noApprovals: "Taranan olaylarda etkin onay bulunamadı.",
+      capped: "Log araması sınırına ulaştı: eski onaylar eksik olabilir.",
+      revoke: "revoke.cash üzerinde incele veya iptal et ↗"
+    },
+    multichain: {
+      checking: "{count} EVM zinciri kontrol ediliyor…",
+      code: "kod",
+      txCount: "{count} tx",
+      source: "Herkese açık RPC'ler · fiyatlar {source} · {ago}",
+      title: "Diğer EVM zincirlerinde aynı adres"
+    },
+    locate: {
+      asking: "{count} EVM zincirine soruluyor…",
+      foundOn: "{chain} üzerinde bulundu →",
+      notFound: "Desteklenen {count} EVM zincirinde bulunamadı; gezgin bağlantılarını deneyin.",
+      title: "Hangi zincirde?"
+    },
+    unit: {
+      anyToken: "herhangi bir token",
+      rawUnits: "ham birimler",
+      tokens: "token",
+      amount: "Miktar",
+      family: "Birim ailesi",
+      from: "Kaynak birim",
+      decimals: "Token ondalıkları (herhangi bir token)"
+    },
+    validator: {
+      invalid: "Web3Lens'in bildiği hiçbir biçimde geçerli bir adres veya hash değil.",
+      checksumValid: "sağlama toplamı geçerli",
+      checksumInvalid: "sağlama toplamı EŞLEŞMİYOR",
+      noChecksum: "sağlama toplamı yok",
+      formatOnly: "yalnızca biçim",
+      notOnOfac: "OFAC anlık görüntüsünde değil",
+      normalised: "Normalleştirilmiş",
+      field: "Adres, hash veya ad",
+      hint: "Geçerli bir sağlama toplamı, doğru kopyalandığı anlamına gelir; güvenilir olduğu anlamına gelmez."
+    },
+    hex: {
+      decimal: "Ondalık",
+      text: "Metin",
+      textOption: "metin",
+      hexBytes: "hex baytlar",
+      selector: "Seçici",
+      number: "Sayı",
+      hexOrDecimal: "Hex veya ondalık",
+      textToHex: "Metin → hex",
+      hexToText: "Hex → metin",
+      hashes: "Hash'ler",
+      input: "Girdi",
+      inputIs: "Girdi türü"
+    },
+    time: {
+      now: "Şimdi",
+      readAs: "Şu şekilde okundu: {kind}",
+      unixSeconds: "Unix saniye",
+      milliseconds: "Milisaniye",
+      local: "Yerel",
+      relative: "Göreli",
+      field: "Zaman damgası veya tarih",
+      future: "gelecekte",
+      kind: {
+        hexSeconds: "hex saniye",
+        nanoseconds: "nanosaniye",
+        microseconds: "mikrosaniye",
+        milliseconds: "milisaniye",
+        seconds: "saniye",
+        date: "tarih"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH transferi",
+        erc20Transfer: "ERC-20 transferi",
+        erc20Approve: "ERC-20 onayı",
+        uniswapSwap: "Uniswap takası",
+        nftMint: "NFT basımı"
+      },
+      optional: "gwei (isteğe bağlı)",
+      useLive: "Canlı gas fiyatını kullan",
+      liveFrom: "{chain} canlı verisi",
+      gasPrice: "Gas fiyatı",
+      feeSymbol: "Ücret ({symbol})",
+      feeWei: "Ücret (wei)",
+      feeUsd: "Ücret (USD)",
+      maxToHold: "Ayrılacak en fazla tutar",
+      feeSats: "Ücret (sats)",
+      feeBtc: "Ücret (BTC)",
+      evmFee: "EVM ücreti",
+      gasLimit: "Gas limiti",
+      baseFee: "Taban ücret / gas fiyatı",
+      priorityFee: "Öncelik ücreti",
+      maxFee: "En yüksek ücret",
+      l1Note: "Rollup'lar ayrıca burada dahil olmayan bir L1 veri ücreti alır.",
+      btcFee: "Bitcoin ücreti",
+      size: "Boyut (vbytes)",
+      feeRate: "Ücret oranı"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI veya her satıra bir imza (isteğe bağlı)",
+      badCalldata: "Calldata, 0x ve ardından en az 4 baytlık bir seçiciden oluşmalıdır.",
+      commonMatch: "Yaygın bir imzayla eşleşti (ABI verilmedi).",
+      lookupSelector: "Seçiciyi çevrimiçi ara",
+      asking: "openchain.xyz / 4byte.directory sorgulanıyor…",
+      community: "Topluluğun gönderdiği imza ({source}): tahmin olarak değerlendirin.",
+      noneDecodes: "Gönderilen hiçbir imza bu veriyi çözmüyor.",
+      unknownSelector: "{selector} seçicisi bilinmiyor.",
+      calldata: "Calldata",
+      decode: "Çöz",
+      encode: "Kodla",
+      signature: "Fonksiyon imzası",
+      args: "Argümanlar (JSON dizisi)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Gönderen (kurtarılan)",
+      creation: "(sözleşme oluşturma)",
+      chainId: "Zincir kimliği",
+      replayable: "yok (yeniden oynatılabilir)",
+      nonce: "Nonce",
+      data: "Veri",
+      bestGuess: "Yaygın bir imzayla eşleşti; ABI olmadan en iyi tahmin.",
+      authorization: "EIP-7702 yetkilendirmesi",
+      delegatesTo: "Devredilen adres",
+      chainNonce: "Zincir / nonce",
+      anyChain: "0 (her zincir!)",
+      field: "İmzalı ham işlem",
+      hint: "Yerel olarak çözülür; hiçbir şey yayınlanmaz."
+    },
+    app: {
+      batch: "Toplu",
+      moreTools: "Diğer araçlar",
+      batchSearch: "Toplu arama",
+      batchSearchBody: "Aynı anda 50'ye kadar adres kontrol edin, CSV olarak dışa aktarın",
+      devToolsBody: "Birimler, sağlama toplamları, çözücüler, zaman damgaları",
+      savedBody: "Etiketleriniz ve notlarınız, bu tarayıcıya özel",
+      view: {
+        search: "Ara",
+        result: "Sonuç",
+        batch: "Toplu",
+        tools: "Araçlar",
+        saved: "Kaydedilenler",
+        settings: "Ayarlar"
+      }
+    },
+    batch: {
+      valueCol: "Değer",
+      typeCol: "Tür",
+      checksCol: "Kontroller",
+      notRecognised: "tanınmadı",
+      secret: "gizli",
+      ok: "tamam",
+      leftOut: "Dışarıda bırakılan: {count} (sınır {max}).",
+      checking: "kontrol ediliyor…",
+      active: "{active}/{total} etkin · {usd}",
+      fetchBalances: "EVM bakiyelerini getir ({count})",
+      exportCsv: "CSV dışa aktar",
+      savedMsg: "Bu tarayıcıya kaydedildi.",
+      saveAll: "Tümünü kaydet",
+      shareCopied: "Paylaşım bağlantısı kopyalandı (web3lens.com'da açılır; liste bağlantının içinde).",
+      copyShare: "Paylaşım bağlantısını kopyala",
+      checked: "Kontrol edilen: {count}",
+      title: "Bir listeyi tek seferde kontrol edin",
+      intro: "En fazla {max} adres, hash veya ad: her satıra bir tane ya da virgül veya boşlukla ayrılmış.",
+      checkAll: "Tümünü kontrol et"
+    },
+    savedPage: {
+      filter: "Filtrele",
+      empty: "Henüz kaydedilen bir şey yok. Aramada veya toplu kontrolde Kaydet'i kullanın.",
+      label: "Etiket",
+      notes: "Notlar",
+      select: "Seç",
+      remove: "Kaldır",
+      tooLarge: "Dosya çok büyük",
+      imported: "İçe aktarılan öğe: {count}.",
+      importFailed: "İçe aktarma başarısız: {error}",
+      title: "Etiketleriniz ve notlarınız",
+      intro: "Etiketler ve notlar bu tarayıcıda (eklenti depolaması) kalır. Hiçbir şey eşitlenmez.",
+      exportJson: "JSON dışa aktar",
+      importJson: "JSON içe aktar",
+      selectFirst: "Önce öğe seçin.",
+      shareCopied: "Paylaşım bağlantısı kopyalandı. Etiketler ve notlar bağlantının içinde: bağlantıya sahip olan herkes okuyabilir.",
+      shareSelected: "Seçilenleri paylaş"
+    },
+    detect: {
+      address: "{chain} adresi",
+      testnetAddress: "{chain} testnet adresi",
+      stakeAddress: "{chain} staking adresi",
+      addressRaw: "{chain} adresi (ham)",
+      bech32: "Bech32 adresi ({hrp})",
+      txHashOf: "{chain} işlem hash'i",
+      extrinsicHash: "{chain} extrinsic hash'i",
+      operationHash: "{chain} operasyon hash'i",
+      blockHash: "{chain} blok hash'i",
+      secretKey: "{chain} gizli anahtarı",
+      signature: "{chain} imzası",
+      dnsName: "{chain} DNS adı",
+      name: "{chain} adı",
+      account: "{chain} hesabı",
+      contract: "{chain} sözleşmesi",
+      transactionHash: "İşlem hash'i",
+      blockNumber: "Blok numarası",
+      recoveryPhrase: "Kurtarma ifadesi",
+      privateKey: "Özel anahtar (WIF)",
+      note: {
+        badChecksum: "Sağlama toplamı eşleşmiyor. Değerde yazım hatası olabilir; para göndermeden önce kontrol edin.",
+        privateKey: "Bu bir özel anahtara benziyor. Ona sahip olan herkes fonları kontrol eder. Web3Lens bunu aramaz.",
+        stellarSecret: "Bu bir Stellar gizli anahtarı. Ona sahip olan herkes hesabı kontrol eder. Web3Lens bunu aramaz.",
+        recoveryPhrase: "Bu bir cüzdan kurtarma ifadesine benziyor. Ona sahip olan herkes cüzdanı kontrol eder. Web3Lens bunu aramaz; asla bir web sitesine yapıştırmayın.",
+        bech32Unknown: "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
+        versionByte: "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
+      }
+    }
+  };
+
+  // extension-src/locales/it.json
+  var it_default = {
+    common: {
+      copy: "Copia",
+      copied: "Copiato",
+      close: "Chiudi",
+      loading: "Caricamento…",
+      refresh: "Aggiorna",
+      clear: "Cancella",
+      save: "Salva",
+      saved: "Salvati",
+      search: "Cerca",
+      tools: "Strumenti",
+      settings: "Impostazioni",
+      sections: "Sezioni",
+      yes: "Sì",
+      no: "No",
+      yesLower: "sì",
+      noLower: "no",
+      unavailable: "non disponibile",
+      unavailableReason: "non disponibile: {reason}",
+      unavailableParen: "non disponibile ({reason})",
+      unavailableCap: "Non disponibile: {reason}",
+      unknown: "sconosciuto",
+      pending: "in attesa",
+      staleParen: "(non aggiornato)",
+      offInSettings: "Le ricerche online sono disattivate nelle impostazioni.",
+      openInFullTab: "Apri in una scheda intera",
+      developerTools: "Strumenti per sviluppatori",
+      gasTracker: "Monitor del gas",
+      feeCalculator: "Calcolatore commissioni",
+      unrecognised: "non riconosciuto",
+      offlineMode: "Modalità offline",
+      onlineLookups: "Ricerche online",
+      explorers: "Explorer",
+      liveFees: "Commissioni in tempo reale su {count} chain EVM e Bitcoin"
+    },
+    theme: {
+      label: "Tema",
+      light: "Chiaro",
+      dark: "Scuro",
+      system: "Sistema",
+      lightDefault: "Chiaro (predefinito)",
+      lightTheme: "Tema chiaro",
+      darkTheme: "Tema scuro",
+      systemTheme: "Tema di sistema",
+      current: "Tema: {theme}"
+    },
+    language: {
+      label: "Lingua",
+      hint: "Automatico segue il browser.",
+      fallbackNote: "Ciò che non è ancora tradotto appare in inglese.",
+      auto: "Automatico ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Cerca tra {count} chain…",
+      filterLabel: "Filtra blockchain",
+      listLabel: "Blockchain",
+      autoDetected: "Rilevata automaticamente",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Cambia blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (rilevata automaticamente). Cambia blockchain",
+      results: "Risultati",
+      detected: "Rilevate",
+      favourites: "Preferite",
+      popular: "Popolari",
+      allChains: "Tutte le chain · {count}",
+      explorerDown: "explorer non raggiungibile",
+      limited: "limitata",
+      pin: "Fissa {chain}",
+      unpin: "Sblocca {chain}",
+      noMatch: "Nessuna chain corrisponde a “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Ricerca",
+        scan: "Scansiona pagina",
+        tools: "Strumenti",
+        gas: "Gas",
+        saved: "Salvati"
+      },
+      tagline: "Ricerca blockchain per {strong}",
+      taglineStrong: "ogni chain",
+      online: "Online",
+      statusOnline: "Le ricerche vanno a {host}. Modifica nelle impostazioni",
+      statusOffline: "Niente lascia il browser. Modifica nelle impostazioni",
+      aboutButton: "Informazioni, scorciatoie e altri strumenti",
+      openApp: "Apri l’app completa in una scheda",
+      footOnline: "Le ricerche che esegui vanno a {host}. Nient’altro lascia il browser.",
+      footOffline: "Modalità offline: niente lascia il browser.",
+      footLink: "Scorciatoie e altri strumenti"
+    },
+    hero: {
+      title: "Cerca qualsiasi cosa, su {accent}",
+      titleAccent: "qualsiasi chain.",
+      popupLead: "Incolla un indirizzo, una transazione, un blocco o un nome. Web3Lens trova la sua chain tra {count}.",
+      appLead: "Incolla un indirizzo, una transazione, un blocco o un nome. Web3Lens lo riconosce, lo verifica e ti mostra la risposta."
+    },
+    examples: {
+      title: "Prova un esempio",
+      vitalik: "ENS di Vitalik Buterin",
+      usdc: "Contratto USDC",
+      genesis: "Indirizzo genesis di Bitcoin",
+      usdtTron: "USDT su Tron"
+    },
+    scan: {
+      reading: "Lettura della pagina…",
+      noTab: "Nessuna scheda attiva",
+      thisTab: "questa scheda",
+      nothingTitle: "Nessun risultato",
+      nothingBody: "Nessun indirizzo, hash di transazione o nome in questa pagina. Seleziona del testo e fai clic destro per cercarlo.",
+      found: "Trovati: {count}",
+      copyAll: "Copia tutto",
+      checkAll: "Controlla tutto in blocco",
+      cantReadTitle: "Impossibile leggere la pagina",
+      cantReadBody: "{error}. Le pagine del browser (impostazioni, store delle estensioni, nuove schede) non possono essere scansionate.",
+      bannerTitle: "Indirizzi su {host}",
+      bannerBody: "Legge una sola volta il testo visibile di questa scheda, quando apri questa sezione. Non viene inviato nulla.",
+      rescan: "Riscansiona"
+    },
+    toolsNav: {
+      more: "Altro",
+      batchCheck: "Controllo in blocco"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Convertitore di unità",
+        short: "wei · gwei · ETH, sats · BTC, qualsiasi decimale",
+        description: "Converti tra wei, gwei ed ether, satoshi e bitcoin, lamport e SOL, o qualsiasi numero di decimali di un token, in modo esatto (senza arrotondamenti)."
+      },
+      "address-validator": {
+        title: "Validatore di indirizzi",
+        short: "Checksum per oltre 25 formati di indirizzo",
+        description: "Verifica che un indirizzo sia valido per la sua chain: checksum EIP-55, base58check, bech32, CashAddr, SS58, Stellar e TON, oltre allo snapshot delle sanzioni OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, testo e hash",
+        short: "hex ↔ decimale, UTF-8, keccak256, SHA-256",
+        description: "Converti hex in decimale e viceversa, testo in hex, leggi word int256 e calcola l’hash di testo o byte con keccak256 e SHA-256 (con selettori di funzione)."
+      },
+      "timestamp-converter": {
+        title: "Convertitore di timestamp",
+        short: "secondi Unix, ms, hex ↔ data",
+        description: "Converti timestamp Unix (secondi, millisecondi, timestamp di blocco in hex) in date UTC e nel tuo fuso orario, e date in timestamp."
+      },
+      "gas-calculator": {
+        title: "Calcolatore di gas e commissioni",
+        short: "Commissioni EIP-1559 con prezzi del gas in tempo reale",
+        description: "Calcola le commissioni di transazione da limite di gas, commissione base e mancia, con prezzi del gas in tempo reale per 11 chain EVM e tariffe Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Decoder di calldata e ABI",
+        short: "Decodifica o codifica chiamate di funzione",
+        description: "Decodifica il calldata di Ethereum con l’ABI di un contratto, una firma di funzione o l’elenco integrato di funzioni comuni, e codifica chiamate a partire da una firma."
+      },
+      "transaction-decoder": {
+        title: "Decoder di transazioni raw",
+        short: "tx firmata → campi e mittente",
+        description: "Decodifica localmente una transazione EVM raw firmata (legacy, EIP-1559, blob, EIP-7702) e ricava il mittente, senza trasmetterla."
+      }
+    },
+    gas: {
+      offlineBody: "Il gas in tempo reale richiede una ricerca online. Attiva le ricerche online nelle impostazioni o usa il calcolatore commissioni con i tuoi valori.",
+      loading: "Caricamento dei prezzi del gas in tempo reale…",
+      btcRate: "tariffa, sat/vB",
+      nextBlock: "Prossimo blocco",
+      halfHour: "~30 min",
+      hour: "~1 ora",
+      economy: "Economica",
+      btcUnavailable: "Commissioni Bitcoin non disponibili: {reason}",
+      transfer: "trasferimento {usd}",
+      noUsd: "nessun prezzo in USD",
+      gweiStale: "gwei · non aggiornato",
+      na: "n/d",
+      source: "RPC pubblici, mempool.space, CoinGecko · ottenuto alle {time} UTC. I rollup aggiungono una commissione dati L1.",
+      head: "Commissioni in tempo reale · {count} chain EVM e Bitcoin",
+      chain: "Chain",
+      priceCol: "Prezzo del gas (gwei)",
+      transferCol: "Trasferimento (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filtra per etichetta, indirizzo o nota",
+      filterLabel: "Filtra elementi salvati",
+      emptyTitle: "Ancora nulla di salvato",
+      emptyBody: "Premi Salva dopo una ricerca per conservare qui un indirizzo o una transazione con etichetta e note. Gli elementi salvati restano in questo browser.",
+      noMatch: "Nessun risultato per “{query}”.",
+      unpin: "Sblocca",
+      pin: "Fissa in alto",
+      manageTitle: "Modifica etichette e note, esporta, importa o condividi",
+      manage: "Gestisci"
+    },
+    settings: {
+      appearance: "Aspetto",
+      appearanceHint: "Chiaro è il predefinito. Sistema segue il browser.",
+      whenSearch: "Quando premo Cerca",
+      whenSearchHint: "Anche le ricerche con clic destro e la parola chiave w3 seguono questa impostazione.",
+      resultsFirst: "Mostra prima i risultati di Web3Lens",
+      resultsFirstHint: "Saldi, token e controlli di rischio su {count} chain; le altre chain aprono il loro explorer.",
+      alwaysExplorer: "Apri sempre il block explorer",
+      alwaysExplorerHint: "Vai direttamente all’explorer in una nuova scheda.",
+      onlineOn: "Attive: saldi, transazioni, controlli di rischio e gas arrivano da {host} quando lo chiedi.",
+      onlineOff: "Disattivate: rilevamento, checksum, link agli explorer, strumenti e snapshot OFAC funzionano comunque in locale.",
+      recent: "Ricerche recenti",
+      recentKept: "Conservate in questo browser: {count}.",
+      more: "Altre impostazioni",
+      moreHint: "Explorer preferiti, chain preferite, dati e ripristino",
+      pageTitle: "Cerca a modo tuo",
+      privacy: "Privacy",
+      privacyBody: "Saldi, transazioni, controlli di rischio e gas in tempo reale vengono ottenuti da {host} quando lo chiedi. Disattiva per tenere tutto nel browser: rilevamento, checksum, link agli explorer, strumenti e lo snapshot OFAC incluso continuano a funzionare.",
+      privacyNote: "L’estensione non ha permessi sugli host e legge una pagina solo quando vi apri la scheda “Scansiona pagina” del popup.",
+      preferredExplorers: "Explorer preferiti",
+      favouriteChains: "Chain preferite",
+      noneYet: "Nessuna per ora.",
+      addChain: "Aggiungi una chain per nome",
+      data: "Dati",
+      dataBody: "Tutto si trova nello spazio di archiviazione delle estensioni di questo browser.",
+      clearRecent: "Cancella ricerche recenti",
+      deleteSaved: "Elimina elementi salvati",
+      resetPrefs: "Ripristina preferenze",
+      confirmDelete: "Eliminare tutti gli elementi salvati?",
+      options: "Opzioni dell’estensione"
+    },
+    info: {
+      title: "Informazioni su Web3Lens",
+      fasterWays: "Accessi più rapidi",
+      shortcut: "Scorciatoia da tastiera",
+      shortcutBody: "Apri questo popup con {keys}.",
+      rightClick: "Clic destro",
+      rightClickBody: "Seleziona un indirizzo o un hash in qualsiasi pagina e scegli {menu}.",
+      addressBar: "Barra degli indirizzi",
+      addressBarBody: "Digita {key}, uno spazio, poi incolla per cercare.",
+      statChains: "blockchain rilevate e instradate",
+      statNative: "con saldi in tempo reale e controlli di rischio",
+      statOfac: "snapshot della lista OFAC, verificato in locale",
+      website: "Sito web",
+      contact: "Contattaci",
+      contactSub: "Invia un feedback",
+      privacy: "Informativa sulla privacy",
+      privacySub: "Dati salvati e inviati",
+      moreFrom: "Altro dallo stesso sviluppatore",
+      summarytube: "Riassunti di video YouTube",
+      centpage: "La migliore pagina iniziale del web",
+      sessionmanager: "Salva e ripristina schede",
+      webdevtools: "Strumenti per sviluppatori web",
+      foot: "Estensione Web3Lens v{version} · nessun account, i dati salvati restano in questo browser"
+    },
+    search: {
+      placeholder: "Indirizzo, hash tx, blocco o nome ENS",
+      inputLabel: "Indirizzo, hash di transazione, blocco o nome",
+      unknownFormat: "Formato non riconosciuto da Web3Lens: verrà inviato alla ricerca dell’explorer della chain scelta.",
+      secret: "Rilevato un segreto.",
+      checksumOk: "· checksum ok",
+      badChecksum: "checksum errato",
+      testnet: "testnet",
+      ofacListed: "Nella lista OFAC",
+      searchOn: "Cerca su",
+      switchTo: "Passa a",
+      couldBe: "Potrebbe anche essere: {list}",
+      explorerDown: "L’explorer di {chain} non ha risposto all’ultimo controllo.",
+      searchWeb: "Cerca sul web",
+      openAnyway: "apri comunque",
+      fallback: "{chain} è una delle pochissime blockchain non ancora supportate. Ti reindirizziamo a un explorer di {chain}...",
+      empty: "Incolla prima un indirizzo, un hash di transazione, un numero di blocco o un nome.",
+      notSearched: "Non cercato.",
+      offlineExplorers: "Le ricerche online sono disattivate (impostazioni), quindi ecco gli explorer:",
+      recent: "Recenti",
+      recentEmpty: "Le tue ultime ricerche compaiono qui, conservate solo in questo browser.",
+      openFull: "Apri vista completa",
+      openExplorer: "Apri nell’explorer"
+    },
+    source: {
+      unavailableFrom: "Non disponibile da {source}: {reason}. Meglio non mostrare nulla che tirare a indovinare.",
+      unavailable: "Non disponibile: {reason}. Meglio non mostrare nulla che tirare a indovinare.",
+      line: "Fonte: {source} · ottenuto {ago}",
+      stale: "· non aggiornato (la fonte non risponde)",
+      explorerDown: "Non ha risposto all’ultimo controllo"
+    },
+    api: {
+      badAnswer: "Web3Lens ha inviato una risposta che questa versione dell’estensione non riesce a leggere. Link agli explorer e controlli locali funzionano comunque; aggiornare l’estensione dovrebbe risolvere.",
+      timeout: "Web3Lens ha impiegato troppo a rispondere. Riprova tra poco; link agli explorer e controlli locali funzionano comunque.",
+      unreachable: "Impossibile raggiungere Web3Lens. Controlla la connessione.",
+      rateLimited: "Troppe ricerche in poco tempo. Attendi un minuto e riprova.",
+      serviceDown: "Il servizio di ricerca di Web3Lens non è disponibile al momento (HTTP {status}). Link agli explorer e controlli locali funzionano comunque."
+    },
+    result: {
+      qr: "Codice QR",
+      transaction: "Transazione",
+      address: "Indirizzo",
+      offline: "Le ricerche online sono disattivate nelle impostazioni. Link agli explorer e controlli locali funzionano comunque.",
+      onOfac: "Nella lista delle sanzioni OFAC ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Valore in USD non disponibile",
+      type: "Tipo",
+      delegated: "EIP-7702 delegato a {address}",
+      contractBytes: "Contratto ({count} byte)",
+      walletNoCode: "Wallet (nessun codice)",
+      sentTxs: "Tx inviate",
+      resolvedFrom: "Risolto da",
+      tokens: "Token",
+      noErc20: "Nessun token ERC-20.",
+      hiddenTokens: "Token nascosti: {count}. Segnalati come spam dall’indicizzatore o privi di nome o simbolo. Non interagire con token che non ti aspettavi.",
+      knownOnly: "Sono stati controllati solo {count} token noti (nessun indice gratuito di token copre {chain}); gli altri asset non sono mostrati.",
+      activity: "Attività",
+      transactions: "Transazioni",
+      tokenTransfers: "Trasferimenti di token",
+      labelsContract: "Etichette e contratto",
+      flagged: "Blockscout segnala questo indirizzo ({reason}).",
+      scam: "truffa",
+      name: "Nome",
+      tags: "Tag",
+      verifiedSource: "Codice sorgente verificato",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Transazioni non confermate in attesa: {count}. Non incluse sopra.",
+      received: "Ricevuto",
+      sent: "Inviato",
+      recentTxs: "Transazioni recenti",
+      account: "Account",
+      program: "Programma",
+      notFound: "Non trovato on-chain",
+      owner: "Proprietario",
+      splTokens: "Token SPL",
+      noSpl: "Nessun saldo di token SPL.",
+      token2022: "Impossibile leggere i saldi Token-2022 dall’RPC pubblico.",
+      recentSigs: "Firme recenti",
+      unknownTx: "{chain} non conosce questa transazione.",
+      unknownSig: "Solana non conosce questa firma.",
+      status: "Stato",
+      block: "Blocco",
+      conf: "{block} · {count} conf.",
+      time: "Ora",
+      from: "Da",
+      to: "A",
+      value: "Valore",
+      fee: "Commissione",
+      input: "Input",
+      verifiedAbi: "ABI verificato",
+      guessed: "ipotizzato",
+      success: "riuscita",
+      failed: "non riuscita",
+      confirmed: "confermata",
+      unconfirmedBadge: "non confermata",
+      mempool: "mempool",
+      output: "Output",
+      outputs: "Output ({count})",
+      slot: "Slot",
+      signer: "Firmatario"
+    },
+    risk: {
+      checking: "Controllo di sanzioni, segnalazioni e contratto…",
+      title: "Controlli di rischio",
+      signals: "Segnali di rischio trovati: {count}. Non inviare fondi né firmare nulla senza verificare.",
+      noReports: "Nessuna segnalazione nelle fonti qui sotto. Non significa che sia sicuro: la maggior parte delle truffe non viene mai segnalata.",
+      listed: "IN LISTA ({lists})",
+      notListed: "non in lista (snapshot {date})",
+      markedScam: "segnalato come truffa",
+      notFlagged: "non segnalato",
+      noReportsShort: "nessuna segnalazione",
+      scamReports: "Segnalazioni di truffa",
+      notChecked: "non controllato: le fonti gratuite coprono solo le chain EVM",
+      verified: "Verificato",
+      upgradeable: "Aggiornabile",
+      yesArrow: "sì → {address}",
+      noSlots: "nessuno slot EIP-1967",
+      noOwner: "nessun owner()",
+      renounced: "rinunciato",
+      contract: "contratto",
+      wallet: "wallet",
+      admin: "Funzioni di amministrazione",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "nessuna trovata",
+      tokenRisk: "Rischio del token",
+      noFlags: "nessun avviso",
+      onlineUnavailable: "Controlli online non disponibili: {error}",
+      ofacLocal: "OFAC (locale)",
+      checkApprovals: "Controlla le approvazioni dei token",
+      scanningApprovals: "Scansione delle approvazioni e lettura delle allowance…",
+      aWallet: "(un wallet!)",
+      unlimited: "illimitata",
+      allItems: "tutti gli elementi",
+      noApprovals: "Nessuna approvazione attiva trovata negli eventi scansionati.",
+      capped: "La ricerca nei log ha raggiunto il limite: potrebbero mancare approvazioni più vecchie.",
+      revoke: "Verifica o revoca su revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Controllo di {count} chain EVM…",
+      code: "codice",
+      txCount: "{count} tx",
+      source: "RPC pubblici · prezzi {source} · {ago}",
+      title: "Stesso indirizzo su altre chain EVM"
+    },
+    locate: {
+      asking: "Interrogazione di {count} chain EVM…",
+      foundOn: "Trovata su {chain} →",
+      notFound: "Non trovata sulle {count} chain EVM supportate; prova i link agli explorer.",
+      title: "Su quale chain si trova?"
+    },
+    unit: {
+      anyToken: "qualsiasi token",
+      rawUnits: "unità raw",
+      tokens: "token",
+      amount: "Importo",
+      family: "Famiglia di unità",
+      from: "Unità di partenza",
+      decimals: "Decimali del token (qualsiasi token)"
+    },
+    validator: {
+      invalid: "Non è un indirizzo o un hash valido in nessun formato noto a Web3Lens.",
+      checksumValid: "checksum valido",
+      checksumInvalid: "il checksum NON corrisponde",
+      noChecksum: "nessun checksum",
+      formatOnly: "solo formato",
+      notOnOfac: "non nello snapshot OFAC",
+      normalised: "Normalizzato",
+      field: "Indirizzo, hash o nome",
+      hint: "Un checksum valido significa che è stato copiato correttamente, non che sia affidabile."
+    },
+    hex: {
+      decimal: "Decimale",
+      text: "Testo",
+      textOption: "testo",
+      hexBytes: "byte hex",
+      selector: "Selettore",
+      number: "Numero",
+      hexOrDecimal: "Hex o decimale",
+      textToHex: "Testo → hex",
+      hexToText: "Hex → testo",
+      hashes: "Hash",
+      input: "Input",
+      inputIs: "L’input è"
+    },
+    time: {
+      now: "Adesso",
+      readAs: "Interpretato come {kind}",
+      unixSeconds: "Secondi Unix",
+      milliseconds: "Millisecondi",
+      local: "Locale",
+      relative: "Relativo",
+      field: "Timestamp o data",
+      future: "nel futuro",
+      kind: {
+        hexSeconds: "secondi in hex",
+        nanoseconds: "nanosecondi",
+        microseconds: "microsecondi",
+        milliseconds: "millisecondi",
+        seconds: "secondi",
+        date: "data"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Trasferimento ETH",
+        erc20Transfer: "Trasferimento ERC-20",
+        erc20Approve: "Approvazione ERC-20",
+        uniswapSwap: "Swap su Uniswap",
+        nftMint: "Mint di NFT"
+      },
+      optional: "gwei (facoltativo)",
+      useLive: "Usa il prezzo del gas in tempo reale",
+      liveFrom: "In tempo reale da {chain}",
+      gasPrice: "Prezzo del gas",
+      feeSymbol: "Commissione ({symbol})",
+      feeWei: "Commissione (wei)",
+      feeUsd: "Commissione (USD)",
+      maxToHold: "Massimo da tenere",
+      feeSats: "Commissione (sats)",
+      feeBtc: "Commissione (BTC)",
+      evmFee: "Commissione EVM",
+      gasLimit: "Limite di gas",
+      baseFee: "Commissione base / prezzo del gas",
+      priorityFee: "Commissione di priorità",
+      maxFee: "Commissione massima",
+      l1Note: "I rollup addebitano anche una commissione dati L1 non inclusa qui.",
+      btcFee: "Commissione Bitcoin",
+      size: "Dimensione (vbytes)",
+      feeRate: "Tariffa"
+    },
+    abi: {
+      abiPlaceholder: "ABI JSON o una firma per riga (facoltativo)",
+      badCalldata: "Il calldata deve essere 0x seguito da almeno un selettore di 4 byte.",
+      commonMatch: "Corrisponde a una firma comune (nessun ABI fornito).",
+      lookupSelector: "Cerca il selettore online",
+      asking: "Interrogazione di openchain.xyz / 4byte.directory…",
+      community: "Firma inviata dalla community ({source}): consideralo un’ipotesi.",
+      noneDecodes: "Nessuna firma inviata decodifica questi dati.",
+      unknownSelector: "Il selettore {selector} non è noto.",
+      calldata: "Calldata",
+      decode: "Decodifica",
+      encode: "Codifica",
+      signature: "Firma della funzione",
+      args: "Argomenti (array JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Da (ricavato)",
+      creation: "(creazione di contratto)",
+      chainId: "Chain id",
+      replayable: "nessuno (riproducibile)",
+      nonce: "Nonce",
+      data: "Dati",
+      bestGuess: "Corrisponde a una firma comune; ipotesi migliore senza l’ABI.",
+      authorization: "Autorizzazione EIP-7702",
+      delegatesTo: "Delega a",
+      chainNonce: "Chain / nonce",
+      anyChain: "0 (qualsiasi chain!)",
+      field: "Transazione raw firmata",
+      hint: "Decodificata in locale; non viene trasmesso nulla."
+    },
+    app: {
+      batch: "In blocco",
+      moreTools: "Altri strumenti",
+      batchSearch: "Ricerca in blocco",
+      batchSearchBody: "Controlla fino a 50 indirizzi insieme, esporta in CSV",
+      devToolsBody: "Unità, checksum, decoder, timestamp",
+      savedBody: "Le tue etichette e note, private in questo browser",
+      view: {
+        search: "Cerca",
+        result: "Risultato",
+        batch: "In blocco",
+        tools: "Strumenti",
+        saved: "Salvati",
+        settings: "Impostazioni"
+      }
+    },
+    batch: {
+      valueCol: "Valore",
+      typeCol: "Tipo",
+      checksCol: "Controlli",
+      notRecognised: "non riconosciuto",
+      secret: "segreto",
+      ok: "ok",
+      leftOut: "Esclusi: {count} (limite {max}).",
+      checking: "controllo…",
+      active: "{active}/{total} attive · {usd}",
+      fetchBalances: "Recupera saldi EVM ({count})",
+      exportCsv: "Esporta CSV",
+      savedMsg: "Salvato in questo browser.",
+      saveAll: "Salva tutto",
+      shareCopied: "Link di condivisione copiato (si apre su web3lens.com; l’elenco è nel link).",
+      copyShare: "Copia link di condivisione",
+      checked: "Controllati: {count}",
+      title: "Controlla un elenco in una volta",
+      intro: "Fino a {max} indirizzi, hash o nomi: uno per riga, o separati da virgole o spazi.",
+      checkAll: "Controlla tutto"
+    },
+    savedPage: {
+      filter: "Filtra",
+      empty: "Ancora nulla di salvato. Usa Salva nella ricerca o nel controllo in blocco.",
+      label: "Etichetta",
+      notes: "Note",
+      select: "Seleziona",
+      remove: "Rimuovi",
+      tooLarge: "File troppo grande",
+      imported: "Elementi importati: {count}.",
+      importFailed: "Importazione non riuscita: {error}",
+      title: "Le tue etichette e note",
+      intro: "Etichette e note restano in questo browser (archiviazione dell’estensione). Nulla viene sincronizzato.",
+      exportJson: "Esporta JSON",
+      importJson: "Importa JSON",
+      selectFirst: "Seleziona prima degli elementi.",
+      shareCopied: "Link di condivisione copiato. Etichette e note sono nel link: chiunque lo abbia può leggerle.",
+      shareSelected: "Condividi selezionati"
+    },
+    detect: {
+      address: "Indirizzo {chain}",
+      testnetAddress: "Indirizzo testnet {chain}",
+      stakeAddress: "Indirizzo di staking {chain}",
+      addressRaw: "Indirizzo {chain} (raw)",
+      bech32: "Indirizzo Bech32 ({hrp})",
+      txHashOf: "Hash di transazione {chain}",
+      extrinsicHash: "Hash di extrinsic {chain}",
+      operationHash: "Hash di operazione {chain}",
+      blockHash: "Hash di blocco {chain}",
+      secretKey: "Chiave segreta {chain}",
+      signature: "Firma {chain}",
+      dnsName: "Nome DNS {chain}",
+      name: "Nome {chain}",
+      account: "Account {chain}",
+      contract: "Contratto {chain}",
+      transactionHash: "Hash di transazione",
+      blockNumber: "Numero di blocco",
+      recoveryPhrase: "Frase di recupero",
+      privateKey: "Chiave privata (WIF)",
+      note: {
+        badChecksum: "Il checksum non corrisponde. Il valore potrebbe contenere un errore di battitura; verificalo prima di inviare fondi.",
+        privateKey: "Sembra una chiave privata. Chiunque la possieda controlla i fondi. Web3Lens non la cercherà.",
+        stellarSecret: "Questa è una chiave segreta Stellar. Chiunque la possieda controlla l’account. Web3Lens non la cercherà.",
+        recoveryPhrase: "Sembra una frase di recupero di un wallet. Chiunque la possieda controlla il wallet. Web3Lens non la cercherà; non incollarla mai in un sito web.",
+        bech32Unknown: "Un indirizzo bech32 valido per “{hrp}”, una rete che Web3Lens non elenca ancora.",
+        versionByte: "Il byte di versione {byte} non è riconosciuto da Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/pl.json
+  var pl_default = {
+    common: {
+      copy: "Kopiuj",
+      copied: "Skopiowano",
+      close: "Zamknij",
+      loading: "Ładowanie…",
+      refresh: "Odśwież",
+      clear: "Wyczyść",
+      save: "Zapisz",
+      saved: "Zapisane",
+      search: "Szukaj",
+      tools: "Narzędzia",
+      settings: "Ustawienia",
+      sections: "Sekcje",
+      yes: "Tak",
+      no: "Nie",
+      yesLower: "tak",
+      noLower: "nie",
+      unavailable: "niedostępne",
+      unavailableReason: "niedostępne: {reason}",
+      unavailableParen: "niedostępne ({reason})",
+      unavailableCap: "Niedostępne: {reason}",
+      unknown: "nieznane",
+      pending: "oczekuje",
+      staleParen: "(nieaktualne)",
+      offInSettings: "Wyszukiwanie online jest wyłączone w ustawieniach.",
+      openInFullTab: "Otwórz w osobnej karcie",
+      developerTools: "Narzędzia deweloperskie",
+      gasTracker: "Monitor gazu",
+      feeCalculator: "Kalkulator opłat",
+      unrecognised: "nierozpoznane",
+      offlineMode: "Tryb offline",
+      onlineLookups: "Wyszukiwanie online",
+      explorers: "Eksploratory",
+      liveFees: "Bieżące opłaty w sieciach EVM ({count}) i Bitcoin"
+    },
+    theme: {
+      label: "Motyw",
+      light: "Jasny",
+      dark: "Ciemny",
+      system: "Systemowy",
+      lightDefault: "Jasny (domyślny)",
+      lightTheme: "Jasny motyw",
+      darkTheme: "Ciemny motyw",
+      systemTheme: "Motyw systemowy",
+      current: "Motyw: {theme}"
+    },
+    language: {
+      label: "Język",
+      hint: "Automatyczny język podąża za przeglądarką.",
+      fallbackNote: "To, czego jeszcze nie przetłumaczono, wyświetla się po angielsku.",
+      auto: "Automatycznie ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Szukaj wśród sieci: {count}…",
+      filterLabel: "Filtruj blockchainy",
+      listLabel: "Blockchainy",
+      autoDetected: "Wykryto automatycznie",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Zmień blockchain",
+      buttonLabelAuto: "Blockchain: {chain} (wykryty automatycznie). Zmień blockchain",
+      results: "Wyniki",
+      detected: "Wykryte",
+      favourites: "Ulubione",
+      popular: "Popularne",
+      allChains: "Wszystkie sieci · {count}",
+      explorerDown: "eksplorator nie działa",
+      limited: "ograniczona",
+      pin: "Przypnij {chain}",
+      unpin: "Odepnij {chain}",
+      noMatch: "Brak sieci pasujących do „{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "Wyszukaj",
+        scan: "Skanuj stronę",
+        tools: "Narzędzia",
+        gas: "Gaz",
+        saved: "Zapisane"
+      },
+      tagline: "Wyszukiwarka blockchain dla {strong}",
+      taglineStrong: "każdej sieci",
+      online: "Online",
+      statusOnline: "Zapytania trafiają do {host}. Zmień w ustawieniach",
+      statusOffline: "Nic nie opuszcza przeglądarki. Zmień w ustawieniach",
+      aboutButton: "Informacje, skróty i więcej narzędzi",
+      openApp: "Otwórz pełną aplikację w karcie",
+      footOnline: "Twoje zapytania trafiają do {host}. Nic więcej nie opuszcza przeglądarki.",
+      footOffline: "Tryb offline: nic nie opuszcza przeglądarki.",
+      footLink: "Skróty i więcej narzędzi"
+    },
+    hero: {
+      title: "Sprawdź wszystko, w {accent}",
+      titleAccent: "dowolnej sieci.",
+      popupLead: "Wklej adres, transakcję, blok lub nazwę. Web3Lens znajdzie właściwą sieć spośród {count}.",
+      appLead: "Wklej adres, transakcję, blok lub nazwę. Web3Lens rozpozna go, sprawdzi i pokaże odpowiedź."
+    },
+    examples: {
+      title: "Wypróbuj przykład",
+      vitalik: "ENS użytkownika Vitalik Buterin",
+      usdc: "Kontrakt USDC",
+      genesis: "Adres genesis Bitcoin",
+      usdtTron: "USDT w sieci Tron"
+    },
+    scan: {
+      reading: "Odczytywanie strony…",
+      noTab: "Brak aktywnej karty",
+      thisTab: "ta karta",
+      nothingTitle: "Nic nie znaleziono",
+      nothingBody: "Na tej stronie nie ma adresów, hashy transakcji ani nazw. Zaznacz tekst i kliknij prawym przyciskiem, aby go wyszukać.",
+      found: "Znaleziono: {count}",
+      copyAll: "Kopiuj wszystko",
+      checkAll: "Sprawdź wszystko zbiorczo",
+      cantReadTitle: "Nie można odczytać tej strony",
+      cantReadBody: "{error}. Stron przeglądarki (ustawienia, sklepy z rozszerzeniami, nowe karty) nie można skanować.",
+      bannerTitle: "Adresy na {host}",
+      bannerBody: "Odczytuje widoczny tekst tej karty raz, gdy otworzysz tę sekcję. Nic nie jest nigdzie wysyłane.",
+      rescan: "Skanuj ponownie"
+    },
+    toolsNav: {
+      more: "Więcej",
+      batchCheck: "Sprawdzanie zbiorcze"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Konwerter jednostek",
+        short: "wei · gwei · ETH, sats · BTC, dowolne miejsca po przecinku",
+        description: "Przeliczaj dokładnie (bez zaokrągleń) między wei, gwei i ether, satoshi i bitcoin, lamportami i SOL lub dowolną liczbą miejsc dziesiętnych tokena."
+      },
+      "address-validator": {
+        title: "Walidator adresów",
+        short: "Sumy kontrolne dla ponad 25 formatów adresów",
+        description: "Sprawdź, czy adres jest prawidłowy dla swojej sieci: sumy kontrolne EIP-55, base58check, bech32, CashAddr, SS58, Stellar i TON oraz migawka sankcji OFAC."
+      },
+      "hex-converter": {
+        title: "Hex, tekst i hashe",
+        short: "hex ↔ dziesiętne, UTF-8, keccak256, SHA-256",
+        description: "Zamieniaj hex na liczby dziesiętne i odwrotnie, tekst na hex, odczytuj słowa int256 oraz haszuj tekst lub bajty za pomocą keccak256 i SHA-256 (z selektorami funkcji)."
+      },
+      "timestamp-converter": {
+        title: "Konwerter znaczników czasu",
+        short: "sekundy Unix, ms, hex ↔ data",
+        description: "Zamieniaj znaczniki czasu Unix (sekundy, milisekundy, znaczniki bloków w hex) na daty w UTC i Twojej strefie czasowej oraz daty z powrotem na znaczniki."
+      },
+      "gas-calculator": {
+        title: "Kalkulator gazu i opłat",
+        short: "Opłaty EIP-1559 z bieżącymi cenami gazu",
+        description: "Oblicz opłaty transakcyjne na podstawie limitu gazu, opłaty bazowej i napiwku, z bieżącymi cenami gazu dla 11 sieci EVM i stawkami opłat Bitcoin."
+      },
+      "abi-decoder": {
+        title: "Dekoder calldata i ABI",
+        short: "Dekoduj lub koduj wywołania funkcji",
+        description: "Dekoduj calldata Ethereum za pomocą ABI kontraktu, sygnatury funkcji lub wbudowanej listy popularnych funkcji i koduj wywołania na podstawie sygnatury."
+      },
+      "transaction-decoder": {
+        title: "Dekoder surowych transakcji",
+        short: "Podpisana tx → pola i nadawca",
+        description: "Dekoduj lokalnie podpisaną surową transakcję EVM (legacy, EIP-1559, blob, EIP-7702) i odtwórz nadawcę, bez rozgłaszania jej."
+      }
+    },
+    gas: {
+      offlineBody: "Bieżące ceny gazu wymagają wyszukiwania online. Włącz wyszukiwanie online w ustawieniach lub użyj kalkulatora opłat z własnymi wartościami.",
+      loading: "Wczytywanie bieżących cen gazu…",
+      btcRate: "stawka opłaty, sat/vB",
+      nextBlock: "Następny blok",
+      halfHour: "~30 min",
+      hour: "~1 godz.",
+      economy: "Ekonomiczna",
+      btcUnavailable: "Opłaty Bitcoin niedostępne: {reason}",
+      transfer: "przelew {usd}",
+      noUsd: "brak ceny w USD",
+      gweiStale: "gwei · nieaktualne",
+      na: "b.d.",
+      source: "Publiczne RPC, mempool.space, CoinGecko · pobrano o {time} UTC. Rollupy doliczają opłatę za dane L1.",
+      head: "Bieżące opłaty · sieci EVM ({count}) i Bitcoin",
+      chain: "Sieć",
+      priceCol: "Cena gazu (gwei)",
+      transferCol: "Przelew (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filtruj po etykiecie, adresie lub notatce",
+      filterLabel: "Filtruj zapisane elementy",
+      emptyTitle: "Nic jeszcze nie zapisano",
+      emptyBody: "Po wyszukiwaniu naciśnij Zapisz, aby zachować tu adres lub transakcję z etykietą i notatkami. Zapisane elementy zostają w tej przeglądarce.",
+      noMatch: "Nic nie pasuje do „{query}”.",
+      unpin: "Odepnij",
+      pin: "Przypnij na górze",
+      manageTitle: "Edytuj etykiety i notatki, eksportuj, importuj lub udostępniaj",
+      manage: "Zarządzaj"
+    },
+    settings: {
+      appearance: "Wygląd",
+      appearanceHint: "Domyślny jest jasny. Systemowy podąża za przeglądarką.",
+      whenSearch: "Po naciśnięciu Szukaj",
+      whenSearchHint: "Wyszukiwanie z menu kontekstowego i słowo kluczowe w3 również stosują to ustawienie.",
+      resultsFirst: "Najpierw pokazuj wyniki Web3Lens",
+      resultsFirstHint: "Salda, tokeny i kontrole ryzyka w sieciach ({count}); pozostałe sieci otwierają swój eksplorator.",
+      alwaysExplorer: "Zawsze otwieraj eksplorator bloków",
+      alwaysExplorerHint: "Przejdź od razu do eksploratora w nowej karcie.",
+      onlineOn: "Wł.: salda, transakcje, kontrole ryzyka i gaz są pobierane z {host}, gdy o to poprosisz.",
+      onlineOff: "Wył.: wykrywanie, sumy kontrolne, linki do eksploratorów, narzędzia i migawka OFAC nadal działają lokalnie.",
+      recent: "Ostatnie wyszukiwania",
+      recentKept: "Przechowywane w tej przeglądarce: {count}.",
+      more: "Więcej ustawień",
+      moreHint: "Preferowane eksploratory, ulubione sieci, dane i reset",
+      pageTitle: "Szukaj po swojemu",
+      privacy: "Prywatność",
+      privacyBody: "Salda, transakcje, kontrole ryzyka i bieżące ceny gazu są pobierane z {host}, gdy o to poprosisz. Wyłącz, aby wszystko zostało w przeglądarce: wykrywanie, sumy kontrolne, linki do eksploratorów, narzędzia i dołączona migawka OFAC nadal działają.",
+      privacyNote: "Rozszerzenie nie ma uprawnień do stron i odczytuje stronę tylko wtedy, gdy otworzysz na niej kartę „Skanuj stronę” w okienku.",
+      preferredExplorers: "Preferowane eksploratory",
+      favouriteChains: "Ulubione sieci",
+      noneYet: "Jeszcze brak.",
+      addChain: "Dodaj sieć według nazwy",
+      data: "Dane",
+      dataBody: "Wszystko jest w pamięci rozszerzeń tej przeglądarki.",
+      clearRecent: "Wyczyść ostatnie wyszukiwania",
+      deleteSaved: "Usuń zapisane elementy",
+      resetPrefs: "Przywróć ustawienia domyślne",
+      confirmDelete: "Usunąć wszystkie zapisane elementy?",
+      options: "Opcje rozszerzenia"
+    },
+    info: {
+      title: "O Web3Lens",
+      fasterWays: "Szybszy dostęp",
+      shortcut: "Skrót klawiszowy",
+      shortcutBody: "Otwórz to okienko skrótem {keys}.",
+      rightClick: "Prawy przycisk myszy",
+      rightClickBody: "Zaznacz adres lub hash na dowolnej stronie i wybierz {menu}.",
+      addressBar: "Pasek adresu",
+      addressBarBody: "Wpisz {key}, spację, a potem wklej, aby wyszukać.",
+      statChains: "blockchainów wykrywanych i kierowanych",
+      statNative: "z bieżącymi saldami i kontrolą ryzyka",
+      statOfac: "migawka listy OFAC, sprawdzana lokalnie",
+      website: "Strona internetowa",
+      contact: "Kontakt",
+      contactSub: "Wyślij opinię",
+      privacy: "Polityka prywatności",
+      privacySub: "Dane przechowywane i wysyłane",
+      moreFrom: "Więcej od tego samego twórcy",
+      summarytube: "Podsumowania filmów z YouTube",
+      centpage: "Najlepsza strona startowa w internecie",
+      sessionmanager: "Zapisuj i przywracaj karty",
+      webdevtools: "Narzędzia dla twórców stron",
+      foot: "Rozszerzenie Web3Lens v{version} · bez konta, zapisane dane zostają w tej przeglądarce"
+    },
+    search: {
+      placeholder: "Adres, hash tx, blok lub nazwa ENS",
+      inputLabel: "Adres, hash transakcji, blok lub nazwa",
+      unknownFormat: "Web3Lens nie rozpoznaje tego formatu: zapytanie trafi do wyszukiwarki eksploratora wybranej sieci.",
+      secret: "Wykryto dane poufne.",
+      checksumOk: "· suma kontrolna OK",
+      badChecksum: "błędna suma kontrolna",
+      testnet: "testnet",
+      ofacListed: "Na liście OFAC",
+      searchOn: "Szukaj w",
+      switchTo: "Przełącz na",
+      couldBe: "Może to być też: {list}",
+      explorerDown: "Eksplorator {chain} nie odpowiedział podczas ostatniej kontroli.",
+      searchWeb: "Szukaj w internecie",
+      openAnyway: "otwórz mimo to",
+      fallback: "{chain} to jeden z nielicznych blockchainów, które nie są jeszcze obsługiwane. Przekierowujemy do eksploratora {chain}...",
+      empty: "Najpierw wklej adres, hash transakcji, numer bloku lub nazwę.",
+      notSearched: "Nie wyszukano.",
+      offlineExplorers: "Wyszukiwanie online jest wyłączone (ustawienia), oto eksploratory:",
+      recent: "Ostatnie",
+      recentEmpty: "Tu pojawią się Twoje ostatnie wyszukiwania, przechowywane tylko w tej przeglądarce.",
+      openFull: "Otwórz pełny widok",
+      openExplorer: "Otwórz w eksploratorze"
+    },
+    source: {
+      unavailableFrom: "Niedostępne z {source}: {reason}. Zamiast zgadywać, nic nie pokazujemy.",
+      unavailable: "Niedostępne: {reason}. Zamiast zgadywać, nic nie pokazujemy.",
+      line: "Źródło: {source} · pobrano {ago}",
+      stale: "· nieaktualne (źródło nie odpowiada)",
+      explorerDown: "Nie odpowiedział podczas ostatniej kontroli"
+    },
+    api: {
+      badAnswer: "Web3Lens wysłał odpowiedź, której ta wersja rozszerzenia nie potrafi odczytać. Linki do eksploratorów i lokalne kontrole nadal działają; aktualizacja rozszerzenia powinna to naprawić.",
+      timeout: "Web3Lens zbyt długo nie odpowiadał. Spróbuj ponownie za chwilę; linki do eksploratorów i lokalne kontrole nadal działają.",
+      unreachable: "Nie można połączyć się z Web3Lens. Sprawdź połączenie.",
+      rateLimited: "Zbyt wiele zapytań w krótkim czasie. Odczekaj minutę i spróbuj ponownie.",
+      serviceDown: "Usługa wyszukiwania Web3Lens jest teraz niedostępna (HTTP {status}). Linki do eksploratorów i lokalne kontrole nadal działają."
+    },
+    result: {
+      qr: "Kod QR",
+      transaction: "Transakcja",
+      address: "Adres",
+      offline: "Wyszukiwanie online jest wyłączone w ustawieniach. Linki do eksploratorów i lokalne kontrole nadal działają.",
+      onOfac: "Na liście sankcyjnej OFAC ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "Wartość w USD niedostępna",
+      type: "Typ",
+      delegated: "EIP-7702: delegowano do {address}",
+      contractBytes: "Kontrakt (bajty: {count})",
+      walletNoCode: "Portfel (bez kodu)",
+      sentTxs: "Wysłane tx",
+      resolvedFrom: "Rozwiązano z",
+      tokens: "Tokeny",
+      noErc20: "Brak tokenów ERC-20.",
+      hiddenTokens: "Ukryte tokeny: {count}. Oznaczone przez indekser jako spam lub bez nazwy albo symbolu. Nie korzystaj z tokenów, których się nie spodziewasz.",
+      knownOnly: "Sprawdzono tylko znane tokeny ({count}); żaden darmowy indeks tokenów nie obejmuje {chain}, więc inne aktywa nie są pokazane.",
+      activity: "Aktywność",
+      transactions: "Transakcje",
+      tokenTransfers: "Transfery tokenów",
+      labelsContract: "Etykiety i kontrakt",
+      flagged: "Blockscout oznacza ten adres ({reason}).",
+      scam: "oszustwo",
+      name: "Nazwa",
+      tags: "Tagi",
+      verifiedSource: "Zweryfikowany kod źródłowy",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Oczekujące niepotwierdzone transakcje: {count}. Nie uwzględniono ich powyżej.",
+      received: "Otrzymano",
+      sent: "Wysłano",
+      recentTxs: "Ostatnie transakcje",
+      account: "Konto",
+      program: "Program",
+      notFound: "Nie znaleziono w sieci",
+      owner: "Właściciel",
+      splTokens: "Tokeny SPL",
+      noSpl: "Brak sald tokenów SPL.",
+      token2022: "Nie udało się odczytać sald Token-2022 z publicznego RPC.",
+      recentSigs: "Ostatnie podpisy",
+      unknownTx: "{chain} nie zna tej transakcji.",
+      unknownSig: "Solana nie zna tego podpisu.",
+      status: "Status",
+      block: "Blok",
+      conf: "{block} · potw.: {count}",
+      time: "Czas",
+      from: "Od",
+      to: "Do",
+      value: "Wartość",
+      fee: "Opłata",
+      input: "Dane wejściowe",
+      verifiedAbi: "zweryfikowane ABI",
+      guessed: "zgadnięte",
+      success: "sukces",
+      failed: "niepowodzenie",
+      confirmed: "potwierdzona",
+      unconfirmedBadge: "niepotwierdzona",
+      mempool: "mempool",
+      output: "Wyjście",
+      outputs: "Wyjścia ({count})",
+      slot: "Slot",
+      signer: "Podpisujący"
+    },
+    risk: {
+      checking: "Sprawdzanie sankcji, zgłoszeń i kontraktu…",
+      title: "Kontrole ryzyka",
+      signals: "Znalezione sygnały ryzyka: {count}. Nie wysyłaj środków ani niczego nie podpisuj bez sprawdzenia.",
+      noReports: "Brak zgłoszeń w poniższych źródłach. To nie znaczy, że jest bezpiecznie: większość oszustw nigdy nie zostaje zgłoszona.",
+      listed: "NA LIŚCIE ({lists})",
+      notListed: "poza listą (migawka {date})",
+      markedScam: "oznaczony jako oszustwo",
+      notFlagged: "nieoznaczony",
+      noReportsShort: "brak zgłoszeń",
+      scamReports: "Zgłoszenia oszustw",
+      notChecked: "nie sprawdzono: darmowe źródła obejmują tylko sieci EVM",
+      verified: "Zweryfikowany",
+      upgradeable: "Możliwość aktualizacji",
+      yesArrow: "tak → {address}",
+      noSlots: "brak slotów EIP-1967",
+      noOwner: "brak owner()",
+      renounced: "zrzeczono się",
+      contract: "kontrakt",
+      wallet: "portfel",
+      admin: "Funkcje administracyjne",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "nie znaleziono",
+      tokenRisk: "Ryzyko tokena",
+      noFlags: "brak ostrzeżeń",
+      onlineUnavailable: "Kontrole online niedostępne: {error}",
+      ofacLocal: "OFAC (lokalnie)",
+      checkApprovals: "Sprawdź zatwierdzenia tokenów",
+      scanningApprovals: "Skanowanie zatwierdzeń i odczyt limitów…",
+      aWallet: "(to portfel!)",
+      unlimited: "bez limitu",
+      allItems: "wszystkie elementy",
+      noApprovals: "W przeskanowanych zdarzeniach nie znaleziono aktywnych zatwierdzeń.",
+      capped: "Wyszukiwanie w logach osiągnęło limit: może brakować starszych zatwierdzeń.",
+      revoke: "Sprawdź lub cofnij na revoke.cash ↗"
+    },
+    multichain: {
+      checking: "Sprawdzanie sieci EVM ({count})…",
+      code: "kod",
+      txCount: "tx: {count}",
+      source: "Publiczne RPC · ceny {source} · {ago}",
+      title: "Ten sam adres w innych sieciach EVM"
+    },
+    locate: {
+      asking: "Odpytywanie sieci EVM ({count})…",
+      foundOn: "Znaleziono w {chain} →",
+      notFound: "Nie znaleziono w obsługiwanych sieciach EVM ({count}); spróbuj linków do eksploratorów.",
+      title: "W której sieci jest?"
+    },
+    unit: {
+      anyToken: "dowolny token",
+      rawUnits: "jednostki surowe",
+      tokens: "tokeny",
+      amount: "Kwota",
+      family: "Rodzina jednostek",
+      from: "Jednostka źródłowa",
+      decimals: "Miejsca dziesiętne tokena (dowolny token)"
+    },
+    validator: {
+      invalid: "To nie jest prawidłowy adres ani hash w żadnym formacie znanym Web3Lens.",
+      checksumValid: "suma kontrolna prawidłowa",
+      checksumInvalid: "suma kontrolna NIE pasuje",
+      noChecksum: "brak sumy kontrolnej",
+      formatOnly: "tylko format",
+      notOnOfac: "brak w migawce OFAC",
+      normalised: "Znormalizowany",
+      field: "Adres, hash lub nazwa",
+      hint: "Prawidłowa suma kontrolna oznacza, że adres skopiowano poprawnie, a nie że jest godny zaufania."
+    },
+    hex: {
+      decimal: "Dziesiętnie",
+      text: "Tekst",
+      textOption: "tekst",
+      hexBytes: "bajty hex",
+      selector: "Selektor",
+      number: "Liczba",
+      hexOrDecimal: "Hex lub dziesiętnie",
+      textToHex: "Tekst → hex",
+      hexToText: "Hex → tekst",
+      hashes: "Hashe",
+      input: "Wejście",
+      inputIs: "Typ wejścia"
+    },
+    time: {
+      now: "Teraz",
+      readAs: "Odczytano jako: {kind}",
+      unixSeconds: "Sekundy Unix",
+      milliseconds: "Milisekundy",
+      local: "Lokalnie",
+      relative: "Względnie",
+      field: "Znacznik czasu lub data",
+      future: "w przyszłości",
+      kind: {
+        hexSeconds: "sekundy hex",
+        nanoseconds: "nanosekundy",
+        microseconds: "mikrosekundy",
+        milliseconds: "milisekundy",
+        seconds: "sekundy",
+        date: "data"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "Przelew ETH",
+        erc20Transfer: "Transfer ERC-20",
+        erc20Approve: "Zatwierdzenie ERC-20",
+        uniswapSwap: "Wymiana na Uniswap",
+        nftMint: "Mint NFT"
+      },
+      optional: "gwei (opcjonalnie)",
+      useLive: "Użyj bieżącej ceny gazu",
+      liveFrom: "Na żywo z {chain}",
+      gasPrice: "Cena gazu",
+      feeSymbol: "Opłata ({symbol})",
+      feeWei: "Opłata (wei)",
+      feeUsd: "Opłata (USD)",
+      maxToHold: "Maksimum do zarezerwowania",
+      feeSats: "Opłata (sats)",
+      feeBtc: "Opłata (BTC)",
+      evmFee: "Opłata EVM",
+      gasLimit: "Limit gazu",
+      baseFee: "Opłata bazowa / cena gazu",
+      priorityFee: "Opłata priorytetowa",
+      maxFee: "Maksymalna opłata",
+      l1Note: "Rollupy pobierają też opłatę za dane L1, której tu nie uwzględniono.",
+      btcFee: "Opłata Bitcoin",
+      size: "Rozmiar (vbytes)",
+      feeRate: "Stawka opłaty"
+    },
+    abi: {
+      abiPlaceholder: "ABI w JSON lub jedna sygnatura na wiersz (opcjonalnie)",
+      badCalldata: "Calldata musi zaczynać się od 0x i zawierać co najmniej 4-bajtowy selektor.",
+      commonMatch: "Pasuje do popularnej sygnatury (nie podano ABI).",
+      lookupSelector: "Wyszukaj selektor online",
+      asking: "Odpytywanie openchain.xyz / 4byte.directory…",
+      community: "Sygnatura zgłoszona przez społeczność ({source}): traktuj ją jako przypuszczenie.",
+      noneDecodes: "Żadna zgłoszona sygnatura nie dekoduje tych danych.",
+      unknownSelector: "Selektor {selector} jest nieznany.",
+      calldata: "Calldata",
+      decode: "Dekoduj",
+      encode: "Koduj",
+      signature: "Sygnatura funkcji",
+      args: "Argumenty (tablica JSON)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Od (odtworzony)",
+      creation: "(utworzenie kontraktu)",
+      chainId: "Chain id",
+      replayable: "brak (możliwe powtórzenie)",
+      nonce: "Nonce",
+      data: "Dane",
+      bestGuess: "Pasuje do popularnej sygnatury; najlepsze przypuszczenie bez ABI.",
+      authorization: "Autoryzacja EIP-7702",
+      delegatesTo: "Deleguje do",
+      chainNonce: "Sieć / nonce",
+      anyChain: "0 (dowolna sieć!)",
+      field: "Podpisana surowa transakcja",
+      hint: "Dekodowane lokalnie; nic nie jest rozgłaszane."
+    },
+    app: {
+      batch: "Zbiorczo",
+      moreTools: "Więcej narzędzi",
+      batchSearch: "Wyszukiwanie zbiorcze",
+      batchSearchBody: "Sprawdź do 50 adresów naraz, eksport do CSV",
+      devToolsBody: "Jednostki, sumy kontrolne, dekodery, znaczniki czasu",
+      savedBody: "Twoje etykiety i notatki, prywatnie w tej przeglądarce",
+      view: {
+        search: "Szukaj",
+        result: "Wynik",
+        batch: "Zbiorczo",
+        tools: "Narzędzia",
+        saved: "Zapisane",
+        settings: "Ustawienia"
+      }
+    },
+    batch: {
+      valueCol: "Wartość",
+      typeCol: "Typ",
+      checksCol: "Kontrole",
+      notRecognised: "nierozpoznane",
+      secret: "poufne",
+      ok: "OK",
+      leftOut: "Pominięto: {count} (limit {max}).",
+      checking: "sprawdzanie…",
+      active: "aktywne {active}/{total} · {usd}",
+      fetchBalances: "Pobierz salda EVM ({count})",
+      exportCsv: "Eksportuj CSV",
+      savedMsg: "Zapisano w tej przeglądarce.",
+      saveAll: "Zapisz wszystko",
+      shareCopied: "Skopiowano link (otwiera się na web3lens.com; lista jest w linku).",
+      copyShare: "Kopiuj link do udostępnienia",
+      checked: "Sprawdzono: {count}",
+      title: "Sprawdź całą listę naraz",
+      intro: "Do {max} adresów, hashy lub nazw: po jednym w wierszu albo oddzielone przecinkami lub spacjami.",
+      checkAll: "Sprawdź wszystko"
+    },
+    savedPage: {
+      filter: "Filtruj",
+      empty: "Nic jeszcze nie zapisano. Użyj Zapisz w wyszukiwaniu lub sprawdzaniu zbiorczym.",
+      label: "Etykieta",
+      notes: "Notatki",
+      select: "Zaznacz",
+      remove: "Usuń",
+      tooLarge: "Plik jest za duży",
+      imported: "Zaimportowano elementy: {count}.",
+      importFailed: "Import nie powiódł się: {error}",
+      title: "Twoje etykiety i notatki",
+      intro: "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Nic nie jest synchronizowane.",
+      exportJson: "Eksportuj JSON",
+      importJson: "Importuj JSON",
+      selectFirst: "Najpierw zaznacz elementy.",
+      shareCopied: "Skopiowano link. Etykiety i notatki są w linku: każdy, kto go ma, może je przeczytać.",
+      shareSelected: "Udostępnij zaznaczone"
+    },
+    detect: {
+      address: "Adres {chain}",
+      testnetAddress: "Adres testnetu {chain}",
+      stakeAddress: "Adres stakingu {chain}",
+      addressRaw: "Adres {chain} (surowy)",
+      bech32: "Adres Bech32 ({hrp})",
+      txHashOf: "Hash transakcji {chain}",
+      extrinsicHash: "Hash extrinsic {chain}",
+      operationHash: "Hash operacji {chain}",
+      blockHash: "Hash bloku {chain}",
+      secretKey: "Klucz tajny {chain}",
+      signature: "Podpis {chain}",
+      dnsName: "Nazwa DNS {chain}",
+      name: "Nazwa {chain}",
+      account: "Konto {chain}",
+      contract: "Kontrakt {chain}",
+      transactionHash: "Hash transakcji",
+      blockNumber: "Numer bloku",
+      recoveryPhrase: "Fraza odzyskiwania",
+      privateKey: "Klucz prywatny (WIF)",
+      note: {
+        badChecksum: "Suma kontrolna nie pasuje. Wartość może zawierać literówkę; sprawdź ją przed wysłaniem środków.",
+        privateKey: "To wygląda na klucz prywatny. Każdy, kto go ma, kontroluje środki. Web3Lens nie będzie go wyszukiwać.",
+        stellarSecret: "To jest klucz tajny Stellar. Każdy, kto go ma, kontroluje konto. Web3Lens nie będzie go wyszukiwać.",
+        recoveryPhrase: "To wygląda na frazę odzyskiwania portfela. Każdy, kto ją ma, kontroluje portfel. Web3Lens nie będzie jej wyszukiwać; nigdy nie wklejaj jej na stronach internetowych.",
+        bech32Unknown: "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
+        versionByte: "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/nl.json
+  var nl_default = {
+    common: {
+      copy: "Kopiëren",
+      copied: "Gekopieerd",
+      close: "Sluiten",
+      loading: "Laden…",
+      refresh: "Vernieuwen",
+      clear: "Wissen",
+      save: "Opslaan",
+      saved: "Opgeslagen",
+      search: "Zoeken",
+      tools: "Tools",
+      settings: "Instellingen",
+      sections: "Onderdelen",
+      yes: "Ja",
+      no: "Nee",
+      yesLower: "ja",
+      noLower: "nee",
+      unavailable: "niet beschikbaar",
+      unavailableReason: "niet beschikbaar: {reason}",
+      unavailableParen: "niet beschikbaar ({reason})",
+      unavailableCap: "Niet beschikbaar: {reason}",
+      unknown: "onbekend",
+      pending: "in behandeling",
+      staleParen: "(verouderd)",
+      offInSettings: "Online opzoeken staat uit in de instellingen.",
+      openInFullTab: "Openen in een volledig tabblad",
+      developerTools: "Ontwikkelaarstools",
+      gasTracker: "Gastracker",
+      feeCalculator: "Kostencalculator",
+      unrecognised: "niet herkend",
+      offlineMode: "Offlinemodus",
+      onlineLookups: "Online opzoeken",
+      explorers: "Explorers",
+      liveFees: "Actuele kosten op {count} EVM-chains en Bitcoin"
+    },
+    theme: {
+      label: "Thema",
+      light: "Licht",
+      dark: "Donker",
+      system: "Systeem",
+      lightDefault: "Licht (standaard)",
+      lightTheme: "Licht thema",
+      darkTheme: "Donker thema",
+      systemTheme: "Systeemthema",
+      current: "Thema: {theme}"
+    },
+    language: {
+      label: "Taal",
+      hint: "Automatisch volgt je browser.",
+      fallbackNote: "Wat nog niet vertaald is, wordt in het Engels getoond.",
+      auto: "Automatisch ({language})"
+    },
+    picker: {
+      filterPlaceholder: "Zoek in {count} chains…",
+      filterLabel: "Blockchains filteren",
+      listLabel: "Blockchains",
+      autoDetected: "Automatisch herkend",
+      blockchain: "Blockchain",
+      buttonLabel: "Blockchain: {chain}. Blockchain wijzigen",
+      buttonLabelAuto: "Blockchain: {chain} (automatisch herkend). Blockchain wijzigen",
+      results: "Resultaten",
+      detected: "Herkend",
+      favourites: "Favorieten",
+      popular: "Populair",
+      allChains: "Alle chains · {count}",
+      explorerDown: "explorer onbereikbaar",
+      limited: "beperkt",
+      pin: "{chain} vastzetten",
+      unpin: "{chain} losmaken",
+      noMatch: "Geen chain komt overeen met ‘{query}’"
+    },
+    popup: {
+      tab: {
+        lookup: "Opzoeken",
+        scan: "Pagina scannen",
+        tools: "Tools",
+        gas: "Gas",
+        saved: "Opgeslagen"
+      },
+      tagline: "Blockchainzoeker voor {strong}",
+      taglineStrong: "elke chain",
+      online: "Online",
+      statusOnline: "Zoekopdrachten gaan naar {host}. Wijzig dit in de instellingen",
+      statusOffline: "Er verlaat niets je browser. Wijzig dit in de instellingen",
+      aboutButton: "Over, sneltoetsen en meer tools",
+      openApp: "De volledige app openen in een tabblad",
+      footOnline: "Zoekopdrachten die je uitvoert gaan naar {host}. Verder verlaat niets je browser.",
+      footOffline: "Offlinemodus: er verlaat niets je browser.",
+      footLink: "Sneltoetsen en meer tools"
+    },
+    hero: {
+      title: "Zoek alles op, op {accent}",
+      titleAccent: "elke chain.",
+      popupLead: "Plak een adres, transactie, blok of naam. Web3Lens vindt de chain tussen {count}.",
+      appLead: "Plak een adres, transactie, blok of naam. Web3Lens herkent het, controleert het en toont je het antwoord."
+    },
+    examples: {
+      title: "Probeer een voorbeeld",
+      vitalik: "ENS van Vitalik Buterin",
+      usdc: "USDC-contract",
+      genesis: "Bitcoin-genesisadres",
+      usdtTron: "USDT op Tron"
+    },
+    scan: {
+      reading: "Deze pagina wordt gelezen…",
+      noTab: "Geen actief tabblad",
+      thisTab: "dit tabblad",
+      nothingTitle: "Niets gevonden",
+      nothingBody: "Geen adressen, transactiehashes of namen op deze pagina. Selecteer tekst en klik met rechts om die op te zoeken.",
+      found: "Gevonden: {count}",
+      copyAll: "Alles kopiëren",
+      checkAll: "Alles in bulk controleren",
+      cantReadTitle: "Deze pagina kan niet worden gelezen",
+      cantReadBody: "{error}. Browserpagina’s (instellingen, extensiewinkels, nieuwe tabbladen) kunnen niet worden gescand.",
+      bannerTitle: "Adressen op {host}",
+      bannerBody: "Leest de zichtbare tekst van dit tabblad één keer, wanneer je dit onderdeel opent. Er wordt niets verzonden.",
+      rescan: "Opnieuw scannen"
+    },
+    toolsNav: {
+      more: "Meer",
+      batchCheck: "Bulkcontrole"
+    },
+    tool: {
+      "unit-converter": {
+        title: "Eenhedenomrekenaar",
+        short: "wei · gwei · ETH, sats · BTC, elk aantal decimalen",
+        description: "Reken exact (zonder afronding) om tussen wei, gwei en ether, satoshi’s en bitcoin, lamports en SOL, of tokens met elk aantal decimalen."
+      },
+      "address-validator": {
+        title: "Adrescontrole",
+        short: "Checksums voor meer dan 25 adresformaten",
+        description: "Controleer of een adres geldig is voor zijn chain: EIP-55-checksums, base58check, bech32, CashAddr, SS58, Stellar en TON, plus de OFAC-sanctiesnapshot."
+      },
+      "hex-converter": {
+        title: "Hex, tekst en hashes",
+        short: "hex ↔ decimaal, UTF-8, keccak256, SHA-256",
+        description: "Zet hex om naar decimaal en terug, tekst naar hex, lees int256-woorden en hash tekst of bytes met keccak256 en SHA-256 (met functieselectors)."
+      },
+      "timestamp-converter": {
+        title: "Tijdstempelomrekenaar",
+        short: "Unix-seconden, ms, hex ↔ datum",
+        description: "Zet Unix-tijdstempels (seconden, milliseconden, hex-bloktijdstempels) om naar datums in UTC en je eigen tijdzone, en datums terug naar tijdstempels."
+      },
+      "gas-calculator": {
+        title: "Gas- en kostencalculator",
+        short: "EIP-1559-kosten met actuele gasprijzen",
+        description: "Bereken transactiekosten uit gaslimiet, basiskosten en fooi, met actuele gasprijzen voor 11 EVM-chains en Bitcoin-tarieven."
+      },
+      "abi-decoder": {
+        title: "Calldata- en ABI-decoder",
+        short: "Functieaanroepen decoderen of coderen",
+        description: "Decodeer Ethereum-calldata met een contract-ABI, een functiesignatuur of de ingebouwde lijst met veelgebruikte functies, en codeer aanroepen vanuit een signatuur."
+      },
+      "transaction-decoder": {
+        title: "Decoder voor ruwe transacties",
+        short: "Ondertekende tx → velden en afzender",
+        description: "Decodeer een ondertekende ruwe EVM-transactie (legacy, EIP-1559, blob, EIP-7702) lokaal en achterhaal de afzender, zonder hem te versturen."
+      }
+    },
+    gas: {
+      offlineBody: "Actuele gasprijzen vereisen online opzoeken. Zet online opzoeken aan in de instellingen, of gebruik de kostencalculator met je eigen waarden.",
+      loading: "Actuele gasprijzen laden…",
+      btcRate: "tarief, sat/vB",
+      nextBlock: "Volgend blok",
+      halfHour: "~30 min",
+      hour: "~1 uur",
+      economy: "Voordelig",
+      btcUnavailable: "Bitcoin-kosten niet beschikbaar: {reason}",
+      transfer: "{usd} overboeking",
+      noUsd: "geen USD-prijs",
+      gweiStale: "gwei · verouderd",
+      na: "n.v.t.",
+      source: "Openbare RPC’s, mempool.space, CoinGecko · opgehaald om {time} UTC. Rollups rekenen extra L1-datakosten.",
+      head: "Actuele kosten · {count} EVM-chains en Bitcoin",
+      chain: "Chain",
+      priceCol: "Gasprijs (gwei)",
+      transferCol: "Overboeking (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "Filteren op label, adres of notitie",
+      filterLabel: "Opgeslagen items filteren",
+      emptyTitle: "Nog niets opgeslagen",
+      emptyBody: "Klik na een zoekopdracht op Opslaan om een adres of transactie hier te bewaren met een label en notities. Opgeslagen items blijven in deze browser.",
+      noMatch: "Niets komt overeen met ‘{query}’.",
+      unpin: "Losmaken",
+      pin: "Bovenaan vastzetten",
+      manageTitle: "Labels en notities bewerken, exporteren, importeren of delen",
+      manage: "Beheren"
+    },
+    settings: {
+      appearance: "Weergave",
+      appearanceHint: "Licht is de standaard. Systeem volgt je browser.",
+      whenSearch: "Als ik op Zoeken klik",
+      whenSearchHint: "Opzoeken via rechtsklik en het trefwoord w3 volgen dit ook.",
+      resultsFirst: "Eerst Web3Lens-resultaten tonen",
+      resultsFirstHint: "Saldi, tokens en risicocontroles op {count} chains; andere chains openen hun explorer.",
+      alwaysExplorer: "Altijd de block explorer openen",
+      alwaysExplorerHint: "Ga direct naar de explorer in een nieuw tabblad.",
+      onlineOn: "Aan: saldi, transacties, risicocontroles en gas komen van {host} wanneer je erom vraagt.",
+      onlineOff: "Uit: herkenning, checksums, explorerlinks, tools en de OFAC-snapshot werken lokaal gewoon door.",
+      recent: "Recente zoekopdrachten",
+      recentKept: "Bewaard in deze browser: {count}.",
+      more: "Meer instellingen",
+      moreHint: "Voorkeursexplorers, favoriete chains, gegevens en herstellen",
+      pageTitle: "Zoek op jouw manier",
+      privacy: "Privacy",
+      privacyBody: "Saldi, transacties, risicocontroles en actuele gasprijzen worden opgehaald van {host} wanneer je erom vraagt. Zet dit uit om alles in de browser te houden: herkenning, checksums, explorerlinks, tools en de meegeleverde OFAC-snapshot blijven werken.",
+      privacyNote: "De extensie heeft geen hostrechten en leest een pagina alleen wanneer je daar het tabblad ‘Pagina scannen’ van de pop-up opent.",
+      preferredExplorers: "Voorkeursexplorers",
+      favouriteChains: "Favoriete chains",
+      noneYet: "Nog geen.",
+      addChain: "Chain toevoegen op naam",
+      data: "Gegevens",
+      dataBody: "Alles staat in de extensieopslag van deze browser.",
+      clearRecent: "Recente zoekopdrachten wissen",
+      deleteSaved: "Opgeslagen items verwijderen",
+      resetPrefs: "Voorkeuren herstellen",
+      confirmDelete: "Alle opgeslagen items verwijderen?",
+      options: "Extensieopties"
+    },
+    info: {
+      title: "Over Web3Lens",
+      fasterWays: "Snellere manieren",
+      shortcut: "Sneltoets",
+      shortcutBody: "Open deze pop-up met {keys}.",
+      rightClick: "Rechtsklik",
+      rightClickBody: "Selecteer een adres of hash op een willekeurige pagina en kies {menu}.",
+      addressBar: "Adresbalk",
+      addressBarBody: "Typ {key}, een spatie en plak dan om te zoeken.",
+      statChains: "blockchains herkend en doorgestuurd",
+      statNative: "met actuele saldi en risicocontroles",
+      statOfac: "snapshot van de OFAC-lijst, lokaal gecontroleerd",
+      website: "Website",
+      contact: "Contact",
+      contactSub: "Feedback sturen",
+      privacy: "Privacybeleid",
+      privacySub: "Opgeslagen en verzonden gegevens",
+      moreFrom: "Meer van dezelfde ontwikkelaar",
+      summarytube: "Samenvattingen van YouTube-video’s",
+      centpage: "De beste startpagina van internet",
+      sessionmanager: "Tabbladen opslaan en herstellen",
+      webdevtools: "Tools voor webontwikkelaars",
+      foot: "Web3Lens-extensie v{version} · geen account nodig, opgeslagen gegevens blijven in deze browser"
+    },
+    search: {
+      placeholder: "Adres, tx-hash, blok of ENS-naam",
+      inputLabel: "Adres, transactiehash, blok of naam",
+      unknownFormat: "Web3Lens herkent dit formaat niet: het gaat naar de explorerzoekfunctie van de gekozen chain.",
+      secret: "Geheim gedetecteerd.",
+      checksumOk: "· checksum ok",
+      badChecksum: "onjuiste checksum",
+      testnet: "testnet",
+      ofacListed: "Op de OFAC-lijst",
+      searchOn: "Zoeken op",
+      switchTo: "Wisselen naar",
+      couldBe: "Kan ook zijn: {list}",
+      explorerDown: "De explorer van {chain} reageerde niet bij de laatste controle.",
+      searchWeb: "Zoeken op het web",
+      openAnyway: "toch openen",
+      fallback: "{chain} is een van de weinige blockchains die nog niet worden ondersteund. Je wordt doorgestuurd naar een {chain}-explorer...",
+      empty: "Plak eerst een adres, transactiehash, bloknummer of naam.",
+      notSearched: "Niet gezocht.",
+      offlineExplorers: "Online opzoeken staat uit (instellingen), dus hier zijn de explorers:",
+      recent: "Recent",
+      recentEmpty: "Je laatste zoekopdrachten verschijnen hier en blijven alleen in deze browser.",
+      openFull: "Volledige weergave openen",
+      openExplorer: "Openen in explorer"
+    },
+    source: {
+      unavailableFrom: "Niet beschikbaar via {source}: {reason}. Liever niets dan een gok.",
+      unavailable: "Niet beschikbaar: {reason}. Liever niets dan een gok.",
+      line: "Bron: {source} · opgehaald {ago}",
+      stale: "· verouderd (bron reageert niet)",
+      explorerDown: "Reageerde niet bij de laatste controle"
+    },
+    api: {
+      badAnswer: "Web3Lens stuurde een antwoord dat deze versie van de extensie niet kan lezen. Explorerlinks en lokale controles werken nog; de extensie bijwerken lost dit op.",
+      timeout: "Web3Lens deed te lang over een antwoord. Probeer het zo opnieuw; explorerlinks en lokale controles werken nog.",
+      unreachable: "Web3Lens is niet bereikbaar. Controleer je verbinding.",
+      rateLimited: "Te veel zoekopdrachten in korte tijd. Wacht een minuut en probeer het opnieuw.",
+      serviceDown: "De zoekdienst van Web3Lens is nu niet beschikbaar (HTTP {status}). Explorerlinks en lokale controles werken nog."
+    },
+    result: {
+      qr: "QR-code",
+      transaction: "Transactie",
+      address: "Adres",
+      offline: "Online opzoeken staat uit in de instellingen. Explorerlinks en lokale controles werken nog.",
+      onOfac: "Op de OFAC-sanctielijst ({lists}).",
+      balance: "Saldo",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "USD-waarde niet beschikbaar",
+      type: "Type",
+      delegated: "EIP-7702 gedelegeerd aan {address}",
+      contractBytes: "Contract ({count} bytes)",
+      walletNoCode: "Wallet (geen code)",
+      sentTxs: "Verzonden tx’s",
+      resolvedFrom: "Opgezocht via",
+      tokens: "Tokens",
+      noErc20: "Geen ERC-20-tokens.",
+      hiddenTokens: "Verborgen tokens: {count}. Door de indexer als spam gemarkeerd, of zonder naam of symbool. Gebruik geen tokens die je niet verwachtte.",
+      knownOnly: "Alleen {count} bekende tokens zijn gecontroleerd (geen gratis tokenindex dekt {chain}); andere bezittingen worden niet getoond.",
+      activity: "Activiteit",
+      transactions: "Transacties",
+      tokenTransfers: "Tokenoverdrachten",
+      labelsContract: "Labels en contract",
+      flagged: "Blockscout markeert dit adres ({reason}).",
+      scam: "oplichting",
+      name: "Naam",
+      tags: "Tags",
+      verifiedSource: "Geverifieerde broncode",
+      proxy: "Proxy",
+      token: "Token",
+      unconfirmed: "Onbevestigde transacties in behandeling: {count}. Niet hierboven meegeteld.",
+      received: "Ontvangen",
+      sent: "Verzonden",
+      recentTxs: "Recente transacties",
+      account: "Account",
+      program: "Programma",
+      notFound: "Niet gevonden on-chain",
+      owner: "Eigenaar",
+      splTokens: "SPL-tokens",
+      noSpl: "Geen SPL-tokensaldi.",
+      token2022: "Token-2022-saldi konden niet via de openbare RPC worden gelezen.",
+      recentSigs: "Recente handtekeningen",
+      unknownTx: "{chain} kent deze transactie niet.",
+      unknownSig: "Solana kent deze handtekening niet.",
+      status: "Status",
+      block: "Blok",
+      conf: "{block} · {count} bev.",
+      time: "Tijd",
+      from: "Van",
+      to: "Naar",
+      value: "Waarde",
+      fee: "Kosten",
+      input: "Invoer",
+      verifiedAbi: "geverifieerde ABI",
+      guessed: "geraden",
+      success: "geslaagd",
+      failed: "mislukt",
+      confirmed: "bevestigd",
+      unconfirmedBadge: "onbevestigd",
+      mempool: "mempool",
+      output: "Uitvoer",
+      outputs: "Uitvoer ({count})",
+      slot: "Slot",
+      signer: "Ondertekenaar"
+    },
+    risk: {
+      checking: "Sancties, meldingen en contract controleren…",
+      title: "Risicocontroles",
+      signals: "Gevonden risicosignalen: {count}. Stuur geen geld en onderteken niets zonder te controleren.",
+      noReports: "Geen meldingen in de bronnen hieronder. Dat betekent niet dat het veilig is: de meeste oplichting wordt nooit gemeld.",
+      listed: "OP DE LIJST ({lists})",
+      notListed: "niet op de lijst (snapshot {date})",
+      markedScam: "gemarkeerd als oplichting",
+      notFlagged: "niet gemarkeerd",
+      noReportsShort: "geen meldingen",
+      scamReports: "Meldingen van oplichting",
+      notChecked: "niet gecontroleerd: de gratis bronnen dekken alleen EVM-chains",
+      verified: "Geverifieerd",
+      upgradeable: "Upgradebaar",
+      yesArrow: "ja → {address}",
+      noSlots: "geen EIP-1967-slots",
+      noOwner: "geen owner()",
+      renounced: "afgestaan",
+      contract: "contract",
+      wallet: "wallet",
+      admin: "Beheerfuncties",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "geen gevonden",
+      tokenRisk: "Tokenrisico",
+      noFlags: "geen waarschuwingen",
+      onlineUnavailable: "Online controles niet beschikbaar: {error}",
+      ofacLocal: "OFAC (lokaal)",
+      checkApprovals: "Tokengoedkeuringen controleren",
+      scanningApprovals: "Goedkeuringen scannen en allowances lezen…",
+      aWallet: "(een wallet!)",
+      unlimited: "onbeperkt",
+      allItems: "alle items",
+      noApprovals: "Geen actieve goedkeuringen gevonden in de gescande events.",
+      capped: "Het zoeken in logs bereikte de limiet: oudere goedkeuringen kunnen ontbreken.",
+      revoke: "Bekijken of intrekken op revoke.cash ↗"
+    },
+    multichain: {
+      checking: "{count} EVM-chains controleren…",
+      code: "code",
+      txCount: "{count} tx",
+      source: "Openbare RPC’s · prijzen {source} · {ago}",
+      title: "Hetzelfde adres op andere EVM-chains"
+    },
+    locate: {
+      asking: "{count} EVM-chains bevragen…",
+      foundOn: "Gevonden op {chain} →",
+      notFound: "Niet gevonden op de {count} ondersteunde EVM-chains; probeer de explorerlinks.",
+      title: "Op welke chain staat hij?"
+    },
+    unit: {
+      anyToken: "elke token",
+      rawUnits: "ruwe eenheden",
+      tokens: "tokens",
+      amount: "Bedrag",
+      family: "Eenheidsfamilie",
+      from: "Van eenheid",
+      decimals: "Tokendecimalen (elke token)"
+    },
+    validator: {
+      invalid: "Geen geldig adres of geldige hash in een formaat dat Web3Lens kent.",
+      checksumValid: "checksum geldig",
+      checksumInvalid: "checksum klopt NIET",
+      noChecksum: "geen checksum",
+      formatOnly: "alleen formaat",
+      notOnOfac: "niet in OFAC-snapshot",
+      normalised: "Genormaliseerd",
+      field: "Adres, hash of naam",
+      hint: "Een geldige checksum betekent dat het correct is gekopieerd, niet dat het betrouwbaar is."
+    },
+    hex: {
+      decimal: "Decimaal",
+      text: "Tekst",
+      textOption: "tekst",
+      hexBytes: "hex-bytes",
+      selector: "Selector",
+      number: "Getal",
+      hexOrDecimal: "Hex of decimaal",
+      textToHex: "Tekst → hex",
+      hexToText: "Hex → tekst",
+      hashes: "Hashes",
+      input: "Invoer",
+      inputIs: "Invoer is"
+    },
+    time: {
+      now: "Nu",
+      readAs: "Gelezen als {kind}",
+      unixSeconds: "Unix-seconden",
+      milliseconds: "Milliseconden",
+      local: "Lokaal",
+      relative: "Relatief",
+      field: "Tijdstempel of datum",
+      future: "in de toekomst",
+      kind: {
+        hexSeconds: "hex-seconden",
+        nanoseconds: "nanoseconden",
+        microseconds: "microseconden",
+        milliseconds: "milliseconden",
+        seconds: "seconden",
+        date: "datum"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "ETH-overboeking",
+        erc20Transfer: "ERC-20-overdracht",
+        erc20Approve: "ERC-20-goedkeuring",
+        uniswapSwap: "Uniswap-swap",
+        nftMint: "NFT-mint"
+      },
+      optional: "gwei (optioneel)",
+      useLive: "Actuele gasprijs gebruiken",
+      liveFrom: "Live van {chain}",
+      gasPrice: "Gasprijs",
+      feeSymbol: "Kosten ({symbol})",
+      feeWei: "Kosten (wei)",
+      feeUsd: "Kosten (USD)",
+      maxToHold: "Maximaal aan te houden",
+      feeSats: "Kosten (sats)",
+      feeBtc: "Kosten (BTC)",
+      evmFee: "EVM-kosten",
+      gasLimit: "Gaslimiet",
+      baseFee: "Basiskosten / gasprijs",
+      priorityFee: "Prioriteitskosten",
+      maxFee: "Maximale kosten",
+      l1Note: "Rollups rekenen ook L1-datakosten die hier niet zijn meegenomen.",
+      btcFee: "Bitcoin-kosten",
+      size: "Grootte (vbytes)",
+      feeRate: "Tarief"
+    },
+    abi: {
+      abiPlaceholder: "JSON-ABI of één signatuur per regel (optioneel)",
+      badCalldata: "Calldata moet 0x zijn, gevolgd door minstens een selector van 4 bytes.",
+      commonMatch: "Komt overeen met een veelgebruikte signatuur (geen ABI opgegeven).",
+      lookupSelector: "Selector online opzoeken",
+      asking: "openchain.xyz / 4byte.directory bevragen…",
+      community: "Door de community ingediende signatuur ({source}): behandel dit als een gok.",
+      noneDecodes: "Geen ingediende signatuur decodeert deze gegevens.",
+      unknownSelector: "Selector {selector} is onbekend.",
+      calldata: "Calldata",
+      decode: "Decoderen",
+      encode: "Coderen",
+      signature: "Functiesignatuur",
+      args: "Argumenten (JSON-array)"
+    },
+    txdec: {
+      hash: "Hash",
+      fromRecovered: "Van (achterhaald)",
+      creation: "(contract aanmaken)",
+      chainId: "Chain-id",
+      replayable: "geen (opnieuw af te spelen)",
+      nonce: "Nonce",
+      data: "Gegevens",
+      bestGuess: "Komt overeen met een veelgebruikte signatuur; beste gok zonder de ABI.",
+      authorization: "EIP-7702-autorisatie",
+      delegatesTo: "Delegeert aan",
+      chainNonce: "Chain / nonce",
+      anyChain: "0 (elke chain!)",
+      field: "Ondertekende ruwe transactie",
+      hint: "Lokaal gedecodeerd; er wordt niets verstuurd."
+    },
+    app: {
+      batch: "Bulk",
+      moreTools: "Meer tools",
+      batchSearch: "Bulkzoeken",
+      batchSearchBody: "Controleer tot 50 adressen tegelijk, exporteer CSV",
+      devToolsBody: "Eenheden, checksums, decoders, tijdstempels",
+      savedBody: "Je labels en notities, privé in deze browser",
+      view: {
+        search: "Zoeken",
+        result: "Resultaat",
+        batch: "Bulk",
+        tools: "Tools",
+        saved: "Opgeslagen",
+        settings: "Instellingen"
+      }
+    },
+    batch: {
+      valueCol: "Waarde",
+      typeCol: "Type",
+      checksCol: "Controles",
+      notRecognised: "niet herkend",
+      secret: "geheim",
+      ok: "ok",
+      leftOut: "Weggelaten: {count} (limiet {max}).",
+      checking: "controleren…",
+      active: "{active}/{total} actief · {usd}",
+      fetchBalances: "EVM-saldi ophalen ({count})",
+      exportCsv: "CSV exporteren",
+      savedMsg: "Opgeslagen in deze browser.",
+      saveAll: "Alles opslaan",
+      shareCopied: "Deellink gekopieerd (opent op web3lens.com; de lijst zit in de link).",
+      copyShare: "Deellink kopiëren",
+      checked: "Gecontroleerd: {count}",
+      title: "Controleer een lijst in één keer",
+      intro: "Tot {max} adressen, hashes of namen: één per regel, of gescheiden door komma’s of spaties.",
+      checkAll: "Alles controleren"
+    },
+    savedPage: {
+      filter: "Filteren",
+      empty: "Nog niets opgeslagen. Gebruik Opslaan bij zoeken of bulk.",
+      label: "Label",
+      notes: "Notities",
+      select: "Selecteren",
+      remove: "Verwijderen",
+      tooLarge: "Bestand te groot",
+      imported: "Geïmporteerde items: {count}.",
+      importFailed: "Importeren mislukt: {error}",
+      title: "Je labels en notities",
+      intro: "Labels en notities blijven in deze browser (extensieopslag). Er wordt niets gesynchroniseerd.",
+      exportJson: "JSON exporteren",
+      importJson: "JSON importeren",
+      selectFirst: "Selecteer eerst items.",
+      shareCopied: "Deellink gekopieerd. Labels en notities zitten in de link: iedereen met de link kan ze lezen.",
+      shareSelected: "Selectie delen"
+    },
+    detect: {
+      address: "{chain}-adres",
+      testnetAddress: "{chain}-testnetadres",
+      stakeAddress: "{chain}-stakingadres",
+      addressRaw: "{chain}-adres (ruw)",
+      bech32: "Bech32-adres ({hrp})",
+      txHashOf: "{chain}-transactiehash",
+      extrinsicHash: "{chain}-extrinsic-hash",
+      operationHash: "{chain}-operatiehash",
+      blockHash: "{chain}-blokhash",
+      secretKey: "{chain}-geheime sleutel",
+      signature: "{chain}-handtekening",
+      dnsName: "{chain}-DNS-naam",
+      name: "{chain}-naam",
+      account: "{chain}-account",
+      contract: "{chain}-contract",
+      transactionHash: "Transactiehash",
+      blockNumber: "Bloknummer",
+      recoveryPhrase: "Herstelzin",
+      privateKey: "Privésleutel (WIF)",
+      note: {
+        badChecksum: "De checksum klopt niet. Er zit mogelijk een typfout in; controleer het voordat je geld verstuurt.",
+        privateKey: "Dit lijkt op een privésleutel. Wie hem heeft, beheert het geld. Web3Lens zoekt hier niet op.",
+        stellarSecret: "Dit is een geheime Stellar-sleutel. Wie hem heeft, beheert het account. Web3Lens zoekt hier niet op.",
+        recoveryPhrase: "Dit lijkt op een herstelzin van een wallet. Wie hem heeft, beheert de wallet. Web3Lens zoekt hier niet op; plak hem nooit op een website.",
+        bech32Unknown: "Een geldig bech32-adres voor ‘{hrp}’, een netwerk dat Web3Lens nog niet kent.",
+        versionByte: "Versiebyte {byte} wordt niet herkend door Web3Lens."
+      }
+    }
+  };
+
+  // extension-src/locales/th.json
+  var th_default = {
+    common: {
+      copy: "คัดลอก",
+      copied: "คัดลอกแล้ว",
+      close: "ปิด",
+      loading: "กำลังโหลด…",
+      refresh: "รีเฟรช",
+      clear: "ล้าง",
+      save: "บันทึก",
+      saved: "ที่บันทึกไว้",
+      search: "ค้นหา",
+      tools: "เครื่องมือ",
+      settings: "การตั้งค่า",
+      sections: "ส่วนต่างๆ",
+      yes: "ใช่",
+      no: "ไม่",
+      yesLower: "ใช่",
+      noLower: "ไม่",
+      unavailable: "ไม่พร้อมใช้งาน",
+      unavailableReason: "ไม่พร้อมใช้งาน: {reason}",
+      unavailableParen: "ไม่พร้อมใช้งาน ({reason})",
+      unavailableCap: "ไม่พร้อมใช้งาน: {reason}",
+      unknown: "ไม่ทราบ",
+      pending: "รอดำเนินการ",
+      staleParen: "(ข้อมูลเก่า)",
+      offInSettings: "การค้นหาออนไลน์ถูกปิดอยู่ในการตั้งค่า",
+      openInFullTab: "เปิดในแท็บเต็ม",
+      developerTools: "เครื่องมือนักพัฒนา",
+      gasTracker: "ตัวติดตามค่าแก๊ส",
+      feeCalculator: "เครื่องคำนวณค่าธรรมเนียม",
+      unrecognised: "ไม่รู้จัก",
+      offlineMode: "โหมดออฟไลน์",
+      onlineLookups: "การค้นหาออนไลน์",
+      explorers: "Explorer",
+      liveFees: "ค่าธรรมเนียมแบบเรียลไทม์บน {count} เชน EVM และ Bitcoin"
+    },
+    theme: {
+      label: "ธีม",
+      light: "สว่าง",
+      dark: "มืด",
+      system: "ตามระบบ",
+      lightDefault: "สว่าง (ค่าเริ่มต้น)",
+      lightTheme: "ธีมสว่าง",
+      darkTheme: "ธีมมืด",
+      systemTheme: "ธีมตามระบบ",
+      current: "ธีม: {theme}"
+    },
+    language: {
+      label: "ภาษา",
+      hint: "อัตโนมัติจะใช้ภาษาตามเบราว์เซอร์",
+      fallbackNote: "ส่วนที่ยังไม่ได้แปลจะแสดงเป็นภาษาอังกฤษ",
+      auto: "อัตโนมัติ ({language})"
+    },
+    picker: {
+      filterPlaceholder: "ค้นหาใน {count} เชน…",
+      filterLabel: "กรองบล็อกเชน",
+      listLabel: "บล็อกเชน",
+      autoDetected: "ตรวจพบอัตโนมัติ",
+      blockchain: "บล็อกเชน",
+      buttonLabel: "บล็อกเชน: {chain} เปลี่ยนบล็อกเชน",
+      buttonLabelAuto: "บล็อกเชน: {chain} (ตรวจพบอัตโนมัติ) เปลี่ยนบล็อกเชน",
+      results: "ผลลัพธ์",
+      detected: "ที่ตรวจพบ",
+      favourites: "รายการโปรด",
+      popular: "ยอดนิยม",
+      allChains: "ทุกเชน · {count}",
+      explorerDown: "explorer ล่ม",
+      limited: "จำกัด",
+      pin: "ปักหมุด {chain}",
+      unpin: "เลิกปักหมุด {chain}",
+      noMatch: "ไม่มีเชนที่ตรงกับ “{query}”"
+    },
+    popup: {
+      tab: {
+        lookup: "ค้นหา",
+        scan: "สแกนหน้า",
+        tools: "เครื่องมือ",
+        gas: "แก๊ส",
+        saved: "ที่บันทึกไว้"
+      },
+      tagline: "ค้นหาบล็อกเชนสำหรับ{strong}",
+      taglineStrong: "ทุกเชน",
+      online: "ออนไลน์",
+      statusOnline: "การค้นหาจะส่งไปที่ {host} เปลี่ยนได้ในการตั้งค่า",
+      statusOffline: "ไม่มีข้อมูลใดออกจากเบราว์เซอร์ เปลี่ยนได้ในการตั้งค่า",
+      aboutButton: "เกี่ยวกับ ทางลัด และเครื่องมืออื่นๆ",
+      openApp: "เปิดแอปเต็มในแท็บ",
+      footOnline: "การค้นหาที่คุณทำจะส่งไปที่ {host} ข้อมูลอื่นไม่ออกจากเบราว์เซอร์",
+      footOffline: "โหมดออฟไลน์: ไม่มีข้อมูลใดออกจากเบราว์เซอร์",
+      footLink: "ทางลัดและเครื่องมืออื่นๆ"
+    },
+    hero: {
+      title: "ค้นหาได้ทุกอย่าง {accent}",
+      titleAccent: "บนทุกเชน",
+      popupLead: "วางที่อยู่ ธุรกรรม บล็อก หรือชื่อ Web3Lens จะหาเชนของมันจาก {count} เชน",
+      appLead: "วางที่อยู่ ธุรกรรม บล็อก หรือชื่อ Web3Lens จะจดจำ ตรวจสอบ และแสดงคำตอบให้คุณ"
+    },
+    examples: {
+      title: "ลองตัวอย่าง",
+      vitalik: "ENS ของ Vitalik Buterin",
+      usdc: "สัญญา USDC",
+      genesis: "ที่อยู่ genesis ของ Bitcoin",
+      usdtTron: "USDT บน Tron"
+    },
+    scan: {
+      reading: "กำลังอ่านหน้านี้…",
+      noTab: "ไม่มีแท็บที่ใช้งานอยู่",
+      thisTab: "แท็บนี้",
+      nothingTitle: "ไม่พบอะไร",
+      nothingBody: "หน้านี้ไม่มีที่อยู่ แฮชธุรกรรม หรือชื่อ เลือกข้อความแล้วคลิกขวาเพื่อค้นหาแทน",
+      found: "พบ {count} รายการ",
+      copyAll: "คัดลอกทั้งหมด",
+      checkAll: "ตรวจทั้งหมดแบบกลุ่ม",
+      cantReadTitle: "อ่านหน้านี้ไม่ได้",
+      cantReadBody: "{error} หน้าของเบราว์เซอร์ (การตั้งค่า ร้านส่วนขยาย แท็บใหม่) สแกนไม่ได้",
+      bannerTitle: "ที่อยู่บน {host}",
+      bannerBody: "อ่านข้อความที่มองเห็นในแท็บนี้หนึ่งครั้งเมื่อคุณเปิดส่วนนี้ ไม่มีการส่งข้อมูลไปที่ใด",
+      rescan: "สแกนใหม่"
+    },
+    toolsNav: {
+      more: "เพิ่มเติม",
+      batchCheck: "ตรวจแบบกลุ่ม"
+    },
+    tool: {
+      "unit-converter": {
+        title: "ตัวแปลงหน่วย",
+        short: "wei · gwei · ETH, sats · BTC, ทศนิยมกี่ตำแหน่งก็ได้",
+        description: "แปลงระหว่าง wei, gwei และ ether, satoshi และ bitcoin, lamport และ SOL หรือทศนิยมของโทเค็นใดก็ได้อย่างแม่นยำ (ไม่ปัดเศษ)"
+      },
+      "address-validator": {
+        title: "ตัวตรวจสอบที่อยู่",
+        short: "Checksum สำหรับรูปแบบที่อยู่กว่า 25 แบบ",
+        description: "ตรวจว่าที่อยู่ถูกต้องสำหรับเชนของมันหรือไม่: checksum แบบ EIP-55, base58check, bech32, CashAddr, SS58, Stellar และ TON พร้อมสแนปช็อตรายชื่อคว่ำบาตรของ OFAC"
+      },
+      "hex-converter": {
+        title: "Hex ข้อความ และแฮช",
+        short: "hex ↔ ฐานสิบ, UTF-8, keccak256, SHA-256",
+        description: "แปลง hex เป็นฐานสิบและกลับกัน แปลงข้อความเป็น hex อ่านเวิร์ด int256 และแฮชข้อความหรือไบต์ด้วย keccak256 และ SHA-256 (พร้อมตัวเลือกฟังก์ชัน)"
+      },
+      "timestamp-converter": {
+        title: "ตัวแปลงเวลา",
+        short: "วินาที Unix, ms, hex ↔ วันที่",
+        description: "แปลง timestamp แบบ Unix (วินาที มิลลิวินาที timestamp ของบล็อกแบบ hex) เป็นวันที่ใน UTC และเขตเวลาของคุณ และแปลงวันที่กลับเป็น timestamp"
+      },
+      "gas-calculator": {
+        title: "เครื่องคำนวณแก๊สและค่าธรรมเนียม",
+        short: "ค่าธรรมเนียม EIP-1559 ด้วยราคาแก๊สแบบเรียลไทม์",
+        description: "คำนวณค่าธรรมเนียมธุรกรรมจากขีดจำกัดแก๊ส ค่าธรรมเนียมพื้นฐาน และทิป พร้อมราคาแก๊สแบบเรียลไทม์ของ 11 เชน EVM และอัตราค่าธรรมเนียม Bitcoin"
+      },
+      "abi-decoder": {
+        title: "ตัวถอดรหัส calldata และ ABI",
+        short: "ถอดรหัสหรือเข้ารหัสการเรียกฟังก์ชัน",
+        description: "ถอดรหัส calldata ของ Ethereum ด้วย ABI ของสัญญา ลายเซ็นฟังก์ชัน หรือรายการฟังก์ชันทั่วไปในตัว และเข้ารหัสการเรียกจากลายเซ็น"
+      },
+      "transaction-decoder": {
+        title: "ตัวถอดรหัสธุรกรรมดิบ",
+        short: "tx ที่ลงนามแล้ว → ฟิลด์และผู้ส่ง",
+        description: "ถอดรหัสธุรกรรม EVM ดิบที่ลงนามแล้ว (legacy, EIP-1559, blob, EIP-7702) ในเครื่องและกู้คืนผู้ส่ง โดยไม่เผยแพร่ธุรกรรม"
+      }
+    },
+    gas: {
+      offlineBody: "ค่าแก๊สแบบเรียลไทม์ต้องใช้การค้นหาออนไลน์ เปิดการค้นหาออนไลน์ในการตั้งค่า หรือใช้เครื่องคำนวณค่าธรรมเนียมกับตัวเลขของคุณเอง",
+      loading: "กำลังโหลดราคาแก๊สแบบเรียลไทม์…",
+      btcRate: "อัตราค่าธรรมเนียม, sat/vB",
+      nextBlock: "บล็อกถัดไป",
+      halfHour: "~30 นาที",
+      hour: "~1 ชั่วโมง",
+      economy: "ประหยัด",
+      btcUnavailable: "ค่าธรรมเนียม Bitcoin ไม่พร้อมใช้งาน: {reason}",
+      transfer: "โอน {usd}",
+      noUsd: "ไม่มีราคา USD",
+      gweiStale: "gwei · ข้อมูลเก่า",
+      na: "ไม่มี",
+      source: "RPC สาธารณะ, mempool.space, CoinGecko · ดึงข้อมูลเมื่อ {time} UTC Rollup มีค่าธรรมเนียมข้อมูล L1 เพิ่ม",
+      head: "ค่าธรรมเนียมเรียลไทม์ · {count} เชน EVM และ Bitcoin",
+      chain: "เชน",
+      priceCol: "ราคาแก๊ส (gwei)",
+      transferCol: "การโอน (USD)",
+      btcCard: "Bitcoin (sat/vB)"
+    },
+    saved: {
+      filterPlaceholder: "กรองตามป้ายกำกับ ที่อยู่ หรือโน้ต",
+      filterLabel: "กรองรายการที่บันทึกไว้",
+      emptyTitle: "ยังไม่มีรายการที่บันทึก",
+      emptyBody: "กดบันทึกหลังค้นหาเพื่อเก็บที่อยู่หรือธุรกรรมไว้ที่นี่พร้อมป้ายกำกับและโน้ต รายการที่บันทึกจะอยู่ในเบราว์เซอร์นี้เท่านั้น",
+      noMatch: "ไม่มีรายการที่ตรงกับ “{query}”",
+      unpin: "เลิกปักหมุด",
+      pin: "ปักหมุดไว้ด้านบน",
+      manageTitle: "แก้ไขป้ายกำกับและโน้ต ส่งออก นำเข้า หรือแชร์",
+      manage: "จัดการ"
+    },
+    settings: {
+      appearance: "รูปลักษณ์",
+      appearanceHint: "ค่าเริ่มต้นคือสว่าง ตามระบบจะใช้ตามเบราว์เซอร์",
+      whenSearch: "เมื่อฉันกดค้นหา",
+      whenSearchHint: "การค้นหาจากเมนูคลิกขวาและคีย์เวิร์ด w3 จะใช้ค่านี้ด้วย",
+      resultsFirst: "แสดงผลลัพธ์ของ Web3Lens ก่อน",
+      resultsFirstHint: "ยอดคงเหลือ โทเค็น และการตรวจความเสี่ยงบน {count} เชน เชนอื่นจะเปิด explorer ของเชนนั้น",
+      alwaysExplorer: "เปิด block explorer เสมอ",
+      alwaysExplorerHint: "ไปที่ explorer โดยตรงในแท็บใหม่",
+      onlineOn: "เปิด: ยอดคงเหลือ ธุรกรรม การตรวจความเสี่ยง และค่าแก๊สมาจาก {host} เมื่อคุณขอ",
+      onlineOff: "ปิด: การตรวจจับ checksum ลิงก์ explorer เครื่องมือ และสแนปช็อต OFAC ยังทำงานในเครื่องได้",
+      recent: "การค้นหาล่าสุด",
+      recentKept: "เก็บไว้ในเบราว์เซอร์นี้ {count} รายการ",
+      more: "การตั้งค่าเพิ่มเติม",
+      moreHint: "Explorer ที่ต้องการ เชนโปรด ข้อมูล และการรีเซ็ต",
+      pageTitle: "ค้นหาในแบบของคุณ",
+      privacy: "ความเป็นส่วนตัว",
+      privacyBody: "ยอดคงเหลือ ธุรกรรม การตรวจความเสี่ยง และค่าแก๊สแบบเรียลไทม์จะดึงจาก {host} เมื่อคุณขอ ปิดเพื่อเก็บทุกอย่างไว้ในเบราว์เซอร์: การตรวจจับ checksum ลิงก์ explorer เครื่องมือ และสแนปช็อต OFAC ที่มาพร้อมส่วนขยายยังใช้งานได้",
+      privacyNote: "ส่วนขยายนี้ไม่มีสิทธิ์เข้าถึงโฮสต์ และจะอ่านหน้าเว็บเฉพาะเมื่อคุณเปิดแท็บ “สแกนหน้า” ของป๊อปอัปบนหน้านั้นเท่านั้น",
+      preferredExplorers: "Explorer ที่ต้องการ",
+      favouriteChains: "เชนโปรด",
+      noneYet: "ยังไม่มี",
+      addChain: "เพิ่มเชนตามชื่อ",
+      data: "ข้อมูล",
+      dataBody: "ทุกอย่างอยู่ในพื้นที่เก็บข้อมูลส่วนขยายของเบราว์เซอร์นี้",
+      clearRecent: "ล้างการค้นหาล่าสุด",
+      deleteSaved: "ลบรายการที่บันทึกไว้",
+      resetPrefs: "รีเซ็ตค่ากำหนด",
+      confirmDelete: "ลบรายการที่บันทึกไว้ทั้งหมดหรือไม่",
+      options: "ตัวเลือกส่วนขยาย"
+    },
+    info: {
+      title: "เกี่ยวกับ Web3Lens",
+      fasterWays: "วิธีที่เร็วกว่า",
+      shortcut: "แป้นพิมพ์ลัด",
+      shortcutBody: "เปิดป๊อปอัปนี้ด้วย {keys}",
+      rightClick: "คลิกขวา",
+      rightClickBody: "เลือกที่อยู่หรือแฮชบนหน้าใดก็ได้ แล้วเลือก {menu}",
+      addressBar: "แถบที่อยู่",
+      addressBarBody: "พิมพ์ {key} เว้นวรรค แล้ววางเพื่อค้นหา",
+      statChains: "บล็อกเชนที่ตรวจจับและส่งต่อได้",
+      statNative: "มียอดคงเหลือเรียลไทม์และการตรวจความเสี่ยง",
+      statOfac: "สแนปช็อตรายชื่อ OFAC ตรวจในเครื่อง",
+      website: "เว็บไซต์",
+      contact: "ติดต่อเรา",
+      contactSub: "ส่งความคิดเห็น",
+      privacy: "นโยบายความเป็นส่วนตัว",
+      privacySub: "ข้อมูลที่จัดเก็บและส่ง",
+      moreFrom: "ผลงานอื่นจากผู้พัฒนาเดียวกัน",
+      summarytube: "สรุปวิดีโอ YouTube",
+      centpage: "หน้าเริ่มต้นที่ดีที่สุดบนอินเทอร์เน็ต",
+      sessionmanager: "บันทึกและกู้คืนแท็บ",
+      webdevtools: "เครื่องมือสำหรับนักพัฒนาเว็บ",
+      foot: "ส่วนขยาย Web3Lens v{version} · ไม่ต้องมีบัญชี ข้อมูลที่บันทึกอยู่ในเบราว์เซอร์นี้เท่านั้น"
+    },
+    search: {
+      placeholder: "ที่อยู่ แฮช tx บล็อก หรือชื่อ ENS",
+      inputLabel: "ที่อยู่ แฮชธุรกรรม บล็อก หรือชื่อ",
+      unknownFormat: "Web3Lens ไม่รู้จักรูปแบบนี้: จะส่งไปค้นหาใน explorer ของเชนที่เลือก",
+      secret: "ตรวจพบข้อมูลลับ",
+      checksumOk: "· checksum ถูกต้อง",
+      badChecksum: "checksum ไม่ถูกต้อง",
+      testnet: "testnet",
+      ofacListed: "อยู่ในรายชื่อ OFAC",
+      searchOn: "ค้นหาบน",
+      switchTo: "สลับไปที่",
+      couldBe: "อาจเป็น: {list}",
+      explorerDown: "Explorer ของ {chain} ไม่ตอบสนองในการตรวจสถานะครั้งล่าสุด",
+      searchWeb: "ค้นหาบนเว็บ",
+      openAnyway: "เปิดต่อไป",
+      fallback: "{chain} เป็นหนึ่งในบล็อกเชนไม่กี่รายการที่ยังไม่รองรับ กำลังพาคุณไปที่ explorer ของ {chain} แทน...",
+      empty: "วางที่อยู่ แฮชธุรกรรม หมายเลขบล็อก หรือชื่อก่อน",
+      notSearched: "ไม่ได้ค้นหา",
+      offlineExplorers: "การค้นหาออนไลน์ปิดอยู่ (การตั้งค่า) นี่คือ explorer ที่ใช้ได้:",
+      recent: "ล่าสุด",
+      recentEmpty: "การค้นหาล่าสุดของคุณจะแสดงที่นี่ และเก็บไว้ในเบราว์เซอร์นี้เท่านั้น",
+      openFull: "เปิดมุมมองเต็ม",
+      openExplorer: "เปิดใน explorer"
+    },
+    source: {
+      unavailableFrom: "ไม่พร้อมใช้งานจาก {source}: {reason} ไม่แสดงอะไรแทนการเดา",
+      unavailable: "ไม่พร้อมใช้งาน: {reason} ไม่แสดงอะไรแทนการเดา",
+      line: "แหล่งที่มา: {source} · ดึงข้อมูล{ago}",
+      stale: "· ข้อมูลเก่า (แหล่งที่มาไม่ตอบสนอง)",
+      explorerDown: "ไม่ตอบสนองในการตรวจสถานะครั้งล่าสุด"
+    },
+    api: {
+      badAnswer: "Web3Lens ส่งคำตอบที่ส่วนขยายเวอร์ชันนี้อ่านไม่ได้ ลิงก์ explorer และการตรวจในเครื่องยังใช้งานได้ การอัปเดตส่วนขยายน่าจะแก้ปัญหาได้",
+      timeout: "Web3Lens ใช้เวลาตอบนานเกินไป ลองอีกครั้งในอีกสักครู่ ลิงก์ explorer และการตรวจในเครื่องยังใช้งานได้",
+      unreachable: "เชื่อมต่อ Web3Lens ไม่ได้ ตรวจสอบการเชื่อมต่อของคุณ",
+      rateLimited: "ค้นหาบ่อยเกินไปในเวลาสั้นๆ รอหนึ่งนาทีแล้วลองอีกครั้ง",
+      serviceDown: "บริการค้นหาของ Web3Lens ไม่พร้อมใช้งานในขณะนี้ (HTTP {status}) ลิงก์ explorer และการตรวจในเครื่องยังใช้งานได้"
+    },
+    result: {
+      qr: "QR โค้ด",
+      transaction: "ธุรกรรม",
+      address: "ที่อยู่",
+      offline: "การค้นหาออนไลน์ถูกปิดในการตั้งค่า ลิงก์ explorer และการตรวจในเครื่องยังใช้งานได้",
+      onOfac: "อยู่ในรายชื่อคว่ำบาตรของ OFAC ({lists})",
+      balance: "ยอดคงเหลือ",
+      usdApprox: "≈ {usd} (CoinGecko)",
+      noUsd: "ไม่มีมูลค่า USD",
+      type: "ประเภท",
+      delegated: "EIP-7702 มอบสิทธิ์ให้ {address}",
+      contractBytes: "สัญญา ({count} ไบต์)",
+      walletNoCode: "กระเป๋าเงิน (ไม่มีโค้ด)",
+      sentTxs: "tx ที่ส่ง",
+      resolvedFrom: "แปลงมาจาก",
+      tokens: "โทเค็น",
+      noErc20: "ไม่มีโทเค็น ERC-20",
+      hiddenTokens: "ซ่อนโทเค็น {count} รายการ: ถูกตัวจัดทำดัชนีระบุว่าเป็นสแปม หรือไม่มีชื่อหรือสัญลักษณ์ อย่าโต้ตอบกับโทเค็นที่คุณไม่ได้คาดไว้",
+      knownOnly: "ตรวจเฉพาะโทเค็นที่รู้จัก {count} รายการ (ไม่มีดัชนีโทเค็นฟรีที่ครอบคลุม {chain}) สินทรัพย์อื่นจะไม่แสดง",
+      activity: "กิจกรรม",
+      transactions: "ธุรกรรม",
+      tokenTransfers: "การโอนโทเค็น",
+      labelsContract: "ป้ายกำกับและสัญญา",
+      flagged: "Blockscout แจ้งเตือนที่อยู่นี้ ({reason})",
+      scam: "หลอกลวง",
+      name: "ชื่อ",
+      tags: "แท็ก",
+      verifiedSource: "ซอร์สโค้ดที่ยืนยันแล้ว",
+      proxy: "พร็อกซี",
+      token: "โทเค็น",
+      unconfirmed: "ธุรกรรมที่ยังไม่ยืนยันและรอดำเนินการ {count} รายการ ไม่รวมในยอดด้านบน",
+      received: "ได้รับ",
+      sent: "ส่ง",
+      recentTxs: "ธุรกรรมล่าสุด",
+      account: "บัญชี",
+      program: "โปรแกรม",
+      notFound: "ไม่พบบนเชน",
+      owner: "เจ้าของ",
+      splTokens: "โทเค็น SPL",
+      noSpl: "ไม่มียอดคงเหลือโทเค็น SPL",
+      token2022: "อ่านยอดคงเหลือ Token-2022 จาก RPC สาธารณะไม่ได้",
+      recentSigs: "ลายเซ็นล่าสุด",
+      unknownTx: "{chain} ไม่รู้จักธุรกรรมนี้",
+      unknownSig: "Solana ไม่รู้จักลายเซ็นนี้",
+      status: "สถานะ",
+      block: "บล็อก",
+      conf: "{block} · ยืนยัน {count} ครั้ง",
+      time: "เวลา",
+      from: "จาก",
+      to: "ถึง",
+      value: "มูลค่า",
+      fee: "ค่าธรรมเนียม",
+      input: "ข้อมูลนำเข้า",
+      verifiedAbi: "ABI ที่ยืนยันแล้ว",
+      guessed: "คาดเดา",
+      success: "สำเร็จ",
+      failed: "ล้มเหลว",
+      confirmed: "ยืนยันแล้ว",
+      unconfirmedBadge: "ยังไม่ยืนยัน",
+      mempool: "mempool",
+      output: "เอาต์พุต",
+      outputs: "เอาต์พุต ({count})",
+      slot: "สล็อต",
+      signer: "ผู้ลงนาม"
+    },
+    risk: {
+      checking: "กำลังตรวจการคว่ำบาตร รายงาน และสัญญา…",
+      title: "การตรวจความเสี่ยง",
+      signals: "พบสัญญาณความเสี่ยง {count} รายการ อย่าส่งเงินหรือลงนามสิ่งใดก่อนตรวจสอบ",
+      noReports: "ไม่มีรายงานในแหล่งข้อมูลด้านล่าง แต่ไม่ได้หมายความว่าปลอดภัย: การหลอกลวงส่วนใหญ่ไม่เคยถูกรายงาน",
+      listed: "อยู่ในรายชื่อ ({lists})",
+      notListed: "ไม่อยู่ในรายชื่อ (สแนปช็อต {date})",
+      markedScam: "ถูกระบุว่าหลอกลวง",
+      notFlagged: "ไม่ถูกแจ้งเตือน",
+      noReportsShort: "ไม่มีรายงาน",
+      scamReports: "รายงานการหลอกลวง",
+      notChecked: "ไม่ได้ตรวจ: แหล่งข้อมูลฟรีครอบคลุมเฉพาะเชน EVM",
+      verified: "ยืนยันแล้ว",
+      upgradeable: "อัปเกรดได้",
+      yesArrow: "ใช่ → {address}",
+      noSlots: "ไม่มีสล็อต EIP-1967",
+      noOwner: "ไม่มี owner()",
+      renounced: "สละสิทธิ์แล้ว",
+      contract: "สัญญา",
+      wallet: "กระเป๋าเงิน",
+      admin: "ฟังก์ชันผู้ดูแล",
+      adminCount: "{count} (mint/pause/blacklist/upgrade…)",
+      noneFound: "ไม่พบ",
+      tokenRisk: "ความเสี่ยงของโทเค็น",
+      noFlags: "ไม่มีการแจ้งเตือน",
+      onlineUnavailable: "การตรวจออนไลน์ไม่พร้อมใช้งาน: {error}",
+      ofacLocal: "OFAC (ในเครื่อง)",
+      checkApprovals: "ตรวจการอนุมัติโทเค็น",
+      scanningApprovals: "กำลังสแกนการอนุมัติและอ่านวงเงิน…",
+      aWallet: "(เป็นกระเป๋าเงิน!)",
+      unlimited: "ไม่จำกัด",
+      allItems: "ทุกรายการ",
+      noApprovals: "ไม่พบการอนุมัติที่ใช้งานอยู่ในอีเวนต์ที่สแกน",
+      capped: "การค้นหาล็อกถึงขีดจำกัดแล้ว: อาจไม่มีการอนุมัติที่เก่ากว่า",
+      revoke: "ตรวจสอบหรือเพิกถอนที่ revoke.cash ↗"
+    },
+    multichain: {
+      checking: "กำลังตรวจ {count} เชน EVM…",
+      code: "โค้ด",
+      txCount: "{count} tx",
+      source: "RPC สาธารณะ · ราคา {source} · {ago}",
+      title: "ที่อยู่เดียวกันบนเชน EVM อื่น"
+    },
+    locate: {
+      asking: "กำลังสอบถาม {count} เชน EVM…",
+      foundOn: "พบบน {chain} →",
+      notFound: "ไม่พบบน {count} เชน EVM ที่รองรับ ลองใช้ลิงก์ explorer",
+      title: "อยู่บนเชนไหน?"
+    },
+    unit: {
+      anyToken: "โทเค็นใดก็ได้",
+      rawUnits: "หน่วยดิบ",
+      tokens: "โทเค็น",
+      amount: "จำนวน",
+      family: "กลุ่มหน่วย",
+      from: "จากหน่วย",
+      decimals: "ทศนิยมของโทเค็น (โทเค็นใดก็ได้)"
+    },
+    validator: {
+      invalid: "ไม่ใช่ที่อยู่หรือแฮชที่ถูกต้องในรูปแบบใดที่ Web3Lens รู้จัก",
+      checksumValid: "checksum ถูกต้อง",
+      checksumInvalid: "checksum ไม่ตรงกัน",
+      noChecksum: "ไม่มี checksum",
+      formatOnly: "รูปแบบเท่านั้น",
+      notOnOfac: "ไม่อยู่ในสแนปช็อต OFAC",
+      normalised: "ปรับรูปแบบแล้ว",
+      field: "ที่อยู่ แฮช หรือชื่อ",
+      hint: "checksum ที่ถูกต้องหมายความว่าคัดลอกมาถูกต้อง ไม่ได้หมายความว่าน่าเชื่อถือ"
+    },
+    hex: {
+      decimal: "ฐานสิบ",
+      text: "ข้อความ",
+      textOption: "ข้อความ",
+      hexBytes: "ไบต์ hex",
+      selector: "ตัวเลือกฟังก์ชัน",
+      number: "ตัวเลข",
+      hexOrDecimal: "Hex หรือฐานสิบ",
+      textToHex: "ข้อความ → hex",
+      hexToText: "Hex → ข้อความ",
+      hashes: "แฮช",
+      input: "ข้อมูลนำเข้า",
+      inputIs: "ประเภทข้อมูลนำเข้า"
+    },
+    time: {
+      now: "ตอนนี้",
+      readAs: "อ่านเป็น{kind}",
+      unixSeconds: "วินาที Unix",
+      milliseconds: "มิลลิวินาที",
+      local: "เวลาท้องถิ่น",
+      relative: "เวลาสัมพัทธ์",
+      field: "Timestamp หรือวันที่",
+      future: "ในอนาคต",
+      kind: {
+        hexSeconds: "วินาทีแบบ hex",
+        nanoseconds: "นาโนวินาที",
+        microseconds: "ไมโครวินาที",
+        milliseconds: "มิลลิวินาที",
+        seconds: "วินาที",
+        date: "วันที่"
+      }
+    },
+    gascalc: {
+      preset: {
+        ethTransfer: "โอน ETH",
+        erc20Transfer: "โอน ERC-20",
+        erc20Approve: "อนุมัติ ERC-20",
+        uniswapSwap: "สวอปบน Uniswap",
+        nftMint: "มินต์ NFT"
+      },
+      optional: "gwei (ไม่บังคับ)",
+      useLive: "ใช้ราคาแก๊สแบบเรียลไทม์",
+      liveFrom: "ข้อมูลเรียลไทม์จาก {chain}",
+      gasPrice: "ราคาแก๊ส",
+      feeSymbol: "ค่าธรรมเนียม ({symbol})",
+      feeWei: "ค่าธรรมเนียม (wei)",
+      feeUsd: "ค่าธรรมเนียม (USD)",
+      maxToHold: "ยอดสูงสุดที่ต้องมี",
+      feeSats: "ค่าธรรมเนียม (sats)",
+      feeBtc: "ค่าธรรมเนียม (BTC)",
+      evmFee: "ค่าธรรมเนียม EVM",
+      gasLimit: "ขีดจำกัดแก๊ส",
+      baseFee: "ค่าธรรมเนียมพื้นฐาน / ราคาแก๊ส",
+      priorityFee: "ค่าธรรมเนียมลำดับความสำคัญ",
+      maxFee: "ค่าธรรมเนียมสูงสุด",
+      l1Note: "Rollup ยังมีค่าธรรมเนียมข้อมูล L1 ที่ไม่ได้รวมไว้ที่นี่",
+      btcFee: "ค่าธรรมเนียม Bitcoin",
+      size: "ขนาด (vbytes)",
+      feeRate: "อัตราค่าธรรมเนียม"
+    },
+    abi: {
+      abiPlaceholder: "JSON ABI หรือหนึ่งลายเซ็นต่อบรรทัด (ไม่บังคับ)",
+      badCalldata: "Calldata ต้องเป็น 0x ตามด้วยตัวเลือกฟังก์ชันอย่างน้อย 4 ไบต์",
+      commonMatch: "ตรงกับลายเซ็นทั่วไป (ไม่ได้ระบุ ABI)",
+      lookupSelector: "ค้นหาตัวเลือกฟังก์ชันออนไลน์",
+      asking: "กำลังสอบถาม openchain.xyz / 4byte.directory…",
+      community: "ลายเซ็นที่ชุมชนส่งมา ({source}): ให้ถือว่าเป็นการคาดเดา",
+      noneDecodes: "ไม่มีลายเซ็นที่ส่งมาใดถอดรหัสข้อมูลนี้ได้",
+      unknownSelector: "ไม่รู้จักตัวเลือกฟังก์ชัน {selector}",
+      calldata: "Calldata",
+      decode: "ถอดรหัส",
+      encode: "เข้ารหัส",
+      signature: "ลายเซ็นฟังก์ชัน",
+      args: "อาร์กิวเมนต์ (อาร์เรย์ JSON)"
+    },
+    txdec: {
+      hash: "แฮช",
+      fromRecovered: "จาก (กู้คืน)",
+      creation: "(สร้างสัญญา)",
+      chainId: "Chain id",
+      replayable: "ไม่มี (เล่นซ้ำได้)",
+      nonce: "Nonce",
+      data: "ข้อมูล",
+      bestGuess: "ตรงกับลายเซ็นทั่วไป เป็นการคาดเดาที่ดีที่สุดโดยไม่มี ABI",
+      authorization: "การอนุญาต EIP-7702",
+      delegatesTo: "มอบสิทธิ์ให้",
+      chainNonce: "เชน / nonce",
+      anyChain: "0 (ทุกเชน!)",
+      field: "ธุรกรรมดิบที่ลงนามแล้ว",
+      hint: "ถอดรหัสในเครื่อง ไม่มีการเผยแพร่ใดๆ"
+    },
+    app: {
+      batch: "แบบกลุ่ม",
+      moreTools: "เครื่องมืออื่นๆ",
+      batchSearch: "ค้นหาแบบกลุ่ม",
+      batchSearchBody: "ตรวจได้สูงสุด 50 ที่อยู่พร้อมกัน ส่งออก CSV ได้",
+      devToolsBody: "หน่วย checksum ตัวถอดรหัส timestamp",
+      savedBody: "ป้ายกำกับและโน้ตของคุณ เป็นส่วนตัวในเบราว์เซอร์นี้",
+      view: {
+        search: "ค้นหา",
+        result: "ผลลัพธ์",
+        batch: "แบบกลุ่ม",
+        tools: "เครื่องมือ",
+        saved: "ที่บันทึกไว้",
+        settings: "การตั้งค่า"
+      }
+    },
+    batch: {
+      valueCol: "ค่า",
+      typeCol: "ประเภท",
+      checksCol: "การตรวจ",
+      notRecognised: "ไม่รู้จัก",
+      secret: "ข้อมูลลับ",
+      ok: "ถูกต้อง",
+      leftOut: "ข้ามไป {count} รายการ (ขีดจำกัด {max})",
+      checking: "กำลังตรวจ…",
+      active: "ใช้งาน {active}/{total} · {usd}",
+      fetchBalances: "ดึงยอดคงเหลือ EVM ({count})",
+      exportCsv: "ส่งออก CSV",
+      savedMsg: "บันทึกไว้ในเบราว์เซอร์นี้แล้ว",
+      saveAll: "บันทึกทั้งหมด",
+      shareCopied: "คัดลอกลิงก์แชร์แล้ว (เปิดบน web3lens.com รายการอยู่ในลิงก์)",
+      copyShare: "คัดลอกลิงก์แชร์",
+      checked: "ตรวจแล้ว {count} รายการ",
+      title: "ตรวจทั้งรายการในครั้งเดียว",
+      intro: "ที่อยู่ แฮช หรือชื่อสูงสุด {max} รายการ: บรรทัดละหนึ่งรายการ หรือคั่นด้วยจุลภาคหรือเว้นวรรค",
+      checkAll: "ตรวจทั้งหมด"
+    },
+    savedPage: {
+      filter: "กรอง",
+      empty: "ยังไม่มีรายการที่บันทึก ใช้ปุ่มบันทึกในหน้าค้นหาหรือแบบกลุ่ม",
+      label: "ป้ายกำกับ",
+      notes: "โน้ต",
+      select: "เลือก",
+      remove: "ลบ",
+      tooLarge: "ไฟล์ใหญ่เกินไป",
+      imported: "นำเข้า {count} รายการแล้ว",
+      importFailed: "นำเข้าไม่สำเร็จ: {error}",
+      title: "ป้ายกำกับและโน้ตของคุณ",
+      intro: "ป้ายกำกับและโน้ตอยู่ในเบราว์เซอร์นี้ (พื้นที่เก็บข้อมูลส่วนขยาย) ไม่มีการซิงค์",
+      exportJson: "ส่งออก JSON",
+      importJson: "นำเข้า JSON",
+      selectFirst: "เลือกรายการก่อน",
+      shareCopied: "คัดลอกลิงก์แชร์แล้ว ป้ายกำกับและโน้ตอยู่ในลิงก์: ใครก็ตามที่มีลิงก์สามารถอ่านได้",
+      shareSelected: "แชร์รายการที่เลือก"
+    },
+    detect: {
+      address: "ที่อยู่ {chain}",
+      testnetAddress: "ที่อยู่ testnet ของ {chain}",
+      stakeAddress: "ที่อยู่ staking ของ {chain}",
+      addressRaw: "ที่อยู่ {chain} (raw)",
+      bech32: "ที่อยู่ Bech32 ({hrp})",
+      txHashOf: "แฮชธุรกรรม {chain}",
+      extrinsicHash: "แฮช extrinsic ของ {chain}",
+      operationHash: "แฮชการดำเนินการ {chain}",
+      blockHash: "แฮชบล็อก {chain}",
+      secretKey: "คีย์ลับ {chain}",
+      signature: "ลายเซ็น {chain}",
+      dnsName: "ชื่อ DNS ของ {chain}",
+      name: "ชื่อ {chain}",
+      account: "บัญชี {chain}",
+      contract: "สัญญา {chain}",
+      transactionHash: "แฮชธุรกรรม",
+      blockNumber: "หมายเลขบล็อก",
+      recoveryPhrase: "วลีกู้คืน",
+      privateKey: "คีย์ส่วนตัว (WIF)",
+      note: {
+        badChecksum: "checksum ไม่ตรงกัน ค่านี้อาจพิมพ์ผิด ตรวจสอบก่อนส่งเงิน",
+        privateKey: "นี่ดูเหมือนคีย์ส่วนตัว ใครที่มีคีย์นี้ควบคุมเงินได้ Web3Lens จะไม่ค้นหาข้อมูลนี้",
+        stellarSecret: "นี่คือคีย์ลับของ Stellar ใครที่มีคีย์นี้ควบคุมบัญชีได้ Web3Lens จะไม่ค้นหาข้อมูลนี้",
+        recoveryPhrase: "นี่ดูเหมือนวลีกู้คืนกระเป๋าเงิน ใครที่มีวลีนี้ควบคุมกระเป๋าเงินได้ Web3Lens จะไม่ค้นหาข้อมูลนี้ และห้ามวางลงในเว็บไซต์ใดๆ",
+        bech32Unknown: "ที่อยู่ bech32 ที่ถูกต้องสำหรับ “{hrp}” ซึ่งเป็นเครือข่ายที่ Web3Lens ยังไม่รองรับ",
+        versionByte: "Web3Lens ไม่รู้จักไบต์เวอร์ชัน {byte}"
+      }
+    }
+  };
+
+  // extension-src/src/locales.ts
+  var LOCALES = [
+    { code: "en", name: "English" },
+    { code: "es", name: "Español" },
+    { code: "pt", name: "Português" },
+    { code: "fr", name: "Français" },
+    { code: "de", name: "Deutsch" },
+    { code: "ja", name: "日本語" },
+    { code: "ko", name: "한국어" },
+    { code: "zh-CN", name: "简体中文" },
+    { code: "ru", name: "Русский" },
+    { code: "id", name: "Bahasa Indonesia" },
+    { code: "tr", name: "Türkçe" },
+    { code: "it", name: "Italiano" },
+    { code: "pl", name: "Polski" },
+    { code: "nl", name: "Nederlands" },
+    { code: "th", name: "ไทย" }
+  ];
+  var DEFAULT_LOCALE = "en";
+  function isLocale(v) {
+    return typeof v === "string" && LOCALES.some((l) => l.code === v);
+  }
+  function matchLocale(langs) {
+    for (const raw of langs) {
+      const tag = String(raw ?? "").trim().replace(/_/g, "-").toLowerCase();
+      if (!tag) continue;
+      const exact = LOCALES.find((l) => l.code.toLowerCase() === tag);
+      if (exact) return exact.code;
+      const base2 = tag.split("-")[0];
+      if (base2 === "zh") return "zh-CN";
+      if (base2 === "in") return "id";
+      const byBase = LOCALES.find((l) => l.code.split("-")[0].toLowerCase() === base2);
+      if (byBase) return byBase.code;
+    }
+    return DEFAULT_LOCALE;
+  }
+  function browserLanguages() {
+    if (typeof navigator === "undefined") return [];
+    return navigator.languages?.length ? [...navigator.languages] : navigator.language ? [navigator.language] : [];
+  }
+  function resolveLocale(pref, langs = browserLanguages()) {
+    return pref === "auto" ? matchLocale(langs) : pref;
+  }
+  function localeName(code) {
+    return LOCALES.find((l) => l.code === code)?.name ?? code;
+  }
+
+  // extension-src/src/i18n.ts
+  var CATALOGS = { en: en_default, es: es_default, pt: pt_default, fr: fr_default, de: de_default, ja: ja_default, ko: ko_default, "zh-CN": zh_CN_default, ru: ru_default, id: id_default, tr: tr_default, it: it_default, pl: pl_default, nl: nl_default, th: th_default };
+  function flatten(tree, prefix = "", out = {}) {
+    for (const [k, v] of Object.entries(tree)) {
+      if (typeof v === "string") out[prefix + k] = v;
+      else flatten(v, `${prefix}${k}.`, out);
+    }
+    return out;
+  }
+  var EN = flatten(en_default);
+  var flat = /* @__PURE__ */ new Map([["en", EN]]);
+  var current = DEFAULT_LOCALE;
+  var dict = EN;
+  function setLocale(code) {
+    current = code;
+    if (!flat.has(code)) flat.set(code, flatten(CATALOGS[code] ?? {}));
+    dict = flat.get(code);
+    if (typeof document !== "undefined") document.documentElement.lang = code;
+  }
+  function applyLanguage(pref) {
+    const code = resolveLocale(pref);
+    setLocale(code);
+    return code;
+  }
+  function locale() {
+    return current;
+  }
+  function fill(s, params) {
+    return params ? s.replace(/\{(\w+)\}/g, (m, k) => k in params ? String(params[k]) : m) : s;
+  }
+  function t(key, params) {
+    return fill(dict[key] || EN[key] || key, params);
+  }
+  function tx(key, params) {
+    const s = dict[key] || EN[key] || key;
+    const out = [];
+    let last = 0;
+    for (const m of s.matchAll(/\{(\w+)\}/g)) {
+      const v = params[m[1]];
+      if (v === void 0) continue;
+      if (m.index > last) out.push(s.slice(last, m.index));
+      if (Array.isArray(v)) out.push(...v);
+      else out.push(typeof v === "number" ? String(v) : v);
+      last = m.index + m[0].length;
+    }
+    if (last < s.length) out.push(s.slice(last));
+    return out;
+  }
+  var UNITS = [
+    [31536e3, "year"],
+    [2592e3, "month"],
+    [86400, "day"],
+    [3600, "hour"],
+    [60, "minute"],
+    [1, "second"]
+  ];
+  function relTime(ms, now = Date.now(), style = "long") {
+    const diff = Math.round((ms - now) / 1e3);
+    const rtf = new Intl.RelativeTimeFormat(current, { numeric: "auto", style });
+    const abs = Math.abs(diff);
+    for (const [secs, unit] of UNITS) {
+      if (abs >= secs) return rtf.format(Math.sign(diff) * Math.floor(abs / secs), unit);
+    }
+    return rtf.format(0, "second");
+  }
+  function ago(ts, now = Date.now()) {
+    if (ts === null || ts === void 0 || ts === "") return "";
+    const ms = typeof ts === "number" ? ts < 1e12 ? ts * 1e3 : ts : new Date(ts).getTime();
+    if (!Number.isFinite(ms)) return "";
+    const s = (now - ms) / 1e3;
+    if (s < -300) return t("time.future");
+    return relTime(Math.min(ms, now), now, "short");
+  }
+  var LABEL_PATTERNS = [
+    [/^Bech32 address \((.+)\)$/, "detect.bech32"],
+    [/^(.+) testnet address$/, "detect.testnetAddress"],
+    [/^(.+) stake address$/, "detect.stakeAddress"],
+    [/^(.+) address \(raw\)$/, "detect.addressRaw"],
+    [/^(.+) transaction hash$/, "detect.txHashOf"],
+    [/^(.+) extrinsic hash$/, "detect.extrinsicHash"],
+    [/^(.+) operation hash$/, "detect.operationHash"],
+    [/^(.+) block hash$/, "detect.blockHash"],
+    [/^(.+) secret key$/, "detect.secretKey"],
+    [/^(.+) signature$/, "detect.signature"],
+    [/^(.+) DNS name$/, "detect.dnsName"],
+    [/^(.+) name$/, "detect.name"],
+    [/^(.+) account$/, "detect.account"],
+    [/^(.+) contract$/, "detect.contract"],
+    [/^(.+) address$/, "detect.address"]
+  ];
+  var LABEL_EXACT = {
+    "Transaction hash": "detect.transactionHash",
+    "Block number": "detect.blockNumber",
+    "Recovery phrase": "detect.recoveryPhrase",
+    "Private key (WIF)": "detect.privateKey"
+  };
+  function detectLabel(label) {
+    if (LABEL_EXACT[label]) return t(LABEL_EXACT[label]);
+    for (const [re, key] of LABEL_PATTERNS) {
+      const m = re.exec(label);
+      if (m) return t(key, { chain: m[1], hrp: m[1] });
+    }
+    return label;
+  }
+  var NOTE_EXACT = {
+    "The checksum does not match. The value may contain a typo; check it before sending funds.": "detect.note.badChecksum",
+    "This looks like a private key. Anyone who has it controls the funds. Web3Lens will not search it.": "detect.note.privateKey",
+    "This is a Stellar secret key. Anyone who has it controls the account. Web3Lens will not search it.": "detect.note.stellarSecret",
+    "This looks like a wallet recovery phrase. Anyone who has it controls the wallet. Web3Lens will not search it; never paste it into a website.": "detect.note.recoveryPhrase"
+  };
+  function detectNote(note2) {
+    if (NOTE_EXACT[note2]) return t(NOTE_EXACT[note2]);
+    let m = /^A valid bech32 address for "(.+)", a network Web3Lens doesn't list yet\.$/.exec(note2);
+    if (m) return t("detect.note.bech32Unknown", { hrp: m[1] });
+    m = /^Version byte (0x[0-9a-f]+) isn't one Web3Lens recognises\.$/.exec(note2);
+    if (m) return t("detect.note.versionByte", { byte: m[1] });
+    return note2;
+  }
+
   // extension-src/src/dom.ts
   function h(tag, props, ...children) {
     const el = document.createElement(tag);
@@ -108,13 +9214,13 @@
       await navigator.clipboard.writeText(text);
       if (btn) {
         const old = btn.textContent;
-        btn.textContent = "Copied";
+        btn.textContent = t("common.copied");
         setTimeout(() => btn.textContent = old, 1200);
       }
     } catch {
     }
   }
-  function copyBtn(text, label = "Copy") {
+  function copyBtn(text, label = t("common.copy")) {
     const b = h("button", { type: "button", class: "btn-ghost sm copy", title: label, "aria-label": label });
     b.textContent = label;
     b.addEventListener("click", () => copy(text, b));
@@ -235,7 +9341,7 @@
   }
 
   // extension-src/src/store.ts
-  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "light" };
+  var DEFAULT_SETTINGS = { network: true, apiBase: "https://web3lens.com", theme: "light", language: "auto" };
   function sanitizeSettings(raw) {
     const r = raw ?? {};
     let apiBase = DEFAULT_SETTINGS.apiBase;
@@ -246,7 +9352,12 @@
       } catch {
       }
     }
-    return { network: r.network !== false, apiBase, theme: r.theme === "dark" || r.theme === "system" ? r.theme : "light" };
+    return {
+      network: r.network !== false,
+      apiBase,
+      theme: r.theme === "dark" || r.theme === "system" ? r.theme : "light",
+      language: isLocale(r.language) ? r.language : "auto"
+    };
   }
   async function load() {
     const raw = await ext.storage.local.get(["prefs", "saved", "recent", "settings"]);
@@ -10020,12 +19131,12 @@
     const v = new Uint32Array(32);
     const m = new Uint32Array(32);
     const block = new Uint8Array(128);
-    let t = 0;
+    let t2 = 0;
     const compress = (last) => {
       for (let i = 0; i < 16; i++) v[i] = h2[i];
       for (let i = 0; i < 16; i++) v[i + 16] = IV[i];
-      v[24] ^= t >>> 0;
-      v[25] ^= Math.floor(t / 4294967296);
+      v[24] ^= t2 >>> 0;
+      v[25] ^= Math.floor(t2 / 4294967296);
       if (last) {
         v[28] = ~v[28];
         v[29] = ~v[29];
@@ -10049,13 +19160,13 @@
     let off = 0;
     while (data.length - off > 128) {
       block.set(data.subarray(off, off + 128));
-      t += 128;
+      t2 += 128;
       compress(false);
       off += 128;
     }
     block.fill(0);
     block.set(data.subarray(off));
-    t += data.length - off;
+    t2 += data.length - off;
     compress(true);
     const out = new Uint8Array(outLen);
     for (let i = 0; i < outLen; i++) out[i] = h2[i >> 2] >>> 8 * (i & 3) & 255;
@@ -10114,8 +19225,8 @@
   (() => {
     let x = 1;
     let y = 0;
-    for (let t = 0; t < 24; t++) {
-      ROT.push((t + 1) * (t + 2) / 2 % 64);
+    for (let t2 = 0; t2 < 24; t2++) {
+      ROT.push((t2 + 1) * (t2 + 2) / 2 % 64);
       [x, y] = [y, (2 * x + 3 * y) % 5];
       PI.push(x + 5 * y);
     }
@@ -10139,11 +19250,11 @@
       }
       let curLo = s[2];
       let curHi = s[3];
-      for (let t = 0; t < 24; t++) {
-        const j = PI[t];
+      for (let t2 = 0; t2 < 24; t2++) {
+        const j = PI[t2];
         const tmpLo = s[j * 2];
         const tmpHi = s[j * 2 + 1];
-        const r = ROT[t];
+        const r = ROT[t2];
         let lo;
         let hi;
         if (r === 0) {
@@ -10616,9 +19727,6 @@
         };
     }
   }
-  function fallbackNotice(chain) {
-    return `${chain.name} is one of the very few blockchains not yet supported. Redirecting you to a ${chain.name} explorer instead...`;
-  }
   var PRIVATE_HOST = /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|0\.0\.0\.0|\[)/i;
   function isSafeExternalUrl(href) {
     try {
@@ -10763,7 +19871,7 @@
     return h("span", { class: "brand" }, logoMark(), h("span", { class: "wordmark" }, "Web3", h("span", { class: "accent" }, "Lens")));
   }
   function chainPicker(opts) {
-    let current = opts.value;
+    let current2 = opts.value;
     let auto = false;
     let detected = [];
     let favourites = [...opts.favourites];
@@ -10773,16 +19881,16 @@
     const nameEl = h("span", { class: "picker-name" });
     const glyphSlot = h("span", { class: "picker-glyph" });
     const button = h("button", { type: "button", class: "picker-btn", "aria-haspopup": "listbox", "aria-expanded": "false" }, glyphSlot, h("span", { class: "picker-text" }, label, nameEl), icon("caret", "ic caret"));
-    const filter = h("input", { class: "picker-filter", placeholder: `Search ${CHAINS.length} chains…`, "aria-label": "Filter blockchains", autocomplete: "off", spellcheck: "false" });
-    const list = h("div", { class: "picker-list", role: "listbox", "aria-label": "Blockchains" });
+    const filter = h("input", { class: "picker-filter", placeholder: t("picker.filterPlaceholder", { count: CHAINS.length }), "aria-label": t("picker.filterLabel"), autocomplete: "off", spellcheck: "false" });
+    const list = h("div", { class: "picker-list", role: "listbox", "aria-label": t("picker.listLabel") });
     const panel = h("div", { class: "picker-panel", hidden: true }, h("div", { class: "picker-search" }, icon("search"), filter), list);
     const el = h("div", { class: "picker" }, button, panel);
     const paintButton = () => {
-      glyphSlot.replaceChildren(glyph(current.id, current.name, "md"));
-      label.textContent = auto ? "Auto-detected" : "Blockchain";
+      glyphSlot.replaceChildren(glyph(current2.id, current2.name, "md"));
+      label.textContent = auto ? t("picker.autoDetected") : t("picker.blockchain");
       label.classList.toggle("accent", auto);
-      nameEl.textContent = current.name;
-      button.setAttribute("aria-label", `Blockchain: ${current.name}${auto ? " (auto-detected)" : ""}. Change blockchain`);
+      nameEl.textContent = current2.name;
+      button.setAttribute("aria-label", t(auto ? "picker.buttonLabelAuto" : "picker.buttonLabel", { chain: current2.name }));
     };
     const sections = () => {
       const f = filter.value.trim().toLowerCase();
@@ -10790,13 +19898,13 @@
       if (f) {
         const starts = CHAINS.filter((c) => c.name.toLowerCase().startsWith(f));
         const contains = CHAINS.filter((c) => !c.name.toLowerCase().startsWith(f) && (c.name.toLowerCase().includes(f) || c.id.includes(f)));
-        return [["Results", [...starts, ...contains]]];
+        return [[t("picker.results"), [...starts, ...contains]]];
       }
       return [
-        ...detected.length ? [["Detected", byIds(detected)]] : [],
-        ...favourites.length ? [["Favourites", byIds(favourites)]] : [],
-        ["Popular", byIds(POPULAR_CHAIN_IDS)],
-        [`All chains · ${CHAINS.length}`, CHAINS]
+        ...detected.length ? [[t("picker.detected"), byIds(detected)]] : [],
+        ...favourites.length ? [[t("picker.favourites"), byIds(favourites)]] : [],
+        [t("picker.popular"), byIds(POPULAR_CHAIN_IDS)],
+        [t("picker.allChains", { count: CHAINS.length }), CHAINS]
       ];
     };
     const renderList = () => {
@@ -10810,18 +19918,18 @@
           const fav = favourites.includes(c.id);
           const row = h(
             "div",
-            { class: `picker-row${i === active ? " active" : ""}`, role: "option", "aria-selected": String(c.id === current.id), "data-i": String(i) },
+            { class: `picker-row${i === active ? " active" : ""}`, role: "option", "aria-selected": String(c.id === current2.id), "data-i": String(i) },
             glyph(c.id, c.name, "sm"),
             h("span", { class: "picker-row-name" }, c.name),
-            explorerDown(c) ? h("span", { class: "tag warn" }, "explorer down") : c.fallback ? h("span", { class: "tag warn" }, "limited") : null,
-            c.id === current.id ? icon("check", "ic accent") : null,
+            explorerDown(c) ? h("span", { class: "tag warn" }, t("picker.explorerDown")) : c.fallback ? h("span", { class: "tag warn" }, t("picker.limited")) : null,
+            c.id === current2.id ? icon("check", "ic accent") : null,
             opts.onToggleFavourite ? h(
               "button",
               {
                 type: "button",
                 class: `star${fav ? " on" : ""}`,
                 tabindex: "-1",
-                "aria-label": fav ? `Unpin ${c.name}` : `Pin ${c.name}`,
+                "aria-label": t(fav ? "picker.unpin" : "picker.pin", { chain: c.name }),
                 on: {
                   click: (e) => {
                     e.stopPropagation();
@@ -10839,7 +19947,7 @@
           list.append(row);
         }
       }
-      if (!options.length) list.append(h("p", { class: "picker-empty" }, `No chain matches “${filter.value}”`));
+      if (!options.length) list.append(h("p", { class: "picker-empty" }, t("picker.noMatch", { query: filter.value })));
     };
     const setActive = (i, scroll = true) => {
       active = Math.max(0, Math.min(i, options.length - 1));
@@ -10861,7 +19969,7 @@
       button.setAttribute("aria-expanded", "false");
     };
     const pick = (c) => {
-      current = c;
+      current2 = c;
       auto = false;
       paintButton();
       close();
@@ -10890,9 +19998,9 @@
     paintButton();
     return {
       el,
-      value: () => current,
+      value: () => current2,
       set: (c, o) => {
-        current = c;
+        current2 = c;
         auto = Boolean(o?.auto);
         paintButton();
       },
@@ -10931,7 +20039,7 @@
   // lib/batch.ts
   var BATCH_MAX = 50;
   function parseBatch(text, max = BATCH_MAX) {
-    const tokens = text.split(/[\s,;]+/).map((t) => t.trim()).filter(Boolean);
+    const tokens = text.split(/[\s,;]+/).map((t2) => t2.trim()).filter(Boolean);
     const seen = /* @__PURE__ */ new Set();
     const rows = [];
     let truncated = 0;
@@ -11019,25 +20127,11 @@
   function shortHash(s, head = 8, tail = 6) {
     return s.length <= head + tail + 1 ? s : `${s.slice(0, head)}…${s.slice(-tail)}`;
   }
-  function formatUtc(t) {
-    if (t === null || t === void 0 || t === "") return "—";
-    const d = typeof t === "number" ? new Date(t < 1e12 ? t * 1e3 : t) : new Date(t);
+  function formatUtc(t2) {
+    if (t2 === null || t2 === void 0 || t2 === "") return "—";
+    const d = typeof t2 === "number" ? new Date(t2 < 1e12 ? t2 * 1e3 : t2) : new Date(t2);
     if (Number.isNaN(d.getTime())) return "—";
     return `${d.toISOString().slice(0, 16).replace("T", " ")} UTC`;
-  }
-  function timeAgo(t, now = Date.now()) {
-    if (t === null || t === void 0 || t === "") return "";
-    const ms = typeof t === "number" ? t < 1e12 ? t * 1e3 : t : new Date(t).getTime();
-    const s = Math.round((now - ms) / 1e3);
-    if (!Number.isFinite(s)) return "";
-    if (s < -300) return "in the future";
-    if (s < 1) return "just now";
-    if (s < 60) return `${s}s ago`;
-    if (s < 3600) return `${Math.floor(s / 60)} min ago`;
-    if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
-    if (s < 86400 * 60) return `${Math.floor(s / 86400)} days ago`;
-    if (s < 86400 * 730) return `${Math.floor(s / (86400 * 30))} months ago`;
-    return `${Math.floor(s / (86400 * 365))} years ago`;
   }
   function formatUsd(n) {
     if (n === null || n === void 0 || !Number.isFinite(n)) return "";
@@ -11102,15 +20196,15 @@
     return h("span", { class: `mono ${cls}` }, text);
   }
   function sectionBody(s, render2) {
-    if (s.status !== "ok") return [note(`Unavailable${s.source ? ` from ${s.source.name}` : ""}: ${s.reason}. Nothing is shown rather than a guess.`, "warn")];
+    if (s.status !== "ok") return [note(s.source ? t("source.unavailableFrom", { source: s.source.name, reason: s.reason }) : t("source.unavailable", { reason: s.reason }), "warn")];
     const out = render2(s.data);
     return [
       ...Array.isArray(out) ? out : [out],
       h(
         "p",
         { class: "source" },
-        `Source: ${s.source.name} · fetched ${timeAgo(s.fetchedAt)}`,
-        s.stale ? h("span", { class: "stale" }, " · stale (source not responding)") : null
+        t("source.line", { source: s.source.name, ago: ago(s.fetchedAt) }),
+        s.stale ? h("span", { class: "stale" }, ` ${t("source.stale")}`) : null
       )
     ];
   }
@@ -11126,14 +20220,14 @@
       { class: "chips" },
       links.map((l, i) => {
         const a = ext_link(l.href, [l.unreachable ? icon("warning", "ic warn") : null, l.name, icon("external", "ic xs")], i === 0 && !l.unreachable ? "chip primary" : "chip");
-        if (l.unreachable) a.setAttribute("title", "Did not respond at the last health check");
+        if (l.unreachable) a.setAttribute("title", t("source.explorerDown"));
         return a;
       })
     );
   }
-  function when(t) {
-    if (!t) return "—";
-    return `${formatUtc(t)} (${timeAgo(t)})`;
+  function when(ts) {
+    if (!ts) return "—";
+    return `${formatUtc(ts)} (${ago(ts)})`;
   }
   function loading(text) {
     return h("p", { class: "muted pulse" }, text);
@@ -11142,7 +20236,11 @@
     return h("p", { class: "error", role: "alert" }, text);
   }
   function failMessage(e) {
-    return e instanceof ApiError ? e.message : "Web3Lens sent an answer this version of the extension can’t read. Explorer links and local checks still work; updating the extension should fix it.";
+    if (!(e instanceof ApiError)) return t("api.badAnswer");
+    if (e.status === 0) return e.message.startsWith("Web3Lens took too long") ? t("api.timeout") : t("api.unreachable");
+    if (e.status === 429 && e.message.startsWith("Too many lookups")) return t("api.rateLimited");
+    if (e.message.startsWith("The Web3Lens lookup service is unavailable")) return t("api.serviceDown", { status: e.status });
+    return e.message;
   }
 
   // extension-src/src/views/batch.ts
@@ -11156,7 +20254,7 @@
       const table2 = h(
         "table",
         { class: "table" },
-        h("thead", null, h("tr", null, h("th", null, "Value"), h("th", null, "Type"), h("th", null, "Checks"), h("th", null, "EVM"), h("th", null, ""))),
+        h("thead", null, h("tr", null, h("th", null, t("batch.valueCol")), h("th", null, t("batch.typeCol")), h("th", null, t("batch.checksCol")), h("th", null, "EVM"), h("th", null, ""))),
         h(
           "tbody",
           null,
@@ -11169,8 +20267,8 @@
               "tr",
               null,
               h("td", null, h("span", { class: "mono", title: d?.normalized ?? r.input }, shortHash(d?.normalized ?? r.input, 8, 6)), label ? h("div", { class: "accent small" }, label) : null),
-              h("td", null, d?.label ?? "not recognised"),
-              h("td", null, d?.kind === "secret" ? badge("secret", "danger") : null, d?.checksum === "valid" ? badge("ok", "good") : null, d?.checksum === "invalid" ? badge("bad checksum", "danger") : null, r.sanctions?.listed ? badge("OFAC", "danger") : null),
+              h("td", null, d ? detectLabel(d.label) : t("batch.notRecognised")),
+              h("td", null, d?.kind === "secret" ? badge(t("batch.secret"), "danger") : null, d?.checksum === "valid" ? badge(t("batch.ok"), "good") : null, d?.checksum === "invalid" ? badge(t("search.badChecksum"), "danger") : null, r.sanctions?.listed ? badge("OFAC", "danger") : null),
               h("td", { class: "muted" }, d ? balances.get(d.normalized) ?? "" : ""),
               h("td", null, link ? ext_link(link.href, `${link.name} ↗`) : null)
             );
@@ -11180,7 +20278,7 @@
       const evm = rows.filter((r) => r.detection?.format === "evm-address" && r.detection.checksum !== "invalid");
       clear(
         out,
-        truncated ? note(`${truncated} more left out (limit ${BATCH_MAX}).`, "warn") : null,
+        truncated ? note(t("batch.leftOut", { count: truncated, max: BATCH_MAX }), "warn") : null,
         h(
           "div",
           { class: "row wrap" },
@@ -11191,24 +20289,24 @@
               class: "btn-ghost sm",
               on: {
                 click: async () => {
-                  if (!ctx.state.settings.network) return msg.textContent = "Online lookups are off in settings.";
+                  if (!ctx.state.settings.network) return msg.textContent = t("common.offInSettings");
                   for (const r of evm) {
                     const q = r.detection.normalized;
-                    balances.set(q, "checking…");
+                    balances.set(q, t("batch.checking"));
                     render2();
                     try {
                       const m = await apiGet("multichain", { q });
                       const ok = m.rows.filter((x) => x.status === "ok");
-                      balances.set(q, `${ok.filter((x) => x.balanceWei !== "0" || (x.nonce ?? 0) > 0).length}/${m.rows.length} active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || "$0"}`);
+                      balances.set(q, t("batch.active", { active: ok.filter((x) => x.balanceWei !== "0" || (x.nonce ?? 0) > 0).length, total: m.rows.length, usd: formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || "$0" }));
                     } catch (e) {
-                      balances.set(q, `unavailable: ${e.message}`);
+                      balances.set(q, t("common.unavailableReason", { reason: e.message }));
                     }
                     render2();
                   }
                 }
               }
             },
-            `Fetch EVM balances (${evm.length})`
+            t("batch.fetchBalances", { count: evm.length })
           ) : null,
           rows.length ? h(
             "button",
@@ -11226,7 +20324,7 @@
                 }
               }
             },
-            "Export CSV"
+            t("batch.exportCsv")
           ) : null,
           rows.length ? h(
             "button",
@@ -11236,11 +20334,11 @@
               on: {
                 click: async () => {
                   for (const r of rows) if (r.detection && r.detection.kind !== "secret") await upsertSaved({ query: r.detection.normalized, chainId: null });
-                  msg.textContent = "Saved to this browser.";
+                  msg.textContent = t("batch.savedMsg");
                 }
               }
             },
-            "Save all"
+            t("batch.saveAll")
           ) : null,
           rows.length ? h(
             "button",
@@ -11252,25 +20350,25 @@
                   const items = rows.filter((r) => r.detection && r.detection.kind !== "secret").map((r) => ({ q: r.detection.normalized }));
                   const url = investigationUrl({ v: 1, t: `Batch of ${items.length}`, items }, ctx.state.settings.apiBase);
                   await copy(url);
-                  msg.textContent = "Share link copied (opens on web3lens.com; the list is inside the link).";
+                  msg.textContent = t("batch.shareCopied");
                 }
               }
             },
-            "Copy share link"
+            t("batch.copyShare")
           ) : null
         ),
         msg,
-        rows.length ? card(`${rows.length} checked`, h("div", { class: "scroll-x" }, table2)) : null
+        rows.length ? card(t("batch.checked", { count: rows.length }), h("div", { class: "scroll-x" }, table2)) : null
       );
     }
     return h(
       "div",
       { class: "stack" },
-      h("p", { class: "label" }, "Batch search"),
-      h("h1", { class: "heading" }, "Check a list at once"),
-      h("p", { class: "muted" }, `Up to ${BATCH_MAX} addresses, hashes or names: one per line, or separated by commas or spaces.`),
+      h("p", { class: "label" }, t("app.batchSearch")),
+      h("h1", { class: "heading" }, t("batch.title")),
+      h("p", { class: "muted" }, t("batch.intro", { max: BATCH_MAX })),
       text,
-      h("div", { class: "row" }, h("button", { type: "button", class: "btn", on: { click: render2 } }, "Check all")),
+      h("div", { class: "row" }, h("button", { type: "button", class: "btn", on: { click: render2 } }, t("batch.checkAll"))),
       out
     );
   }
@@ -11539,6 +20637,7 @@
   }
 
   // extension-src/src/views/results.ts
+  var TX_STATUS = { success: "result.success", failed: "result.failed", pending: "common.pending" };
   function qrSvg(value) {
     try {
       const { path, viewBox } = qrSvgPath(encodeQr(value));
@@ -11546,7 +20645,7 @@
       const svg = document.createElementNS(NS, "svg");
       svg.setAttribute("viewBox", viewBox);
       svg.setAttribute("role", "img");
-      svg.setAttribute("aria-label", "QR code");
+      svg.setAttribute("aria-label", t("result.qr"));
       svg.setAttribute("shape-rendering", "crispEdges");
       const p = document.createElementNS(NS, "path");
       p.setAttribute("d", path);
@@ -11571,21 +20670,21 @@
     const out = [];
     if (r.family === "evm") {
       out.push(
-        sourcedCard("Balance", r.account, (a) => [
+        sourcedCard(t("result.balance"), r.account, (a) => [
           h("p", { class: "big" }, formatAmount(a.balance, r.chain.symbol, 6)),
-          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? `≈ ${formatUsd(Number(a.balance) * r.priceUsd.data)} (CoinGecko)` : "USD value unavailable"),
+          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? t("result.usdApprox", { usd: formatUsd(Number(a.balance) * r.priceUsd.data) }) : t("result.noUsd")),
           facts([
-            ["Type", a.delegatedTo ? `EIP-7702 delegated to ${shortHash(a.delegatedTo)}` : a.isContract ? `Contract (${a.codeSize} bytes)` : "Wallet (no code)"],
-            ["Sent txs", formatCount(a.nonce)],
+            [t("result.type"), a.delegatedTo ? t("result.delegated", { address: shortHash(a.delegatedTo) }) : a.isContract ? t("result.contractBytes", { count: a.codeSize }) : t("result.walletNoCode")],
+            [t("result.sentTxs"), formatCount(a.nonce)],
             ["ENS", r.ensName.status === "ok" && r.ensName.data ? r.ensName.data : null],
-            ["Resolved from", r.resolvedFrom ?? null]
+            [t("result.resolvedFrom"), r.resolvedFrom ?? null]
           ])
         ])
       );
       out.push(
-        sourcedCard("Tokens", r.tokens, (t) => {
-          const shown = t.items.filter((i) => !i.flagged).slice(0, compact ? 5 : 50);
-          const flagged = t.items.filter((i) => i.flagged).length;
+        sourcedCard(t("result.tokens"), r.tokens, (v) => {
+          const shown = v.items.filter((i) => !i.flagged).slice(0, compact ? 5 : 50);
+          const flagged = v.items.filter((i) => i.flagged).length;
           return [
             shown.length ? h(
               "ul",
@@ -11593,62 +20692,62 @@
               shown.map(
                 (tk) => h("li", null, h("span", null, h("b", null, tk.symbol ?? shortHash(tk.contract)), " ", h("span", { class: "muted" }, tk.name ?? "")), h("span", { class: "num" }, tk.balance ? formatAmount(tk.balance, null, 4) : tk.balanceRaw, tk.priceUsd && tk.balance ? h("span", { class: "muted" }, ` ${formatUsd(Number(tk.balance) * tk.priceUsd)}`) : null))
               )
-            ) : h("p", { class: "muted" }, "No ERC-20 tokens."),
-            flagged ? note(`${flagged} token(s) hidden: flagged as spam by the indexer, or with no name or symbol. Don't interact with tokens you didn't expect.`, "warn") : null,
-            t.coverage?.kind === "known-list" ? note(`Only ${t.coverage.checked} well-known tokens were checked (no free token index covers ${r.chain.name}); other holdings aren't shown.`, "warn") : null
+            ) : h("p", { class: "muted" }, t("result.noErc20")),
+            flagged ? note(t("result.hiddenTokens", { count: flagged }), "warn") : null,
+            v.coverage?.kind === "known-list" ? note(t("result.knownOnly", { count: v.coverage.checked, chain: r.chain.name }), "warn") : null
           ].filter(Boolean);
         })
       );
       if (!compact) {
         out.push(
-          sourcedCard("Activity", r.activity, (a) => [
+          sourcedCard(t("result.activity"), r.activity, (a) => [
             facts([
-              ["Transactions", formatCount(a.txCount)],
-              ["Token transfers", formatCount(a.transfers)]
+              [t("result.transactions"), formatCount(a.txCount)],
+              [t("result.tokenTransfers"), formatCount(a.transfers)]
             ]),
             h(
               "ul",
               { class: "list" },
               a.recent.map(
-                (t) => h("li", null, h("span", null, txLink(nav2, c, t.hash), " ", h("span", { class: "muted" }, t.method ?? "")), h("span", { class: "num" }, formatAmount(formatUnits(BigInt(t.valueWei), 18), r.chain.symbol, 4), h("span", { class: "muted" }, ` ${t.timestamp ? timeAgo(t.timestamp) : "just now"}`)))
+                (v) => h("li", null, h("span", null, txLink(nav2, c, v.hash), " ", h("span", { class: "muted" }, v.method ?? "")), h("span", { class: "num" }, formatAmount(formatUnits(BigInt(v.valueWei), 18), r.chain.symbol, 4), h("span", { class: "muted" }, ` ${ago(v.timestamp ?? Date.now())}`)))
               )
             )
           ]),
-          sourcedCard("Labels and contract", r.info, (i) => [
-            i.isScam || i.reputation && i.reputation !== "ok" ? note(`Blockscout flags this address (${i.isScam ? "scam" : i.reputation}).`, "danger") : null,
+          sourcedCard(t("result.labelsContract"), r.info, (i) => [
+            i.isScam || i.reputation && i.reputation !== "ok" ? note(t("result.flagged", { reason: i.isScam ? t("result.scam") : String(i.reputation) }), "danger") : null,
             facts([
-              ["Name", i.name ?? "—"],
-              ["Tags", i.tags.length ? i.tags.join(", ") : "—"],
-              ["Verified source", i.isContract ? i.isVerified ? "Yes" : "No" : null],
-              ["Proxy", i.isContract ? i.proxyType ?? "no" : null],
-              ["Token", i.token ? `${i.token.name ?? "?"} (${i.token.symbol ?? "?"}) ${i.token.type}` : null]
+              [t("result.name"), i.name ?? "—"],
+              [t("result.tags"), i.tags.length ? i.tags.join(", ") : "—"],
+              [t("result.verifiedSource"), i.isContract ? i.isVerified ? t("common.yes") : t("common.no") : null],
+              [t("result.proxy"), i.isContract ? i.proxyType ?? t("common.noLower") : null],
+              [t("result.token"), i.token ? `${i.token.name ?? "?"} (${i.token.symbol ?? "?"}) ${i.token.type}` : null]
             ])
           ].filter(Boolean))
         );
       }
     } else if (r.family === "utxo") {
       out.push(
-        sourcedCard("Balance", r.account, (a) => [
+        sourcedCard(t("result.balance"), r.account, (a) => [
           h("p", { class: "big" }, formatAmount(a.balance, r.chain.symbol, 8)),
-          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? `≈ ${formatUsd(Number(a.balance) * r.priceUsd.data)} (CoinGecko)` : "USD value unavailable"),
-          a.mempoolTxCount ? note(`${a.mempoolTxCount} unconfirmed transaction(s) pending, not included above.`, "warn") : h("span"),
+          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? t("result.usdApprox", { usd: formatUsd(Number(a.balance) * r.priceUsd.data) }) : t("result.noUsd")),
+          a.mempoolTxCount ? note(t("result.unconfirmed", { count: a.mempoolTxCount }), "warn") : h("span"),
           facts([
-            ["Received", formatAmount(formatUnits(BigInt(a.receivedSat), 8), r.chain.symbol, 8)],
-            ["Sent", formatAmount(formatUnits(BigInt(a.sentSat), 8), r.chain.symbol, 8)],
-            ["Transactions", formatCount(a.txCount)]
+            [t("result.received"), formatAmount(formatUnits(BigInt(a.receivedSat), 8), r.chain.symbol, 8)],
+            [t("result.sent"), formatAmount(formatUnits(BigInt(a.sentSat), 8), r.chain.symbol, 8)],
+            [t("result.transactions"), formatCount(a.txCount)]
           ])
         ])
       );
       if (!compact) {
         out.push(
           sourcedCard(
-            "Recent transactions",
+            t("result.recentTxs"),
             r.recent,
             (list) => h(
               "ul",
               { class: "list" },
               list.map(
-                (t) => h("li", null, txLink(nav2, c, t.txid), h("span", { class: `num ${t.netSat !== null && t.netSat < 0 ? "neg" : "pos"}` }, t.netSat === null ? "—" : formatAmount(formatUnits(BigInt(t.netSat), 8), r.chain.symbol, 8), h("span", { class: "muted" }, ` ${t.time ? timeAgo(t.time) : "pending"}`)))
+                (v) => h("li", null, txLink(nav2, c, v.txid), h("span", { class: `num ${v.netSat !== null && v.netSat < 0 ? "neg" : "pos"}` }, v.netSat === null ? "—" : formatAmount(formatUnits(BigInt(v.netSat), 8), r.chain.symbol, 8), h("span", { class: "muted" }, ` ${v.time ? ago(v.time) : t("common.pending")}`)))
               )
             )
           )
@@ -11656,22 +20755,22 @@
       }
     } else {
       out.push(
-        sourcedCard("Balance", r.account, (a) => [
+        sourcedCard(t("result.balance"), r.account, (a) => [
           h("p", { class: "big" }, formatAmount(a.balance, "SOL", 6)),
-          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? `≈ ${formatUsd(Number(a.balance) * r.priceUsd.data)} (CoinGecko)` : "USD value unavailable"),
+          h("p", { class: "muted" }, r.priceUsd.status === "ok" ? t("result.usdApprox", { usd: formatUsd(Number(a.balance) * r.priceUsd.data) }) : t("result.noUsd")),
           facts([
-            ["Account", a.exists ? a.executable ? "Program" : "Account" : "Not found on-chain"],
-            ["Owner", a.owner ? shortHash(a.owner) : "—"]
+            [t("result.account"), a.exists ? a.executable ? t("result.program") : t("result.account") : t("result.notFound")],
+            [t("result.owner"), a.owner ? shortHash(a.owner) : "—"]
           ])
         ])
       );
       if (!compact) {
         out.push(
-          sourcedCard("SPL tokens", r.tokens, (t) => [
-            t.items.length ? h("ul", { class: "list" }, t.items.slice(0, 50).map((x) => h("li", null, mono(shortHash(x.mint, 6, 6)), h("span", { class: "num" }, formatAmount(x.amount, null, 4))))) : h("p", { class: "muted" }, "No SPL token balances."),
-            t.partial ? note("Token-2022 balances could not be read from the public RPC.", "warn") : h("span")
+          sourcedCard(t("result.splTokens"), r.tokens, (v) => [
+            v.items.length ? h("ul", { class: "list" }, v.items.slice(0, 50).map((x) => h("li", null, mono(shortHash(x.mint, 6, 6)), h("span", { class: "num" }, formatAmount(x.amount, null, 4))))) : h("p", { class: "muted" }, t("result.noSpl")),
+            v.partial ? note(t("result.token2022"), "warn") : h("span")
           ]),
-          sourcedCard("Recent signatures", r.recent, (list) => h("ul", { class: "list" }, list.map((s) => h("li", null, txLink(nav2, "solana", s.signature), h("span", { class: "muted" }, `${s.failed ? "failed · " : ""}${timeAgo(s.time)}`)))))
+          sourcedCard(t("result.recentSigs"), r.recent, (list) => h("ul", { class: "list" }, list.map((s) => h("li", null, txLink(nav2, "solana", s.signature), h("span", { class: "muted" }, `${s.failed ? `${t("result.failed")} · ` : ""}${ago(s.time)}`)))))
         );
       }
     }
@@ -11682,91 +20781,91 @@
     if (r.family === "evm") {
       return [
         sourcedCard(
-          "Transaction",
+          t("result.transaction"),
           r.tx,
-          (t) => !t ? note(`${r.chain.name} doesn't know this transaction.`, "warn") : facts([
-            ["Status", badge(t.status, t.status === "success" ? "good" : t.status === "failed" ? "danger" : "warn")],
-            ["Block", t.blockNumber === null ? "pending" : `${formatCount(t.blockNumber)} · ${formatCount(t.confirmations)} conf.`],
-            ["Time", when(t.timestamp)],
-            ["From", addrLink(nav2, c, t.from)],
-            ["To", addrLink(nav2, c, t.to ?? t.contractCreated)],
-            ["Value", `${formatAmount(formatUnits(BigInt(t.valueWei), 18), r.chain.symbol, 18)}${usd(formatUnits(BigInt(t.valueWei), 18), r.priceUsd)}`],
-            ["Fee", t.feeWei ? `${formatAmount(formatUnits(BigInt(t.feeWei), 18), r.chain.symbol, 9)}${usd(formatUnits(BigInt(t.feeWei), 18), r.priceUsd)}` : "pending"]
+          (v) => !v ? note(t("result.unknownTx", { chain: r.chain.name }), "warn") : facts([
+            [t("result.status"), badge(TX_STATUS[v.status] ? t(TX_STATUS[v.status]) : v.status, v.status === "success" ? "good" : v.status === "failed" ? "danger" : "warn")],
+            [t("result.block"), v.blockNumber === null ? t("common.pending") : t("result.conf", { block: formatCount(v.blockNumber), count: formatCount(v.confirmations) })],
+            [t("result.time"), when(v.timestamp)],
+            [t("result.from"), addrLink(nav2, c, v.from)],
+            [t("result.to"), addrLink(nav2, c, v.to ?? v.contractCreated)],
+            [t("result.value"), `${formatAmount(formatUnits(BigInt(v.valueWei), 18), r.chain.symbol, 18)}${usd(formatUnits(BigInt(v.valueWei), 18), r.priceUsd)}`],
+            [t("result.fee"), v.feeWei ? `${formatAmount(formatUnits(BigInt(v.feeWei), 18), r.chain.symbol, 9)}${usd(formatUnits(BigInt(v.feeWei), 18), r.priceUsd)}` : t("common.pending")]
           ])
         ),
         r.decoded.length ? card(
-          "Input",
+          t("result.input"),
           ...r.decoded.map(
-            (d) => h("div", { class: "decoded" }, h("p", { class: "mono accent" }, d.signature), badge(d.via === "verified" ? "verified ABI" : "guessed", d.via === "verified" ? "good" : "warn"), facts(d.params.map((p) => [`${p.name} (${p.type})`, mono(p.value)])))
+            (d) => h("div", { class: "decoded" }, h("p", { class: "mono accent" }, d.signature), badge(d.via === "verified" ? t("result.verifiedAbi") : t("result.guessed"), d.via === "verified" ? "good" : "warn"), facts(d.params.map((p) => [`${p.name} (${p.type})`, mono(p.value)])))
           )
         ) : h("span"),
-        r.detail.status === "ok" && r.detail.data.tokenTransfers.length ? card("Token transfers", h("ul", { class: "list" }, r.detail.data.tokenTransfers.map((tt) => h("li", null, h("span", null, `${tt.amount ?? "—"} ${tt.token.symbol ?? ""}`), h("span", { class: "muted" }, `${shortHash(tt.from, 6, 4)} → ${shortHash(tt.to, 6, 4)}`))))) : h("span")
+        r.detail.status === "ok" && r.detail.data.tokenTransfers.length ? card(t("result.tokenTransfers"), h("ul", { class: "list" }, r.detail.data.tokenTransfers.map((tt) => h("li", null, h("span", null, `${tt.amount ?? "—"} ${tt.token.symbol ?? ""}`), h("span", { class: "muted" }, `${shortHash(tt.from, 6, 4)} → ${shortHash(tt.to, 6, 4)}`))))) : h("span")
       ];
     }
     if (r.family === "utxo") {
       return [
         sourcedCard(
-          "Transaction",
+          t("result.transaction"),
           r.tx,
-          (t) => !t ? note(`${r.chain.name} doesn't know this transaction.`, "warn") : [
+          (v) => !v ? note(t("result.unknownTx", { chain: r.chain.name }), "warn") : [
             facts([
-              ["Status", badge(t.confirmed ? "confirmed" : "unconfirmed", t.confirmed ? "good" : "warn")],
-              ["Block", t.blockHeight === null ? "mempool" : `${formatCount(t.blockHeight)} · ${formatCount(t.confirmations)} conf.`],
-              ["Time", when(t.time)],
-              ["Output", `${formatAmount(formatUnits(BigInt(t.totalOutSat), 8), r.chain.symbol, 8)}${usd(formatUnits(BigInt(t.totalOutSat), 8), r.priceUsd)}`],
-              ["Fee", `${formatAmount(formatUnits(BigInt(t.feeSat), 8), r.chain.symbol, 8)} · ${t.feeRate} sat/vB`]
+              [t("result.status"), badge(v.confirmed ? t("result.confirmed") : t("result.unconfirmedBadge"), v.confirmed ? "good" : "warn")],
+              [t("result.block"), v.blockHeight === null ? t("result.mempool") : t("result.conf", { block: formatCount(v.blockHeight), count: formatCount(v.confirmations) })],
+              [t("result.time"), when(v.time)],
+              [t("result.output"), `${formatAmount(formatUnits(BigInt(v.totalOutSat), 8), r.chain.symbol, 8)}${usd(formatUnits(BigInt(v.totalOutSat), 8), r.priceUsd)}`],
+              [t("result.fee"), `${formatAmount(formatUnits(BigInt(v.feeSat), 8), r.chain.symbol, 8)} · ${v.feeRate} sat/vB`]
             ]),
-            h("h3", null, `Outputs (${t.outputs.length})`),
-            h("ul", { class: "list" }, t.outputs.slice(0, 20).map((o) => h("li", null, o.address ? addrLink(nav2, c, o.address) : mono(o.type), h("span", { class: "num" }, formatAmount(formatUnits(BigInt(o.valueSat), 8), null, 8)))))
+            h("h3", null, t("result.outputs", { count: v.outputs.length })),
+            h("ul", { class: "list" }, v.outputs.slice(0, 20).map((o) => h("li", null, o.address ? addrLink(nav2, c, o.address) : mono(o.type), h("span", { class: "num" }, formatAmount(formatUnits(BigInt(o.valueSat), 8), null, 8)))))
           ]
         )
       ];
     }
     return [
       sourcedCard(
-        "Transaction",
+        t("result.transaction"),
         r.tx,
-        (t) => !t ? note("Solana doesn't know this signature.", "warn") : facts([
-          ["Status", badge(t.failed ? "failed" : "success", t.failed ? "danger" : "good")],
-          ["Slot", formatCount(t.slot)],
-          ["Time", when(t.time)],
-          ["Fee", `${formatAmount(formatUnits(BigInt(t.feeLamports), 9), "SOL", 9)}`],
-          ["Signer", t.signers[0] ? addrLink(nav2, "solana", t.signers[0]) : "—"]
+        (v) => !v ? note(t("result.unknownSig"), "warn") : facts([
+          [t("result.status"), badge(v.failed ? t("result.failed") : t("result.success"), v.failed ? "danger" : "good")],
+          [t("result.slot"), formatCount(v.slot)],
+          [t("result.time"), when(v.time)],
+          [t("result.fee"), `${formatAmount(formatUnits(BigInt(v.feeLamports), 9), "SOL", 9)}`],
+          [t("result.signer"), v.signers[0] ? addrLink(nav2, "solana", v.signers[0]) : "—"]
         ])
       )
     ];
   }
   function securityCard(chainId, address) {
-    const body = h("div", null, loading("Checking sanctions, reports and contract…"));
-    const el = h("section", { class: "card" }, h("h2", null, "Risk checks"), body);
+    const body = h("div", null, loading(t("risk.checking")));
+    const el = h("section", { class: "card" }, h("h2", null, t("risk.title")), body);
     apiGet("security", { chain: chainId, q: address }).then((s) => {
       const rows = [
-        s.flagCount > 0 ? note(`${s.flagCount} risk signal(s) found. Don't send funds or sign anything without checking.`, "danger") : note("No reports in the sources below. That does not mean it is safe: most scams are never reported.", "info"),
+        s.flagCount > 0 ? note(t("risk.signals", { count: s.flagCount }), "danger") : note(t("risk.noReports"), "info"),
         facts([
-          ["OFAC", s.sanctions.listed ? `LISTED (${s.sanctions.lists.join(", ")})` : `not listed (snapshot ${s.sanctions.snapshotAt.slice(0, 10)})`],
+          ["OFAC", s.sanctions.listed ? t("risk.listed", { lists: s.sanctions.lists.join(", ") }) : t("risk.notListed", { date: s.sanctions.snapshotAt.slice(0, 10) })],
           .../^0x[0-9a-fA-F]{40}$/.test(address) ? [
-            ["Blockscout", s.reputation.status === "ok" ? s.reputation.data.isScam ? "marked as scam" : s.reputation.data.reputation && s.reputation.data.reputation !== "ok" ? s.reputation.data.reputation : "not flagged" : `unavailable (${s.reputation.reason})`],
-            ["GoPlus", s.goplus.status === "ok" ? s.goplus.data.flags.length ? s.goplus.data.flags.join(", ") : "no reports" : `unavailable (${s.goplus.reason})`]
-          ] : [["Scam reports", "not checked: the free sources cover EVM chains only"]],
+            ["Blockscout", s.reputation.status === "ok" ? s.reputation.data.isScam ? t("risk.markedScam") : s.reputation.data.reputation && s.reputation.data.reputation !== "ok" ? s.reputation.data.reputation : t("risk.notFlagged") : t("common.unavailableParen", { reason: s.reputation.reason })],
+            ["GoPlus", s.goplus.status === "ok" ? s.goplus.data.flags.length ? s.goplus.data.flags.join(", ") : t("risk.noReportsShort") : t("common.unavailableParen", { reason: s.goplus.reason })]
+          ] : [[t("risk.scamReports"), t("risk.notChecked")]],
           ...s.contract ? [
-            ["Verified", [s.contract.verification.blockscout, s.contract.verification.sourcify].map((v, i) => `${i ? "Sourcify" : "Blockscout"}: ${v.status === "ok" ? "verified" in v.data ? v.data.verified ? "yes" : "no" : v.data.match ? v.data.match : "no" : "unavailable"}`).join(" · ")],
-            ["Upgradeable", s.contract.proxy.status === "ok" ? s.contract.proxy.data.implementation ? `yes → ${shortHash(s.contract.proxy.data.implementation)}` : "no EIP-1967 slots" : "unavailable"],
-            ["Owner", s.contract.owner.status === "ok" ? s.contract.owner.data === null ? "no owner()" : s.contract.owner.data.renounced ? "renounced" : `${shortHash(s.contract.owner.data.owner)} (${s.contract.owner.data.ownerIsContract ? "contract" : "wallet"})` : "unavailable"],
-            ["Admin functions", s.contract.privileged?.length ? `${s.contract.privileged.length} (mint/pause/blacklist/upgrade…)` : s.contract.privileged ? "none found" : null],
-            ["Token risk", s.goplusToken.status === "ok" && s.goplusToken.data ? s.goplusToken.data.flags.join(", ") || "no flags" : null]
+            [t("risk.verified"), [s.contract.verification.blockscout, s.contract.verification.sourcify].map((v, i) => `${i ? "Sourcify" : "Blockscout"}: ${v.status === "ok" ? "verified" in v.data ? v.data.verified ? t("common.yesLower") : t("common.noLower") : v.data.match ? v.data.match : t("common.noLower") : t("common.unavailable")}`).join(" · ")],
+            [t("risk.upgradeable"), s.contract.proxy.status === "ok" ? s.contract.proxy.data.implementation ? t("risk.yesArrow", { address: shortHash(s.contract.proxy.data.implementation) }) : t("risk.noSlots") : t("common.unavailable")],
+            [t("result.owner"), s.contract.owner.status === "ok" ? s.contract.owner.data === null ? t("risk.noOwner") : s.contract.owner.data.renounced ? t("risk.renounced") : `${shortHash(s.contract.owner.data.owner)} (${s.contract.owner.data.ownerIsContract ? t("risk.contract") : t("risk.wallet")})` : t("common.unavailable")],
+            [t("risk.admin"), s.contract.privileged?.length ? t("risk.adminCount", { count: s.contract.privileged.length }) : s.contract.privileged ? t("risk.noneFound") : null],
+            [t("risk.tokenRisk"), s.goplusToken.status === "ok" && s.goplusToken.data ? s.goplusToken.data.flags.join(", ") || t("risk.noFlags") : null]
           ] : []
         ])
       ];
       clear(body, ...rows);
     }).catch((e) => {
       const s = checkSanctions(address);
-      clear(body, errorText(`Online checks unavailable: ${failMessage(e)}`), facts([["OFAC (local)", s.listed ? `LISTED (${s.lists.join(", ")})` : `not listed (snapshot ${s.snapshotAt.slice(0, 10)})`]]));
+      clear(body, errorText(t("risk.onlineUnavailable", { error: failMessage(e) })), facts([[t("risk.ofacLocal"), s.listed ? t("risk.listed", { lists: s.lists.join(", ") }) : t("risk.notListed", { date: s.snapshotAt.slice(0, 10) })]]));
     });
     if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
       const approvals = h("div", null);
-      const btn = h("button", { type: "button", class: "btn-ghost" }, "Check token approvals");
+      const btn = h("button", { type: "button", class: "btn-ghost" }, t("risk.checkApprovals"));
       btn.addEventListener("click", () => {
-        clear(approvals, loading("Scanning approvals and reading allowances…"));
+        clear(approvals, loading(t("risk.scanningApprovals")));
         apiGet("approvals", { chain: chainId, q: address }).then(
           (a) => clear(
             approvals,
@@ -11774,12 +20873,12 @@
               d.erc20.length || d.nft.length ? h(
                 "ul",
                 { class: "list" },
-                d.erc20.map((x) => h("li", null, h("span", null, h("b", null, x.symbol ?? shortHash(x.token)), ` → ${x.spenderLabel ?? shortHash(x.spender)}`, x.spenderIsContract === false ? h("span", { class: "danger" }, " (a wallet!)") : null), h("span", { class: x.unlimited ? "danger" : "num" }, x.unlimited ? "unlimited" : x.allowance ?? x.allowanceRaw))),
-                d.nft.map((n) => h("li", null, `NFT ${shortHash(n.collection)} → ${n.operatorLabel ?? shortHash(n.operator)}`, h("span", { class: "danger" }, "all items")))
-              ) : h("p", { class: "muted" }, "No active approvals found in the events scanned."),
-              d.capped ? note("Log search hit its limit: older approvals may be missing.", "warn") : h("span")
+                d.erc20.map((x) => h("li", null, h("span", null, h("b", null, x.symbol ?? shortHash(x.token)), ` → ${x.spenderLabel ?? shortHash(x.spender)}`, x.spenderIsContract === false ? h("span", { class: "danger" }, ` ${t("risk.aWallet")}`) : null), h("span", { class: x.unlimited ? "danger" : "num" }, x.unlimited ? t("risk.unlimited") : x.allowance ?? x.allowanceRaw))),
+                d.nft.map((n) => h("li", null, `NFT ${shortHash(n.collection)} → ${n.operatorLabel ?? shortHash(n.operator)}`, h("span", { class: "danger" }, t("risk.allItems"))))
+              ) : h("p", { class: "muted" }, t("risk.noApprovals")),
+              d.capped ? note(t("risk.capped"), "warn") : h("span")
             ]),
-            ext_link(a.revokeUrl, "Review or revoke on revoke.cash ↗")
+            ext_link(a.revokeUrl, t("risk.revoke"))
           )
         ).catch((e) => clear(approvals, errorText(failMessage(e))));
       });
@@ -11788,7 +20887,7 @@
     return el;
   }
   function multichainCard(address, nav2) {
-    const body = h("div", null, loading(`Checking ${EVM_NETWORKS.length} EVM chains…`));
+    const body = h("div", null, loading(t("multichain.checking", { count: EVM_NETWORKS.length })));
     apiGet("multichain", { q: address }).then(
       (m) => clear(
         body,
@@ -11800,25 +20899,25 @@
               "li",
               null,
               h("a", { href: `#result/address/${r.chain.id}/${address}`, class: "link", on: { click: (e) => (e.preventDefault(), nav2(`#result/address/${r.chain.id}/${address}`)) } }, r.chain.name),
-              r.status === "ok" ? h("span", { class: "num" }, formatAmount(r.balance, r.chain.symbol, 4), r.usd ? h("span", { class: "muted" }, ` ${formatUsd(r.usd)}`) : null, h("span", { class: "muted" }, ` · ${r.isContract ? "code" : `${r.nonce} tx`}`)) : h("span", { class: "warn" }, `unavailable`)
+              r.status === "ok" ? h("span", { class: "num" }, formatAmount(r.balance, r.chain.symbol, 4), r.usd ? h("span", { class: "muted" }, ` ${formatUsd(r.usd)}`) : null, h("span", { class: "muted" }, ` · ${r.isContract ? t("multichain.code") : t("multichain.txCount", { count: r.nonce ?? 0 })}`)) : h("span", { class: "warn" }, t("common.unavailable"))
             )
           )
         ),
-        h("p", { class: "source" }, `Public RPCs · prices ${m.priceSource?.name ?? "unavailable"} · ${timeAgo(m.fetchedAt)}`)
+        h("p", { class: "source" }, t("multichain.source", { source: m.priceSource?.name ?? t("common.unavailable"), ago: ago(m.fetchedAt) }))
       )
     ).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, "Same address on other EVM chains"), body);
+    return h("section", { class: "card" }, h("h2", null, t("multichain.title")), body);
   }
   function locateCard(hash, nav2) {
-    const body = h("div", null, loading(`Asking ${EVM_NETWORKS.length} EVM chains…`));
+    const body = h("div", null, loading(t("locate.asking", { count: EVM_NETWORKS.length })));
     apiGet("locate-tx", { q: hash }).then((l) => {
       const found = l.rows.filter((r) => r.status === "found");
       clear(
         body,
-        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, `Found on ${r.chain.name} →`))) : h("p", { class: "muted" }, `Not found on the ${EVM_NETWORKS.length} supported EVM chains; try the explorer links.`)
+        found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, t("locate.foundOn", { chain: r.chain.name })))) : h("p", { class: "muted" }, t("locate.notFound", { count: EVM_NETWORKS.length }))
       );
     }).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, "Which chain is it on?"), body);
+    return h("section", { class: "card" }, h("h2", null, t("locate.title")), body);
   }
   function resultView(kind, chainId, query, settings, nav2, compact = false) {
     setApiBase(settings.apiBase);
@@ -11832,19 +20931,19 @@
     const header = h(
       "div",
       { class: "result-head" },
-      h("p", { class: "result-chain" }, glyph(chainId, getChain(chainId)?.name ?? chainId, "md"), h("span", { class: "label" }, `${getChain(chainId)?.name ?? chainId} · ${kind === "tx" ? "Transaction" : "Address"}`)),
+      h("p", { class: "result-chain" }, glyph(chainId, getChain(chainId)?.name ?? chainId, "md"), h("span", { class: "label" }, `${getChain(chainId)?.name ?? chainId} · ${kind === "tx" ? t("result.transaction") : t("result.address")}`)),
       h("h1", { class: "mono value" }, query),
-      h("div", { class: "row wrap" }, copyBtn(query, "Copy"), kind === "address" ? qrBtn : null, explorerList(chainId, query)),
+      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, explorerList(chainId, query)),
       qrBox
     );
     root2.append(header);
     if (!settings.network) {
-      root2.append(note("Online lookups are turned off in settings. Explorer links and local checks still work.", "info"));
+      root2.append(note(t("result.offline"), "info"));
       const s = checkSanctions(query);
-      if (s.listed) root2.append(note(`On the OFAC sanctions list (${s.lists.join(", ")}).`, "danger"));
+      if (s.listed) root2.append(note(t("result.onOfac", { lists: s.lists.join(", ") }), "danger"));
       return root2;
     }
-    const body = h("div", { class: "stack" }, loading("Loading…"));
+    const body = h("div", { class: "stack" }, loading(t("common.loading")));
     root2.append(body);
     if (kind === "address") {
       apiGet("address", { chain: chainId, q: query }).then((r) => {
@@ -11866,22 +20965,22 @@
     const list = h("ul", { class: "list saved" });
     const msg = h("p", { class: "accent small" });
     const selected = /* @__PURE__ */ new Set();
-    const filter = h("input", { class: "input", placeholder: "Filter", "aria-label": "Filter saved items" });
+    const filter = h("input", { class: "input", placeholder: t("savedPage.filter"), "aria-label": t("saved.filterLabel") });
     function render2() {
       const f = filter.value.trim().toLowerCase();
       const items = [...ctx.state.saved].filter((x) => !f || x.label.toLowerCase().includes(f) || x.query.toLowerCase().includes(f) || x.note.toLowerCase().includes(f)).sort((a, b) => Number(b.favourite) - Number(a.favourite) || b.addedAt - a.addedAt);
-      if (!ctx.state.saved.length) return clear(list, h("li", { class: "muted" }, "Nothing saved yet. Use Save in search or batch."));
+      if (!ctx.state.saved.length) return clear(list, h("li", { class: "muted" }, t("savedPage.empty")));
       clear(
         list,
         ...items.map((item) => {
           const d = detectQuery(item.query);
           const chain = item.chainId ? getChain(item.chainId) : void 0;
           const kind = d?.kind === "transaction" ? "tx" : "address";
-          const label = h("input", { class: "input", value: item.label, placeholder: "Label", maxlength: "80", "aria-label": "Label" });
+          const label = h("input", { class: "input", value: item.label, placeholder: t("savedPage.label"), maxlength: "80", "aria-label": t("savedPage.label") });
           label.addEventListener("change", () => void upsertSaved({ query: item.query, chainId: item.chainId, label: label.value }));
-          const notes = h("textarea", { class: "input area", placeholder: "Notes", maxlength: "1000", "aria-label": "Notes" }, item.note);
+          const notes = h("textarea", { class: "input area", placeholder: t("savedPage.notes"), maxlength: "1000", "aria-label": t("savedPage.notes") }, item.note);
           notes.addEventListener("change", () => void upsertSaved({ query: item.query, chainId: item.chainId, note: notes.value }));
-          const check = h("input", { type: "checkbox", checked: selected.has(item.id) ? true : void 0, "aria-label": "Select" });
+          const check = h("input", { type: "checkbox", checked: selected.has(item.id) ? true : void 0, "aria-label": t("savedPage.select") });
           check.addEventListener("change", () => check.checked ? selected.add(item.id) : selected.delete(item.id));
           return h(
             "li",
@@ -11896,14 +20995,14 @@
                 { type: "button", class: "linkish mono", on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
                 item.query
               ),
-              h("span", { class: "muted small" }, `${d?.label ?? "unrecognised"}${chain ? ` · ${chain.name}` : ""}`),
+              h("span", { class: "muted small" }, `${d ? detectLabel(d.label) : t("common.unrecognised")}${chain ? ` · ${chain.name}` : ""}`),
               notes
             ),
             h(
               "div",
               { class: "col" },
               h("button", { type: "button", class: "btn-ghost sm", "aria-pressed": String(item.favourite), on: { click: () => void upsertSaved({ query: item.query, chainId: item.chainId, favourite: !item.favourite }) } }, item.favourite ? "★" : "☆"),
-              h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void removeSaved(item.id) } }, "Remove")
+              h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void removeSaved(item.id) } }, t("savedPage.remove"))
             )
           );
         })
@@ -11915,27 +21014,27 @@
       const f = file.files?.[0];
       if (!f) return;
       try {
-        if (f.size > 2e6) throw new Error("File too large");
+        if (f.size > 2e6) throw new Error(t("savedPage.tooLarge"));
         const raw = JSON.parse(await f.text());
         const incoming = sanitizeSaved(raw?.items ?? raw);
         await setSaved([...incoming, ...ctx.state.saved]);
-        msg.textContent = `Imported ${incoming.length} items.`;
+        msg.textContent = t("savedPage.imported", { count: incoming.length });
       } catch (e) {
-        msg.textContent = `Import failed: ${e.message}`;
+        msg.textContent = t("savedPage.importFailed", { error: e.message });
       }
     });
     render2();
     return h(
       "div",
       { class: "stack" },
-      h("p", { class: "label" }, "Saved"),
-      h("h1", { class: "heading" }, "Your labels and notes"),
-      h("p", { class: "muted" }, "Labels and notes stay in this browser (extension storage). Nothing is synced."),
+      h("p", { class: "label" }, t("common.saved")),
+      h("h1", { class: "heading" }, t("savedPage.title")),
+      h("p", { class: "muted" }, t("savedPage.intro")),
       h(
         "div",
         { class: "row wrap" },
-        h("button", { type: "button", class: "btn-ghost sm", on: { click: () => h("a", { href: URL.createObjectURL(new Blob([exportSaved(ctx.state.saved)], { type: "application/json" })), download: "web3lens-saved.json" }).click() } }, "Export JSON"),
-        h("button", { type: "button", class: "btn-ghost sm", on: { click: () => file.click() } }, "Import JSON"),
+        h("button", { type: "button", class: "btn-ghost sm", on: { click: () => h("a", { href: URL.createObjectURL(new Blob([exportSaved(ctx.state.saved)], { type: "application/json" })), download: "web3lens-saved.json" }).click() } }, t("savedPage.exportJson")),
+        h("button", { type: "button", class: "btn-ghost sm", on: { click: () => file.click() } }, t("savedPage.importJson")),
         file,
         h(
           "button",
@@ -11945,13 +21044,13 @@
             on: {
               click: async () => {
                 const items = ctx.state.saved.filter((x) => selected.has(x.id)).map((x) => ({ q: x.query, c: x.chainId ?? void 0, l: x.label, n: x.note }));
-                if (!items.length) return msg.textContent = "Select items first.";
+                if (!items.length) return msg.textContent = t("savedPage.selectFirst");
                 await copy(investigationUrl({ v: 1, t: `Investigation (${items.length} items)`, items }, ctx.state.settings.apiBase));
-                msg.textContent = "Share link copied. Labels and notes are inside the link: anyone with it can read them.";
+                msg.textContent = t("savedPage.shareCopied");
               }
             }
           },
-          "Share selected"
+          t("savedPage.shareSelected")
         )
       ),
       msg,
@@ -11979,8 +21078,8 @@
     const input2 = h("input", {
       class: "search-input",
       type: "text",
-      placeholder: "Address, tx hash, block or ENS name",
-      "aria-label": "Address, transaction hash, block or name",
+      placeholder: t("search.placeholder"),
+      "aria-label": t("search.inputLabel"),
       autocomplete: "off",
       spellcheck: "false",
       value: initial.query ?? ""
@@ -12001,7 +21100,7 @@
     const info = h("div", { class: "detect", "aria-live": "polite" });
     const results = h("div", { class: "stack results" });
     const recentBox = initial.recentInto ?? h("div", null);
-    const current = () => {
+    const current2 = () => {
       const { query } = extractQuery(input2.value);
       const all = detectAll(query);
       return { query, all, best: all[0] ?? null };
@@ -12012,17 +21111,17 @@
       return best.chains.includes(picked.id) ? picked : getChain(best.chains[0]) ?? picked;
     };
     function syncPicker() {
-      const { best } = current();
+      const { best } = current2();
       picker.setDetected(best?.kind === "secret" ? [] : best?.chains.slice(0, 14) ?? []);
       const chain = effectiveChain(best);
       if (chain.id !== picker.value().id || !userPicked && best?.chains.includes(chain.id)) picker.set(chain, { auto: !userPicked && Boolean(best?.chains.includes(chain.id)) });
       else if (!best) picker.set(chain, { auto: false });
     }
     function renderInfo() {
-      const { query, best, all } = current();
+      const { query, best, all } = current2();
       if (!query) return clear(info);
-      if (!best) return clear(info, h("p", { class: "hint" }, "Not a format Web3Lens recognises: it will go to the chosen chain’s explorer search."));
-      if (best.kind === "secret") return clear(info, note(best.note ?? "Secret detected.", "danger"));
+      if (!best) return clear(info, h("p", { class: "hint" }, t("search.unknownFormat")));
+      if (best.kind === "secret") return clear(info, note(best.note ? detectNote(best.note) : t("search.secret"), "danger"));
       const chain = effectiveChain(best);
       const saved = labelFor(state.saved, best.normalized, chain.id);
       const sanctions = best.kind === "address" ? checkSanctions(best.normalized) : null;
@@ -12032,16 +21131,16 @@
         h(
           "div",
           { class: "row wrap" },
-          h("span", { class: "detect-pill" }, icon("scan"), best.label, best.checksum === "valid" ? h("span", { class: "pill-sub" }, "· checksum ok") : null),
-          best.checksum === "invalid" ? badge("bad checksum", "danger") : null,
-          best.network === "testnet" ? badge("testnet", "warn") : null,
-          sanctions?.listed ? badge("OFAC listed", "danger") : null,
+          h("span", { class: "detect-pill" }, icon("scan"), detectLabel(best.label), best.checksum === "valid" ? h("span", { class: "pill-sub" }, t("search.checksumOk")) : null),
+          best.checksum === "invalid" ? badge(t("search.badChecksum"), "danger") : null,
+          best.network === "testnet" ? badge(t("search.testnet"), "warn") : null,
+          sanctions?.listed ? badge(t("search.ofacListed"), "danger") : null,
           saved?.label ? badge(`★ ${saved.label}`, "good") : null
         ),
         candidates.length > 1 || !candidates.includes(chain) ? h(
           "div",
           { class: "row wrap chips-row" },
-          h("span", { class: "row-label" }, candidates.includes(chain) ? "Search on" : "Switch to"),
+          h("span", { class: "row-label" }, candidates.includes(chain) ? t("search.searchOn") : t("search.switchTo")),
           candidates.slice(0, ctx.compact ? 4 : 8).map(
             (c) => h(
               "button",
@@ -12062,8 +21161,8 @@
             )
           )
         ) : null,
-        all.length > 1 ? h("p", { class: "hint" }, `Could also be: ${all.slice(1).map((d) => d.label).join(", ")}`) : null,
-        best.note ? note(best.note, best.checksum === "invalid" ? "danger" : "warn") : null
+        all.length > 1 ? h("p", { class: "hint" }, t("search.couldBe", { list: all.slice(1).map((d) => detectLabel(d.label)).join(", ") })) : null,
+        best.note ? note(detectNote(best.note), best.checksum === "invalid" ? "danger" : "warn") : null
       );
     }
     function refresh() {
@@ -12086,25 +21185,25 @@
             h(
               "span",
               null,
-              `${chain.name}'s explorer did not respond at the last health check. `,
-              ext_link(webSearchLink(chain, query), "Search the web"),
+              `${t("search.explorerDown", { chain: chain.name })} `,
+              ext_link(webSearchLink(chain, query), t("search.searchWeb")),
               " · ",
-              h("button", { type: "button", class: "linkish", on: { click: () => openAction(r.action) } }, "open anyway")
+              h("button", { type: "button", class: "linkish", on: { click: () => openAction(r.action) } }, t("search.openAnyway"))
             )
           )
         );
         return;
       }
-      if (r.fallback) results.prepend(note(fallbackNotice(chain), "info"));
+      if (r.fallback) results.prepend(note(t("search.fallback", { chain: chain.name }), "info"));
       openAction(r.action);
     }
     async function submit(e, forceExplorer = false) {
       e?.preventDefault();
-      const { query, best } = current();
+      const { query, best } = current2();
       clear(results);
       fullBtn.hidden = true;
-      if (!query) return results.append(errorText("Paste an address, transaction hash, block number or name first."));
-      if (best?.kind === "secret") return results.append(note(best.note ?? "Not searched.", "danger"));
+      if (!query) return results.append(errorText(t("search.empty")));
+      if (best?.kind === "secret") return results.append(note(best.note ? detectNote(best.note) : t("search.notSearched"), "danger"));
       const chain = effectiveChain(best);
       await addRecent({ chainId: chain.id, query });
       const d = detectionFor(chain, query);
@@ -12112,13 +21211,13 @@
       const native = d && d.checksum !== "invalid" && d.network !== "testnet" && hasNativeSupport(chain.id, kind) && kind !== "block";
       if (forceExplorer || !native || state.prefs.searchAction === "explorer") return goExplorer(chain, query);
       if (!state.settings.network) {
-        results.append(note("Online lookups are off (settings), so here are the explorers:", "info"), explorerList(chain.id, d.normalized, d) ?? h("span"));
+        results.append(note(t("search.offlineExplorers"), "info"), explorerList(chain.id, d.normalized, d) ?? h("span"));
         return;
       }
       const evmOverview = (d.format === "evm-address" || d.format === "evm-tx") && !userPicked;
       if (evmOverview && !ctx.compact) {
         results.append(d.format === "evm-address" ? multichainCard(d.normalized, ctx.nav) : locateCard(d.normalized, ctx.nav));
-        results.append(h("section", { class: "card" }, h("h2", null, "Explorers"), explorerList(chain.id, d.normalized, d) ?? h("span")));
+        results.append(h("section", { class: "card" }, h("h2", null, t("common.explorers")), explorerList(chain.id, d.normalized, d) ?? h("span")));
         return;
       }
       const k = kind === "tx" ? "tx" : "address";
@@ -12130,14 +21229,14 @@
     }
     function renderRecent() {
       if (!state.recent.length) {
-        return initial.recentInto ? clear(recentBox, h("section", { class: "recent" }, h("div", { class: "section-head" }, h("p", { class: "label" }, icon("history"), "Recent")), h("p", { class: "hint" }, "Your last searches show up here, kept only in this browser."))) : clear(recentBox);
+        return initial.recentInto ? clear(recentBox, h("section", { class: "recent" }, h("div", { class: "section-head" }, h("p", { class: "label" }, icon("history"), t("search.recent"))), h("p", { class: "hint" }, t("search.recentEmpty")))) : clear(recentBox);
       }
       clear(
         recentBox,
         h(
           "section",
           { class: "recent" },
-          h("div", { class: "section-head" }, h("p", { class: "label" }, icon("history"), "Recent"), h("button", { type: "button", class: "linkish muted small", on: { click: async () => (await clearRecent(), state.recent = [], renderRecent()) } }, "Clear")),
+          h("div", { class: "section-head" }, h("p", { class: "label" }, icon("history"), t("search.recent")), h("button", { type: "button", class: "linkish muted small", on: { click: async () => (await clearRecent(), state.recent = [], renderRecent()) } }, t("common.clear"))),
           h(
             "ul",
             { class: "recent-list" },
@@ -12178,14 +21277,14 @@
       picker.el,
       h("span", { class: "divider", "aria-hidden": "true" }),
       input2,
-      h("button", { type: "submit", class: "btn search-btn" }, "Search", icon("arrowRight"))
+      h("button", { type: "submit", class: "btn search-btn" }, t("common.search"), icon("arrowRight"))
     );
     let fullView = "";
-    const fullBtn = h("button", { type: "button", class: "btn-ghost sm full-view", hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, "Open full view", icon("arrowRight"));
+    const fullBtn = h("button", { type: "button", class: "btn-ghost sm full-view", hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, t("search.openFull"), icon("arrowRight"));
     const actions = h(
       "div",
       { class: "row wrap actions" },
-      h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void submit(void 0, true) } }, icon("external"), "Open in explorer"),
+      h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void submit(void 0, true) } }, icon("external"), t("search.openExplorer")),
       h(
         "button",
         {
@@ -12194,16 +21293,16 @@
           on: {
             click: async (e) => {
               const btn = e.currentTarget;
-              const { best, query } = current();
+              const { best, query } = current2();
               if (!query || best?.kind === "secret") return;
               const chain = effectiveChain(best);
               await upsertSaved({ query: best?.normalized ?? query, chainId: chain.id });
-              btn.replaceChildren(icon("check"), "Saved");
+              btn.replaceChildren(icon("check"), t("common.saved"));
             }
           }
         },
         icon("bookmark"),
-        "Save"
+        t("common.save")
       ),
       h(
         "button",
@@ -12213,16 +21312,16 @@
           on: {
             click: async (e) => {
               const btn = e.currentTarget;
-              const { best, query } = current();
+              const { best, query } = current2();
               if (!query || best?.kind === "secret") return;
               await copy(best?.normalized ?? query);
-              btn.replaceChildren(icon("check"), "Copied");
-              setTimeout(() => btn.replaceChildren(icon("copy"), "Copy"), 1200);
+              btn.replaceChildren(icon("check"), t("common.copied"));
+              setTimeout(() => btn.replaceChildren(icon("copy"), t("common.copy")), 1200);
             }
           }
         },
         icon("copy"),
-        "Copy"
+        t("common.copy")
       )
     );
     refresh();
@@ -12242,42 +21341,50 @@
       h("input", { type: "radio", name: "action", checked: prefs.searchAction === value ? true : void 0, on: { change: () => void setPrefs({ ...prefs, searchAction: value }) } }),
       h("span", null, h("b", null, title), h("small", null, body))
     );
+    const language = h(
+      "select",
+      { class: "select lang-select", "aria-label": t("language.label") },
+      h("option", { value: "auto", selected: settings.language === "auto" ? true : void 0 }, t("language.auto", { language: localeName(matchLocale(browserLanguages())) })),
+      LOCALES.map((l) => h("option", { value: l.code, lang: l.code, selected: settings.language === l.code ? true : void 0 }, l.name))
+    );
+    language.addEventListener("change", () => void setSettings({ ...settings, language: language.value }));
     const network = h("input", { type: "checkbox", checked: settings.network ? true : void 0 });
     network.addEventListener("change", () => void setSettings({ ...settings, network: network.checked }));
     const multi = Object.entries(allExplorerRoutes()).filter(([, r]) => r.length > 1);
     return h(
       "div",
       { class: "stack" },
-      h("p", { class: "label" }, "Settings"),
-      h("h1", { class: "heading" }, "Search your way"),
+      h("p", { class: "label" }, t("common.settings")),
+      h("h1", { class: "heading" }, t("settings.pageTitle")),
       card(
-        "Appearance",
+        t("settings.appearance"),
         h(
           "div",
-          { class: "chips", role: "radiogroup", "aria-label": "Theme" },
+          { class: "chips", role: "radiogroup", "aria-label": t("theme.label") },
           ["light", "dark", "system"].map(
-            (t) => h(
+            (th) => h(
               "button",
               {
                 type: "button",
                 role: "radio",
-                "aria-checked": String(settings.theme === t),
-                class: `chip${settings.theme === t ? " primary" : ""}`,
-                on: { click: () => void setSettings({ ...settings, theme: t }) }
+                "aria-checked": String(settings.theme === th),
+                class: `chip${settings.theme === th ? " primary" : ""}`,
+                on: { click: () => void setSettings({ ...settings, theme: th }) }
               },
-              t === "light" ? "Light (default)" : t === "dark" ? "Dark" : "System"
+              th === "light" ? t("theme.lightDefault") : th === "dark" ? t("theme.dark") : t("theme.system")
             )
           )
         )
       ),
-      card("When I press Search", radio("results", "Show Web3Lens results first", `Balances, tokens and risk checks for ${NETWORKS.length} major chains; other chains open their explorer.`), radio("explorer", "Always open the block explorer", "Go straight to the explorer in a new tab.")),
+      card(t("language.label"), h("label", { class: "field" }, language, h("small", null, `${t("language.hint")} ${t("language.fallbackNote")}`))),
+      card(t("settings.whenSearch"), radio("results", t("settings.resultsFirst"), t("settings.resultsFirstHint", { count: NETWORKS.length })), radio("explorer", t("settings.alwaysExplorer"), t("settings.alwaysExplorerHint"))),
       card(
-        "Privacy",
-        h("label", { class: "choice" }, network, h("span", null, h("b", null, "Online lookups"), h("small", null, `Balances, transactions, risk checks and live gas are fetched from ${settings.apiBase} when you ask. Turn off to keep everything in the browser: detection, checksums, explorer links, tools and the bundled OFAC snapshot still work.`))),
-        note("The extension has no host permissions and only reads a page when you open the popup’s “Scan page” tab on it.", "info")
+        t("settings.privacy"),
+        h("label", { class: "choice" }, network, h("span", null, h("b", null, t("common.onlineLookups")), h("small", null, t("settings.privacyBody", { host: settings.apiBase })))),
+        note(t("settings.privacyNote"), "info")
       ),
       card(
-        "Preferred explorers",
+        t("settings.preferredExplorers"),
         h(
           "div",
           { class: "grid2" },
@@ -12294,10 +21401,10 @@
         )
       ),
       card(
-        "Favourite chains",
-        prefs.favouriteChains.length ? h("div", { class: "chips" }, prefs.favouriteChains.map((id) => h("button", { type: "button", class: "chip", on: { click: () => void setPrefs({ ...prefs, favouriteChains: prefs.favouriteChains.filter((x) => x !== id) }) } }, `${getChain(id)?.name ?? id} ×`))) : h("p", { class: "muted" }, "None yet."),
+        t("settings.favouriteChains"),
+        prefs.favouriteChains.length ? h("div", { class: "chips" }, prefs.favouriteChains.map((id) => h("button", { type: "button", class: "chip", on: { click: () => void setPrefs({ ...prefs, favouriteChains: prefs.favouriteChains.filter((x) => x !== id) }) } }, `${getChain(id)?.name ?? id} ×`))) : h("p", { class: "muted" }, t("settings.noneYet")),
         (() => {
-          const add2 = h("input", { class: "input", placeholder: "Add a chain by name", list: "chain-names" });
+          const add2 = h("input", { class: "input", placeholder: t("settings.addChain"), list: "chain-names" });
           add2.addEventListener("change", () => {
             const id = Object.keys(allExplorerRoutes()).find((k) => getChain(k)?.name.toLowerCase() === add2.value.trim().toLowerCase());
             if (id && !prefs.favouriteChains.includes(id)) void setPrefs({ ...prefs, favouriteChains: [...prefs.favouriteChains, id] });
@@ -12306,14 +21413,14 @@
         })()
       ),
       card(
-        "Data",
-        h("p", { class: "muted" }, "Everything is in this browser’s extension storage."),
+        t("settings.data"),
+        h("p", { class: "muted" }, t("settings.dataBody")),
         h(
           "div",
           { class: "row wrap" },
-          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void clearRecent() } }, "Clear recent searches"),
-          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => confirm("Delete all saved items?") && void setSaved([]) } }, "Delete saved items"),
-          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void setPrefs(DEFAULT_PREFS) } }, "Reset preferences")
+          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void clearRecent() } }, t("settings.clearRecent")),
+          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => confirm(t("settings.confirmDelete")) && void setSaved([]) } }, t("settings.deleteSaved")),
+          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void setPrefs(DEFAULT_PREFS) } }, t("settings.resetPrefs"))
         )
       )
     );
@@ -12425,31 +21532,31 @@
     }
     throw new Error(`Unknown type: ${input2}`);
   }
-  function typeString(t) {
-    switch (t.kind) {
+  function typeString(t2) {
+    switch (t2.kind) {
       case "uint":
       case "int":
-        return `${t.kind}${t.bits}`;
+        return `${t2.kind}${t2.bits}`;
       case "fixedbytes":
-        return `bytes${t.size}`;
+        return `bytes${t2.size}`;
       case "array":
-        return `${typeString(t.item)}[${t.length ?? ""}]`;
+        return `${typeString(t2.item)}[${t2.length ?? ""}]`;
       case "tuple":
-        return `(${t.components.map((c) => typeString(c.type)).join(",")})`;
+        return `(${t2.components.map((c) => typeString(c.type)).join(",")})`;
       default:
-        return t.kind;
+        return t2.kind;
     }
   }
-  function isDynamic(t) {
-    if (t.kind === "string" || t.kind === "bytes") return true;
-    if (t.kind === "array") return t.length === null || isDynamic(t.item);
-    if (t.kind === "tuple") return t.components.some((c) => isDynamic(c.type));
+  function isDynamic(t2) {
+    if (t2.kind === "string" || t2.kind === "bytes") return true;
+    if (t2.kind === "array") return t2.length === null || isDynamic(t2.item);
+    if (t2.kind === "tuple") return t2.components.some((c) => isDynamic(c.type));
     return false;
   }
-  function headSize(t) {
-    if (isDynamic(t)) return 32;
-    if (t.kind === "array") return (t.length ?? 0) * headSize(t.item);
-    if (t.kind === "tuple") return t.components.reduce((n, c) => n + headSize(c.type), 0);
+  function headSize(t2) {
+    if (isDynamic(t2)) return 32;
+    if (t2.kind === "array") return (t2.length ?? 0) * headSize(t2.item);
+    if (t2.kind === "tuple") return t2.components.reduce((n, c) => n + headSize(c.type), 0);
     return 32;
   }
   function parseSignature(sig) {
@@ -12479,10 +21586,10 @@
     const named = p.components ? attachNames(type, p.components.map(fromJsonParam)) : type;
     return { name: p.name || void 0, type: named, indexed: p.indexed || void 0 };
   }
-  function attachNames(t, comps) {
-    if (t.kind === "array") return { ...t, item: attachNames(t.item, comps) };
-    if (t.kind === "tuple") return { kind: "tuple", components: comps };
-    return t;
+  function attachNames(t2, comps) {
+    if (t2.kind === "array") return { ...t2, item: attachNames(t2.item, comps) };
+    if (t2.kind === "tuple") return { kind: "tuple", components: comps };
+    return t2;
   }
   function parseJsonAbi(json) {
     const raw = typeof json === "string" ? JSON.parse(json) : json;
@@ -12518,17 +21625,17 @@
       return Number(n);
     }
   };
-  function decodeOne(r, t, base2, offset, depth, name) {
+  function decodeOne(r, t2, base2, offset, depth, name) {
     if (depth > MAX_DEPTH) throw new Error("Nesting too deep");
-    const type = typeString(t);
-    if (isDynamic(t) && !(t.kind === "array" && t.length !== null && !isDynamic(t.item))) {
+    const type = typeString(t2);
+    if (isDynamic(t2) && !(t2.kind === "array" && t2.length !== null && !isDynamic(t2.item))) {
       const ptr = base2 + r.safeNumber(offset);
-      return decodeAt(r, t, ptr, depth, name, type);
+      return decodeAt(r, t2, ptr, depth, name, type);
     }
-    return decodeAt(r, t, offset, depth, name, type);
+    return decodeAt(r, t2, offset, depth, name, type);
   }
-  function decodeAt(r, t, at, depth, name, type) {
-    switch (t.kind) {
+  function decodeAt(r, t2, at, depth, name, type) {
+    switch (t2.kind) {
       case "address": {
         const w = r.word(at);
         return { type, name, value: toChecksumAddress(bytesToHex(w.subarray(12))) };
@@ -12543,32 +21650,32 @@
         return { type, name, value: n.toString() };
       }
       case "fixedbytes":
-        return { type, name, value: bytesToHex(r.word(at).subarray(0, t.size)) };
+        return { type, name, value: bytesToHex(r.word(at).subarray(0, t2.size)) };
       case "bytes":
       case "string": {
         const len = r.safeNumber(at);
         if (at + 32 + len > r.data.length) throw new Error("Data too short");
         const bytes = r.data.subarray(at + 32, at + 32 + len);
-        if (t.kind === "string") return { type, name, value: bytesToUtf8(bytes) ?? bytesToHex(bytes) };
+        if (t2.kind === "string") return { type, name, value: bytesToUtf8(bytes) ?? bytesToHex(bytes) };
         return { type, name, value: bytesToHex(bytes) };
       }
       case "array": {
-        let len = t.length;
+        let len = t2.length;
         let start = at;
         if (len === null) {
           len = r.safeNumber(at);
           start = at + 32;
         }
         if (len > MAX_ITEMS) throw new Error("Array too long");
-        const step = isDynamic(t.item) ? 32 : headSize(t.item);
+        const step = isDynamic(t2.item) ? 32 : headSize(t2.item);
         const items = [];
-        for (let i = 0; i < len; i++) items.push(decodeOne(r, t.item, start, start + i * step, depth + 1));
+        for (let i = 0; i < len; i++) items.push(decodeOne(r, t2.item, start, start + i * step, depth + 1));
         return { type, name, items };
       }
       case "tuple": {
         const items = [];
         let off = at;
-        for (const c of t.components) {
+        for (const c of t2.components) {
           items.push(decodeOne(r, c.type, at, off, depth + 1, c.name));
           off += headSize(c.type);
         }
@@ -12586,8 +21693,8 @@
     }
     return out;
   }
-  function encodeOne(t, v) {
-    switch (t.kind) {
+  function encodeOne(t2, v) {
+    switch (t2.kind) {
       case "address": {
         const s = String(v);
         if (!/^0x[0-9a-fA-F]{40}$/.test(s)) throw new Error(`Not an address: ${s}`);
@@ -12597,7 +21704,7 @@
         return bigIntToBytes(v === true || v === "true" || v === 1 ? BigInt(1) : BigInt(0), 32);
       case "uint": {
         const n = BigInt(v);
-        if (n < BigInt(0) || n >> BigInt(t.bits)) throw new Error("uint out of range");
+        if (n < BigInt(0) || n >> BigInt(t2.bits)) throw new Error("uint out of range");
         return bigIntToBytes(n, 32);
       }
       case "int": {
@@ -12607,27 +21714,27 @@
       }
       case "fixedbytes": {
         const b = hexToBytes(String(v));
-        if (b.length > t.size) throw new Error("bytes too long");
+        if (b.length > t2.size) throw new Error("bytes too long");
         const out = new Uint8Array(32);
         out.set(b);
         return out;
       }
       case "bytes":
       case "string": {
-        const b = t.kind === "string" ? utf8ToBytes(String(v)) : hexToBytes(String(v));
+        const b = t2.kind === "string" ? utf8ToBytes(String(v)) : hexToBytes(String(v));
         const padded = new Uint8Array(Math.ceil(b.length / 32) * 32);
         padded.set(b);
         return concatBytes(bigIntToBytes(BigInt(b.length), 32), padded);
       }
       case "array": {
         const items = v;
-        if (t.length !== null && items.length !== t.length) throw new Error("Wrong array length");
-        const body = encodeTuple(items.map(() => t.item), items);
-        return t.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body) : body;
+        if (t2.length !== null && items.length !== t2.length) throw new Error("Wrong array length");
+        const body = encodeTuple(items.map(() => t2.item), items);
+        return t2.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body) : body;
       }
       case "tuple":
         return encodeTuple(
-          t.components.map((c) => c.type),
+          t2.components.map((c) => c.type),
           v
         );
     }
@@ -12636,7 +21743,7 @@
     if (types.length !== values.length) throw new Error(`Expected ${types.length} values, got ${values.length}`);
     const heads = [];
     const tails = [];
-    let headLen = types.reduce((n, t) => n + headSize(t), 0);
+    let headLen = types.reduce((n, t2) => n + headSize(t2), 0);
     for (let i = 0; i < types.length; i++) {
       const enc = encodeOne(types[i], values[i]);
       if (isDynamic(types[i])) {
@@ -13014,16 +22121,16 @@
       }
       if (type === 4) {
         out.authorizations = asList(fields[9], "authorizationList").map((a, i) => {
-          const t = asList(a, `authorization ${i}`);
-          const aChain = num(t[0], "auth chainId");
-          const aAddr = addr(t[1], "auth address");
-          const aNonce = num(t[2], "auth nonce");
-          const yParity = Number(num(t[3], "auth yParity"));
+          const t2 = asList(a, `authorization ${i}`);
+          const aChain = num(t2[0], "auth chainId");
+          const aAddr = addr(t2[1], "auth address");
+          const aNonce = num(t2[2], "auth nonce");
+          const yParity = Number(num(t2[3], "auth yParity"));
           const signer = recoverAddress(
-            concatBytes(Uint8Array.of(5), rlpEncode([asBytes(t[0], "c"), asBytes(t[1], "a"), asBytes(t[2], "n")])),
+            concatBytes(Uint8Array.of(5), rlpEncode([asBytes(t2[0], "c"), asBytes(t2[1], "a"), asBytes(t2[2], "n")])),
             yParity,
-            num(t[4], "auth r"),
-            num(t[5], "auth s")
+            num(t2[4], "auth r"),
+            num(t2[5], "auth s")
           );
           return { chainId: aChain.toString(), address: aAddr ?? "", nonce: aNonce.toString(), signer };
         });
@@ -13214,11 +22321,26 @@
   }
 
   // extension-src/src/views/tools.ts
+  var PRESETS = {
+    "ETH transfer": "gascalc.preset.ethTransfer",
+    "ERC-20 transfer": "gascalc.preset.erc20Transfer",
+    "ERC-20 approve": "gascalc.preset.erc20Approve",
+    "Uniswap swap": "gascalc.preset.uniswapSwap",
+    "NFT mint": "gascalc.preset.nftMint"
+  };
+  var TIME_KINDS = {
+    "hex seconds": "time.kind.hexSeconds",
+    nanoseconds: "time.kind.nanoseconds",
+    microseconds: "time.kind.microseconds",
+    milliseconds: "time.kind.milliseconds",
+    seconds: "time.kind.seconds",
+    date: "time.kind.date"
+  };
   function outputs(rows) {
     return h(
       "div",
       { class: "outputs" },
-      rows.filter(([, v]) => v !== null).map(([l, v]) => h("div", { class: "output" }, h("span", { class: "olabel" }, l), h("span", { class: "mono ovalue", title: v }, v), copyBtn(v, "Copy")))
+      rows.filter(([, v]) => v !== null).map(([l, v]) => h("div", { class: "output" }, h("span", { class: "olabel" }, l), h("span", { class: "mono ovalue", title: v }, v), copyBtn(v, t("common.copy"))))
     );
   }
   function field(label, control, hint) {
@@ -13243,17 +22365,17 @@
   }
   function unitConverter() {
     const amount = input("1");
-    const family = h("select", { class: "select" }, h("option", { value: "evm" }, "wei / gwei / ether"), h("option", { value: "btc" }, "sat / BTC"), h("option", { value: "sol" }, "lamport / SOL"), h("option", { value: "custom" }, "any token"));
+    const family = h("select", { class: "select" }, h("option", { value: "evm" }, "wei / gwei / ether"), h("option", { value: "btc" }, "sat / BTC"), h("option", { value: "sol" }, "lamport / SOL"), h("option", { value: "custom" }, t("unit.anyToken")));
     const unit = h("select", { class: "select" });
     const decimals = input("6");
     const out = h("div");
-    const units = () => family.value === "evm" ? [["wei", 0], ["gwei", 9], ["ether", 18]] : family.value === "btc" ? [["sat", 0], ["BTC", 8]] : family.value === "sol" ? [["lamport", 0], ["SOL", 9]] : [["raw units", 0], ["tokens", Math.min(77, Number(decimals.value) || 0)]];
+    const units = () => family.value === "evm" ? [["wei", 0], ["gwei", 9], ["ether", 18]] : family.value === "btc" ? [["sat", 0], ["BTC", 8]] : family.value === "sol" ? [["lamport", 0], ["SOL", 9]] : [[t("unit.rawUnits"), 0], [t("unit.tokens"), Math.min(77, Number(decimals.value) || 0)]];
     const fillUnits = () => clear(unit, ...units().map(([n, d]) => h("option", { value: String(d) }, String(n))));
     fillUnits();
     unit.value = String(units()[units().length - 1][1]);
     family.addEventListener("change", () => (fillUnits(), unit.value = String(units()[units().length - 1][1])));
     live([amount, family, unit, decimals], out, () => outputs(units().map(([n, d]) => [String(n), convertUnits(amount.value || "0", Number(unit.value), Number(d))])));
-    return [field("Amount", amount), field("Unit family", family), field("From unit", unit), field("Token decimals (any token)", decimals), out];
+    return [field(t("unit.amount"), amount), field(t("unit.family"), family), field(t("unit.from"), unit), field(t("unit.decimals"), decimals), out];
   }
   function addressValidator() {
     const q = input("", "0x…, bc1…, T…");
@@ -13262,18 +22384,18 @@
       const { query } = extractQuery(q.value);
       if (!query) return h("span");
       const all = detectAll(query);
-      if (!all.length) return errorText("Not a valid address or hash in any format Web3Lens knows.");
+      if (!all.length) return errorText(t("validator.invalid"));
       return all.map((d) => {
         const s = d.kind === "address" ? checkSanctions(d.normalized) : null;
         return card(
-          d.label,
-          d.kind === "secret" ? note(d.note, "danger") : h("div", { class: "row wrap" }, badge(d.checksum === "valid" ? "checksum valid" : d.checksum === "invalid" ? "checksum does NOT match" : d.checksum === "none" ? "no checksum" : "format only", d.checksum === "valid" ? "good" : d.checksum === "invalid" ? "danger" : "neutral"), s ? badge(s.listed ? "OFAC listed" : "not on OFAC snapshot", s.listed ? "danger" : "neutral") : null),
-          d.kind !== "secret" ? outputs([["Normalised", d.normalized]]) : null,
+          detectLabel(d.label),
+          d.kind === "secret" ? note(detectNote(d.note), "danger") : h("div", { class: "row wrap" }, badge(d.checksum === "valid" ? t("validator.checksumValid") : d.checksum === "invalid" ? t("validator.checksumInvalid") : d.checksum === "none" ? t("validator.noChecksum") : t("validator.formatOnly"), d.checksum === "valid" ? "good" : d.checksum === "invalid" ? "danger" : "neutral"), s ? badge(s.listed ? t("search.ofacListed") : t("validator.notOnOfac"), s.listed ? "danger" : "neutral") : null),
+          d.kind !== "secret" ? outputs([[t("validator.normalised"), d.normalized]]) : null,
           d.chains.length ? h("p", { class: "muted" }, d.chains.map((c) => getChain(c)?.name ?? c).join(", ")) : null
         );
       });
     });
-    return [field("Address, hash or name", q, "A valid checksum means it was copied correctly, not that it is trustworthy."), out];
+    return [field(t("validator.field"), q, t("validator.hint")), out];
   }
   function hexConverter() {
     const num2 = input("0xde0b6b3a7640000");
@@ -13288,62 +22410,62 @@
       } catch {
         signed = null;
       }
-      return outputs([["Decimal", dec], ["Hex", hex], ["int256", signed !== dec ? signed : null]]);
+      return outputs([[t("hex.decimal"), dec], ["Hex", hex], ["int256", signed !== dec ? signed : null]]);
     });
     const text = area("Hello, Web3Lens");
     const textOut = h("div");
     live([text], textOut, () => outputs([["Hex", textToHex(text.value)]]));
     const hexText = area("", "0x48656c6c6f");
     const hexTextOut = h("div");
-    live([hexText], hexTextOut, () => hexText.value.trim() ? outputs([["Text", hexToText(hexText.value)]]) : h("span"));
+    live([hexText], hexTextOut, () => hexText.value.trim() ? outputs([[t("hex.text"), hexToText(hexText.value)]]) : h("span"));
     const hashIn = input("transfer(address,uint256)");
-    const hashKind = h("select", { class: "select" }, h("option", { value: "text" }, "text"), h("option", { value: "hex" }, "hex bytes"));
+    const hashKind = h("select", { class: "select" }, h("option", { value: "text" }, t("hex.textOption")), h("option", { value: "hex" }, t("hex.hexBytes")));
     const hashOut = h("div");
     live([hashIn, hashKind], hashOut, () => {
       const r = hashes({ kind: hashKind.value, value: hashIn.value });
-      return outputs([["keccak256", r.keccak256], ["SHA-256", r.sha256], ["Selector", r.selector]]);
+      return outputs([["keccak256", r.keccak256], ["SHA-256", r.sha256], [t("hex.selector"), r.selector]]);
     });
-    return [card("Number", field("Hex or decimal", num2), numOut), card("Text → hex", text, textOut), card("Hex → text", hexText, hexTextOut), card("Hashes", field("Input", hashIn), field("Input is", hashKind), hashOut)];
+    return [card(t("hex.number"), field(t("hex.hexOrDecimal"), num2), numOut), card(t("hex.textToHex"), text, textOut), card(t("hex.hexToText"), hexText, hexTextOut), card(t("hex.hashes"), field(t("hex.input"), hashIn), field(t("hex.inputIs"), hashKind), hashOut)];
   }
   function timestampConverter() {
-    const t = input("", "1231006505");
-    const now = h("button", { type: "button", class: "btn-ghost sm" }, "Now");
+    const ts = input("", "1231006505");
+    const now = h("button", { type: "button", class: "btn-ghost sm" }, t("time.now"));
     const out = h("div");
     now.addEventListener("click", () => {
-      t.value = String(Math.floor(Date.now() / 1e3));
-      t.dispatchEvent(new Event("input"));
+      ts.value = String(Math.floor(Date.now() / 1e3));
+      ts.dispatchEvent(new Event("input"));
     });
-    live([t], out, () => {
-      if (!t.value.trim()) return h("span");
-      const r = parseTime(t.value);
-      return [h("p", { class: "muted" }, `Read as ${r.interpretedAs}`), outputs([["Unix seconds", String(r.seconds)], ["Milliseconds", String(r.ms)], ["Hex", `0x${r.seconds.toString(16)}`], ["ISO (UTC)", r.iso], ["Local", r.local], ["Relative", r.relative]])];
+    live([ts], out, () => {
+      if (!ts.value.trim()) return h("span");
+      const r = parseTime(ts.value);
+      return [h("p", { class: "muted" }, t("time.readAs", { kind: TIME_KINDS[r.interpretedAs] ? t(TIME_KINDS[r.interpretedAs]) : r.interpretedAs })), outputs([[t("time.unixSeconds"), String(r.seconds)], [t("time.milliseconds"), String(r.ms)], ["Hex", `0x${r.seconds.toString(16)}`], ["ISO (UTC)", r.iso], [t("time.local"), r.local], [t("time.relative"), relTime(r.ms)]])];
     });
-    return [field("Timestamp or date", t), now, out];
+    return [field(t("time.field"), ts), now, out];
   }
   function gasCalculator(settings) {
     const chain = h("select", { class: "select" }, EVM_NETWORKS.map((n) => h("option", { value: n.id }, n.name)));
     const gas = input("21000");
-    const presets = h("div", { class: "chips" }, GAS_PRESETS.map((p) => h("button", { type: "button", class: "chip", on: { click: () => (gas.value = p.gas, gas.dispatchEvent(new Event("input"))) } }, p.label)));
+    const presets = h("div", { class: "chips" }, GAS_PRESETS.map((p) => h("button", { type: "button", class: "chip", on: { click: () => (gas.value = p.gas, gas.dispatchEvent(new Event("input"))) } }, PRESETS[p.label] ? t(PRESETS[p.label]) : p.label)));
     const base2 = input("", "gwei");
-    const tip = input("", "gwei (optional)");
-    const max = input("", "gwei (optional)");
+    const tip = input("", t("gascalc.optional"));
+    const max = input("", t("gascalc.optional"));
     const status = h("p", { class: "muted" });
     const out = h("div");
     let live_ = null;
-    const loadBtn = h("button", { type: "button", class: "btn-ghost sm" }, "Use live gas price");
+    const loadBtn = h("button", { type: "button", class: "btn-ghost sm" }, t("gascalc.useLive"));
     loadBtn.addEventListener("click", async () => {
-      if (!settings.network) return clear(status, "Online lookups are off in settings.");
-      clear(status, "Loading…");
+      if (!settings.network) return clear(status, t("common.offInSettings"));
+      clear(status, t("common.loading"));
       try {
         live_ = live_ ?? await apiGet("gas", {});
         const row = live_.evm.find((r) => r.chain.id === chain.value);
-        if (!row || row.status !== "ok") return clear(status, `Unavailable: ${row?.reason ?? "unknown"}`);
+        if (!row || row.status !== "ok") return clear(status, t("common.unavailableCap", { reason: row?.reason ?? t("common.unknown") }));
         base2.value = row.baseFeeGwei ?? row.gasPriceGwei ?? "";
         tip.value = row.baseFeeGwei ? row.priorityFeeGwei ?? "0" : "";
-        clear(status, `Live from ${row.chain.name}${row.stale ? " (stale)" : ""}`);
+        clear(status, `${t("gascalc.liveFrom", { chain: row.chain.name })}${row.stale ? ` ${t("common.staleParen")}` : ""}`);
         base2.dispatchEvent(new Event("input"));
       } catch (e) {
-        clear(status, `Unavailable: ${e.message}`);
+        clear(status, t("common.unavailableCap", { reason: e.message }));
       }
     });
     live([chain, gas, base2, tip, max], out, () => {
@@ -13351,7 +22473,7 @@
       const net = EVM_NETWORKS.find((n) => n.id === chain.value);
       const price = live_ && net.coingecko ? live_.prices[net.coingecko] ?? null : null;
       const r = calculateFee({ gasLimit: gas.value, baseFeeGwei: base2.value, priorityFeeGwei: tip.value || void 0, maxFeeGwei: max.value || void 0, priceUsd: price });
-      return outputs([["Gas price", `${r.effectiveGasPriceGwei} gwei`], [`Fee (${net.symbol})`, r.fee], ["Fee (wei)", r.feeWei], ["Fee (USD)", r.feeUsd !== null ? `$${r.feeUsd.toFixed(2)}` : null], ["Max to hold", r.maxFee]]);
+      return outputs([[t("gascalc.gasPrice"), `${r.effectiveGasPriceGwei} gwei`], [t("gascalc.feeSymbol", { symbol: net.symbol }), r.fee], [t("gascalc.feeWei"), r.feeWei], [t("gascalc.feeUsd"), r.feeUsd !== null ? `$${r.feeUsd.toFixed(2)}` : null], [t("gascalc.maxToHold"), r.maxFee]]);
     });
     const vb = input("141");
     const rate = input("", "sat/vB");
@@ -13359,11 +22481,11 @@
     live([vb, rate], btcOut, () => {
       if (!rate.value) return h("span");
       const r = bitcoinFee(Number(vb.value), Number(rate.value));
-      return outputs([["Fee (sats)", String(r.sats)], ["Fee (BTC)", r.btc]]);
+      return outputs([[t("gascalc.feeSats"), String(r.sats)], [t("gascalc.feeBtc"), r.btc]]);
     });
     return [
-      card("EVM fee", field("Chain", chain), field("Gas limit", gas), presets, field("Base fee / gas price", base2), field("Priority fee", tip), field("Max fee", max), h("div", { class: "row" }, loadBtn, status), out, note("Rollups also charge an L1 data fee not included here.", "info")),
-      card("Bitcoin fee", field("Size (vbytes)", vb), field("Fee rate", rate), btcOut)
+      card(t("gascalc.evmFee"), field(t("gas.chain"), chain), field(t("gascalc.gasLimit"), gas), presets, field(t("gascalc.baseFee"), base2), field(t("gascalc.priorityFee"), tip), field(t("gascalc.maxFee"), max), h("div", { class: "row" }, loadBtn, status), out, note(t("gascalc.l1Note"), "info")),
+      card(t("gascalc.btcFee"), field(t("gascalc.size"), vb), field(t("gascalc.feeRate"), rate), btcOut)
     ];
   }
   function renderCalls(calls, guess) {
@@ -13378,21 +22500,21 @@
   }
   function abiDecoder(settings) {
     const data = area("", "0xa9059cbb…");
-    const abi = area("", "JSON ABI or one signature per line (optional)");
+    const abi = area("", t("abi.abiPlaceholder"));
     const out = h("div");
-    const parseAbi = (t) => !t.trim() ? [] : t.trim().startsWith("[") || t.trim().startsWith("{") ? parseJsonAbi(t).functions : t.split("\n").map((l) => l.trim()).filter(Boolean).map(parseSignature);
+    const parseAbi = (t2) => !t2.trim() ? [] : t2.trim().startsWith("[") || t2.trim().startsWith("{") ? parseJsonAbi(t2).functions : t2.split("\n").map((l) => l.trim()).filter(Boolean).map(parseSignature);
     live([data, abi], out, () => {
       const d = data.value.trim();
       if (!d) return h("span");
-      if (!/^0x[0-9a-fA-F]{8,}$/.test(d)) return errorText("Calldata must be 0x followed by at least a 4-byte selector.");
+      if (!/^0x[0-9a-fA-F]{8,}$/.test(d)) return errorText(t("abi.badCalldata"));
       const fns = parseAbi(abi.value);
       const calls = decodeCalldata(d, fns.length ? fns : void 0);
-      if (calls.length) return renderCalls(calls, fns.length ? null : "Matched a common signature (no ABI given).");
-      const btn = h("button", { type: "button", class: "btn-ghost sm" }, "Look up selector online");
+      if (calls.length) return renderCalls(calls, fns.length ? null : t("abi.commonMatch"));
+      const btn = h("button", { type: "button", class: "btn-ghost sm" }, t("abi.lookupSelector"));
       const res = h("div");
       btn.addEventListener("click", async () => {
-        if (!settings.network) return clear(res, note("Online lookups are off in settings.", "info"));
-        clear(res, h("p", { class: "muted" }, "Asking openchain.xyz / 4byte.directory…"));
+        if (!settings.network) return clear(res, note(t("common.offInSettings"), "info"));
+        clear(res, h("p", { class: "muted" }, t("abi.asking")));
         try {
           const r = await apiGet("selector", { q: d.slice(0, 10).toLowerCase() });
           const cands = r.signatures.flatMap((s) => {
@@ -13403,18 +22525,18 @@
             }
           });
           const found = decodeCalldata(d, cands);
-          clear(res, ...found.length ? renderCalls(found, `Community-submitted signature (${r.source}): treat as a guess.`) : [h("p", { class: "muted" }, "No submitted signature decodes this data.")]);
+          clear(res, ...found.length ? renderCalls(found, t("abi.community", { source: r.source })) : [h("p", { class: "muted" }, t("abi.noneDecodes"))]);
         } catch (e) {
           clear(res, errorText(e.message));
         }
       });
-      return [h("p", { class: "muted" }, `Selector ${d.slice(0, 10)} isn't known.`), btn, res];
+      return [h("p", { class: "muted" }, t("abi.unknownSelector", { selector: d.slice(0, 10) })), btn, res];
     });
     const sig = input("transfer(address to, uint256 amount)");
     const args = input('["0x000000000000000000000000000000000000dEaD", "1000000000000000000"]');
     const encOut = h("div");
-    live([sig, args], encOut, () => outputs([["Calldata", encodeCall(sig.value, JSON.parse(args.value))]]));
-    return [card("Decode", field("Calldata", data), field("ABI", abi), out), card("Encode", field("Function signature", sig), field("Arguments (JSON array)", args), encOut)];
+    live([sig, args], encOut, () => outputs([[t("abi.calldata"), encodeCall(sig.value, JSON.parse(args.value))]]));
+    return [card(t("abi.decode"), field(t("abi.calldata"), data), field("ABI", abi), out), card(t("abi.encode"), field(t("abi.signature"), sig), field(t("abi.args"), args), encOut)];
   }
   function txDecoder() {
     const raw = area("", "0x02f8…");
@@ -13428,24 +22550,24 @@
         card(
           d.typeName,
           outputs([
-            ["Hash", d.hash],
-            ["From (recovered)", d.from],
-            ["To", d.to ?? "(contract creation)"],
-            ["Chain id", d.chainId === null ? "none (replayable)" : String(d.chainId)],
-            ["Value", `${d.value} (${d.valueWei} wei)`],
-            ["Nonce", d.nonce],
-            ["Gas limit", d.gasLimit],
-            ["Gas price", gwei(d.gasPriceWei)],
-            ["Max fee", gwei(d.maxFeePerGasWei)],
-            ["Priority fee", gwei(d.maxPriorityFeePerGasWei)],
-            ["Data", d.data]
+            [t("txdec.hash"), d.hash],
+            [t("txdec.fromRecovered"), d.from],
+            [t("result.to"), d.to ?? t("txdec.creation")],
+            [t("txdec.chainId"), d.chainId === null ? t("txdec.replayable") : String(d.chainId)],
+            [t("result.value"), `${d.value} (${d.valueWei} wei)`],
+            [t("txdec.nonce"), d.nonce],
+            [t("gascalc.gasLimit"), d.gasLimit],
+            [t("gascalc.gasPrice"), gwei(d.gasPriceWei)],
+            [t("gascalc.maxFee"), gwei(d.maxFeePerGasWei)],
+            [t("gascalc.priorityFee"), gwei(d.maxPriorityFeePerGasWei)],
+            [t("txdec.data"), d.data]
           ])
         ),
-        ...renderCalls(d.call, "Matched a common signature; a best guess without the ABI."),
-        ...(d.authorizations ?? []).map((a) => card("EIP-7702 authorization", outputs([["Signer", a.signer], ["Delegates to", a.address], ["Chain / nonce", `${a.chainId === "0" ? "0 (any chain!)" : a.chainId} / ${a.nonce}`]])))
+        ...renderCalls(d.call, t("txdec.bestGuess")),
+        ...(d.authorizations ?? []).map((a) => card(t("txdec.authorization"), outputs([[t("result.signer"), a.signer], [t("txdec.delegatesTo"), a.address], [t("txdec.chainNonce"), `${a.chainId === "0" ? t("txdec.anyChain") : a.chainId} / ${a.nonce}`]])))
       ];
     });
-    return [field("Signed raw transaction", raw, "Decoded locally; nothing is broadcast."), out];
+    return [field(t("txdec.field"), raw, t("txdec.hint")), out];
   }
   var TOOL_ICONS = {
     "unit-converter": "scales",
@@ -13457,17 +22579,17 @@
     "transaction-decoder": "receipt",
     "gas-tracker": "gas"
   };
-  function toolTabs(current, nav2) {
+  function toolTabs(current2, nav2) {
     return h(
       "nav",
-      { class: "chips", "aria-label": "Tools" },
-      [...TOOLS.map((t) => [t.slug, t.title]), ["gas-tracker", "Gas tracker"]].map(
-        ([s, title]) => h("button", { type: "button", class: `chip${s === current ? " primary" : ""}`, "aria-current": s === current ? "page" : void 0, on: { click: () => nav2(`#tools/${s}`) } }, icon(TOOL_ICONS[s] ?? "wrench"), title)
+      { class: "chips", "aria-label": t("common.tools") },
+      [...TOOLS.map((x) => [x.slug, t(`tool.${x.slug}.title`)]), ["gas-tracker", t("common.gasTracker")]].map(
+        ([s, title]) => h("button", { type: "button", class: `chip${s === current2 ? " primary" : ""}`, "aria-current": s === current2 ? "page" : void 0, on: { click: () => nav2(`#tools/${s}`) } }, icon(TOOL_ICONS[s] ?? "wrench"), title)
       )
     );
   }
   function gasTracker(settings) {
-    const out = h("div", null, settings.network ? h("p", { class: "muted pulse" }, "Loading live gas prices…") : note("Online lookups are off in settings.", "info"));
+    const out = h("div", null, settings.network ? h("p", { class: "muted pulse" }, t("gas.loading")) : note(t("common.offInSettings"), "info"));
     if (settings.network) {
       apiGet("gas", {}).then(
         (g) => clear(
@@ -13478,7 +22600,7 @@
             h(
               "table",
               { class: "table" },
-              h("thead", null, h("tr", null, h("th", null, "Chain"), h("th", null, "Gas price (gwei)"), h("th", null, "Transfer (USD)"))),
+              h("thead", null, h("tr", null, h("th", null, t("gas.chain")), h("th", null, t("gas.priceCol")), h("th", null, t("gas.transferCol")))),
               h(
                 "tbody",
                 null,
@@ -13490,15 +22612,15 @@
                     "tr",
                     null,
                     h("td", null, r.chain.name),
-                    h("td", null, r.status === "ok" ? `${Number(r.gasPriceGwei) < 1e-4 ? "<0.0001" : Number(Number(r.gasPriceGwei).toPrecision(3)).toString()}${r.stale ? " (stale)" : ""}` : `unavailable: ${r.reason}`),
+                    h("td", null, r.status === "ok" ? `${Number(r.gasPriceGwei) < 1e-4 ? "<0.0001" : Number(Number(r.gasPriceGwei).toPrecision(3)).toString()}${r.stale ? ` ${t("common.staleParen")}` : ""}` : t("common.unavailableReason", { reason: r.reason ?? t("common.unknown") })),
                     h("td", null, eff !== null && price !== void 0 ? `$${(eff * 1e-9 * 21e3 * price).toFixed(4)}` : "—")
                   );
                 })
               )
             )
           ),
-          g.bitcoin.status === "ok" ? card("Bitcoin (sat/vB)", outputs([["Next block", String(g.bitcoin.data.fastest)], ["~30 min", String(g.bitcoin.data.halfHour)], ["~1 hour", String(g.bitcoin.data.hour)], ["Economy", String(g.bitcoin.data.economy)]])) : note(`Bitcoin fees unavailable: ${g.bitcoin.reason}`, "warn"),
-          h("p", { class: "source" }, `Public RPCs, mempool.space, CoinGecko · ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`)
+          g.bitcoin.status === "ok" ? card(t("gas.btcCard"), outputs([[t("gas.nextBlock"), String(g.bitcoin.data.fastest)], [t("gas.halfHour"), String(g.bitcoin.data.halfHour)], [t("gas.hour"), String(g.bitcoin.data.hour)], [t("gas.economy"), String(g.bitcoin.data.economy)]])) : note(t("gas.btcUnavailable", { reason: g.bitcoin.reason }), "warn"),
+          h("p", { class: "source" }, t("gas.source", { time: new Date(g.fetchedAt).toISOString().slice(11, 19) }))
         )
       ).catch((e) => clear(out, errorText(failMessage(e))));
     }
@@ -13506,11 +22628,11 @@
   }
   function toolsView(slug, settings, nav2) {
     if (slug === "gas-tracker") {
-      return h("div", { class: "stack" }, toolTabs(slug, nav2), h("p", { class: "label" }, "Developer tools"), h("h1", { class: "heading" }, "Gas tracker"), h("p", { class: "lead" }, `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin.`), ...gasTracker(settings));
+      return h("div", { class: "stack" }, toolTabs(slug, nav2), h("p", { class: "label" }, t("common.developerTools")), h("h1", { class: "heading" }, t("common.gasTracker")), h("p", { class: "lead" }, `${t("common.liveFees", { count: EVM_NETWORKS.length })}.`), ...gasTracker(settings));
     }
-    const tool = TOOLS.find((t) => t.slug === slug) ?? TOOLS[0];
+    const tool = TOOLS.find((x) => x.slug === slug) ?? TOOLS[0];
     const tabs = toolTabs(tool.slug, nav2);
-    return h("div", { class: "stack" }, tabs, h("p", { class: "label" }, "Developer tools"), h("h1", { class: "heading" }, tool.title), h("p", { class: "lead" }, tool.description), ...toolBody(tool.slug, settings));
+    return h("div", { class: "stack" }, tabs, h("p", { class: "label" }, t("common.developerTools")), h("h1", { class: "heading" }, t(`tool.${tool.slug}.title`)), h("p", { class: "lead" }, t(`tool.${tool.slug}.description`)), ...toolBody(tool.slug, settings));
   }
   function toolBody(slug, settings) {
     switch (slug) {
@@ -13535,12 +22657,21 @@
   var root = document.getElementById("app");
   var fixed = document.body.dataset.view;
   var NAV = [
-    ["#search", "Search", "search"],
-    ["#batch", "Batch", "list"],
-    ["#tools", "Tools", "wrench"],
-    ["#saved", "Saved", "bookmark"],
-    ["#settings", "Settings", "gear"]
+    ["#search", "common.search", "search"],
+    ["#batch", "app.batch", "list"],
+    ["#tools", "common.tools", "wrench"],
+    ["#saved", "common.saved", "bookmark"],
+    ["#settings", "common.settings", "gear"]
   ];
+  var THEME_NAME = { dark: "theme.dark", light: "theme.light", system: "theme.system" };
+  var VIEW_TITLE = {
+    search: "app.view.search",
+    result: "app.view.result",
+    batch: "app.view.batch",
+    tools: "app.view.tools",
+    saved: "app.view.saved",
+    settings: "app.view.settings"
+  };
   var THEME_NEXT = { dark: "light", light: "system", system: "dark" };
   var THEME_ICON = { dark: "moon", light: "sun", system: "desktop" };
   function nav(hash) {
@@ -13567,6 +22698,7 @@
     const state = await load();
     setApiBase(state.settings.apiBase);
     document.documentElement.dataset.theme = state.settings.theme;
+    applyLanguage(state.settings.language);
     const ctx = { state, nav, compact: false };
     const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
     lastView = view;
@@ -13591,16 +22723,16 @@
         body = h(
           "div",
           { class: "stack" },
-          h("section", { class: "hero dot-grid" }, h("p", { class: "label" }, "Search"), h("h1", { class: "heading" }, "Look up anything, on ", h("span", { class: "accent" }, "any chain.")), h("p", { class: "lead" }, "Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer.")),
+          h("section", { class: "hero dot-grid" }, h("p", { class: "label" }, t("common.search")), h("h1", { class: "heading" }, ...tx("hero.title", { accent: h("span", { class: "accent" }, t("hero.titleAccent")) })), h("p", { class: "lead" }, t("hero.appLead"))),
           searchView(ctx, { query: params.get("q") ?? void 0, chain: params.get("chain") ?? void 0 }),
           h(
             "nav",
-            { class: "feature-grid", "aria-label": "More tools" },
+            { class: "feature-grid", "aria-label": t("app.moreTools") },
             [
-              ["#batch", "list", "Batch search", "Check up to 50 addresses at once, export CSV"],
-              ["#tools/gas-tracker", "gas", "Gas tracker", `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin`],
-              ["#tools", "wrench", "Developer tools", "Units, checksums, decoders, timestamps"],
-              ["#saved", "bookmark", "Saved", "Your labels and notes, private to this browser"]
+              ["#batch", "list", t("app.batchSearch"), t("app.batchSearchBody")],
+              ["#tools/gas-tracker", "gas", t("common.gasTracker"), t("common.liveFees", { count: EVM_NETWORKS.length })],
+              ["#tools", "wrench", t("common.developerTools"), t("app.devToolsBody")],
+              ["#saved", "bookmark", t("common.saved"), t("app.savedBody")]
             ].map(([hash, ic, title, body2]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body2)))
           )
         );
@@ -13610,10 +22742,10 @@
       "aside",
       { class: "sidebar" },
       h("a", { href: "#search", class: "side-brand" }, brand()),
-      fixed ? h("p", { class: "side-note" }, "Extension options") : h(
+      fixed ? h("p", { class: "side-note" }, t("settings.options")) : h(
         "nav",
-        { class: "side-nav", "aria-label": "Sections" },
-        NAV.map(([hash, label, ic]) => h("a", { href: hash, class: `side-link${active === hash.slice(1) ? " active" : ""}`, "aria-current": active === hash.slice(1) ? "page" : void 0 }, icon(ic), label))
+        { class: "side-nav", "aria-label": t("common.sections") },
+        NAV.map(([hash, label, ic]) => h("a", { href: hash, class: `side-link${active === hash.slice(1) ? " active" : ""}`, "aria-current": active === hash.slice(1) ? "page" : void 0 }, icon(ic), t(label)))
       ),
       h(
         "div",
@@ -13631,17 +22763,20 @@
             }
           },
           icon(THEME_ICON[state.settings.theme]),
-          `Theme: ${state.settings.theme[0].toUpperCase()}${state.settings.theme.slice(1)}`
+          t("theme.current", { theme: t(THEME_NAME[state.settings.theme]) })
         ),
         h("a", { href: "https://web3lens.com", target: "_blank", rel: "noopener noreferrer", class: "side-link" }, icon("external"), "web3lens.com")
       )
     );
     clear(root, h("div", { class: "app-shell" }, sidebar, h("main", { class: "page" }, body)));
-    document.title = `Web3Lens · ${view[0].toUpperCase()}${view.slice(1)}`;
+    document.title = `Web3Lens · ${VIEW_TITLE[view] ? t(VIEW_TITLE[view]) : view}`;
   }
   window.addEventListener("hashchange", () => void render());
-  onStorageChange(() => {
-    if (lastView === "saved" || lastView === "settings") void render();
+  onStorageChange(async () => {
+    if (lastView === "saved" || lastView === "settings") return void render();
+    const { settings } = await load();
+    const before = locale();
+    if (applyLanguage(settings.language) !== before) void render();
   });
   void render();
 })();

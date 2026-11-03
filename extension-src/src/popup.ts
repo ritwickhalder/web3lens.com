@@ -13,6 +13,8 @@ import { EVM_NETWORKS, NETWORKS } from '@/lib/networks';
 import { sanctionsSnapshotAt } from '@/lib/security/sanctions';
 import { appUrl, ext, openTab } from './browser';
 import { clear, ext_link, h } from './dom';
+import { applyLanguage, detectLabel, t, tx, type MessageKey } from './i18n';
+import { browserLanguages, LOCALES, localeName, matchLocale, type LanguagePref } from './locales';
 import { scanPageForCandidates } from './scan';
 import { clearRecent, load, onStorageChange, setPrefs, setSettings, upsertSaved, type ExtSettings } from './store';
 import { brand, glyph, heroIllustration, icon, iconButton, spot, TOOL_ICONS, type IconName } from './ui';
@@ -22,25 +24,32 @@ import { toolBody } from './views/tools';
 
 type Tab = 'lookup' | 'scan' | 'tools' | 'gas' | 'saved';
 
-const TABS: [Tab, string, IconName][] = [
-  ['lookup', 'Lookup', 'search'],
-  ['scan', 'Scan page', 'scan'],
-  ['tools', 'Tools', 'wrench'],
-  ['gas', 'Gas', 'gas'],
-  ['saved', 'Saved', 'bookmark'],
+const TABS: [Tab, MessageKey, IconName][] = [
+  ['lookup', 'popup.tab.lookup', 'search'],
+  ['scan', 'popup.tab.scan', 'scan'],
+  ['tools', 'popup.tab.tools', 'wrench'],
+  ['gas', 'popup.tab.gas', 'gas'],
+  ['saved', 'popup.tab.saved', 'bookmark'],
 ];
-const THEMES: [ExtSettings['theme'], string, IconName][] = [
-  ['light', 'Light', 'sun'],
-  ['dark', 'Dark', 'moon'],
-  ['system', 'System', 'desktop'],
+const THEMES: [ExtSettings['theme'], label: MessageKey, aria: MessageKey, IconName][] = [
+  ['light', 'theme.light', 'theme.lightTheme', 'sun'],
+  ['dark', 'theme.dark', 'theme.darkTheme', 'moon'],
+  ['system', 'theme.system', 'theme.systemTheme', 'desktop'],
 ];
-/** The developer's other products, shown in the Info dialog. */
-const OTHER_TOOLS: [name: string, about: string, url: string, icon: IconName][] = [
-  ['SummaryTube', 'YouTube video summaries', 'https://summarytube.com', 'play'],
-  ['CentPage', 'The best internet startpage', 'https://centpage.com', 'layout'],
-  ['Super Session Manager', 'Save and restore tabs', 'https://sessionmanager.net', 'stack'],
-  ['Web Developer Tools', 'Tools for web developers', 'https://webdevelopertools.dev', 'code'],
+/** The developer's other products, shown in the Info dialog (product names stay as they are). */
+const OTHER_TOOLS: [name: string, about: MessageKey, url: string, icon: IconName][] = [
+  ['SummaryTube', 'info.summarytube', 'https://summarytube.com', 'play'],
+  ['CentPage', 'info.centpage', 'https://centpage.com', 'layout'],
+  ['Super Session Manager', 'info.sessionmanager', 'https://sessionmanager.net', 'stack'],
+  ['Web Developer Tools', 'info.webdevtools', 'https://webdevelopertools.dev', 'code'],
 ];
+/** lib/detect's EXAMPLES notes, by query. */
+const EXAMPLE_NOTES: Record<string, MessageKey> = {
+  'vitalik.eth': 'examples.vitalik',
+  '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48': 'examples.usdc',
+  '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa': 'examples.genesis',
+  TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t: 'examples.usdtTron',
+};
 
 const root = document.getElementById('app')!;
 let state: State;
@@ -112,8 +121,8 @@ function lookupPanel(query?: string, chain?: string): HTMLElement {
     h(
       'div',
       { class: 'p-hero-text' },
-      h('h1', null, 'Look up anything, on ', h('span', { class: 'accent' }, 'any chain.')),
-      h('p', null, `Paste an address, transaction, block or name. Web3Lens finds its chain among ${CHAINS.length}.`),
+      h('h1', null, ...tx('hero.title', { accent: h('span', { class: 'accent' }, t('hero.titleAccent')) })),
+      h('p', null, t('hero.popupLead', { count: CHAINS.length })),
     ),
     heroIllustration(),
   );
@@ -121,18 +130,19 @@ function lookupPanel(query?: string, chain?: string): HTMLElement {
   const examples = h(
     'section',
     { class: 'idle-col' },
-    sectionHead('sparkle', 'Try an example'),
+    sectionHead('sparkle', t('examples.title')),
     h(
       'div',
       { class: 'examples' },
-      EXAMPLES.map((ex) =>
-        h(
+      EXAMPLES.map((ex) => {
+        const label = EXAMPLE_NOTES[ex.query] ? t(EXAMPLE_NOTES[ex.query]) : ex.note;
+        return h(
           'button',
           { type: 'button', class: 'example', title: ex.query, on: { click: () => lookup(ex.query) } },
-          glyph(ex.icon, ex.note, 'sm'),
-          h('span', { class: 'example-title' }, ex.note), h('span', { class: 'example-q' }, shortHash(ex.query, 8, 6)),
-        ),
-      ),
+          glyph(ex.icon, label, 'sm'),
+          h('span', { class: 'example-title' }, label), h('span', { class: 'example-q' }, shortHash(ex.query, 8, 6)),
+        );
+      }),
     ),
   );
   const idle = h('div', { class: 'idle-grid' }, recent, examples);
@@ -145,14 +155,14 @@ function scanPanel(): HTMLElement {
   const host = h('span', { class: 'banner-host' }, '…');
   const out = h('div', { class: 'stack' });
   const run = async () => {
-    clear(out, loading('Reading this page…'));
+    clear(out, loading(t('scan.reading')));
     try {
       const [tab] = await ext.tabs.query({ active: true, currentWindow: true });
-      if (!tab?.id) throw new Error('No active tab');
+      if (!tab?.id) throw new Error(t('scan.noTab'));
       try {
-        host.textContent = tab.url ? new URL(tab.url).host || tab.url : (tab.title ?? 'this tab');
+        host.textContent = tab.url ? new URL(tab.url).host || tab.url : (tab.title ?? t('scan.thisTab'));
       } catch {
-        host.textContent = tab.title ?? 'this tab';
+        host.textContent = tab.title ?? t('scan.thisTab');
       }
       const [res] = await ext.scripting.executeScript({ target: { tabId: tab.id }, func: scanPageForCandidates });
       const found = (res?.result ?? [])
@@ -160,14 +170,14 @@ function scanPanel(): HTMLElement {
         .filter((x) => x.d && x.d.kind !== 'secret' && x.d.kind !== 'block' && x.d.format !== 'hex64')
         .slice(0, 30);
       if (!found.length) {
-        return clear(out, h('div', { class: 'empty' }, spot('scan', 'lg'), h('h2', null, 'Nothing found'), h('p', null, 'No addresses, transaction hashes or names on this page. Select text and right-click to look it up instead.')));
+        return clear(out, h('div', { class: 'empty' }, spot('scan', 'lg'), h('h2', null, t('scan.nothingTitle')), h('p', null, t('scan.nothingBody'))));
       }
       const all = found.map((f) => f.d!.normalized);
       clear(
         out,
         sectionHead(
           'checkCircle',
-          `${found.length} found`,
+          t('scan.found', { count: found.length }),
           h(
             'div',
             { class: 'row' },
@@ -180,14 +190,14 @@ function scanPanel(): HTMLElement {
                   click: async (e: Event) => {
                     const btn = e.currentTarget as HTMLElement;
                     await navigator.clipboard.writeText(all.join('\n')).catch(() => {});
-                    btn.replaceChildren(icon('check'), 'Copied');
+                    btn.replaceChildren(icon('check'), t('common.copied'));
                   },
                 },
               },
               icon('copy'),
-              'Copy all',
+              t('scan.copyAll'),
             ),
-            h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#batch?q=${encodeURIComponent(all.join('\n'))}`)) } }, icon('list'), 'Check all in batch'),
+            h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void openTab(appUrl(`#batch?q=${encodeURIComponent(all.join('\n'))}`)) } }, icon('list'), t('scan.checkAll')),
           ),
         ),
         h(
@@ -202,14 +212,14 @@ function scanPanel(): HTMLElement {
                 'button',
                 { type: 'button', class: 'recent-item boxed', title: d!.normalized, on: { click: () => lookup(s) } },
                 c ? glyph(c.id, c.name, 'sm') : spot('hash'),
-                h('span', { class: 'item-text' }, h('span', { class: 'mono' }, shortHash(d!.normalized, 10, 6)), h('span', { class: 'muted small' }, `${d!.label}${c ? ` · ${c.name}` : ''}`)),
+                h('span', { class: 'item-text' }, h('span', { class: 'mono' }, shortHash(d!.normalized, 10, 6)), h('span', { class: 'muted small' }, `${detectLabel(d!.label)}${c ? ` · ${c.name}` : ''}`)),
               ),
             );
           }),
         ),
       );
     } catch (e) {
-      clear(out, h('div', { class: 'empty' }, spot('shieldWarning', 'lg'), h('h2', null, 'Can’t read this page'), h('p', null, `${(e as Error).message}. Browser pages (settings, extension stores, new tabs) can’t be scanned.`)));
+      clear(out, h('div', { class: 'empty' }, spot('shieldWarning', 'lg'), h('h2', null, t('scan.cantReadTitle')), h('p', null, t('scan.cantReadBody', { error: (e as Error).message }))));
     }
   };
   void run();
@@ -220,8 +230,8 @@ function scanPanel(): HTMLElement {
       'section',
       { class: 'p-banner' },
       spot('scan'),
-      h('div', { class: 'p-banner-text' }, h('h2', null, 'Addresses on ', host), h('p', null, 'Reads the visible text of this tab once, when you open this tab. Nothing is sent anywhere.')),
-      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void run() } }, icon('refresh'), 'Rescan'),
+      h('div', { class: 'p-banner-text' }, h('h2', null, ...tx('scan.bannerTitle', { host })), h('p', null, t('scan.bannerBody'))),
+      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void run() } }, icon('refresh'), t('scan.rescan')),
     ),
     out,
   );
@@ -230,15 +240,15 @@ function scanPanel(): HTMLElement {
 // ---------------------------------------------------------------- Tools
 
 function toolsPanel(): HTMLElement {
-  const current = TOOLS.find((t) => t.slug === tool) ?? TOOLS[0];
+  const current = TOOLS.find((x) => x.slug === tool) ?? TOOLS[0];
   const nav = h(
     'nav',
-    { class: 'tool-nav', 'aria-label': 'Tools' },
-    h('p', { class: 'nav-title' }, 'Developer tools'),
-    TOOLS.map((t) => h('button', { type: 'button', class: 'tool-link', 'aria-current': String(t.slug === current.slug), on: { click: () => openTool(t.slug) } }, icon(TOOL_ICONS[t.slug] ?? 'hash', 'ic', true), t.title)),
-    h('p', { class: 'nav-title' }, 'More'),
-    h('button', { type: 'button', class: 'tool-link', on: { click: () => show('gas') } }, icon('gas', 'ic', true), 'Gas tracker'),
-    h('button', { type: 'button', class: 'tool-link', on: { click: () => void openTab(appUrl('#batch')) } }, icon('list', 'ic', true), 'Batch check', icon('external', 'ic xs faint')),
+    { class: 'tool-nav', 'aria-label': t('common.tools') },
+    h('p', { class: 'nav-title' }, t('common.developerTools')),
+    TOOLS.map((x) => h('button', { type: 'button', class: 'tool-link', 'aria-current': String(x.slug === current.slug), on: { click: () => openTool(x.slug) } }, icon(TOOL_ICONS[x.slug] ?? 'hash', 'ic', true), t(`tool.${x.slug}.title`))),
+    h('p', { class: 'nav-title' }, t('toolsNav.more')),
+    h('button', { type: 'button', class: 'tool-link', on: { click: () => show('gas') } }, icon('gas', 'ic', true), t('common.gasTracker')),
+    h('button', { type: 'button', class: 'tool-link', on: { click: () => void openTab(appUrl('#batch')) } }, icon('list', 'ic', true), t('toolsNav.batchCheck'), icon('external', 'ic xs faint')),
   );
   return h(
     'div',
@@ -251,8 +261,8 @@ function toolsPanel(): HTMLElement {
         'div',
         { class: 'tool-head' },
         spot(TOOL_ICONS[current.slug] ?? 'hash'),
-        h('div', { class: 'tool-head-text' }, h('h2', null, current.title), h('p', { title: current.description }, current.short)),
-        iconButton('external', 'Open in a full tab', () => void openTab(appUrl(`#tools/${current.slug}`))),
+        h('div', { class: 'tool-head-text' }, h('h2', null, t(`tool.${current.slug}.title`)), h('p', { title: t(`tool.${current.slug}.description`) }, t(`tool.${current.slug}.short`))),
+        iconButton('external', t('common.openInFullTab'), () => void openTab(appUrl(`#tools/${current.slug}`))),
       ),
       h('div', { class: 'tool-body' }, ...toolBody(current.slug, state.settings)),
     ),
@@ -269,9 +279,9 @@ function gasPanel(): HTMLElement {
   const out = h('div', { class: 'stack' });
   const run = async () => {
     if (!state.settings.network) {
-      return clear(out, h('div', { class: 'empty' }, spot('cloudSlash', 'lg'), h('h2', null, 'Offline mode'), h('p', null, 'Live gas needs an online lookup. Turn on online lookups in settings, or use the fee calculator with your own numbers.'), h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => openTool('gas-calculator') } }, icon('gas'), 'Fee calculator')));
+      return clear(out, h('div', { class: 'empty' }, spot('cloudSlash', 'lg'), h('h2', null, t('common.offlineMode')), h('p', null, t('gas.offlineBody')), h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => openTool('gas-calculator') } }, icon('gas'), t('common.feeCalculator'))));
     }
-    clear(out, loading('Loading live gas prices…'));
+    clear(out, loading(t('gas.loading')));
     try {
       const g = await apiGet<GasResult>('gas', {});
       const btc = g.bitcoin;
@@ -281,17 +291,17 @@ function gasPanel(): HTMLElement {
           ? h(
               'div',
               { class: 'fee-grid' },
-              h('div', { class: 'fee-head' }, glyph('bitcoin', 'Bitcoin', 'md'), h('span', null, h('b', null, 'Bitcoin'), h('small', null, 'fee rate, sat/vB'))),
+              h('div', { class: 'fee-head' }, glyph('bitcoin', 'Bitcoin', 'md'), h('span', null, h('b', null, 'Bitcoin'), h('small', null, t('gas.btcRate')))),
               (
                 [
-                  ['Next block', btc.data.fastest],
-                  ['~30 min', btc.data.halfHour],
-                  ['~1 hour', btc.data.hour],
-                  ['Economy', btc.data.economy],
+                  [t('gas.nextBlock'), btc.data.fastest],
+                  [t('gas.halfHour'), btc.data.halfHour],
+                  [t('gas.hour'), btc.data.hour],
+                  [t('gas.economy'), btc.data.economy],
                 ] as [string, number][]
               ).map(([label, v], i) => h('div', { class: `fee${i === 0 ? ' hot' : ''}` }, h('span', { class: 'fee-label' }, label), h('span', { class: 'fee-value' }, String(v)))),
             )
-          : note(`Bitcoin fees unavailable: ${btc.reason}`, 'warn'),
+          : note(t('gas.btcUnavailable', { reason: btc.reason }), 'warn'),
         h(
           'ul',
           { class: 'gas-list' },
@@ -303,12 +313,12 @@ function gasPanel(): HTMLElement {
               'li',
               { class: 'gas-row' },
               glyph(r.chain.id, r.chain.name, 'sm'),
-              h('span', { class: 'item-text' }, h('span', { class: 'gas-name' }, r.chain.name), h('span', { class: 'gas-sub' }, eff !== null && price !== undefined ? `$${(eff * 1e-9 * 21000 * price).toFixed(4)} transfer` : r.status === 'ok' ? 'no USD price' : (r.reason ?? 'unavailable'))),
-              r.status === 'ok' ? h('span', { class: 'gas-gwei' }, gwei(Number(r.gasPriceGwei)), h('small', null, r.stale ? 'gwei · stale' : 'gwei')) : h('span', { class: 'badge warn' }, 'n/a'),
+              h('span', { class: 'item-text' }, h('span', { class: 'gas-name' }, r.chain.name), h('span', { class: 'gas-sub' }, eff !== null && price !== undefined ? t('gas.transfer', { usd: `$${(eff * 1e-9 * 21000 * price).toFixed(4)}` }) : r.status === 'ok' ? t('gas.noUsd') : (r.reason ?? t('common.unavailable')))),
+              r.status === 'ok' ? h('span', { class: 'gas-gwei' }, gwei(Number(r.gasPriceGwei)), h('small', null, r.stale ? t('gas.gweiStale') : 'gwei')) : h('span', { class: 'badge warn' }, t('gas.na')),
             );
           }),
         ),
-        h('p', { class: 'source' }, `Public RPCs, mempool.space, CoinGecko · fetched ${new Date(g.fetchedAt).toISOString().slice(11, 19)} UTC. Rollups add an L1 data fee.`),
+        h('p', { class: 'source' }, t('gas.source', { time: new Date(g.fetchedAt).toISOString().slice(11, 19) })),
       );
     } catch (e) {
       clear(out, errorText(failMessage(e)));
@@ -320,12 +330,12 @@ function gasPanel(): HTMLElement {
     { class: 'stack' },
     sectionHead(
       'gas',
-      `Live fees · ${EVM_NETWORKS.length} EVM chains and Bitcoin`,
+      t('gas.head', { count: EVM_NETWORKS.length }),
       h(
         'div',
         { class: 'row' },
-        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => openTool('gas-calculator') } }, icon('gas'), 'Fee calculator'),
-        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void run() } }, icon('refresh'), 'Refresh'),
+        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => openTool('gas-calculator') } }, icon('gas'), t('common.feeCalculator')),
+        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void run() } }, icon('refresh'), t('common.refresh')),
       ),
     ),
     out,
@@ -335,7 +345,7 @@ function gasPanel(): HTMLElement {
 // ---------------------------------------------------------------- Saved
 
 function savedPanel(): HTMLElement {
-  const filter = h('input', { class: 'input', placeholder: 'Filter by label, address or note', 'aria-label': 'Filter saved items' });
+  const filter = h('input', { class: 'input', placeholder: t('saved.filterPlaceholder'), 'aria-label': t('saved.filterLabel') });
   const list = h('ul', { class: 'saved-list' });
   const render = () => {
     const f = filter.value.trim().toLowerCase();
@@ -344,9 +354,9 @@ function savedPanel(): HTMLElement {
       .sort((a, b) => Number(b.favourite) - Number(a.favourite) || b.addedAt - a.addedAt);
     list.classList.toggle('is-empty', !items.length);
     if (!state.saved.length) {
-      return clear(list, h('li', { class: 'empty' }, spot('bookmark', 'lg'), h('h2', null, 'Nothing saved yet'), h('p', null, 'Press Save after a search to keep an address or transaction here with a label and notes. Saved items stay in this browser.')));
+      return clear(list, h('li', { class: 'empty' }, spot('bookmark', 'lg'), h('h2', null, t('saved.emptyTitle')), h('p', null, t('saved.emptyBody'))));
     }
-    if (!items.length) return clear(list, h('li', { class: 'hint' }, `Nothing matches “${filter.value}”.`));
+    if (!items.length) return clear(list, h('li', { class: 'hint' }, t('saved.noMatch', { query: filter.value })));
     clear(
       list,
       items.map((item) => {
@@ -360,7 +370,7 @@ function savedPanel(): HTMLElement {
             'button',
             { type: 'button', class: 'saved-main', title: item.query, on: { click: () => lookup(item.query, item.chainId ?? undefined) } },
             h('span', { class: 'saved-title' }, item.label || shortHash(item.query, 12, 8)),
-            h('span', { class: 'saved-sub' }, item.label ? h('span', { class: 'mono' }, shortHash(item.query, 8, 6)) : null, `${item.label ? ' · ' : ''}${d?.label ?? 'unrecognised'}${c ? ` · ${c.name}` : ''}`),
+            h('span', { class: 'saved-sub' }, item.label ? h('span', { class: 'mono' }, shortHash(item.query, 8, 6)) : null, `${item.label ? ' · ' : ''}${d ? detectLabel(d.label) : t('common.unrecognised')}${c ? ` · ${c.name}` : ''}`),
           ),
           h(
             'button',
@@ -368,8 +378,8 @@ function savedPanel(): HTMLElement {
               type: 'button',
               class: `star${item.favourite ? ' on' : ''}`,
               'aria-pressed': String(item.favourite),
-              'aria-label': item.favourite ? 'Unpin' : 'Pin to the top',
-              title: item.favourite ? 'Unpin' : 'Pin to the top',
+              'aria-label': item.favourite ? t('saved.unpin') : t('saved.pin'),
+              title: item.favourite ? t('saved.unpin') : t('saved.pin'),
               on: { click: () => void upsertSaved({ query: item.query, chainId: item.chainId, favourite: !item.favourite }) },
             },
             icon('star'),
@@ -388,7 +398,7 @@ function savedPanel(): HTMLElement {
       'div',
       { class: 'row' },
       h('div', { class: 'input-icon' }, icon('search'), filter),
-      h('button', { type: 'button', class: 'btn-ghost', title: 'Edit labels and notes, export, import or share', on: { click: () => void openTab(appUrl('#saved')) } }, icon('external'), 'Manage'),
+      h('button', { type: 'button', class: 'btn-ghost', title: t('saved.manageTitle'), on: { click: () => void openTab(appUrl('#saved')) } }, icon('external'), t('saved.manage')),
     ),
     list,
   );
@@ -400,7 +410,7 @@ function dialog(title: string, ic: IconName, body: Node, cls = ''): HTMLDialogEl
   const dlg = h(
     'dialog',
     { class: `modal ${cls}`, 'aria-label': title },
-    h('div', { class: 'modal-card' }, h('header', { class: 'modal-head' }, h('h2', null, spot(ic), title), iconButton('x', 'Close', () => dlg.close())), h('div', { class: 'modal-body' }, body)),
+    h('div', { class: 'modal-card' }, h('header', { class: 'modal-head' }, h('h2', null, spot(ic), title), iconButton('x', t('common.close'), () => dlg.close())), h('div', { class: 'modal-body' }, body)),
   );
   dlg.addEventListener('close', () => dlg.remove());
   // A click on the backdrop lands on the <dialog> itself, outside the card.
@@ -413,35 +423,57 @@ function dialog(title: string, ic: IconName, body: Node, cls = ''): HTMLDialogEl
 function themeSeg(labels = false): HTMLElement {
   return h(
     'div',
-    { class: `seg${labels ? ' labelled' : ''}`, role: 'radiogroup', 'aria-label': 'Theme' },
-    THEMES.map(([t, label, ic]) =>
+    { class: `seg${labels ? ' labelled' : ''}`, role: 'radiogroup', 'aria-label': t('theme.label') },
+    THEMES.map(([th, label, aria, ic]) =>
       h(
         'button',
         {
           type: 'button',
           role: 'radio',
-          'data-theme-opt': t,
-          'aria-checked': String(state.settings.theme === t),
-          'aria-label': `${label} theme`,
-          title: `${label} theme`,
+          'data-theme-opt': th,
+          'aria-checked': String(state.settings.theme === th),
+          'aria-label': t(aria),
+          title: t(aria),
           on: {
             click: async () => {
-              state.settings.theme = t;
-              applyTheme(t);
-              document.querySelectorAll('[data-theme-opt]').forEach((b) => b.setAttribute('aria-checked', String(b.getAttribute('data-theme-opt') === t)));
+              state.settings.theme = th;
+              applyTheme(th);
+              document.querySelectorAll('[data-theme-opt]').forEach((b) => b.setAttribute('aria-checked', String(b.getAttribute('data-theme-opt') === th)));
               await setSettings(state.settings);
             },
           },
         },
         icon(ic),
-        labels ? label : null,
+        labels ? t(label) : null,
       ),
     ),
   );
 }
 
-function settingRow(title: string, text: string, control: Node) {
-  return h('div', { class: 'set-row' }, h('div', { class: 'set-text' }, h('b', null, title), h('small', null, text)), control);
+function settingRow(title: string, text: string, control: Node, cls = '') {
+  return h('div', { class: `set-row ${cls}` }, h('div', { class: 'set-text' }, h('b', null, title), text ? h('small', null, text) : null), control);
+}
+
+/** UI language: Automatic (browser language) or one of the 15, each in its own name. */
+function languageSelect(): HTMLElement {
+  const sel = h(
+    'select',
+    { class: 'select lang-select', 'aria-label': t('language.label') },
+    h('option', { value: 'auto', selected: state.settings.language === 'auto' ? true : undefined }, t('language.auto', { language: localeName(matchLocale(browserLanguages())) })),
+    LOCALES.map((l) => h('option', { value: l.code, lang: l.code, selected: state.settings.language === l.code ? true : undefined }, l.name)),
+  );
+  sel.addEventListener('change', async () => {
+    state.settings.language = sel.value as LanguagePref;
+    await setSettings(state.settings);
+    applyLanguage(state.settings.language);
+    // Rebuild everything in the new language, then reopen Settings where the user was.
+    panels.clear();
+    refreshSaved = null;
+    document.querySelectorAll('dialog.modal').forEach((d) => (d as HTMLDialogElement).close());
+    paintShell();
+    openSettings();
+  });
+  return sel;
 }
 
 function openSettings() {
@@ -464,7 +496,7 @@ function openSettings() {
         }),
         h('span', null, h('b', null, title), h('small', null, text)),
       );
-    const network = h('input', { type: 'checkbox', class: 'switch', role: 'switch', 'aria-label': 'Online lookups', checked: state.settings.network ? true : undefined });
+    const network = h('input', { type: 'checkbox', class: 'switch', role: 'switch', 'aria-label': t('common.onlineLookups'), checked: state.settings.network ? true : undefined });
     network.addEventListener('change', async () => {
       state.settings.network = network.checked;
       await setSettings(state.settings);
@@ -473,22 +505,24 @@ function openSettings() {
     });
     clear(
       body,
-      settingRow('Appearance', 'Light is the default. System follows your browser.', themeSeg(true)),
+      settingRow(t('settings.appearance'), t('settings.appearanceHint'), themeSeg(true)),
+      // One line, so the dialog still fits the popup; the options page has the full explanation.
+      settingRow(t('language.label'), '', languageSelect(), 'compact'),
       h(
         'div',
         { class: 'set-block' },
-        h('div', { class: 'set-text' }, h('b', null, 'When I press Search'), h('small', null, 'Right-click lookups and the w3 keyword follow this too.')),
+        h('div', { class: 'set-text' }, h('b', null, t('settings.whenSearch')), h('small', null, t('settings.whenSearchHint'))),
         h(
           'div',
           { class: 'choices' },
-          choice('results', 'Show Web3Lens results first', `Balances, tokens and risk checks on ${NETWORKS.length} chains; other chains open their explorer.`),
-          choice('explorer', 'Always open the block explorer', 'Go straight to the explorer in a new tab.'),
+          choice('results', t('settings.resultsFirst'), t('settings.resultsFirstHint', { count: NETWORKS.length })),
+          choice('explorer', t('settings.alwaysExplorer'), t('settings.alwaysExplorerHint')),
         ),
       ),
-      settingRow('Online lookups', state.settings.network ? `On: balances, transactions, risk checks and gas come from ${apiHost()} when you ask.` : 'Off: detection, checksums, explorer links, tools and the OFAC snapshot still work locally.', network),
+      settingRow(t('common.onlineLookups'), state.settings.network ? t('settings.onlineOn', { host: apiHost() }) : t('settings.onlineOff'), network),
       settingRow(
-        'Recent searches',
-        `${state.recent.length} kept in this browser.`,
+        t('settings.recent'),
+        t('settings.recentKept', { count: state.recent.length }),
         h(
           'button',
           {
@@ -506,14 +540,14 @@ function openSettings() {
             },
           },
           icon('trash'),
-          'Clear',
+          t('common.clear'),
         ),
       ),
-      h('button', { type: 'button', class: 'link-row', on: { click: () => void openTab(appUrl('#settings')) } }, icon('sliders'), h('span', null, h('b', null, 'More settings'), h('small', null, 'Preferred explorers, favourite chains, data and reset')), icon('caretRight', 'ic faint')),
+      h('button', { type: 'button', class: 'link-row', on: { click: () => void openTab(appUrl('#settings')) } }, icon('sliders'), h('span', null, h('b', null, t('settings.more')), h('small', null, t('settings.moreHint'))), icon('caretRight', 'ic faint')),
     );
   };
   paint();
-  dialog('Settings', 'gear', body, 'modal-settings');
+  dialog(t('common.settings'), 'gear', body, 'modal-settings');
 }
 
 function linkCard(ic: IconName, title: string, sub: string, href: string, cls = '') {
@@ -522,41 +556,42 @@ function linkCard(ic: IconName, title: string, sub: string, href: string, cls = 
 
 function openInfo() {
   const version = ext.runtime.getManifest().version;
-  const kbd = (...keys: string[]) => keys.flatMap((k, i) => [i ? ' + ' : '', h('kbd', { class: 'kbd' }, k)]);
+  const kbd = (...keys: string[]) => keys.flatMap((k, i): (string | Node)[] => [i ? ' + ' : '', h('kbd', { class: 'kbd' }, k)]);
   const body = h(
     'div',
     { class: 'modal-stack' },
-    h('p', { class: 'label' }, icon('lightbulb'), 'Faster ways in'),
+    h('p', { class: 'label' }, icon('lightbulb'), t('info.fasterWays')),
     h(
       'div',
       { class: 'how-grid' },
-      h('div', { class: 'how' }, spot('keyboard'), h('b', null, 'Keyboard shortcut'), h('span', null, 'Open this popup with ', ...kbd('Alt', 'Shift', 'W'), '.')),
-      h('div', { class: 'how' }, spot('cursor'), h('b', null, 'Right-click'), h('span', null, 'Select an address or hash on any page and choose ', h('i', null, 'Look up on Web3Lens'), '.')),
-      h('div', { class: 'how' }, spot('search'), h('b', null, 'Address bar'), h('span', null, 'Type ', h('kbd', { class: 'kbd' }, 'w3'), ', a space, then paste to search.')),
+      h('div', { class: 'how' }, spot('keyboard'), h('b', null, t('info.shortcut')), h('span', null, ...tx('info.shortcutBody', { keys: kbd('Alt', 'Shift', 'W') }))),
+      // The right-click menu item is registered by the background in English, so it is quoted as is.
+      h('div', { class: 'how' }, spot('cursor'), h('b', null, t('info.rightClick')), h('span', null, ...tx('info.rightClickBody', { menu: h('i', null, 'Look up on Web3Lens') }))),
+      h('div', { class: 'how' }, spot('search'), h('b', null, t('info.addressBar')), h('span', null, ...tx('info.addressBarBody', { key: h('kbd', { class: 'kbd' }, 'w3') }))),
     ),
     h(
       'div',
       { class: 'stats' },
-      h('div', { class: 'stat' }, h('b', null, String(CHAINS.length)), h('span', null, 'blockchains detected and routed')),
-      h('div', { class: 'stat' }, h('b', null, String(NETWORKS.length)), h('span', null, 'with live balances and risk checks')),
-      h('div', { class: 'stat' }, h('b', null, new Date(sanctionsSnapshotAt()).toISOString().slice(0, 10)), h('span', null, 'OFAC list snapshot, checked locally')),
+      h('div', { class: 'stat' }, h('b', null, String(CHAINS.length)), h('span', null, t('info.statChains'))),
+      h('div', { class: 'stat' }, h('b', null, String(NETWORKS.length)), h('span', null, t('info.statNative'))),
+      h('div', { class: 'stat' }, h('b', null, new Date(sanctionsSnapshotAt()).toISOString().slice(0, 10)), h('span', null, t('info.statOfac'))),
     ),
     h(
       'div',
       { class: 'link-grid' },
-      linkCard('globe', 'Website', 'web3lens.com', 'https://web3lens.com'),
-      linkCard('envelope', 'Contact us', 'Send feedback', 'https://web3lens.com/contact'),
-      linkCard('shield', 'Privacy policy', 'Data stored and sent', 'https://web3lens.com/privacy-policy'),
+      linkCard('globe', t('info.website'), 'web3lens.com', 'https://web3lens.com'),
+      linkCard('envelope', t('info.contact'), t('info.contactSub'), 'https://web3lens.com/contact'),
+      linkCard('shield', t('info.privacy'), t('info.privacySub'), 'https://web3lens.com/privacy-policy'),
     ),
-    h('p', { class: 'divider-label' }, h('span', null, 'More from the same developer')),
+    h('p', { class: 'divider-label' }, h('span', null, t('info.moreFrom'))),
     h(
       'div',
       { class: 'link-grid four' },
-      OTHER_TOOLS.map(([name, about, url, ic]) => linkCard(ic, name, about, url, 'other')),
+      OTHER_TOOLS.map(([name, about, url, ic]) => linkCard(ic, name, t(about), url, 'other')),
     ),
-    h('p', { class: 'modal-foot' }, `Web3Lens extension v${version} · no account needed, saved data stays in this browser`),
+    h('p', { class: 'modal-foot' }, t('info.foot', { version })),
   );
-  dialog('About Web3Lens', 'info', body, 'modal-info');
+  dialog(t('info.title'), 'info', body, 'modal-info');
 }
 
 // ---------------------------------------------------------------- Shell
@@ -570,20 +605,20 @@ function header(): HTMLElement {
   return h(
     'header',
     { class: 'popup-head' },
-    h('div', { class: 'head-brand' }, brand(), h('span', { class: 'tagline' }, 'Blockchain search for ', h('b', null, 'every chain'))),
+    h('div', { class: 'head-brand' }, brand(), h('span', { class: 'tagline' }, ...tx('popup.tagline', { strong: h('b', null, t('popup.taglineStrong')) }))),
     h(
       'div',
       { class: 'row' },
       h(
         'button',
-        { type: 'button', class: `status-pill${online ? '' : ' off'}`, title: online ? `Lookups go to ${apiHost()}. Change in settings` : 'Nothing leaves your browser. Change in settings', on: { click: openSettings } },
+        { type: 'button', class: `status-pill${online ? '' : ' off'}`, title: online ? t('popup.statusOnline', { host: apiHost() }) : t('popup.statusOffline'), on: { click: openSettings } },
         h('span', { class: 'status-dot', 'aria-hidden': 'true' }),
-        online ? 'Online' : 'Offline mode',
+        online ? t('popup.online') : t('common.offlineMode'),
       ),
       themeSeg(),
-      iconButton('info', 'About, shortcuts and more tools', openInfo),
-      iconButton('gear', 'Settings', openSettings),
-      iconButton('external', 'Open the full app in a tab', () => void openTab(appUrl('#search'))),
+      iconButton('info', t('popup.aboutButton'), openInfo),
+      iconButton('gear', t('common.settings'), openSettings),
+      iconButton('external', t('popup.openApp'), () => void openTab(appUrl('#search'))),
     ),
   );
 }
@@ -592,10 +627,10 @@ function tabBar(): HTMLElement {
   tabButtons.clear();
   const bar = h(
     'nav',
-    { class: 'popup-tabs', role: 'tablist', 'aria-label': 'Sections' },
-    TABS.map(([t, label, ic]) => {
-      const b = h('button', { type: 'button', class: 'ptab', role: 'tab', id: `tab-${t}`, 'aria-controls': 'popup-panel', on: { click: () => show(t) } }, icon(ic), label, t === 'saved' ? savedCount : null);
-      tabButtons.set(t, b);
+    { class: 'popup-tabs', role: 'tablist', 'aria-label': t('common.sections') },
+    TABS.map(([tab, label, ic]) => {
+      const b = h('button', { type: 'button', class: 'ptab', role: 'tab', id: `tab-${tab}`, 'aria-controls': 'popup-panel', on: { click: () => show(tab) } }, icon(ic), t(label), tab === 'saved' ? savedCount : null);
+      tabButtons.set(tab, b);
       return b;
     }),
   );
@@ -632,9 +667,9 @@ function paintShell() {
           'span',
           { class: 'row' },
           icon(state.settings.network ? 'shield' : 'cloudSlash'),
-          state.settings.network ? `Lookups you run go to ${apiHost()}. Nothing else leaves your browser.` : 'Offline mode: nothing leaves your browser.',
+          state.settings.network ? t('popup.footOnline', { host: apiHost() }) : t('popup.footOffline'),
         ),
-        h('button', { type: 'button', class: 'linkish small', on: { click: openInfo } }, 'Shortcuts and more tools', icon('arrowRight', 'ic xs')),
+        h('button', { type: 'button', class: 'linkish small', on: { click: openInfo } }, t('popup.footLink'), icon('arrowRight', 'ic xs')),
       ),
     ),
   );
@@ -645,6 +680,7 @@ async function render() {
   state = await load();
   setApiBase(state.settings.apiBase);
   applyTheme(state.settings.theme);
+  applyLanguage(state.settings.language);
   paintShell();
 }
 

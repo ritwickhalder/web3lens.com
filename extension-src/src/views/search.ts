@@ -2,13 +2,14 @@
 import { setApiBase } from '@/lib/api-client';
 import { CHAINS, getChain, type Chain } from '@/lib/chains';
 import { detectAll, extractQuery, type Detection } from '@/lib/detect';
-import { detectionFor, fallbackNotice, isSafeExternalUrl, resolveExplorer, toQueryKind, webSearchLink, type ExplorerAction } from '@/lib/explorer';
+import { detectionFor, isSafeExternalUrl, resolveExplorer, toQueryKind, webSearchLink, type ExplorerAction } from '@/lib/explorer';
 import { shortHash } from '@/lib/format';
 import { hasNativeSupport } from '@/lib/networks';
 import { labelFor } from '@/lib/saved';
 import { checkSanctions } from '@/lib/security/sanctions';
 import { appUrl, openTab } from '../browser';
 import { clear, copy, ext_link, h } from '../dom';
+import { detectLabel, detectNote, t } from '../i18n';
 import { addRecent, clearRecent, setPrefs, upsertSaved, type load } from '../store';
 import { chainPicker, glyph, icon } from '../ui';
 import { badge, errorText, explorerList, note } from './common';
@@ -42,8 +43,8 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
   const input = h('input', {
     class: 'search-input',
     type: 'text',
-    placeholder: 'Address, tx hash, block or ENS name',
-    'aria-label': 'Address, transaction hash, block or name',
+    placeholder: t('search.placeholder'),
+    'aria-label': t('search.inputLabel'),
     autocomplete: 'off',
     spellcheck: 'false',
     value: initial.query ?? '',
@@ -88,8 +89,8 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
   function renderInfo() {
     const { query, best, all } = current();
     if (!query) return clear(info);
-    if (!best) return clear(info, h('p', { class: 'hint' }, 'Not a format Web3Lens recognises: it will go to the chosen chain’s explorer search.'));
-    if (best.kind === 'secret') return clear(info, note(best.note ?? 'Secret detected.', 'danger'));
+    if (!best) return clear(info, h('p', { class: 'hint' }, t('search.unknownFormat')));
+    if (best.kind === 'secret') return clear(info, note(best.note ? detectNote(best.note) : t('search.secret'), 'danger'));
     const chain = effectiveChain(best);
     const saved = labelFor(state.saved, best.normalized, chain.id);
     const sanctions = best.kind === 'address' ? checkSanctions(best.normalized) : null;
@@ -99,17 +100,17 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
       h(
         'div',
         { class: 'row wrap' },
-        h('span', { class: 'detect-pill' }, icon('scan'), best.label, best.checksum === 'valid' ? h('span', { class: 'pill-sub' }, '· checksum ok') : null),
-        best.checksum === 'invalid' ? badge('bad checksum', 'danger') : null,
-        best.network === 'testnet' ? badge('testnet', 'warn') : null,
-        sanctions?.listed ? badge('OFAC listed', 'danger') : null,
+        h('span', { class: 'detect-pill' }, icon('scan'), detectLabel(best.label), best.checksum === 'valid' ? h('span', { class: 'pill-sub' }, t('search.checksumOk')) : null),
+        best.checksum === 'invalid' ? badge(t('search.badChecksum'), 'danger') : null,
+        best.network === 'testnet' ? badge(t('search.testnet'), 'warn') : null,
+        sanctions?.listed ? badge(t('search.ofacListed'), 'danger') : null,
         saved?.label ? badge(`★ ${saved.label}`, 'good') : null,
       ),
       candidates.length > 1 || !candidates.includes(chain)
         ? h(
             'div',
             { class: 'row wrap chips-row' },
-            h('span', { class: 'row-label' }, candidates.includes(chain) ? 'Search on' : 'Switch to'),
+            h('span', { class: 'row-label' }, candidates.includes(chain) ? t('search.searchOn') : t('search.switchTo')),
             candidates.slice(0, ctx.compact ? 4 : 8).map((c) =>
               h(
                 'button',
@@ -131,8 +132,8 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
             ),
           )
         : null,
-      all.length > 1 ? h('p', { class: 'hint' }, `Could also be: ${all.slice(1).map((d) => d.label).join(', ')}`) : null,
-      best.note ? note(best.note, best.checksum === 'invalid' ? 'danger' : 'warn') : null,
+      all.length > 1 ? h('p', { class: 'hint' }, t('search.couldBe', { list: all.slice(1).map((d) => detectLabel(d.label)).join(', ') })) : null,
+      best.note ? note(detectNote(best.note), best.checksum === 'invalid' ? 'danger' : 'warn') : null,
     );
   }
 
@@ -157,16 +158,16 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
           h(
             'span',
             null,
-            `${chain.name}'s explorer did not respond at the last health check. `,
-            ext_link(webSearchLink(chain, query), 'Search the web'),
+            `${t('search.explorerDown', { chain: chain.name })} `,
+            ext_link(webSearchLink(chain, query), t('search.searchWeb')),
             ' · ',
-            h('button', { type: 'button', class: 'linkish', on: { click: () => openAction(r.action) } }, 'open anyway'),
+            h('button', { type: 'button', class: 'linkish', on: { click: () => openAction(r.action) } }, t('search.openAnyway')),
           ),
         ),
       );
       return;
     }
-    if (r.fallback) results.prepend(note(fallbackNotice(chain), 'info'));
+    if (r.fallback) results.prepend(note(t('search.fallback', { chain: chain.name }), 'info'));
     openAction(r.action);
   }
 
@@ -175,8 +176,8 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     const { query, best } = current();
     clear(results);
     fullBtn.hidden = true;
-    if (!query) return results.append(errorText('Paste an address, transaction hash, block number or name first.'));
-    if (best?.kind === 'secret') return results.append(note(best.note ?? 'Not searched.', 'danger'));
+    if (!query) return results.append(errorText(t('search.empty')));
+    if (best?.kind === 'secret') return results.append(note(best.note ? detectNote(best.note) : t('search.notSearched'), 'danger'));
     const chain = effectiveChain(best);
     await addRecent({ chainId: chain.id, query });
     const d = detectionFor(chain, query);
@@ -184,13 +185,13 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     const native = d && d.checksum !== 'invalid' && d.network !== 'testnet' && hasNativeSupport(chain.id, kind) && kind !== 'block';
     if (forceExplorer || !native || state.prefs.searchAction === 'explorer') return goExplorer(chain, query);
     if (!state.settings.network) {
-      results.append(note('Online lookups are off (settings), so here are the explorers:', 'info'), explorerList(chain.id, d!.normalized, d) ?? h('span'));
+      results.append(note(t('search.offlineExplorers'), 'info'), explorerList(chain.id, d!.normalized, d) ?? h('span'));
       return;
     }
     const evmOverview = (d!.format === 'evm-address' || d!.format === 'evm-tx') && !userPicked;
     if (evmOverview && !ctx.compact) {
       results.append(d!.format === 'evm-address' ? multichainCard(d!.normalized, ctx.nav) : locateCard(d!.normalized, ctx.nav));
-      results.append(h('section', { class: 'card' }, h('h2', null, 'Explorers'), explorerList(chain.id, d!.normalized, d) ?? h('span')));
+      results.append(h('section', { class: 'card' }, h('h2', null, t('common.explorers')), explorerList(chain.id, d!.normalized, d) ?? h('span')));
       return;
     }
     const k = kind === 'tx' ? 'tx' : 'address';
@@ -204,7 +205,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
   function renderRecent() {
     if (!state.recent.length) {
       return initial.recentInto
-        ? clear(recentBox, h('section', { class: 'recent' }, h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), 'Recent')), h('p', { class: 'hint' }, 'Your last searches show up here, kept only in this browser.')))
+        ? clear(recentBox, h('section', { class: 'recent' }, h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), t('search.recent'))), h('p', { class: 'hint' }, t('search.recentEmpty'))))
         : clear(recentBox);
     }
     clear(
@@ -212,7 +213,7 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
       h(
         'section',
         { class: 'recent' },
-        h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), 'Recent'), h('button', { type: 'button', class: 'linkish muted small', on: { click: async () => (await clearRecent(), (state.recent = []), renderRecent()) } }, 'Clear')),
+        h('div', { class: 'section-head' }, h('p', { class: 'label' }, icon('history'), t('search.recent')), h('button', { type: 'button', class: 'linkish muted small', on: { click: async () => (await clearRecent(), (state.recent = []), renderRecent()) } }, t('common.clear'))),
         h(
           'ul',
           { class: 'recent-list' },
@@ -254,15 +255,15 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
     picker.el,
     h('span', { class: 'divider', 'aria-hidden': 'true' }),
     input,
-    h('button', { type: 'submit', class: 'btn search-btn' }, 'Search', icon('arrowRight')),
+    h('button', { type: 'submit', class: 'btn search-btn' }, t('common.search'), icon('arrowRight')),
   );
   // In the popup, the compact result's "Open full view" sits at the end of the action row.
   let fullView = '';
-  const fullBtn = h('button', { type: 'button', class: 'btn-ghost sm full-view', hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, 'Open full view', icon('arrowRight'));
+  const fullBtn = h('button', { type: 'button', class: 'btn-ghost sm full-view', hidden: true, on: { click: () => fullView && void openTab(appUrl(fullView)) } }, t('search.openFull'), icon('arrowRight'));
   const actions = h(
     'div',
     { class: 'row wrap actions' },
-    h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void submit(undefined, true) } }, icon('external'), 'Open in explorer'),
+    h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void submit(undefined, true) } }, icon('external'), t('search.openExplorer')),
     h(
       'button',
       {
@@ -276,12 +277,12 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
             if (!query || best?.kind === 'secret') return;
             const chain = effectiveChain(best);
             await upsertSaved({ query: best?.normalized ?? query, chainId: chain.id });
-            btn.replaceChildren(icon('check'), 'Saved');
+            btn.replaceChildren(icon('check'), t('common.saved'));
           },
         },
       },
       icon('bookmark'),
-      'Save',
+      t('common.save'),
     ),
     h(
       'button',
@@ -294,13 +295,13 @@ export function searchView(ctx: Ctx, initial: { query?: string; chain?: string; 
             const { best, query } = current();
             if (!query || best?.kind === 'secret') return;
             await copy(best?.normalized ?? query);
-            btn.replaceChildren(icon('check'), 'Copied');
-            setTimeout(() => btn.replaceChildren(icon('copy'), 'Copy'), 1200);
+            btn.replaceChildren(icon('check'), t('common.copied'));
+            setTimeout(() => btn.replaceChildren(icon('copy'), t('common.copy')), 1200);
           },
         },
       },
       icon('copy'),
-      'Copy',
+      t('common.copy'),
     ),
   );
   refresh();

@@ -13,6 +13,7 @@ hand-written `manifest.json`; everything else there is generated.
 | `src/views/*` | Search, results, risk checks, tools, batch, saved, settings (plain DOM, text nodes only) |
 | `src/store.ts` | `storage.local`: preferences, saved items, recents, extension settings (same shapes as the website) |
 | `src/browser.ts` | Chrome/Firefox adapter |
+| `src/i18n.ts`, `src/locales.ts`, `locales/*.json` | UI translations: `t('key', {params})`, 15 languages (English source and fallback), browser-language detection, the saved `settings.language` (`auto` by default). Add a string to `en.json` and every other catalog; `npm test` fails on missing keys, mismatched `{placeholders}` or a translated chain name/symbol/identifier. The background (context menu, omnibox) stays English and does not bundle the catalogs |
 | `src/ui.ts` | Look and feel shared with the website: lens logo, Phosphor icons, official coin logos, searchable chain picker |
 | `icons-entry.tsx` | Build-time only: renders the website's React icon components (coin logos, Phosphor) to SVG strings that the build compiles in; no React ships |
 | `static/` | HTML shells, CSS (the website's tokens, dark/light) and `fonts/` (Manrope and IBM Plex Mono, SIL OFL, bundled so nothing loads remotely) |

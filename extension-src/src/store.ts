@@ -7,6 +7,7 @@ import type { Theme } from '@/lib/theme';
 import type { RecentSearch } from '@/lib/recent';
 import { MAX_SAVED, sanitizeSaved, savedId, type SavedItem } from '@/lib/saved';
 import { ext } from './browser';
+import { isLocale, type LanguagePref } from './locales';
 
 export type ExtSettings = {
   /** When false, nothing leaves the browser: detection, explorer links, tools and the OFAC snapshot still work. */
@@ -15,9 +16,11 @@ export type ExtSettings = {
   apiBase: string;
   /** Colour theme; light is the extensions' default (the website defaults to dark). */
   theme: Theme;
+  /** UI language of the extension pages; `auto` follows the browser (English when it isn't one of ours). */
+  language: LanguagePref;
 };
 
-export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com', theme: 'light' };
+export const DEFAULT_SETTINGS: ExtSettings = { network: true, apiBase: 'https://web3lens.com', theme: 'light', language: 'auto' };
 
 export function sanitizeSettings(raw: unknown): ExtSettings {
   const r = (raw ?? {}) as Partial<ExtSettings>;
@@ -30,7 +33,12 @@ export function sanitizeSettings(raw: unknown): ExtSettings {
       // keep default
     }
   }
-  return { network: r.network !== false, apiBase, theme: r.theme === 'dark' || r.theme === 'system' ? r.theme : 'light' };
+  return {
+    network: r.network !== false,
+    apiBase,
+    theme: r.theme === 'dark' || r.theme === 'system' ? r.theme : 'light',
+    language: isLocale(r.language) ? r.language : 'auto',
+  };
 }
 
 export async function load(): Promise<{ prefs: Prefs; saved: SavedItem[]; recent: RecentSearch[]; settings: ExtSettings }> {

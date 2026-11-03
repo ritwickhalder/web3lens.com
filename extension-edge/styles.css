@@ -271,6 +271,8 @@ body.popup { width: 780px; height: 600px; overflow: hidden; }
 .modal { width: 700px; max-width: calc(100vw - 32px); max-height: calc(100vh - 32px); padding: 0; border: 0; background: transparent; color: var(--fg); }
 .modal::backdrop { background: color-mix(in oklab, #0a1520 55%, transparent); } /* dark ink scrim in both themes */
 .modal-settings { width: 600px; }
+/* Translations run longer than English; the Info dialog's width keeps Settings within the popup's height. */
+:root:not([lang="en"]) .modal-settings { width: 700px; }
 .modal-card { border: 1px solid var(--line-strong); border-radius: 6px; background: var(--ink); box-shadow: var(--shadow); overflow: hidden; }
 .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 14px; border-bottom: 1px solid var(--line); background: var(--ink-2); }
 .modal-head h2 { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 15px; }
@@ -281,6 +283,8 @@ body.popup { width: 780px; height: 600px; overflow: hidden; }
 .set-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--ink-2); }
 .set-block { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--ink-2); }
 .set-text { display: flex; flex-direction: column; min-width: 0; }
+.set-row.compact { padding-top: 7px; padding-bottom: 7px; }
+.set-row .lang-select { width: 190px; height: 30px; flex-shrink: 0; }
 .set-text b { font-size: 13px; }
 .set-text small, .choice small, .link-row small, .link-card small { color: var(--faint); font-size: 11.5px; font-weight: 600; line-height: 1.4; }
 .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }

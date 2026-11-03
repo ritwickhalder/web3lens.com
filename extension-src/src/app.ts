@@ -2,6 +2,7 @@
 import { setApiBase } from '@/lib/api-client';
 import { EVM_NETWORKS } from '@/lib/networks';
 import { clear, h } from './dom';
+import { applyLanguage, locale, t, tx, type MessageKey } from './i18n';
 import { load, onStorageChange, setSettings, type ExtSettings } from './store';
 import { brand, icon, type IconName } from './ui';
 import { batchView } from './views/batch';
@@ -14,13 +15,22 @@ import { toolsView } from './views/tools';
 const root = document.getElementById('app')!;
 const fixed = document.body.dataset.view;
 
-const NAV: [hash: string, label: string, icon: IconName][] = [
-  ['#search', 'Search', 'search'],
-  ['#batch', 'Batch', 'list'],
-  ['#tools', 'Tools', 'wrench'],
-  ['#saved', 'Saved', 'bookmark'],
-  ['#settings', 'Settings', 'gear'],
+const NAV: [hash: string, label: MessageKey, icon: IconName][] = [
+  ['#search', 'common.search', 'search'],
+  ['#batch', 'app.batch', 'list'],
+  ['#tools', 'common.tools', 'wrench'],
+  ['#saved', 'common.saved', 'bookmark'],
+  ['#settings', 'common.settings', 'gear'],
 ];
+const THEME_NAME: Record<ExtSettings['theme'], MessageKey> = { dark: 'theme.dark', light: 'theme.light', system: 'theme.system' };
+const VIEW_TITLE: Record<string, MessageKey> = {
+  search: 'app.view.search',
+  result: 'app.view.result',
+  batch: 'app.view.batch',
+  tools: 'app.view.tools',
+  saved: 'app.view.saved',
+  settings: 'app.view.settings',
+};
 const THEME_NEXT: Record<ExtSettings['theme'], ExtSettings['theme']> = { dark: 'light', light: 'system', system: 'dark' };
 const THEME_ICON: Record<ExtSettings['theme'], IconName> = { dark: 'moon', light: 'sun', system: 'desktop' };
 
@@ -51,6 +61,7 @@ async function render() {
   const state = await load();
   setApiBase(state.settings.apiBase);
   document.documentElement.dataset.theme = state.settings.theme;
+  applyLanguage(state.settings.language);
   const ctx: Ctx = { state, nav, compact: false };
   const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
   lastView = view;
@@ -75,17 +86,17 @@ async function render() {
       body = h(
         'div',
         { class: 'stack' },
-        h('section', { class: 'hero dot-grid' }, h('p', { class: 'label' }, 'Search'), h('h1', { class: 'heading' }, 'Look up anything, on ', h('span', { class: 'accent' }, 'any chain.')), h('p', { class: 'lead' }, 'Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer.')),
+        h('section', { class: 'hero dot-grid' }, h('p', { class: 'label' }, t('common.search')), h('h1', { class: 'heading' }, ...tx('hero.title', { accent: h('span', { class: 'accent' }, t('hero.titleAccent')) })), h('p', { class: 'lead' }, t('hero.appLead'))),
         searchView(ctx, { query: params.get('q') ?? undefined, chain: params.get('chain') ?? undefined }),
         h(
           'nav',
-          { class: 'feature-grid', 'aria-label': 'More tools' },
+          { class: 'feature-grid', 'aria-label': t('app.moreTools') },
           (
             [
-              ['#batch', 'list', 'Batch search', 'Check up to 50 addresses at once, export CSV'],
-              ['#tools/gas-tracker', 'gas', 'Gas tracker', `Live fees on ${EVM_NETWORKS.length} EVM chains and Bitcoin`],
-              ['#tools', 'wrench', 'Developer tools', 'Units, checksums, decoders, timestamps'],
-              ['#saved', 'bookmark', 'Saved', 'Your labels and notes, private to this browser'],
+              ['#batch', 'list', t('app.batchSearch'), t('app.batchSearchBody')],
+              ['#tools/gas-tracker', 'gas', t('common.gasTracker'), t('common.liveFees', { count: EVM_NETWORKS.length })],
+              ['#tools', 'wrench', t('common.developerTools'), t('app.devToolsBody')],
+              ['#saved', 'bookmark', t('common.saved'), t('app.savedBody')],
             ] as [string, IconName, string, string][]
           ).map(([hash, ic, title, body]) => h('a', { href: hash, class: 'feature' }, icon(ic, 'ic feature-ic', true), h('span', { class: 'feature-title' }, title), h('span', { class: 'feature-body' }, body))),
         ),
@@ -97,11 +108,11 @@ async function render() {
     { class: 'sidebar' },
     h('a', { href: '#search', class: 'side-brand' }, brand()),
     fixed
-      ? h('p', { class: 'side-note' }, 'Extension options')
+      ? h('p', { class: 'side-note' }, t('settings.options'))
       : h(
           'nav',
-          { class: 'side-nav', 'aria-label': 'Sections' },
-          NAV.map(([hash, label, ic]) => h('a', { href: hash, class: `side-link${active === hash.slice(1) ? ' active' : ''}`, 'aria-current': active === hash.slice(1) ? 'page' : undefined }, icon(ic), label)),
+          { class: 'side-nav', 'aria-label': t('common.sections') },
+          NAV.map(([hash, label, ic]) => h('a', { href: hash, class: `side-link${active === hash.slice(1) ? ' active' : ''}`, 'aria-current': active === hash.slice(1) ? 'page' : undefined }, icon(ic), t(label))),
         ),
     h(
       'div',
@@ -119,18 +130,22 @@ async function render() {
           },
         },
         icon(THEME_ICON[state.settings.theme]),
-        `Theme: ${state.settings.theme[0].toUpperCase()}${state.settings.theme.slice(1)}`,
+        t('theme.current', { theme: t(THEME_NAME[state.settings.theme]) }),
       ),
       h('a', { href: 'https://web3lens.com', target: '_blank', rel: 'noopener noreferrer', class: 'side-link' }, icon('external'), 'web3lens.com'),
     ),
   );
   clear(root, h('div', { class: 'app-shell' }, sidebar, h('main', { class: 'page' }, body)));
-  document.title = `Web3Lens · ${view[0].toUpperCase()}${view.slice(1)}`;
+  document.title = `Web3Lens · ${VIEW_TITLE[view] ? t(VIEW_TITLE[view]) : view}`;
 }
 
 window.addEventListener('hashchange', () => void render());
 // Re-render list-like views when storage changes elsewhere (popup, another tab); never mid-typing in search.
-onStorageChange(() => {
-  if (lastView === 'saved' || lastView === 'settings') void render();
+// A language change from the popup or the options page repaints whatever is open.
+onStorageChange(async () => {
+  if (lastView === 'saved' || lastView === 'settings') return void render();
+  const { settings } = await load();
+  const before = locale();
+  if (applyLanguage(settings.language) !== before) void render();
 });
 void render();

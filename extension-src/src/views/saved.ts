@@ -4,6 +4,7 @@ import { detectQuery } from '@/lib/detect';
 import { investigationUrl } from '@/lib/investigation';
 import { exportSaved, sanitizeSaved } from '@/lib/saved';
 import { clear, copy, h } from '../dom';
+import { detectLabel, t } from '../i18n';
 import { removeSaved, setSaved, upsertSaved } from '../store';
 import type { Ctx } from './search';
 
@@ -11,25 +12,25 @@ export function savedView(ctx: Ctx): HTMLElement {
   const list = h('ul', { class: 'list saved' });
   const msg = h('p', { class: 'accent small' });
   const selected = new Set<string>();
-  const filter = h('input', { class: 'input', placeholder: 'Filter', 'aria-label': 'Filter saved items' });
+  const filter = h('input', { class: 'input', placeholder: t('savedPage.filter'), 'aria-label': t('saved.filterLabel') });
 
   function render() {
     const f = filter.value.trim().toLowerCase();
     const items = [...ctx.state.saved]
       .filter((x) => !f || x.label.toLowerCase().includes(f) || x.query.toLowerCase().includes(f) || x.note.toLowerCase().includes(f))
       .sort((a, b) => Number(b.favourite) - Number(a.favourite) || b.addedAt - a.addedAt);
-    if (!ctx.state.saved.length) return clear(list, h('li', { class: 'muted' }, 'Nothing saved yet. Use Save in search or batch.'));
+    if (!ctx.state.saved.length) return clear(list, h('li', { class: 'muted' }, t('savedPage.empty')));
     clear(
       list,
       ...items.map((item) => {
         const d = detectQuery(item.query);
         const chain = item.chainId ? getChain(item.chainId) : undefined;
         const kind = d?.kind === 'transaction' ? 'tx' : 'address';
-        const label = h('input', { class: 'input', value: item.label, placeholder: 'Label', maxlength: '80', 'aria-label': 'Label' });
+        const label = h('input', { class: 'input', value: item.label, placeholder: t('savedPage.label'), maxlength: '80', 'aria-label': t('savedPage.label') });
         label.addEventListener('change', () => void upsertSaved({ query: item.query, chainId: item.chainId, label: label.value }));
-        const notes = h('textarea', { class: 'input area', placeholder: 'Notes', maxlength: '1000', 'aria-label': 'Notes' }, item.note);
+        const notes = h('textarea', { class: 'input area', placeholder: t('savedPage.notes'), maxlength: '1000', 'aria-label': t('savedPage.notes') }, item.note);
         notes.addEventListener('change', () => void upsertSaved({ query: item.query, chainId: item.chainId, note: notes.value }));
-        const check = h('input', { type: 'checkbox', checked: selected.has(item.id) ? true : undefined, 'aria-label': 'Select' });
+        const check = h('input', { type: 'checkbox', checked: selected.has(item.id) ? true : undefined, 'aria-label': t('savedPage.select') });
         check.addEventListener('change', () => (check.checked ? selected.add(item.id) : selected.delete(item.id)));
         return h(
           'li',
@@ -44,14 +45,14 @@ export function savedView(ctx: Ctx): HTMLElement {
               { type: 'button', class: 'linkish mono', on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
               item.query,
             ),
-            h('span', { class: 'muted small' }, `${d?.label ?? 'unrecognised'}${chain ? ` · ${chain.name}` : ''}`),
+            h('span', { class: 'muted small' }, `${d ? detectLabel(d.label) : t('common.unrecognised')}${chain ? ` · ${chain.name}` : ''}`),
             notes,
           ),
           h(
             'div',
             { class: 'col' },
             h('button', { type: 'button', class: 'btn-ghost sm', 'aria-pressed': String(item.favourite), on: { click: () => void upsertSaved({ query: item.query, chainId: item.chainId, favourite: !item.favourite }) } }, item.favourite ? '★' : '☆'),
-            h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void removeSaved(item.id) } }, 'Remove'),
+            h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void removeSaved(item.id) } }, t('savedPage.remove')),
           ),
         );
       }),
@@ -63,27 +64,27 @@ export function savedView(ctx: Ctx): HTMLElement {
     const f = file.files?.[0];
     if (!f) return;
     try {
-      if (f.size > 2_000_000) throw new Error('File too large');
+      if (f.size > 2_000_000) throw new Error(t('savedPage.tooLarge'));
       const raw = JSON.parse(await f.text());
       const incoming = sanitizeSaved(raw?.items ?? raw);
       await setSaved([...incoming, ...ctx.state.saved]);
-      msg.textContent = `Imported ${incoming.length} items.`;
+      msg.textContent = t('savedPage.imported', { count: incoming.length });
     } catch (e) {
-      msg.textContent = `Import failed: ${(e as Error).message}`;
+      msg.textContent = t('savedPage.importFailed', { error: (e as Error).message });
     }
   });
   render();
   return h(
     'div',
     { class: 'stack' },
-    h('p', { class: 'label' }, 'Saved'),
-    h('h1', { class: 'heading' }, 'Your labels and notes'),
-    h('p', { class: 'muted' }, 'Labels and notes stay in this browser (extension storage). Nothing is synced.'),
+    h('p', { class: 'label' }, t('common.saved')),
+    h('h1', { class: 'heading' }, t('savedPage.title')),
+    h('p', { class: 'muted' }, t('savedPage.intro')),
     h(
       'div',
       { class: 'row wrap' },
-      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => h('a', { href: URL.createObjectURL(new Blob([exportSaved(ctx.state.saved)], { type: 'application/json' })), download: 'web3lens-saved.json' }).click() } }, 'Export JSON'),
-      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => file.click() } }, 'Import JSON'),
+      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => h('a', { href: URL.createObjectURL(new Blob([exportSaved(ctx.state.saved)], { type: 'application/json' })), download: 'web3lens-saved.json' }).click() } }, t('savedPage.exportJson')),
+      h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => file.click() } }, t('savedPage.importJson')),
       file,
       h(
         'button',
@@ -93,13 +94,13 @@ export function savedView(ctx: Ctx): HTMLElement {
           on: {
             click: async () => {
               const items = ctx.state.saved.filter((x) => selected.has(x.id)).map((x) => ({ q: x.query, c: x.chainId ?? undefined, l: x.label, n: x.note }));
-              if (!items.length) return (msg.textContent = 'Select items first.');
+              if (!items.length) return (msg.textContent = t('savedPage.selectFirst'));
               await copy(investigationUrl({ v: 1, t: `Investigation (${items.length} items)`, items }, ctx.state.settings.apiBase));
-              msg.textContent = 'Share link copied. Labels and notes are inside the link: anyone with it can read them.';
+              msg.textContent = t('savedPage.shareCopied');
             },
           },
         },
-        'Share selected',
+        t('savedPage.shareSelected'),
       ),
     ),
     msg,

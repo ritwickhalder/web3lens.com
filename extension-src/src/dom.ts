@@ -2,6 +2,8 @@
  * Minimal DOM builder. Text always goes in as text nodes (never innerHTML), so addresses, labels and
  * API responses can't inject markup.
  */
+import { t } from './i18n';
+
 type Child = Node | string | number | null | undefined | false | Child[];
 type Props = Record<string, unknown> & { class?: string; on?: Record<string, (e: Event) => void> };
 
@@ -48,7 +50,7 @@ export async function copy(text: string, btn?: HTMLElement) {
     await navigator.clipboard.writeText(text);
     if (btn) {
       const old = btn.textContent;
-      btn.textContent = 'Copied';
+      btn.textContent = t('common.copied');
       setTimeout(() => (btn.textContent = old), 1200);
     }
   } catch {
@@ -56,7 +58,7 @@ export async function copy(text: string, btn?: HTMLElement) {
   }
 }
 
-export function copyBtn(text: string, label = 'Copy') {
+export function copyBtn(text: string, label = t('common.copy')) {
   const b: HTMLButtonElement = h('button', { type: 'button', class: 'btn-ghost sm copy', title: label, 'aria-label': label });
   b.textContent = label;
   b.addEventListener('click', () => copy(text, b));

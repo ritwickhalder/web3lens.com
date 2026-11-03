@@ -10,6 +10,7 @@ import type { MultichainResult } from '@/lib/lookup-types';
 import { labelFor } from '@/lib/saved';
 import { openTab } from '../browser';
 import { clear, copy, ext_link, h } from '../dom';
+import { detectLabel, t } from '../i18n';
 import { upsertSaved } from '../store';
 import { badge, card, note } from './common';
 import type { Ctx } from './search';
@@ -25,7 +26,7 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
     const table = h(
       'table',
       { class: 'table' },
-      h('thead', null, h('tr', null, h('th', null, 'Value'), h('th', null, 'Type'), h('th', null, 'Checks'), h('th', null, 'EVM'), h('th', null, ''))),
+      h('thead', null, h('tr', null, h('th', null, t('batch.valueCol')), h('th', null, t('batch.typeCol')), h('th', null, t('batch.checksCol')), h('th', null, 'EVM'), h('th', null, ''))),
       h(
         'tbody',
         null,
@@ -38,8 +39,8 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
             'tr',
             null,
             h('td', null, h('span', { class: 'mono', title: d?.normalized ?? r.input }, shortHash(d?.normalized ?? r.input, 8, 6)), label ? h('div', { class: 'accent small' }, label) : null),
-            h('td', null, d?.label ?? 'not recognised'),
-            h('td', null, d?.kind === 'secret' ? badge('secret', 'danger') : null, d?.checksum === 'valid' ? badge('ok', 'good') : null, d?.checksum === 'invalid' ? badge('bad checksum', 'danger') : null, r.sanctions?.listed ? badge('OFAC', 'danger') : null),
+            h('td', null, d ? detectLabel(d.label) : t('batch.notRecognised')),
+            h('td', null, d?.kind === 'secret' ? badge(t('batch.secret'), 'danger') : null, d?.checksum === 'valid' ? badge(t('batch.ok'), 'good') : null, d?.checksum === 'invalid' ? badge(t('search.badChecksum'), 'danger') : null, r.sanctions?.listed ? badge('OFAC', 'danger') : null),
             h('td', { class: 'muted' }, d ? (balances.get(d.normalized) ?? '') : ''),
             h('td', null, link ? ext_link(link.href, `${link.name} ↗`) : null),
           );
@@ -49,7 +50,7 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
     const evm = rows.filter((r) => r.detection?.format === 'evm-address' && r.detection.checksum !== 'invalid');
     clear(
       out,
-      truncated ? note(`${truncated} more left out (limit ${BATCH_MAX}).`, 'warn') : null,
+      truncated ? note(t('batch.leftOut', { count: truncated, max: BATCH_MAX }), 'warn') : null,
       h(
         'div',
         { class: 'row wrap' },
@@ -61,24 +62,24 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
                 class: 'btn-ghost sm',
                 on: {
                   click: async () => {
-                    if (!ctx.state.settings.network) return (msg.textContent = 'Online lookups are off in settings.');
+                    if (!ctx.state.settings.network) return (msg.textContent = t('common.offInSettings'));
                     for (const r of evm) {
                       const q = r.detection!.normalized;
-                      balances.set(q, 'checking…');
+                      balances.set(q, t('batch.checking'));
                       render();
                       try {
                         const m = await apiGet<MultichainResult>('multichain', { q });
                         const ok = m.rows.filter((x) => x.status === 'ok');
-                        balances.set(q, `${ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length}/${m.rows.length} active · ${formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || '$0'}`);
+                        balances.set(q, t('batch.active', { active: ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length, total: m.rows.length, usd: formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || '$0' }));
                       } catch (e) {
-                        balances.set(q, `unavailable: ${(e as Error).message}`);
+                        balances.set(q, t('common.unavailableReason', { reason: (e as Error).message }));
                       }
                       render();
                     }
                   },
                 },
               },
-              `Fetch EVM balances (${evm.length})`,
+              t('batch.fetchBalances', { count: evm.length }),
             )
           : null,
         rows.length
@@ -98,7 +99,7 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
                   },
                 },
               },
-              'Export CSV',
+              t('batch.exportCsv'),
             )
           : null,
         rows.length
@@ -110,11 +111,11 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
                 on: {
                   click: async () => {
                     for (const r of rows) if (r.detection && r.detection.kind !== 'secret') await upsertSaved({ query: r.detection.normalized, chainId: null });
-                    msg.textContent = 'Saved to this browser.';
+                    msg.textContent = t('batch.savedMsg');
                   },
                 },
               },
-              'Save all',
+              t('batch.saveAll'),
             )
           : null,
         rows.length
@@ -128,27 +129,27 @@ export function batchView(ctx: Ctx, initial = ''): HTMLElement {
                     const items = rows.filter((r) => r.detection && r.detection.kind !== 'secret').map((r) => ({ q: r.detection!.normalized }));
                     const url = investigationUrl({ v: 1, t: `Batch of ${items.length}`, items }, ctx.state.settings.apiBase);
                     await copy(url);
-                    msg.textContent = 'Share link copied (opens on web3lens.com; the list is inside the link).';
+                    msg.textContent = t('batch.shareCopied');
                   },
                 },
               },
-              'Copy share link',
+              t('batch.copyShare'),
             )
           : null,
       ),
       msg,
-      rows.length ? card(`${rows.length} checked`, h('div', { class: 'scroll-x' }, table)) : null,
+      rows.length ? card(t('batch.checked', { count: rows.length }), h('div', { class: 'scroll-x' }, table)) : null,
     );
   }
 
   return h(
     'div',
     { class: 'stack' },
-    h('p', { class: 'label' }, 'Batch search'),
-    h('h1', { class: 'heading' }, 'Check a list at once'),
-    h('p', { class: 'muted' }, `Up to ${BATCH_MAX} addresses, hashes or names: one per line, or separated by commas or spaces.`),
+    h('p', { class: 'label' }, t('app.batchSearch')),
+    h('h1', { class: 'heading' }, t('batch.title')),
+    h('p', { class: 'muted' }, t('batch.intro', { max: BATCH_MAX })),
     text,
-    h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn', on: { click: render } }, 'Check all')),
+    h('div', { class: 'row' }, h('button', { type: 'button', class: 'btn', on: { click: render } }, t('batch.checkAll'))),
     out,
   );
 }
