@@ -3,12 +3,14 @@ import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Mono, Manrope } from 'next/font/google';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { SITE } from '@/config/site';
+import { author, organization, website } from '@/lib/structured-data';
 import { THEME_INIT_SCRIPT } from '@/lib/theme';
 import './globals.css';
 
 const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope', display: 'swap' });
-const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-plex-mono', display: 'swap' });
+const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-plex-mono', display: 'swap', preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -16,13 +18,16 @@ export const metadata: Metadata = {
   description: SITE.description,
   keywords: [...SITE.keywords],
   authors: [{ name: SITE.author.name, url: SITE.author.url }],
-  alternates: { canonical: '/' },
+  creator: SITE.author.name,
+  publisher: SITE.name,
+  formatDetection: { telephone: false, email: false, address: false },
+  alternates: { types: { 'application/rss+xml': [{ url: '/blog/rss.xml', title: `${SITE.name} Blog` }] } },
   openGraph: {
     type: 'website',
-    siteName: `${SITE.domain} - Blockchain Explorer | Blockchain Search Engine`,
+    siteName: SITE.name,
+    locale: 'en_US',
     title: `${SITE.domain} - Blockchain Explorer | Blockchain Search Engine`,
     description: SITE.shortDescription,
-    url: '/',
   },
   twitter: {
     card: 'summary_large_image',
@@ -50,23 +55,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* Applies a stored light/system theme before first paint; static string (lib/theme.ts). */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <link rel="search" type="application/opensearchdescription+xml" title={SITE.name} href="/opensearch.xml" />
-        <script
-          type="application/ld+json"
-          // Structured data for a sitelinks search box; static, no user input.
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: SITE.name,
-              url: SITE.url,
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/search?q={search_term_string}` },
-                'query-input': 'required name=search_term_string',
-              },
-            }),
-          }}
-        />
+        <JsonLd data={[organization(), website(), author()]} />
       </head>
       <body className="flex min-h-screen flex-col">
         <a

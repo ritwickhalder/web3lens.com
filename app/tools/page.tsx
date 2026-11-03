@@ -1,3 +1,4 @@
+import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import Link from 'next/link';
 import { PageShell } from '@/components/content/PageShell';
 import { ToolIcon } from '@/components/tools/ToolIcon';
@@ -44,6 +45,7 @@ export default function ToolsPage() {
           </li>
         ))}
       </ul>
+      <RelatedGuides page={'/tools'} />
     </PageShell>
   );
 }

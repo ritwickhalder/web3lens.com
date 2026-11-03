@@ -7,6 +7,7 @@ export const metadata = pageMetadata({
   title: 'Saved addresses',
   description: 'Your labelled addresses and transactions, kept in this browser. Export, import and share them as an investigation link.',
   path: '/saved',
+  noindex: true,
 });
 
 export default function SavedPage() {

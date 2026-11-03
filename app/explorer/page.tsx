@@ -1,3 +1,4 @@
+import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import Link from 'next/link';
 import { PageShell } from '@/components/content/PageShell';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
@@ -39,6 +40,7 @@ export default function ExplorerIndex() {
           </li>
         ))}
       </ul>
+      <RelatedGuides page={'/explorer'} />
     </PageShell>
   );
 }

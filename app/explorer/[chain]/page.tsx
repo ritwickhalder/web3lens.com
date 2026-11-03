@@ -1,3 +1,4 @@
+import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import { ArrowSquareOut, CheckCircle } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -49,6 +50,10 @@ export default async function ExplorerLanding({ params }: Props) {
   return (
     <PageShell
       layout="stacked"
+      breadcrumbs={[
+        { name: 'Explorers', path: '/explorer' },
+        { name: chain.name, path: `/explorer/${chain.id}` },
+      ]}
       eyebrow="Block explorer search"
       title={
         <span className="flex flex-wrap items-center gap-4">
@@ -127,6 +132,7 @@ export default async function ExplorerLanding({ params }: Props) {
           </ul>
         </InfoSection>
       </div>
+      <RelatedGuides page={'/explorer/[chain]'} />
     </PageShell>
   );
 }

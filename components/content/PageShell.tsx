@@ -1,3 +1,5 @@
+import { Breadcrumbs, type Crumb } from '@/components/content/Breadcrumbs';
+
 /**
  * Frame for inner pages. `split` (default) puts a sticky title block on the left and the
  * content on the right from lg up; `stacked` puts the header above full-width content.
@@ -8,6 +10,7 @@ export function PageShell({
   lead,
   aside,
   layout = 'split',
+  breadcrumbs,
   children,
 }: {
   eyebrow?: string;
@@ -16,10 +19,13 @@ export function PageShell({
   /** Extra content under the header in the left column (split layout only). */
   aside?: React.ReactNode;
   layout?: 'split' | 'stacked';
+  /** Trail after "Home"; the last item is this page. */
+  breadcrumbs?: Crumb[];
   children: React.ReactNode;
 }) {
   const header = (
     <header>
+      {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
       {eyebrow && <p className="label">{eyebrow}</p>}
       <h1 className="heading mt-3 text-4xl sm:text-5xl xl:text-[3.5rem]">{title}</h1>
       {lead && <p className="mt-5 max-w-xl text-lg font-medium leading-relaxed text-muted">{lead}</p>}
@@ -52,7 +58,7 @@ export function PageShell({
 export function InfoSection({ heading, index, children }: { heading: string; index?: number; children: React.ReactNode }) {
   return (
     <section className="grid grid-cols-1 gap-3 border-t border-line py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4rem_1fr]">
-      <span className="text-2xl font-extrabold tracking-tight text-line-strong">{index !== undefined ? String(index).padStart(2, '0') : '—'}</span>
+      <span className="text-2xl font-extrabold tracking-tight text-faint">{index !== undefined ? String(index).padStart(2, '0') : '—'}</span>
       <div>
         <h2 className="text-xl font-extrabold tracking-tight text-fg sm:text-2xl">{heading}</h2>
         <div className="prose-bp mt-3 text-base">{children}</div>

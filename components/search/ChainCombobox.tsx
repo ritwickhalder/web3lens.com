@@ -125,7 +125,7 @@ export function ChainCombobox({
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={`Blockchain: ${value.name}${auto ? ' (auto-detected)' : ''}. Change blockchain`}
+        aria-label={`${auto ? 'Auto-detected' : 'Blockchain'} ${value.name}: change blockchain`}
         onClick={() => (open ? setOpen(false) : openList())}
         className="flex h-16 w-full items-center gap-3 rounded-xl px-3 text-left transition-colors hover:bg-ink-3 md:w-64"
       >

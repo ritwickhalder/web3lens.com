@@ -13,7 +13,8 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 - Icons: coin logos via `ChainGlyph` (`components/search/ChainGlyph.tsx`, `@web3icons/react`, import each token file individually); UI icons from `@phosphor-icons/react/dist/ssr`, `weight="duotone"` for illustrations and `"bold"` for small UI glyphs.
 - Responsive grids need an explicit base `grid-cols-1` (or `minmax(0,1fr)`), otherwise long hashes widen the column past the screen on phones.
 - Inner pages use `PageShell` (`components/content/PageShell.tsx`): `split` (sticky title block left, content right) or `stacked`.
-- Every page sets metadata with `pageMetadata()` from `lib/metadata.ts`.
+- Every page sets metadata with `pageMetadata()` from `lib/metadata.ts` (it fills Open Graph/Twitter in full; a bare `openGraph` would drop the image). Structured data via `components/seo/JsonLd.tsx` + `lib/structured-data.ts`.
+- Blog posts are Markdown in `content/blog/<slug>.md` (see an existing post for the frontmatter; `##`/`###` only, `> [!NOTE]` callouts, `::cta <preset>`). `scripts/test/blog.test.ts` checks metadata, links and images. Extension store URLs go in `EXTENSION_STORES` (`config/site.ts`); until set, install links point at `/extension#install-<browser>`.
 - Tests: `scripts/test/*.test.ts` with `node:test`, run by `npm test`. Run `npm test`, `npm run lint`, `npm run typecheck` and (when extension-src or shared lib code changed) `npm run ext:build` before finishing.
 - Keep `public/google*.html` (Search Console verification) and the legacy URL redirects in `next.config.ts`.
 

@@ -14,11 +14,24 @@ import {
   Wrench,
 } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
+import { PostCard } from '@/components/blog/PostCard';
 import { PopularChains } from '@/components/home/PopularChains';
 import { TryExamples } from '@/components/home/TryExamples';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { SmartSearch } from '@/components/search/SmartSearch';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { SITE } from '@/config/site';
+import { getAllPosts, summary } from '@/lib/blog/posts';
 import { CHAIN_COUNT_LABEL } from '@/lib/chains';
+import { pageMetadata } from '@/lib/metadata';
+import { webApplication } from '@/lib/structured-data';
+
+export const metadata = pageMetadata({
+  title: SITE.title,
+  absoluteTitle: true,
+  description: `Search any crypto address, transaction hash, block or ENS name on ${CHAIN_COUNT_LABEL} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.`,
+  path: '/',
+});
 
 const HERO_COINS = ['bitcoin', 'ethereum', 'solana', 'binancecoin', 'ripple'];
 
@@ -71,6 +84,7 @@ function SectionHead({ label, title, aside }: { label: string; title: React.Reac
 export default function HomePage() {
   return (
     <main>
+      <JsonLd data={webApplication()} />
       {/* Hero: centred headline and a wide search bar */}
       <section className="relative">
         <div aria-hidden className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[560px]" />
@@ -142,7 +156,7 @@ export default function HomePage() {
                 <span className="grid size-14 place-items-center rounded-xl bg-accent/10 text-accent">
                   <step.icon aria-hidden weight="duotone" className="size-8" />
                 </span>
-                <span className="text-5xl font-extrabold tracking-tight text-line-strong">0{i + 1}</span>
+                <span className="text-5xl font-extrabold tracking-tight text-faint">0{i + 1}</span>
               </div>
               <h3 className="mt-7 text-xl font-extrabold tracking-tight">{step.title}</h3>
               <p className="mt-2 text-[15px] font-medium leading-relaxed text-muted">{step.body}</p>
@@ -190,6 +204,28 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Blog */}
+      <section className="wrap mt-24">
+        <SectionHead
+          label="From the blog"
+          title="Guides for reading the chain"
+          aside={
+            <Link href="/blog" className="text-[15px] font-bold text-muted hover:text-accent">
+              All articles →
+            </Link>
+          }
+        />
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {getAllPosts()
+            .slice(0, 3)
+            .map((p) => (
+              <li key={p.slug}>
+                <PostCard post={summary(p)} headingLevel="h3" />
+              </li>
+            ))}
+        </ul>
       </section>
 
       {/* Roadmap */}

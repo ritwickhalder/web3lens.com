@@ -11,7 +11,7 @@ export const SITE = {
   shortDescription:
     'Web3Lens.com is a search engine and blockchain explorer for all cryptocurrencies. You can search any cryptocurrency addresses, transaction hash, history / details, data, blocks, etc.',
   keywords: ['Blockchain Explorer', 'Blockchain Search Engine', 'Cryptocurrency Search Engine', 'Cryptocurrency Explorer'],
-  author: { name: 'Ritwick Halder', url: 'https://www.ritwick.com' },
+  author: { name: 'Ritwick Halder', url: 'https://www.ritwick.com', github: 'https://github.com/ritwickhalder' },
   twitter: '@BSearchEngine',
   facebook: 'https://www.facebook.com/BlockSearchEngine/',
 } as const;
@@ -49,8 +49,32 @@ export const MAIN_NAV: NavLink[] = [
   { label: 'Extension', href: '/extension' },
   { label: 'Directory', href: '/directory' },
   { label: 'Learn', href: '/blockchain-guide' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
 ];
+
+/**
+ * Browser extension store listings. `url` stays null until the listing is public; links then fall back to the
+ * install steps on /extension (anchor `install-<id>`), so nothing points at a store page that doesn't exist yet.
+ */
+export const EXTENSION_STORES = [
+  { id: 'chrome', name: 'Chrome', url: null as string | null },
+  { id: 'firefox', name: 'Firefox', url: null as string | null },
+  { id: 'edge', name: 'Microsoft Edge', url: null as string | null },
+] as const;
+
+export function extensionInstallHref(id: (typeof EXTENSION_STORES)[number]['id']): string {
+  return EXTENSION_STORES.find((s) => s.id === id)?.url ?? `/extension#install-${id}`;
+}
+
+/** The developer's other products, cross-linked where they're genuinely relevant (footer, blog). */
+export const OTHER_PRODUCTS = [
+  { name: 'CentPage', href: 'https://centpage.com', description: 'Productivity startpage and browser dashboard' },
+  { name: 'SummaryTube', href: 'https://summarytube.com', description: 'Summaries of YouTube videos' },
+  { name: 'Super Session Manager', href: 'https://sessionmanager.net', description: 'Save and restore browser sessions and tabs' },
+  { name: 'Web Developer Tools', href: 'https://webdevelopertools.dev', description: 'Everyday web developer utilities' },
+  { name: 'Web Internet Archive', href: 'https://webinternetarchive.com', description: 'Web archive and snapshot tools' },
+] as const;
 
 export const MARKET_LINK: NavLink = { label: 'CoinMarketCap', href: 'https://coinmarketcap.com/', external: true };
 
@@ -83,6 +107,7 @@ export const PAGES = [
   { label: 'Settings', href: '/settings' },
   { label: 'Crypto/Blockchain Directory', href: '/directory' },
   { label: 'Blockchain Guide', href: '/blockchain-guide' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Bookmark this page', href: '/bookmark' },
   { label: 'Terms of Use', href: '/terms' },
   { label: 'Privacy Policy', href: '/privacy-policy' },

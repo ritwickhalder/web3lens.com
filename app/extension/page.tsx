@@ -1,10 +1,14 @@
+import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import { CursorClick, Keyboard, MagnifyingGlass, PuzzlePiece, Scan, ShieldCheck, Wrench } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { InfoSection, PageShell } from '@/components/content/PageShell';
+import { JsonLd } from '@/components/seo/JsonLd';
+import { EXTENSION_STORES } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
+import { browserExtension } from '@/lib/structured-data';
 
 export const metadata = pageMetadata({
-  title: 'Browser extension',
+  title: 'Blockchain explorer extension for Chrome, Firefox, Edge',
   description: 'Web3Lens for Chrome, Firefox and Edge: right-click any address, type w3 in the address bar, decode transactions and check risk flags without leaving the page.',
   path: '/extension',
 });
@@ -21,14 +25,17 @@ const FEATURES = [
 ];
 
 const BROWSERS = [
-  { name: 'Chrome', dir: 'extension-chrome', steps: 'chrome://extensions → turn on Developer mode → Load unpacked → choose the folder.' },
-  { name: 'Microsoft Edge', dir: 'extension-edge', steps: 'edge://extensions → turn on Developer mode → Load unpacked → choose the folder.' },
-  { name: 'Firefox', dir: 'extension-firefox', steps: 'about:debugging → This Firefox → Load Temporary Add-on → choose manifest.json in the folder.' },
+  { id: 'chrome', name: 'Chrome', dir: 'extension-chrome', steps: 'chrome://extensions → turn on Developer mode → Load unpacked → choose the folder.' },
+  { id: 'edge', name: 'Microsoft Edge', dir: 'extension-edge', steps: 'edge://extensions → turn on Developer mode → Load unpacked → choose the folder.' },
+  { id: 'firefox', name: 'Firefox', dir: 'extension-firefox', steps: 'about:debugging → This Firefox → Load Temporary Add-on → choose manifest.json in the folder.' },
 ];
+
+const storeUrl = (id: string) => EXTENSION_STORES.find((s) => s.id === id)?.url ?? null;
 
 export default function ExtensionPage() {
   return (
     <PageShell
+      breadcrumbs={[{ name: 'Browser extension', path: '/extension' }]}
       eyebrow="Browser extension"
       title={
         <>
@@ -52,11 +59,21 @@ export default function ExtensionPage() {
           </li>
         ))}
       </ul>
+      <JsonLd data={browserExtension()} />
       <InfoSection index={1} heading="Install">
         <ul className="space-y-3">
           {BROWSERS.map((b) => (
-            <li key={b.name}>
-              <strong className="text-fg">{b.name}:</strong> download the{' '}
+            <li key={b.name} id={`install-${b.id}`} className="scroll-mt-28">
+              <strong className="text-fg">{b.name}:</strong>{' '}
+              {storeUrl(b.id) ? (
+                <>
+                  <a href={storeUrl(b.id)!} target="_blank" rel="noopener noreferrer">
+                    install from the {b.name} store
+                  </a>
+                  , or{' '}
+                </>
+              ) : null}
+              download the{' '}
               <a href={`${REPO}/${b.dir}`} target="_blank" rel="noopener noreferrer">
                 {b.dir}
               </a>{' '}
@@ -84,6 +101,7 @@ export default function ExtensionPage() {
         the address or hash is sent to web3lens.com, which queries public blockchain data sources (see the <Link href="/privacy-policy">privacy policy</Link>). You can turn
         online lookups off in the extension's settings. The extension contains no remote code, analytics or ads.
       </InfoSection>
+      <RelatedGuides page={'/extension'} />
     </PageShell>
   );
 }

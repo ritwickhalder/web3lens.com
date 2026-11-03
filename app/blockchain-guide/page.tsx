@@ -1,3 +1,4 @@
+import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import { PageShell } from '@/components/content/PageShell';
 import { GuideSections, GuideToc } from '@/components/guide/GuideSections';
 import { GUIDE } from '@/content/guide';
@@ -22,6 +23,7 @@ export default function BlockchainGuidePage() {
       aside={<GuideToc entries={GUIDE} />}
     >
       <GuideSections entries={GUIDE} />
+      <RelatedGuides page={'/blockchain-guide'} />
     </PageShell>
   );
 }
