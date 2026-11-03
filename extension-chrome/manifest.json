@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Blockchain Explorer – Scan Blockchain & Web3 Block Explorer",
+  "name": "Blockchain Explorer & Web3 Block Explorer – Web3Lens",
   "short_name": "Web3Lens",
   "version": "1.0.0",
-  "description": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 769+ blockchains with Web3Lens.",
+  "description": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 789+ blockchains with Web3Lens.",
   "homepage_url": "https://web3lens.com",
   "icons": {
     "16": "icons/icon-16.png",

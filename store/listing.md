@@ -6,16 +6,17 @@ Use the same copy in all three stores unless a field below says otherwise.
 
 Comes from each manifest:
 
-- Chrome (limit 75 characters; 59 used):
-  > Blockchain Explorer – Scan Blockchain & Web3 Block Explorer
-- Edge and Firefox (Edge Add-ons and AMO cap the name at 45 characters; 37 used; AMO's validator rejects longer):
-  > Web3Lens – Blockchain Explorer Search
+- Chrome (limit 75 characters; 52 used):
+  > Blockchain Explorer & Web3 Block Explorer – Web3Lens
+- Edge and Firefox (Edge Add-ons and AMO cap the name at 45 characters; 41 used; AMO's validator rejects longer, so
+  the "– Web3Lens" suffix is dropped; the brand stays in `short_name`, the summary and the description):
+  > Blockchain Explorer & Web3 Block Explorer
 
 ## Short description / summary
 
 Chrome (comes from the manifest, ≤132 characters; 130 used):
 
-> Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 769+ blockchains with Web3Lens.
+> Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 789+ blockchains with Web3Lens.
 
 Firefox summary (≤250 characters):
 
@@ -52,6 +53,8 @@ owners, and the token approvals an address has granted. "No reports" is never pr
 • Batch search for up to 50 values with CSV export
 • Saved labels and notes, favourite chains, preferred explorers: stored only in your browser
 • Light and dark themes
+• Available in 15 languages: English, Spanish, Portuguese, French, German, Japanese, Korean, Simplified Chinese,
+  Russian, Indonesian, Turkish, Italian, Polish, Dutch and Thai (follows your browser; change it in settings)
 
 **Privacy**
 No account, no wallet connection, no analytics, no ads, no remote code. The extension has no access to your
