@@ -116,7 +116,7 @@ try {
   check('installs as a temporary add-on', add.value === 'extension@web3lens.com', add.value);
 
   await go('popup.html');
-  await send('WebDriver:SetWindowRect', { width: 780, height: 700 }).catch(() => {});
+  await send('WebDriver:SetWindowRect', { width: 720, height: 700 }).catch(() => {});
   await trackErrors();
   const p1 = await js(`${PRE}
     const out = {};

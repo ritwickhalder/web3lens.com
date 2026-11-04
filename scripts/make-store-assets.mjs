@@ -101,7 +101,7 @@ await seed.close();
 
 // 1. Popup: detection with chain chips.
 const popup = await capture(ext('popup.html'), {
-  width: 780,
+  width: 720,
   height: 600,
   prepare: async (p) => {
     await p.fill('.search-input', '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045');
