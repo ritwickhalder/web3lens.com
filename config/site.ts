@@ -54,13 +54,13 @@ export const MAIN_NAV: NavLink[] = [
 ];
 
 /**
- * Browser extension store listings. `url` stays null until the listing is public; links then fall back to the
- * install steps on /extension (anchor `install-<id>`), so nothing points at a store page that doesn't exist yet.
+ * Browser extension store listings. A null `url` falls back to the install steps on /extension (anchor
+ * `install-<id>`), so nothing points at a store page that doesn't exist.
  */
 export const EXTENSION_STORES = [
-  { id: 'chrome', name: 'Chrome', url: null as string | null },
-  { id: 'firefox', name: 'Firefox', url: null as string | null },
-  { id: 'edge', name: 'Microsoft Edge', url: null as string | null },
+  { id: 'chrome', name: 'Chrome', url: 'https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf' as string | null },
+  { id: 'firefox', name: 'Firefox', url: 'https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/' as string | null },
+  { id: 'edge', name: 'Microsoft Edge', url: 'https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd' as string | null },
 ] as const;
 
 export function extensionInstallHref(id: (typeof EXTENSION_STORES)[number]['id']): string {

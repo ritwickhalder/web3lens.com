@@ -1,5 +1,5 @@
 /** schema.org JSON-LD builders. Plain objects; rendered by components/seo/JsonLd.tsx. */
-import { SITE } from '@/config/site';
+import { EXTENSION_STORES, SITE } from '@/config/site';
 
 type Thing = Record<string, unknown>;
 
@@ -66,6 +66,7 @@ export function browserExtension(): Thing {
     url: `${SITE.url}/extension`,
     applicationCategory: 'BrowserApplication',
     operatingSystem: 'Chrome, Firefox, Microsoft Edge',
+    installUrl: EXTENSION_STORES.flatMap((s) => (s.url ? [s.url] : [])),
     isAccessibleForFree: true,
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     publisher: { '@id': ORG_ID },

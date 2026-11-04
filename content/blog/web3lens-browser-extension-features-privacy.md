@@ -76,11 +76,11 @@ Switch **Online lookups** off in settings and the extension makes no network req
 
 The extension is free for all three browsers:
 
-- [Chrome](/extension#install-chrome)
-- [Firefox](/extension#install-firefox)
-- [Microsoft Edge](/extension#install-edge)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/)
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd)
 
-The [extension page](/extension) has the current installation options for each browser, including loading it from the open-source folders on GitHub.
+The [extension page](/extension) has the store links too, and how to load it from the open-source folders on GitHub instead.
 
 ## Productivity tips
 

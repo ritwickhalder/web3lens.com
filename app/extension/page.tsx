@@ -46,7 +46,7 @@ export default function ExtensionPage() {
       aside={
         <p className="flex items-center gap-3 rounded-xl border border-line bg-ink-2 p-4 text-sm font-semibold text-muted">
           <PuzzlePiece aria-hidden weight="duotone" className="size-8 shrink-0 text-accent" />
-          Store listings are in review. Until they're live, install it from the source folders below.
+          Free on the Chrome Web Store, Firefox Add-ons and Microsoft Edge Add-ons.
         </p>
       }
     >
@@ -73,7 +73,7 @@ export default function ExtensionPage() {
                   , or{' '}
                 </>
               ) : null}
-              download the{' '}
+              {storeUrl(b.id) ? 'to run it from source, download the' : 'download the'}{' '}
               <a href={`${REPO}/${b.dir}`} target="_blank" rel="noopener noreferrer">
                 {b.dir}
               </a>{' '}

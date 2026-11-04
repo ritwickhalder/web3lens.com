@@ -59,5 +59,8 @@ locally; it captures the real extension and live data from web3lens.com).
 
 ## After approval
 
-- Put the three store URLs on https://web3lens.com/extension (`app/extension/page.tsx`) and in the README.
+- Store URLs live in `EXTENSION_STORES` (`config/site.ts`), used by /extension, blog CTAs and structured data, and in
+  the README. Published: [Chrome](https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf),
+  [Firefox](https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/),
+  [Edge](https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd).
 - Keep the version numbers in step across the three manifests for every update.

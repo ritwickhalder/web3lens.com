@@ -78,6 +78,10 @@ provider fails the page says "unavailable" (or "stale" when an older cached answ
 
 ## Releasing the extensions
 
+Published on the [Chrome Web Store](https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf),
+[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/) and
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd).
+
 Everything for the stores (listing copy, screenshots, promo tiles, privacy answers and a per-store checklist) is in
 [store/README.md](store/README.md). In short: bump the version in all three manifests, `npm run ext:build`,
 `npm test`, `npm run ext:lint:firefox`, the extension smoke test and a manual Firefox check, then `npm run ext:pack`

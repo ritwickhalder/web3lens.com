@@ -50,7 +50,7 @@ What is live is listed in [FEATURES.md](FEATURES.md).
 | 3 | QR codes for addresses (native encoder verified against a reference implementation); streaming result sections so a slow provider doesn't hold up the page | ✅ |
 | 4 | Light theme (tokens already in `app/globals.css`; dark stays the default) | ✅ |
 | 5 | Data coverage: token holdings for BNB Chain, Avalanche and Linea; off-chain ENS names (CCIP-read); legacy explorers (Ontology etc.) verified by hand | ✅ (Ontology and Zilliqa explorers couldn't be verified; see FEATURES.md) |
-| 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | ✅ Kit in [store/](store/README.md); extensions redesigned in the website's style; uploads pending (owner) |
+| 6 | Store submission kit: listing copy, screenshots, privacy answers for Chrome, Edge and Firefox (the uploads need the owner's store accounts) | ✅ Kit in [store/](store/README.md); extensions redesigned in the website's style; published on all three stores |
 
 ## Phase 0 — Next.js migration ✅
 
@@ -122,8 +122,8 @@ Blockchair, CoinGecko.
 
 ✅ Built (sprint day 6). One shared TypeScript source (`extension-src/` + `lib/`) is bundled into three
 independent MV3 directories; only the manifests differ (`extension-firefox/COMPATIBILITY.md`). `npm test` keeps
-them in parity and up to date; `npm run ext:pack` makes the store zips. Remaining: submit to the Chrome Web Store,
-Edge Add-ons and AMO (listings, screenshots, privacy answers), then link the store pages from `/extension`.
+them in parity and up to date; `npm run ext:pack` makes the store zips. Published on the Chrome Web Store, Edge
+Add-ons and AMO; the store pages are linked from `/extension` (`EXTENSION_STORES` in `config/site.ts`).
 
 - ✅ **Omnibox keyword:** type `w3` + space + address in the address bar.
 - ✅ **Right-click → "Look up on Web3Lens"** for selected text.
