@@ -1,5 +1,5 @@
 /**
- * Toolbar popup (780 × 600): tabs for Lookup (search with detection and compact results, recents,
+ * Toolbar popup (720 × 600): tabs for Lookup (search with detection and compact results, recents,
  * examples), Scan page, inline Tools, live Gas and Saved, each laid out to fit without scrolling.
  * Settings and Info (shortcuts, links, the developer's other tools) open as dialogs over the popup.
  */
