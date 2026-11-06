@@ -39,7 +39,7 @@ const THEMES: [ExtSettings['theme'], label: MessageKey, aria: MessageKey, IconNa
 /** The developer's other products, shown in the Info dialog (product names stay as they are). */
 const OTHER_TOOLS: [name: string, about: MessageKey, url: string, icon: IconName][] = [
   ['SummaryTube', 'info.summarytube', 'https://summarytube.com', 'play'],
-  ['CentPage', 'info.centpage', 'https://centpage.com', 'layout'],
+  ['CentPage', 'info.centpage', 'https://www.centpage.com', 'layout'],
   ['Super Session Manager', 'info.sessionmanager', 'https://sessionmanager.net', 'stack'],
   ['Web Developer Tools', 'info.webdevtools', 'https://webdevelopertools.dev', 'code'],
 ];

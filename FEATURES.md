@@ -109,7 +109,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 | Feature | What it does |
 |---|---|
 | **Home page** | Hero with search and stats, popular-chain tiles, clickable "try it" examples, how-it-works steps, Directory/Learn cards, support call-out. |
-| **Blog** (`/blog`) | 15 guides (explorers, address formats, checksums, transactions, ENS, page scanning, context menus, developer tools, batch/CSV, risk checks, the extension, multichain) with featured post, categories, search, reading time, covers and OG images, table of contents, share links, related posts, CTAs and RSS. |
+| **Blog** (`/blog`) | 21 guides (explorers, address formats, checksums, transactions, ENS, page scanning, context menus, developer tools, batch/CSV, risk checks, the extension, multichain, and six illustrated workflow guides pairing Web3Lens with Super Session Manager, Web Archive Viewer, SummaryTube, Web Developer Tools, Edit Page and CentPage) with featured post, categories, search, reading time, covers and OG images, table of contents, share links, related posts, CTAs and RSS. |
 | **Crypto Directory** (`/directory`) | 60 YouTube channels, forums, news sites, Facebook groups, Reddit communities and X profiles with type filters and search. |
 | **Learn** (`/blockchain-guide`) | Beginner's guide: 7 questions (blockchain, Bitcoin, buying/selling, mining, wallets, NFTs, DeFi) with illustrations and click-to-load videos. |
 | **Extension page** (`/extension`) | Features and install links for Chrome, Firefox and Edge. |

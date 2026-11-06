@@ -90,7 +90,7 @@ The [extension page](/extension) has the store links too, and how to load it fro
 - **Label addresses you trust** in Saved. Labels show up next to those addresses in results, a simple defence against [look-alike address poisoning](/blog/verify-crypto-wallet-address-checksums).
 - **Use `w3` as a quick validator**: the suggestion flags a checksum mismatch before you go anywhere.
 
-The extension also links to the developer's other free browser tools from its Info dialog, including [CentPage](https://centpage.com), a fast productivity startpage and dashboard for new tabs, and [SummaryTube](https://summarytube.com) for summarising long YouTube videos, which is handy for the conference talks and protocol explainers that crypto research tends to involve.
+The extension also links to the developer's other free browser tools from its Info dialog, including [CentPage](https://www.centpage.com/), a fast productivity startpage and dashboard for new tabs, and [SummaryTube](https://summarytube.com) for summarising long YouTube videos, which is handy for the conference talks and protocol explainers that crypto research tends to involve.
 
 ::cta extension
 

@@ -69,11 +69,12 @@ export function extensionInstallHref(id: (typeof EXTENSION_STORES)[number]['id']
 
 /** The developer's other products, cross-linked where they're genuinely relevant (footer, blog). */
 export const OTHER_PRODUCTS = [
-  { name: 'CentPage', href: 'https://centpage.com', description: 'Productivity startpage and browser dashboard' },
+  { name: 'CentPage', href: 'https://www.centpage.com', description: 'Productivity startpage and browser dashboard' },
   { name: 'SummaryTube', href: 'https://summarytube.com', description: 'Summaries of YouTube videos' },
   { name: 'Super Session Manager', href: 'https://sessionmanager.net', description: 'Save and restore browser sessions and tabs' },
   { name: 'Web Developer Tools', href: 'https://webdevelopertools.dev', description: 'Everyday web developer utilities' },
-  { name: 'Web Internet Archive', href: 'https://webinternetarchive.com', description: 'Web archive and snapshot tools' },
+  { name: 'Web Archive Viewer', href: 'https://webinternetarchive.com', description: 'Search the Wayback Machine and more web archives' },
+  { name: 'Edit Page', href: 'https://editpage.dev', description: 'Edit text, CSS and HTML on any webpage visually' },
 ] as const;
 
 export const MARKET_LINK: NavLink = { label: 'CoinMarketCap', href: 'https://coinmarketcap.com/', external: true };

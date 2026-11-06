@@ -22260,7 +22260,7 @@
   ];
   var OTHER_TOOLS = [
     ["SummaryTube", "info.summarytube", "https://summarytube.com", "play"],
-    ["CentPage", "info.centpage", "https://centpage.com", "layout"],
+    ["CentPage", "info.centpage", "https://www.centpage.com", "layout"],
     ["Super Session Manager", "info.sessionmanager", "https://sessionmanager.net", "stack"],
     ["Web Developer Tools", "info.webdevtools", "https://webdevelopertools.dev", "code"]
   ];
