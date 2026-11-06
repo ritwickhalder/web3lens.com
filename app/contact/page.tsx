@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
   title: 'Contact Web3Lens: Feedback and Questions',
-  description: `Send feedback, suggestions, chain or explorer requests and questions to ${SITE.domain}. We read every message.`,
+  description: `Send feedback, suggestions, chain or explorer requests and questions to ${SITE.domain}.`,
   path: '/contact',
 });
 

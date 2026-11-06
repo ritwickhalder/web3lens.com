@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
   const explorers = names.length > 2 ? `${names.slice(0, 2).join(', ')} and ${names.length - 2} more` : names.join(' or ');
   return pageMetadata({
     title: `${chain.name} block explorer search`,
-    description: `Search ${chain.name} addresses, transactions and blocks in one box. Web3Lens checks the format and opens ${explorers}${getNetwork(chain.id) ? ', or shows balances and risk checks' : ''}.`,
+    description: `Search ${chain.name} addresses, transactions and blocks in one box. Web3Lens checks the format and opens ${explorers}${getNetwork(chain.id) ? ', or shows balances' : ''}.`,
     path: `/explorer/${chain.id}`,
   });
 }
