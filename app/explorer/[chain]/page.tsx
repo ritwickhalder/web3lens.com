@@ -23,10 +23,13 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: Props) {
   const chain = getChain((await params).chain);
   if (!chain) return {};
-  const explorers = allExplorerRoutes()[chain.id].map((r) => r.name).join(', ');
+  // Name at most two explorers so the description stays under ~160 characters
+  // (it ran to 214 on chains with many explorers and was cut off in results).
+  const names = allExplorerRoutes()[chain.id].map((r) => r.name);
+  const explorers = names.length > 2 ? `${names.slice(0, 2).join(', ')} and ${names.length - 2} more` : names.join(' or ');
   return pageMetadata({
     title: `${chain.name} block explorer search`,
-    description: `Search ${chain.name} addresses, transactions and blocks in one box. Web3Lens checks the format and opens the right page on ${explorers}${getNetwork(chain.id) ? ', or shows balances and risk checks itself' : ''}.`,
+    description: `Search ${chain.name} addresses, transactions and blocks in one box. Web3Lens checks the format and opens ${explorers}${getNetwork(chain.id) ? ', or shows balances and risk checks' : ''}.`,
     path: `/explorer/${chain.id}`,
   });
 }
@@ -91,7 +94,7 @@ export default async function ExplorerLanding({ params }: Props) {
             ))}
           </ul>
           <p className="mt-3 text-sm font-medium text-faint">
-            Pick your default in <Link href="/settings" className="text-accent">settings</Link>.
+            Pick your default in <Link href="/settings" className="text-accent underline underline-offset-2">settings</Link>.
           </p>
         </section>
         <section className="min-w-0 rounded-2xl border border-line bg-ink-2 p-6">

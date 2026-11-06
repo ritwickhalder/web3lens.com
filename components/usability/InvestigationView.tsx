@@ -28,8 +28,8 @@ export function InvestigationView() {
     return (
       <Panel>
         <p className="text-[15px] font-semibold text-muted">
-          Open a shared investigation link here, or create one: select items on your <Link href="/saved" className="text-accent">saved list</Link> or run a{' '}
-          <Link href="/batch" className="text-accent">batch search</Link> and choose “share”.
+          Open a shared investigation link here, or create one: select items on your <Link href="/saved" className="text-accent underline underline-offset-2">saved list</Link> or run a{' '}
+          <Link href="/batch" className="text-accent underline underline-offset-2">batch search</Link> and choose “share”.
         </p>
       </Panel>
     );

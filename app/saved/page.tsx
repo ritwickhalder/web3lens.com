@@ -18,7 +18,7 @@ export default function SavedPage() {
       title="Your labels and notes"
       lead={
         <>
-          Kept in this browser only: no account, nothing sent to Web3Lens. Change search behaviour and explorers in <Link href="/settings" className="text-accent">settings</Link>.
+          Kept in this browser only: no account, nothing sent to Web3Lens. Change search behaviour and explorers in <Link href="/settings" className="text-accent underline underline-offset-2">settings</Link>.
         </>
       }
     >

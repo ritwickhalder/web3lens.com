@@ -4,8 +4,8 @@ import { PAGES, SITE } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
-  title: 'Sitemap',
-  description: `Every page on ${SITE.domain}.`,
+  title: 'Sitemap: Every Page on Web3Lens',
+  description: `Every page on ${SITE.domain}: blockchain explorer search for each chain, tools, guides, the gas tracker and the browser extension.`,
   path: '/site-map',
 });
 

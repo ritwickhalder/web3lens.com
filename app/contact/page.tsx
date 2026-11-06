@@ -4,8 +4,8 @@ import { SITE } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
-  title: 'Contact Us',
-  description: `Send feedback, suggestions or questions to ${SITE.domain}.`,
+  title: 'Contact Web3Lens: Feedback and Questions',
+  description: `Send feedback, suggestions, chain or explorer requests and questions to ${SITE.domain}. We read every message.`,
   path: '/contact',
 });
 

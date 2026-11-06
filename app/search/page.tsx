@@ -25,7 +25,7 @@ const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v
 export async function generateMetadata({ searchParams }: Props) {
   const q = first((await searchParams).q).trim();
   return pageMetadata({
-    title: q ? `Search: ${shortHash(q, 14, 8)}` : 'Search',
+    title: q ? `Search: ${shortHash(q, 14, 8)}` : 'Blockchain Search: Address, Transaction and Block Lookup',
     description: 'Search any blockchain address, transaction, block or name: Web3Lens detects the format, checks it and links to the right explorer.',
     path: '/search',
     noindex: Boolean(q),

@@ -48,7 +48,14 @@ export function GasTracker() {
 
   const { data, error } = state;
   if (!data) {
-    return <Panel>{error ? <p className="font-semibold text-redline">Unavailable: {error}</p> : <p className="animate-pulse font-semibold text-muted">Loading live gas prices…</p>}</Panel>;
+    if (error) return <Panel><p className="font-semibold text-redline">Unavailable: {error}</p></Panel>;
+    // Reserve roughly the loaded height (measured: ~1370px on phones, ~1050px from sm,
+    // ~905px from lg) so the tables don't push the footer down when they arrive (CLS 0.27).
+    return (
+      <div className="min-h-[1360px] sm:min-h-[1040px] lg:min-h-[900px]">
+        <Panel><p className="animate-pulse font-semibold text-muted">Loading live gas prices…</p></Panel>
+      </div>
+    );
   }
   const btc = data.bitcoin;
   const btcPrice = data.prices.bitcoin;
@@ -111,7 +118,7 @@ export function GasTracker() {
         </div>
         <p className="mt-4 text-xs font-semibold text-faint">
           Fees in gwei from each chain's public RPC; dollar costs use CoinGecko prices and typical gas limits (21k, 65k, 180k). Rollups also charge an L1 data fee that isn't
-          included. For exact numbers use the <Link href="/tools/gas-calculator" className="text-accent">gas calculator</Link>.
+          included. For exact numbers use the <Link href="/tools/gas-calculator" className="text-accent underline underline-offset-2">gas calculator</Link>.
         </p>
       </Panel>
       <Panel title="Bitcoin">

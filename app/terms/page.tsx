@@ -4,7 +4,7 @@ import { SITE } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
-  title: 'Terms of Use',
+  title: 'Terms of Use for the Web3Lens Site and Extensions',
   description: `The terms and conditions for using ${SITE.domain}.`,
   path: '/terms',
 });

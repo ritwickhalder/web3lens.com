@@ -3,7 +3,7 @@ import { GasTracker } from '@/components/tools/GasTracker';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
-  title: 'Gas tracker',
+  title: 'Gas Tracker: Live Ethereum, L2 and Bitcoin Fees',
   description: 'Live gas prices on Ethereum, Base, Arbitrum, OP, Polygon, BNB Chain, Avalanche and 4 more chains, with dollar costs, plus Bitcoin fee rates.',
   path: '/gas',
 });

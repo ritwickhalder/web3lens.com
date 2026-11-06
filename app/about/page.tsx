@@ -5,7 +5,7 @@ import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
-  title: 'About',
+  title: 'About Web3Lens: One Search Box for Every Blockchain',
   description: `${SITE.name} is an all-in-one search engine for addresses, transactions and blocks across ${CHAIN_COUNT_LABEL} blockchains.`,
   path: '/about',
 });
