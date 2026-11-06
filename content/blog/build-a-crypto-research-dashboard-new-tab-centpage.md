@@ -115,7 +115,7 @@ A new-tab extension sees every new tab you open, so choose carefully and read th
 
 - **Chrome:** [CentPage on the Chrome Web Store](https://chromewebstore.google.com/detail/centpage-%E2%80%93-productivity-n/dalaljappljjfpdmkomolgejlfibccee)
 - **Firefox:** [CentPage on Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/centpage-productivity-new-tab/)
-- **Edge:** [CentPage on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/ppeecjnlmeobdgkgfpneoieehaphikoo)
+- **Edge:** [CentPage on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/centpage-%E2%80%93-productivity-n/ppeecjnlmeobdgkgfpneoieehaphikoo)
 
 Want the basics first? CentPage's own guide, [how to change your new tab page](https://www.centpage.com/blog/how-to-change-new-tab-page), takes a few minutes.
 
