@@ -11,7 +11,7 @@ export const SITE = {
   shortDescription:
     'Web3Lens.com is a search engine and blockchain explorer for all cryptocurrencies. You can search any cryptocurrency addresses, transaction hash, history / details, data, blocks, etc.',
   keywords: ['Blockchain Explorer', 'Blockchain Search Engine', 'Cryptocurrency Search Engine', 'Cryptocurrency Explorer'],
-  author: { name: 'Ritwick Halder', url: 'https://www.ritwick.com', github: 'https://github.com/ritwickhalder' },
+  author: { name: 'Ritwick Halder', url: 'https://www.ritwick.com', github: 'https://github.com/ritwickhalder', youtube: 'https://www.youtube.com/@ritwick.halder/' },
   twitter: '@BSearchEngine',
   facebook: 'https://www.facebook.com/BlockSearchEngine/',
 } as const;

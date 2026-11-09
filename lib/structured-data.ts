@@ -23,7 +23,7 @@ export function organization(): Thing {
 }
 
 export function author(): Thing {
-  return { '@type': 'Person', '@id': AUTHOR_ID, name: SITE.author.name, url: SITE.author.url, sameAs: [SITE.author.github] };
+  return { '@type': 'Person', '@id': AUTHOR_ID, name: SITE.author.name, url: SITE.author.url, sameAs: [SITE.author.github, SITE.author.youtube] };
 }
 
 export function website(): Thing {
