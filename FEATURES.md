@@ -19,7 +19,7 @@ This is the **authoritative list of what Web3Lens does today**. Use it for devel
 | **Firefox add-on** (`extension-firefox/`) | Same build and features as Chrome. Published on Firefox Add-ons. |
 | **Edge add-on** (`extension-edge/`) | Same build and features as Chrome. Published on Edge Add-ons. |
 
-The three extensions are identical in features (one source, manifests tested to match). Permissions: `storage`, `contextMenus`, `activeTab`, `scripting`; no host permissions, no content scripts, no remote code; network only to `https://web3lens.com`. Store links live in `EXTENSION_STORES` (`config/site.ts`).
+The three extensions are identical in features (one source, manifests tested to match). Permissions: `storage`, `contextMenus`, `activeTab`, `scripting`; no host permissions, no content scripts, no remote code; network only to `https://web3lens.com`. Store links live in `EXTENSION_STORES` (`config/site.ts`). The site's install buttons (`components/extension/AddToBrowser.tsx`, detection in `lib/browser.ts`) read “Add to Chrome/Firefox/Edge” for the visitor's browser (Brave, Opera, Vivaldi → Chrome Web Store; Safari and mobile Chrome → the extension page) and list the other stores; they appear in the header (2xl and the mobile menu), the home page, the footer, `/extension` and the blog's extension CTA.
 
 Columns below: **Web** = website, **Ext** = all three extensions.
 

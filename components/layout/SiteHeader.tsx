@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
+import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { MAIN_NAV, MARKET_LINK, NEWS_LINKS } from '@/config/site';
 
@@ -96,10 +97,13 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="ml-2 flex h-10 items-center rounded-md bg-accent px-5 text-[15px] font-bold text-ink transition-colors hover:bg-accent-hover"
+            className="ml-2 flex h-10 items-center rounded-md border border-line-strong px-5 text-[15px] font-bold text-fg transition-colors hover:border-accent hover:text-accent"
           >
             Contact
           </Link>
+          <span className="ml-2 hidden 2xl:block">
+            <AddToBrowserButton size="sm" />
+          </span>
         </div>
 
         <ThemeToggle className="ml-auto xl:hidden" />
@@ -131,6 +135,8 @@ export function SiteHeader() {
               ))}
             </div>
             <div>
+              <p className="label mb-3">Browser extension</p>
+              <AddToBrowserButton className="mb-8" />
               <p className="label mb-3">News & markets</p>
               <div className="flex flex-wrap gap-2">
                 {[MARKET_LINK, ...NEWS_LINKS.slice(0, 9)].map((link) => (

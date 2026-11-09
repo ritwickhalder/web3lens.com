@@ -1,7 +1,7 @@
 import { ArrowRight, ListChecks, MagnifyingGlass, PuzzlePiece, ShieldCheck, Wrench } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
+import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import type { CtaPreset } from '@/config/blog';
-import { EXTENSION_STORES, extensionInstallHref } from '@/config/site';
 import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 
 const PRESETS: Record<CtaPreset, { icon: typeof MagnifyingGlass; title: string; body: string; links: readonly { label: string; href: string }[] }> = {
@@ -33,7 +33,7 @@ const PRESETS: Record<CtaPreset, { icon: typeof MagnifyingGlass; title: string; 
     icon: PuzzlePiece,
     title: 'Get the Web3Lens extension',
     body: 'Right-click any address to look it up, type w3 in the address bar, or scan the page you are on. Free for Chrome, Firefox and Edge, with no host permissions and no tracking.',
-    links: EXTENSION_STORES.map((s) => ({ label: `Add to ${s.name}`, href: extensionInstallHref(s.id) })),
+    links: [], // matched to the reader's browser below
   },
 };
 
@@ -48,7 +48,13 @@ export function ArticleCta({ preset }: { preset: CtaPreset }) {
       <div className="min-w-0 flex-1">
         <p className="text-lg font-extrabold tracking-tight text-fg">{p.title}</p>
         <p className="mt-1 text-[15px] font-medium leading-relaxed text-muted">{p.body}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        {preset === 'extension' && (
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <AddToBrowserButton />
+            <OtherStoreLinks />
+          </div>
+        )}
+        <div className="mt-4 flex flex-wrap gap-2 empty:hidden">
           {p.links.map((l, i) => (
             <Link
               key={l.href}

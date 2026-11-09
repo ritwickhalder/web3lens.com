@@ -15,6 +15,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { PostCard } from '@/components/blog/PostCard';
+import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import { PopularChains } from '@/components/home/PopularChains';
 import { TryExamples } from '@/components/home/TryExamples';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
@@ -203,6 +204,32 @@ export default function HomePage() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Extension */}
+      <section className="wrap mt-24">
+        <div className="marks flex flex-col items-start justify-between gap-8 rounded-2xl border border-line-strong bg-ink-2 p-8 sm:p-12 lg:flex-row lg:items-center">
+          <div className="flex items-start gap-5">
+            <span className="hidden size-16 shrink-0 place-items-center rounded-2xl bg-accent/10 text-accent sm:grid">
+              <PuzzlePiece aria-hidden weight="duotone" className="size-9" />
+            </span>
+            <div>
+              <p className="label">Browser extension</p>
+              <h2 className="heading mt-2.5 text-3xl sm:text-4xl">Web3Lens on every page you visit.</h2>
+              <p className="mt-2 max-w-2xl text-[15px] font-medium text-muted">
+                Right-click any address to look it up, type <strong className="text-fg">w3</strong> in the address bar, or scan the page for addresses. Free, with no host
+                permissions and no tracking.{' '}
+                <Link href="/extension" className="font-bold text-fg underline decoration-line-strong underline-offset-2 hover:text-accent">
+                  What it does
+                </Link>
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
+            <AddToBrowserButton size="lg" />
+            <OtherStoreLinks />
+          </div>
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { InfoSection, Intro, PageShell } from '@/components/content/PageShell';
-import { SITE } from '@/config/site';
+import { EXTENSION_STORES, SITE } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
@@ -42,7 +42,20 @@ export default function PrivacyPolicyPage() {
         The Web3Lens extension for Chrome, Firefox and Edge stores its data on your device only. It reads the text you select when you use
         the right-click menu, and reads the current page only when you open the “Scan page” tab in its popup (the text is searched for addresses on your device and not sent anywhere). When online lookups are on (the
         default; you can turn them off in its settings), the addresses and hashes you look up are sent to web3lens.com as described above.
-        It contains no analytics, ads or remote code, and needs no account or wallet.
+        It contains no analytics, ads or remote code, and needs no account or wallet. It is published only on the official stores:{' '}
+        {EXTENSION_STORES.map((s, i) => (
+          <span key={s.id}>
+            {i > 0 && (i === EXTENSION_STORES.length - 1 ? ' and ' : ', ')}
+            {s.url ? (
+              <a href={s.url} target="_blank" rel="noopener noreferrer">
+                {s.name}
+              </a>
+            ) : (
+              s.name
+            )}
+          </span>
+        ))}
+        . Copies offered anywhere else are not ours.
       </InfoSection>
       <InfoSection index={5} heading="Cookies & Web Beacons">
         Where necessary, this site uses cookies to store information about a visitor's preferences and history in order

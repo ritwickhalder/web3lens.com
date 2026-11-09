@@ -76,11 +76,11 @@ Switch **Online lookups** off in settings and the extension makes no network req
 
 The extension is free for all three browsers:
 
-- [Chrome Web Store](https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf)
-- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/)
-- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd)
+- **Chrome:** [Web3Lens on the Chrome Web Store](https://chromewebstore.google.com/detail/blockchain-explorer-web3/bigcbkdjbbmgdicfejljnklmgbpmajlf)
+- **Firefox:** [Web3Lens on Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/blockchain-explorer-web3-lens/)
+- **Edge:** [Web3Lens on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/cadpfffbbdjebfjjibmbbnjbcmajajdd)
 
-The [extension page](/extension) has the store links too, and how to load it from the open-source folders on GitHub instead.
+Brave and Vivaldi install it from the Chrome Web Store. Install only from these official listings: a copy offered anywhere else isn't ours. The [extension page](/extension) picks the right store for your browser, and explains how to load it from the open-source folders on GitHub instead.
 
 ## Productivity tips
 
@@ -103,6 +103,10 @@ No. It never holds keys, never connects to your wallet and never asks you to sig
 ### Can the extension see the websites I visit?
 
 No. It has no host permissions or content scripts. It can read the current tab only when you open the Scan page tab, and only the text of that one page.
+
+### Which browsers does it work in?
+
+Chrome, Firefox and Microsoft Edge, each from its official store, plus Chromium-based browsers such as Brave and Vivaldi through the Chrome Web Store. There's no Safari version, and mobile Chrome and Edge don't support extensions.
 
 ### Does it work on Firefox for Android?
 

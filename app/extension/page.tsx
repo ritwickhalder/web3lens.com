@@ -2,6 +2,7 @@ import { RelatedGuides } from '@/components/blog/RelatedGuides';
 import { CursorClick, Keyboard, MagnifyingGlass, PuzzlePiece, Scan, ShieldCheck, Wrench } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { InfoSection, PageShell } from '@/components/content/PageShell';
+import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { EXTENSION_STORES } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
@@ -44,10 +45,14 @@ export default function ExtensionPage() {
       }
       lead="The same search, detection, risk checks and developer tools as the website, for Chrome, Firefox and Microsoft Edge."
       aside={
-        <p className="flex items-center gap-3 rounded-xl border border-line bg-ink-2 p-4 text-sm font-semibold text-muted">
-          <PuzzlePiece aria-hidden weight="duotone" className="size-8 shrink-0 text-accent" />
-          Free on the Chrome Web Store, Firefox Add-ons and Microsoft Edge Add-ons.
-        </p>
+        <div className="rounded-xl border border-line bg-ink-2 p-4">
+          <p className="flex items-center gap-3 text-sm font-semibold text-muted">
+            <PuzzlePiece aria-hidden weight="duotone" className="size-8 shrink-0 text-accent" />
+            Free on the Chrome Web Store, Firefox Add-ons and Microsoft Edge Add-ons.
+          </p>
+          <AddToBrowserButton className="mt-4" />
+          <OtherStoreLinks className="mt-3" />
+        </div>
       }
     >
       <ul className="mb-12 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -60,7 +65,7 @@ export default function ExtensionPage() {
         ))}
       </ul>
       <JsonLd data={browserExtension()} />
-      <InfoSection index={1} heading="Install">
+      <InfoSection index={1} heading="Install" id="install">
         <ul className="space-y-3">
           {BROWSERS.map((b) => (
             <li key={b.name} id={`install-${b.id}`} className="scroll-mt-28">

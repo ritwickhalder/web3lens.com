@@ -1,6 +1,7 @@
 import { Heart } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { LogoMark } from '@/components/brand/Logo';
+import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { DONATION_ADDRESSES, INFO_LINKS, MAIN_NAV, MARKET_LINK, OTHER_PRODUCTS, SITE } from '@/config/site';
@@ -21,6 +22,10 @@ export function SiteFooter() {
           <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
             One search box for every blockchain. Simple, free and ad-free since 2018.
           </p>
+          <div className="mt-6">
+            <AddToBrowserButton />
+            <OtherStoreLinks className="mt-3" />
+          </div>
           <p className="label mb-3 mt-8">More free tools by the developer</p>
           <ul className="space-y-2 text-sm font-semibold">
             {OTHER_PRODUCTS.map((p) => (

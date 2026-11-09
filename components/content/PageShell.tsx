@@ -55,9 +55,9 @@ export function PageShell({
 }
 
 /** A titled block of long-form copy (About / Terms / Privacy). */
-export function InfoSection({ heading, index, children }: { heading: string; index?: number; children: React.ReactNode }) {
+export function InfoSection({ heading, index, id, children }: { heading: string; index?: number; id?: string; children: React.ReactNode }) {
   return (
-    <section className="grid grid-cols-1 gap-3 border-t border-line py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4rem_1fr]">
+    <section id={id} className="scroll-mt-28 grid grid-cols-1 gap-3 border-t border-line py-8 first:border-t-0 first:pt-0 sm:grid-cols-[4rem_1fr]">
       <span className="text-2xl font-extrabold tracking-tight text-faint">{index !== undefined ? String(index).padStart(2, '0') : '—'}</span>
       <div>
         <h2 className="text-xl font-extrabold tracking-tight text-fg sm:text-2xl">{heading}</h2>
