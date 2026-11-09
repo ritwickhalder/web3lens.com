@@ -18,7 +18,7 @@ export function PopularChains() {
           key={chain.id}
           type="button"
           onClick={() => select(chain.id)}
-          className="group flex items-center gap-2.5 rounded-xl border border-line bg-ink-2/80 p-2 text-left transition-colors hover:border-accent/60 hover:bg-ink-3"
+          className="group flex cursor-pointer items-center gap-2.5 rounded-xl border border-line bg-ink-2/80 p-2 text-left transition-colors hover:border-accent/60 hover:bg-ink-3"
         >
           <ChainGlyph id={chain.id} name={chain.name} size="lg" />
           <span className="min-w-0">
@@ -30,7 +30,7 @@ export function PopularChains() {
       <button
         type="button"
         onClick={() => select(CHAINS[0].id)}
-        className="flex items-center gap-3 rounded-xl border border-dashed border-line-strong p-2.5 text-left text-muted transition-colors hover:border-accent hover:text-accent"
+        className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-line-strong p-2.5 text-left text-muted transition-colors hover:border-accent hover:text-accent"
       >
         <span className="grid size-11 shrink-0 place-items-center rounded-full bg-ink-3">
           <MagnifyingGlass weight="bold" className="size-5" />
