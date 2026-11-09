@@ -132,7 +132,7 @@
     "symbol": "KSM",
     "explorer": {
       "kind": "url",
-      "url": "https://kusama.subscan.io/account/{q}"
+      "url": "https://assethub-kusama.subscan.io/account/{q}"
     }
   },
   {
@@ -187,6 +187,1183 @@
     "explorer": {
       "kind": "url",
       "url": "https://allo.info/account/{q}"
+    }
+  },
+  {
+    "id": "hyperliquid",
+    "name": "Hyperliquid",
+    "symbol": "HYPE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://app.hyperliquid.xyz/explorer/address/{q}"
+    },
+    "evmChainId": 999
+  },
+  {
+    "id": "sonic",
+    "name": "Sonic",
+    "symbol": "S",
+    "explorer": {
+      "kind": "url",
+      "url": "https://sonicscan.org/search?q={q}"
+    },
+    "evmChainId": 146
+  },
+  {
+    "id": "berachain",
+    "name": "Berachain",
+    "symbol": "BERA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://berascan.com/search?q={q}"
+    },
+    "evmChainId": 80094
+  },
+  {
+    "id": "unichain",
+    "name": "Unichain",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://uniscan.xyz/search?q={q}"
+    },
+    "evmChainId": 130
+  },
+  {
+    "id": "monad",
+    "name": "Monad",
+    "symbol": "MON",
+    "explorer": {
+      "kind": "url",
+      "url": "https://monadscan.com/search?q={q}"
+    },
+    "evmChainId": 143
+  },
+  {
+    "id": "megaeth",
+    "name": "MegaETH",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://mega.etherscan.io/search?q={q}"
+    },
+    "evmChainId": 4326
+  },
+  {
+    "id": "sei",
+    "name": "Sei",
+    "symbol": "SEI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://seiscan.io/search?q={q}"
+    },
+    "evmChainId": 1329
+  },
+  {
+    "id": "blast",
+    "name": "Blast",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://blastscan.io/search?q={q}"
+    },
+    "evmChainId": 81457
+  },
+  {
+    "id": "cronos",
+    "name": "Cronos",
+    "symbol": "CRO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.cronos.org/address/{q}"
+    },
+    "evmChainId": 25
+  },
+  {
+    "id": "opbnb",
+    "name": "opBNB",
+    "symbol": "BNB",
+    "explorer": {
+      "kind": "url",
+      "url": "https://opbnb.bscscan.com/search?q={q}"
+    },
+    "evmChainId": 204
+  },
+  {
+    "id": "kaia",
+    "name": "Kaia (Klaytn)",
+    "symbol": "KAIA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://kaiascan.io/account/{q}"
+    },
+    "evmChainId": 8217
+  },
+  {
+    "id": "fantom",
+    "name": "Fantom Opera",
+    "symbol": "FTM",
+    "explorer": {
+      "kind": "url",
+      "url": "https://ftmscan.com/search?q={q}"
+    },
+    "evmChainId": 250
+  },
+  {
+    "id": "worldchain",
+    "name": "World Chain",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://worldscan.org/search?q={q}"
+    },
+    "evmChainId": 480
+  },
+  {
+    "id": "plasma",
+    "name": "Plasma",
+    "symbol": "XPL",
+    "explorer": {
+      "kind": "url",
+      "url": "https://plasmascan.to/address/{q}"
+    },
+    "evmChainId": 9745
+  },
+  {
+    "id": "stable",
+    "name": "Stable",
+    "symbol": "USDT0",
+    "explorer": {
+      "kind": "url",
+      "url": "https://stablescan.xyz/address/{q}"
+    },
+    "evmChainId": 988
+  },
+  {
+    "id": "tempo",
+    "name": "Tempo",
+    "symbol": "USD",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explore.tempo.xyz/address/{q}"
+    },
+    "evmChainId": 4217
+  },
+  {
+    "id": "taiko",
+    "name": "Taiko",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://taikoscan.io/search?q={q}"
+    },
+    "evmChainId": 167000
+  },
+  {
+    "id": "abstract",
+    "name": "Abstract",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://abscan.org/search?q={q}"
+    },
+    "evmChainId": 2741
+  },
+  {
+    "id": "ink-l2",
+    "name": "Ink",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.inkonchain.com/search-results?q={q}"
+    },
+    "evmChainId": 57073
+  },
+  {
+    "id": "soneium",
+    "name": "Soneium",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://soneium.blockscout.com/search-results?q={q}"
+    },
+    "evmChainId": 1868
+  },
+  {
+    "id": "zora",
+    "name": "Zora",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.zora.energy/search-results?q={q}"
+    },
+    "evmChainId": 7777777
+  },
+  {
+    "id": "mode",
+    "name": "Mode",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://modescan.io/address/{q}"
+    },
+    "evmChainId": 34443
+  },
+  {
+    "id": "manta",
+    "name": "Manta Pacific",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://pacific-explorer.manta.network/search-results?q={q}"
+    },
+    "evmChainId": 169
+  },
+  {
+    "id": "arbitrumnova",
+    "name": "Arbitrum Nova",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://nova.arbiscan.io/search?q={q}"
+    },
+    "evmChainId": 42170
+  },
+  {
+    "id": "katana",
+    "name": "Katana",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://katanascan.com/search?q={q}"
+    },
+    "evmChainId": 747474
+  },
+  {
+    "id": "morph",
+    "name": "Morph",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.morphl2.io/search-results?q={q}"
+    },
+    "evmChainId": 2818
+  },
+  {
+    "id": "xlayer",
+    "name": "X Layer",
+    "symbol": "OKB",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.oklink.com/xlayer/address/{q}"
+    },
+    "evmChainId": 196
+  },
+  {
+    "id": "immutable",
+    "name": "Immutable zkEVM",
+    "symbol": "IMX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.immutable.com/search-results?q={q}"
+    },
+    "evmChainId": 13371
+  },
+  {
+    "id": "ronin",
+    "name": "Ronin",
+    "symbol": "RON",
+    "explorer": {
+      "kind": "url",
+      "url": "https://app.roninchain.com/address/{q}"
+    },
+    "evmChainId": 2020
+  },
+  {
+    "id": "apechain",
+    "name": "ApeChain",
+    "symbol": "APE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://apescan.io/search?q={q}"
+    },
+    "evmChainId": 33139
+  },
+  {
+    "id": "fraxtal",
+    "name": "Fraxtal",
+    "symbol": "FRAX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://fraxscan.com/search?q={q}"
+    },
+    "evmChainId": 252
+  },
+  {
+    "id": "swellchain",
+    "name": "Swellchain",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.swellnetwork.io/search-results?q={q}"
+    },
+    "evmChainId": 1923
+  },
+  {
+    "id": "shape",
+    "name": "Shape",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://shapescan.xyz/address/{q}"
+    },
+    "evmChainId": 360
+  },
+  {
+    "id": "zircuit",
+    "name": "Zircuit",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.zircuit.com/address/{q}"
+    },
+    "evmChainId": 48900
+  },
+  {
+    "id": "sophon",
+    "name": "Sophon",
+    "symbol": "SOPH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.sophon.xyz/address/{q}"
+    },
+    "evmChainId": 50104
+  },
+  {
+    "id": "lens",
+    "name": "Lens",
+    "symbol": "GHO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.lens.xyz/address/{q}"
+    },
+    "evmChainId": 232
+  },
+  {
+    "id": "gravity",
+    "name": "Gravity",
+    "symbol": "G",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.gravity.xyz/search-results?q={q}"
+    },
+    "evmChainId": 1625
+  },
+  {
+    "id": "plume",
+    "name": "Plume",
+    "symbol": "PLUME",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.plume.org/search-results?q={q}"
+    },
+    "evmChainId": 98866
+  },
+  {
+    "id": "etherlink",
+    "name": "Etherlink",
+    "symbol": "XTZ",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.etherlink.com/search-results?q={q}"
+    },
+    "evmChainId": 42793
+  },
+  {
+    "id": "somnia",
+    "name": "Somnia",
+    "symbol": "SOMI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.somnia.network/address/{q}"
+    },
+    "evmChainId": 5031
+  },
+  {
+    "id": "zerog",
+    "name": "0G",
+    "symbol": "0G",
+    "explorer": {
+      "kind": "url",
+      "url": "https://chainscan.0g.ai/address/{q}"
+    },
+    "evmChainId": 16661
+  },
+  {
+    "id": "boba",
+    "name": "Boba Network",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://bobascan.com/search?q={q}"
+    },
+    "evmChainId": 288
+  },
+  {
+    "id": "metis",
+    "name": "Metis",
+    "symbol": "METIS",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.metis.io/address/{q}"
+    },
+    "evmChainId": 1088
+  },
+  {
+    "id": "aurora",
+    "name": "Aurora",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://aurorascan.dev/search?q={q}"
+    },
+    "evmChainId": 1313161554
+  },
+  {
+    "id": "hashkey",
+    "name": "HashKey Chain",
+    "symbol": "HSK",
+    "explorer": {
+      "kind": "url",
+      "url": "https://hsk.blockscout.com/search-results?q={q}"
+    },
+    "evmChainId": 177
+  },
+  {
+    "id": "rootstock",
+    "name": "Rootstock",
+    "symbol": "RBTC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.rootstock.io/address/{q}"
+    },
+    "evmChainId": 30
+  },
+  {
+    "id": "bob",
+    "name": "BOB",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.gobob.xyz/search-results?q={q}"
+    },
+    "evmChainId": 60808
+  },
+  {
+    "id": "coredao",
+    "name": "Core",
+    "symbol": "CORE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scan.coredao.org/address/{q}"
+    },
+    "evmChainId": 1116
+  },
+  {
+    "id": "bitlayer",
+    "name": "Bitlayer",
+    "symbol": "BTC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.btrscan.com/address/{q}"
+    },
+    "evmChainId": 200901
+  },
+  {
+    "id": "merlin",
+    "name": "Merlin Chain",
+    "symbol": "BTC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scan.merlinchain.io/search-results?q={q}"
+    },
+    "evmChainId": 4200
+  },
+  {
+    "id": "hemi",
+    "name": "Hemi",
+    "symbol": "ETH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.hemi.xyz/search-results?q={q}"
+    },
+    "evmChainId": 43111
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "symbol": "BTCN",
+    "explorer": {
+      "kind": "url",
+      "url": "https://cornscan.io/address/{q}"
+    },
+    "evmChainId": 21000000
+  },
+  {
+    "id": "botanix",
+    "name": "Botanix",
+    "symbol": "BTC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://botanixscan.io/address/{q}"
+    },
+    "evmChainId": 3637
+  },
+  {
+    "id": "moonbeam",
+    "name": "Moonbeam",
+    "symbol": "GLMR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://moonscan.io/search?q={q}"
+    },
+    "evmChainId": 1284
+  },
+  {
+    "id": "moonriver",
+    "name": "Moonriver",
+    "symbol": "MOVR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://moonriver.moonscan.io/search?q={q}"
+    },
+    "evmChainId": 1285
+  },
+  {
+    "id": "flare",
+    "name": "Flare",
+    "symbol": "FLR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://flare-explorer.flare.network/search-results?q={q}"
+    },
+    "evmChainId": 14
+  },
+  {
+    "id": "xdc",
+    "name": "XDC Network",
+    "symbol": "XDC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://xdcscan.com/search?q={q}"
+    },
+    "evmChainId": 50
+  },
+  {
+    "id": "harmony",
+    "name": "Harmony",
+    "symbol": "ONE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.harmony.one/address/{q}"
+    },
+    "evmChainId": 1666600000
+  },
+  {
+    "id": "iotex",
+    "name": "IoTeX",
+    "symbol": "IOTX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://iotexscan.io/address/{q}"
+    },
+    "evmChainId": 4689
+  },
+  {
+    "id": "kava",
+    "name": "Kava",
+    "symbol": "KAVA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://kavascan.com/address/{q}"
+    },
+    "evmChainId": 2222
+  },
+  {
+    "id": "zetachain",
+    "name": "ZetaChain",
+    "symbol": "ZETA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://zetachain.blockscout.com/search-results?q={q}"
+    },
+    "evmChainId": 7000
+  },
+  {
+    "id": "chiliz",
+    "name": "Chiliz Chain",
+    "symbol": "CHZ",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scan.chiliz.com/address/{q}"
+    },
+    "evmChainId": 88888
+  },
+  {
+    "id": "conflux",
+    "name": "Conflux eSpace",
+    "symbol": "CFX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://evm.confluxscan.org/address/{q}"
+    },
+    "evmChainId": 1030
+  },
+  {
+    "id": "telos",
+    "name": "Telos EVM",
+    "symbol": "TLOS",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.teloscan.io/address/{q}"
+    },
+    "evmChainId": 40
+  },
+  {
+    "id": "wemix",
+    "name": "WEMIX",
+    "symbol": "WEMIX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.wemix.com/address/{q}"
+    },
+    "evmChainId": 1111
+  },
+  {
+    "id": "oasys",
+    "name": "Oasys",
+    "symbol": "OAS",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scan.oasys.games/address/{q}"
+    },
+    "evmChainId": 248
+  },
+  {
+    "id": "fuse",
+    "name": "Fuse",
+    "symbol": "FUSE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.fuse.io/search-results?q={q}"
+    },
+    "evmChainId": 122
+  },
+  {
+    "id": "xrplevm",
+    "name": "XRPL EVM",
+    "symbol": "XRP",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.xrplevm.org/search-results?q={q}"
+    },
+    "evmChainId": 1440000
+  },
+  {
+    "id": "astar",
+    "name": "Astar",
+    "symbol": "ASTR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://astar.subscan.io/account/{q}"
+    },
+    "evmChainId": 592
+  },
+  {
+    "id": "peaq",
+    "name": "peaq",
+    "symbol": "PEAQ",
+    "explorer": {
+      "kind": "url",
+      "url": "https://peaq.subscan.io/account/{q}"
+    },
+    "evmChainId": 3338
+  },
+  {
+    "id": "hedera",
+    "name": "Hedera",
+    "symbol": "HBAR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://hashscan.io/mainnet/account/{q}"
+    }
+  },
+  {
+    "id": "filecoin",
+    "name": "Filecoin",
+    "symbol": "FIL",
+    "explorer": {
+      "kind": "url",
+      "url": "https://filfox.info/en/address/{q}"
+    }
+  },
+  {
+    "id": "multiversx",
+    "name": "MultiversX (Elrond)",
+    "symbol": "EGLD",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.multiversx.com/accounts/{q}"
+    }
+  },
+  {
+    "id": "kaspa",
+    "name": "Kaspa",
+    "symbol": "KAS",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.kaspa.org/addresses/{q}"
+    }
+  },
+  {
+    "id": "stacks",
+    "name": "Stacks",
+    "symbol": "STX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.hiro.so/address/{q}?chain=mainnet"
+    }
+  },
+  {
+    "id": "starknet",
+    "name": "Starknet",
+    "symbol": "STRK",
+    "explorer": {
+      "kind": "url",
+      "url": "https://voyager.online/contract/{q}"
+    }
+  },
+  {
+    "id": "bitcoinsv",
+    "name": "Bitcoin SV",
+    "symbol": "BSV",
+    "explorer": {
+      "kind": "url",
+      "url": "https://whatsonchain.com/address/{q}"
+    }
+  },
+  {
+    "id": "ecash",
+    "name": "eCash",
+    "symbol": "XEC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://blockchair.com/search?q={q}"
+    }
+  },
+  {
+    "id": "flux",
+    "name": "Flux",
+    "symbol": "FLUX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.runonflux.io/address/{q}"
+    }
+  },
+  {
+    "id": "arweave",
+    "name": "Arweave",
+    "symbol": "AR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://viewblock.io/arweave/address/{q}"
+    }
+  },
+  {
+    "id": "hive",
+    "name": "Hive",
+    "symbol": "HIVE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://hiveblocks.com/@{q}"
+    }
+  },
+  {
+    "id": "flow",
+    "name": "Flow",
+    "symbol": "FLOW",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.flowscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "mina",
+    "name": "Mina",
+    "symbol": "MINA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://minascan.io/mainnet/account/{q}"
+    }
+  },
+  {
+    "id": "oasis",
+    "name": "Oasis",
+    "symbol": "ROSE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.oasis.io/mainnet/consensus/address/{q}"
+    }
+  },
+  {
+    "id": "movement",
+    "name": "Movement",
+    "symbol": "MOVE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.movementnetwork.xyz/account/{q}?network=mainnet"
+    }
+  },
+  {
+    "id": "bittensor",
+    "name": "Bittensor",
+    "symbol": "TAO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://taostats.io/account/{q}"
+    }
+  },
+  {
+    "id": "pi-network",
+    "name": "Pi Network",
+    "symbol": "PI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://blockexplorer.minepi.com/mainnet/accounts/{q}"
+    }
+  },
+  {
+    "id": "alephium",
+    "name": "Alephium",
+    "symbol": "ALPH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.alephium.org/addresses/{q}"
+    }
+  },
+  {
+    "id": "nervos",
+    "name": "Nervos CKB",
+    "symbol": "CKB",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.nervos.org/address/{q}"
+    }
+  },
+  {
+    "id": "ergo",
+    "name": "Ergo",
+    "symbol": "ERG",
+    "explorer": {
+      "kind": "url",
+      "url": "https://explorer.ergoplatform.com/en/addresses/{q}"
+    }
+  },
+  {
+    "id": "radix",
+    "name": "Radix",
+    "symbol": "XRD",
+    "explorer": {
+      "kind": "url",
+      "url": "https://dashboard.radixdlt.com/account/{q}"
+    }
+  },
+  {
+    "id": "casper",
+    "name": "Casper",
+    "symbol": "CSPR",
+    "explorer": {
+      "kind": "url",
+      "url": "https://cspr.live/account/{q}"
+    }
+  },
+  {
+    "id": "symbol",
+    "name": "Symbol",
+    "symbol": "XYM",
+    "explorer": {
+      "kind": "url",
+      "url": "https://symbol.fyi/accounts/{q}"
+    }
+  },
+  {
+    "id": "thorchain",
+    "name": "THORChain",
+    "symbol": "RUNE",
+    "explorer": {
+      "kind": "url",
+      "url": "https://viewblock.io/thorchain/address/{q}"
+    }
+  },
+  {
+    "id": "acala",
+    "name": "Acala",
+    "symbol": "ACA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://acala.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "bifrost",
+    "name": "Bifrost",
+    "symbol": "BNC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://bifrost.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "hydration",
+    "name": "Hydration",
+    "symbol": "HDX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://hydration.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "avail",
+    "name": "Avail",
+    "symbol": "AVAIL",
+    "explorer": {
+      "kind": "url",
+      "url": "https://avail.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "polymesh",
+    "name": "Polymesh",
+    "symbol": "POLYX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://polymesh.subscan.io/account/{q}"
+    }
+  },
+  {
+    "id": "dydx",
+    "name": "dYdX Chain",
+    "symbol": "DYDX",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/dydx/address/{q}"
+    }
+  },
+  {
+    "id": "noble",
+    "name": "Noble",
+    "symbol": "USDC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/noble/address/{q}"
+    }
+  },
+  {
+    "id": "neutron",
+    "name": "Neutron",
+    "symbol": "NTRN",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/neutron/address/{q}"
+    }
+  },
+  {
+    "id": "stride",
+    "name": "Stride",
+    "symbol": "STRD",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/stride/address/{q}"
+    }
+  },
+  {
+    "id": "akash",
+    "name": "Akash",
+    "symbol": "AKT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/akash/address/{q}"
+    }
+  },
+  {
+    "id": "axelar",
+    "name": "Axelar",
+    "symbol": "AXL",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/axelar/address/{q}"
+    }
+  },
+  {
+    "id": "dymension",
+    "name": "Dymension",
+    "symbol": "DYM",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/dymension/address/{q}"
+    }
+  },
+  {
+    "id": "initia",
+    "name": "Initia",
+    "symbol": "INIT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://scan.initia.xyz/interwoven-1/accounts/{q}"
+    }
+  },
+  {
+    "id": "babylon",
+    "name": "Babylon Genesis",
+    "symbol": "BABY",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/babylon/address/{q}"
+    }
+  },
+  {
+    "id": "kujira",
+    "name": "Kujira",
+    "symbol": "KUJI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/kujira/address/{q}"
+    }
+  },
+  {
+    "id": "persistence",
+    "name": "Persistence",
+    "symbol": "XPRT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/persistence/address/{q}"
+    }
+  },
+  {
+    "id": "secret",
+    "name": "Secret Network",
+    "symbol": "SCRT",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/secret/address/{q}"
+    }
+  },
+  {
+    "id": "fetchai",
+    "name": "Fetch.ai (ASI)",
+    "symbol": "FET",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/fetchai/address/{q}"
+    }
+  },
+  {
+    "id": "archway",
+    "name": "Archway",
+    "symbol": "ARCH",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/archway/address/{q}"
+    }
+  },
+  {
+    "id": "saga",
+    "name": "Saga",
+    "symbol": "SAGA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/saga/address/{q}"
+    }
+  },
+  {
+    "id": "mantra",
+    "name": "MANTRA",
+    "symbol": "OM",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/mantra/address/{q}"
+    }
+  },
+  {
+    "id": "xion",
+    "name": "XION",
+    "symbol": "XION",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/xion/address/{q}"
+    }
+  },
+  {
+    "id": "cronospos",
+    "name": "Cronos POS Chain",
+    "symbol": "CRO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/crypto-org/address/{q}"
+    }
+  },
+  {
+    "id": "band",
+    "name": "Band Protocol",
+    "symbol": "BAND",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/band/address/{q}"
+    }
+  },
+  {
+    "id": "agoric",
+    "name": "Agoric",
+    "symbol": "BLD",
+    "explorer": {
+      "kind": "url",
+      "url": "https://atomscan.com/agoric/accounts/{q}"
+    }
+  },
+  {
+    "id": "juno",
+    "name": "Juno",
+    "symbol": "JUNO",
+    "explorer": {
+      "kind": "url",
+      "url": "https://ping.pub/juno/account/{q}"
+    }
+  },
+  {
+    "id": "nibiru",
+    "name": "Nibiru",
+    "symbol": "NIBI",
+    "explorer": {
+      "kind": "url",
+      "url": "https://nibiru.explorers.guru/account/{q}"
+    }
+  },
+  {
+    "id": "terra",
+    "name": "Terra",
+    "symbol": "LUNA",
+    "explorer": {
+      "kind": "url",
+      "url": "https://www.mintscan.io/terra/address/{q}"
+    }
+  },
+  {
+    "id": "terraclassic",
+    "name": "Terra Classic",
+    "symbol": "LUNC",
+    "explorer": {
+      "kind": "url",
+      "url": "https://finder.terra-classic.hexxagon.io/mainnet/address/{q}"
     }
   }
 ]

@@ -9,9 +9,9 @@ import { Card, Note } from '@/components/results/ResultSection';
 import { TxLocator } from '@/components/results/TxLocator';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { SmartSearch } from '@/components/search/SmartSearch';
-import { getChain, type Chain } from '@/lib/chains';
+import { getChain, getRetiredChain, type Chain } from '@/lib/chains';
 import { detectAll, extractQuery, type Detection } from '@/lib/detect';
-import { explorerDown, explorerHealthCheckedAt, explorerLinks, resolveLegacyExplorer, toQueryKind, webSearchLink } from '@/lib/explorer';
+import { appliesTo, explorerDown, explorerHealthCheckedAt, explorerLinks, resolveLegacyExplorer, toQueryKind, webSearchLink } from '@/lib/explorer';
 import { shortHash } from '@/lib/format';
 import { pageMetadata } from '@/lib/metadata';
 import { hasNativeSupport } from '@/lib/networks';
@@ -83,10 +83,11 @@ export default async function SearchPage({ searchParams }: Props) {
   const detections = detectAll(query);
   const best = detections[0];
   const picked = chainParam ? getChain(chainParam) : undefined;
+  const retired = chainParam && !picked ? getRetiredChain(chainParam) : undefined;
 
   // A chain was named and Web3Lens has its own page for it: go there.
   if (picked && best) {
-    const d = detections.find((x) => x.chains.includes(picked.id)) ?? null;
+    const d = detections.find((x) => appliesTo(x, picked)) ?? null;
     const kind = toQueryKind(d);
     if (d && d.checksum !== 'invalid' && d.network !== 'testnet' && hasNativeSupport(picked.id, kind)) redirect(nativeResultUrl(picked.id, kind, d.normalized)!);
   }
@@ -102,6 +103,14 @@ export default async function SearchPage({ searchParams }: Props) {
   const header = (
     <div className="mx-auto mb-10 max-w-6xl">
       <SmartSearch hidePopular initialQuery={query} initialChainId={picked?.id} />
+      {retired && (
+        <p className="mt-4 flex items-start gap-2 text-sm font-semibold text-redline">
+          <Warning aria-hidden weight="bold" className="mt-0.5 size-4 shrink-0" />
+          <span>
+            {retired.name} was removed from the chain list on {retired.retiredAt}: {retired.reason}
+          </span>
+        </p>
+      )}
     </div>
   );
 
@@ -117,7 +126,7 @@ export default async function SearchPage({ searchParams }: Props) {
 
   const sanctions = best && best.kind === 'address' ? checkSanctions(best.normalized) : null;
   const candidates = (d: Detection) =>
-    (picked && d.chains.includes(picked.id) ? [picked.id, ...d.chains.filter((c) => c !== picked.id)] : d.chains)
+    (picked && appliesTo(d, picked) ? [picked.id, ...d.chains.filter((c) => c !== picked.id)] : d.chains)
       .map((id) => getChain(id))
       .filter((c): c is Chain => Boolean(c));
 

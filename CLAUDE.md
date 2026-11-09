@@ -20,15 +20,20 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 
 ## Chain data
 
-- `data/chains.json` is **generated** from `legacy/select.js` by `npm run chains:convert`. Don't hand-edit it
-  while `legacy/` exists; the parity test (`scripts/test/chains-parity.test.ts`) compares it to the legacy code
-  through `resolveLegacyExplorer`.
-- Hand-edited overlays instead: `data/chains-extra.json` (chains added since, e.g. L2s) and `data/explorers.json`
-  (per-type explorer routes `address`/`tx`/`block`/`names`/`search`, several explorers per chain, first = default).
-  `resolveExplorer` uses the routes and falls back to the legacy explorer. Tests validate every template.
-- `data/explorer-health.json` (`npm run explorers:check`) and `data/sanctions.json` (`npm run sanctions:update`)
-  are generated snapshots; refresh them, don't hand-edit.
-- When ROADMAP Phase 1 starts editing chains by hand, delete the converter, the parity test and `legacy/` together.
+- All chain data is hand-edited since the November 2026 audit (the legacy converter, parity test and `legacy/` are
+  gone; see git history). `data/chains.json` holds the original list in its original order, `data/chains-extra.json`
+  the chains added since (with `symbol` and, for EVM chains, `evmChainId`), `data/chains-retired.json` the chains
+  removed and why (an id there must not reappear; tested).
+- `data/explorers.json`: per-type routes `address`/`tx`/`block`/`names`/`search`, several explorers per chain, first =
+  default; `resolveExplorer` uses them and falls back to the chain's single `explorer` template. `inherit` maps a
+  template prefix to a host chain (ERC-20s on Etherscan search, Waves/Stellar assets…): those tokens borrow its routes
+  and address formats. Tests validate every template. Prefer explorers from maintained registries (viem chain
+  definitions, cosmos/chain-registry, Trust Wallet wallet-core `registry.json`) over guesses.
+- Retire a chain only when nothing is left to search (project ended and no working explorer); a live project with a
+  dead explorer keeps its entry and gets the "explorer down" notice until a replacement is found.
+- `data/explorer-health.json` (`npm run explorers:check`: hosts, plus each chain's own explorer page) and
+  `data/sanctions.json` (`npm run sanctions:update`) are generated snapshots; refresh them, don't hand-edit.
+  `npm run chains:audit` (needs open network) writes a fuller research report to `audit/` (gitignored).
 
 ## Native data and safety rules
 

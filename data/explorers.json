@@ -1,5 +1,14 @@
 {
-  "$comment": "Per-type explorer routes, first = default. Templates use {q}. Hand-edited; validated by scripts/test/explorer.test.ts. Chains not listed here use their legacy explorer from chains.json; ERC-20 tokens whose legacy explorer is Etherscan search inherit the ethereum routes.",
+  "$comment": "Per-type explorer routes, first = default. Templates use {q}. Hand-edited; validated by scripts/test/explorer.test.ts. Chains not listed here use their legacy explorer from chains*.json. `inherit`: a chain whose legacy template starts with one of these prefixes is a token on that host chain and borrows its routes and address formats (ERC-20 tokens on Etherscan search, Waves and Stellar assets, Solana and Base tokens).",
+  "inherit": {
+    "https://etherscan.io/search?q=": "ethereum",
+    "https://bscscan.com/search?q=": "binancecoin",
+    "https://basescan.org/search?q=": "base",
+    "https://explorer.solana.com/": "solana",
+    "https://neotube.io/": "neo",
+    "https://wavesexplorer.com/": "waves",
+    "https://stellar.expert/explorer/public": "stellar"
+  },
   "routes": {
     "bitcoin": [
       {
@@ -331,7 +340,14 @@
     ],
     "polkadot": [
       {
-        "name": "Subscan",
+        "name": "Subscan (Asset Hub)",
+        "home": "https://assethub-polkadot.subscan.io",
+        "address": "https://assethub-polkadot.subscan.io/account/{q}",
+        "tx": "https://assethub-polkadot.subscan.io/extrinsic/{q}",
+        "block": "https://assethub-polkadot.subscan.io/block/{q}"
+      },
+      {
+        "name": "Subscan (relay chain)",
         "home": "https://polkadot.subscan.io",
         "address": "https://polkadot.subscan.io/account/{q}",
         "tx": "https://polkadot.subscan.io/extrinsic/{q}",
@@ -340,7 +356,14 @@
     ],
     "kusama": [
       {
-        "name": "Subscan",
+        "name": "Subscan (Asset Hub)",
+        "home": "https://assethub-kusama.subscan.io",
+        "address": "https://assethub-kusama.subscan.io/account/{q}",
+        "tx": "https://assethub-kusama.subscan.io/extrinsic/{q}",
+        "block": "https://assethub-kusama.subscan.io/block/{q}"
+      },
+      {
+        "name": "Subscan (relay chain)",
         "home": "https://kusama.subscan.io",
         "address": "https://kusama.subscan.io/account/{q}",
         "tx": "https://kusama.subscan.io/extrinsic/{q}",
@@ -552,6 +575,1494 @@
         "address": "https://wavesexplorer.com/addresses/{q}",
         "tx": "https://wavesexplorer.com/transactions/{q}",
         "block": "https://wavesexplorer.com/blocks/{q}"
+      }
+    ],
+    "iota": [
+      {
+        "name": "Iotascan",
+        "home": "https://iotascan.com/mainnet",
+        "address": "https://iotascan.com/mainnet/account/{q}",
+        "tx": "https://iotascan.com/mainnet/tx/{q}"
+      }
+    ],
+    "qtum": [
+      {
+        "name": "Qtum Explorer",
+        "home": "https://qtum.info",
+        "address": "https://qtum.info/address/{q}",
+        "tx": "https://qtum.info/tx/{q}",
+        "block": "https://qtum.info/block/{q}"
+      }
+    ],
+    "lisk": [
+      {
+        "name": "Blockscout",
+        "home": "https://blockscout.lisk.com",
+        "address": "https://blockscout.lisk.com/address/{q}",
+        "tx": "https://blockscout.lisk.com/tx/{q}",
+        "block": "https://blockscout.lisk.com/block/{q}",
+        "search": "https://blockscout.lisk.com/search-results?q={q}"
+      }
+    ],
+    "wanchain": [
+      {
+        "name": "WanScan",
+        "home": "https://www.wanscan.org",
+        "address": "https://www.wanscan.org/address/{q}",
+        "tx": "https://www.wanscan.org/tx/{q}",
+        "block": "https://www.wanscan.org/block/{q}"
+      }
+    ],
+    "bitcoingold": [
+      {
+        "name": "Bitcoin Gold Insight",
+        "home": "https://explorer.bitcoingold.org/insight",
+        "address": "https://explorer.bitcoingold.org/insight/address/{q}",
+        "tx": "https://explorer.bitcoingold.org/insight/tx/{q}",
+        "block": "https://explorer.bitcoingold.org/insight/block/{q}"
+      }
+    ],
+    "nano": [
+      {
+        "name": "Nanexplorer",
+        "home": "https://nanexplorer.com/nano",
+        "address": "https://nanexplorer.com/nano/account/{q}",
+        "tx": "https://nanexplorer.com/nano/block/{q}"
+      },
+      {
+        "name": "NanoLooker",
+        "home": "https://nanolooker.com",
+        "address": "https://nanolooker.com/account/{q}",
+        "tx": "https://nanolooker.com/block/{q}"
+      }
+    ],
+    "ontology": [
+      {
+        "name": "Ontology Explorer",
+        "home": "https://explorer.ont.io",
+        "address": "https://explorer.ont.io/address/{q}",
+        "tx": "https://explorer.ont.io/transaction/{q}"
+      }
+    ],
+    "siacoin": [
+      {
+        "name": "SiaScan",
+        "home": "https://siascan.com",
+        "address": "https://siascan.com/address/{q}",
+        "tx": "https://siascan.com/tx/{q}",
+        "block": "https://siascan.com/block/{q}"
+      }
+    ],
+    "aeternity": [
+      {
+        "name": "æScan",
+        "home": "https://aescan.io",
+        "address": "https://aescan.io/accounts/{q}",
+        "tx": "https://aescan.io/transactions/{q}",
+        "block": "https://aescan.io/keyblocks/{q}"
+      }
+    ],
+    "decred": [
+      {
+        "name": "dcrdata",
+        "home": "https://dcrdata.decred.org",
+        "address": "https://dcrdata.decred.org/address/{q}",
+        "tx": "https://dcrdata.decred.org/tx/{q}",
+        "block": "https://dcrdata.decred.org/block/{q}",
+        "search": "https://dcrdata.decred.org/search?search={q}"
+      }
+    ],
+    "zilliqa": [
+      {
+        "name": "ViewBlock",
+        "home": "https://viewblock.io/zilliqa",
+        "address": "https://viewblock.io/zilliqa/address/{q}",
+        "tx": "https://viewblock.io/zilliqa/tx/{q}"
+      }
+    ],
+    "komodo": [
+      {
+        "name": "Komodo Explorer",
+        "home": "https://kmdexplorer.io",
+        "address": "https://kmdexplorer.io/address/{q}",
+        "tx": "https://kmdexplorer.io/tx/{q}",
+        "block": "https://kmdexplorer.io/block/{q}"
+      }
+    ],
+    "nebulas": [
+      {
+        "name": "Nebulas Explorer",
+        "home": "https://explorer.nebulas.io",
+        "address": "https://explorer.nebulas.io/#/address/{q}",
+        "tx": "https://explorer.nebulas.io/#/tx/{q}"
+      }
+    ],
+    "digibyte": [
+      {
+        "name": "DigiExplorer",
+        "home": "https://digiexplorer.info",
+        "address": "https://digiexplorer.info/address/{q}",
+        "tx": "https://digiexplorer.info/tx/{q}",
+        "block": "https://digiexplorer.info/block/{q}"
+      },
+      {
+        "name": "CryptoID",
+        "home": "https://chainz.cryptoid.info/dgb/",
+        "address": "https://chainz.cryptoid.info/dgb/address.dws?{q}.htm",
+        "tx": "https://chainz.cryptoid.info/dgb/tx.dws?{q}.htm",
+        "block": "https://chainz.cryptoid.info/dgb/block.dws?{q}.htm",
+        "search": "https://chainz.cryptoid.info/dgb/search.dws?q={q}"
+      }
+    ],
+    "iostoken": [
+      {
+        "name": "IOST Explorer",
+        "home": "https://explorer.iost.io",
+        "address": "https://explorer.iost.io/account/{q}",
+        "tx": "https://explorer.iost.io/tx/{q}"
+      }
+    ],
+    "monacoin": [
+      {
+        "name": "Blockbook",
+        "home": "https://blockbook.electrum-mona.org",
+        "address": "https://blockbook.electrum-mona.org/address/{q}",
+        "tx": "https://blockbook.electrum-mona.org/tx/{q}",
+        "block": "https://blockbook.electrum-mona.org/block/{q}"
+      }
+    ],
+    "electroneum": [
+      {
+        "name": "Electroneum Explorer",
+        "home": "https://blockexplorer.electroneum.com",
+        "address": "https://blockexplorer.electroneum.com/address/{q}",
+        "tx": "https://blockexplorer.electroneum.com/tx/{q}",
+        "block": "https://blockexplorer.electroneum.com/block/{q}",
+        "search": "https://blockexplorer.electroneum.com/search-results?q={q}"
+      }
+    ],
+    "zcoin": [
+      {
+        "name": "Firo Explorer",
+        "home": "https://explorer.firo.org",
+        "address": "https://explorer.firo.org/address/{q}",
+        "tx": "https://explorer.firo.org/tx/{q}",
+        "block": "https://explorer.firo.org/block/{q}"
+      }
+    ],
+    "reddcoin": [
+      {
+        "name": "Blockbook",
+        "home": "https://blockbook.reddcoin.com",
+        "address": "https://blockbook.reddcoin.com/address/{q}",
+        "tx": "https://blockbook.reddcoin.com/tx/{q}",
+        "block": "https://blockbook.reddcoin.com/block/{q}"
+      }
+    ],
+    "nuls": [
+      {
+        "name": "NulScan",
+        "home": "https://nulscan.io",
+        "address": "https://nulscan.io/address/info?address={q}",
+        "tx": "https://nulscan.io/transaction/info?hash={q}"
+      }
+    ],
+    "theta-token": [
+      {
+        "name": "Theta Explorer",
+        "home": "https://explorer.thetatoken.org",
+        "address": "https://explorer.thetatoken.org/account/{q}",
+        "tx": "https://explorer.thetatoken.org/txs/{q}",
+        "block": "https://explorer.thetatoken.org/blocks/{q}"
+      }
+    ],
+    "wax": [
+      {
+        "name": "Bloks",
+        "home": "https://wax.bloks.io",
+        "address": "https://wax.bloks.io/account/{q}",
+        "tx": "https://wax.bloks.io/transaction/{q}",
+        "block": "https://wax.bloks.io/block/{q}"
+      }
+    ],
+    "medibloc": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/medibloc",
+        "address": "https://www.mintscan.io/medibloc/address/{q}",
+        "tx": "https://www.mintscan.io/medibloc/tx/{q}",
+        "block": "https://www.mintscan.io/medibloc/block/{q}"
+      }
+    ],
+    "qrl": [
+      {
+        "name": "QRL Explorer",
+        "home": "https://explorer.theqrl.org",
+        "address": "https://explorer.theqrl.org/a/{q}",
+        "tx": "https://explorer.theqrl.org/tx/{q}",
+        "block": "https://explorer.theqrl.org/block/{q}"
+      }
+    ],
+    "ravencoin": [
+      {
+        "name": "Blockbook",
+        "home": "https://blockbook.ravencoin.org",
+        "address": "https://blockbook.ravencoin.org/address/{q}",
+        "tx": "https://blockbook.ravencoin.org/tx/{q}",
+        "block": "https://blockbook.ravencoin.org/block/{q}"
+      }
+    ],
+    "viacoin": [
+      {
+        "name": "Viacoin Explorer",
+        "home": "https://explorer.viacoin.org",
+        "address": "https://explorer.viacoin.org/address/{q}",
+        "tx": "https://explorer.viacoin.org/tx/{q}",
+        "block": "https://explorer.viacoin.org/block/{q}"
+      },
+      {
+        "name": "CryptoID",
+        "home": "https://chainz.cryptoid.info/via/",
+        "address": "https://chainz.cryptoid.info/via/address.dws?{q}.htm",
+        "tx": "https://chainz.cryptoid.info/via/tx.dws?{q}.htm",
+        "block": "https://chainz.cryptoid.info/via/block.dws?{q}.htm",
+        "search": "https://chainz.cryptoid.info/via/search.dws?q={q}"
+      }
+    ],
+    "burst": [
+      {
+        "name": "Signum Explorer",
+        "home": "https://explorer.signum.network",
+        "address": "https://explorer.signum.network/address/{q}",
+        "tx": "https://explorer.signum.network/tx/{q}",
+        "block": "https://explorer.signum.network/block/{q}"
+      }
+    ],
+    "groestlcoin": [
+      {
+        "name": "Blockchair",
+        "home": "https://blockchair.com/groestlcoin",
+        "address": "https://blockchair.com/groestlcoin/address/{q}",
+        "tx": "https://blockchair.com/groestlcoin/transaction/{q}",
+        "block": "https://blockchair.com/groestlcoin/block/{q}",
+        "search": "https://blockchair.com/search?q={q}"
+      },
+      {
+        "name": "CryptoID",
+        "home": "https://chainz.cryptoid.info/grs/",
+        "address": "https://chainz.cryptoid.info/grs/address.dws?{q}.htm",
+        "tx": "https://chainz.cryptoid.info/grs/tx.dws?{q}.htm",
+        "block": "https://chainz.cryptoid.info/grs/block.dws?{q}.htm",
+        "search": "https://chainz.cryptoid.info/grs/search.dws?q={q}"
+      }
+    ],
+    "nimiq": [
+      {
+        "name": "Nimiq Watch",
+        "home": "https://nimiq.watch",
+        "search": "https://nimiq.watch/#{q}"
+      }
+    ],
+    "tomochain": [
+      {
+        "name": "VicScan",
+        "home": "https://www.vicscan.xyz",
+        "address": "https://www.vicscan.xyz/address/{q}",
+        "tx": "https://www.vicscan.xyz/tx/{q}",
+        "block": "https://www.vicscan.xyz/block/{q}"
+      }
+    ],
+    "namecoin": [
+      {
+        "name": "CryptoID",
+        "home": "https://chainz.cryptoid.info/nmc/",
+        "address": "https://chainz.cryptoid.info/nmc/address.dws?{q}.htm",
+        "tx": "https://chainz.cryptoid.info/nmc/tx.dws?{q}.htm",
+        "block": "https://chainz.cryptoid.info/nmc/block.dws?{q}.htm",
+        "search": "https://chainz.cryptoid.info/nmc/search.dws?q={q}"
+      }
+    ],
+    "hyperliquid": [
+      {
+        "name": "Hyperliquid Explorer",
+        "home": "https://app.hyperliquid.xyz/explorer",
+        "address": "https://app.hyperliquid.xyz/explorer/address/{q}",
+        "tx": "https://app.hyperliquid.xyz/explorer/tx/{q}",
+        "block": "https://app.hyperliquid.xyz/explorer/block/{q}"
+      },
+      {
+        "name": "HyperEVMScan",
+        "home": "https://hyperevmscan.io",
+        "address": "https://hyperevmscan.io/address/{q}",
+        "tx": "https://hyperevmscan.io/tx/{q}",
+        "block": "https://hyperevmscan.io/block/{q}",
+        "search": "https://hyperevmscan.io/search?q={q}"
+      }
+    ],
+    "sonic": [
+      {
+        "name": "SonicScan",
+        "home": "https://sonicscan.org",
+        "address": "https://sonicscan.org/address/{q}",
+        "tx": "https://sonicscan.org/tx/{q}",
+        "block": "https://sonicscan.org/block/{q}",
+        "search": "https://sonicscan.org/search?q={q}"
+      }
+    ],
+    "berachain": [
+      {
+        "name": "Berascan",
+        "home": "https://berascan.com",
+        "address": "https://berascan.com/address/{q}",
+        "tx": "https://berascan.com/tx/{q}",
+        "block": "https://berascan.com/block/{q}",
+        "search": "https://berascan.com/search?q={q}"
+      }
+    ],
+    "unichain": [
+      {
+        "name": "Uniscan",
+        "home": "https://uniscan.xyz",
+        "address": "https://uniscan.xyz/address/{q}",
+        "tx": "https://uniscan.xyz/tx/{q}",
+        "block": "https://uniscan.xyz/block/{q}",
+        "search": "https://uniscan.xyz/search?q={q}"
+      }
+    ],
+    "monad": [
+      {
+        "name": "MonadScan",
+        "home": "https://monadscan.com",
+        "address": "https://monadscan.com/address/{q}",
+        "tx": "https://monadscan.com/tx/{q}",
+        "block": "https://monadscan.com/block/{q}",
+        "search": "https://monadscan.com/search?q={q}"
+      },
+      {
+        "name": "MonadVision",
+        "home": "https://monadvision.com",
+        "address": "https://monadvision.com/address/{q}",
+        "tx": "https://monadvision.com/tx/{q}",
+        "block": "https://monadvision.com/block/{q}"
+      }
+    ],
+    "megaeth": [
+      {
+        "name": "Etherscan",
+        "home": "https://mega.etherscan.io",
+        "address": "https://mega.etherscan.io/address/{q}",
+        "tx": "https://mega.etherscan.io/tx/{q}",
+        "block": "https://mega.etherscan.io/block/{q}",
+        "search": "https://mega.etherscan.io/search?q={q}"
+      },
+      {
+        "name": "Blockscout",
+        "home": "https://megaeth.blockscout.com",
+        "address": "https://megaeth.blockscout.com/address/{q}",
+        "tx": "https://megaeth.blockscout.com/tx/{q}",
+        "block": "https://megaeth.blockscout.com/block/{q}",
+        "search": "https://megaeth.blockscout.com/search-results?q={q}"
+      }
+    ],
+    "sei": [
+      {
+        "name": "Seiscan",
+        "home": "https://seiscan.io",
+        "address": "https://seiscan.io/address/{q}",
+        "tx": "https://seiscan.io/tx/{q}",
+        "block": "https://seiscan.io/block/{q}",
+        "search": "https://seiscan.io/search?q={q}"
+      }
+    ],
+    "blast": [
+      {
+        "name": "Blastscan",
+        "home": "https://blastscan.io",
+        "address": "https://blastscan.io/address/{q}",
+        "tx": "https://blastscan.io/tx/{q}",
+        "block": "https://blastscan.io/block/{q}",
+        "search": "https://blastscan.io/search?q={q}"
+      }
+    ],
+    "cronos": [
+      {
+        "name": "Cronos Explorer",
+        "home": "https://explorer.cronos.org",
+        "address": "https://explorer.cronos.org/address/{q}",
+        "tx": "https://explorer.cronos.org/tx/{q}",
+        "block": "https://explorer.cronos.org/block/{q}"
+      }
+    ],
+    "opbnb": [
+      {
+        "name": "opBNB BscScan",
+        "home": "https://opbnb.bscscan.com",
+        "address": "https://opbnb.bscscan.com/address/{q}",
+        "tx": "https://opbnb.bscscan.com/tx/{q}",
+        "block": "https://opbnb.bscscan.com/block/{q}",
+        "search": "https://opbnb.bscscan.com/search?q={q}"
+      }
+    ],
+    "kaia": [
+      {
+        "name": "KaiaScan",
+        "home": "https://kaiascan.io",
+        "address": "https://kaiascan.io/account/{q}",
+        "tx": "https://kaiascan.io/tx/{q}",
+        "block": "https://kaiascan.io/block/{q}"
+      }
+    ],
+    "fantom": [
+      {
+        "name": "FTMScan",
+        "home": "https://ftmscan.com",
+        "address": "https://ftmscan.com/address/{q}",
+        "tx": "https://ftmscan.com/tx/{q}",
+        "block": "https://ftmscan.com/block/{q}",
+        "search": "https://ftmscan.com/search?q={q}"
+      }
+    ],
+    "worldchain": [
+      {
+        "name": "Worldscan",
+        "home": "https://worldscan.org",
+        "address": "https://worldscan.org/address/{q}",
+        "tx": "https://worldscan.org/tx/{q}",
+        "block": "https://worldscan.org/block/{q}",
+        "search": "https://worldscan.org/search?q={q}"
+      }
+    ],
+    "plasma": [
+      {
+        "name": "PlasmaScan",
+        "home": "https://plasmascan.to",
+        "address": "https://plasmascan.to/address/{q}",
+        "tx": "https://plasmascan.to/tx/{q}",
+        "block": "https://plasmascan.to/block/{q}"
+      }
+    ],
+    "stable": [
+      {
+        "name": "Stablescan",
+        "home": "https://stablescan.xyz",
+        "address": "https://stablescan.xyz/address/{q}",
+        "tx": "https://stablescan.xyz/tx/{q}",
+        "block": "https://stablescan.xyz/block/{q}"
+      }
+    ],
+    "tempo": [
+      {
+        "name": "Tempo Explorer",
+        "home": "https://explore.tempo.xyz",
+        "address": "https://explore.tempo.xyz/address/{q}",
+        "tx": "https://explore.tempo.xyz/tx/{q}",
+        "block": "https://explore.tempo.xyz/block/{q}"
+      }
+    ],
+    "taiko": [
+      {
+        "name": "Taikoscan",
+        "home": "https://taikoscan.io",
+        "address": "https://taikoscan.io/address/{q}",
+        "tx": "https://taikoscan.io/tx/{q}",
+        "block": "https://taikoscan.io/block/{q}",
+        "search": "https://taikoscan.io/search?q={q}"
+      }
+    ],
+    "abstract": [
+      {
+        "name": "Abscan",
+        "home": "https://abscan.org",
+        "address": "https://abscan.org/address/{q}",
+        "tx": "https://abscan.org/tx/{q}",
+        "block": "https://abscan.org/block/{q}",
+        "search": "https://abscan.org/search?q={q}"
+      }
+    ],
+    "ink-l2": [
+      {
+        "name": "Blockscout",
+        "home": "https://explorer.inkonchain.com",
+        "address": "https://explorer.inkonchain.com/address/{q}",
+        "tx": "https://explorer.inkonchain.com/tx/{q}",
+        "block": "https://explorer.inkonchain.com/block/{q}",
+        "search": "https://explorer.inkonchain.com/search-results?q={q}"
+      }
+    ],
+    "soneium": [
+      {
+        "name": "Blockscout",
+        "home": "https://soneium.blockscout.com",
+        "address": "https://soneium.blockscout.com/address/{q}",
+        "tx": "https://soneium.blockscout.com/tx/{q}",
+        "block": "https://soneium.blockscout.com/block/{q}",
+        "search": "https://soneium.blockscout.com/search-results?q={q}"
+      }
+    ],
+    "zora": [
+      {
+        "name": "Zora Explorer",
+        "home": "https://explorer.zora.energy",
+        "address": "https://explorer.zora.energy/address/{q}",
+        "tx": "https://explorer.zora.energy/tx/{q}",
+        "block": "https://explorer.zora.energy/block/{q}",
+        "search": "https://explorer.zora.energy/search-results?q={q}"
+      }
+    ],
+    "mode": [
+      {
+        "name": "Modescan",
+        "home": "https://modescan.io",
+        "address": "https://modescan.io/address/{q}",
+        "tx": "https://modescan.io/tx/{q}",
+        "block": "https://modescan.io/block/{q}"
+      }
+    ],
+    "manta": [
+      {
+        "name": "Manta Explorer",
+        "home": "https://pacific-explorer.manta.network",
+        "address": "https://pacific-explorer.manta.network/address/{q}",
+        "tx": "https://pacific-explorer.manta.network/tx/{q}",
+        "block": "https://pacific-explorer.manta.network/block/{q}",
+        "search": "https://pacific-explorer.manta.network/search-results?q={q}"
+      }
+    ],
+    "arbitrumnova": [
+      {
+        "name": "Nova Arbiscan",
+        "home": "https://nova.arbiscan.io",
+        "address": "https://nova.arbiscan.io/address/{q}",
+        "tx": "https://nova.arbiscan.io/tx/{q}",
+        "block": "https://nova.arbiscan.io/block/{q}",
+        "search": "https://nova.arbiscan.io/search?q={q}"
+      }
+    ],
+    "katana": [
+      {
+        "name": "Katanascan",
+        "home": "https://katanascan.com",
+        "address": "https://katanascan.com/address/{q}",
+        "tx": "https://katanascan.com/tx/{q}",
+        "block": "https://katanascan.com/block/{q}",
+        "search": "https://katanascan.com/search?q={q}"
+      }
+    ],
+    "morph": [
+      {
+        "name": "Morph Explorer",
+        "home": "https://explorer.morphl2.io",
+        "address": "https://explorer.morphl2.io/address/{q}",
+        "tx": "https://explorer.morphl2.io/tx/{q}",
+        "block": "https://explorer.morphl2.io/block/{q}",
+        "search": "https://explorer.morphl2.io/search-results?q={q}"
+      }
+    ],
+    "xlayer": [
+      {
+        "name": "OKLink",
+        "home": "https://www.oklink.com/xlayer",
+        "address": "https://www.oklink.com/xlayer/address/{q}",
+        "tx": "https://www.oklink.com/xlayer/tx/{q}",
+        "block": "https://www.oklink.com/xlayer/block/{q}"
+      }
+    ],
+    "immutable": [
+      {
+        "name": "Immutable Explorer",
+        "home": "https://explorer.immutable.com",
+        "address": "https://explorer.immutable.com/address/{q}",
+        "tx": "https://explorer.immutable.com/tx/{q}",
+        "block": "https://explorer.immutable.com/block/{q}",
+        "search": "https://explorer.immutable.com/search-results?q={q}"
+      }
+    ],
+    "ronin": [
+      {
+        "name": "Ronin Explorer",
+        "home": "https://app.roninchain.com",
+        "address": "https://app.roninchain.com/address/{q}",
+        "tx": "https://app.roninchain.com/tx/{q}",
+        "block": "https://app.roninchain.com/block/{q}"
+      }
+    ],
+    "apechain": [
+      {
+        "name": "Apescan",
+        "home": "https://apescan.io",
+        "address": "https://apescan.io/address/{q}",
+        "tx": "https://apescan.io/tx/{q}",
+        "block": "https://apescan.io/block/{q}",
+        "search": "https://apescan.io/search?q={q}"
+      }
+    ],
+    "fraxtal": [
+      {
+        "name": "Fraxscan",
+        "home": "https://fraxscan.com",
+        "address": "https://fraxscan.com/address/{q}",
+        "tx": "https://fraxscan.com/tx/{q}",
+        "block": "https://fraxscan.com/block/{q}",
+        "search": "https://fraxscan.com/search?q={q}"
+      }
+    ],
+    "swellchain": [
+      {
+        "name": "Swell Explorer",
+        "home": "https://explorer.swellnetwork.io",
+        "address": "https://explorer.swellnetwork.io/address/{q}",
+        "tx": "https://explorer.swellnetwork.io/tx/{q}",
+        "block": "https://explorer.swellnetwork.io/block/{q}",
+        "search": "https://explorer.swellnetwork.io/search-results?q={q}"
+      }
+    ],
+    "shape": [
+      {
+        "name": "Shapescan",
+        "home": "https://shapescan.xyz",
+        "address": "https://shapescan.xyz/address/{q}",
+        "tx": "https://shapescan.xyz/tx/{q}",
+        "block": "https://shapescan.xyz/block/{q}"
+      }
+    ],
+    "zircuit": [
+      {
+        "name": "Zircuit Explorer",
+        "home": "https://explorer.zircuit.com",
+        "address": "https://explorer.zircuit.com/address/{q}",
+        "tx": "https://explorer.zircuit.com/tx/{q}",
+        "block": "https://explorer.zircuit.com/block/{q}"
+      }
+    ],
+    "sophon": [
+      {
+        "name": "Sophon Explorer",
+        "home": "https://explorer.sophon.xyz",
+        "address": "https://explorer.sophon.xyz/address/{q}",
+        "tx": "https://explorer.sophon.xyz/tx/{q}",
+        "block": "https://explorer.sophon.xyz/block/{q}"
+      }
+    ],
+    "lens": [
+      {
+        "name": "Lens Explorer",
+        "home": "https://explorer.lens.xyz",
+        "address": "https://explorer.lens.xyz/address/{q}",
+        "tx": "https://explorer.lens.xyz/tx/{q}",
+        "block": "https://explorer.lens.xyz/block/{q}"
+      }
+    ],
+    "gravity": [
+      {
+        "name": "Gravity Explorer",
+        "home": "https://explorer.gravity.xyz",
+        "address": "https://explorer.gravity.xyz/address/{q}",
+        "tx": "https://explorer.gravity.xyz/tx/{q}",
+        "block": "https://explorer.gravity.xyz/block/{q}",
+        "search": "https://explorer.gravity.xyz/search-results?q={q}"
+      }
+    ],
+    "plume": [
+      {
+        "name": "Plume Explorer",
+        "home": "https://explorer.plume.org",
+        "address": "https://explorer.plume.org/address/{q}",
+        "tx": "https://explorer.plume.org/tx/{q}",
+        "block": "https://explorer.plume.org/block/{q}",
+        "search": "https://explorer.plume.org/search-results?q={q}"
+      }
+    ],
+    "etherlink": [
+      {
+        "name": "Etherlink Explorer",
+        "home": "https://explorer.etherlink.com",
+        "address": "https://explorer.etherlink.com/address/{q}",
+        "tx": "https://explorer.etherlink.com/tx/{q}",
+        "block": "https://explorer.etherlink.com/block/{q}",
+        "search": "https://explorer.etherlink.com/search-results?q={q}"
+      }
+    ],
+    "somnia": [
+      {
+        "name": "Somnia Explorer",
+        "home": "https://explorer.somnia.network",
+        "address": "https://explorer.somnia.network/address/{q}",
+        "tx": "https://explorer.somnia.network/tx/{q}",
+        "block": "https://explorer.somnia.network/block/{q}"
+      }
+    ],
+    "zerog": [
+      {
+        "name": "0G Chainscan",
+        "home": "https://chainscan.0g.ai",
+        "address": "https://chainscan.0g.ai/address/{q}",
+        "tx": "https://chainscan.0g.ai/tx/{q}",
+        "block": "https://chainscan.0g.ai/block/{q}"
+      }
+    ],
+    "boba": [
+      {
+        "name": "Bobascan",
+        "home": "https://bobascan.com",
+        "address": "https://bobascan.com/address/{q}",
+        "tx": "https://bobascan.com/tx/{q}",
+        "block": "https://bobascan.com/block/{q}",
+        "search": "https://bobascan.com/search?q={q}"
+      }
+    ],
+    "metis": [
+      {
+        "name": "Metis Explorer",
+        "home": "https://explorer.metis.io",
+        "address": "https://explorer.metis.io/address/{q}",
+        "tx": "https://explorer.metis.io/tx/{q}",
+        "block": "https://explorer.metis.io/block/{q}"
+      }
+    ],
+    "aurora": [
+      {
+        "name": "Aurorascan",
+        "home": "https://aurorascan.dev",
+        "address": "https://aurorascan.dev/address/{q}",
+        "tx": "https://aurorascan.dev/tx/{q}",
+        "block": "https://aurorascan.dev/block/{q}",
+        "search": "https://aurorascan.dev/search?q={q}"
+      }
+    ],
+    "hashkey": [
+      {
+        "name": "Blockscout",
+        "home": "https://hsk.blockscout.com",
+        "address": "https://hsk.blockscout.com/address/{q}",
+        "tx": "https://hsk.blockscout.com/tx/{q}",
+        "block": "https://hsk.blockscout.com/block/{q}",
+        "search": "https://hsk.blockscout.com/search-results?q={q}"
+      }
+    ],
+    "rootstock": [
+      {
+        "name": "Rootstock Explorer",
+        "home": "https://explorer.rootstock.io",
+        "address": "https://explorer.rootstock.io/address/{q}",
+        "tx": "https://explorer.rootstock.io/tx/{q}",
+        "block": "https://explorer.rootstock.io/block/{q}"
+      }
+    ],
+    "bob": [
+      {
+        "name": "BOB Explorer",
+        "home": "https://explorer.gobob.xyz",
+        "address": "https://explorer.gobob.xyz/address/{q}",
+        "tx": "https://explorer.gobob.xyz/tx/{q}",
+        "block": "https://explorer.gobob.xyz/block/{q}",
+        "search": "https://explorer.gobob.xyz/search-results?q={q}"
+      }
+    ],
+    "coredao": [
+      {
+        "name": "Core Scan",
+        "home": "https://scan.coredao.org",
+        "address": "https://scan.coredao.org/address/{q}",
+        "tx": "https://scan.coredao.org/tx/{q}",
+        "block": "https://scan.coredao.org/block/{q}"
+      }
+    ],
+    "bitlayer": [
+      {
+        "name": "BTRScan",
+        "home": "https://www.btrscan.com",
+        "address": "https://www.btrscan.com/address/{q}",
+        "tx": "https://www.btrscan.com/tx/{q}",
+        "block": "https://www.btrscan.com/block/{q}"
+      }
+    ],
+    "merlin": [
+      {
+        "name": "Merlin Scan",
+        "home": "https://scan.merlinchain.io",
+        "address": "https://scan.merlinchain.io/address/{q}",
+        "tx": "https://scan.merlinchain.io/tx/{q}",
+        "block": "https://scan.merlinchain.io/block/{q}",
+        "search": "https://scan.merlinchain.io/search-results?q={q}"
+      }
+    ],
+    "hemi": [
+      {
+        "name": "Hemi Explorer",
+        "home": "https://explorer.hemi.xyz",
+        "address": "https://explorer.hemi.xyz/address/{q}",
+        "tx": "https://explorer.hemi.xyz/tx/{q}",
+        "block": "https://explorer.hemi.xyz/block/{q}",
+        "search": "https://explorer.hemi.xyz/search-results?q={q}"
+      }
+    ],
+    "corn": [
+      {
+        "name": "Cornscan",
+        "home": "https://cornscan.io",
+        "address": "https://cornscan.io/address/{q}",
+        "tx": "https://cornscan.io/tx/{q}",
+        "block": "https://cornscan.io/block/{q}"
+      }
+    ],
+    "botanix": [
+      {
+        "name": "Botanixscan",
+        "home": "https://botanixscan.io",
+        "address": "https://botanixscan.io/address/{q}",
+        "tx": "https://botanixscan.io/tx/{q}",
+        "block": "https://botanixscan.io/block/{q}"
+      }
+    ],
+    "moonbeam": [
+      {
+        "name": "Moonscan",
+        "home": "https://moonscan.io",
+        "address": "https://moonscan.io/address/{q}",
+        "tx": "https://moonscan.io/tx/{q}",
+        "block": "https://moonscan.io/block/{q}",
+        "search": "https://moonscan.io/search?q={q}"
+      },
+      {
+        "name": "Subscan",
+        "home": "https://moonbeam.subscan.io",
+        "address": "https://moonbeam.subscan.io/account/{q}",
+        "tx": "https://moonbeam.subscan.io/extrinsic/{q}",
+        "block": "https://moonbeam.subscan.io/block/{q}"
+      }
+    ],
+    "moonriver": [
+      {
+        "name": "Moonscan",
+        "home": "https://moonriver.moonscan.io",
+        "address": "https://moonriver.moonscan.io/address/{q}",
+        "tx": "https://moonriver.moonscan.io/tx/{q}",
+        "block": "https://moonriver.moonscan.io/block/{q}",
+        "search": "https://moonriver.moonscan.io/search?q={q}"
+      }
+    ],
+    "flare": [
+      {
+        "name": "Flare Explorer",
+        "home": "https://flare-explorer.flare.network",
+        "address": "https://flare-explorer.flare.network/address/{q}",
+        "tx": "https://flare-explorer.flare.network/tx/{q}",
+        "block": "https://flare-explorer.flare.network/block/{q}",
+        "search": "https://flare-explorer.flare.network/search-results?q={q}"
+      }
+    ],
+    "xdc": [
+      {
+        "name": "XDCScan",
+        "home": "https://xdcscan.com",
+        "address": "https://xdcscan.com/address/{q}",
+        "tx": "https://xdcscan.com/tx/{q}",
+        "block": "https://xdcscan.com/block/{q}",
+        "search": "https://xdcscan.com/search?q={q}"
+      }
+    ],
+    "harmony": [
+      {
+        "name": "Harmony Explorer",
+        "home": "https://explorer.harmony.one",
+        "address": "https://explorer.harmony.one/address/{q}",
+        "tx": "https://explorer.harmony.one/tx/{q}",
+        "block": "https://explorer.harmony.one/block/{q}"
+      }
+    ],
+    "iotex": [
+      {
+        "name": "IoTeXScan",
+        "home": "https://iotexscan.io",
+        "address": "https://iotexscan.io/address/{q}",
+        "tx": "https://iotexscan.io/tx/{q}",
+        "block": "https://iotexscan.io/block/{q}"
+      }
+    ],
+    "kava": [
+      {
+        "name": "Kavascan",
+        "home": "https://kavascan.com",
+        "address": "https://kavascan.com/address/{q}",
+        "tx": "https://kavascan.com/tx/{q}",
+        "block": "https://kavascan.com/block/{q}"
+      },
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/kava",
+        "address": "https://www.mintscan.io/kava/address/{q}",
+        "tx": "https://www.mintscan.io/kava/tx/{q}",
+        "block": "https://www.mintscan.io/kava/block/{q}"
+      }
+    ],
+    "zetachain": [
+      {
+        "name": "Blockscout",
+        "home": "https://zetachain.blockscout.com",
+        "address": "https://zetachain.blockscout.com/address/{q}",
+        "tx": "https://zetachain.blockscout.com/tx/{q}",
+        "block": "https://zetachain.blockscout.com/block/{q}",
+        "search": "https://zetachain.blockscout.com/search-results?q={q}"
+      }
+    ],
+    "chiliz": [
+      {
+        "name": "Chiliz Scan",
+        "home": "https://scan.chiliz.com",
+        "address": "https://scan.chiliz.com/address/{q}",
+        "tx": "https://scan.chiliz.com/tx/{q}",
+        "block": "https://scan.chiliz.com/block/{q}"
+      }
+    ],
+    "conflux": [
+      {
+        "name": "ConfluxScan",
+        "home": "https://evm.confluxscan.org",
+        "address": "https://evm.confluxscan.org/address/{q}",
+        "tx": "https://evm.confluxscan.org/tx/{q}",
+        "block": "https://evm.confluxscan.org/block/{q}"
+      }
+    ],
+    "telos": [
+      {
+        "name": "Teloscan",
+        "home": "https://www.teloscan.io",
+        "address": "https://www.teloscan.io/address/{q}",
+        "tx": "https://www.teloscan.io/tx/{q}",
+        "block": "https://www.teloscan.io/block/{q}"
+      }
+    ],
+    "wemix": [
+      {
+        "name": "WEMIX Explorer",
+        "home": "https://explorer.wemix.com",
+        "address": "https://explorer.wemix.com/address/{q}",
+        "tx": "https://explorer.wemix.com/tx/{q}",
+        "block": "https://explorer.wemix.com/block/{q}"
+      }
+    ],
+    "oasys": [
+      {
+        "name": "OasysScan",
+        "home": "https://scan.oasys.games",
+        "address": "https://scan.oasys.games/address/{q}",
+        "tx": "https://scan.oasys.games/tx/{q}",
+        "block": "https://scan.oasys.games/block/{q}"
+      }
+    ],
+    "fuse": [
+      {
+        "name": "Fuse Explorer",
+        "home": "https://explorer.fuse.io",
+        "address": "https://explorer.fuse.io/address/{q}",
+        "tx": "https://explorer.fuse.io/tx/{q}",
+        "block": "https://explorer.fuse.io/block/{q}",
+        "search": "https://explorer.fuse.io/search-results?q={q}"
+      }
+    ],
+    "xrplevm": [
+      {
+        "name": "XRPL EVM Explorer",
+        "home": "https://explorer.xrplevm.org",
+        "address": "https://explorer.xrplevm.org/address/{q}",
+        "tx": "https://explorer.xrplevm.org/tx/{q}",
+        "block": "https://explorer.xrplevm.org/block/{q}",
+        "search": "https://explorer.xrplevm.org/search-results?q={q}"
+      }
+    ],
+    "astar": [
+      {
+        "name": "Subscan",
+        "home": "https://astar.subscan.io",
+        "address": "https://astar.subscan.io/account/{q}",
+        "tx": "https://astar.subscan.io/extrinsic/{q}",
+        "block": "https://astar.subscan.io/block/{q}"
+      }
+    ],
+    "peaq": [
+      {
+        "name": "Subscan",
+        "home": "https://peaq.subscan.io",
+        "address": "https://peaq.subscan.io/account/{q}",
+        "tx": "https://peaq.subscan.io/extrinsic/{q}",
+        "block": "https://peaq.subscan.io/block/{q}"
+      }
+    ],
+    "hedera": [
+      {
+        "name": "HashScan",
+        "home": "https://hashscan.io/mainnet",
+        "address": "https://hashscan.io/mainnet/account/{q}",
+        "tx": "https://hashscan.io/mainnet/transaction/{q}"
+      }
+    ],
+    "filecoin": [
+      {
+        "name": "Filfox",
+        "home": "https://filfox.info/en",
+        "address": "https://filfox.info/en/address/{q}",
+        "tx": "https://filfox.info/en/message/{q}",
+        "block": "https://filfox.info/en/tipset/{q}"
+      }
+    ],
+    "multiversx": [
+      {
+        "name": "MultiversX Explorer",
+        "home": "https://explorer.multiversx.com",
+        "address": "https://explorer.multiversx.com/accounts/{q}",
+        "tx": "https://explorer.multiversx.com/transactions/{q}",
+        "block": "https://explorer.multiversx.com/blocks/{q}"
+      }
+    ],
+    "kaspa": [
+      {
+        "name": "Kaspa Explorer",
+        "home": "https://explorer.kaspa.org",
+        "address": "https://explorer.kaspa.org/addresses/{q}",
+        "tx": "https://explorer.kaspa.org/txs/{q}",
+        "block": "https://explorer.kaspa.org/blocks/{q}"
+      }
+    ],
+    "stacks": [
+      {
+        "name": "Hiro Explorer",
+        "home": "https://explorer.hiro.so",
+        "address": "https://explorer.hiro.so/address/{q}?chain=mainnet",
+        "tx": "https://explorer.hiro.so/txid/{q}?chain=mainnet",
+        "block": "https://explorer.hiro.so/block/{q}?chain=mainnet"
+      }
+    ],
+    "starknet": [
+      {
+        "name": "Voyager",
+        "home": "https://voyager.online",
+        "address": "https://voyager.online/contract/{q}",
+        "tx": "https://voyager.online/tx/{q}",
+        "block": "https://voyager.online/block/{q}"
+      }
+    ],
+    "bitcoinsv": [
+      {
+        "name": "WhatsOnChain",
+        "home": "https://whatsonchain.com",
+        "address": "https://whatsonchain.com/address/{q}",
+        "tx": "https://whatsonchain.com/tx/{q}",
+        "block": "https://whatsonchain.com/block-height/{q}"
+      }
+    ],
+    "ecash": [
+      {
+        "name": "Blockchair",
+        "home": "https://blockchair.com/ecash",
+        "address": "https://blockchair.com/ecash/address/{q}",
+        "tx": "https://blockchair.com/ecash/transaction/{q}",
+        "block": "https://blockchair.com/ecash/block/{q}",
+        "search": "https://blockchair.com/search?q={q}"
+      }
+    ],
+    "flux": [
+      {
+        "name": "Flux Explorer",
+        "home": "https://explorer.runonflux.io",
+        "address": "https://explorer.runonflux.io/address/{q}",
+        "tx": "https://explorer.runonflux.io/tx/{q}",
+        "block": "https://explorer.runonflux.io/block/{q}"
+      }
+    ],
+    "arweave": [
+      {
+        "name": "ViewBlock",
+        "home": "https://viewblock.io/arweave",
+        "address": "https://viewblock.io/arweave/address/{q}",
+        "tx": "https://viewblock.io/arweave/tx/{q}",
+        "block": "https://viewblock.io/arweave/block/{q}"
+      }
+    ],
+    "hive": [
+      {
+        "name": "HiveBlocks",
+        "home": "https://hiveblocks.com",
+        "address": "https://hiveblocks.com/@{q}",
+        "tx": "https://hiveblocks.com/tx/{q}",
+        "block": "https://hiveblocks.com/b/{q}"
+      }
+    ],
+    "flow": [
+      {
+        "name": "Flowscan",
+        "home": "https://www.flowscan.io",
+        "address": "https://www.flowscan.io/account/{q}",
+        "tx": "https://www.flowscan.io/tx/{q}",
+        "block": "https://www.flowscan.io/block/{q}"
+      }
+    ],
+    "mina": [
+      {
+        "name": "Minascan",
+        "home": "https://minascan.io/mainnet",
+        "address": "https://minascan.io/mainnet/account/{q}",
+        "tx": "https://minascan.io/mainnet/tx/{q}",
+        "block": "https://minascan.io/mainnet/block/{q}"
+      }
+    ],
+    "oasis": [
+      {
+        "name": "Oasis Explorer",
+        "home": "https://explorer.oasis.io/mainnet/consensus",
+        "address": "https://explorer.oasis.io/mainnet/consensus/address/{q}",
+        "tx": "https://explorer.oasis.io/mainnet/consensus/tx/{q}",
+        "block": "https://explorer.oasis.io/mainnet/consensus/block/{q}"
+      }
+    ],
+    "movement": [
+      {
+        "name": "Movement Explorer",
+        "home": "https://explorer.movementnetwork.xyz",
+        "address": "https://explorer.movementnetwork.xyz/account/{q}?network=mainnet",
+        "tx": "https://explorer.movementnetwork.xyz/txn/{q}?network=mainnet"
+      }
+    ],
+    "bittensor": [
+      {
+        "name": "Taostats",
+        "home": "https://taostats.io",
+        "address": "https://taostats.io/account/{q}",
+        "block": "https://taostats.io/block/{q}"
+      }
+    ],
+    "pi-network": [
+      {
+        "name": "Pi Block Explorer",
+        "home": "https://blockexplorer.minepi.com/mainnet",
+        "address": "https://blockexplorer.minepi.com/mainnet/accounts/{q}"
+      }
+    ],
+    "alephium": [
+      {
+        "name": "Alephium Explorer",
+        "home": "https://explorer.alephium.org",
+        "address": "https://explorer.alephium.org/addresses/{q}",
+        "tx": "https://explorer.alephium.org/transactions/{q}",
+        "block": "https://explorer.alephium.org/blocks/{q}"
+      }
+    ],
+    "nervos": [
+      {
+        "name": "CKB Explorer",
+        "home": "https://explorer.nervos.org",
+        "address": "https://explorer.nervos.org/address/{q}",
+        "tx": "https://explorer.nervos.org/transaction/{q}",
+        "block": "https://explorer.nervos.org/block/{q}"
+      }
+    ],
+    "ergo": [
+      {
+        "name": "Ergo Explorer",
+        "home": "https://explorer.ergoplatform.com",
+        "address": "https://explorer.ergoplatform.com/en/addresses/{q}",
+        "tx": "https://explorer.ergoplatform.com/en/transactions/{q}",
+        "block": "https://explorer.ergoplatform.com/en/blocks/{q}"
+      }
+    ],
+    "radix": [
+      {
+        "name": "Radix Dashboard",
+        "home": "https://dashboard.radixdlt.com",
+        "address": "https://dashboard.radixdlt.com/account/{q}",
+        "tx": "https://dashboard.radixdlt.com/transaction/{q}"
+      }
+    ],
+    "casper": [
+      {
+        "name": "CSPR.live",
+        "home": "https://cspr.live",
+        "address": "https://cspr.live/account/{q}",
+        "tx": "https://cspr.live/transaction/{q}",
+        "block": "https://cspr.live/block/{q}"
+      }
+    ],
+    "symbol": [
+      {
+        "name": "Symbol Explorer",
+        "home": "https://symbol.fyi",
+        "address": "https://symbol.fyi/accounts/{q}",
+        "tx": "https://symbol.fyi/transactions/{q}",
+        "block": "https://symbol.fyi/blocks/{q}"
+      }
+    ],
+    "thorchain": [
+      {
+        "name": "ViewBlock",
+        "home": "https://viewblock.io/thorchain",
+        "address": "https://viewblock.io/thorchain/address/{q}",
+        "tx": "https://viewblock.io/thorchain/tx/{q}"
+      }
+    ],
+    "acala": [
+      {
+        "name": "Subscan",
+        "home": "https://acala.subscan.io",
+        "address": "https://acala.subscan.io/account/{q}",
+        "tx": "https://acala.subscan.io/extrinsic/{q}",
+        "block": "https://acala.subscan.io/block/{q}"
+      }
+    ],
+    "bifrost": [
+      {
+        "name": "Subscan",
+        "home": "https://bifrost.subscan.io",
+        "address": "https://bifrost.subscan.io/account/{q}",
+        "tx": "https://bifrost.subscan.io/extrinsic/{q}",
+        "block": "https://bifrost.subscan.io/block/{q}"
+      }
+    ],
+    "hydration": [
+      {
+        "name": "Subscan",
+        "home": "https://hydration.subscan.io",
+        "address": "https://hydration.subscan.io/account/{q}",
+        "tx": "https://hydration.subscan.io/extrinsic/{q}",
+        "block": "https://hydration.subscan.io/block/{q}"
+      }
+    ],
+    "avail": [
+      {
+        "name": "Subscan",
+        "home": "https://avail.subscan.io",
+        "address": "https://avail.subscan.io/account/{q}",
+        "tx": "https://avail.subscan.io/extrinsic/{q}",
+        "block": "https://avail.subscan.io/block/{q}"
+      }
+    ],
+    "polymesh": [
+      {
+        "name": "Subscan",
+        "home": "https://polymesh.subscan.io",
+        "address": "https://polymesh.subscan.io/account/{q}",
+        "tx": "https://polymesh.subscan.io/extrinsic/{q}",
+        "block": "https://polymesh.subscan.io/block/{q}"
+      }
+    ],
+    "dydx": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/dydx",
+        "address": "https://www.mintscan.io/dydx/address/{q}",
+        "tx": "https://www.mintscan.io/dydx/tx/{q}",
+        "block": "https://www.mintscan.io/dydx/block/{q}"
+      }
+    ],
+    "noble": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/noble",
+        "address": "https://www.mintscan.io/noble/address/{q}",
+        "tx": "https://www.mintscan.io/noble/tx/{q}",
+        "block": "https://www.mintscan.io/noble/block/{q}"
+      }
+    ],
+    "neutron": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/neutron",
+        "address": "https://www.mintscan.io/neutron/address/{q}",
+        "tx": "https://www.mintscan.io/neutron/tx/{q}",
+        "block": "https://www.mintscan.io/neutron/block/{q}"
+      }
+    ],
+    "stride": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/stride",
+        "address": "https://www.mintscan.io/stride/address/{q}",
+        "tx": "https://www.mintscan.io/stride/tx/{q}",
+        "block": "https://www.mintscan.io/stride/block/{q}"
+      }
+    ],
+    "akash": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/akash",
+        "address": "https://www.mintscan.io/akash/address/{q}",
+        "tx": "https://www.mintscan.io/akash/tx/{q}",
+        "block": "https://www.mintscan.io/akash/block/{q}"
+      }
+    ],
+    "axelar": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/axelar",
+        "address": "https://www.mintscan.io/axelar/address/{q}",
+        "tx": "https://www.mintscan.io/axelar/tx/{q}",
+        "block": "https://www.mintscan.io/axelar/block/{q}"
+      },
+      {
+        "name": "Axelarscan",
+        "home": "https://axelarscan.io",
+        "address": "https://axelarscan.io/account/{q}",
+        "tx": "https://axelarscan.io/tx/{q}"
+      }
+    ],
+    "dymension": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/dymension",
+        "address": "https://www.mintscan.io/dymension/address/{q}",
+        "tx": "https://www.mintscan.io/dymension/tx/{q}",
+        "block": "https://www.mintscan.io/dymension/block/{q}"
+      }
+    ],
+    "initia": [
+      {
+        "name": "InitiaScan",
+        "home": "https://scan.initia.xyz/interwoven-1",
+        "address": "https://scan.initia.xyz/interwoven-1/accounts/{q}",
+        "tx": "https://scan.initia.xyz/interwoven-1/txs/{q}",
+        "block": "https://scan.initia.xyz/interwoven-1/blocks/{q}"
+      }
+    ],
+    "babylon": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/babylon",
+        "address": "https://www.mintscan.io/babylon/address/{q}",
+        "tx": "https://www.mintscan.io/babylon/tx/{q}",
+        "block": "https://www.mintscan.io/babylon/block/{q}"
+      }
+    ],
+    "kujira": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/kujira",
+        "address": "https://www.mintscan.io/kujira/address/{q}",
+        "tx": "https://www.mintscan.io/kujira/tx/{q}",
+        "block": "https://www.mintscan.io/kujira/block/{q}"
+      }
+    ],
+    "persistence": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/persistence",
+        "address": "https://www.mintscan.io/persistence/address/{q}",
+        "tx": "https://www.mintscan.io/persistence/tx/{q}",
+        "block": "https://www.mintscan.io/persistence/block/{q}"
+      }
+    ],
+    "secret": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/secret",
+        "address": "https://www.mintscan.io/secret/address/{q}",
+        "tx": "https://www.mintscan.io/secret/tx/{q}",
+        "block": "https://www.mintscan.io/secret/block/{q}"
+      }
+    ],
+    "fetchai": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/fetchai",
+        "address": "https://www.mintscan.io/fetchai/address/{q}",
+        "tx": "https://www.mintscan.io/fetchai/tx/{q}",
+        "block": "https://www.mintscan.io/fetchai/block/{q}"
+      }
+    ],
+    "archway": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/archway",
+        "address": "https://www.mintscan.io/archway/address/{q}",
+        "tx": "https://www.mintscan.io/archway/tx/{q}",
+        "block": "https://www.mintscan.io/archway/block/{q}"
+      }
+    ],
+    "saga": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/saga",
+        "address": "https://www.mintscan.io/saga/address/{q}",
+        "tx": "https://www.mintscan.io/saga/tx/{q}",
+        "block": "https://www.mintscan.io/saga/block/{q}"
+      }
+    ],
+    "mantra": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/mantra",
+        "address": "https://www.mintscan.io/mantra/address/{q}",
+        "tx": "https://www.mintscan.io/mantra/tx/{q}",
+        "block": "https://www.mintscan.io/mantra/block/{q}"
+      }
+    ],
+    "xion": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/xion",
+        "address": "https://www.mintscan.io/xion/address/{q}",
+        "tx": "https://www.mintscan.io/xion/tx/{q}",
+        "block": "https://www.mintscan.io/xion/block/{q}"
+      }
+    ],
+    "cronospos": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/crypto-org",
+        "address": "https://www.mintscan.io/crypto-org/address/{q}",
+        "tx": "https://www.mintscan.io/crypto-org/tx/{q}",
+        "block": "https://www.mintscan.io/crypto-org/block/{q}"
+      }
+    ],
+    "band": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/band",
+        "address": "https://www.mintscan.io/band/address/{q}",
+        "tx": "https://www.mintscan.io/band/tx/{q}",
+        "block": "https://www.mintscan.io/band/block/{q}"
+      }
+    ],
+    "agoric": [
+      {
+        "name": "ATOMScan",
+        "home": "https://atomscan.com/agoric",
+        "address": "https://atomscan.com/agoric/accounts/{q}",
+        "tx": "https://atomscan.com/agoric/transactions/{q}",
+        "block": "https://atomscan.com/agoric/blocks/{q}"
+      }
+    ],
+    "juno": [
+      {
+        "name": "Ping.pub",
+        "home": "https://ping.pub/juno",
+        "address": "https://ping.pub/juno/account/{q}",
+        "tx": "https://ping.pub/juno/tx/{q}",
+        "block": "https://ping.pub/juno/block/{q}"
+      }
+    ],
+    "nibiru": [
+      {
+        "name": "Nodes.Guru",
+        "home": "https://nibiru.explorers.guru",
+        "address": "https://nibiru.explorers.guru/account/{q}",
+        "tx": "https://nibiru.explorers.guru/transaction/{q}",
+        "block": "https://nibiru.explorers.guru/block/{q}"
+      }
+    ],
+    "terra": [
+      {
+        "name": "Mintscan",
+        "home": "https://www.mintscan.io/terra",
+        "address": "https://www.mintscan.io/terra/address/{q}",
+        "tx": "https://www.mintscan.io/terra/tx/{q}",
+        "block": "https://www.mintscan.io/terra/block/{q}"
+      }
+    ],
+    "terraclassic": [
+      {
+        "name": "Terra Classic Finder",
+        "home": "https://finder.terra-classic.hexxagon.io/mainnet",
+        "address": "https://finder.terra-classic.hexxagon.io/mainnet/address/{q}",
+        "tx": "https://finder.terra-classic.hexxagon.io/mainnet/tx/{q}",
+        "block": "https://finder.terra-classic.hexxagon.io/mainnet/blocks/{q}"
       }
     ]
   }

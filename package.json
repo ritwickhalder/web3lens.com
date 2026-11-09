@@ -8,13 +8,13 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "chains:convert": "node scripts/convert-legacy-chains.mjs",
     "test": "tsx --test scripts/test/*.test.ts",
     "ext:build": "node scripts/build-extensions.mjs",
     "ext:check": "node scripts/build-extensions.mjs --check",
     "ext:pack": "node scripts/pack-extensions.mjs",
     "ext:lint:firefox": "npx --yes web-ext@10 lint --source-dir extension-firefox --self-hosted",
     "explorers:check": "node scripts/check-explorers.mjs",
+    "chains:audit": "node scripts/audit-chains.mjs --refs --out audit",
     "sanctions:update": "node scripts/update-sanctions.mjs"
   },
   "dependencies": {

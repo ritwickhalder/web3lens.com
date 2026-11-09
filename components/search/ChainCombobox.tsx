@@ -3,24 +3,11 @@
 import { CaretDown, Check, MagnifyingGlass, Star } from '@phosphor-icons/react/dist/ssr';
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
-import { POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
+import { chainsByName, filterChains, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { countLabel, type Chain } from '@/lib/chains';
 import { explorerDown } from '@/lib/explorer';
 
 type Section = { title: string; chains: Chain[] };
-
-/** Chains whose name starts with the filter come first, then the ones that only contain it. */
-function filterChains(chains: Chain[], filter: string): Chain[] {
-  const f = filter.trim().toLowerCase();
-  const starts: Chain[] = [];
-  const contains: Chain[] = [];
-  for (const c of chains) {
-    const name = c.name.toLowerCase();
-    if (name.startsWith(f)) starts.push(c);
-    else if (name.includes(f) || c.id.includes(f)) contains.push(c);
-  }
-  return [...starts, ...contains];
-}
 
 /**
  * Searchable chain picker that sits inside the search bar.
@@ -68,7 +55,7 @@ export function ChainCombobox({
         : [
             ...(pinned.length ? [{ title: 'Favourites', chains: pinned }] : []),
             { title: 'Popular', chains: popular },
-            { title: `All chains · ${countLabel(chains.length)}`, chains },
+            { title: `All chains · ${countLabel(chains.length)}`, chains: chainsByName(chains) },
           ],
     [chains, filter, popular, pinned],
   );

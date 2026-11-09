@@ -2,6 +2,8 @@
  * Display details for the chains people pick most. Everything else in data/chains.json
  * gets a neutral glyph. Colours are each project's brand colour, nudged for a dark background.
  */
+import { getChain, type Chain } from '@/lib/chains';
+
 export type ChainMeta = { symbol: string; color: string };
 
 export const CHAIN_META: Record<string, ChainMeta> = {
@@ -62,5 +64,34 @@ export const POPULAR_CHAIN_IDS = [
 ];
 
 export function chainMeta(id: string, name: string): ChainMeta {
-  return CHAIN_META[id] ?? { symbol: name.replace(/[^A-Za-z0-9]/g, '').slice(0, 3).toUpperCase(), color: '#8d93a6' };
+  return CHAIN_META[id] ?? { symbol: getChain(id)?.symbol ?? name.replace(/[^A-Za-z0-9]/g, '').slice(0, 3).toUpperCase(), color: '#8d93a6' };
+}
+
+/** The chain's real ticker when one is known (not the placeholder chainMeta derives from the name). */
+export function chainTicker(chain: Chain): string | undefined {
+  return CHAIN_META[chain.id]?.symbol ?? chain.symbol;
+}
+
+/**
+ * Picker filter: an exact ticker or name first ("ARB" → Arbitrum), then names starting with the
+ * text, then names, ids and tickers containing it. Shared by the site and the extensions.
+ */
+export function filterChains(chains: Chain[], filter: string): Chain[] {
+  const f = filter.trim().toLowerCase();
+  const exact: Chain[] = [];
+  const starts: Chain[] = [];
+  const contains: Chain[] = [];
+  for (const c of chains) {
+    const name = c.name.toLowerCase();
+    const ticker = chainTicker(c)?.toLowerCase();
+    if (ticker === f || name === f) exact.push(c);
+    else if (name.startsWith(f)) starts.push(c);
+    else if (name.includes(f) || c.id.includes(f) || ticker?.startsWith(f)) contains.push(c);
+  }
+  return [...exact, ...starts, ...contains];
+}
+
+/** The "All chains" list in the picker, by name. */
+export function chainsByName(chains: Chain[]): Chain[] {
+  return [...chains].sort((a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' }));
 }

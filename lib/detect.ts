@@ -52,6 +52,15 @@ export const EVM_CHAINS = [
   'gnosischain',
   'celo',
   'mantle',
+  'hyperliquid',
+  'sonic',
+  'berachain',
+  'unichain',
+  'monad',
+  'sei',
+  'blast',
+  'opbnb',
+  'cronos',
   'ethereumclassic',
 ];
 
@@ -66,8 +75,8 @@ function make(q: string, d: Partial): Detection {
 
 /** base58check version byte → what the address is. */
 const BASE58_VERSIONS: Record<number, { label: string; chains: string[]; format: string; testnet?: boolean }> = {
-  0x00: { label: 'Bitcoin address', chains: ['bitcoin', 'bitcoincash'], format: 'btc-p2pkh' },
-  0x05: { label: 'Bitcoin address', chains: ['bitcoin', 'bitcoincash'], format: 'btc-p2sh' },
+  0x00: { label: 'Bitcoin address', chains: ['bitcoin', 'bitcoincash', 'bitcoinsv'], format: 'btc-p2pkh' },
+  0x05: { label: 'Bitcoin address', chains: ['bitcoin', 'bitcoincash', 'bitcoinsv'], format: 'btc-p2sh' },
   0x6f: { label: 'Bitcoin testnet address', chains: ['bitcoin'], format: 'btc-testnet', testnet: true },
   0xc4: { label: 'Bitcoin testnet address', chains: ['bitcoin'], format: 'btc-testnet', testnet: true },
   0x30: { label: 'Litecoin address', chains: ['litecoin'], format: 'ltc-p2pkh' },
@@ -101,6 +110,38 @@ const BECH32_HRPS: Record<string, { label: string; chains: string[]; format: str
   osmo: { label: 'Osmosis address', chains: ['osmosis'], format: 'osmosis-address' },
   celestia: { label: 'Celestia address', chains: ['celestia'], format: 'celestia-address' },
   inj: { label: 'Injective address', chains: ['injective'], format: 'injective-address' },
+  // Cosmos SDK prefixes from cosmos/chain-registry (format id `<chain>-address`).
+  ...Object.fromEntries(
+    (
+      [
+        ['dydx', 'dYdX', ['dydx']],
+        ['noble', 'Noble', ['noble']],
+        ['neutron', 'Neutron', ['neutron']],
+        ['stride', 'Stride', ['stride']],
+        ['akash', 'Akash', ['akash']],
+        ['axelar', 'Axelar', ['axelar']],
+        ['dym', 'Dymension', ['dymension']],
+        ['init', 'Initia', ['initia']],
+        ['bbn', 'Babylon', ['babylon']],
+        ['kujira', 'Kujira', ['kujira']],
+        ['persistence', 'Persistence', ['persistence']],
+        ['secret', 'Secret Network', ['secret']],
+        ['fetch', 'Fetch.ai', ['fetchai']],
+        ['archway', 'Archway', ['archway']],
+        ['saga', 'Saga', ['saga']],
+        ['mantra', 'MANTRA', ['mantra']],
+        ['xion', 'XION', ['xion']],
+        ['cro', 'Cronos POS', ['cronospos']],
+        ['band', 'Band Protocol', ['band']],
+        ['agoric', 'Agoric', ['agoric']],
+        ['juno', 'Juno', ['juno']],
+        ['nibi', 'Nibiru', ['nibiru']],
+        ['terra', 'Terra', ['terra', 'terraclassic']],
+        ['thor', 'THORChain', ['thorchain']],
+        ['panacea', 'MediBloc', ['medibloc']],
+      ] as [string, string, string[]][]
+    ).map(([hrp, label, chains]) => [hrp, { label: `${label} address`, chains, format: `${chains[0]}-address` }]),
+  ),
   addr: { label: 'Cardano address', chains: ['cardano'], format: 'cardano-address' },
   stake: { label: 'Cardano stake address', chains: ['cardano'], format: 'cardano-stake' },
   addr_test: { label: 'Cardano testnet address', chains: ['cardano'], format: 'cardano-address', testnet: true },

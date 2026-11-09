@@ -4,11 +4,13 @@
  * from the site's own components, parsed with DOMParser (never innerHTML).
  */
 import icons from 'virtual:svg-icons';
-import { chainMeta, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
+import { chainMeta, chainsByName, filterChains, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { CHAIN_COUNT_LABEL, CHAINS, getChain, type Chain } from '@/lib/chains';
 import { explorerDown } from '@/lib/explorer';
 import { h } from './dom';
 import { t } from './i18n';
+
+const ALL_BY_NAME = chainsByName(CHAINS);
 
 const parser = typeof DOMParser !== 'undefined' ? new DOMParser() : null;
 const cache = new Map<string, Element>();
@@ -162,16 +164,12 @@ export function chainPicker(opts: { value: Chain; favourites: string[]; onChange
   const sections = (): [string, Chain[]][] => {
     const f = filter.value.trim().toLowerCase();
     const byIds = (ids: string[]) => ids.map((id) => getChain(id)).filter((c): c is Chain => Boolean(c));
-    if (f) {
-      const starts = CHAINS.filter((c) => c.name.toLowerCase().startsWith(f));
-      const contains = CHAINS.filter((c) => !c.name.toLowerCase().startsWith(f) && (c.name.toLowerCase().includes(f) || c.id.includes(f)));
-      return [[t('picker.results'), [...starts, ...contains]]];
-    }
+    if (f) return [[t('picker.results'), filterChains(CHAINS, f)]];
     return [
       ...(detected.length ? ([[t('picker.detected'), byIds(detected)]] as [string, Chain[]][]) : []),
       ...(favourites.length ? ([[t('picker.favourites'), byIds(favourites)]] as [string, Chain[]][]) : []),
       [t('picker.popular'), byIds(POPULAR_CHAIN_IDS)],
-      [t('picker.allChains', { count: CHAIN_COUNT_LABEL }), CHAINS],
+      [t('picker.allChains', { count: CHAIN_COUNT_LABEL }), ALL_BY_NAME],
     ];
   };
 

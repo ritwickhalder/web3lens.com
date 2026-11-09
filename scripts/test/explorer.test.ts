@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { allExplorerRoutes, CHAINS, explorerRoutes, getChain, type Chain } from '../../lib/chains';
+import explorersJson from '../../data/explorers.json';
+import retiredJson from '../../data/chains-retired.json';
+import { allExplorerRoutes, CHAINS, EXTRA_CHAINS, explorerRoutes, formatChainIds, getChain, getRetiredChain, routeOwnerId, type Chain } from '../../lib/chains';
+import { chainsByName, filterChains } from '../../lib/chain-meta';
+import { detectAll } from '../../lib/detect';
 import {
   explorerLinks,
   fallbackNotice,
@@ -13,7 +17,6 @@ import {
 const chain = (explorer: Chain['explorer'], fallback?: boolean): Chain => ({
   id: 'x',
   name: 'Xcoin',
-  legacyValue: 'Xcoin',
   explorer,
   fallback,
 });
@@ -98,10 +101,11 @@ test('explorer preference picks the named explorer and falls back to the default
 test('chains without routes use the legacy explorer', () => {
   const r = resolveExplorer(getChain('stellar')!, 'G1');
   assert.ok(r.action.kind === 'url');
-  const lisk = resolveExplorer(getChain('lisk')!, 'x');
-  assert.equal(lisk.fallback, true);
-  const gc = resolveExplorer(getChain('gamecredits')!, 'g');
-  assert.equal(gc.kind, 'search');
+  const steem = resolveExplorer(getChain('steem')!, 'x');
+  assert.equal(steem.fallback, true);
+  const ppc = resolveExplorer(getChain('peercoin')!, 'g');
+  assert.equal(ppc.kind, 'search');
+  assert.equal(ppc.action.kind === 'url' && ppc.action.href, 'https://chainz.cryptoid.info/ppc/search.dws?q=g');
 });
 
 test('explorerLinks lists every explorer for the query type', () => {
@@ -137,7 +141,7 @@ test('every legacy template is a valid URL with exactly one {q}', () => {
 test('extra chains are https-only and unique', () => {
   const ids = CHAINS.map((c) => c.id);
   assert.equal(new Set(ids).size, ids.length);
-  for (const c of CHAINS.filter((x) => !x.legacyValue)) {
+  for (const c of EXTRA_CHAINS) {
     assert.ok(c.explorer.kind === 'url' && c.explorer.url.startsWith('https://'), c.id);
   }
 });
@@ -148,4 +152,99 @@ test('isSafeExternalUrl blocks non-http schemes and private hosts', () => {
   assert.ok(!isSafeExternalUrl('data:text/html,x'));
   assert.ok(!isSafeExternalUrl('http://localhost:3000'));
   assert.ok(!isSafeExternalUrl('https://user:pw@example.com'));
+});
+
+// ---------------------------------------------------------------------------------------------
+// November 2026 chain audit
+
+const ADDR = '0x52908400098527886E0F7030069857D2E4169EE7';
+
+test('retired chains are gone from the list, each with a reason', () => {
+  const retired = (retiredJson as { chains: { id: string; name: string; reason: string; retiredAt: string }[] }).chains;
+  assert.ok(retired.length > 100);
+  const ids = new Set(CHAINS.map((c) => c.id));
+  for (const r of retired) {
+    assert.ok(!ids.has(r.id), `${r.id} is retired but still listed`);
+    assert.ok(r.reason.length > 20 && /^\d{4}-\d{2}-\d{2}$/.test(r.retiredAt), r.id);
+  }
+  assert.equal(new Set(retired.map((r) => r.id)).size, retired.length);
+  assert.equal(getRetiredChain('bitconnect')?.name, 'BitConnect');
+  assert.equal(getChain('bitconnect'), undefined);
+});
+
+test('every chain has somewhere to go: routes, an inherited host, or a legacy template', () => {
+  for (const c of CHAINS) {
+    const routes = explorerRoutes(c);
+    assert.ok(routes.length > 0 || c.explorer.kind !== 'google' || c.fallback, `${c.id} has only a web search`);
+  }
+});
+
+test('inherit prefixes point at chains that have routes', () => {
+  const inherit = (explorersJson as { inherit: Record<string, string> }).inherit;
+  for (const [prefix, id] of Object.entries(inherit)) {
+    assert.ok(allExplorerRoutes()[id]?.length, `${prefix} → ${id} has no routes`);
+    assert.deepEqual(templateProblems(prefix, { requireQ: false }), [], prefix);
+  }
+  // Waves and Stellar assets, Kin on Solana, GAS on Neo, ZEN on Base.
+  assert.equal(routeOwnerId(getChain('mercury')!), 'waves');
+  assert.equal(routeOwnerId(getChain('mobius')!), 'stellar');
+  assert.equal(routeOwnerId(getChain('kin')!), 'solana');
+  assert.equal(routeOwnerId(getChain('gas')!), 'neo');
+  assert.equal(routeOwnerId(getChain('zencash')!), 'base');
+  assert.equal(href('zencash', ADDR), `https://basescan.org/address/${ADDR}`);
+});
+
+test('EVM chain ids are unique and every EVM chain opens 0x addresses on its address page', () => {
+  const evm = CHAINS.filter((c) => c.evmChainId);
+  assert.ok(evm.length > 70);
+  const seen = new Map<number, string>();
+  for (const c of evm) {
+    assert.ok(!seen.has(c.evmChainId!), `${c.id} and ${seen.get(c.evmChainId!)} share chain id ${c.evmChainId}`);
+    seen.set(c.evmChainId!, c.id);
+    assert.ok(formatChainIds(c).includes('ethereum') || c.id === 'ethereum', c.id);
+    const r = resolveExplorer(c, ADDR);
+    if (explorerRoutes(c).some((x) => x.address)) assert.equal(r.kind, 'address', c.id);
+  }
+  // A chain outside the detector's short 0x candidate list still gets the address page.
+  assert.equal(href('swellchain', ADDR), `https://explorer.swellnetwork.io/address/${ADDR}`);
+  assert.equal(href('hyperliquid', ADDR), `https://app.hyperliquid.xyz/explorer/address/${ADDR}`);
+});
+
+test('re-routed chains go to their current explorers', () => {
+  assert.equal(href('nano', 'nano_1abc'), 'https://nanexplorer.com/nano/account/nano_1abc');
+  assert.equal(href('namecoin', 'N1'), 'https://chainz.cryptoid.info/nmc/search.dws?q=N1');
+  assert.equal(href('lisk', ADDR), `https://blockscout.lisk.com/address/${ADDR}`);
+  assert.equal(href('tomochain', ADDR), `https://www.vicscan.xyz/address/${ADDR}`);
+  assert.match(href('polkadot', '15oF4uVJwmo4TdGW7VfQxNLavjCXviqxT9S1MgbjMNHr6Sp5'), /^https:\/\/assethub-polkadot\.subscan\.io\/account\//);
+  assert.equal(getChain('zcoin')?.name, 'Firo');
+  assert.equal(getChain('ripple')?.name, 'XRP Ledger');
+});
+
+test('new Cosmos prefixes are detected and routed to their chain', () => {
+  // Valid bech32 (BIP-173) encodings of one 20-byte payload under each prefix.
+  const vectors: [string, string[]][] = [
+    ['dydx1pvc9275lcn5suv6c0k3v0mq3xedcpfw2wnxgdv', ['dydx']],
+    ['terra1pvc9275lcn5suv6c0k3v0mq3xedcpfw2pwjv0m', ['terra', 'terraclassic']],
+    ['noble1pvc9275lcn5suv6c0k3v0mq3xedcpfw20fay44', ['noble']],
+    ['bbn1pvc9275lcn5suv6c0k3v0mq3xedcpfw2s5eajz', ['babylon']],
+    ['thor1pvc9275lcn5suv6c0k3v0mq3xedcpfw2pd3hcy', ['thorchain']],
+  ];
+  for (const [address, chains] of vectors) {
+    const d = detectAll(address)[0];
+    assert.equal(d?.checksum, 'valid', address);
+    assert.deepEqual(d.chains, chains, address);
+    for (const id of chains) assert.ok(getChain(id), id);
+  }
+  assert.equal(href('dydx', vectors[0][0]), `https://www.mintscan.io/dydx/address/${vectors[0][0]}`);
+  // One character changed: the checksum fails.
+  assert.equal(detectAll('dydx1pvc9275lcn5suv6c0k3v0mq3xedcpfw2wnxgdw')[0]?.checksum, 'invalid');
+});
+
+test('the picker filter matches tickers and the full list is sorted by name', () => {
+  assert.equal(filterChains(CHAINS, 'hype')[0]?.id, 'hyperliquid');
+  assert.equal(filterChains(CHAINS, 'arb')[0]?.id, 'arbitrum');
+  assert.ok(filterChains(CHAINS, 'xrp').some((c) => c.id === 'ripple'));
+  const sorted = chainsByName(CHAINS);
+  assert.equal(sorted.length, CHAINS.length);
+  for (let i = 1; i < sorted.length; i++) assert.ok(sorted[i - 1].name.localeCompare(sorted[i].name, 'en', { sensitivity: 'base' }) <= 0);
 });

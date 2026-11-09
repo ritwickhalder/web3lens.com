@@ -1,0 +1,1301 @@
+{
+  "$comment": "Chains removed from the picker by the November 2026 audit, with the reason. Hand-edited; ids here must not reappear in chains*.json (tested). Restore one by moving it back with a working explorer.",
+  "chains": [
+    {
+      "id": "bytecoin",
+      "name": "Bytecoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainradar.com/xmr/search/{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "hshare",
+      "name": "Hshare",
+      "explorer": {
+        "kind": "url",
+        "url": "http://explorer.h.cash?s={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "factom",
+      "name": "Factom",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.factom.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "gxchain",
+      "name": "GXChain",
+      "explorer": {
+        "kind": "url",
+        "url": "https://block.gxb.io/?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "achain",
+      "name": "Achain",
+      "explorer": {
+        "kind": "url",
+        "url": "https://browser.achain.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "minexcoin",
+      "name": "MinexCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://minexexplorer.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "bitcoindark",
+      "name": "BitcoinDark",
+      "explorer": {
+        "kind": "form",
+        "action": "https://www.blockexperts.com/btcd/search",
+        "method": "post",
+        "param": "q"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "gamecredits",
+      "name": "GameCredits",
+      "explorer": {
+        "kind": "url",
+        "url": "https://blockexplorer.gamecredits.com/home?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "smartcash",
+      "name": "SmartCash",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer3.smartcash.cc/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "xtrabytes",
+      "name": "XTRABYTES",
+      "explorer": {
+        "kind": "form",
+        "action": "https://blockexplorer.xtrabytes.global/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "digitalnote",
+      "name": "DigitalNote",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainradar.com/xmr/search/{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "salus",
+      "name": "SaluS",
+      "explorer": {
+        "kind": "url",
+        "url": "https://cryptobe.com/chain/Salus/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "casinocoin",
+      "name": "CasinoCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.casinocoin.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "gulden",
+      "name": "Gulden",
+      "explorer": {
+        "kind": "url",
+        "url": "https://blockchain.gulden.com?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "htmlcoin",
+      "name": "HTMLCOIN",
+      "explorer": {
+        "kind": "form",
+        "action": "https://html.mastercalls.io/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "aeon",
+      "name": "Aeon",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainradar.com/aeon/search/{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "elastic",
+      "name": "Elastic",
+      "explorer": {
+        "kind": "form",
+        "action": "http://elasticexplorer.org/search/",
+        "method": "post",
+        "param": "input"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "leocoin",
+      "name": "LEOcoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://insight.leocoin.org?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "flash",
+      "name": "Flash",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.flashcoin.io/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "shift",
+      "name": "Shift",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.shiftnrg.org/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "decent",
+      "name": "DECENT",
+      "explorer": {
+        "kind": "url",
+        "url": "https://decent-db.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "linda",
+      "name": "Linda",
+      "explorer": {
+        "kind": "form",
+        "action": "http://193.70.109.114:6005/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "nolimitcoin",
+      "name": "NoLimitCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "http://nolimitcoin.info/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "lykke",
+      "name": "Lykke",
+      "explorer": {
+        "kind": "url",
+        "url": "https://blockchainexplorer.lykke.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "revolutionvr",
+      "name": "RevolutionVR",
+      "explorer": {
+        "kind": "url",
+        "url": "http://blockexplorer.revolutionvr.live/search?={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "prizm",
+      "name": "PRIZM",
+      "explorer": {
+        "kind": "url",
+        "url": "http://blockchain.prizm.space/index.html?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "zclassic",
+      "name": "ZClassic",
+      "explorer": {
+        "kind": "url",
+        "url": "https://zcl-explorer.com/insight?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "era",
+      "name": "ERA",
+      "explorer": {
+        "kind": "form",
+        "action": "http://era.cryptonode.online/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "shield",
+      "name": "SHIELD",
+      "explorer": {
+        "kind": "form",
+        "action": "https://altmix.org/coins/2-SHIELD/explorer",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "faircoin",
+      "name": "FairCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chain.fair.to/search?sterm={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "expanse",
+      "name": "Expanse",
+      "explorer": {
+        "kind": "url",
+        "url": "https://gander.tech/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "electra",
+      "name": "Electra",
+      "explorer": {
+        "kind": "url",
+        "url": "https://cryptobe.com/chain/Electra/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "alqo",
+      "name": "ALQO",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.alqo.org/overview?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "lomocoin",
+      "name": "LoMoCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.lomocoin.com/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "newyorkcoin",
+      "name": "NewYorkCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.nycoin.community/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "rise",
+      "name": "Rise",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.rise.vision/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "tao",
+      "name": "Tao",
+      "explorer": {
+        "kind": "form",
+        "action": "http://www.taoexplorer.com/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "oxycoin",
+      "name": "Oxycoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.oxycoin.io?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "posw-coin",
+      "name": "PoSW Coin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://poswallet.com/blockChain/posw?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "musicoin",
+      "name": "Musicoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://orbiter.musicoin.org/home?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "dubaicoin",
+      "name": "DubaiCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://dbixscan.io/home?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "boolberry",
+      "name": "Boolberry",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainradar.com/bbr/search/{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "atbcoin",
+      "name": "ATBCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.atbcoin.com?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "dimcoin",
+      "name": "DIMCOIN",
+      "explorer": {
+        "kind": "url",
+        "url": "https://dimexplorer.io/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "gobyte",
+      "name": "GoByte",
+      "explorer": {
+        "kind": "form",
+        "action": "http://gobyte.ezmine.io/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "karma",
+      "name": "Karma",
+      "explorer": {
+        "kind": "url",
+        "url": "https://krm-db.com?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "luxcoin",
+      "name": "LUXCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.luxcore.io/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "golos",
+      "name": "Golos",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.golos.io?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "sphere",
+      "name": "Sphere",
+      "explorer": {
+        "kind": "form",
+        "action": "https://sphr.network/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "pirl",
+      "name": "Pirl",
+      "explorer": {
+        "kind": "url",
+        "url": "https://poseidon.pirl.io/explorer?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "iop",
+      "name": "Internet of People",
+      "explorer": {
+        "kind": "url",
+        "url": "http://mainnet.iop.cash/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "bulwark",
+      "name": "Bulwark",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.bulwarkcrypto.com?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "artbyte",
+      "name": "ArtByte",
+      "explorer": {
+        "kind": "url",
+        "url": "http://explorer.artbyte.me/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "biocoin",
+      "name": "BioCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://block-explorer.biocoin.bio/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "nubits",
+      "name": "NuBits",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.nubits.com?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "fedoracoin",
+      "name": "FedoraCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://tipsbe.netcraft.ch/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "polis",
+      "name": "Polis",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.polispay.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "breakout-stake",
+      "name": "Breakout Stake",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chain.breakoutcoin.com/BlockCrawler/block_crawler.php?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "breakout",
+      "name": "Breakout",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chain.breakoutcoin.com/BlockCrawler/block_crawler.php?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "memetic",
+      "name": "Memetic / Pepecoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.memetic.ai/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "exclusivecoin",
+      "name": "ExclusiveCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://cryptobe.com/chain/ExclusiveCoin/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "hollywoodcoin",
+      "name": "HollyWoodCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://chain.hollywoodcoin.biz/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "hush",
+      "name": "Hush",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.myhush.org?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "graft",
+      "name": "Graft",
+      "explorer": {
+        "kind": "url",
+        "url": "https://blockexplorer.graft.network/search?value={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "sumokoin",
+      "name": "Sumokoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.sumokoin.com/search?value={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "bitcoin-plus",
+      "name": "Bitcoin Plus",
+      "explorer": {
+        "kind": "form",
+        "action": "http://block.bitcoinplus.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "travelflex",
+      "name": "Travelflex",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.travelflex.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "masternodecoin",
+      "name": "Masternodecoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://mtnc.snodo.de:3001/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "vtorrent",
+      "name": "vTorrent",
+      "explorer": {
+        "kind": "form",
+        "action": "http://vtrchains.com/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "campuscoin",
+      "name": "CampusCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.campuscoinproject.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian",
+      "explorer": {
+        "kind": "url",
+        "url": "https://blockexplorer.obsidianplatform.com/search?id={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "monoeci",
+      "name": "Monoeci",
+      "explorer": {
+        "kind": "form",
+        "action": "http://block.monacocoin.net:8080/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "xgox",
+      "name": "XGOX",
+      "explorer": {
+        "kind": "form",
+        "action": "http://173.254.204.74:12313/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "yocoin",
+      "name": "Yocoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://yoscan.io?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "monkey-project",
+      "name": "Monkey Project",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.monkey.community/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "force",
+      "name": "FORCE",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.forcenetwork.io/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "innova",
+      "name": "Innova",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.innovacoin.info/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "eboost",
+      "name": "eBoost",
+      "explorer": {
+        "kind": "form",
+        "action": "https://www.blockexperts.com/ebst/search",
+        "method": "post",
+        "param": "q"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "evergreencoin",
+      "name": "EverGreenCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://69.141.235.64:4001/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "sagacoin",
+      "name": "SagaCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.sagacoin.net/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "chaincoin",
+      "name": "ChainCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://104.238.153.140:3001/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "rupaya",
+      "name": "Rupaya",
+      "explorer": {
+        "kind": "form",
+        "action": "https://node2.rupayacoin.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "sexcoin",
+      "name": "Sexcoin",
+      "explorer": {
+        "kind": "url",
+        "url": "http://blockexplorer.lavajumper.com/chain/Sexcoin/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "gcn-coin",
+      "name": "GCN Coin",
+      "explorer": {
+        "kind": "url",
+        "url": "http://www.gcnchain.com/chain/GCoin/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "rupee",
+      "name": "Rupee",
+      "explorer": {
+        "kind": "form",
+        "action": "https://www.blockexperts.com/rup/search",
+        "method": "post",
+        "param": "q"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "ellaism",
+      "name": "Ellaism",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.ellaism.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "buzzcoin",
+      "name": "BuzzCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.buzzcoin.info/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "procurrency",
+      "name": "ProCurrency",
+      "explorer": {
+        "kind": "url",
+        "url": "https://cryptobe.com/chain/ProCurrency/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "unbreakablecoin",
+      "name": "UnbreakableCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://www.blockexperts.com/unb/search",
+        "method": "post",
+        "param": "q"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "ignition",
+      "name": "Ignition",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.ignitioncoin.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "draftcoin",
+      "name": "DraftCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.btcdraft.com/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "hold",
+      "name": "Interstellar Holdings",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.interstellarcoin.com/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "unitus",
+      "name": "Unitus",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.unitus.online?search=138148{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "arcticcoin",
+      "name": "ArcticCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://explorer.arcticcoin.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "crowdcoin",
+      "name": "CrowdCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://94.130.35.230:3001/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "biblepay",
+      "name": "BiblePay",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.biblepay-central.org/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "pure",
+      "name": "Pure",
+      "explorer": {
+        "kind": "url",
+        "url": "http://purexplorer.dynu.net/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "woodcoin",
+      "name": "Woodcoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.woodcoin.org/chain/Woodcoin/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "deuscoin",
+      "name": "DeusCoin",
+      "explorer": {
+        "kind": "url",
+        "url": "http://explorer.deuscoin.org?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "maxcoin",
+      "name": "MaxCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "https://explorer.maxcoinproject.net/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "cryptocarbon",
+      "name": "CryptoCarbon",
+      "explorer": {
+        "kind": "url",
+        "url": "https://explorer.cryptocarbon.co.uk?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "unify",
+      "name": "Unify",
+      "explorer": {
+        "kind": "url",
+        "url": "https://unifyexplorer.com/?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "ganjacoin",
+      "name": "GanjaCoin",
+      "explorer": {
+        "kind": "form",
+        "action": "http://ganja.bilbotel.fr/search",
+        "method": "post",
+        "param": "search"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "fantomcoin",
+      "name": "Fantomcoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainradar.com/fcn/search/{q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "startcoin",
+      "name": "Startcoin",
+      "explorer": {
+        "kind": "url",
+        "url": "http://explorer.startcoin.org?search={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "happycoin",
+      "name": "Happycoin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://cryptobe.com/chain/HappyCoin/search?q={q}"
+      },
+      "reason": "Its only explorer was offline at the 2026-11-02 check and no current explorer was found; the project shows no activity.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "thekey",
+      "name": "THEKEY",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone and the token was not carried over to Neo N3.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "red-pulse",
+      "name": "Red Pulse",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone (the project relaunched as a different token, Phoenix).",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "qlink",
+      "name": "QLINK",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone and the project is inactive.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "tnc",
+      "name": "Trinity Network Credit",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone and the project is inactive.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "zeepin",
+      "name": "Zeepin",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone and the project is inactive.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "alphacat",
+      "name": "Alphacat",
+      "explorer": {
+        "kind": "url",
+        "url": "https://neotracker.io/search/{q}"
+      },
+      "reason": "NEP-5 token on Neo Legacy; neotracker.io is gone and the project is inactive.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "ink",
+      "name": "Ink",
+      "explorer": {
+        "kind": "url",
+        "url": "https://qtumexplorer.io/search?q={q}"
+      },
+      "reason": "QRC-20 token on Qtum whose project ended. (Not the Ink layer 2, which is listed separately.)",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "qbao",
+      "name": "Qbao",
+      "explorer": {
+        "kind": "url",
+        "url": "https://qtumexplorer.io/search?q={q}"
+      },
+      "reason": "QRC-20 token on Qtum whose project ended.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "bodhi",
+      "name": "Bodhi",
+      "explorer": {
+        "kind": "url",
+        "url": "https://qtumexplorer.io/search?q={q}"
+      },
+      "reason": "QRC-20 token on Qtum whose project ended.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "profileutility",
+      "name": "Profile Utility Token",
+      "explorer": {
+        "kind": "url",
+        "url": "https://qtumexplorer.io/search?q={q}"
+      },
+      "reason": "QRC-20 token on Qtum whose project ended.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "poa-network",
+      "name": "POA Network",
+      "explorer": {
+        "kind": "url",
+        "url": "https://poaexplorer.com/?search={q}"
+      },
+      "reason": "The POA Network chain was shut down after merging into Gnosis; its explorer is gone.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "high-performa",
+      "name": "High Performance Blockchain",
+      "explorer": {
+        "kind": "google",
+        "terms": "High Performance Blockchain Blockchain Explorer"
+      },
+      "reason": "High Performance Blockchain (HPB) is inactive and had no explorer, only a web search.",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "nxt",
+      "name": "Nxt",
+      "explorer": {
+        "kind": "form",
+        "action": "https://mynxt.info/blockexplorer/search.php",
+        "method": "post",
+        "param": "tx_search"
+      },
+      "reason": "The Nxt blockchain stopped producing blocks on 2026-01-17 (it continues as a child chain of Ardor).",
+      "retiredAt": "2026-11-09"
+    },
+    {
+      "id": "bitconnect",
+      "name": "BitConnect",
+      "explorer": {
+        "kind": "url",
+        "url": "https://chainz.cryptoid.info/bcc/search.dws?q={q}"
+      },
+      "reason": "BitConnect was shut down in 2018 as a fraud; nothing is left to look up.",
+      "retiredAt": "2026-11-09"
+    }
+  ]
+}

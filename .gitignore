@@ -35,3 +35,6 @@ next-env.d.ts
 
 # extension store packages (npm run ext:pack)
 /dist-extensions
+
+# chain audit reports (npm run chains:audit)
+/audit

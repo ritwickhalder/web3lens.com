@@ -1,7 +1,7 @@
 ---
 title: Exploring 700+ Blockchain Networks with Web3Lens
 seoTitle: Exploring 700+ Blockchain Networks with Web3Lens
-description: How Web3Lens covers 700+ blockchains in one search box: native results for 14 chains, verified explorer routes for 46, and honest handling of the long tail.
+description: How Web3Lens covers 700+ blockchains in one search box: native results for 14 chains, per-type explorer routes for 200, and honest handling of the long tail.
 category: explorer-basics
 tags: [multichain, chain coverage, block explorer, layer 2]
 date: 2026-11-03
@@ -11,9 +11,9 @@ order: 13
 related: [how-to-find-the-right-block-explorer, multichain-blockchain-explorer-for-developers, what-is-a-blockchain-explorer]
 ---
 
-Web3Lens started in 2018 as a single page with a very long drop-down: pick a coin, paste a value, get sent to that coin's explorer. The drop-down is still there, now a searchable chain picker with logos and favourites, and it lists **789 chains and tokens**. That is where the "700+" on the home page comes from.
+Web3Lens started in 2018 as a single page with a very long drop-down: pick a coin, paste a value, get sent to that coin's explorer. The drop-down is still there, now a searchable chain picker with logos and favourites, and it lists **792 chains and tokens**. That is where the "700+" on the home page comes from.
 
-But "supports 789 chains" can mean very different things. This article explains the three levels of coverage Web3Lens has, what you get at each level, and why the site is deliberately honest about the parts that don't work.
+But "supports 792 chains" can mean very different things. This article explains the three levels of coverage Web3Lens has, what you get at each level, and why the site is deliberately honest about the parts that don't work.
 
 ## Level 1: native results for 14 major chains
 
@@ -30,14 +30,15 @@ Every section carries its source and fetch time. If a provider is slow, the rest
 > [!NOTE]
 > "Native" here means Web3Lens reads public blockchain data itself. It doesn't run its own indexer for every chain, so for full history and analytics the explorer links are always one click away on the same page.
 
-## Level 2: verified explorer routes for 46 chains
+## Level 2: explorer routes for 200 chains
 
-For 46 chains, Web3Lens knows the exact URL structure of one or more explorers for each kind of lookup: address, transaction, block, name and free-text search. For example:
+For 200 chains, Web3Lens knows the exact URL structure of one or more explorers for each kind of lookup: address, transaction, block, name and free-text search. For example:
 
 - **Bitcoin**: mempool.space, Blockstream, Blockchair and Blockchain.com
 - **Ethereum**: Etherscan, Blockscout and Blockchair
 - **Cosmos Hub**: Mintscan and ATOMScan
-- **Polkadot and Kusama**: Subscan
+- **Polkadot and Kusama**: Subscan, on Asset Hub and the relay chain
+- **Hyperliquid**: the Hyperliquid explorer and HyperEVMScan
 - **TON**: Tonviewer; **Sui**: Suiscan; **Aptos**: the Aptos Explorer; **NEAR**: NearBlocks
 
 The first explorer in each list is the default; you can choose another per chain in [settings](/settings) and Web3Lens remembers it in your browser. Each of these chains also has a landing page, for example [Ethereum explorer search](/explorer/ethereum), [Solana explorer search](/explorer/solana) or [Cosmos explorer search](/explorer/cosmos), listing its explorers and what each one supports. The full list is on the [explorers index](/explorer).
@@ -46,15 +47,16 @@ Because every route template is checked by the test suite (https only, exactly o
 
 ## Level 3: the long tail
 
-The remaining chains come from the original 2018 list: older proof-of-work coins, early smart-contract platforms, and more than 400 ERC-20 and BEP-20 tokens. For these, Web3Lens keeps the legacy handoff: an explorer URL, a form submission or a web search.
+The remaining chains come from the original 2018 list: older proof-of-work coins, early smart-contract platforms, and more than 400 ERC-20 and BEP-20 tokens. For these, Web3Lens keeps the legacy handoff: an explorer URL or a form submission.
 
-Three improvements make the long tail more useful than it used to be:
+Four improvements make the long tail more useful than it used to be:
 
-1. **Tokens inherit their chain's routes.** An ERC-20 token's addresses and hashes now open Etherscan's address or transaction page, rather than a generic search.
+1. **Tokens inherit their chain's routes.** An ERC-20 token's addresses and hashes now open Etherscan's address or transaction page, rather than a generic search. Waves and Stellar assets do the same on their chain's explorer.
 2. **Links were upgraded to https** wherever the health check found https working.
-3. **Dead explorers are flagged.** A health check probes every explorer host; at its last run 127 of 237 hosts were reachable. Chains whose only explorer is down are labelled "explorer down" in the chain picker, and the search offers a web-search fallback plus an "open anyway" option.
+3. **Dead explorers are flagged.** A health check probes every explorer host and each chain's own explorer page, so a coin that was dropped from a shared explorer counts as down too. Chains whose only explorer is down are labelled "explorer down" in the chain picker, and the search offers a web-search fallback plus an "open anyway" option.
+4. **Dead chains are retired, with a reason.** In November 2026 every chain was audited. Live projects whose explorer had died or moved got a new one (Nano, Ontology, Siacoin, Ravencoin, Namecoin, IOTA and others), and tokens that became their own chains (Theta, Zilliqa, WAX, Viction…) now open their own explorers. 120 entries with nothing left to search, mostly 2017–2018 coins whose project and explorer are both gone, were removed. Each one is recorded with the reason, and an old link to one of them says why it is gone.
 
-That last point is a deliberate choice. Quietly sending you to a dead domain wastes your time; quietly removing the chain hides the fact that its explorer is gone. Flagging it is the honest middle.
+The middle ground still applies to live projects: quietly sending you to a dead domain wastes your time, and quietly removing a chain that still exists hides the fact that its explorer is gone. A live chain with a dead explorer stays listed and flagged until a working explorer is found.
 
 ## How the chain picker helps
 
@@ -62,12 +64,12 @@ With hundreds of entries, picking the chain is the slow step, so the picker does
 
 - **Auto-detection.** Paste a value and the matching chain is selected automatically. If the chain you picked doesn't fit the format, a "Switch to" chip suggests the one that does.
 - **Favourites and popular chains.** Star the chains you use; they stay at the top.
-- **Search by name or symbol**, with keyboard navigation.
+- **Search by name or ticker** (type HYPE, ARB or XRP), with keyboard navigation. The full list is sorted by name.
 - **Logos.** Official coin logos for the major chains make the list scannable.
 
 ## Adding chains
 
-New L2s and app-chains keep arriving, and the chain list grows with them: Arbitrum, OP Mainnet, Base, Avalanche, Linea, zkSync, Scroll, Gnosis, Celo, Mantle, Osmosis, Celestia, Injective, Kusama, NEAR, Tezos, TON, Sui, Aptos and Algorand were all added after the original list. If a network you use is missing, or its explorer route is wrong, [send a note](/contact); route fixes are small and quick to ship.
+New L2s and app-chains keep arriving, and the chain list grows with them. 143 chains have been added since the original list, among them Arbitrum, Base, OP Mainnet, Avalanche, Hyperliquid, Sonic, Berachain, Monad, Unichain, Sei, Blast, Kaia, Cronos, Hedera, Kaspa, Stacks, Starknet, Bitcoin SV, Filecoin, MultiversX, Bittensor, the main Cosmos chains (dYdX, Noble, Neutron, Celestia, Babylon…) and Polkadot parachains. Their explorers come from maintained registries rather than guesswork. If a network you use is missing, or its explorer route is wrong, [send a note](/contact); route fixes are small and quick to ship.
 
 ::cta search
 
@@ -83,4 +85,4 @@ Showing data natively requires reliable free data sources for that chain and cod
 
 ### Is the 700+ figure inflated by tokens?
 
-It counts every entry in the chain picker, and that includes the tokens that had their own entry in the original list (more than 400 ERC-20 and BEP-20 tokens, which now route through Ethereum's and BNB Chain's explorers). The more conservative numbers are on this page too: 46 chains with verified explorer routes, and 14 with native results.
+It counts every entry in the chain picker, and that includes the tokens that had their own entry in the original list (more than 400 ERC-20 and BEP-20 tokens, which now route through Ethereum's and BNB Chain's explorers). The more conservative numbers are on this page too: 200 chains with per-type explorer routes, and 14 with native results.

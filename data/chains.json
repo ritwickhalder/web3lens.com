@@ -2,7 +2,6 @@
   {
     "id": "bitcoin",
     "name": "Bitcoin",
-    "legacyValue": "Bitcoin",
     "explorer": {
       "kind": "url",
       "url": "https://www.blockchain.com/btc/address/{q}"
@@ -11,7 +10,6 @@
   {
     "id": "ethereum",
     "name": "Ethereum",
-    "legacyValue": "Ethereum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -19,8 +17,7 @@
   },
   {
     "id": "ripple",
-    "name": "Ripple",
-    "legacyValue": "Ripple",
+    "name": "XRP Ledger",
     "explorer": {
       "kind": "form",
       "action": "https://bithomp.com/explorer/",
@@ -31,7 +28,6 @@
   {
     "id": "cosmos",
     "name": "Cosmos",
-    "legacyValue": "Cosmos",
     "explorer": {
       "kind": "url",
       "url": "https://atomscan.com/accounts/{q}"
@@ -40,7 +36,6 @@
   {
     "id": "bitcoincash",
     "name": "Bitcoin Cash",
-    "legacyValue": "BitcoinCash",
     "explorer": {
       "kind": "form",
       "action": "https://blockchair.com/search",
@@ -51,7 +46,6 @@
   {
     "id": "litecoin",
     "name": "Litecoin",
-    "legacyValue": "Litecoin",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.litecoin.net/chain/Litecoin/search",
@@ -61,17 +55,16 @@
   },
   {
     "id": "eos",
-    "name": "EOS",
-    "legacyValue": "EOS",
+    "name": "EOS (Vaulta)",
     "explorer": {
       "kind": "url",
       "url": "https://eosflare.io/search/{q}"
-    }
+    },
+    "symbol": "A"
   },
   {
     "id": "cardano",
     "name": "Cardano",
-    "legacyValue": "Cardano",
     "explorer": {
       "kind": "url",
       "url": "https://cardanoscan.io/address/{q}"
@@ -80,7 +73,6 @@
   {
     "id": "stellar",
     "name": "Stellar",
-    "legacyValue": "Stellar",
     "explorer": {
       "kind": "form",
       "action": "https://stellarchain.io/",
@@ -91,25 +83,22 @@
   {
     "id": "neo",
     "name": "NEO",
-    "legacyValue": "Neo",
     "explorer": {
       "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
+      "url": "https://neotube.io/address/{q}"
     }
   },
   {
     "id": "iota",
     "name": "IOTA",
-    "legacyValue": "IOTA",
     "explorer": {
       "kind": "url",
-      "url": "https://thetangle.org/search/{q}"
+      "url": "https://iotascan.com/mainnet/account/{q}"
     }
   },
   {
     "id": "monero",
     "name": "Monero",
-    "legacyValue": "Monero",
     "explorer": {
       "kind": "url",
       "url": "https://xmrchain.net/search?value={q}"
@@ -118,16 +107,14 @@
   {
     "id": "polkadot",
     "name": "Polkadot",
-    "legacyValue": "Polkadot",
     "explorer": {
       "kind": "url",
-      "url": "https://polkascan.io/polkadot/analytics/search/{q}"
+      "url": "https://assethub-polkadot.subscan.io/account/{q}"
     }
   },
   {
     "id": "usdc",
     "name": "USDC",
-    "legacyValue": "USDC",
     "explorer": {
       "kind": "url",
       "url": "https://tronscan.org/#/transaction/{q}"
@@ -136,7 +123,6 @@
   {
     "id": "internetcomputer",
     "name": "Internet Computer",
-    "legacyValue": "InternetComputer",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -145,7 +131,6 @@
   {
     "id": "polygon",
     "name": "Polygon",
-    "legacyValue": "Polygon",
     "explorer": {
       "kind": "url",
       "url": "https://polygonscan.com/search?q={q}"
@@ -154,7 +139,6 @@
   {
     "id": "solana",
     "name": "Solana",
-    "legacyValue": "Solana",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.solana.com/tx/{q}"
@@ -163,7 +147,6 @@
   {
     "id": "tron",
     "name": "TRON",
-    "legacyValue": "Tron",
     "explorer": {
       "kind": "url",
       "url": "https://tronscan.org/#/transaction/{q}"
@@ -172,7 +155,6 @@
   {
     "id": "dash",
     "name": "Dash",
-    "legacyValue": "Dash",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dash/search.dws?q={q}"
@@ -181,7 +163,6 @@
   {
     "id": "tether",
     "name": "Tether",
-    "legacyValue": "Tether",
     "explorer": {
       "kind": "url",
       "url": "https://www.omniexplorer.info/search/{q}"
@@ -190,7 +171,6 @@
   {
     "id": "nem",
     "name": "NEM",
-    "legacyValue": "NEM",
     "explorer": {
       "kind": "url",
       "url": "http://chain.nem.ninja/#/search/{q}"
@@ -199,7 +179,6 @@
   {
     "id": "ethereumclassic",
     "name": "Ethereum Classic",
-    "legacyValue": "EthereumClassic",
     "explorer": {
       "kind": "form",
       "action": "http://gastracker.io/",
@@ -210,7 +189,6 @@
   {
     "id": "vechain",
     "name": "VeChain",
-    "legacyValue": "VeChain",
     "explorer": {
       "kind": "form",
       "action": "https://etherscan.io/search",
@@ -221,16 +199,14 @@
   {
     "id": "qtum",
     "name": "Qtum",
-    "legacyValue": "Qtum",
     "explorer": {
       "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
+      "url": "https://qtum.info/address/{q}"
     }
   },
   {
     "id": "binancecoin",
-    "name": "Binance Coin",
-    "legacyValue": "BinanceCoin",
+    "name": "BNB Smart Chain",
     "explorer": {
       "kind": "url",
       "url": "https://bscscan.com/search?q={q}"
@@ -239,7 +215,6 @@
   {
     "id": "icon",
     "name": "ICON",
-    "legacyValue": "ICON",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -248,17 +223,15 @@
   {
     "id": "lisk",
     "name": "Lisk",
-    "legacyValue": "Lisk",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.lisk.io?q={q}"
+      "url": "https://blockscout.lisk.com/search-results?q={q}"
     },
-    "fallback": true
+    "evmChainId": 1135
   },
   {
     "id": "omisego",
     "name": "OmiseGO",
-    "legacyValue": "OmiseGO",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -267,57 +240,47 @@
   {
     "id": "wanchain",
     "name": "Wanchain",
-    "legacyValue": "Wanchain",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.wanchain.org/?search={q}"
+      "url": "https://www.wanscan.org/address/{q}"
     },
-    "fallback": true
+    "evmChainId": 888
   },
   {
     "id": "bitcoingold",
     "name": "Bitcoin Gold",
-    "legacyValue": "BitcoinGold",
     "explorer": {
-      "kind": "form",
-      "action": "http://www.btgblocks.com/search",
-      "method": "post",
-      "param": "search"
+      "kind": "url",
+      "url": "https://explorer.bitcoingold.org/insight/address/{q}"
     }
   },
   {
     "id": "nano",
     "name": "Nano",
-    "legacyValue": "Nano",
     "explorer": {
       "kind": "url",
-      "url": "https://www.nanode.co/?search={q}"
-    },
-    "fallback": true
+      "url": "https://nanexplorer.com/nano/account/{q}"
+    }
   },
   {
     "id": "zcash",
     "name": "Zcash",
-    "legacyValue": "Zcash",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.zcha.in/?search={q}"
-    },
-    "fallback": true
+      "url": "https://blockchair.com/search?q={q}"
+    }
   },
   {
     "id": "ontology",
     "name": "Ontology",
-    "legacyValue": "Ontology",
     "explorer": {
       "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
+      "url": "https://explorer.ont.io/address/{q}"
     }
   },
   {
     "id": "verge",
     "name": "Verge",
-    "legacyValue": "Verge",
     "explorer": {
       "kind": "form",
       "action": "https://verge-blockchain.info/search",
@@ -328,7 +291,6 @@
   {
     "id": "digixdao",
     "name": "DigixDAO",
-    "legacyValue": "DigixDAO",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -337,25 +299,14 @@
   {
     "id": "populous",
     "name": "Populous",
-    "legacyValue": "Populous",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "bytecoin",
-    "name": "Bytecoin",
-    "legacyValue": "Bytecoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainradar.com/xmr/search/{q}"
-    }
-  },
-  {
     "id": "steem",
     "name": "Steem",
-    "legacyValue": "Steem",
     "explorer": {
       "kind": "url",
       "url": "https://steemblockexplorer.com/?q={q}"
@@ -365,26 +316,22 @@
   {
     "id": "stratis",
     "name": "Stratis",
-    "legacyValue": "Stratis",
     "explorer": {
       "kind": "url",
-      "url": "https://chainz.cryptoid.info/strat/search.dws?q={q}"
+      "url": "https://chainz.cryptoid.info/strax/search.dws?q={q}"
     }
   },
   {
     "id": "siacoin",
     "name": "Siacoin",
-    "legacyValue": "Siacoin",
     "explorer": {
       "kind": "url",
-      "url": "http://explore.sia.tech/?search={q}"
-    },
-    "fallback": true
+      "url": "https://siascan.com/address/{q}"
+    }
   },
   {
     "id": "waves",
     "name": "Waves",
-    "legacyValue": "Waves",
     "explorer": {
       "kind": "url",
       "url": "https://wavesexplorer.com/address/{q}"
@@ -393,7 +340,6 @@
   {
     "id": "bytom",
     "name": "Bytom",
-    "legacyValue": "Bytom",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -402,7 +348,6 @@
   {
     "id": "rchain",
     "name": "RChain",
-    "legacyValue": "RChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -411,7 +356,6 @@
   {
     "id": "bitcoin-diamond",
     "name": "Bitcoin Diamond",
-    "legacyValue": "Bitcoin Diamond",
     "explorer": {
       "kind": "url",
       "url": "http://explorer.btcd.io/?q={q}"
@@ -421,16 +365,14 @@
   {
     "id": "aeternity",
     "name": "Aeternity",
-    "legacyValue": "Aeternity",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://aescan.io/accounts/{q}"
     }
   },
   {
     "id": "bitshares",
     "name": "BitShares",
-    "legacyValue": "BitShares",
     "explorer": {
       "kind": "form",
       "action": "http://bts.ai/search",
@@ -441,7 +383,6 @@
   {
     "id": "maker",
     "name": "Maker",
-    "legacyValue": "Maker",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -450,7 +391,6 @@
   {
     "id": "augur",
     "name": "Augur",
-    "legacyValue": "Augur",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -459,7 +399,6 @@
   {
     "id": "dogecoin",
     "name": "Dogecoin",
-    "legacyValue": "Dogecoin",
     "explorer": {
       "kind": "form",
       "action": "http://dogechain.info/search",
@@ -470,7 +409,6 @@
   {
     "id": "waltonchain",
     "name": "Waltonchain",
-    "legacyValue": "Waltonchain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -479,16 +417,14 @@
   {
     "id": "decred",
     "name": "Decred",
-    "legacyValue": "Decred",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.dcrdata.org/search?search={q}"
+      "url": "https://dcrdata.decred.org/search?search={q}"
     }
   },
   {
     "id": "0x",
     "name": "0x",
-    "legacyValue": "0x",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -497,16 +433,14 @@
   {
     "id": "zilliqa",
     "name": "Zilliqa",
-    "legacyValue": "Zilliqa",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://viewblock.io/zilliqa/address/{q}"
     }
   },
   {
     "id": "status",
     "name": "Status",
-    "legacyValue": "Status",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -515,18 +449,14 @@
   {
     "id": "komodo",
     "name": "Komodo",
-    "legacyValue": "Komodo",
     "explorer": {
-      "kind": "form",
-      "action": "http://kmd.komodochainz.info/search",
-      "method": "post",
-      "param": "search"
+      "kind": "url",
+      "url": "https://kmdexplorer.io/address/{q}"
     }
   },
   {
     "id": "veritaseum",
     "name": "Veritaseum",
-    "legacyValue": "Veritaseum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -535,25 +465,14 @@
   {
     "id": "aion",
     "name": "Aion",
-    "legacyValue": "Aion",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "hshare",
-    "name": "Hshare",
-    "legacyValue": "Hshare",
-    "explorer": {
-      "kind": "url",
-      "url": "http://explorer.h.cash?s={q}"
-    }
-  },
-  {
     "id": "ardor",
     "name": "Ardor",
-    "legacyValue": "Ardor",
     "explorer": {
       "kind": "url",
       "url": "https://ardorportal.org/monitor?search={q}"
@@ -563,7 +482,6 @@
   {
     "id": "ark",
     "name": "Ark",
-    "legacyValue": "Ark",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.ark.io/?q={q}"
@@ -573,7 +491,6 @@
   {
     "id": "cryptonex",
     "name": "Cryptonex",
-    "legacyValue": "Cryptonex",
     "explorer": {
       "kind": "form",
       "action": "https://explorer.cryptonex.org/search",
@@ -584,7 +501,6 @@
   {
     "id": "loopring",
     "name": "Loopring",
-    "legacyValue": "Loopring",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -593,7 +509,6 @@
   {
     "id": "pivx",
     "name": "PIVX",
-    "legacyValue": "PIVX",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pivx/search.dws?q={q}"
@@ -602,7 +517,6 @@
   {
     "id": "kucoinshares",
     "name": "KuCoin Shares",
-    "legacyValue": "KucoinShares",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -611,7 +525,6 @@
   {
     "id": "qash",
     "name": "QASH",
-    "legacyValue": "QASH",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -620,16 +533,14 @@
   {
     "id": "nebulas",
     "name": "Nebulas",
-    "legacyValue": "Nebulas",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://explorer.nebulas.io/#/address/{q}"
     }
   },
   {
     "id": "bat",
     "name": "Basic Attention Token",
-    "legacyValue": "BAT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -638,35 +549,23 @@
   {
     "id": "digibyte",
     "name": "DigiByte",
-    "legacyValue": "DigiByte",
     "explorer": {
       "kind": "url",
-      "url": "https://chainz.cryptoid.info/dgb/search.dws?q={q}"
+      "url": "https://digiexplorer.info/address/{q}"
     }
   },
   {
     "id": "iostoken",
-    "name": "IOStoken",
-    "legacyValue": "IOStoken",
+    "name": "IOST",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "factom",
-    "name": "Factom",
-    "legacyValue": "Factom",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.factom.com/?search={q}"
+      "url": "https://explorer.iost.io/account/{q}"
     },
-    "fallback": true
+    "symbol": "IOST"
   },
   {
     "id": "golem",
     "name": "Golem",
-    "legacyValue": "Golem",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -675,7 +574,6 @@
   {
     "id": "ethos",
     "name": "Ethos",
-    "legacyValue": "Ethos",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -684,16 +582,14 @@
   {
     "id": "monacoin",
     "name": "MonaCoin",
-    "legacyValue": "MonaCoin",
     "explorer": {
       "kind": "url",
-      "url": "https://mona.chainseeker.info/search/{q}"
+      "url": "https://blockbook.electrum-mona.org/address/{q}"
     }
   },
   {
     "id": "syscoin",
     "name": "Syscoin",
-    "legacyValue": "Syscoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/sys/search.dws?q={q}"
@@ -701,36 +597,24 @@
   },
   {
     "id": "gas",
-    "name": "Gas",
-    "legacyValue": "Gas",
+    "name": "GAS (Neo)",
     "explorer": {
       "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
+      "url": "https://neotube.io/address/{q}"
+    },
+    "symbol": "GAS"
   },
   {
     "id": "dragonchain",
     "name": "Dragonchain",
-    "legacyValue": "Dragonchain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "gxchain",
-    "name": "GXChain",
-    "legacyValue": "GXChain",
-    "explorer": {
-      "kind": "url",
-      "url": "https://block.gxb.io/?q={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "revain",
     "name": "Revain",
-    "legacyValue": "Revain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -739,7 +623,6 @@
   {
     "id": "funfair",
     "name": "FunFair",
-    "legacyValue": "FunFair",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -748,7 +631,6 @@
   {
     "id": "storm",
     "name": "Storm",
-    "legacyValue": "Storm",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -757,7 +639,6 @@
   {
     "id": "mithril",
     "name": "Mithril",
-    "legacyValue": "Mithril",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -766,16 +647,15 @@
   {
     "id": "electroneum",
     "name": "Electroneum",
-    "legacyValue": "Electroneum",
     "explorer": {
       "kind": "url",
-      "url": "https://blockexplorer.electroneum.com/search?value={q}"
-    }
+      "url": "https://blockexplorer.electroneum.com/search-results?q={q}"
+    },
+    "evmChainId": 52014
   },
   {
     "id": "kybernetwork",
     "name": "Kyber Network",
-    "legacyValue": "KyberNetwork",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -784,7 +664,6 @@
   {
     "id": "aelf",
     "name": "aelf",
-    "legacyValue": "aelf",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -793,7 +672,6 @@
   {
     "id": "salt",
     "name": "SALT",
-    "legacyValue": "SALT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -802,7 +680,6 @@
   {
     "id": "substratum",
     "name": "Substratum",
-    "legacyValue": "Substratum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -810,17 +687,16 @@
   },
   {
     "id": "zcoin",
-    "name": "ZCoin",
-    "legacyValue": "ZCoin",
+    "name": "Firo",
     "explorer": {
       "kind": "url",
-      "url": "https://chainz.cryptoid.info/xzc/search.dws?q={q}"
-    }
+      "url": "https://explorer.firo.org/address/{q}"
+    },
+    "symbol": "FIRO"
   },
   {
     "id": "request-network",
     "name": "Request Network",
-    "legacyValue": "Request Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -829,47 +705,32 @@
   {
     "id": "kin",
     "name": "Kin",
-    "legacyValue": "Kin",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "nxt",
-    "name": "Nxt",
-    "legacyValue": "Nxt",
-    "explorer": {
-      "kind": "form",
-      "action": "https://mynxt.info/blockexplorer/search.php",
-      "method": "post",
-      "param": "tx_search"
+      "url": "https://explorer.solana.com/address/{q}"
     }
   },
   {
     "id": "reddcoin",
     "name": "ReddCoin",
-    "legacyValue": "ReddCoin",
     "explorer": {
       "kind": "url",
-      "url": "http://live.reddcoin.com/?q={q}"
-    },
-    "fallback": true
+      "url": "https://blockbook.reddcoin.com/address/{q}"
+    }
   },
   {
     "id": "byteball-bytes",
-    "name": "Byteball Bytes",
-    "legacyValue": "Byteball Bytes",
+    "name": "Obyte",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.byteball.org/?search={q}"
     },
-    "fallback": true
+    "fallback": true,
+    "symbol": "GBYTE"
   },
   {
     "id": "neblio",
     "name": "Neblio",
-    "legacyValue": "Neblio",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.nebl.io/search",
@@ -880,7 +741,6 @@
   {
     "id": "nucleus-vision",
     "name": "Nucleus Vision",
-    "legacyValue": "Nucleus Vision",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -889,7 +749,6 @@
   {
     "id": "enigma",
     "name": "Enigma",
-    "legacyValue": "Enigma",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -898,7 +757,6 @@
   {
     "id": "chainlink",
     "name": "ChainLink",
-    "legacyValue": "ChainLink",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -907,7 +765,6 @@
   {
     "id": "power-ledger",
     "name": "Power Ledger",
-    "legacyValue": "Power Ledger",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -916,7 +773,6 @@
   {
     "id": "maidsafecoin",
     "name": "MaidSafeCoin",
-    "legacyValue": "MaidSafeCoin",
     "explorer": {
       "kind": "url",
       "url": "https://omniexplorer.info/?q={q}"
@@ -926,7 +782,6 @@
   {
     "id": "emercoin",
     "name": "Emercoin",
-    "legacyValue": "Emercoin",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.emercoin.com/search/{q}"
@@ -935,7 +790,6 @@
   {
     "id": "dent",
     "name": "Dent",
-    "legacyValue": "Dent",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -944,7 +798,6 @@
   {
     "id": "tenx",
     "name": "TenX",
-    "legacyValue": "TenX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -953,7 +806,6 @@
   {
     "id": "dentacoin",
     "name": "Dentacoin",
-    "legacyValue": "Dentacoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -962,7 +814,6 @@
   {
     "id": "bancor",
     "name": "Bancor",
-    "legacyValue": "Bancor",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -971,7 +822,6 @@
   {
     "id": "credits",
     "name": "Credits",
-    "legacyValue": "Credits",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -980,7 +830,6 @@
   {
     "id": "cindicator",
     "name": "Cindicator",
-    "legacyValue": "Cindicator",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -989,16 +838,14 @@
   {
     "id": "nuls",
     "name": "Nuls",
-    "legacyValue": "Nuls",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://nulscan.io/address/info?address={q}"
     }
   },
   {
     "id": "storj",
     "name": "Storj",
-    "legacyValue": "Storj",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1007,7 +854,6 @@
   {
     "id": "metal",
     "name": "Metal",
-    "legacyValue": "Metal",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1016,7 +862,6 @@
   {
     "id": "matrixainetwork",
     "name": "Matrix AI Network",
-    "legacyValue": "MatrixAINetwork",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1025,7 +870,6 @@
   {
     "id": "xpa",
     "name": "XPA",
-    "legacyValue": "XPA",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1034,36 +878,14 @@
   {
     "id": "enjin-coin",
     "name": "Enjin Coin",
-    "legacyValue": "Enjin Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "achain",
-    "name": "Achain",
-    "legacyValue": "Achain",
-    "explorer": {
-      "kind": "url",
-      "url": "https://browser.achain.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "minexcoin",
-    "name": "MinexCoin",
-    "legacyValue": "MinexCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://minexexplorer.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "particl",
     "name": "Particl",
-    "legacyValue": "Particl",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/part/search.dws?q={q}"
@@ -1072,7 +894,6 @@
   {
     "id": "polymath",
     "name": "Polymath",
-    "legacyValue": "Polymath",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1081,7 +902,6 @@
   {
     "id": "iconomi",
     "name": "Iconomi",
-    "legacyValue": "Iconomi",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1090,26 +910,14 @@
   {
     "id": "genesis-vision",
     "name": "Genesis Vision",
-    "legacyValue": "Genesis Vision",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "poa-network",
-    "name": "POA Network",
-    "legacyValue": "POA Network",
-    "explorer": {
-      "kind": "url",
-      "url": "https://poaexplorer.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "genaro-network",
     "name": "Genaro Network",
-    "legacyValue": "Genaro Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1118,7 +926,6 @@
   {
     "id": "nexus",
     "name": "Nexus",
-    "legacyValue": "Nexus",
     "explorer": {
       "kind": "url",
       "url": "http://nxs.efficienthash.com/?search={q}"
@@ -1128,7 +935,6 @@
   {
     "id": "cube",
     "name": "Cube",
-    "legacyValue": "Cube",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1137,27 +943,14 @@
   {
     "id": "civic",
     "name": "Civic",
-    "legacyValue": "Civic",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "bitcoindark",
-    "name": "BitcoinDark",
-    "legacyValue": "BitcoinDark",
-    "explorer": {
-      "kind": "form",
-      "action": "https://www.blockexperts.com/btcd/search",
-      "method": "post",
-      "param": "q"
-    }
-  },
-  {
     "id": "aragon",
     "name": "Aragon",
-    "legacyValue": "Aragon",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1166,7 +959,6 @@
   {
     "id": "pillar",
     "name": "Pillar",
-    "legacyValue": "Pillar",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1175,7 +967,6 @@
   {
     "id": "vertcoin",
     "name": "Vertcoin",
-    "legacyValue": "Vertcoin",
     "explorer": {
       "kind": "url",
       "url": "https://www.coinexplorer.net/VTC?search={q}"
@@ -1184,7 +975,6 @@
   {
     "id": "decentraland",
     "name": "Decentraland",
-    "legacyValue": "Decentraland",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1193,26 +983,14 @@
   {
     "id": "raiden",
     "name": "Raiden Network Token",
-    "legacyValue": "Raiden",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "gamecredits",
-    "name": "GameCredits",
-    "legacyValue": "GameCredits",
-    "explorer": {
-      "kind": "url",
-      "url": "https://blockexplorer.gamecredits.com/home?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "bitcore",
     "name": "Bitcore",
-    "legacyValue": "Bitcore",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/btx/search.dws?q={q}"
@@ -1221,7 +999,6 @@
   {
     "id": "iexec-rlc",
     "name": "iExec RLC",
-    "legacyValue": "iExec RLC",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1230,7 +1007,6 @@
   {
     "id": "blocknet",
     "name": "Blocknet",
-    "legacyValue": "Blocknet",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/block/search.dws?q={q}"
@@ -1239,7 +1015,6 @@
   {
     "id": "dynamic-trading",
     "name": "Dynamic Trading Rights",
-    "legacyValue": "Dynamic Trading",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1247,17 +1022,16 @@
   },
   {
     "id": "theta-token",
-    "name": "Theta Token",
-    "legacyValue": "Theta Token",
+    "name": "Theta Network",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
-    }
+      "url": "https://explorer.thetatoken.org/account/{q}"
+    },
+    "symbol": "THETA"
   },
   {
     "id": "quantstamp",
     "name": "Quantstamp",
-    "legacyValue": "Quantstamp",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1266,16 +1040,14 @@
   {
     "id": "wax",
     "name": "WAX",
-    "legacyValue": "WAX",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://wax.bloks.io/account/{q}"
     }
   },
   {
     "id": "time-new-bank",
     "name": "Time New Bank",
-    "legacyValue": "Time New Bank",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1284,7 +1056,6 @@
   {
     "id": "singularitynet",
     "name": "SingularityNET",
-    "legacyValue": "SingularityNET",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1293,7 +1064,6 @@
   {
     "id": "oyster",
     "name": "Oyster",
-    "legacyValue": "Oyster",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1302,7 +1072,6 @@
   {
     "id": "gnosis",
     "name": "Gnosis",
-    "legacyValue": "Gnosis",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1311,7 +1080,6 @@
   {
     "id": "monaco",
     "name": "Monaco",
-    "legacyValue": "Monaco",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1320,7 +1088,6 @@
   {
     "id": "santimentnetwork",
     "name": "Santiment Network Token",
-    "legacyValue": "SantimentNetwork",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1329,7 +1096,6 @@
   {
     "id": "skycoin",
     "name": "Skycoin",
-    "legacyValue": "Skycoin",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.skycoin.net?search={q}"
@@ -1339,7 +1105,6 @@
   {
     "id": "po-et",
     "name": "Po.et",
-    "legacyValue": "Po.et",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1348,7 +1113,6 @@
   {
     "id": "ubiq",
     "name": "Ubiq",
-    "legacyValue": "Ubiq",
     "explorer": {
       "kind": "url",
       "url": "https://ubiqscan.io/search?={q}"
@@ -1356,20 +1120,8 @@
     "fallback": true
   },
   {
-    "id": "smartcash",
-    "name": "SmartCash",
-    "legacyValue": "SmartCash",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer3.smartcash.cc/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "sirin-labs-token",
     "name": "SIRIN LABS Token",
-    "legacyValue": "SIRIN LABS Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1378,7 +1130,6 @@
   {
     "id": "ignis",
     "name": "Ignis",
-    "legacyValue": "Ignis",
     "explorer": {
       "kind": "url",
       "url": "https://ardorportal.org/monitor?search={q}"
@@ -1388,7 +1139,6 @@
   {
     "id": "navcoin",
     "name": "NavCoin",
-    "legacyValue": "NavCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/nav/search.dws?q={q}"
@@ -1397,7 +1147,6 @@
   {
     "id": "dew",
     "name": "DEW",
-    "legacyValue": "DEW",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1405,18 +1154,16 @@
   },
   {
     "id": "zencash",
-    "name": "ZenCash",
-    "legacyValue": "ZenCash",
+    "name": "Horizen",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.zensystem.io/?search={q}"
+      "url": "https://basescan.org/search?q={q}"
     },
-    "fallback": true
+    "symbol": "ZEN"
   },
   {
     "id": "pura",
     "name": "Pura",
-    "legacyValue": "Pura",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pura/search.dws?q={q}"
@@ -1425,7 +1172,6 @@
   {
     "id": "fusion",
     "name": "Fusion",
-    "legacyValue": "Fusion",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1434,7 +1180,6 @@
   {
     "id": "telcoin",
     "name": "Telcoin",
-    "legacyValue": "Telcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1443,7 +1188,6 @@
   {
     "id": "cybermiles",
     "name": "CyberMiles",
-    "legacyValue": "CyberMiles",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1452,7 +1196,6 @@
   {
     "id": "arcblock",
     "name": "Arcblock",
-    "legacyValue": "Arcblock",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1461,7 +1204,6 @@
   {
     "id": "gifto",
     "name": "Gifto",
-    "legacyValue": "Gifto",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1470,7 +1212,6 @@
   {
     "id": "paypie",
     "name": "PayPie",
-    "legacyValue": "PayPie",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1479,7 +1220,6 @@
   {
     "id": "ethlend",
     "name": "ETHLend",
-    "legacyValue": "ETHLend",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1488,7 +1228,6 @@
   {
     "id": "pundi-x",
     "name": "Pundi X",
-    "legacyValue": "Pundi X",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1497,37 +1236,14 @@
   {
     "id": "edgeless",
     "name": "Edgeless",
-    "legacyValue": "Edgeless",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "xtrabytes",
-    "name": "XTRABYTES",
-    "legacyValue": "XTRABYTES",
-    "explorer": {
-      "kind": "form",
-      "action": "https://blockexplorer.xtrabytes.global/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "high-performa",
-    "name": "High Performance Blockchain",
-    "legacyValue": "High Performa...",
-    "explorer": {
-      "kind": "google",
-      "terms": "High Performance Blockchain Blockchain Explorer"
-    },
-    "fallback": true
-  },
-  {
     "id": "bibox-token",
     "name": "Bibox Token",
-    "legacyValue": "Bibox Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1536,25 +1252,14 @@
   {
     "id": "blockv",
     "name": "BLOCKv",
-    "legacyValue": "BLOCKv",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "digitalnote",
-    "name": "DigitalNote",
-    "legacyValue": "DigitalNote",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainradar.com/xmr/search/{q}"
-    }
-  },
-  {
     "id": "bridgecoin",
     "name": "BridgeCoin",
-    "legacyValue": "BridgeCoin",
     "explorer": {
       "kind": "url",
       "url": "https://www.coinexplorer.net/BCO?search={q}"
@@ -1563,7 +1268,6 @@
   {
     "id": "bluzelle",
     "name": "Bluzelle",
-    "legacyValue": "Bluzelle",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1572,7 +1276,6 @@
   {
     "id": "adex",
     "name": "AdEx",
-    "legacyValue": "AdEx",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1581,7 +1284,6 @@
   {
     "id": "asch",
     "name": "Asch",
-    "legacyValue": "Asch",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.asch.io/?search={q}"
@@ -1591,7 +1293,6 @@
   {
     "id": "envion",
     "name": "Envion",
-    "legacyValue": "Envion",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1600,17 +1301,14 @@
   {
     "id": "medibloc",
     "name": "MediBloc",
-    "legacyValue": "MediBloc",
     "explorer": {
       "kind": "url",
-      "url": "https://explorer.qtum.org/?search={q}"
-    },
-    "fallback": true
+      "url": "https://www.mintscan.io/medibloc/address/{q}"
+    }
   },
   {
     "id": "xp",
     "name": "Experience Points",
-    "legacyValue": "XP",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xp/search.dws?q={q}"
@@ -1619,7 +1317,6 @@
   {
     "id": "sophiatx",
     "name": "SophiaTX",
-    "legacyValue": "SophiaTX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1628,7 +1325,6 @@
   {
     "id": "ruff",
     "name": "Ruff",
-    "legacyValue": "Ruff",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1637,7 +1333,6 @@
   {
     "id": "boscoin",
     "name": "BOScoin",
-    "legacyValue": "BOScoin",
     "explorer": {
       "kind": "url",
       "url": "https://bosradar.com/?search={q}"
@@ -1645,45 +1340,24 @@
     "fallback": true
   },
   {
-    "id": "thekey",
-    "name": "THEKEY",
-    "legacyValue": "THEKEY",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "loom-network",
     "name": "Loom Network",
-    "legacyValue": "Loom Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "salus",
-    "name": "SaluS",
-    "legacyValue": "SaluS",
-    "explorer": {
-      "kind": "url",
-      "url": "https://cryptobe.com/chain/Salus/search?q={q}"
     }
   },
   {
     "id": "qrl",
     "name": "Quantum Resistant Ledger",
-    "legacyValue": "QRL",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
+      "url": "https://explorer.theqrl.org/a/{q}"
     }
   },
   {
     "id": "ost",
     "name": "OST",
-    "legacyValue": "OST",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1692,25 +1366,14 @@
   {
     "id": "scry-info",
     "name": "Scry.info",
-    "legacyValue": "Scry.info",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "red-pulse",
-    "name": "Red Pulse",
-    "legacyValue": "Red Pulse",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "medishares",
     "name": "MediShares",
-    "legacyValue": "MediShares",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1719,25 +1382,14 @@
   {
     "id": "ambrosus",
     "name": "Ambrosus",
-    "legacyValue": "Ambrosus",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "qlink",
-    "name": "QLINK",
-    "legacyValue": "QLINK",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "rcn",
     "name": "Ripio Credit Network",
-    "legacyValue": "RCN",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1746,7 +1398,6 @@
   {
     "id": "crypto20",
     "name": "CRYPTO20",
-    "legacyValue": "CRYPTO20",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1755,7 +1406,6 @@
   {
     "id": "ion",
     "name": "ION",
-    "legacyValue": "ION",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ion/search.dws?q={q}"
@@ -1764,7 +1414,6 @@
   {
     "id": "eidoo",
     "name": "Eidoo",
-    "legacyValue": "Eidoo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1773,7 +1422,6 @@
   {
     "id": "smartmesh",
     "name": "SmartMesh",
-    "legacyValue": "SmartMesh",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1782,7 +1430,6 @@
   {
     "id": "utrust",
     "name": "UTRUST",
-    "legacyValue": "UTRUST",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1791,7 +1438,6 @@
   {
     "id": "sonm",
     "name": "SONM",
-    "legacyValue": "SONM",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1800,7 +1446,6 @@
   {
     "id": "data",
     "name": "DATA",
-    "legacyValue": "DATA",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1809,7 +1454,6 @@
   {
     "id": "feathercoin",
     "name": "Feathercoin",
-    "legacyValue": "Feathercoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ftc/search.dws?q={q}"
@@ -1818,7 +1462,6 @@
   {
     "id": "peercoin",
     "name": "Peercoin",
-    "legacyValue": "Peercoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ppc/search.dws?q={q}"
@@ -1827,7 +1470,6 @@
   {
     "id": "modum",
     "name": "Modum",
-    "legacyValue": "Modum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1836,7 +1478,6 @@
   {
     "id": "iot-chain",
     "name": "IoT Chain",
-    "legacyValue": "IoT Chain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1845,7 +1486,6 @@
   {
     "id": "streamrdatacoin",
     "name": "Streamr DATAcoin",
-    "legacyValue": "StreamrDATAcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1854,7 +1494,6 @@
   {
     "id": "bitbay",
     "name": "BitBay",
-    "legacyValue": "BitBay",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bay/search.dws?q={q}"
@@ -1863,7 +1502,6 @@
   {
     "id": "airswap",
     "name": "AirSwap",
-    "legacyValue": "AirSwap",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1872,7 +1510,6 @@
   {
     "id": "deepbrain-chain",
     "name": "DeepBrain Chain",
-    "legacyValue": "DeepBrain Chain",
     "explorer": {
       "kind": "url",
       "url": "https://neotracker.io/search/{q}"
@@ -1881,7 +1518,6 @@
   {
     "id": "vibe",
     "name": "VIBE",
-    "legacyValue": "VIBE",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1890,7 +1526,6 @@
   {
     "id": "jibrel-network",
     "name": "Jibrel Network",
-    "legacyValue": "Jibrel Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1899,7 +1534,6 @@
   {
     "id": "appcoins",
     "name": "AppCoins",
-    "legacyValue": "AppCoins",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1908,18 +1542,14 @@
   {
     "id": "ravencoin",
     "name": "Ravencoin",
-    "legacyValue": "Ravencoin",
     "explorer": {
-      "kind": "form",
-      "action": "http://explorer.threeeyed.info/search",
-      "method": "post",
-      "param": "search"
+      "kind": "url",
+      "url": "https://blockbook.ravencoin.org/address/{q}"
     }
   },
   {
     "id": "crypterium",
     "name": "Crypterium",
-    "legacyValue": "Crypterium",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1928,7 +1558,6 @@
   {
     "id": "wepower",
     "name": "WePower",
-    "legacyValue": "WePower",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1937,7 +1566,6 @@
   {
     "id": "singulardtv",
     "name": "SingularDTV",
-    "legacyValue": "SingularDTV",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1946,7 +1574,6 @@
   {
     "id": "wings",
     "name": "Wings",
-    "legacyValue": "Wings",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1955,7 +1582,6 @@
   {
     "id": "ormeus-coin",
     "name": "Ormeus Coin",
-    "legacyValue": "Ormeus Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1964,7 +1590,6 @@
   {
     "id": "einsteinium",
     "name": "Einsteinium",
-    "legacyValue": "Einsteinium",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/emc2/search.dws?q={q}"
@@ -1973,7 +1598,6 @@
   {
     "id": "district0x",
     "name": "district0x",
-    "legacyValue": "district0x",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1982,7 +1606,6 @@
   {
     "id": "spankchain",
     "name": "SpankChain",
-    "legacyValue": "SpankChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -1991,7 +1614,6 @@
   {
     "id": "melon",
     "name": "Melon",
-    "legacyValue": "Melon",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2000,7 +1622,6 @@
   {
     "id": "taas",
     "name": "TaaS",
-    "legacyValue": "TaaS",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2009,7 +1630,6 @@
   {
     "id": "ins-ecosystem",
     "name": "INS Ecosystem",
-    "legacyValue": "INS Ecosystem",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2018,27 +1638,14 @@
   {
     "id": "naga",
     "name": "NAGA",
-    "legacyValue": "NAGA",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "casinocoin",
-    "name": "CasinoCoin",
-    "legacyValue": "CasinoCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.casinocoin.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "tierion",
     "name": "Tierion",
-    "legacyValue": "Tierion",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2047,7 +1654,6 @@
   {
     "id": "rock",
     "name": "Rock",
-    "legacyValue": "Rock",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2056,46 +1662,14 @@
   {
     "id": "bread",
     "name": "Bread",
-    "legacyValue": "Bread",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "gulden",
-    "name": "Gulden",
-    "legacyValue": "Gulden",
-    "explorer": {
-      "kind": "url",
-      "url": "https://blockchain.gulden.com?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "htmlcoin",
-    "name": "HTMLCOIN",
-    "legacyValue": "HTMLCOIN",
-    "explorer": {
-      "kind": "form",
-      "action": "https://html.mastercalls.io/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "tnc",
-    "name": "Trinity Network Credit",
-    "legacyValue": "TNC",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "wabi",
     "name": "WaBi",
-    "legacyValue": "WaBi",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2104,7 +1678,6 @@
   {
     "id": "etherparty",
     "name": "Etherparty",
-    "legacyValue": "Etherparty",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2113,7 +1686,6 @@
   {
     "id": "origintrail",
     "name": "OriginTrail",
-    "legacyValue": "OriginTrail",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2122,16 +1694,14 @@
   {
     "id": "viacoin",
     "name": "Viacoin",
-    "legacyValue": "Viacoin",
     "explorer": {
       "kind": "url",
-      "url": "https://chainz.cryptoid.info/via/search.dws?q={q}"
+      "url": "https://explorer.viacoin.org/address/{q}"
     }
   },
   {
     "id": "lbry-credits",
     "name": "LBRY Credits",
-    "legacyValue": "LBRY Credits",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.lbry.io/find?q={q}"
@@ -2140,7 +1710,6 @@
   {
     "id": "wagerr",
     "name": "Wagerr",
-    "legacyValue": "Wagerr",
     "explorer": {
       "kind": "url",
       "url": "http://wavesgo.com/search?={q}"
@@ -2150,7 +1719,6 @@
   {
     "id": "indahash",
     "name": "indaHash",
-    "legacyValue": "indaHash",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2159,7 +1727,6 @@
   {
     "id": "counterparty",
     "name": "Counterparty",
-    "legacyValue": "Counterparty",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -2168,7 +1735,6 @@
   {
     "id": "bottos",
     "name": "Bottos",
-    "legacyValue": "Bottos",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2177,7 +1743,6 @@
   {
     "id": "synereo",
     "name": "Synereo",
-    "legacyValue": "Synereo",
     "explorer": {
       "kind": "url",
       "url": "https://omniexplorer.info/?q={q}"
@@ -2187,7 +1752,6 @@
   {
     "id": "triggers",
     "name": "Triggers",
-    "legacyValue": "Triggers",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -2196,7 +1760,6 @@
   {
     "id": "universa",
     "name": "Universa",
-    "legacyValue": "Universa",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2205,7 +1768,6 @@
   {
     "id": "mobilego",
     "name": "MobileGo",
-    "legacyValue": "MobileGo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2214,7 +1776,6 @@
   {
     "id": "bcpt",
     "name": "BlockMason Credit Protocol",
-    "legacyValue": "BCPT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2223,7 +1784,6 @@
   {
     "id": "metaverse-etp",
     "name": "Metaverse ETP",
-    "legacyValue": "Metaverse ETP",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.mvs.org/?search={q}"
@@ -2233,7 +1793,6 @@
   {
     "id": "iht",
     "name": "IHT Real Estate Protocol",
-    "legacyValue": "IHT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2242,16 +1801,14 @@
   {
     "id": "spacechain",
     "name": "SpaceChain",
-    "legacyValue": "SpaceChain",
     "explorer": {
       "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
+      "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
     "id": "unobtanium",
     "name": "Unobtanium",
-    "legacyValue": "Unobtanium",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/uno/search.dws?q={q}"
@@ -2260,7 +1817,6 @@
   {
     "id": "presearch",
     "name": "Presearch",
-    "legacyValue": "Presearch",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2269,7 +1825,6 @@
   {
     "id": "delphy",
     "name": "Delphy",
-    "legacyValue": "Delphy",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2277,35 +1832,24 @@
   },
   {
     "id": "burst",
-    "name": "Burst",
-    "legacyValue": "Burst",
+    "name": "Signum",
     "explorer": {
       "kind": "url",
-      "url": "https://explore.burst.cryptoguru.org/search?q={q}"
-    }
+      "url": "https://explorer.signum.network/address/{q}"
+    },
+    "symbol": "SIGNA"
   },
   {
     "id": "legolas-exchange",
     "name": "Legolas Exchange",
-    "legacyValue": "Legolas Exchange",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "ink",
-    "name": "Ink",
-    "legacyValue": "Ink",
-    "explorer": {
-      "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
-    }
-  },
-  {
     "id": "centra",
     "name": "Centra",
-    "legacyValue": "Centra",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2314,7 +1858,6 @@
   {
     "id": "soarcoin",
     "name": "Soarcoin",
-    "legacyValue": "Soarcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2323,25 +1866,14 @@
   {
     "id": "game-com",
     "name": "Game.com",
-    "legacyValue": "Game.com",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "aeon",
-    "name": "Aeon",
-    "legacyValue": "Aeon",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainradar.com/aeon/search/{q}"
-    }
-  },
-  {
     "id": "cloakcoin",
     "name": "CloakCoin",
-    "legacyValue": "CloakCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/cloak/search.dws?q={q}"
@@ -2350,7 +1882,6 @@
   {
     "id": "blox",
     "name": "Blox",
-    "legacyValue": "Blox",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2359,7 +1890,6 @@
   {
     "id": "kickcoin",
     "name": "KickCoin",
-    "legacyValue": "KickCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2368,7 +1898,6 @@
   {
     "id": "havven",
     "name": "Havven",
-    "legacyValue": "Havven",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2377,7 +1906,6 @@
   {
     "id": "bitcny",
     "name": "bitCNY",
-    "legacyValue": "bitCNY",
     "explorer": {
       "kind": "url",
       "url": "http://cryptofresh.com/a/CNY?search={q}"
@@ -2387,35 +1915,31 @@
   {
     "id": "groestlcoin",
     "name": "Groestlcoin",
-    "legacyValue": "Groestlcoin",
     "explorer": {
       "kind": "url",
-      "url": "https://chainz.cryptoid.info/grs/search.dws?q={q}"
+      "url": "https://blockchair.com/search?q={q}"
     }
   },
   {
     "id": "nimiq",
-    "name": "Nimiq Exchange Token",
-    "legacyValue": "Nimiq",
+    "name": "Nimiq",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
-    }
+      "url": "https://nimiq.watch/#{q}"
+    },
+    "symbol": "NIM"
   },
   {
     "id": "mobius",
     "name": "Mobius",
-    "legacyValue": "Mobius",
     "explorer": {
       "kind": "url",
-      "url": "https://steexp.com/?search={q}"
-    },
-    "fallback": true
+      "url": "https://stellar.expert/explorer/public/search?term={q}"
+    }
   },
   {
     "id": "humaniq",
     "name": "Humaniq",
-    "legacyValue": "Humaniq",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2424,27 +1948,14 @@
   {
     "id": "crown",
     "name": "Crown",
-    "legacyValue": "Crown",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/crw/search.dws?q={q}"
     }
   },
   {
-    "id": "elastic",
-    "name": "Elastic",
-    "legacyValue": "Elastic",
-    "explorer": {
-      "kind": "form",
-      "action": "http://elasticexplorer.org/search/",
-      "method": "post",
-      "param": "input"
-    }
-  },
-  {
     "id": "unikoin-gold",
     "name": "Unikoin Gold",
-    "legacyValue": "Unikoin Gold",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2452,17 +1963,17 @@
   },
   {
     "id": "tomochain",
-    "name": "TomoChain",
-    "legacyValue": "TomoChain",
+    "name": "Viction",
     "explorer": {
       "kind": "url",
-      "url": "https://etherscan.io/search?q={q}"
-    }
+      "url": "https://www.vicscan.xyz/address/{q}"
+    },
+    "symbol": "VIC",
+    "evmChainId": 88
   },
   {
     "id": "viberate",
     "name": "Viberate",
-    "legacyValue": "Viberate",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2471,7 +1982,6 @@
   {
     "id": "monetha",
     "name": "Monetha",
-    "legacyValue": "Monetha",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2480,7 +1990,6 @@
   {
     "id": "mooncoin",
     "name": "Mooncoin",
-    "legacyValue": "Mooncoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/moon/search.dws?q={q}"
@@ -2489,16 +1998,14 @@
   {
     "id": "namecoin",
     "name": "Namecoin",
-    "legacyValue": "Namecoin",
     "explorer": {
       "kind": "url",
-      "url": "https://namecha.in/search?query={q}"
+      "url": "https://chainz.cryptoid.info/nmc/search.dws?q={q}"
     }
   },
   {
     "id": "odyssey",
     "name": "Odyssey",
-    "legacyValue": "Odyssey",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2507,7 +2014,6 @@
   {
     "id": "cpchain",
     "name": "CPChain",
-    "legacyValue": "CPChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2516,7 +2022,6 @@
   {
     "id": "uptoken",
     "name": "UpToken",
-    "legacyValue": "UpToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2525,7 +2030,6 @@
   {
     "id": "suncontract",
     "name": "SunContract",
-    "legacyValue": "SunContract",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2534,7 +2038,6 @@
   {
     "id": "potcoin",
     "name": "PotCoin",
-    "legacyValue": "PotCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pot/search.dws?q={q}"
@@ -2543,7 +2046,6 @@
   {
     "id": "hive-project",
     "name": "Hive Project",
-    "legacyValue": "Hive Project",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2552,7 +2054,6 @@
   {
     "id": "lunyr",
     "name": "Lunyr",
-    "legacyValue": "Lunyr",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2561,36 +2062,14 @@
   {
     "id": "yoyow",
     "name": "YOYOW",
-    "legacyValue": "YOYOW",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "leocoin",
-    "name": "LEOcoin",
-    "legacyValue": "LEOcoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://insight.leocoin.org?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "flash",
-    "name": "Flash",
-    "legacyValue": "Flash",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.flashcoin.io/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "deeponion",
     "name": "DeepOnion",
-    "legacyValue": "DeepOnion",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.deeponion.org/search",
@@ -2601,26 +2080,14 @@
   {
     "id": "tokencard",
     "name": "TokenCard",
-    "legacyValue": "TokenCard",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "shift",
-    "name": "Shift",
-    "legacyValue": "Shift",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.shiftnrg.org/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "fortuna",
     "name": "Fortuna",
-    "legacyValue": "Fortuna",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2629,7 +2096,6 @@
   {
     "id": "pepe-cash",
     "name": "Pepe Cash",
-    "legacyValue": "Pepe Cash",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -2638,7 +2104,6 @@
   {
     "id": "decision-token",
     "name": "Decision Token",
-    "legacyValue": "Decision Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2647,7 +2112,6 @@
   {
     "id": "medicalchain",
     "name": "Medicalchain",
-    "legacyValue": "Medicalchain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2656,26 +2120,14 @@
   {
     "id": "everex",
     "name": "Everex",
-    "legacyValue": "Everex",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "decent",
-    "name": "DECENT",
-    "legacyValue": "DECENT",
-    "explorer": {
-      "kind": "url",
-      "url": "https://decent-db.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "datum",
     "name": "Datum",
-    "legacyValue": "Datum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2684,7 +2136,6 @@
   {
     "id": "bean-cash",
     "name": "Bean Cash",
-    "legacyValue": "Bean Cash",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bean/search.dws?q={q}"
@@ -2693,7 +2144,6 @@
   {
     "id": "stk",
     "name": "STK",
-    "legacyValue": "STK",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2702,7 +2152,6 @@
   {
     "id": "cofound-it",
     "name": "Cofound.it",
-    "legacyValue": "Cofound.it",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2711,7 +2160,6 @@
   {
     "id": "matryx",
     "name": "Matryx",
-    "legacyValue": "Matryx",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2720,7 +2168,6 @@
   {
     "id": "blockport",
     "name": "Blockport",
-    "legacyValue": "Blockport",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2729,7 +2176,6 @@
   {
     "id": "republicprotocol",
     "name": "Republic Protocol",
-    "legacyValue": "RepublicProtocol",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2738,7 +2184,6 @@
   {
     "id": "u-cash",
     "name": "U.CASH",
-    "legacyValue": "U.CASH",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2747,27 +2192,14 @@
   {
     "id": "int",
     "name": "Internet Node Token",
-    "legacyValue": "INT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "linda",
-    "name": "Linda",
-    "legacyValue": "Linda",
-    "explorer": {
-      "kind": "form",
-      "action": "http://193.70.109.114:6005/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "bankex",
     "name": "Bankex",
-    "legacyValue": "Bankex",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2776,25 +2208,14 @@
   {
     "id": "electrify-asia",
     "name": "Electrify.Asia",
-    "legacyValue": "Electrify.Asia",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "zeepin",
-    "name": "Zeepin",
-    "legacyValue": "Zeepin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "all-sports",
     "name": "All Sports",
-    "legacyValue": "All Sports",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2803,7 +2224,6 @@
   {
     "id": "adtoken",
     "name": "adToken",
-    "legacyValue": "adToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2812,7 +2232,6 @@
   {
     "id": "whitecoin",
     "name": "WhiteCoin",
-    "legacyValue": "WhiteCoin",
     "explorer": {
       "kind": "url",
       "url": "http://explorer.whitecoin.info/chain/Whitecoin/search?q={q}"
@@ -2821,7 +2240,6 @@
   {
     "id": "steem-dollars",
     "name": "Steem Dollars",
-    "legacyValue": "Steem Dollars",
     "explorer": {
       "kind": "url",
       "url": "https://steemblockexplorer.com/?q={q}"
@@ -2831,7 +2249,6 @@
   {
     "id": "safex",
     "name": "Safe Exchange Coin",
-    "legacyValue": "Safex",
     "explorer": {
       "kind": "url",
       "url": "https://www.omniexplorer.info/search/{q}"
@@ -2840,7 +2257,6 @@
   {
     "id": "diamond",
     "name": "Diamond",
-    "legacyValue": "Diamond",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dmd/search.dws?q={q}"
@@ -2849,7 +2265,6 @@
   {
     "id": "dai",
     "name": "Dai",
-    "legacyValue": "Dai",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2858,7 +2273,6 @@
   {
     "id": "i-o-coin",
     "name": "I/O Coin",
-    "legacyValue": "I/O Coin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ioc/search.dws?q={q}"
@@ -2867,7 +2281,6 @@
   {
     "id": "atmchain",
     "name": "ATMChain",
-    "legacyValue": "ATMChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2876,7 +2289,6 @@
   {
     "id": "refereum",
     "name": "Refereum",
-    "legacyValue": "Refereum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2885,7 +2297,6 @@
   {
     "id": "blackcoin",
     "name": "BlackCoin",
-    "legacyValue": "BlackCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/blk/search.dws?q={q}"
@@ -2894,7 +2305,6 @@
   {
     "id": "peerplays",
     "name": "Peerplays",
-    "legacyValue": "Peerplays",
     "explorer": {
       "kind": "url",
       "url": "https://peerplaysdb.com?search={q}"
@@ -2904,26 +2314,14 @@
   {
     "id": "numeraire",
     "name": "Numeraire",
-    "legacyValue": "Numeraire",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "nolimitcoin",
-    "name": "NoLimitCoin",
-    "legacyValue": "NoLimitCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "http://nolimitcoin.info/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "uquid-coin",
     "name": "Uquid Coin",
-    "legacyValue": "Uquid Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2932,7 +2330,6 @@
   {
     "id": "ecc",
     "name": "ECC",
-    "legacyValue": "ECC",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ecc/search.dws?q={q}"
@@ -2941,7 +2338,6 @@
   {
     "id": "e-dinar-coin",
     "name": "E-Dinar Coin",
-    "legacyValue": "E-Dinar Coin",
     "explorer": {
       "kind": "url",
       "url": "https://blockchain.mn/?search={q}"
@@ -2951,7 +2347,6 @@
   {
     "id": "gridcoin",
     "name": "GridCoin",
-    "legacyValue": "GridCoin",
     "explorer": {
       "kind": "form",
       "action": "https://www.gridcoinstats.eu/search.php",
@@ -2962,7 +2357,6 @@
   {
     "id": "sibcoin",
     "name": "SIBCoin",
-    "legacyValue": "SIBCoin",
     "explorer": {
       "kind": "form",
       "action": "https://chain.sibcoin.net/search",
@@ -2973,7 +2367,6 @@
   {
     "id": "yee",
     "name": "YEE",
-    "legacyValue": "YEE",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2982,7 +2375,6 @@
   {
     "id": "grid-plus",
     "name": "Grid+",
-    "legacyValue": "Grid+",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -2991,17 +2383,14 @@
   {
     "id": "mercury",
     "name": "Mercury",
-    "legacyValue": "Mercury",
     "explorer": {
       "kind": "url",
-      "url": "http://wavesgo.com/search?={q}"
-    },
-    "fallback": true
+      "url": "https://wavesexplorer.com/addresses/{q}"
+    }
   },
   {
     "id": "bitclave",
     "name": "BitClave",
-    "legacyValue": "BitClave",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3010,26 +2399,14 @@
   {
     "id": "wetrust",
     "name": "WeTrust",
-    "legacyValue": "WeTrust",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "lykke",
-    "name": "Lykke",
-    "legacyValue": "Lykke",
-    "explorer": {
-      "kind": "url",
-      "url": "https://blockchainexplorer.lykke.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "storiqa",
     "name": "Storiqa",
-    "legacyValue": "Storiqa",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3038,7 +2415,6 @@
   {
     "id": "mda",
     "name": "Moeda Loyalty Points",
-    "legacyValue": "MDA",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3047,25 +2423,14 @@
   {
     "id": "zap",
     "name": "Zap",
-    "legacyValue": "Zap",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "alphacat",
-    "name": "Alphacat",
-    "legacyValue": "Alphacat",
-    "explorer": {
-      "kind": "url",
-      "url": "https://neotracker.io/search/{q}"
-    }
-  },
-  {
     "id": "swftcoin",
     "name": "SwftCoin",
-    "legacyValue": "SwftCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3074,7 +2439,6 @@
   {
     "id": "swissborg",
     "name": "SwissBorg",
-    "legacyValue": "SwissBorg",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3083,26 +2447,14 @@
   {
     "id": "dimecoin",
     "name": "Dimecoin",
-    "legacyValue": "Dimecoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dime/search.dws?q={q}"
     }
   },
   {
-    "id": "revolutionvr",
-    "name": "RevolutionVR",
-    "legacyValue": "RevolutionVR",
-    "explorer": {
-      "kind": "url",
-      "url": "http://blockexplorer.revolutionvr.live/search?={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "mothership",
     "name": "Mothership",
-    "legacyValue": "Mothership",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3111,7 +2463,6 @@
   {
     "id": "vericoin",
     "name": "VeriCoin",
-    "legacyValue": "VeriCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/vrc/search.dws?q={q}"
@@ -3120,7 +2471,6 @@
   {
     "id": "firstblood",
     "name": "FirstBlood",
-    "legacyValue": "FirstBlood",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3129,7 +2479,6 @@
   {
     "id": "primecoin",
     "name": "Primecoin",
-    "legacyValue": "Primecoin",
     "explorer": {
       "kind": "url",
       "url": "https://bchain.info/XPM/search?search={q}"
@@ -3138,7 +2487,6 @@
   {
     "id": "agrello",
     "name": "Agrello",
-    "legacyValue": "Agrello",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3147,7 +2495,6 @@
   {
     "id": "banyan-network",
     "name": "Banyan Network",
-    "legacyValue": "Banyan Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3156,7 +2503,6 @@
   {
     "id": "aeron",
     "name": "Aeron",
-    "legacyValue": "Aeron",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3165,7 +2511,6 @@
   {
     "id": "selfkey",
     "name": "Selfkey",
-    "legacyValue": "Selfkey",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3174,7 +2519,6 @@
   {
     "id": "monetaryunit",
     "name": "MonetaryUnit",
-    "legacyValue": "MonetaryUnit",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/mue/search.dws?q={q}"
@@ -3183,7 +2527,6 @@
   {
     "id": "bloom",
     "name": "Bloom",
-    "legacyValue": "Bloom",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3192,7 +2535,6 @@
   {
     "id": "zeusshield",
     "name": "Zeusshield",
-    "legacyValue": "Zeusshield",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3201,7 +2543,6 @@
   {
     "id": "qunqun",
     "name": "QunQun",
-    "legacyValue": "QunQun",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3210,36 +2551,14 @@
   {
     "id": "matchpool",
     "name": "Matchpool",
-    "legacyValue": "Matchpool",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "prizm",
-    "name": "PRIZM",
-    "legacyValue": "PRIZM",
-    "explorer": {
-      "kind": "url",
-      "url": "http://blockchain.prizm.space/index.html?q={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "zclassic",
-    "name": "ZClassic",
-    "legacyValue": "ZClassic",
-    "explorer": {
-      "kind": "url",
-      "url": "https://zcl-explorer.com/insight?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "propy",
     "name": "Propy",
-    "legacyValue": "Propy",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3248,27 +2567,14 @@
   {
     "id": "carvertical",
     "name": "carVertical",
-    "legacyValue": "carVertical",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "era",
-    "name": "ERA",
-    "legacyValue": "ERA",
-    "explorer": {
-      "kind": "form",
-      "action": "http://era.cryptonode.online/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "trade-token",
     "name": "Trade Token",
-    "legacyValue": "Trade Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3277,7 +2583,6 @@
   {
     "id": "cappasity",
     "name": "Cappasity",
-    "legacyValue": "Cappasity",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3286,7 +2591,6 @@
   {
     "id": "pascal-coin",
     "name": "Pascal Coin",
-    "legacyValue": "Pascal Coin",
     "explorer": {
       "kind": "url",
       "url": "http://explorer.pascalcoin.org/index.php?q={q}"
@@ -3295,7 +2599,6 @@
   {
     "id": "dadi",
     "name": "DADI",
-    "legacyValue": "DADI",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3304,7 +2607,6 @@
   {
     "id": "datawallet",
     "name": "Datawallet",
-    "legacyValue": "Datawallet",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3313,7 +2615,6 @@
   {
     "id": "paypex",
     "name": "Paypex",
-    "legacyValue": "Paypex",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3322,7 +2623,6 @@
   {
     "id": "bitusd",
     "name": "bitUSD",
-    "legacyValue": "bitUSD",
     "explorer": {
       "kind": "form",
       "action": "http://bts.ai/search",
@@ -3333,7 +2633,6 @@
   {
     "id": "oax",
     "name": "OAX",
-    "legacyValue": "OAX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3342,7 +2641,6 @@
   {
     "id": "icos",
     "name": "ICOS",
-    "legacyValue": "ICOS",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3351,27 +2649,14 @@
   {
     "id": "omni",
     "name": "Omni",
-    "legacyValue": "Omni",
     "explorer": {
       "kind": "url",
       "url": "https://www.omniexplorer.info/search/{q}"
     }
   },
   {
-    "id": "shield",
-    "name": "SHIELD",
-    "legacyValue": "SHIELD",
-    "explorer": {
-      "kind": "form",
-      "action": "https://altmix.org/coins/2-SHIELD/explorer",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "phore",
     "name": "Phore",
-    "legacyValue": "Phore",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/phr/search.dws?q={q}"
@@ -3380,7 +2665,6 @@
   {
     "id": "coss",
     "name": "COSS",
-    "legacyValue": "COSS",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3389,7 +2673,6 @@
   {
     "id": "latoken",
     "name": "LATOKEN",
-    "legacyValue": "LATOKEN",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3398,7 +2681,6 @@
   {
     "id": "lympo",
     "name": "Lympo",
-    "legacyValue": "Lympo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3407,7 +2689,6 @@
   {
     "id": "solarcoin",
     "name": "SolarCoin",
-    "legacyValue": "SolarCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/slr/search.dws?q={q}"
@@ -3416,44 +2697,22 @@
   {
     "id": "encrypgen",
     "name": "EncrypGen",
-    "legacyValue": "EncrypGen",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "faircoin",
-    "name": "FairCoin",
-    "legacyValue": "FairCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chain.fair.to/search?sterm={q}"
     }
   },
   {
     "id": "paragon",
     "name": "Paragon",
-    "legacyValue": "Paragon",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "expanse",
-    "name": "Expanse",
-    "legacyValue": "Expanse",
-    "explorer": {
-      "kind": "url",
-      "url": "https://gander.tech/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "lamden",
     "name": "Lamden",
-    "legacyValue": "Lamden",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3462,25 +2721,14 @@
   {
     "id": "radium",
     "name": "Radium",
-    "legacyValue": "Radium",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/rads/search.dws?q={q}"
     }
   },
   {
-    "id": "qbao",
-    "name": "Qbao",
-    "legacyValue": "Qbao",
-    "explorer": {
-      "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
-    }
-  },
-  {
     "id": "energo",
     "name": "Energo",
-    "legacyValue": "Energo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3489,7 +2737,6 @@
   {
     "id": "insurepal",
     "name": "InsurePal",
-    "legacyValue": "InsurePal",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3498,7 +2745,6 @@
   {
     "id": "himutualsociety",
     "name": "Hi Mutual Society",
-    "legacyValue": "HiMutualSociety",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3507,7 +2753,6 @@
   {
     "id": "canyacoin",
     "name": "CanYaCoin",
-    "legacyValue": "CanYaCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3516,7 +2761,6 @@
   {
     "id": "bitdegree",
     "name": "BitDegree",
-    "legacyValue": "BitDegree",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3525,7 +2769,6 @@
   {
     "id": "covesting",
     "name": "Covesting",
-    "legacyValue": "Covesting",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3534,7 +2777,6 @@
   {
     "id": "zoin",
     "name": "Zoin",
-    "legacyValue": "Zoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/zoi/search.dws?q={q}"
@@ -3543,7 +2785,6 @@
   {
     "id": "mybit-token",
     "name": "MyBit Token",
-    "legacyValue": "MyBit Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3552,7 +2793,6 @@
   {
     "id": "shipchain",
     "name": "ShipChain",
-    "legacyValue": "ShipChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3561,7 +2801,6 @@
   {
     "id": "oraclechain",
     "name": "OracleChain",
-    "legacyValue": "OracleChain",
     "explorer": {
       "kind": "url",
       "url": "http://cryptofresh.com/a/OCT?search={q}"
@@ -3571,7 +2810,6 @@
   {
     "id": "blackmoon",
     "name": "Blackmoon",
-    "legacyValue": "Blackmoon",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3580,7 +2818,6 @@
   {
     "id": "swarm",
     "name": "Swarm",
-    "legacyValue": "Swarm",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3589,7 +2826,6 @@
   {
     "id": "colossusxt",
     "name": "ColossusXT",
-    "legacyValue": "ColossusXT",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/colx/search.dws?q={q}"
@@ -3598,7 +2834,6 @@
   {
     "id": "databits",
     "name": "Databits",
-    "legacyValue": "Databits",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -3607,53 +2842,30 @@
   {
     "id": "blocktix",
     "name": "Blocktix",
-    "legacyValue": "Blocktix",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "electra",
-    "name": "Electra",
-    "legacyValue": "Electra",
-    "explorer": {
-      "kind": "url",
-      "url": "https://cryptobe.com/chain/Electra/search?q={q}"
     }
   },
   {
     "id": "incent",
     "name": "Incent",
-    "legacyValue": "Incent",
     "explorer": {
       "kind": "url",
-      "url": "http://wavesgo.com/search?={q}"
-    },
-    "fallback": true
+      "url": "https://wavesexplorer.com/addresses/{q}"
+    }
   },
   {
     "id": "exchange-union",
     "name": "Exchange Union",
-    "legacyValue": "Exchange Union",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "bodhi",
-    "name": "Bodhi",
-    "legacyValue": "Bodhi",
-    "explorer": {
-      "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
-    }
-  },
-  {
     "id": "mintcoin",
     "name": "Mintcoin",
-    "legacyValue": "Mintcoin",
     "explorer": {
       "kind": "url",
       "url": "https://prohashing.com/explorer/Mintcoin/?search={q}"
@@ -3663,7 +2875,6 @@
   {
     "id": "alis",
     "name": "ALIS",
-    "legacyValue": "ALIS",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3672,7 +2883,6 @@
   {
     "id": "snovio",
     "name": "Snovio",
-    "legacyValue": "Snovio",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3681,26 +2891,14 @@
   {
     "id": "xaurum",
     "name": "Xaurum",
-    "legacyValue": "Xaurum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "alqo",
-    "name": "ALQO",
-    "legacyValue": "ALQO",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.alqo.org/overview?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "eroscoin",
     "name": "Eroscoin",
-    "legacyValue": "Eroscoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3709,7 +2907,6 @@
   {
     "id": "florincoin",
     "name": "FlorinCoin",
-    "legacyValue": "FlorinCoin",
     "explorer": {
       "kind": "url",
       "url": "https://prohashing.com/explorer/Florincoin?search={q}"
@@ -3719,7 +2916,6 @@
   {
     "id": "spectrecoin",
     "name": "Spectrecoin",
-    "legacyValue": "Spectrecoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xspec/search.dws?q={q}"
@@ -3728,27 +2924,14 @@
   {
     "id": "ixledger",
     "name": "iXledger",
-    "legacyValue": "iXledger",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "lomocoin",
-    "name": "LoMoCoin",
-    "legacyValue": "LoMoCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.lomocoin.com/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "te-food",
     "name": "TE-FOOD",
-    "legacyValue": "TE-FOOD",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3757,7 +2940,6 @@
   {
     "id": "domraider",
     "name": "DomRaider",
-    "legacyValue": "DomRaider",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3766,7 +2948,6 @@
   {
     "id": "everus",
     "name": "Everus",
-    "legacyValue": "Everus",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3775,7 +2956,6 @@
   {
     "id": "energycoin",
     "name": "Energycoin",
-    "legacyValue": "Energycoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/enrg/search.dws?q={q}"
@@ -3784,7 +2964,6 @@
   {
     "id": "bitsend",
     "name": "BitSend",
-    "legacyValue": "BitSend",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bsd/search.dws?q={q}"
@@ -3793,7 +2972,6 @@
   {
     "id": "clams",
     "name": "Clams",
-    "legacyValue": "Clams",
     "explorer": {
       "kind": "url",
       "url": "http://khashier.com/chain/Clam/search?q={q}"
@@ -3802,7 +2980,6 @@
   {
     "id": "prochain",
     "name": "ProChain",
-    "legacyValue": "ProChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3811,7 +2988,6 @@
   {
     "id": "mwat",
     "name": "Restart Energy MWAT",
-    "legacyValue": "MWAT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3820,66 +2996,30 @@
   {
     "id": "rivetz",
     "name": "Rivetz",
-    "legacyValue": "Rivetz",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "newyorkcoin",
-    "name": "NewYorkCoin",
-    "legacyValue": "NewYorkCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.nycoin.community/search",
-      "method": "post",
-      "param": "search"
     }
   },
   {
     "id": "neumark",
     "name": "Neumark",
-    "legacyValue": "Neumark",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
-  },
-  {
-    "id": "rise",
-    "name": "Rise",
-    "legacyValue": "Rise",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.rise.vision/?search={q}"
-    },
-    "fallback": true
   },
   {
     "id": "decentbet",
     "name": "DecentBet",
-    "legacyValue": "DecentBet",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "tao",
-    "name": "Tao",
-    "legacyValue": "Tao",
-    "explorer": {
-      "kind": "form",
-      "action": "http://www.taoexplorer.com/search",
-      "method": "post",
-      "param": "search"
     }
   },
   {
     "id": "cashaa",
     "name": "Cashaa",
-    "legacyValue": "Cashaa",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3888,7 +3028,6 @@
   {
     "id": "olympus-labs",
     "name": "Olympus Labs",
-    "legacyValue": "Olympus Labs",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3897,36 +3036,22 @@
   {
     "id": "wavescommunity",
     "name": "Waves Community Token",
-    "legacyValue": "WavesCommunity",
     "explorer": {
       "kind": "url",
-      "url": "http://wavesgo.com/search?={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "bitconnect",
-    "name": "BitConnect",
-    "legacyValue": "BitConnect",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainz.cryptoid.info/bcc/search.dws?q={q}"
+      "url": "https://wavesexplorer.com/addresses/{q}"
     }
   },
   {
     "id": "sureremit",
     "name": "SureRemit",
-    "legacyValue": "SureRemit",
     "explorer": {
       "kind": "url",
-      "url": "https://stellar.expert/explorer/public?search={q}"
-    },
-    "fallback": true
+      "url": "https://stellar.expert/explorer/public/search?term={q}"
+    }
   },
   {
     "id": "echolink",
     "name": "EchoLink",
-    "legacyValue": "EchoLink",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3935,7 +3060,6 @@
   {
     "id": "rubycoin",
     "name": "Rubycoin",
-    "legacyValue": "Rubycoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/rby/search.dws?q={q}"
@@ -3944,7 +3068,6 @@
   {
     "id": "divi",
     "name": "Divi",
-    "legacyValue": "Divi",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3953,7 +3076,6 @@
   {
     "id": "aichain",
     "name": "AICHAIN",
-    "legacyValue": "AICHAIN",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3962,26 +3084,14 @@
   {
     "id": "swarm-city",
     "name": "Swarm City",
-    "legacyValue": "Swarm City",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "oxycoin",
-    "name": "Oxycoin",
-    "legacyValue": "Oxycoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.oxycoin.io?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "atn",
     "name": "ATN",
-    "legacyValue": "ATN",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -3990,7 +3100,6 @@
   {
     "id": "transfercoin",
     "name": "TransferCoin",
-    "legacyValue": "TransferCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/tx/search.dws?q={q}"
@@ -3999,25 +3108,14 @@
   {
     "id": "target-coin",
     "name": "Target Coin",
-    "legacyValue": "Target Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "profileutility",
-    "name": "Profile Utility Token",
-    "legacyValue": "ProfileUtility",
-    "explorer": {
-      "kind": "url",
-      "url": "https://qtumexplorer.io/search?q={q}"
-    }
-  },
-  {
     "id": "toacoin",
     "name": "ToaCoin",
-    "legacyValue": "ToaCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/toa/search.dws?q={q}"
@@ -4026,7 +3124,6 @@
   {
     "id": "debitum-network",
     "name": "Debitum Network",
-    "legacyValue": "Debitum Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4035,7 +3132,6 @@
   {
     "id": "coinmeet",
     "name": "CoinMeet",
-    "legacyValue": "CoinMeet",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4044,36 +3140,14 @@
   {
     "id": "coinfi",
     "name": "CoinFi",
-    "legacyValue": "CoinFi",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "posw-coin",
-    "name": "PoSW Coin",
-    "legacyValue": "PoSW Coin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://poswallet.com/blockChain/posw?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "musicoin",
-    "name": "Musicoin",
-    "legacyValue": "Musicoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://orbiter.musicoin.org/home?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "nvo",
     "name": "NVO",
-    "legacyValue": "NVO",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -4082,7 +3156,6 @@
   {
     "id": "bitcoin-atom",
     "name": "Bitcoin Atom",
-    "legacyValue": "Bitcoin Atom",
     "explorer": {
       "kind": "form",
       "action": "https://explorer.bitcoinatom.io/search",
@@ -4091,19 +3164,8 @@
     }
   },
   {
-    "id": "dubaicoin",
-    "name": "DubaiCoin",
-    "legacyValue": "DubaiCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://dbixscan.io/home?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "rialto",
     "name": "Rialto",
-    "legacyValue": "Rialto",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4112,25 +3174,14 @@
   {
     "id": "bitdice",
     "name": "BitDice",
-    "legacyValue": "BitDice",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "boolberry",
-    "name": "Boolberry",
-    "legacyValue": "Boolberry",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainradar.com/bbr/search/{q}"
-    }
-  },
-  {
     "id": "earthcoin",
     "name": "EarthCoin",
-    "legacyValue": "EarthCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/eac/search.dws?q={q}"
@@ -4139,26 +3190,14 @@
   {
     "id": "opentrading",
     "name": "Open Trading Network",
-    "legacyValue": "OpenTrading",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "atbcoin",
-    "name": "ATBCoin",
-    "legacyValue": "ATBCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.atbcoin.com?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "myriad",
     "name": "Myriad",
-    "legacyValue": "Myriad",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xmy/search.dws?q={q}"
@@ -4167,7 +3206,6 @@
   {
     "id": "stox",
     "name": "Stox",
-    "legacyValue": "Stox",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4176,7 +3214,6 @@
   {
     "id": "quantum",
     "name": "Quantum",
-    "legacyValue": "Quantum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4185,7 +3222,6 @@
   {
     "id": "neoscoin",
     "name": "NeosCoin",
-    "legacyValue": "NeosCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/neos/search.dws?q={q}"
@@ -4194,7 +3230,6 @@
   {
     "id": "aurora-dao",
     "name": "Aurora DAO",
-    "legacyValue": "Aurora DAO",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4203,7 +3238,6 @@
   {
     "id": "okcash",
     "name": "OKCash",
-    "legacyValue": "OKCash",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ok/search.dws?q={q}"
@@ -4212,7 +3246,6 @@
   {
     "id": "fidentiax",
     "name": "FidentiaX",
-    "legacyValue": "FidentiaX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4221,7 +3254,6 @@
   {
     "id": "hacken",
     "name": "Hacken",
-    "legacyValue": "Hacken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4230,7 +3262,6 @@
   {
     "id": "lockchain",
     "name": "LockChain",
-    "legacyValue": "LockChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4239,7 +3270,6 @@
   {
     "id": "hellogold",
     "name": "HelloGold",
-    "legacyValue": "HelloGold",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4248,7 +3278,6 @@
   {
     "id": "worldcore",
     "name": "Worldcore",
-    "legacyValue": "Worldcore",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4257,7 +3286,6 @@
   {
     "id": "hac",
     "name": "Hackspace Capital",
-    "legacyValue": "HAC",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4266,7 +3294,6 @@
   {
     "id": "bitqy",
     "name": "bitqy",
-    "legacyValue": "bitqy",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4275,37 +3302,14 @@
   {
     "id": "tokenclub",
     "name": "TokenClub",
-    "legacyValue": "TokenClub",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "dimcoin",
-    "name": "DIMCOIN",
-    "legacyValue": "DIMCOIN",
-    "explorer": {
-      "kind": "url",
-      "url": "https://dimexplorer.io/?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "gobyte",
-    "name": "GoByte",
-    "legacyValue": "GoByte",
-    "explorer": {
-      "kind": "form",
-      "action": "http://gobyte.ezmine.io/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "patientory",
     "name": "Patientory",
-    "legacyValue": "Patientory",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4314,7 +3318,6 @@
   {
     "id": "investfeed",
     "name": "InvestFeed",
-    "legacyValue": "InvestFeed",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4323,26 +3326,14 @@
   {
     "id": "oneroot-network",
     "name": "OneRoot Network",
-    "legacyValue": "OneRoot Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "karma",
-    "name": "Karma",
-    "legacyValue": "Karma",
-    "explorer": {
-      "kind": "url",
-      "url": "https://krm-db.com?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "nexium",
     "name": "Nexium",
-    "legacyValue": "Nexium",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4351,7 +3342,6 @@
   {
     "id": "sportyco",
     "name": "SportyCo",
-    "legacyValue": "SportyCo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4360,7 +3350,6 @@
   {
     "id": "chronobank",
     "name": "Chronobank",
-    "legacyValue": "Chronobank",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4369,7 +3358,6 @@
   {
     "id": "solaris",
     "name": "Solaris",
-    "legacyValue": "Solaris",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xlr/search.dws?q={q}"
@@ -4378,7 +3366,6 @@
   {
     "id": "b2bx",
     "name": "B2BX",
-    "legacyValue": "B2BX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4387,7 +3374,6 @@
   {
     "id": "primas",
     "name": "Primas",
-    "legacyValue": "Primas",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4396,7 +3382,6 @@
   {
     "id": "coinpoker",
     "name": "CoinPoker",
-    "legacyValue": "CoinPoker",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4405,7 +3390,6 @@
   {
     "id": "gambit",
     "name": "Gambit",
-    "legacyValue": "Gambit",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/gam/search.dws?q={q}"
@@ -4414,7 +3398,6 @@
   {
     "id": "true-usd",
     "name": "True USD",
-    "legacyValue": "True USD",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4423,7 +3406,6 @@
   {
     "id": "airtoken",
     "name": "AirToken",
-    "legacyValue": "AirToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4432,7 +3414,6 @@
   {
     "id": "eztoken",
     "name": "EZToken",
-    "legacyValue": "EZToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4441,7 +3422,6 @@
   {
     "id": "polybius",
     "name": "Polybius",
-    "legacyValue": "Polybius",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4450,7 +3430,6 @@
   {
     "id": "zilla",
     "name": "Zilla",
-    "legacyValue": "Zilla",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4459,7 +3438,6 @@
   {
     "id": "dynamic",
     "name": "Dynamic",
-    "legacyValue": "Dynamic",
     "explorer": {
       "kind": "form",
       "action": "http://dyn.blocksandchain.com/search",
@@ -4470,7 +3448,6 @@
   {
     "id": "ties-db",
     "name": "Ties.DB",
-    "legacyValue": "Ties.DB",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4479,7 +3456,6 @@
   {
     "id": "foldingcoin",
     "name": "FoldingCoin",
-    "legacyValue": "FoldingCoin",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -4488,7 +3464,6 @@
   {
     "id": "pandacoin",
     "name": "Pandacoin",
-    "legacyValue": "Pandacoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pnd/search.dws?q={q}"
@@ -4497,7 +3472,6 @@
   {
     "id": "axpire",
     "name": "aXpire",
-    "legacyValue": "aXpire",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4506,37 +3480,14 @@
   {
     "id": "hubiinetwork",
     "name": "Hubii Network",
-    "legacyValue": "HubiiNetwork",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "luxcoin",
-    "name": "LUXCoin",
-    "legacyValue": "LUXCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.luxcore.io/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "golos",
-    "name": "Golos",
-    "legacyValue": "Golos",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.golos.io?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "ink-protocol",
     "name": "Ink Protocol",
-    "legacyValue": "Ink Protocol",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4545,7 +3496,6 @@
   {
     "id": "ipbc",
     "name": "Interplanetary Broadcast Coin",
-    "legacyValue": "IPBC",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.ipbc.io/?search={q}"
@@ -4555,27 +3505,14 @@
   {
     "id": "novacoin",
     "name": "Novacoin",
-    "legacyValue": "Novacoin",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.novaco.in/search.php?text={q}"
     }
   },
   {
-    "id": "sphere",
-    "name": "Sphere",
-    "legacyValue": "Sphere",
-    "explorer": {
-      "kind": "form",
-      "action": "https://sphr.network/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "mysterium",
     "name": "Mysterium",
-    "legacyValue": "Mysterium",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4584,7 +3521,6 @@
   {
     "id": "lala-world",
     "name": "LALA World",
-    "legacyValue": "LALA World",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4593,7 +3529,6 @@
   {
     "id": "sequence",
     "name": "Sequence",
-    "legacyValue": "Sequence",
     "explorer": {
       "kind": "form",
       "action": "http://seq.blocksandchain.com/search",
@@ -4604,7 +3539,6 @@
   {
     "id": "viuly",
     "name": "Viuly",
-    "legacyValue": "Viuly",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4613,7 +3547,6 @@
   {
     "id": "etheroll",
     "name": "Etheroll",
-    "legacyValue": "Etheroll",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4622,7 +3555,6 @@
   {
     "id": "dopecoin",
     "name": "DopeCoin",
-    "legacyValue": "DopeCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dope/search.dws?q={q}"
@@ -4631,7 +3563,6 @@
   {
     "id": "tokes",
     "name": "Tokes",
-    "legacyValue": "Tokes",
     "explorer": {
       "kind": "url",
       "url": "https://tokesplatform.org/search?={q}"
@@ -4641,7 +3572,6 @@
   {
     "id": "bounty0x",
     "name": "Bounty0x",
-    "legacyValue": "Bounty0x",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4650,7 +3580,6 @@
   {
     "id": "block-array",
     "name": "Block Array",
-    "legacyValue": "Block Array",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4659,7 +3588,6 @@
   {
     "id": "aventus",
     "name": "Aventus",
-    "legacyValue": "Aventus",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4668,7 +3596,6 @@
   {
     "id": "pinkcoin",
     "name": "PinkCoin",
-    "legacyValue": "PinkCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pink/search.dws?q={q}"
@@ -4677,7 +3604,6 @@
   {
     "id": "change",
     "name": "Change",
-    "legacyValue": "Change",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4686,7 +3612,6 @@
   {
     "id": "clearpoll",
     "name": "ClearPoll",
-    "legacyValue": "ClearPoll",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4695,7 +3620,6 @@
   {
     "id": "hydroprotocol",
     "name": "Hydro Protocol",
-    "legacyValue": "HydroProtocol",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4704,7 +3628,6 @@
   {
     "id": "blue",
     "name": "BLUE",
-    "legacyValue": "BLUE",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4713,7 +3636,6 @@
   {
     "id": "leadcoin",
     "name": "Leadcoin",
-    "legacyValue": "Leadcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4722,7 +3644,6 @@
   {
     "id": "get-protocol",
     "name": "GET Protocol",
-    "legacyValue": "GET Protocol",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4731,7 +3652,6 @@
   {
     "id": "bitcrystals",
     "name": "Bitcrystals",
-    "legacyValue": "Bitcrystals",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
@@ -4740,7 +3660,6 @@
   {
     "id": "elixir",
     "name": "Elixir",
-    "legacyValue": "Elixir",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4749,7 +3668,6 @@
   {
     "id": "stealthcoin",
     "name": "Stealthcoin",
-    "legacyValue": "Stealthcoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xst/search.dws?q={q}"
@@ -4758,7 +3676,6 @@
   {
     "id": "chips",
     "name": "CHIPS",
-    "legacyValue": "CHIPS",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.chips.cash/search",
@@ -4769,26 +3686,14 @@
   {
     "id": "coval",
     "name": "Circuits of Value",
-    "legacyValue": "COVAL",
     "explorer": {
       "kind": "url",
       "url": "https://xchain.io/search?query={q}"
     }
   },
   {
-    "id": "pirl",
-    "name": "Pirl",
-    "legacyValue": "Pirl",
-    "explorer": {
-      "kind": "url",
-      "url": "https://poseidon.pirl.io/explorer?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "remme",
     "name": "Remme",
-    "legacyValue": "Remme",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4797,7 +3702,6 @@
   {
     "id": "dotcoin",
     "name": "Dotcoin",
-    "legacyValue": "Dotcoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dot/search.dws?q={q}"
@@ -4806,7 +3710,6 @@
   {
     "id": "curecoin",
     "name": "Curecoin",
-    "legacyValue": "Curecoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/cure/search.dws?q={q}"
@@ -4815,7 +3718,6 @@
   {
     "id": "pluton",
     "name": "Pluton",
-    "legacyValue": "Pluton",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4824,7 +3726,6 @@
   {
     "id": "elite",
     "name": "Elite",
-    "legacyValue": "Elite",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/1337/search.dws?q={q}"
@@ -4833,7 +3734,6 @@
   {
     "id": "apx",
     "name": "APX",
-    "legacyValue": "APX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4842,26 +3742,14 @@
   {
     "id": "ethorse",
     "name": "Ethorse",
-    "legacyValue": "Ethorse",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "iop",
-    "name": "Internet of People",
-    "legacyValue": "IOP",
-    "explorer": {
-      "kind": "url",
-      "url": "http://mainnet.iop.cash/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "insights-network",
     "name": "Insights Network",
-    "legacyValue": "Insights Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4870,7 +3758,6 @@
   {
     "id": "aidcoin",
     "name": "AidCoin",
-    "legacyValue": "AidCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4879,7 +3766,6 @@
   {
     "id": "rebl",
     "name": "REBL",
-    "legacyValue": "REBL",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4888,7 +3774,6 @@
   {
     "id": "life",
     "name": "LIFE",
-    "legacyValue": "LIFE",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4897,7 +3782,6 @@
   {
     "id": "atmos",
     "name": "Atmos",
-    "legacyValue": "Atmos",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/atms/search.dws?q={q}"
@@ -4906,7 +3790,6 @@
   {
     "id": "obits",
     "name": "OBITS",
-    "legacyValue": "OBITS",
     "explorer": {
       "kind": "url",
       "url": "http://cryptofresh.com/a/OBITS?search={q}"
@@ -4916,7 +3799,6 @@
   {
     "id": "geocoin",
     "name": "GeoCoin",
-    "legacyValue": "GeoCoin",
     "explorer": {
       "kind": "url",
       "url": "https://ubiqscan.io/search?={q}"
@@ -4926,7 +3808,6 @@
   {
     "id": "sxdt",
     "name": "Spectre.ai Dividend Token",
-    "legacyValue": "SXDT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4935,7 +3816,6 @@
   {
     "id": "babb",
     "name": "BABB",
-    "legacyValue": "BABB",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4944,7 +3824,6 @@
   {
     "id": "trueflip",
     "name": "TrueFlip",
-    "legacyValue": "TrueFlip",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4953,7 +3832,6 @@
   {
     "id": "cargox",
     "name": "CargoX",
-    "legacyValue": "CargoX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -4962,36 +3840,14 @@
   {
     "id": "eventchain",
     "name": "EventChain",
-    "legacyValue": "EventChain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "bulwark",
-    "name": "Bulwark",
-    "legacyValue": "Bulwark",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.bulwarkcrypto.com?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "artbyte",
-    "name": "ArtByte",
-    "legacyValue": "ArtByte",
-    "explorer": {
-      "kind": "url",
-      "url": "http://explorer.artbyte.me/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "sether",
     "name": "Sether",
-    "legacyValue": "Sether",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5000,27 +3856,14 @@
   {
     "id": "ebitcoin",
     "name": "eBitcoin",
-    "legacyValue": "eBitcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "biocoin",
-    "name": "BioCoin",
-    "legacyValue": "BioCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://block-explorer.biocoin.bio/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "farad",
     "name": "Farad",
-    "legacyValue": "Farad",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5029,38 +3872,14 @@
   {
     "id": "primalbasetoken",
     "name": "Primalbase Token",
-    "legacyValue": "PrimalbaseToken",
     "explorer": {
       "kind": "url",
-      "url": "http://wavesgo.com/search?={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "nubits",
-    "name": "NuBits",
-    "legacyValue": "NuBits",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.nubits.com?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "fedoracoin",
-    "name": "FedoraCoin",
-    "legacyValue": "FedoraCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://tipsbe.netcraft.ch/search",
-      "method": "post",
-      "param": "search"
+      "url": "https://wavesexplorer.com/addresses/{q}"
     }
   },
   {
     "id": "zeitcoin",
     "name": "Zeitcoin",
-    "legacyValue": "Zeitcoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/zeit/search.dws?q={q}"
@@ -5069,7 +3888,6 @@
   {
     "id": "pareto-network",
     "name": "Pareto Network",
-    "legacyValue": "Pareto Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5078,7 +3896,6 @@
   {
     "id": "reftoken",
     "name": "RefToken",
-    "legacyValue": "RefToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5087,7 +3904,6 @@
   {
     "id": "dao-casino",
     "name": "DAO.Casino",
-    "legacyValue": "DAO.Casino",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5096,7 +3912,6 @@
   {
     "id": "astro",
     "name": "Astro",
-    "legacyValue": "Astro",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5105,7 +3920,6 @@
   {
     "id": "bitmark",
     "name": "Bitmark",
-    "legacyValue": "Bitmark",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/btm/search.dws?q={q}"
@@ -5114,7 +3928,6 @@
   {
     "id": "kore",
     "name": "Kore",
-    "legacyValue": "Kore",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/kore/search.dws?q={q}"
@@ -5123,7 +3936,6 @@
   {
     "id": "denarius",
     "name": "Denarius",
-    "legacyValue": "Denarius",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/dnr/search.dws?q={q}"
@@ -5132,7 +3944,6 @@
   {
     "id": "qwark",
     "name": "Qwark",
-    "legacyValue": "Qwark",
     "explorer": {
       "kind": "url",
       "url": "https://ubiqscan.io/search?={q}"
@@ -5140,50 +3951,16 @@
     "fallback": true
   },
   {
-    "id": "polis",
-    "name": "Polis",
-    "legacyValue": "Polis",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.polispay.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "playkey",
     "name": "Playkey",
-    "legacyValue": "Playkey",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "breakout-stake",
-    "name": "Breakout Stake",
-    "legacyValue": "Breakout Stake",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chain.breakoutcoin.com/BlockCrawler/block_crawler.php?search={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "memetic",
-    "name": "Memetic / Pepecoin",
-    "legacyValue": "Memetic",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.memetic.ai/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "gatcoin",
     "name": "Gatcoin",
-    "legacyValue": "Gatcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5192,7 +3969,6 @@
   {
     "id": "blockcat",
     "name": "BlockCAT",
-    "legacyValue": "BlockCAT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5201,25 +3977,14 @@
   {
     "id": "ethereummovie",
     "name": "Ethereum Movie Venture",
-    "legacyValue": "EthereumMovie",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "exclusivecoin",
-    "name": "ExclusiveCoin",
-    "legacyValue": "ExclusiveCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://cryptobe.com/chain/ExclusiveCoin/search?q={q}"
-    }
-  },
-  {
     "id": "payfair",
     "name": "Payfair",
-    "legacyValue": "Payfair",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5228,7 +3993,6 @@
   {
     "id": "synergy",
     "name": "Synergy",
-    "legacyValue": "Synergy",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/snrg/search.dws?q={q}"
@@ -5237,7 +4001,6 @@
   {
     "id": "flixxo",
     "name": "Flixxo",
-    "legacyValue": "Flixxo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5246,7 +4009,6 @@
   {
     "id": "opus",
     "name": "Opus",
-    "legacyValue": "Opus",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5255,7 +4017,6 @@
   {
     "id": "terracoin",
     "name": "Terracoin",
-    "legacyValue": "Terracoin",
     "explorer": {
       "kind": "url",
       "url": "https://insight.terracoin.io?search={q}"
@@ -5265,7 +4026,6 @@
   {
     "id": "bitcoinz",
     "name": "BitcoinZ",
-    "legacyValue": "BitcoinZ",
     "explorer": {
       "kind": "form",
       "action": "https://btczexplorer.blockhub.info/search",
@@ -5276,7 +4036,6 @@
   {
     "id": "voise",
     "name": "Voise",
-    "legacyValue": "Voise",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5285,7 +4044,6 @@
   {
     "id": "goldmint",
     "name": "GoldMint",
-    "legacyValue": "GoldMint",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5294,7 +4052,6 @@
   {
     "id": "bezop",
     "name": "Bezop",
-    "legacyValue": "Bezop",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5303,55 +4060,22 @@
   {
     "id": "gcr",
     "name": "Global Currency Reserve",
-    "legacyValue": "GCR",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/gcr/search.dws?q={q}"
     }
   },
   {
-    "id": "hollywoodcoin",
-    "name": "HollyWoodCoin",
-    "legacyValue": "HollyWoodCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://chain.hollywoodcoin.biz/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "hush",
-    "name": "Hush",
-    "legacyValue": "Hush",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.myhush.org?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "bitcloud",
     "name": "Bitcloud",
-    "legacyValue": "Bitcloud",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/btdx/search.dws?q={q}"
     }
   },
   {
-    "id": "graft",
-    "name": "Graft",
-    "legacyValue": "Graft",
-    "explorer": {
-      "kind": "url",
-      "url": "https://blockexplorer.graft.network/search?value={q}"
-    }
-  },
-  {
     "id": "vezt",
     "name": "Vezt",
-    "legacyValue": "Vezt",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5360,7 +4084,6 @@
   {
     "id": "dovu",
     "name": "Dovu",
-    "legacyValue": "Dovu",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5369,7 +4092,6 @@
   {
     "id": "ledu",
     "name": "Education Ecosystem",
-    "legacyValue": "LEDU",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5378,36 +4100,14 @@
   {
     "id": "devery",
     "name": "Devery",
-    "legacyValue": "Devery",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "sumokoin",
-    "name": "Sumokoin",
-    "legacyValue": "Sumokoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.sumokoin.com/search?value={q}"
-    }
-  },
-  {
-    "id": "bitcoin-plus",
-    "name": "Bitcoin Plus",
-    "legacyValue": "Bitcoin Plus",
-    "explorer": {
-      "kind": "form",
-      "action": "http://block.bitcoinplus.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "iungo",
     "name": "Iungo",
-    "legacyValue": "Iungo",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5416,7 +4116,6 @@
   {
     "id": "publica",
     "name": "Publica",
-    "legacyValue": "Publica",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5425,7 +4124,6 @@
   {
     "id": "veriumreserve",
     "name": "VeriumReserve",
-    "legacyValue": "VeriumReserve",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/vrm/search.dws?q={q}"
@@ -5434,7 +4132,6 @@
   {
     "id": "experty",
     "name": "Experty",
-    "legacyValue": "Experty",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5443,7 +4140,6 @@
   {
     "id": "sociall",
     "name": "Sociall",
-    "legacyValue": "Sociall",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5452,7 +4148,6 @@
   {
     "id": "adshares",
     "name": "AdShares",
-    "legacyValue": "AdShares",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5461,17 +4156,14 @@
   {
     "id": "smartlands",
     "name": "Smartlands",
-    "legacyValue": "Smartlands",
     "explorer": {
       "kind": "url",
-      "url": "https://stellar.expert/explorer/public?search={q}"
-    },
-    "fallback": true
+      "url": "https://stellar.expert/explorer/public/search?term={q}"
+    }
   },
   {
     "id": "herocoin",
     "name": "HEROcoin",
-    "legacyValue": "HEROcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5480,7 +4172,6 @@
   {
     "id": "bunnycoin",
     "name": "BunnyCoin",
-    "legacyValue": "BunnyCoin",
     "explorer": {
       "kind": "form",
       "action": "http://bunnycoin.thecryptochat.net/search\t",
@@ -5491,7 +4182,6 @@
   {
     "id": "leverj",
     "name": "Leverj",
-    "legacyValue": "Leverj",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5500,7 +4190,6 @@
   {
     "id": "internxt",
     "name": "Internxt",
-    "legacyValue": "Internxt",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5509,7 +4198,6 @@
   {
     "id": "cryptopay",
     "name": "Cryptopay",
-    "legacyValue": "Cryptopay",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5518,7 +4206,6 @@
   {
     "id": "nework",
     "name": "Nework",
-    "legacyValue": "Nework",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5527,7 +4214,6 @@
   {
     "id": "tracto",
     "name": "Tracto",
-    "legacyValue": "Tracto",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5536,66 +4222,30 @@
   {
     "id": "hawala-today",
     "name": "Hawala.Today",
-    "legacyValue": "Hawala.Today",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "travelflex",
-    "name": "Travelflex",
-    "legacyValue": "Travelflex",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.travelflex.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "bela",
     "name": "Bela",
-    "legacyValue": "Bela",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bela/search.dws?q={q}"
     }
   },
   {
-    "id": "breakout",
-    "name": "Breakout",
-    "legacyValue": "Breakout",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chain.breakoutcoin.com/BlockCrawler/block_crawler.php?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "tokenbox",
     "name": "Tokenbox",
-    "legacyValue": "Tokenbox",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "masternodecoin",
-    "name": "Masternodecoin",
-    "legacyValue": "Masternodecoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://mtnc.snodo.de:3001/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "flik",
     "name": "FLiK",
-    "legacyValue": "FLiK",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5604,7 +4254,6 @@
   {
     "id": "locicoin",
     "name": "LOCIcoin",
-    "legacyValue": "LOCIcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5613,7 +4262,6 @@
   {
     "id": "riecoin",
     "name": "Riecoin",
-    "legacyValue": "Riecoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/ric/search.dws?q={q}"
@@ -5622,7 +4270,6 @@
   {
     "id": "europecoin",
     "name": "EuropeCoin",
-    "legacyValue": "EuropeCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/erc/search.dws?q={q}"
@@ -5631,7 +4278,6 @@
   {
     "id": "dnotes",
     "name": "DNotes",
-    "legacyValue": "DNotes",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/note/search.dws?q={q}"
@@ -5640,7 +4286,6 @@
   {
     "id": "goldcoin",
     "name": "GoldCoin",
-    "legacyValue": "GoldCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/gld/search.dws?q={q}"
@@ -5649,7 +4294,6 @@
   {
     "id": "luckchain",
     "name": "LuckChain",
-    "legacyValue": "LuckChain",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bash/search.dws?q={q}"
@@ -5658,7 +4302,6 @@
   {
     "id": "jet8",
     "name": "JET8",
-    "legacyValue": "JET8",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5667,7 +4310,6 @@
   {
     "id": "upfiring",
     "name": "Upfiring",
-    "legacyValue": "Upfiring",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5676,7 +4318,6 @@
   {
     "id": "bonpay",
     "name": "Bonpay",
-    "legacyValue": "Bonpay",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5685,7 +4326,6 @@
   {
     "id": "sprouts",
     "name": "Sprouts",
-    "legacyValue": "Sprouts",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/sprts/search.dws?q={q}"
@@ -5694,47 +4334,22 @@
   {
     "id": "1world",
     "name": "1World",
-    "legacyValue": "1World",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "vtorrent",
-    "name": "vTorrent",
-    "legacyValue": "vTorrent",
-    "explorer": {
-      "kind": "form",
-      "action": "http://vtrchains.com/search",
-      "method": "post",
-      "param": "search"
     }
   },
   {
     "id": "mercury-protocol",
     "name": "Mercury Protocol",
-    "legacyValue": "Mercury Protocol",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "campuscoin",
-    "name": "CampusCoin",
-    "legacyValue": "CampusCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.campuscoinproject.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "piplcoin",
     "name": "PiplCoin",
-    "legacyValue": "PiplCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5743,25 +4358,14 @@
   {
     "id": "lampix",
     "name": "Lampix",
-    "legacyValue": "Lampix",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "obsidian",
-    "name": "Obsidian",
-    "legacyValue": "Obsidian",
-    "explorer": {
-      "kind": "url",
-      "url": "https://blockexplorer.obsidianplatform.com/search?id={q}"
-    }
-  },
-  {
     "id": "autonio",
     "name": "Autonio",
-    "legacyValue": "Autonio",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5770,27 +4374,14 @@
   {
     "id": "quark",
     "name": "Quark",
-    "legacyValue": "Quark",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/qrk/search.dws?q={q}"
     }
   },
   {
-    "id": "monoeci",
-    "name": "Monoeci",
-    "legacyValue": "Monoeci",
-    "explorer": {
-      "kind": "form",
-      "action": "http://block.monacocoin.net:8080/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "shp",
     "name": "Sharpe Platform Token",
-    "legacyValue": "SHP",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5799,28 +4390,14 @@
   {
     "id": "cryptoping",
     "name": "CryptoPing",
-    "legacyValue": "CryptoPing",
     "explorer": {
       "kind": "url",
-      "url": "http://wavesgo.com/search?={q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "xgox",
-    "name": "XGOX",
-    "legacyValue": "XGOX",
-    "explorer": {
-      "kind": "form",
-      "action": "http://173.254.204.74:12313/search",
-      "method": "post",
-      "param": "search"
+      "url": "https://wavesexplorer.com/addresses/{q}"
     }
   },
   {
     "id": "cannabiscoin",
     "name": "CannabisCoin",
-    "legacyValue": "CannabisCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/cann/search.dws?q={q}"
@@ -5829,7 +4406,6 @@
   {
     "id": "dether",
     "name": "Dether",
-    "legacyValue": "Dether",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5838,7 +4414,6 @@
   {
     "id": "aigang",
     "name": "Aigang",
-    "legacyValue": "Aigang",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5847,7 +4422,6 @@
   {
     "id": "latiumx",
     "name": "LatiumX",
-    "legacyValue": "LatiumX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5856,26 +4430,14 @@
   {
     "id": "noblecoin",
     "name": "NobleCoin",
-    "legacyValue": "NobleCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/nobl/search.dws?q={q}"
     }
   },
   {
-    "id": "yocoin",
-    "name": "Yocoin",
-    "legacyValue": "Yocoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://yoscan.io?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "sharex",
     "name": "ShareX",
-    "legacyValue": "ShareX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5884,7 +4446,6 @@
   {
     "id": "copytrack",
     "name": "COPYTRACK",
-    "legacyValue": "COPYTRACK",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5893,7 +4454,6 @@
   {
     "id": "trezarcoin",
     "name": "TrezarCoin",
-    "legacyValue": "TrezarCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/tzc/search.dws?q={q}"
@@ -5902,7 +4462,6 @@
   {
     "id": "magnet",
     "name": "Magnet",
-    "legacyValue": "Magnet",
     "explorer": {
       "kind": "url",
       "url": "http://explorer.magnetwork.io?search={q}"
@@ -5912,27 +4471,14 @@
   {
     "id": "exrnchain",
     "name": "EXRNchain",
-    "legacyValue": "EXRNchain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "monkey-project",
-    "name": "Monkey Project",
-    "legacyValue": "Monkey Project",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.monkey.community/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "jiyo",
     "name": "Jiyo",
-    "legacyValue": "Jiyo",
     "explorer": {
       "kind": "form",
       "action": "http://explore.jiyo.io/search",
@@ -5943,7 +4489,6 @@
   {
     "id": "crave",
     "name": "Crave",
-    "legacyValue": "Crave",
     "explorer": {
       "kind": "form",
       "action": "http://cryptoblock.xyz:30005/search",
@@ -5954,7 +4499,6 @@
   {
     "id": "sharechain",
     "name": "Sharechain",
-    "legacyValue": "Sharechain",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5963,7 +4507,6 @@
   {
     "id": "huntercoin",
     "name": "HunterCoin",
-    "legacyValue": "HunterCoin",
     "explorer": {
       "kind": "url",
       "url": "https://www.huntercoin.info/blockExplorer/search?blockSearch={q}"
@@ -5972,7 +4515,6 @@
   {
     "id": "rex",
     "name": "REX",
-    "legacyValue": "REX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5981,7 +4523,6 @@
   {
     "id": "mcap",
     "name": "MCAP",
-    "legacyValue": "MCAP",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5990,7 +4531,6 @@
   {
     "id": "privatix",
     "name": "Privatix",
-    "legacyValue": "Privatix",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -5999,7 +4539,6 @@
   {
     "id": "creditbit",
     "name": "Creditbit",
-    "legacyValue": "Creditbit",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6008,7 +4547,6 @@
   {
     "id": "blitzcash",
     "name": "Blitzcash",
-    "legacyValue": "Blitzcash",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/blitz/search.dws?q={q}"
@@ -6017,7 +4555,6 @@
   {
     "id": "atlant",
     "name": "ATLANT",
-    "legacyValue": "ATLANT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6026,7 +4563,6 @@
   {
     "id": "zephyr",
     "name": "Zephyr",
-    "legacyValue": "Zephyr",
     "explorer": {
       "kind": "url",
       "url": "http://cryptofresh.com/a/ZEPH?search={q}"
@@ -6034,71 +4570,24 @@
     "fallback": true
   },
   {
-    "id": "force",
-    "name": "FORCE",
-    "legacyValue": "FORCE",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.forcenetwork.io/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "verify",
     "name": "Verify",
-    "legacyValue": "Verify",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "innova",
-    "name": "Innova",
-    "legacyValue": "Innova",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.innovacoin.info/search",
-      "method": "post",
-      "param": "search"
     }
   },
   {
     "id": "ethbits",
     "name": "Ethbits",
-    "legacyValue": "Ethbits",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "eboost",
-    "name": "eBoost",
-    "legacyValue": "eBoost",
-    "explorer": {
-      "kind": "form",
-      "action": "https://www.blockexperts.com/ebst/search",
-      "method": "post",
-      "param": "q"
-    }
-  },
-  {
-    "id": "evergreencoin",
-    "name": "EverGreenCoin",
-    "legacyValue": "EverGreenCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://69.141.235.64:4001/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "creativecoin",
     "name": "Creativecoin",
-    "legacyValue": "Creativecoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/crea/search.dws?q={q}"
@@ -6107,67 +4596,30 @@
   {
     "id": "mywish",
     "name": "MyWish",
-    "legacyValue": "MyWish",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "sagacoin",
-    "name": "SagaCoin",
-    "legacyValue": "SagaCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.sagacoin.net/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "spreadcoin",
     "name": "SpreadCoin",
-    "legacyValue": "SpreadCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/spr/search.dws?q={q}"
     }
   },
   {
-    "id": "chaincoin",
-    "name": "ChainCoin",
-    "legacyValue": "ChainCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://104.238.153.140:3001/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "e-gulden",
     "name": "e-Gulden",
-    "legacyValue": "e-Gulden",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/efl/search.dws?q={q}"
     }
   },
   {
-    "id": "rupaya",
-    "name": "Rupaya",
-    "legacyValue": "Rupaya",
-    "explorer": {
-      "kind": "form",
-      "action": "https://node2.rupayacoin.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "teslacoin",
     "name": "TeslaCoin",
-    "legacyValue": "TeslaCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/tes/search.dws?q={q}"
@@ -6176,7 +4628,6 @@
   {
     "id": "litedoge",
     "name": "LiteDoge",
-    "legacyValue": "LiteDoge",
     "explorer": {
       "kind": "form",
       "action": "http://ldoge.miningalts.com/search",
@@ -6187,25 +4638,14 @@
   {
     "id": "coinlancer",
     "name": "Coinlancer",
-    "legacyValue": "Coinlancer",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "sexcoin",
-    "name": "Sexcoin",
-    "legacyValue": "Sexcoin",
-    "explorer": {
-      "kind": "url",
-      "url": "http://blockexplorer.lavajumper.com/chain/Sexcoin/search?q={q}"
-    }
-  },
-  {
     "id": "micromoney",
     "name": "MicroMoney",
-    "legacyValue": "MicroMoney",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6214,7 +4654,6 @@
   {
     "id": "putincoin",
     "name": "PutinCoin",
-    "legacyValue": "PutinCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/put/search.dws?q={q}"
@@ -6223,7 +4662,6 @@
   {
     "id": "digipulse",
     "name": "DigiPulse",
-    "legacyValue": "DigiPulse",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6232,7 +4670,6 @@
   {
     "id": "bitzeny",
     "name": "Bitzeny",
-    "legacyValue": "Bitzeny",
     "explorer": {
       "kind": "url",
       "url": "https://zeny.insight.monaco-ex.org?search={q}"
@@ -6242,7 +4679,6 @@
   {
     "id": "qvolta",
     "name": "Qvolta",
-    "legacyValue": "Qvolta",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6251,7 +4687,6 @@
   {
     "id": "bitwhite",
     "name": "BitWhite",
-    "legacyValue": "BitWhite",
     "explorer": {
       "kind": "url",
       "url": "https://bitwhite.info/?search={q}"
@@ -6260,25 +4695,14 @@
   {
     "id": "linx",
     "name": "Linx",
-    "legacyValue": "Linx",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/linx/search.dws?q={q}"
     }
   },
   {
-    "id": "gcn-coin",
-    "name": "GCN Coin",
-    "legacyValue": "GCN Coin",
-    "explorer": {
-      "kind": "url",
-      "url": "http://www.gcnchain.com/chain/GCoin/search?q={q}"
-    }
-  },
-  {
     "id": "bullion",
     "name": "Bullion",
-    "legacyValue": "Bullion",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/cbx/search.dws?q={q}"
@@ -6287,7 +4711,6 @@
   {
     "id": "speedmining",
     "name": "Speed Mining Service",
-    "legacyValue": "SpeedMining",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6296,7 +4719,6 @@
   {
     "id": "jesus-coin",
     "name": "Jesus Coin",
-    "legacyValue": "Jesus Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6305,7 +4727,6 @@
   {
     "id": "condensate",
     "name": "Condensate",
-    "legacyValue": "Condensate",
     "explorer": {
       "kind": "form",
       "action": "http://condensate.io/search",
@@ -6316,27 +4737,14 @@
   {
     "id": "global-jobcoin",
     "name": "Global Jobcoin",
-    "legacyValue": "Global Jobcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "rupee",
-    "name": "Rupee",
-    "legacyValue": "Rupee",
-    "explorer": {
-      "kind": "form",
-      "action": "https://www.blockexperts.com/rup/search",
-      "method": "post",
-      "param": "q"
-    }
-  },
-  {
     "id": "magi",
     "name": "Magi",
-    "legacyValue": "Magi",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/xmg/search.dws?q={q}"
@@ -6345,7 +4753,6 @@
   {
     "id": "greencoin",
     "name": "Greencoin",
-    "legacyValue": "Greencoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/gre/search.dws?q={q}"
@@ -6354,7 +4761,6 @@
   {
     "id": "indorse-token",
     "name": "Indorse Token",
-    "legacyValue": "Indorse Token",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6363,47 +4769,22 @@
   {
     "id": "lendconnect",
     "name": "LendConnect",
-    "legacyValue": "LendConnect",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
-    }
-  },
-  {
-    "id": "ellaism",
-    "name": "Ellaism",
-    "legacyValue": "Ellaism",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.ellaism.org/search",
-      "method": "post",
-      "param": "search"
     }
   },
   {
     "id": "wild-crypto",
     "name": "Wild Crypto",
-    "legacyValue": "Wild Crypto",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "buzzcoin",
-    "name": "BuzzCoin",
-    "legacyValue": "BuzzCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.buzzcoin.info/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "flypme",
     "name": "FlypMe",
-    "legacyValue": "FlypMe",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6412,25 +4793,14 @@
   {
     "id": "equitrader",
     "name": "EquiTrader",
-    "legacyValue": "EquiTrader",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/eqt/search.dws?q={q}"
     }
   },
   {
-    "id": "procurrency",
-    "name": "ProCurrency",
-    "legacyValue": "ProCurrency",
-    "explorer": {
-      "kind": "url",
-      "url": "https://cryptobe.com/chain/ProCurrency/search?q={q}"
-    }
-  },
-  {
     "id": "intensecoin",
     "name": "IntenseCoin",
-    "legacyValue": "IntenseCoin",
     "explorer": {
       "kind": "url",
       "url": "http://intensecoin.com:8081/search?value={q}"
@@ -6439,7 +4809,6 @@
   {
     "id": "straks",
     "name": "STRAKS",
-    "legacyValue": "STRAKS",
     "explorer": {
       "kind": "url",
       "url": "https://straks.info?search={q}"
@@ -6449,7 +4818,6 @@
   {
     "id": "skincoin",
     "name": "SkinCoin",
-    "legacyValue": "SkinCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6458,7 +4826,6 @@
   {
     "id": "pylon-network",
     "name": "Pylon Network",
-    "legacyValue": "Pylon Network",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6467,7 +4834,6 @@
   {
     "id": "gcc",
     "name": "Global Cryptocurrency",
-    "legacyValue": "GCC",
     "explorer": {
       "kind": "url",
       "url": "http://144.76.113.28/chain/TheGCCcoin/search?q={q}"
@@ -6476,38 +4842,14 @@
   {
     "id": "vivo",
     "name": "VIVO",
-    "legacyValue": "VIVO",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/vivo/search.dws?q={q}"
     }
   },
   {
-    "id": "unbreakablecoin",
-    "name": "UnbreakableCoin",
-    "legacyValue": "UnbreakableCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://www.blockexperts.com/unb/search",
-      "method": "post",
-      "param": "q"
-    }
-  },
-  {
-    "id": "ignition",
-    "name": "Ignition",
-    "legacyValue": "Ignition",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.ignitioncoin.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "digitalprice",
     "name": "DigitalPrice",
-    "legacyValue": "DigitalPrice",
     "explorer": {
       "kind": "form",
       "action": "http://cryptoblock.xyz:30003/search",
@@ -6516,31 +4858,8 @@
     }
   },
   {
-    "id": "draftcoin",
-    "name": "DraftCoin",
-    "legacyValue": "DraftCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.btcdraft.com/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "hold",
-    "name": "Interstellar Holdings",
-    "legacyValue": "HOLD",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.interstellarcoin.com/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "chronologic",
     "name": "Chronologic",
-    "legacyValue": "Chronologic",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6549,7 +4868,6 @@
   {
     "id": "ong-social",
     "name": "onG.social",
-    "legacyValue": "onG.social",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6558,7 +4876,6 @@
   {
     "id": "maza",
     "name": "MAZA",
-    "legacyValue": "MAZA",
     "explorer": {
       "kind": "url",
       "url": "https://explorer.coinpayments.net/search.php?chain=11&q={q}"
@@ -6567,7 +4884,6 @@
   {
     "id": "pluscoin",
     "name": "PlusCoin",
-    "legacyValue": "PlusCoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6576,78 +4892,22 @@
   {
     "id": "universe",
     "name": "Universe",
-    "legacyValue": "Universe",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/uni/search.dws?q={q}"
     }
   },
   {
-    "id": "unitus",
-    "name": "Unitus",
-    "legacyValue": "Unitus",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.unitus.online?search=138148{q}"
-    },
-    "fallback": true
-  },
-  {
-    "id": "arcticcoin",
-    "name": "ArcticCoin",
-    "legacyValue": "ArcticCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://explorer.arcticcoin.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "eltcoin",
     "name": "ELTCOIN",
-    "legacyValue": "ELTCOIN",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "crowdcoin",
-    "name": "CrowdCoin",
-    "legacyValue": "CrowdCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://94.130.35.230:3001/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "biblepay",
-    "name": "BiblePay",
-    "legacyValue": "BiblePay",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.biblepay-central.org/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "pure",
-    "name": "Pure",
-    "legacyValue": "Pure",
-    "explorer": {
-      "kind": "url",
-      "url": "http://purexplorer.dynu.net/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "worldcoin",
     "name": "WorldCoin",
-    "legacyValue": "WorldCoin",
     "explorer": {
       "kind": "url",
       "url": "https://www.wdcexplorer.com/search?q={q}"
@@ -6656,7 +4916,6 @@
   {
     "id": "sense",
     "name": "Sense",
-    "legacyValue": "Sense",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6665,7 +4924,6 @@
   {
     "id": "zetacoin",
     "name": "Zetacoin",
-    "legacyValue": "Zetacoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/zet/search.dws?q={q}"
@@ -6674,25 +4932,14 @@
   {
     "id": "photon",
     "name": "Photon",
-    "legacyValue": "Photon",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pho/search.dws?q={q}"
     }
   },
   {
-    "id": "woodcoin",
-    "name": "Woodcoin",
-    "legacyValue": "Woodcoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.woodcoin.org/chain/Woodcoin/search?q={q}"
-    }
-  },
-  {
     "id": "fundyourselfnow",
     "name": "FundYourselfNow",
-    "legacyValue": "FundYourselfNow",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6701,7 +4948,6 @@
   {
     "id": "bitjob",
     "name": "bitJob",
-    "legacyValue": "bitJob",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6710,26 +4956,14 @@
   {
     "id": "capricoin",
     "name": "Capricoin",
-    "legacyValue": "Capricoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/cpc/search.dws?q={q}"
     }
   },
   {
-    "id": "deuscoin",
-    "name": "DeusCoin",
-    "legacyValue": "DeusCoin",
-    "explorer": {
-      "kind": "url",
-      "url": "http://explorer.deuscoin.org?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "embers",
     "name": "Embers",
-    "legacyValue": "Embers",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6738,7 +4972,6 @@
   {
     "id": "acc",
     "name": "Accelerator Network",
-    "legacyValue": "ACC",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6747,7 +4980,6 @@
   {
     "id": "ace",
     "name": "Ace",
-    "legacyValue": "Ace",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6756,7 +4988,6 @@
   {
     "id": "moin",
     "name": "Moin",
-    "legacyValue": "Moin",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.discovermoin.com/search",
@@ -6767,7 +4998,6 @@
   {
     "id": "argentum",
     "name": "Argentum",
-    "legacyValue": "Argentum",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/arg/search.dws?q={q}"
@@ -6776,7 +5006,6 @@
   {
     "id": "magiccoin",
     "name": "MagicCoin",
-    "legacyValue": "MagicCoin",
     "explorer": {
       "kind": "form",
       "action": "http://explorer.magiccoin.io:3001/search",
@@ -6787,7 +5016,6 @@
   {
     "id": "tigereum",
     "name": "Tigereum",
-    "legacyValue": "Tigereum",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6796,7 +5024,6 @@
   {
     "id": "platinumbar",
     "name": "PlatinumBAR",
-    "legacyValue": "PlatinumBAR",
     "explorer": {
       "kind": "form",
       "action": "http://xptx.io/search",
@@ -6807,7 +5034,6 @@
   {
     "id": "canada-ecoin",
     "name": "Canada eCoin",
-    "legacyValue": "Canada eCoin",
     "explorer": {
       "kind": "form",
       "action": "https://explorer.canadaecoin.ca/search",
@@ -6818,27 +5044,14 @@
   {
     "id": "etheriya",
     "name": "Etheriya",
-    "legacyValue": "Etheriya",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "maxcoin",
-    "name": "MaxCoin",
-    "legacyValue": "MaxCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "https://explorer.maxcoinproject.net/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
     "id": "cdx",
     "name": "Commodity Ad Network",
-    "legacyValue": "CDX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6847,26 +5060,14 @@
   {
     "id": "drp-utility",
     "name": "DRP Utility",
-    "legacyValue": "DRP Utility",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "cryptocarbon",
-    "name": "CryptoCarbon",
-    "legacyValue": "CryptoCarbon",
-    "explorer": {
-      "kind": "url",
-      "url": "https://explorer.cryptocarbon.co.uk?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "shekel",
     "name": "Shekel",
-    "legacyValue": "Shekel",
     "explorer": {
       "kind": "form",
       "action": "http://shekelchain.com/search",
@@ -6877,7 +5078,6 @@
   {
     "id": "neverdie",
     "name": "NEVERDIE",
-    "legacyValue": "NEVERDIE",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6886,7 +5086,6 @@
   {
     "id": "centurion",
     "name": "Centurion",
-    "legacyValue": "Centurion",
     "explorer": {
       "kind": "form",
       "action": "http://www.centurionexplorer.com/search",
@@ -6895,19 +5094,8 @@
     }
   },
   {
-    "id": "unify",
-    "name": "Unify",
-    "legacyValue": "Unify",
-    "explorer": {
-      "kind": "url",
-      "url": "https://unifyexplorer.com/?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "sovereign-hero",
     "name": "Sovereign Hero",
-    "legacyValue": "Sovereign Hero",
     "explorer": {
       "kind": "url",
       "url": "http://cryptofresh.com/a/HERO?search={q}"
@@ -6915,29 +5103,8 @@
     "fallback": true
   },
   {
-    "id": "ganjacoin",
-    "name": "GanjaCoin",
-    "legacyValue": "GanjaCoin",
-    "explorer": {
-      "kind": "form",
-      "action": "http://ganja.bilbotel.fr/search",
-      "method": "post",
-      "param": "search"
-    }
-  },
-  {
-    "id": "fantomcoin",
-    "name": "Fantomcoin",
-    "legacyValue": "Fantomcoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://chainradar.com/fcn/search/{q}"
-    }
-  },
-  {
     "id": "wandx",
     "name": "WandX",
-    "legacyValue": "WandX",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6946,7 +5113,6 @@
   {
     "id": "fujicoin",
     "name": "FujiCoin",
-    "legacyValue": "FujiCoin",
     "explorer": {
       "kind": "url",
       "url": "http://explorer.fujicoin.org?search={q}"
@@ -6956,7 +5122,6 @@
   {
     "id": "bytecent",
     "name": "Bytecent",
-    "legacyValue": "Bytecent",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/byc/search.dws?q={q}"
@@ -6965,7 +5130,6 @@
   {
     "id": "authorship",
     "name": "Authorship",
-    "legacyValue": "Authorship",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -6974,7 +5138,6 @@
   {
     "id": "hexx",
     "name": "Hexx",
-    "legacyValue": "Hexx",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/hxx/search.dws?q={q}"
@@ -6983,7 +5146,6 @@
   {
     "id": "guncoin",
     "name": "Guncoin",
-    "legacyValue": "Guncoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/gun/search.dws?q={q}"
@@ -6992,7 +5154,6 @@
   {
     "id": "zennies",
     "name": "Zennies",
-    "legacyValue": "Zennies",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7001,7 +5162,6 @@
   {
     "id": "arbitragect",
     "name": "ArbitrageCT",
-    "legacyValue": "ArbitrageCT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7010,7 +5170,6 @@
   {
     "id": "megacoin",
     "name": "Megacoin",
-    "legacyValue": "Megacoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/mec/search.dws?q={q}"
@@ -7019,7 +5178,6 @@
   {
     "id": "legends-room",
     "name": "Legends Room",
-    "legacyValue": "Legends Room",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7028,7 +5186,6 @@
   {
     "id": "ethersportz",
     "name": "EtherSportz",
-    "legacyValue": "EtherSportz",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7037,7 +5194,6 @@
   {
     "id": "bitdeal",
     "name": "Bitdeal",
-    "legacyValue": "Bitdeal",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7046,7 +5202,6 @@
   {
     "id": "ethereum-cash",
     "name": "Ethereum Cash",
-    "legacyValue": "Ethereum Cash",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7055,7 +5210,6 @@
   {
     "id": "ethbet",
     "name": "EthBet",
-    "legacyValue": "EthBet",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7064,7 +5218,6 @@
   {
     "id": "kubera-coin",
     "name": "Kubera Coin",
-    "legacyValue": "Kubera Coin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7073,26 +5226,14 @@
   {
     "id": "soma",
     "name": "Soma",
-    "legacyValue": "Soma",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
     }
   },
   {
-    "id": "startcoin",
-    "name": "Startcoin",
-    "legacyValue": "Startcoin",
-    "explorer": {
-      "kind": "url",
-      "url": "http://explorer.startcoin.org?search={q}"
-    },
-    "fallback": true
-  },
-  {
     "id": "jetcoin",
     "name": "Jetcoin",
-    "legacyValue": "Jetcoin",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7101,7 +5242,6 @@
   {
     "id": "trollcoin",
     "name": "Trollcoin",
-    "legacyValue": "Trollcoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/troll/search.dws?q={q}"
@@ -7110,7 +5250,6 @@
   {
     "id": "peepcoin",
     "name": "PeepCoin",
-    "legacyValue": "PeepCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/pcn/search.dws?q={q}"
@@ -7119,7 +5258,6 @@
   {
     "id": "equal",
     "name": "Equal",
-    "legacyValue": "Equal",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7128,7 +5266,6 @@
   {
     "id": "itt",
     "name": "Intelligent Trading Foundation",
-    "legacyValue": "ITT",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7137,7 +5274,6 @@
   {
     "id": "roulettetoken",
     "name": "RouletteToken",
-    "legacyValue": "RouletteToken",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7146,7 +5282,6 @@
   {
     "id": "suretly",
     "name": "Suretly",
-    "legacyValue": "Suretly",
     "explorer": {
       "kind": "url",
       "url": "https://etherscan.io/search?q={q}"
@@ -7155,7 +5290,6 @@
   {
     "id": "supercoin",
     "name": "SuperCoin",
-    "legacyValue": "SuperCoin",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/super/search.dws?q={q}"
@@ -7164,19 +5298,9 @@
   {
     "id": "bata",
     "name": "Bata",
-    "legacyValue": "Bata",
     "explorer": {
       "kind": "url",
       "url": "https://chainz.cryptoid.info/bta/search.dws?q={q}"
-    }
-  },
-  {
-    "id": "happycoin",
-    "name": "Happycoin",
-    "legacyValue": "Happycoin",
-    "explorer": {
-      "kind": "url",
-      "url": "https://cryptobe.com/chain/HappyCoin/search?q={q}"
     }
   }
 ]

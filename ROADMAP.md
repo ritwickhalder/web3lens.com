@@ -56,7 +56,7 @@ What is live is listed in [FEATURES.md](FEATURES.md).
 
 Same features and look as the 2018 site, on Next.js 16 / React 19 / Tailwind v4, deployed on Vercel.
 Explorer routing is data (`data/chains.json`), checked against the legacy code for all 769 chains.
-Still to do: confirm parity on the live deploy, then delete `legacy/`.
+`legacy/`, the converter and the parity test were retired in the November 2026 chain audit; chain data is hand-edited since.
 
 ## Phase 1 — Smarter search + redesign
 
@@ -80,9 +80,9 @@ The biggest user-facing jump: people shouldn't have to know which chain an addre
   the search box pre-set. Large SEO surface.
 - ✅ **OpenSearch descriptor** (`/opensearch.xml`) so browsers offer "Search Web3Lens" from the address bar. Quick win.
 - ✅ **Favourite chains** pinned to the top of the picker (localStorage).
-- **Chain list cleanup.** ✅ Link-health script (`npm run explorers:check`) and https upgrades. Still to do: a weekly Vercel cron that flags dead explorers; drop or
+- **Chain list cleanup.** ✅ Link-health script (`npm run explorers:check`, now per chain page) and https upgrades. ✅ November 2026 audit: 120 dead chains retired with reasons, dead explorers replaced, 143 current chains added, legacy converter retired (FEATURES.md). Still to do: run `npm run explorers:check` / `npm run chains:audit` on open network to verify the new routes live and check token activity; a weekly Vercel cron that flags dead explorers; drop or
   mark delisted coins; move `http://` explorers to `https://`; send ERC-20 tokens to their token page instead of
-  a generic Etherscan search. After this, `chains.json` is edited by hand and the legacy converter is retired.
+  a generic Etherscan search.
 
 ## Phase 2 — Native data (a lightweight explorer of our own)
 

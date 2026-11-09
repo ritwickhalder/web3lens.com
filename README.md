@@ -16,7 +16,7 @@ Router), React 19, TypeScript and Tailwind v4; hosted on Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 89 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, legacy parity, ABI/tx decoding, tools, server, extensions
+npm test           # 89 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, ABI/tx decoding, tools, server, extensions
 npm run lint
 npm run typecheck
 npm run build
@@ -34,7 +34,8 @@ npm run ext:pack           # store zips + reviewer source zip in dist-extensions
 Data snapshots (commit the result):
 
 ```bash
-npm run explorers:check    # probes explorer hosts → data/explorer-health.json
+npm run explorers:check    # probes explorer hosts and each chain's page → data/explorer-health.json
+npm run chains:audit       # fuller audit with CoinGecko/DefiLlama matching → audit/ (needs open network)
 npm run sanctions:update   # OFAC SDN addresses → data/sanctions.json
 ```
 
@@ -56,10 +57,9 @@ node scripts/smoke-extension-firefox.mjs            # extension-firefox/ in the 
 | `components/` | UI: `layout/`, `brand/`, `search/` (smart search, chain picker), `results/` (result pages, risk panel), `tools/`, `usability/` (batch, saved, settings, investigations), `home/`, `directory/`, `guide/`, `contact/`, `content/`, `ui/` |
 | `lib/` | Browser-safe shared logic (also bundled into the extensions): `detect.ts`, `explorer.ts`, `chains.ts`, `codec/*`, `evm/*` (ABI, signatures, tx decoder), `tools/*`, `security/*`, `batch.ts`, `saved.ts`, `prefs.ts`, `investigation.ts`. Server-only: `providers/*` (RPC, Blockscout, Esplora, Solana, CoinGecko, GoPlus, Sourcify, selector DBs), `server/*` (lookups, security, cache, rate limit, API helpers) |
 | `config/` | `site.ts` (brand, nav, donation addresses), `tools.ts` |
-| `data/` | `chains.json` (generated from legacy), `chains-extra.json`, `explorers.json` (per-type routes), `explorer-health.json`, `sanctions.json`, `directory.json` |
+| `data/` | `chains.json`, `chains-extra.json` (added since), `chains-retired.json` (removed, with reasons), `explorers.json` (per-type routes), `explorer-health.json`, `sanctions.json`, `directory.json` |
 | `extension-src/` | Shared extension source; `extension-chrome/`, `extension-firefox/`, `extension-edge/` are the built, loadable extensions (hand-written `manifest.json` each) |
 | `scripts/` | Tests (`scripts/test/*.test.ts`), build/pack/health/sanctions/icon scripts, smoke tests, legacy converter |
-| `legacy/` | The pre-Next.js static site, kept for the parity test |
 
 ## Deploy (Vercel)
 

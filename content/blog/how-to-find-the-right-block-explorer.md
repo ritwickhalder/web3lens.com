@@ -44,7 +44,7 @@ The most reliable source for "the official explorer" is the chain's own document
 | Polkadot, Kusama | Subscan |
 | XRP Ledger | XRPL Explorer, Bithomp |
 
-These are the routes Web3Lens itself uses for the [46 chains with verified explorer pages](/explorer). There is usually a commercial explorer (the "-scan" family) and an open-source one (Blockscout for many EVM chains, mempool.space for Bitcoin). Having two is useful: when one is slow or rate-limits you, the other is a click away.
+These are the routes Web3Lens itself uses for the [200 chains with explorer routes](/explorer). There is usually a commercial explorer (the "-scan" family) and an open-source one (Blockscout for many EVM chains, mempool.space for Bitcoin). Having two is useful: when one is slow or rate-limits you, the other is a click away.
 
 ## Step 3: Check the explorer is genuine
 

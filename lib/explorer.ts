@@ -1,5 +1,5 @@
 import healthJson from '@/data/explorer-health.json';
-import { explorerRoutes, formatChainIds, type Chain, type ExplorerRoute, type QueryKind } from '@/lib/chains';
+import { explorerRoutes, formatChainIds, routeOwnerId, type Chain, type ExplorerRoute, type QueryKind } from '@/lib/chains';
 import { detectAll, type Detection } from '@/lib/detect';
 
 export type ExplorerAction =
@@ -64,8 +64,19 @@ export function isSafeExternalUrl(href: string): boolean {
 // Health data (scripts/check-explorers.mjs writes data/explorer-health.json)
 
 export type HostHealth = { ok: boolean; https: boolean; status: number | null; error?: string };
-type HealthFile = { checkedAt: string | null; hosts: Record<string, HostHealth> };
+/** A chain's explorer page that failed although its host may be up (404 for a delisted coin, a parked domain…). */
+export type PageHealth = { route?: string; url: string; verdict: 'dead' | 'notfound' | 'parked'; status: number | null; error?: string };
+type HealthFile = { checkedAt: string | null; hosts: Record<string, HostHealth>; chains?: Record<string, PageHealth[]> };
 const HEALTH = healthJson as HealthFile;
+
+/** The failed page for a chain's route (by explorer name) or, without `route`, its legacy explorer. */
+export function pageFailure(chainId: string, route?: string): PageHealth | undefined {
+  return HEALTH.chains?.[chainId]?.find((p) => (route ? p.route === route : !p.route));
+}
+
+function pageError(p: PageHealth): string {
+  return p.error ?? (p.verdict === 'notfound' ? `HTTP ${p.status ?? 404}: this chain's page is gone` : p.verdict === 'parked' ? 'the domain is parked or for sale' : `HTTP ${p.status}`);
+}
 
 export function explorerHealthCheckedAt(): string | null {
   return HEALTH.checkedAt;
@@ -85,9 +96,13 @@ function upgradeHttp(href: string): string {
   return hostHealth(href)?.https ? `https://${href.slice('http://'.length)}` : href;
 }
 
-/** True when the chain has no per-type routes and its only (legacy) explorer didn't respond at the last check. */
+/**
+ * True when the chain has no per-type routes and its only (legacy) explorer didn't work at the last check:
+ * the host didn't respond, or the chain's own page was missing or parked.
+ */
 export function explorerDown(chain: Chain): boolean {
   if (explorerRoutes(chain).length) return false;
+  if (pageFailure(chain.id)) return true;
   const e = chain.explorer;
   const href = e.kind === 'url' ? e.url.replace('{q}', '') : e.kind === 'form' ? e.action : null;
   return href ? hostHealth(href)?.ok === false : false;
@@ -117,7 +132,8 @@ export function detectionFor(chain: Chain, query: string): Detection | null {
   return detectAll(query).find((d) => d.chains.some((c) => ids.includes(c))) ?? null;
 }
 
-function appliesTo(d: Detection, chain: Chain): boolean {
+/** Whether a detected format belongs on `chain` (its own formats, its host chain's, or EVM formats on any EVM chain). */
+export function appliesTo(d: Detection, chain: Chain): boolean {
   const ids = formatChainIds(chain);
   return d.chains.some((c) => ids.includes(c));
 }
@@ -140,10 +156,17 @@ function templateFor(route: ExplorerRoute, kind: QueryKind): string | undefined 
   return route[kind] ?? route.search;
 }
 
-function withHealth(action: ExplorerAction): Pick<ResolvedSearch, 'unreachable'> {
+function withHealth(action: ExplorerAction, page?: PageHealth): Pick<ResolvedSearch, 'unreachable'> {
   const href = action.kind === 'url' ? action.href : action.action;
   const h = hostHealth(href);
-  return h && !h.ok ? { unreachable: { checkedAt: HEALTH.checkedAt, error: h.error } } : {};
+  if (h && !h.ok) return { unreachable: { checkedAt: HEALTH.checkedAt, error: h.error } };
+  return page ? { unreachable: { checkedAt: HEALTH.checkedAt, error: pageError(page) } } : {};
+}
+
+/** The page check for a route: routes are recorded under the chain that owns them (the host chain for tokens). */
+function routeFailure(chain: Chain, route: ExplorerRoute): PageHealth | undefined {
+  const owner = routeOwnerId(chain);
+  return owner ? pageFailure(owner, route.name) : undefined;
 }
 
 /**
@@ -164,11 +187,11 @@ export function resolveExplorer(
     const template = templateFor(route, kind);
     if (!template) continue;
     const action: ExplorerAction = { kind: 'url', href: template.replace('{q}', encodeURIComponent(q)) };
-    return { action, explorer: route.name, kind: template === route.search && kind !== 'search' ? 'search' : kind, ...withHealth(action) };
+    return { action, explorer: route.name, kind: template === route.search && kind !== 'search' ? 'search' : kind, ...withHealth(action, routeFailure(chain, route)) };
   }
   const legacy = resolveLegacyExplorer(chain, q);
   const action: ExplorerAction = legacy.kind === 'url' ? { kind: 'url', href: upgradeHttp(legacy.href) } : { ...legacy, action: upgradeHttp(legacy.action) };
-  return { action, kind: 'search', fallback: chain.fallback, ...withHealth(action) };
+  return { action, kind: 'search', fallback: chain.fallback, ...withHealth(action, pageFailure(chain.id)) };
 }
 
 export type ExplorerLink = { name: string; href: string; kind: QueryKind; unreachable?: boolean };
@@ -183,13 +206,13 @@ export function explorerLinks(chain: Chain, query: string, detection?: Detection
     const template = templateFor(route, kind);
     if (!template) continue;
     const href = template.replace('{q}', encodeURIComponent(q));
-    links.push({ name: route.name, href, kind, unreachable: hostHealth(href)?.ok === false });
+    links.push({ name: route.name, href, kind, unreachable: hostHealth(href)?.ok === false || Boolean(routeFailure(chain, route)) });
   }
   if (links.length === 0) {
     const legacy = resolveLegacyExplorer(chain, q);
     if (legacy.kind === 'url') {
       const href = upgradeHttp(legacy.href);
-      links.push({ name: new URL(href).hostname.replace(/^www\./, ''), href, kind: 'search', unreachable: hostHealth(href)?.ok === false });
+      links.push({ name: new URL(href).hostname.replace(/^www\./, ''), href, kind: 'search', unreachable: hostHealth(href)?.ok === false || Boolean(pageFailure(chain.id)) });
     }
   }
   return links;
