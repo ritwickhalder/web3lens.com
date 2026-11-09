@@ -248,7 +248,7 @@ export function SmartSearch({
         </div>
         <button
           type="submit"
-          className="group flex h-14 items-center justify-center gap-2 rounded-xl bg-accent px-8 text-base font-extrabold text-ink transition-colors hover:bg-accent-hover md:h-16"
+          className="group flex h-14 cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-8 text-base font-extrabold text-ink transition-colors hover:bg-accent-hover md:h-16"
         >
           Search
           <ArrowRight aria-hidden weight="bold" className="size-5 transition-transform group-hover:translate-x-0.5" />
