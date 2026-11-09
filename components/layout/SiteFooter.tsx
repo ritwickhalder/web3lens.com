@@ -103,6 +103,10 @@ export function SiteFooter() {
             <a href={SITE.author.url} target="_blank" rel="noopener noreferrer" className="text-muted underline underline-offset-2 hover:text-fg">
               {SITE.author.name}
             </a>
+            {' · '}
+            <a href={SITE.author.youtube} target="_blank" rel="noopener noreferrer" className="text-muted underline underline-offset-2 hover:text-fg">
+              YouTube
+            </a>
           </p>
           <p>Links out to third-party explorers; not responsible for their content.</p>
         </div>

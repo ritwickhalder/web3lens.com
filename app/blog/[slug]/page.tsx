@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Clock, GithubLogo, ListBullets } from '@phosphor-icons/react/dist/ssr';
+import { ArrowLeft, ArrowRight, Clock, GithubLogo, ListBullets, YoutubeLogo } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArticleCta } from '@/components/blog/ArticleCta';
@@ -155,9 +155,14 @@ export default async function BlogPost({ params }: Props) {
                       </span>
                     ))}
                   </p>
-                  <a href={SITE.author.github} target="_blank" rel="noopener me" className="mt-3 inline-flex items-center gap-1.5 font-bold text-fg hover:text-accent">
-                    <GithubLogo aria-hidden weight="bold" className="size-4" /> github.com/ritwickhalder
-                  </a>
+                  <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                    <a href={SITE.author.github} target="_blank" rel="noopener me" className="inline-flex items-center gap-1.5 font-bold text-fg hover:text-accent">
+                      <GithubLogo aria-hidden weight="bold" className="size-4" /> github.com/ritwickhalder
+                    </a>
+                    <a href={SITE.author.youtube} target="_blank" rel="noopener me" className="inline-flex items-center gap-1.5 font-bold text-fg hover:text-accent">
+                      <YoutubeLogo aria-hidden weight="bold" className="size-4" /> youtube.com/@ritwick.halder
+                    </a>
+                  </div>
                 </div>
               </section>
             </footer>
