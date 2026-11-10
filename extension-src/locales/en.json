@@ -610,5 +610,22 @@
     "networkOff": "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
     "expired": "Your sign-in has expired. Sign in again.",
     "error": "Sign-in didn't work. Try again in a moment."
+  },
+  "pro": {
+    "upgradeBatch": "Pro checks batches of {max} values with balances for all of them.",
+    "seePro": "See Pro on web3lens.com",
+    "usage": "Cross-chain balance lookups today: {used} of {limit}.",
+    "balancesCapped": "Balances are checked for the first {max} EVM addresses on your plan.",
+    "dailyLimitShort": "Daily limit reached",
+    "dailyLimit": "You've used today's {limit} cross-chain balance lookups. They reset at 00:00 UTC.",
+    "proOnly": "Pro feature",
+    "exportJson": "Export JSON",
+    "savedFull": "{count} weren't saved: your plan keeps up to {max} saved items.",
+    "syncOn": "Cloud sync is on.",
+    "syncedAt": "Last synced {date}.",
+    "syncFailed": "Sync failed. Your saved items are safe in the extension.",
+    "syncNow": "Sync now",
+    "syncing": "Syncing…",
+    "savedCapNote": "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
   }
 }

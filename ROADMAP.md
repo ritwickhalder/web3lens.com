@@ -151,8 +151,9 @@ Three releases (plan in [docs/ACCOUNTS.md](docs/ACCOUNTS.md)):
 1. **Foundation** — built 2026-11-10, not live: Google sign-in, Neon schema and migrations, Paddle monthly/yearly/
    lifetime + 7-day trial with verified idempotent webhooks, central entitlements (`lib/entitlements.ts`), daily
    quota counters, `/account`, extension sign-in.
-2. **Monetisation** — next: batch limits (Free 10 / Pro 500), batch balances (5 / 500), cloud sync of saved
-   addresses (Pro 2,000), cloud investigations (100), JSON export, API keys (1,000/day), `/pricing`.
+2. **Monetisation** — built 2026-11-10, not live: batch limits (Free 10 / Pro 500), server-enforced batch balances
+   (5 / 500 rows, 10 / 500 lookups a day), cloud sync of saved addresses (Pro 2,000) in the website and extensions,
+   collections, cloud investigations (100), JSON export, API keys (1,000/day), `/pricing`, inline upgrade notes.
 3. **Expansion** — later: wallet monitoring, activity alerts, portfolio analysis.
 
 Decided November 2026: build after accounts (Phase 4). Rule: safety stays free for everyone — detection,

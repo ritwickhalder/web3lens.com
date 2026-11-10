@@ -86,7 +86,7 @@ test('every key used in extension-src exists, and every English key is used', ()
   const code = fs.readdirSync(src, { recursive: true }).filter((f) => String(f).endsWith('.ts')).map((f) => fs.readFileSync(path.join(src, String(f)), 'utf8')).join('\n');
   const used = new Set([...code.matchAll(/['`]([a-zA-Z0-9]+(?:\.[a-zA-Z0-9-]+)+)['`]/g)].map((m) => m[1]).filter((k) => /^[a-z]/.test(k) && !/\.(json|html|com|js|eth)$/.test(k)));
   for (const tool of TOOLS) for (const f of ['title', 'short', 'description']) used.add(`tool.${tool.slug}.${f}`);
-  for (const k of used) if (/^(common|theme|language|picker|popup|hero|examples|scan|toolsNav|tool|gas|saved|settings|info|search|source|api|result|risk|multichain|locate|unit|validator|hex|time|gascalc|abi|txdec|app|batch|savedPage|detect|account)\./.test(k)) assert.ok(k in EN, `used but missing from en.json: ${k}`);
+  for (const k of used) if (/^(common|theme|language|picker|popup|hero|examples|scan|toolsNav|tool|gas|saved|settings|info|search|source|api|result|risk|multichain|locate|unit|validator|hex|time|gascalc|abi|txdec|app|batch|savedPage|detect|account|pro)\./.test(k)) assert.ok(k in EN, `used but missing from en.json: ${k}`);
   const unused = Object.keys(EN).filter((k) => !used.has(k));
   assert.deepEqual(unused, [], 'keys in en.json that nothing uses');
 });

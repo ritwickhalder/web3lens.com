@@ -62,6 +62,12 @@ export const LIMITS: Record<Tier, Limits> = {
 
 export const limitsFor = (plan: Plan): Limits => LIMITS[tierOf(plan)];
 
+/**
+ * What everyone gets while Pro can't be bought yet (billing not configured): the limits Web3Lens had before Pro,
+ * so switching the code on never takes anything away from users who have no way to upgrade.
+ */
+export const PRE_LAUNCH_LIMITS: Limits = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
+
 /** Features that are on or off per tier (numbers live in LIMITS). */
 export type Feature = 'cloudSync' | 'investigations' | 'jsonExport' | 'apiKeys';
 
@@ -105,4 +111,6 @@ export type MeResponse = {
   usage: Record<Metric, { used: number; limit: number; resetsAt: string }>;
   trial: { status: 'available' | 'active' | 'used'; endsAt: string | null };
   checkedAt: string;
+  /** Pro can be bought on this deployment (Paddle configured). Until then everyone gets PRE_LAUNCH_LIMITS. */
+  billing: boolean;
 };

@@ -610,5 +610,22 @@
     "networkOff": "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
     "expired": "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
     "error": "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
+  },
+  "pro": {
+    "upgradeBatch": "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",
+    "seePro": "Pro auf web3lens.com ansehen",
+    "usage": "Kettenübergreifende Guthabenabfragen heute: {used} von {limit}.",
+    "balancesCapped": "Guthaben werden in deinem Tarif für die ersten {max} EVM-Adressen geprüft.",
+    "dailyLimitShort": "Tageslimit erreicht",
+    "dailyLimit": "Du hast die {limit} kettenübergreifenden Guthabenabfragen für heute verbraucht. Sie werden um 00:00 UTC zurückgesetzt.",
+    "proOnly": "Pro-Funktion",
+    "exportJson": "Als JSON exportieren",
+    "savedFull": "{count} wurden nicht gespeichert: Dein Tarif behält bis zu {max} gespeicherte Einträge.",
+    "syncOn": "Cloud-Synchronisierung ist an.",
+    "syncedAt": "Zuletzt synchronisiert: {date}.",
+    "syncFailed": "Synchronisierung fehlgeschlagen. Deine gespeicherten Einträge sind in der Erweiterung sicher.",
+    "syncNow": "Jetzt synchronisieren",
+    "syncing": "Synchronisiere…",
+    "savedCapNote": "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
   }
 }

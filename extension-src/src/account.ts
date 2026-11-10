@@ -11,7 +11,8 @@
  * copy of /api/me for display; the server enforces every limit. Everything else in the extension works signed out
  * and offline, exactly as before.
  */
-import type { MeResponse, Plan } from '@/lib/entitlements';
+import { limitsFor, PRE_LAUNCH_LIMITS, type Limits, type MeResponse, type Plan } from '@/lib/entitlements';
+import type { MultichainResult } from '@/lib/lookup-types';
 import { ext, isFirefox, openTab } from './browser';
 
 export const ACCOUNT_ORIGIN = 'https://web3lens.com';
@@ -20,7 +21,7 @@ export const REFRESH_MS = 12 * 3600_000;
 /** Offline grace: a cached Pro plan older than this shows as Free until web3lens.com answers again. */
 export const OFFLINE_GRACE_MS = 7 * 24 * 3600_000;
 
-export type CachedMe = Pick<MeResponse, 'plan' | 'tier' | 'until' | 'renews'> & { email: string };
+export type CachedMe = Pick<MeResponse, 'plan' | 'tier' | 'until' | 'renews' | 'billing'> & { email: string };
 
 export type AccountRecord = {
   token: string | null;
@@ -41,7 +42,7 @@ export function sanitizeAccount(raw: unknown): AccountRecord {
   const m = r.me as Partial<CachedMe> | null | undefined;
   const me: CachedMe | null =
     token && m && typeof m.email === 'string' && PLANS.includes(m.plan as Plan)
-      ? { email: m.email.slice(0, 200), plan: m.plan as Plan, tier: m.plan === 'free' ? 'free' : 'pro', until: typeof m.until === 'string' ? m.until : null, renews: m.renews === true }
+      ? { email: m.email.slice(0, 200), plan: m.plan as Plan, tier: m.plan === 'free' ? 'free' : 'pro', until: typeof m.until === 'string' ? m.until : null, renews: m.renews === true, billing: m.billing === true }
       : null;
   const p = r.pending;
   const pending =
@@ -58,7 +59,7 @@ async function saveAccount(a: AccountRecord) {
   await ext.storage.local.set({ account: sanitizeAccount(a) });
 }
 
-const toCached = (me: MeResponse): CachedMe => ({ email: me.user.email, plan: me.plan, tier: me.tier, until: me.until, renews: me.renews });
+const toCached = (me: MeResponse): CachedMe => ({ email: me.user.email, plan: me.plan, tier: me.tier, until: me.until, renews: me.renews, billing: me.billing });
 
 /** The plan to show: the cached one, or Free when it is too old to trust (offline grace over) or has ended. */
 export function displayPlan(a: AccountRecord, now = Date.now()): Plan | null {
@@ -66,6 +67,39 @@ export function displayPlan(a: AccountRecord, now = Date.now()): Plan | null {
   if (now - a.refreshedAt > OFFLINE_GRACE_MS) return 'free';
   if (a.me.plan === 'pro' && a.me.until && Date.parse(a.me.until) <= now) return 'free';
   return a.me.plan;
+}
+
+/**
+ * Limits to apply in the extension's UI. The server enforces the ones that matter (balances, cloud, API); these
+ * shape the batch box and the local saved-items cap. Before Pro is on sale (or when unknown, signed out) everyone
+ * keeps the pre-Pro limits.
+ */
+export function extLimits(a: AccountRecord, now = Date.now()): Limits {
+  const plan = displayPlan(a, now);
+  if (!plan || !a.me?.billing) return plan && plan !== 'free' ? limitsFor(plan) : PRE_LAUNCH_LIMITS;
+  return limitsFor(plan);
+}
+
+export type BalancesAnswer =
+  | { ok: true; results: { address: string; result: MultichainResult | null; error: string | null }[]; usage: { used: number; limit: number } | null }
+  | { ok: false; status: number; usage: { used: number; limit: number } | null };
+
+/** Batch balances through the server, which enforces rows per batch and the daily quota (bearer when signed in). */
+export async function batchBalances(addresses: string[]): Promise<BalancesAnswer> {
+  const a = await loadAccount();
+  const res = await call('/api/batch/balances', { method: 'POST', token: a.token, body: JSON.stringify({ addresses }) }).catch(() => null);
+  if (!res) return { ok: false, status: 0, usage: null };
+  const body = (await res.json().catch(() => null)) as { results?: unknown; usage?: { used: number; limit: number } | null } | null;
+  const usage = body?.usage && typeof body.usage.used === 'number' && typeof body.usage.limit === 'number' ? { used: body.usage.used, limit: body.usage.limit } : null;
+  if (!res.ok || !Array.isArray(body?.results)) return { ok: false, status: res.status, usage };
+  return { ok: true, results: body.results as BalancesAnswer extends { results: infer R } ? R : never, usage };
+}
+
+/** Authenticated call for sync (bearer only; signed out = null). */
+export async function authedCall(path: string, init: RequestInit = {}): Promise<Response | null> {
+  const a = await loadAccount();
+  if (!a.token) return null;
+  return call(path, { ...init, token: a.token }).catch(() => null);
 }
 
 function browserName(): 'chrome' | 'edge' | 'firefox' {

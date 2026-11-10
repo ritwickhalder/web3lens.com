@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
       </InfoSection>
       <InfoSection index={3} heading="Stored in your browser">
         Recent searches, saved addresses with your labels and notes, and your settings are kept in your browser's local storage (or the
-        extension's storage) and never sent to us. You can export or delete them on the <Link href="/saved">Saved</Link> and{' '}
+        extension's storage) and never sent to us, unless you have Pro and cloud sync copies them to your account (see below). You can export or delete them on the <Link href="/saved">Saved</Link> and{' '}
         <Link href="/settings">Settings</Link> pages. Shared investigation links carry their contents in the part of the URL after the
         “#”, which browsers don't send to servers; anyone you give such a link to can read it.
       </InfoSection>
@@ -61,7 +61,10 @@ export default function PrivacyPolicyPage() {
         You can use Web3Lens without an account. If you sign in with Google, we receive and store your name, email address and profile
         picture, plus the sessions that keep you signed in on the website and in the extension (you can end them on your account page).
         Google's sign-in tokens are stored encrypted, and we ask Google for nothing beyond your basic profile. To enforce plan limits we
-        count usage per day (a number, not what you looked up). We never ask for, receive or store private keys, seed phrases or any other
+        count usage per day (a number, not what you looked up; without an account the count is keyed by a salted hash of
+        your IP address, never the address itself). With Pro, the saved addresses, labels, notes, collections and
+        investigations you choose to keep in your account are stored so they reach your other devices, and API keys are
+        stored only as hashes. Deleting your account deletes all of them. We never ask for, receive or store private keys, seed phrases or any other
         wallet secret. Payments are handled by Paddle, our merchant of record: card details go to Paddle, never to us, and we keep only the
         subscription status Paddle reports. Signing in uses a cookie that keeps your session; it is not used for tracking. You can delete
         your account at any time from the account page.

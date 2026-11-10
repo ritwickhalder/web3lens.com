@@ -1,6 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { IBM_Plex_Mono, Manrope } from 'next/font/google';
+import { SyncAgent } from '@/components/account/SyncAgent';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           {children}
         </div>
         <SiteFooter />
+        <SyncAgent />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>

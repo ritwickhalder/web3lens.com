@@ -610,5 +610,22 @@
     "networkOff": "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
     "expired": "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
     "error": "Gagal masuk. Coba lagi sebentar lagi."
+  },
+  "pro": {
+    "upgradeBatch": "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",
+    "seePro": "Lihat Pro di web3lens.com",
+    "usage": "Pencarian saldo lintas rantai hari ini: {used} dari {limit}.",
+    "balancesCapped": "Saldo diperiksa untuk {max} alamat EVM pertama sesuai paket Anda.",
+    "dailyLimitShort": "Batas harian tercapai",
+    "dailyLimit": "Anda telah memakai {limit} pencarian saldo lintas rantai hari ini. Batas diatur ulang pukul 00:00 UTC.",
+    "proOnly": "Fitur Pro",
+    "exportJson": "Ekspor JSON",
+    "savedFull": "{count} tidak disimpan: paket Anda menyimpan hingga {max} item.",
+    "syncOn": "Sinkronisasi cloud aktif.",
+    "syncedAt": "Terakhir disinkronkan {date}.",
+    "syncFailed": "Sinkronisasi gagal. Item tersimpan Anda tetap aman di ekstensi.",
+    "syncNow": "Sinkronkan sekarang",
+    "syncing": "Menyinkronkan…",
+    "savedCapNote": "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
   }
 }

@@ -610,5 +610,22 @@
     "networkOff": "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
     "expired": "Tu sesión ha caducado. Vuelve a iniciar sesión.",
     "error": "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
+  },
+  "pro": {
+    "upgradeBatch": "Pro revisa lotes de {max} valores con saldos para todos.",
+    "seePro": "Ver Pro en web3lens.com",
+    "usage": "Consultas de saldo entre cadenas hoy: {used} de {limit}.",
+    "balancesCapped": "En tu plan se revisan los saldos de las primeras {max} direcciones EVM.",
+    "dailyLimitShort": "Límite diario alcanzado",
+    "dailyLimit": "Has usado las {limit} consultas de saldo entre cadenas de hoy. Se reinician a las 00:00 UTC.",
+    "proOnly": "Función Pro",
+    "exportJson": "Exportar JSON",
+    "savedFull": "{count} no se guardaron: tu plan guarda hasta {max} elementos.",
+    "syncOn": "La sincronización en la nube está activada.",
+    "syncedAt": "Última sincronización: {date}.",
+    "syncFailed": "La sincronización falló. Tus elementos guardados están seguros en la extensión.",
+    "syncNow": "Sincronizar ahora",
+    "syncing": "Sincronizando…",
+    "savedCapNote": "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
   }
 }

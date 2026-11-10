@@ -610,5 +610,22 @@
     "networkOff": "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
     "expired": "L'accesso è scaduto. Accedi di nuovo.",
     "error": "L'accesso non è riuscito. Riprova tra poco."
+  },
+  "pro": {
+    "upgradeBatch": "Pro controlla lotti di {max} valori con i saldi di tutti.",
+    "seePro": "Scopri Pro su web3lens.com",
+    "usage": "Ricerche di saldi multi-chain oggi: {used} su {limit}.",
+    "balancesCapped": "Con il tuo piano i saldi vengono controllati per i primi {max} indirizzi EVM.",
+    "dailyLimitShort": "Limite giornaliero raggiunto",
+    "dailyLimit": "Hai usato le {limit} ricerche di saldi multi-chain di oggi. Si azzerano alle 00:00 UTC.",
+    "proOnly": "Funzione Pro",
+    "exportJson": "Esporta JSON",
+    "savedFull": "{count} non sono stati salvati: il tuo piano conserva fino a {max} elementi.",
+    "syncOn": "La sincronizzazione cloud è attiva.",
+    "syncedAt": "Ultima sincronizzazione: {date}.",
+    "syncFailed": "Sincronizzazione non riuscita. I tuoi elementi salvati sono al sicuro nell'estensione.",
+    "syncNow": "Sincronizza ora",
+    "syncing": "Sincronizzazione…",
+    "savedCapNote": "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
   }
 }

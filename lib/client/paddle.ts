@@ -11,11 +11,17 @@ export const PADDLE_PUBLIC = {
   environment: process.env.NEXT_PUBLIC_PADDLE_ENV === 'sandbox' ? ('sandbox' as const) : ('production' as const),
 };
 
-export const billingLive = () => !!PADDLE_PUBLIC.token;
+export const PRICE_IDS = {
+  monthly: process.env.NEXT_PUBLIC_PADDLE_PRICE_MONTHLY ?? '',
+  yearly: process.env.NEXT_PUBLIC_PADDLE_PRICE_YEARLY ?? '',
+  lifetime: process.env.NEXT_PUBLIC_PADDLE_PRICE_LIFETIME ?? '',
+};
+
+export const billingLive = () => !!(PADDLE_PUBLIC.token && PRICE_IDS.monthly && PRICE_IDS.yearly && PRICE_IDS.lifetime);
 
 let paddle: Promise<Paddle | undefined> | null = null;
 
-function loadPaddle() {
+export function loadPaddle() {
   paddle ??= import('@paddle/paddle-js').then(({ initializePaddle }) => initializePaddle({ token: PADDLE_PUBLIC.token, environment: PADDLE_PUBLIC.environment }));
   return paddle;
 }

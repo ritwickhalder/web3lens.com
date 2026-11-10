@@ -5,6 +5,7 @@ import { clear, h } from '../dom';
 import { t } from '../i18n';
 import type { ExtSettings } from '../store';
 import { badge, card, note } from './common';
+import { syncStatus } from './sync-status';
 
 let poll: ReturnType<typeof setInterval> | null = null;
 let message: { text: string; tone: 'info' | 'warn' } | null = null;
@@ -43,6 +44,7 @@ function body(a: AccountRecord, settings: ExtSettings): (Node | null)[] {
     const stale = Date.now() - a.refreshedAt > 24 * 3600_000;
     return [
       h('p', { class: 'row wrap' }, h('span', null, t('account.signedInAs', { email: a.me.email })), planBadge(a)),
+      syncStatus(settings.network),
       stale ? h('p', { class: 'muted' }, t('account.offline', { date: new Date(a.refreshedAt).toLocaleDateString() })) : null,
       msg,
       h(

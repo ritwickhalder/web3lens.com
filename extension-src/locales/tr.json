@@ -610,5 +610,22 @@
     "networkOff": "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
     "expired": "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
     "error": "Giriş yapılamadı. Birazdan tekrar deneyin."
+  },
+  "pro": {
+    "upgradeBatch": "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",
+    "seePro": "Pro'yu web3lens.com'da inceleyin",
+    "usage": "Bugünkü zincirler arası bakiye sorguları: {limit} içinden {used}.",
+    "balancesCapped": "Planınızda ilk {max} EVM adresinin bakiyesi kontrol edilir.",
+    "dailyLimitShort": "Günlük sınıra ulaşıldı",
+    "dailyLimit": "Bugünkü {limit} zincirler arası bakiye sorgusunu kullandınız. 00:00 UTC'de sıfırlanır.",
+    "proOnly": "Pro özelliği",
+    "exportJson": "JSON olarak dışa aktar",
+    "savedFull": "{count} öğe kaydedilmedi: planınız en fazla {max} öğe tutar.",
+    "syncOn": "Bulut eşitleme açık.",
+    "syncedAt": "Son eşitleme: {date}.",
+    "syncFailed": "Eşitleme başarısız oldu. Kayıtlı öğeleriniz uzantıda güvende.",
+    "syncNow": "Şimdi eşitle",
+    "syncing": "Eşitleniyor…",
+    "savedCapNote": "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
   }
 }

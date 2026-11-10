@@ -610,5 +610,22 @@
     "networkOff": "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
     "expired": "Je sessie is verlopen. Log opnieuw in.",
     "error": "Inloggen is niet gelukt. Probeer het zo opnieuw."
+  },
+  "pro": {
+    "upgradeBatch": "Pro controleert batches van {max} waarden met saldi voor allemaal.",
+    "seePro": "Bekijk Pro op web3lens.com",
+    "usage": "Cross-chain saldo-opzoekingen vandaag: {used} van {limit}.",
+    "balancesCapped": "Met je abonnement worden de saldi van de eerste {max} EVM-adressen gecontroleerd.",
+    "dailyLimitShort": "Daglimiet bereikt",
+    "dailyLimit": "Je hebt de {limit} cross-chain saldo-opzoekingen van vandaag gebruikt. Ze worden om 00:00 UTC gereset.",
+    "proOnly": "Pro-functie",
+    "exportJson": "JSON exporteren",
+    "savedFull": "{count} zijn niet opgeslagen: je abonnement bewaart tot {max} items.",
+    "syncOn": "Cloudsynchronisatie staat aan.",
+    "syncedAt": "Laatst gesynchroniseerd: {date}.",
+    "syncFailed": "Synchroniseren mislukt. Je opgeslagen items zijn veilig in de extensie.",
+    "syncNow": "Nu synchroniseren",
+    "syncing": "Synchroniseren…",
+    "savedCapNote": "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
   }
 }

@@ -6,7 +6,8 @@
 import { DEFAULT_PREFS, sanitizePrefs, type Prefs } from '@/lib/prefs';
 import type { Theme } from '@/lib/theme';
 import type { RecentSearch } from '@/lib/recent';
-import { MAX_SAVED, sanitizeSaved, savedId, type SavedItem } from '@/lib/saved';
+import { applyUpsert, MAX_SAVED, mergeImport, sanitizeSaved, sanitizeTombstones, type SavedItem, type SavedTombstone, type UpsertResult } from '@/lib/saved';
+import { extLimits, loadAccount } from './account';
 import { ext } from './browser';
 import { isLocale, type LanguagePref } from './locales';
 
@@ -77,25 +78,47 @@ export async function clearRecent() {
   await ext.storage.local.set({ recent: [] });
 }
 
-export async function upsertSaved(item: { query: string; chainId: string | null; label?: string; note?: string; favourite?: boolean }) {
+/** The cap for adding new saved items: the signed-in plan (cached), Free when signed out. Existing items are never cut. */
+export async function savedCap(): Promise<number> {
+  return extLimits(await loadAccount()).savedLocal;
+}
+
+export async function loadTombstones(): Promise<SavedTombstone[]> {
+  return sanitizeTombstones((await ext.storage.local.get(['savedDeleted'])).savedDeleted);
+}
+
+export async function setTombstones(list: SavedTombstone[]) {
+  await ext.storage.local.set({ savedDeleted: sanitizeTombstones(list) });
+}
+
+export async function upsertSaved(item: { query: string; chainId: string | null; label?: string; note?: string; favourite?: boolean }): Promise<UpsertResult> {
   const { saved } = await load();
-  const id = savedId(item.query, item.chainId);
-  const existing = saved.find((x) => x.id === id);
-  const next: SavedItem = {
-    id,
-    query: item.query.trim(),
-    chainId: item.chainId,
-    label: (item.label ?? existing?.label ?? '').slice(0, 80),
-    note: (item.note ?? existing?.note ?? '').slice(0, 1000),
-    favourite: item.favourite ?? existing?.favourite ?? false,
-    addedAt: existing?.addedAt ?? Date.now(),
-  };
-  await setSaved([next, ...saved.filter((x) => x.id !== id)]);
+  const r = applyUpsert(saved, item, await savedCap());
+  if (r.result !== 'limit') await setSaved(r.list);
+  return r.result;
 }
 
 export async function removeSaved(id: string) {
   const { saved } = await load();
   await setSaved(saved.filter((x) => x.id !== id));
+  await setTombstones([...(await loadTombstones()).filter((x) => x.id !== id), { id, deletedAt: Date.now() }]);
+}
+
+/** Settings → Delete saved items (behind a confirm); remembered as deletions so sync removes them everywhere. */
+export async function clearSaved() {
+  const { saved } = await load();
+  const now = Date.now();
+  const ids = new Set(saved.map((x) => x.id));
+  await setSaved([]);
+  await setTombstones([...(await loadTombstones()).filter((x) => !ids.has(x.id)), ...[...ids].map((id) => ({ id, deletedAt: now }))]);
+}
+
+/** Import adds or updates only; new items stop at the plan's cap (the rest stay in the file). */
+export async function importSaved(incoming: SavedItem[]): Promise<{ imported: number; skipped: number }> {
+  const { saved } = await load();
+  const r = mergeImport(saved, incoming, await savedCap());
+  await setSaved(r.list);
+  return { imported: r.imported, skipped: r.skipped };
 }
 
 export function onStorageChange(cb: () => void) {

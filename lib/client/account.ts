@@ -3,7 +3,8 @@
  * The website's view of the signed-in account: one shared /api/me fetch for the header, /account and the connect
  * page. Display only: every limit is enforced by the server, whatever this says.
  */
-import type { MeResponse } from '@/lib/entitlements';
+import { limitsFor, PRE_LAUNCH_LIMITS, type Limits, type MeResponse, type Plan } from '@/lib/entitlements';
+import { setSavedCap } from '@/lib/saved';
 
 export type AccountState =
   | { status: 'loading' }
@@ -13,13 +14,25 @@ export type AccountState =
   | { status: 'signedIn'; me: MeResponse };
 
 let state: AccountState = { status: 'loading' };
+/** From /api/me for signed-out visitors: whether Pro is on sale here. */
+let signedOutBilling = false;
 let inflight: Promise<void> | null = null;
 const listeners = new Set<() => void>();
 
 const emit = (next: AccountState) => {
   state = next;
+  // The local saved-items cap follows the plan (signed out = Free); it only limits adding new items.
+  setSavedCap(planOfState(next).limits.savedLocal);
   for (const l of listeners) l();
 };
+
+/** Plan and limits for display (signed out or loading = Free). The server enforces the real limits. */
+export function planOfState(s: AccountState): { plan: Plan; limits: Limits; signedIn: boolean; launched: boolean } {
+  if (s.status === 'signedIn') return { plan: s.me.plan, limits: s.me.limits, signedIn: true, launched: s.me.billing };
+  // Pro limits start only where Pro can be bought; until /api/me says so, keep the pre-Pro limits.
+  const launched = s.status === 'signedOut' && signedOutBilling;
+  return { plan: 'free', limits: launched ? limitsFor('free') : PRE_LAUNCH_LIMITS, signedIn: false, launched };
+}
 
 export function refreshAccount(): Promise<void> {
   inflight ??= fetch('/api/me', { cache: 'no-store', credentials: 'same-origin' })
@@ -27,7 +40,10 @@ export function refreshAccount(): Promise<void> {
     .then((b: (MeResponse & { accounts?: boolean }) | { signedIn: false; accounts?: boolean } | null) => {
       if (!b || b.accounts === false) emit({ status: 'unavailable' });
       else if (b.signedIn) emit({ status: 'signedIn', me: b as MeResponse });
-      else emit({ status: 'signedOut' });
+      else {
+        signedOutBilling = (b as { billing?: boolean }).billing === true;
+        emit({ status: 'signedOut' });
+      }
     })
     .catch(() => emit(state.status === 'loading' ? { status: 'unavailable' } : state))
     .finally(() => {
@@ -108,7 +124,7 @@ export async function signOut(): Promise<void> {
 }
 
 /** Same-origin JSON call to an account route; throws the server's message on failure. */
-export async function accountCall<T>(path: string, method: 'POST' | 'DELETE' | 'GET', body?: unknown): Promise<T> {
+export async function accountCall<T>(path: string, method: 'POST' | 'DELETE' | 'GET' | 'PATCH' | 'PUT', body?: unknown): Promise<T> {
   const r = await fetch(path, {
     method,
     credentials: 'same-origin',

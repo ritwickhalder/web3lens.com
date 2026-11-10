@@ -1,5 +1,5 @@
 import { accountJson, accountOptions } from '@/lib/server/account-http';
-import { accountsConfigured } from '@/lib/server/env';
+import { accountsConfigured, billingConfigured } from '@/lib/server/env';
 import { currentUser, meFor } from '@/lib/server/session';
 
 /**
@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   const who = await currentUser(request.headers);
   if (!who) {
     if (request.headers.get('authorization')) return accountJson(request, { error: 'Session expired. Sign in again.' }, 401);
-    return accountJson(request, { signedIn: false, accounts: true });
+    return accountJson(request, { signedIn: false, accounts: true, billing: billingConfigured() });
   }
   return accountJson(request, { ...(await meFor(who.user)), accounts: true });
 }

@@ -610,5 +610,22 @@
     "networkOff": "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
     "expired": "登录已过期，请重新登录。",
     "error": "登录失败，请稍后再试。"
+  },
+  "pro": {
+    "upgradeBatch": "Pro 可一次检查 {max} 个值，并查询全部余额。",
+    "seePro": "在 web3lens.com 查看 Pro",
+    "usage": "今日跨链余额查询：{used} / {limit}。",
+    "balancesCapped": "你的套餐会检查前 {max} 个 EVM 地址的余额。",
+    "dailyLimitShort": "已达每日上限",
+    "dailyLimit": "你已用完今日的 {limit} 次跨链余额查询，将于 00:00 UTC 重置。",
+    "proOnly": "Pro 功能",
+    "exportJson": "导出 JSON",
+    "savedFull": "{count} 项未保存：你的套餐最多保存 {max} 项。",
+    "syncOn": "云同步已开启。",
+    "syncedAt": "上次同步：{date}。",
+    "syncFailed": "同步失败。你保存的项目仍安全地保存在扩展中。",
+    "syncNow": "立即同步",
+    "syncing": "正在同步…",
+    "savedCapNote": "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
   }
 }

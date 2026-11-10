@@ -54,7 +54,11 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
   `membership.ts`) and quotas are taken with one conditional upsert (`consumeQuota`). Never trust a client's plan.
 - Every user query filters by the session's user id. Never store wallet secrets (tested). Schema change:
   edit `schema.ts`, `npm run db:generate`, commit the SQL, `npm run db:migrate` against Neon before deploying.
-- `scripts/test/accounts.test.ts` runs migrations, webhooks, quotas and sessions on PGlite (in process).
+- `scripts/test/accounts.test.ts` and `pro.test.ts` run migrations, webhooks, quotas, sessions, sync, collections,
+  investigations and API keys on PGlite (in process).
+- Saved items: the plan cap applies only when adding (`applyUpsert`); never trim or hide existing items. Sync uses the
+  shared merge in `lib/saved-sync.ts` (newest change wins, user deletions as tombstones, a failed pull writes nothing).
+- Until Paddle is configured, Free gets `PRE_LAUNCH_LIMITS` (the pre-Pro limits). Open work: [TODO.md](TODO.md).
 
 ## Browser extensions
 

@@ -610,5 +610,22 @@
     "networkOff": "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
     "expired": "로그인이 만료되었습니다. 다시 로그인하세요.",
     "error": "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
+  },
+  "pro": {
+    "upgradeBatch": "Pro는 {max}개 값의 일괄 조회와 모든 항목의 잔액 확인을 지원합니다.",
+    "seePro": "web3lens.com에서 Pro 보기",
+    "usage": "오늘 크로스체인 잔액 조회: {limit}회 중 {used}회.",
+    "balancesCapped": "현재 요금제에서는 처음 {max}개 EVM 주소의 잔액만 확인합니다.",
+    "dailyLimitShort": "일일 한도 도달",
+    "dailyLimit": "오늘의 크로스체인 잔액 조회 {limit}회를 모두 사용했습니다. 00:00 UTC에 초기화됩니다.",
+    "proOnly": "Pro 기능",
+    "exportJson": "JSON 내보내기",
+    "savedFull": "{count}개는 저장되지 않았습니다. 현재 요금제는 최대 {max}개까지 저장합니다.",
+    "syncOn": "클라우드 동기화가 켜져 있습니다.",
+    "syncedAt": "마지막 동기화: {date}.",
+    "syncFailed": "동기화에 실패했습니다. 저장한 항목은 확장 프로그램에 안전하게 남아 있습니다.",
+    "syncNow": "지금 동기화",
+    "syncing": "동기화 중…",
+    "savedCapNote": "저장한 항목이 {max}개에 도달했습니다. 기존 항목은 그대로 유지되지만 새 항목을 추가할 공간이 없습니다. Pro는 {pro}개를 기기 간에 동기화합니다."
   }
 }

@@ -6,7 +6,7 @@
  * Google's OAuth tokens are encrypted at rest by Better Auth (lib/server/auth.ts).
  */
 import { sql } from 'drizzle-orm';
-import { boolean, check, index, integer, pgTable, primaryKey, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core';
+import { boolean, check, index, integer, jsonb, pgTable, primaryKey, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core';
 
 const ts = (name: string) => timestamp(name, { withTimezone: true, mode: 'date' });
 
@@ -189,4 +189,102 @@ export const extensionPairings = pgTable(
     claimedAt: ts('claimed_at'),
   },
   (t) => [index('pairings_expires_idx').on(t.expiresAt)],
+);
+
+/* ---- Pro: cloud data (Phase 2) ---- */
+
+/**
+ * Saved addresses synced across devices (Pro). One row per item per user; deletions are tombstones (`deleted_at`) so
+ * they reach the user's other devices. `updated_at` is the client's edit time (newest edit wins); `synced_at` is the
+ * server's write time, used as the pull cursor so device clock skew can't hide changes.
+ */
+export const savedItems = pgTable(
+  'saved_items',
+  {
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    itemKey: text('item_key').notNull(),
+    query: text('query').notNull(),
+    chainId: text('chain_id'),
+    label: text('label').notNull().default(''),
+    note: text('note').notNull().default(''),
+    favourite: boolean('favourite').notNull().default(false),
+    addedAt: ts('added_at').notNull(),
+    updatedAt: ts('updated_at').notNull(),
+    deletedAt: ts('deleted_at'),
+    syncedAt: ts('synced_at').notNull().defaultNow(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.userId, t.itemKey] }),
+    index('saved_items_user_synced_idx').on(t.userId, t.syncedAt),
+    check('saved_items_len_ck', sql`length(${t.itemKey}) <= 300 and length(${t.query}) <= 200 and length(${t.label}) <= 80 and length(${t.note}) <= 1000`),
+  ],
+);
+
+/** Named groups of saved items (Pro). */
+export const collections = pgTable(
+  'collections',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    name: text('name').notNull(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    updatedAt: ts('updated_at').notNull().defaultNow(),
+  },
+  (t) => [uniqueIndex('collections_user_name_uq').on(t.userId, sql`lower(${t.name})`), check('collections_name_ck', sql`length(${t.name}) between 1 and 60`)],
+);
+
+export const collectionItems = pgTable(
+  'collection_items',
+  {
+    collectionId: uuid('collection_id')
+      .notNull()
+      .references(() => collections.id, { onDelete: 'cascade' }),
+    itemKey: text('item_key').notNull(),
+    addedAt: ts('added_at').notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.collectionId, t.itemKey] }), check('collection_items_key_ck', sql`length(${t.itemKey}) <= 300`)],
+);
+
+/** Investigations stored in the account (Pro). The body is lib/investigation.ts's shape, sanitised before writing. */
+export const investigations = pgTable(
+  'investigations',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    title: text('title').notNull().default(''),
+    body: jsonb('body').notNull(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    updatedAt: ts('updated_at').notNull().defaultNow(),
+  },
+  (t) => [
+    index('investigations_user_updated_idx').on(t.userId, t.updatedAt),
+    check('investigations_size_ck', sql`length(${t.title}) <= 120 and octet_length(${t.body}::text) <= 65536`),
+  ],
+);
+
+/**
+ * API keys (Pro). Only the SHA-256 of the key is stored; the full key is shown once at creation. `prefix` is the
+ * public part users see in lists (w3l_<prefix>_…).
+ */
+export const apiKeys = pgTable(
+  'api_keys',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    name: text('name').notNull().default(''),
+    prefix: text('prefix').notNull(),
+    keyHash: text('key_hash').notNull().unique(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    lastUsedAt: ts('last_used_at'),
+    revokedAt: ts('revoked_at'),
+  },
+  (t) => [index('api_keys_user_idx').on(t.userId), check('api_keys_name_ck', sql`length(${t.name}) <= 40`)],
 );

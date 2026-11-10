@@ -1,56 +1,15 @@
 'use client';
 
-import { ArrowSquareOut, CheckCircle, Crown, GoogleLogo, Info, Minus } from '@phosphor-icons/react/dist/ssr';
+import { ArrowSquareOut, CheckCircle, Crown, GoogleLogo, Info } from '@phosphor-icons/react/dist/ssr';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { btnCls, ErrorText, ghostBtnCls, inputCls, Panel } from '@/components/tools/ui';
 import { accountCall, accountStore, refreshAccount, signInWithGoogle, signOut } from '@/lib/client/account';
 import { billingLive, openCheckout, type PlanChoice } from '@/lib/client/paddle';
-import { LIMITS, type MeResponse } from '@/lib/entitlements';
+import { PlanComparison } from '@/components/account/PlanComparison';
+import { ProNote } from '@/components/account/ProNote';
+import { canUse, LIMITS, type MeResponse } from '@/lib/entitlements';
 
 const fmtDate = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : '');
-
-/** Free vs Pro, from the same numbers the server enforces (lib/entitlements.ts). */
-export function PlanComparison() {
-  const f = LIMITS.free;
-  const p = LIMITS.pro;
-  const n = (v: number) => v.toLocaleString('en-US');
-  const rows: [string, React.ReactNode, React.ReactNode][] = [
-    ['Address, transaction and block lookups', 'Included', 'Included'],
-    ['Developer tools, gas tracker, basic security checks', 'Included', 'Included'],
-    ['Batch search', `${n(f.batch)} values`, `${n(p.batch)} values`],
-    ['Batch EVM balances', `${n(f.batchBalances)} rows`, `${n(p.batchBalances)} rows`],
-    ['Metered cross-chain lookups', `${n(f.crossChainPerDay)} / day`, `${n(p.crossChainPerDay)} / day`],
-    ['API requests', `${n(f.apiPerMinuteShared)} / min (shared, no key)`, `${n(p.apiPerDay)} / day with a key`],
-    ['Saved addresses', `${n(f.savedLocal)} in this browser`, `${n(p.savedCloud)} synced to your account`],
-    ['Cloud investigations', null, n(p.investigations)],
-    ['Exports', 'CSV', 'CSV and JSON'],
-  ];
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-left text-sm">
-        <thead>
-          <tr className="border-b border-line text-faint">
-            <th className="py-2 pr-4 font-bold">Feature</th>
-            <th className="py-2 pr-4 font-bold">Free</th>
-            <th className="py-2 font-bold text-accent">Pro</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(([label, free, pro]) => (
-            <tr key={label} className="border-b border-line last:border-0">
-              <td className="py-2.5 pr-4 font-semibold">{label}</td>
-              <td className="py-2.5 pr-4 font-medium text-muted">{free ?? <Minus aria-label="Not included" weight="bold" className="size-4 text-faint" />}</td>
-              <td className="py-2.5 font-bold">{pro}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p className="mt-3 text-xs font-medium text-faint">
-        Batch, cloud sync, JSON export and API key limits switch on in the next release; the numbers above are what each plan will get.
-      </p>
-    </div>
-  );
-}
 
 function Meter({ label, used, limit, resetsAt }: { label: string; used: number; limit: number; resetsAt: string }) {
   const pct = limit > 0 ? Math.min(100, Math.round((used / limit) * 100)) : 0;
@@ -134,6 +93,111 @@ function Upgrade({ me, onError }: { me: MeResponse; onError: (e: string | null) 
         </ul>
       )}
       {live && <p className="mt-3 text-xs font-medium text-faint">Prices, tax and currency are shown in the secure Paddle checkout before you pay. Paddle is the merchant of record.</p>}
+    </Panel>
+  );
+}
+
+type KeyInfo = { id: string; name: string; prefix: string; createdAt: string; lastUsedAt: string | null };
+
+function ApiKeys({ me, onError }: { me: MeResponse; onError: (e: string | null) => void }) {
+  const [keys, setKeys] = useState<KeyInfo[] | null>(null);
+  const [name, setName] = useState('');
+  const [fresh, setFresh] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const allowed = canUse('apiKeys', me.plan);
+  const load = () =>
+    accountCall<{ keys: KeyInfo[] }>('/api/account/keys', 'GET')
+      .then((r) => setKeys(r.keys))
+      .catch(() => setKeys([]));
+  useEffect(() => {
+    void load();
+  }, []);
+  if (!allowed && !keys?.length) {
+    return me.billing ? (
+      <Panel title="API keys">
+        <ProNote>API keys give your scripts {LIMITS.pro.apiPerDay.toLocaleString('en-US')} requests a day to the Web3Lens API, outside the shared per-IP limit.</ProNote>
+      </Panel>
+    ) : null;
+  }
+  return (
+    <Panel title="API keys">
+      <p className="mb-4 text-sm font-medium text-muted">
+        Send the key as <code className="font-mono text-[13px] text-fg">x-api-key</code> to <code className="font-mono text-[13px] text-fg">https://web3lens.com/api/v1/…</code>.{' '}
+        {LIMITS.pro.apiPerDay.toLocaleString('en-US')} requests per day across all your keys; responses carry <code className="font-mono text-[13px] text-fg">x-ratelimit-remaining</code>.
+      </p>
+      {fresh && (
+        <div className="mb-4 rounded-xl border border-accent/50 bg-accent/5 p-4">
+          <p className="text-sm font-bold">Copy your new key now. It won't be shown again.</p>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <code className="min-w-0 break-all rounded-lg border border-line bg-ink px-3 py-2 font-mono text-[13px]">{fresh}</code>
+            <button
+              type="button"
+              className={ghostBtnCls}
+              onClick={async () => {
+                await navigator.clipboard.writeText(fresh).catch(() => {});
+                setCopied(true);
+              }}
+            >
+              {copied ? 'Copied' : 'Copy'}
+            </button>
+          </div>
+        </div>
+      )}
+      {keys && keys.length > 0 && (
+        <ul className="mb-4 divide-y divide-line">
+          {keys.map((k) => (
+            <li key={k.id} className="flex flex-wrap items-center justify-between gap-3 py-3 first:pt-0">
+              <span className="text-sm">
+                <span className="font-bold">{k.name || 'Unnamed key'}</span> <code className="font-mono text-[13px] text-muted">w3l_{k.prefix}_…</code>
+                <span className="block font-medium text-muted">
+                  Created {fmtDate(k.createdAt)} · {k.lastUsedAt ? `last used ${fmtDate(k.lastUsedAt)}` : 'never used'}
+                </span>
+              </span>
+              <button
+                type="button"
+                className={`${ghostBtnCls} hover:border-danger hover:text-danger`}
+                onClick={async () => {
+                  if (!window.confirm(`Revoke "${k.name || 'this key'}"? Requests using it stop working at once.`)) return;
+                  try {
+                    await accountCall(`/api/account/keys?id=${encodeURIComponent(k.id)}`, 'DELETE');
+                    await load();
+                  } catch (e) {
+                    onError(e instanceof Error ? e.message : 'Could not revoke the key.');
+                  }
+                }}
+              >
+                Revoke
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {allowed && (
+        <form
+          className="flex flex-wrap gap-2"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            onError(null);
+            try {
+              const r = await accountCall<{ key: string }>('/api/account/keys', 'POST', { name });
+              setFresh(r.key);
+              setCopied(false);
+              setName('');
+              await load();
+            } catch (err) {
+              onError(err instanceof Error ? err.message : 'Could not create a key.');
+            }
+          }}
+        >
+          <label htmlFor="key-name" className="sr-only">
+            Key name
+          </label>
+          <input id="key-name" className={`${inputCls} max-w-xs font-sans`} placeholder="Name, e.g. Reconciliation script" maxLength={40} value={name} onChange={(e) => setName(e.target.value)} />
+          <button type="submit" className={btnCls}>
+            Create key
+          </button>
+        </form>
+      )}
     </Panel>
   );
 }
@@ -299,8 +363,8 @@ export function AccountPanel() {
         <p className="font-semibold">{planLine(me)}</p>
         <p className="mt-1 text-sm font-medium text-muted">Signed in as {me.user.email}</p>
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <Meter label="Cross-chain lookups today" {...me.usage.crossChain} />
-          <Meter label="API requests today (key)" {...me.usage.api} />
+          <Meter label="Batch cross-chain lookups today" {...me.usage.crossChain} />
+          <Meter label="API key requests today" {...me.usage.api} />
         </div>
         <div className="mt-6 flex flex-wrap gap-2">
           {me.manageUrl && (
@@ -326,6 +390,7 @@ export function AccountPanel() {
         )}
         <PlanComparison />
       </Panel>
+      <ApiKeys me={me} onError={setError} />
       <Sessions onError={setError} />
       <DangerZone me={me} />
     </div>

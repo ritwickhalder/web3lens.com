@@ -1,8 +1,9 @@
 # Accounts, Pro and billing
 
-Status (2026-11-10): **Phase 1 (Foundation) is built and tested, not live.** It needs real Google, Neon and Paddle
-credentials and the manual checks in the [launch checklist](#launch-checklist). Until then the deployed site behaves
-as before: `/api/me` reports `accounts: false`, the header shows no sign-in button, and the account routes answer 503.
+Status (2026-11-10): **Phase 1 (Foundation) and Phase 2 (Monetisation) are built and tested, not live.** They need real
+Google, Neon and Paddle credentials and the manual checks in [TODO.md](../TODO.md). Until then the deployed site
+behaves as before: `/api/me` reports `accounts: false`, the header shows no sign-in button, the account routes answer
+503, and everyone keeps the pre-Pro limits (below).
 
 ## Principles
 
@@ -84,6 +85,45 @@ this, we kept the fix). Ordering: the upsert only writes when `paddle_updated_at
 the same statement. Refund columns are written outside that guard so a late subscription event can't undo a refund.
 Purchases are linked through `custom_data.userId`; an id that isn't a real user is stored ownerless, never guessed.
 
+### Pro features (Phase 2)
+
+| Feature | Route(s) | Enforced where |
+|---|---|---|
+| Batch values (Free 10 / Pro 500) | — | Browser only: detection runs locally (`parseBatch(text, limits.batch)`). |
+| Batch balances (Free 5 rows / Pro 500) and cross-chain lookups (10 / 500 a day) | `POST /api/batch/balances` | Server: rows per request (413) and the daily quota, all or nothing (429), before any provider call. Anonymous callers count per salted IP hash against Free. |
+| Saved addresses (Free 50 local / Pro 2,000) | — | Browser, when adding (`applyUpsert`, `mergeImport`); existing items are never hidden or trimmed (storage keeps up to 5,000). |
+| Cloud sync (Pro) | `GET/POST /api/sync/saved` | Server: POST needs Pro (402); GET works on any plan so a downgrade never locks data. Cloud cap 2,000 new items (edits and deletions always apply). |
+| Collections (Pro, 20) | `/api/collections`, `/api/collections/:id` | Server; owner-scoped; deleting a collection never deletes saved items. |
+| Investigations (Pro, 100) | `/api/investigations`, `/api/investigations/:id` | Server; bodies sanitised (`sanitizeInvestigation`), ≤ 64 KB (DB check). |
+| JSON export (Pro) | — | Browser (batch and investigation results). The saved-items JSON backup stays free (it's the user's data). |
+| API keys (Pro, 5 keys, 1,000 requests/day per user) | `/api/account/keys`, `x-api-key` on `/api/v1/*` | Server (`lib/server/api-keys.ts`). |
+
+**Pre-launch limits.** While Paddle isn't configured (`billingConfigured()` false; `MeResponse.billing`), Free gets
+`PRE_LAUNCH_LIMITS` — the limits Web3Lens had before Pro (batch 50, balances 50, saved 500) — and batch balances are not
+metered daily. Switching the code on can't take anything away from users who have no way to upgrade.
+
+**Sync rules** (`lib/saved-sync.ts`, shared by the website and the extensions): per item the newest change wins
+(`updatedAt` for edits, `deletedAt` for deletions the user made; ties keep the item); deletions are local tombstones
+(`w3l:saved-deleted`, extension `savedDeleted`) pushed to the server; a failed pull stops the run before anything is
+written; merges and imports only add. The server's pull cursor is its own `synced_at`, so device clock skew can't hide
+changes. A concurrent push from two devices can exceed the 2,000 cloud cap by at most one batch (counts are per
+statement).
+
+### API keys
+
+```
+curl -H "x-api-key: w3l_XXXXXXXX_…" "https://web3lens.com/api/v1/detect?q=vitalik.eth"
+```
+
+- Created on `/account` (shown once; stored as SHA-256), up to 5 active, revocable at once.
+- Each keyed request takes one from the owner's daily `api` quota (1,000 per user per UTC day across all keys) instead
+  of the shared per-IP budget. Responses carry `x-ratelimit-limit`, `x-ratelimit-remaining`, `x-ratelimit-reset`
+  (epoch seconds) and `cache-control: private, no-store`.
+- Errors: 401 invalid or revoked key; 402 the owner no longer has Pro (the plan is re-read at most 60 s later);
+  429 daily limit (with `retry-after`); 503 key store unreachable.
+- Without a key nothing changes: CDN-cached answers and 60/min, 1,200/h per IP. A keyed request that the CDN answers
+  from a cached keyless response isn't counted.
+
 ### Quotas
 
 `usage_counters (subject, metric, window_start)`; `consumeQuota` is a single
@@ -91,9 +131,8 @@ Purchases are linked through `custom_data.userId`; an id that isn't a real user 
 over quota and nothing was taken. Tested with 100 concurrent requests against a limit of 25. Windows are UTC days.
 Anonymous use stays on the per-IP in-memory budget in `lib/server/rate-limit.ts` (60/min, 1,200/h).
 
-Note: no existing feature consumes a quota in Phase 1. Single-address multichain balances appear on every EVM address
-page (basic lookup, must stay free), so "cross-chain lookups" is metered only for the new bulk paths in Phase 2
-(server-side batch balances, bulk tx locate), not for the address page.
+Only batch balances consume `crossChain`. Single-address multichain balances appear on every EVM address page (a basic
+lookup, which stays free and unmetered); `/api/v1/multichain` stays open within the shared per-IP budget.
 
 ## Data model
 
@@ -102,28 +141,25 @@ Phase 1 (`drizzle/0000_foundation.sql`): `user`, `session`, `account`, `verifica
 `extension_pairings`. Personal rows cascade on user deletion; `subscriptions` and `trial_claims` keep the row with
 `user_id = null` (billing record; the trial stays used for that email).
 
-Phase 2 (designed, not migrated):
-
-- `saved_items (user_id, item_key)` unique, query, chain_id, label ≤ 80, note ≤ 1000, favourite, added_at, updated_at,
-  deleted_at (tombstone). Sync merges additively: last-writer-wins per item on `updated_at`, deletions as tombstones,
-  nothing local is ever dropped by a sync. Cap 2,000 per user enforced in the insert.
-- `collections`, `collection_items`, `investigations (user_id, title, body jsonb with a size check, updated_at)`, cap 100.
-- `api_keys (id, user_id, name, prefix, key_hash sha256 unique, created_at, last_used_at, revoked_at)`. Keys are shown
-  once; requests send `x-api-key`, consume `k:<keyId>` / `api` (1,000/day) and skip the shared IP budget.
+Phase 2 (`drizzle/0001_pro_features.sql`): `saved_items` (PK `(user_id, item_key)`, `updated_at`, `deleted_at`
+tombstone, `synced_at` cursor, length checks), `collections` (unique `(user_id, lower(name))`), `collection_items`,
+`investigations` (jsonb body, size check), `api_keys` (`key_hash` unique, `revoked_at`). All cascade with the user.
+Caps are enforced inside the inserting statement.
 
 Phase 3: `watches`, `alerts` (Vercel cron), portfolio snapshots.
 
 ## Free and Pro
 
-| Feature | Free | Pro | Enforced |
-|---|---:|---:|---|
-| Batch search | 10 | 500 | Phase 2 |
-| Batch EVM balances | 5 | 500 | Phase 2 (server batch endpoint) |
-| Metered cross-chain lookups | 10/day | 500/day | Phase 2 (quota engine ready) |
-| API requests | 60/min shared | 1,000/day per key | Phase 2 |
-| Saved addresses | 50 local | 2,000 cloud | Phase 2 — existing local items over 50 are never hidden or deleted; only new ones are blocked |
-| Cloud investigations | — | 100 | Phase 2 |
-| Exports | CSV | CSV + JSON | Phase 2 |
+| Feature | Free | Pro | Before launch (everyone) |
+|---|---:|---:|---:|
+| Batch search | 10 | 500 | 50 |
+| Batch EVM balances | 5 rows | 500 rows | 50 rows |
+| Cross-chain balance lookups (batches) | 10/day | 500/day | per-IP budget only |
+| API requests | 60/min per IP | + 1,000/day with keys | 60/min per IP |
+| Saved addresses | 50 local | 2,000, synced | 500 local |
+| Collections | — | 20 | — |
+| Cloud investigations | — | 100 | — |
+| Exports (batch, investigations) | CSV | CSV + JSON | CSV |
 
 ## Setup
 
@@ -144,18 +180,7 @@ Phase 3: `watches`, `alerts` (Vercel cron), portfolio snapshots.
 
 ## Launch checklist
 
-Not done yet (needs credentials; nothing here has run against live services):
-
-- [ ] Migrations applied to Neon; one request over the Neon HTTP driver (tests use PGlite).
-- [ ] Real Google sign-in: popup flow, blocked-popup redirect flow, sign-out, "sign out" of another session.
-- [ ] Paddle sandbox: monthly, yearly, lifetime checkouts; cancel (scheduled and immediate); failed payment → past_due;
-      full refund of a lifetime and of a subscription charge; webhook retries. Compare real payload field names with
-      `lib/server/paddle.ts` (written from Paddle's docs, like Edit Page's).
-- [ ] Extension pairing on Chrome, Edge and Firefox against production (CORS from the store ids).
-- [ ] Firefox AMO: decide whether the optional account needs `data_collection_permissions` (authentication info /
-      email) declared as optional and requested at sign-in; the manifest is unchanged in Phase 1.
-- [ ] Store listings and `/extension` copy mention the optional account before the extension update is published.
-- [ ] Terms page: subscription, refund and cancellation terms.
+Kept in [TODO.md](../TODO.md) (launch steps, live verification, phases, limitations).
 
 ## Known limitations
 
@@ -168,3 +193,6 @@ Not done yet (needs credentials; nothing here has run against live services):
 - A refund or cancellation reaches an offline extension's *display* when it next goes online (at most 7 days of stale
   display); the server never grants Pro limits from that cache.
 - No admin UI yet: overrides and suspensions are set in SQL (`user_profiles`).
+- Batch value caps, the local saved-items cap and JSON export are enforced in the browser, where that work happens; a
+  user can edit their own browser. Everything that costs Web3Lens money (balances, cloud data, API) is enforced on the
+  server.

@@ -610,5 +610,22 @@
     "networkOff": "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
     "expired": "Votre session a expiré. Reconnectez-vous.",
     "error": "La connexion n'a pas abouti. Réessayez dans un instant."
+  },
+  "pro": {
+    "upgradeBatch": "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",
+    "seePro": "Découvrir Pro sur web3lens.com",
+    "usage": "Recherches de soldes multichaînes aujourd'hui : {used} sur {limit}.",
+    "balancesCapped": "Votre formule vérifie les soldes des {max} premières adresses EVM.",
+    "dailyLimitShort": "Limite quotidienne atteinte",
+    "dailyLimit": "Vous avez utilisé les {limit} recherches de soldes multichaînes du jour. Elles se réinitialisent à 00:00 UTC.",
+    "proOnly": "Fonction Pro",
+    "exportJson": "Exporter en JSON",
+    "savedFull": "{count} n'ont pas été enregistrés : votre formule conserve jusqu'à {max} éléments.",
+    "syncOn": "La synchronisation cloud est activée.",
+    "syncedAt": "Dernière synchronisation : {date}.",
+    "syncFailed": "La synchronisation a échoué. Vos éléments enregistrés restent en sécurité dans l'extension.",
+    "syncNow": "Synchroniser",
+    "syncing": "Synchronisation…",
+    "savedCapNote": "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
   }
 }

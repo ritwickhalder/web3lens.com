@@ -379,7 +379,7 @@ describe('sessions and account API', async () => {
     await makeUser('pro1');
     await db.insert(schema.subscriptions).values({ id: 'sub_p', userId: 'pro1', plan: 'yearly', status: 'active', endsAt: new Date(Date.now() + 864e5), paddleUpdatedAt: new Date() });
     const anon = await me.GET(new Request('https://web3lens.com/api/me'));
-    assert.deepEqual(await anon.json(), { signedIn: false, accounts: true });
+    assert.deepEqual(await anon.json(), { signedIn: false, accounts: true, billing: true });
     assert.equal((await me.GET(new Request('https://web3lens.com/api/me', { headers: bearer('nope') }))).status, 401);
     const f = await (await me.GET(new Request('https://web3lens.com/api/me', { headers: bearer((await tokenFor('free1')).token) }))).json();
     const p = await (await me.GET(new Request('https://web3lens.com/api/me', { headers: bearer((await tokenFor('pro1')).token) }))).json();

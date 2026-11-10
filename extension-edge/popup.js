@@ -11939,6 +11939,23 @@
       networkOff: "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
       expired: "Your sign-in has expired. Sign in again.",
       error: "Sign-in didn't work. Try again in a moment."
+    },
+    pro: {
+      upgradeBatch: "Pro checks batches of {max} values with balances for all of them.",
+      seePro: "See Pro on web3lens.com",
+      usage: "Cross-chain balance lookups today: {used} of {limit}.",
+      balancesCapped: "Balances are checked for the first {max} EVM addresses on your plan.",
+      dailyLimitShort: "Daily limit reached",
+      dailyLimit: "You've used today's {limit} cross-chain balance lookups. They reset at 00:00 UTC.",
+      proOnly: "Pro feature",
+      exportJson: "Export JSON",
+      savedFull: "{count} weren't saved: your plan keeps up to {max} saved items.",
+      syncOn: "Cloud sync is on.",
+      syncedAt: "Last synced {date}.",
+      syncFailed: "Sync failed. Your saved items are safe in the extension.",
+      syncNow: "Sync now",
+      syncing: "Syncing…",
+      savedCapNote: "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
     }
   };
 
@@ -12555,6 +12572,23 @@
       networkOff: "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
       expired: "Tu sesión ha caducado. Vuelve a iniciar sesión.",
       error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
+    },
+    pro: {
+      upgradeBatch: "Pro revisa lotes de {max} valores con saldos para todos.",
+      seePro: "Ver Pro en web3lens.com",
+      usage: "Consultas de saldo entre cadenas hoy: {used} de {limit}.",
+      balancesCapped: "En tu plan se revisan los saldos de las primeras {max} direcciones EVM.",
+      dailyLimitShort: "Límite diario alcanzado",
+      dailyLimit: "Has usado las {limit} consultas de saldo entre cadenas de hoy. Se reinician a las 00:00 UTC.",
+      proOnly: "Función Pro",
+      exportJson: "Exportar JSON",
+      savedFull: "{count} no se guardaron: tu plan guarda hasta {max} elementos.",
+      syncOn: "La sincronización en la nube está activada.",
+      syncedAt: "Última sincronización: {date}.",
+      syncFailed: "La sincronización falló. Tus elementos guardados están seguros en la extensión.",
+      syncNow: "Sincronizar ahora",
+      syncing: "Sincronizando…",
+      savedCapNote: "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
     }
   };
 
@@ -13171,6 +13205,23 @@
       networkOff: "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
       expired: "Sua sessão expirou. Entre novamente.",
       error: "Não foi possível entrar. Tente de novo em instantes."
+    },
+    pro: {
+      upgradeBatch: "O Pro verifica lotes de {max} valores com saldos de todos.",
+      seePro: "Ver o Pro em web3lens.com",
+      usage: "Consultas de saldo entre cadeias hoje: {used} de {limit}.",
+      balancesCapped: "No seu plano, os saldos são verificados para os primeiros {max} endereços EVM.",
+      dailyLimitShort: "Limite diário atingido",
+      dailyLimit: "Você usou as {limit} consultas de saldo entre cadeias de hoje. Elas reiniciam às 00:00 UTC.",
+      proOnly: "Recurso Pro",
+      exportJson: "Exportar JSON",
+      savedFull: "{count} não foram salvos: seu plano guarda até {max} itens.",
+      syncOn: "A sincronização na nuvem está ativada.",
+      syncedAt: "Última sincronização: {date}.",
+      syncFailed: "A sincronização falhou. Seus itens salvos estão seguros na extensão.",
+      syncNow: "Sincronizar agora",
+      syncing: "Sincronizando…",
+      savedCapNote: "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
     }
   };
 
@@ -13787,6 +13838,23 @@
       networkOff: "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
       expired: "Votre session a expiré. Reconnectez-vous.",
       error: "La connexion n'a pas abouti. Réessayez dans un instant."
+    },
+    pro: {
+      upgradeBatch: "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",
+      seePro: "Découvrir Pro sur web3lens.com",
+      usage: "Recherches de soldes multichaînes aujourd'hui : {used} sur {limit}.",
+      balancesCapped: "Votre formule vérifie les soldes des {max} premières adresses EVM.",
+      dailyLimitShort: "Limite quotidienne atteinte",
+      dailyLimit: "Vous avez utilisé les {limit} recherches de soldes multichaînes du jour. Elles se réinitialisent à 00:00 UTC.",
+      proOnly: "Fonction Pro",
+      exportJson: "Exporter en JSON",
+      savedFull: "{count} n'ont pas été enregistrés : votre formule conserve jusqu'à {max} éléments.",
+      syncOn: "La synchronisation cloud est activée.",
+      syncedAt: "Dernière synchronisation : {date}.",
+      syncFailed: "La synchronisation a échoué. Vos éléments enregistrés restent en sécurité dans l'extension.",
+      syncNow: "Synchroniser",
+      syncing: "Synchronisation…",
+      savedCapNote: "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
     }
   };
 
@@ -14403,6 +14471,23 @@
       networkOff: "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
       expired: "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
       error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
+    },
+    pro: {
+      upgradeBatch: "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",
+      seePro: "Pro auf web3lens.com ansehen",
+      usage: "Kettenübergreifende Guthabenabfragen heute: {used} von {limit}.",
+      balancesCapped: "Guthaben werden in deinem Tarif für die ersten {max} EVM-Adressen geprüft.",
+      dailyLimitShort: "Tageslimit erreicht",
+      dailyLimit: "Du hast die {limit} kettenübergreifenden Guthabenabfragen für heute verbraucht. Sie werden um 00:00 UTC zurückgesetzt.",
+      proOnly: "Pro-Funktion",
+      exportJson: "Als JSON exportieren",
+      savedFull: "{count} wurden nicht gespeichert: Dein Tarif behält bis zu {max} gespeicherte Einträge.",
+      syncOn: "Cloud-Synchronisierung ist an.",
+      syncedAt: "Zuletzt synchronisiert: {date}.",
+      syncFailed: "Synchronisierung fehlgeschlagen. Deine gespeicherten Einträge sind in der Erweiterung sicher.",
+      syncNow: "Jetzt synchronisieren",
+      syncing: "Synchronisiere…",
+      savedCapNote: "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
     }
   };
 
@@ -15019,6 +15104,23 @@
       networkOff: "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
       expired: "サインインの有効期限が切れました。もう一度サインインしてください。",
       error: "サインインできませんでした。しばらくしてからもう一度お試しください。"
+    },
+    pro: {
+      upgradeBatch: "Pro では {max} 件の値を一括で確認し、すべての残高を調べられます。",
+      seePro: "web3lens.com で Pro を見る",
+      usage: "今日のクロスチェーン残高検索: {limit} 件中 {used} 件。",
+      balancesCapped: "現在のプランでは最初の {max} 件の EVM アドレスの残高を確認します。",
+      dailyLimitShort: "1日の上限に達しました",
+      dailyLimit: "今日のクロスチェーン残高検索 {limit} 件を使い切りました。00:00 UTC にリセットされます。",
+      proOnly: "Pro 機能",
+      exportJson: "JSON でエクスポート",
+      savedFull: "{count} 件は保存されませんでした。現在のプランで保存できるのは {max} 件までです。",
+      syncOn: "クラウド同期はオンです。",
+      syncedAt: "最終同期: {date}。",
+      syncFailed: "同期に失敗しました。保存した項目は拡張機能内に安全に残っています。",
+      syncNow: "今すぐ同期",
+      syncing: "同期中…",
+      savedCapNote: "保存済みが {max} 件に達しました。既存の項目はそのまま残りますが、新しい項目を追加する余地がありません。Pro なら {pro} 件をデバイス間で同期できます。"
     }
   };
 
@@ -15635,6 +15737,23 @@
       networkOff: "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
       expired: "로그인이 만료되었습니다. 다시 로그인하세요.",
       error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
+    },
+    pro: {
+      upgradeBatch: "Pro는 {max}개 값의 일괄 조회와 모든 항목의 잔액 확인을 지원합니다.",
+      seePro: "web3lens.com에서 Pro 보기",
+      usage: "오늘 크로스체인 잔액 조회: {limit}회 중 {used}회.",
+      balancesCapped: "현재 요금제에서는 처음 {max}개 EVM 주소의 잔액만 확인합니다.",
+      dailyLimitShort: "일일 한도 도달",
+      dailyLimit: "오늘의 크로스체인 잔액 조회 {limit}회를 모두 사용했습니다. 00:00 UTC에 초기화됩니다.",
+      proOnly: "Pro 기능",
+      exportJson: "JSON 내보내기",
+      savedFull: "{count}개는 저장되지 않았습니다. 현재 요금제는 최대 {max}개까지 저장합니다.",
+      syncOn: "클라우드 동기화가 켜져 있습니다.",
+      syncedAt: "마지막 동기화: {date}.",
+      syncFailed: "동기화에 실패했습니다. 저장한 항목은 확장 프로그램에 안전하게 남아 있습니다.",
+      syncNow: "지금 동기화",
+      syncing: "동기화 중…",
+      savedCapNote: "저장한 항목이 {max}개에 도달했습니다. 기존 항목은 그대로 유지되지만 새 항목을 추가할 공간이 없습니다. Pro는 {pro}개를 기기 간에 동기화합니다."
     }
   };
 
@@ -16251,6 +16370,23 @@
       networkOff: "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
       expired: "登录已过期，请重新登录。",
       error: "登录失败，请稍后再试。"
+    },
+    pro: {
+      upgradeBatch: "Pro 可一次检查 {max} 个值，并查询全部余额。",
+      seePro: "在 web3lens.com 查看 Pro",
+      usage: "今日跨链余额查询：{used} / {limit}。",
+      balancesCapped: "你的套餐会检查前 {max} 个 EVM 地址的余额。",
+      dailyLimitShort: "已达每日上限",
+      dailyLimit: "你已用完今日的 {limit} 次跨链余额查询，将于 00:00 UTC 重置。",
+      proOnly: "Pro 功能",
+      exportJson: "导出 JSON",
+      savedFull: "{count} 项未保存：你的套餐最多保存 {max} 项。",
+      syncOn: "云同步已开启。",
+      syncedAt: "上次同步：{date}。",
+      syncFailed: "同步失败。你保存的项目仍安全地保存在扩展中。",
+      syncNow: "立即同步",
+      syncing: "正在同步…",
+      savedCapNote: "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
     }
   };
 
@@ -16867,6 +17003,23 @@
       networkOff: "Онлайн-запросы отключены, поэтому аккаунт приостановлен. Включите их в разделе «Конфиденциальность», чтобы войти.",
       expired: "Срок входа истёк. Войдите снова.",
       error: "Не удалось войти. Попробуйте ещё раз чуть позже."
+    },
+    pro: {
+      upgradeBatch: "Pro проверяет пакеты из {max} значений с балансами для всех.",
+      seePro: "Подробнее о Pro на web3lens.com",
+      usage: "Межсетевые запросы балансов сегодня: {used} из {limit}.",
+      balancesCapped: "В вашем тарифе балансы проверяются для первых {max} EVM-адресов.",
+      dailyLimitShort: "Дневной лимит исчерпан",
+      dailyLimit: "Вы использовали сегодняшние {limit} межсетевых запросов балансов. Лимит обновится в 00:00 UTC.",
+      proOnly: "Функция Pro",
+      exportJson: "Экспорт в JSON",
+      savedFull: "{count} не сохранено: ваш тариф хранит до {max} элементов.",
+      syncOn: "Облачная синхронизация включена.",
+      syncedAt: "Последняя синхронизация: {date}.",
+      syncFailed: "Синхронизация не удалась. Сохранённые элементы в безопасности в расширении.",
+      syncNow: "Синхронизировать",
+      syncing: "Синхронизация…",
+      savedCapNote: "У вас {max} сохранённых элементов. Всё, что есть, остаётся; для новых нет места. Pro хранит {pro} с синхронизацией между устройствами."
     }
   };
 
@@ -17483,6 +17636,23 @@
       networkOff: "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
       expired: "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
       error: "Gagal masuk. Coba lagi sebentar lagi."
+    },
+    pro: {
+      upgradeBatch: "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",
+      seePro: "Lihat Pro di web3lens.com",
+      usage: "Pencarian saldo lintas rantai hari ini: {used} dari {limit}.",
+      balancesCapped: "Saldo diperiksa untuk {max} alamat EVM pertama sesuai paket Anda.",
+      dailyLimitShort: "Batas harian tercapai",
+      dailyLimit: "Anda telah memakai {limit} pencarian saldo lintas rantai hari ini. Batas diatur ulang pukul 00:00 UTC.",
+      proOnly: "Fitur Pro",
+      exportJson: "Ekspor JSON",
+      savedFull: "{count} tidak disimpan: paket Anda menyimpan hingga {max} item.",
+      syncOn: "Sinkronisasi cloud aktif.",
+      syncedAt: "Terakhir disinkronkan {date}.",
+      syncFailed: "Sinkronisasi gagal. Item tersimpan Anda tetap aman di ekstensi.",
+      syncNow: "Sinkronkan sekarang",
+      syncing: "Menyinkronkan…",
+      savedCapNote: "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
     }
   };
 
@@ -18099,6 +18269,23 @@
       networkOff: "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
       expired: "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
       error: "Giriş yapılamadı. Birazdan tekrar deneyin."
+    },
+    pro: {
+      upgradeBatch: "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",
+      seePro: "Pro'yu web3lens.com'da inceleyin",
+      usage: "Bugünkü zincirler arası bakiye sorguları: {limit} içinden {used}.",
+      balancesCapped: "Planınızda ilk {max} EVM adresinin bakiyesi kontrol edilir.",
+      dailyLimitShort: "Günlük sınıra ulaşıldı",
+      dailyLimit: "Bugünkü {limit} zincirler arası bakiye sorgusunu kullandınız. 00:00 UTC'de sıfırlanır.",
+      proOnly: "Pro özelliği",
+      exportJson: "JSON olarak dışa aktar",
+      savedFull: "{count} öğe kaydedilmedi: planınız en fazla {max} öğe tutar.",
+      syncOn: "Bulut eşitleme açık.",
+      syncedAt: "Son eşitleme: {date}.",
+      syncFailed: "Eşitleme başarısız oldu. Kayıtlı öğeleriniz uzantıda güvende.",
+      syncNow: "Şimdi eşitle",
+      syncing: "Eşitleniyor…",
+      savedCapNote: "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
     }
   };
 
@@ -18715,6 +18902,23 @@
       networkOff: "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
       expired: "L'accesso è scaduto. Accedi di nuovo.",
       error: "L'accesso non è riuscito. Riprova tra poco."
+    },
+    pro: {
+      upgradeBatch: "Pro controlla lotti di {max} valori con i saldi di tutti.",
+      seePro: "Scopri Pro su web3lens.com",
+      usage: "Ricerche di saldi multi-chain oggi: {used} su {limit}.",
+      balancesCapped: "Con il tuo piano i saldi vengono controllati per i primi {max} indirizzi EVM.",
+      dailyLimitShort: "Limite giornaliero raggiunto",
+      dailyLimit: "Hai usato le {limit} ricerche di saldi multi-chain di oggi. Si azzerano alle 00:00 UTC.",
+      proOnly: "Funzione Pro",
+      exportJson: "Esporta JSON",
+      savedFull: "{count} non sono stati salvati: il tuo piano conserva fino a {max} elementi.",
+      syncOn: "La sincronizzazione cloud è attiva.",
+      syncedAt: "Ultima sincronizzazione: {date}.",
+      syncFailed: "Sincronizzazione non riuscita. I tuoi elementi salvati sono al sicuro nell'estensione.",
+      syncNow: "Sincronizza ora",
+      syncing: "Sincronizzazione…",
+      savedCapNote: "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
     }
   };
 
@@ -19331,6 +19535,23 @@
       networkOff: "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
       expired: "Sesja wygasła. Zaloguj się ponownie.",
       error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
+    },
+    pro: {
+      upgradeBatch: "Pro sprawdza partie {max} wartości wraz z saldami wszystkich.",
+      seePro: "Zobacz Pro na web3lens.com",
+      usage: "Dzisiejsze wyszukiwania sald między łańcuchami: {used} z {limit}.",
+      balancesCapped: "W Twoim planie sprawdzane są salda pierwszych {max} adresów EVM.",
+      dailyLimitShort: "Osiągnięto dzienny limit",
+      dailyLimit: "Wykorzystano dzisiejsze {limit} wyszukiwań sald między łańcuchami. Limit odnawia się o 00:00 UTC.",
+      proOnly: "Funkcja Pro",
+      exportJson: "Eksportuj JSON",
+      savedFull: "{count} nie zapisano: Twój plan przechowuje do {max} elementów.",
+      syncOn: "Synchronizacja w chmurze jest włączona.",
+      syncedAt: "Ostatnia synchronizacja: {date}.",
+      syncFailed: "Synchronizacja nie powiodła się. Zapisane elementy są bezpieczne w rozszerzeniu.",
+      syncNow: "Synchronizuj teraz",
+      syncing: "Synchronizowanie…",
+      savedCapNote: "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
     }
   };
 
@@ -19947,6 +20168,23 @@
       networkOff: "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
       expired: "Je sessie is verlopen. Log opnieuw in.",
       error: "Inloggen is niet gelukt. Probeer het zo opnieuw."
+    },
+    pro: {
+      upgradeBatch: "Pro controleert batches van {max} waarden met saldi voor allemaal.",
+      seePro: "Bekijk Pro op web3lens.com",
+      usage: "Cross-chain saldo-opzoekingen vandaag: {used} van {limit}.",
+      balancesCapped: "Met je abonnement worden de saldi van de eerste {max} EVM-adressen gecontroleerd.",
+      dailyLimitShort: "Daglimiet bereikt",
+      dailyLimit: "Je hebt de {limit} cross-chain saldo-opzoekingen van vandaag gebruikt. Ze worden om 00:00 UTC gereset.",
+      proOnly: "Pro-functie",
+      exportJson: "JSON exporteren",
+      savedFull: "{count} zijn niet opgeslagen: je abonnement bewaart tot {max} items.",
+      syncOn: "Cloudsynchronisatie staat aan.",
+      syncedAt: "Laatst gesynchroniseerd: {date}.",
+      syncFailed: "Synchroniseren mislukt. Je opgeslagen items zijn veilig in de extensie.",
+      syncNow: "Nu synchroniseren",
+      syncing: "Synchroniseren…",
+      savedCapNote: "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
     }
   };
 
@@ -20563,6 +20801,23 @@
       networkOff: "การค้นหาออนไลน์ปิดอยู่ บัญชีจึงหยุดชั่วคราว เปิดได้ที่ความเป็นส่วนตัวเพื่อลงชื่อเข้าใช้",
       expired: "การลงชื่อเข้าใช้หมดอายุแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง",
       error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่"
+    },
+    pro: {
+      upgradeBatch: "Pro ตรวจสอบได้ครั้งละ {max} รายการ พร้อมยอดคงเหลือของทุกรายการ",
+      seePro: "ดู Pro ที่ web3lens.com",
+      usage: "การค้นหายอดคงเหลือข้ามเชนวันนี้: {used} จาก {limit}",
+      balancesCapped: "แพ็กเกจของคุณตรวจยอดคงเหลือของที่อยู่ EVM {max} รายการแรก",
+      dailyLimitShort: "ถึงขีดจำกัดรายวันแล้ว",
+      dailyLimit: "คุณใช้การค้นหายอดคงเหลือข้ามเชน {limit} ครั้งของวันนี้ครบแล้ว จะรีเซ็ตเวลา 00:00 UTC",
+      proOnly: "ฟีเจอร์ Pro",
+      exportJson: "ส่งออก JSON",
+      savedFull: "{count} รายการไม่ได้บันทึก: แพ็กเกจของคุณเก็บได้สูงสุด {max} รายการ",
+      syncOn: "การซิงก์บนคลาวด์เปิดอยู่",
+      syncedAt: "ซิงก์ล่าสุด {date}",
+      syncFailed: "ซิงก์ไม่สำเร็จ รายการที่บันทึกไว้ยังปลอดภัยในส่วนขยาย",
+      syncNow: "ซิงก์ตอนนี้",
+      syncing: "กำลังซิงก์…",
+      savedCapNote: "คุณบันทึกครบ {max} รายการแล้ว รายการเดิมยังอยู่ครบ แต่ไม่มีที่สำหรับรายการใหม่ Pro เก็บได้ {pro} รายการ ซิงก์ข้ามอุปกรณ์"
     }
   };
 
@@ -20868,7 +21123,8 @@
   var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
 
   // lib/saved.ts
-  var MAX_SAVED = 500;
+  var MAX_SAVED = 5e3;
+  var MAX_TOMBSTONES = 5e3;
   var EMPTY = [];
   function savedId(query, chainId) {
     const q = query.trim();
@@ -20894,15 +21150,98 @@
         label: str(r?.label, 80),
         note: str(r?.note, 1e3),
         favourite: r?.favourite === true,
-        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now()
+        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now(),
+        updatedAt: typeof r?.updatedAt === "number" ? r.updatedAt : typeof r?.addedAt === "number" ? r.addedAt : Date.now()
       });
       if (out.length >= MAX_SAVED) break;
     }
     return out;
   }
   var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
+  function sanitizeTombstones(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    for (const r of raw) if (typeof r?.id === "string" && r.id.length <= 300 && typeof r?.deletedAt === "number") out.push({ id: r.id, deletedAt: r.deletedAt });
+    return out.slice(-MAX_TOMBSTONES);
+  }
+  var tombstoneStore = createLocalStore("w3l:saved-deleted", [], sanitizeTombstones);
+  function applyUpsert(list, item, cap, now = Date.now()) {
+    const id = savedId(item.query, item.chainId);
+    const existing = list.find((x) => x.id === id);
+    if (!existing && list.length >= cap) return { list, result: "limit" };
+    const next = {
+      id,
+      query: item.query.trim(),
+      chainId: item.chainId,
+      label: (item.label ?? existing?.label ?? "").slice(0, 80),
+      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
+      favourite: item.favourite ?? existing?.favourite ?? false,
+      addedAt: existing?.addedAt ?? now,
+      updatedAt: now
+    };
+    return { list: [next, ...list.filter((x) => x.id !== id)], result: existing ? "updated" : "added" };
+  }
   function labelFor(list, query, chainId) {
     return list.find((x) => x.id === savedId(query, chainId)) ?? list.find((x) => x.id === savedId(query, null));
+  }
+
+  // lib/entitlements.ts
+  var tierOf = (plan) => plan === "free" ? "free" : "pro";
+  var LIMITS = {
+    free: {
+      batch: 10,
+      batchBalances: 5,
+      crossChainPerDay: 10,
+      apiPerDay: 0,
+      apiPerMinuteShared: 60,
+      savedLocal: 50,
+      savedCloud: 0,
+      investigations: 0,
+      exports: ["csv"]
+    },
+    pro: {
+      batch: 500,
+      batchBalances: 500,
+      crossChainPerDay: 500,
+      apiPerDay: 1e3,
+      apiPerMinuteShared: 60,
+      savedLocal: 2e3,
+      savedCloud: 2e3,
+      investigations: 100,
+      exports: ["csv", "json"]
+    }
+  };
+  var limitsFor = (plan) => LIMITS[tierOf(plan)];
+  var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
+
+  // extension-src/src/account.ts
+  var REFRESH_MS = 12 * 36e5;
+  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
+  var PLANS = ["free", "pro", "lifetime"];
+  var CODE = /^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/;
+  function sanitizeAccount(raw) {
+    const r = raw ?? {};
+    const token = typeof r.token === "string" && /^[A-Za-z0-9._%-]{16,512}$/.test(r.token) ? r.token : null;
+    const m = r.me;
+    const me = token && m && typeof m.email === "string" && PLANS.includes(m.plan) ? { email: m.email.slice(0, 200), plan: m.plan, tier: m.plan === "free" ? "free" : "pro", until: typeof m.until === "string" ? m.until : null, renews: m.renews === true, billing: m.billing === true } : null;
+    const p = r.pending;
+    const pending = p && typeof p.code === "string" && CODE.test(p.code) && typeof p.verifier === "string" && /^[A-Za-z0-9_-]{43,128}$/.test(p.verifier) && typeof p.expiresAt === "number" ? { code: p.code, verifier: p.verifier, expiresAt: p.expiresAt } : null;
+    return { token, me, refreshedAt: typeof r.refreshedAt === "number" && token ? r.refreshedAt : 0, pending };
+  }
+  async function loadAccount() {
+    const raw = await ext.storage.local.get(["account"]);
+    return sanitizeAccount(raw.account);
+  }
+  function displayPlan(a, now = Date.now()) {
+    if (!a.token || !a.me) return null;
+    if (now - a.refreshedAt > OFFLINE_GRACE_MS) return "free";
+    if (a.me.plan === "pro" && a.me.until && Date.parse(a.me.until) <= now) return "free";
+    return a.me.plan;
+  }
+  function extLimits(a, now = Date.now()) {
+    const plan = displayPlan(a, now);
+    if (!plan || !a.me?.billing) return plan && plan !== "free" ? limitsFor(plan) : PRE_LAUNCH_LIMITS;
+    return limitsFor(plan);
   }
 
   // extension-src/src/store.ts
@@ -20951,20 +21290,14 @@
   async function clearRecent() {
     await ext.storage.local.set({ recent: [] });
   }
+  async function savedCap() {
+    return extLimits(await loadAccount()).savedLocal;
+  }
   async function upsertSaved(item) {
     const { saved } = await load();
-    const id = savedId(item.query, item.chainId);
-    const existing = saved.find((x) => x.id === id);
-    const next = {
-      id,
-      query: item.query.trim(),
-      chainId: item.chainId,
-      label: (item.label ?? existing?.label ?? "").slice(0, 80),
-      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
-      favourite: item.favourite ?? existing?.favourite ?? false,
-      addedAt: existing?.addedAt ?? Date.now()
-    };
-    await setSaved([next, ...saved.filter((x) => x.id !== id)]);
+    const r = applyUpsert(saved, item, await savedCap());
+    if (r.result !== "limit") await setSaved(r.list);
+    return r.result;
   }
   function onStorageChange(cb) {
     ext.storage.onChanged.addListener((_changes, area2) => area2 === "local" && cb());

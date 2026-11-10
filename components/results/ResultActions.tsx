@@ -1,8 +1,9 @@
 'use client';
 
 import { BookmarkSimple, Check, LinkSimple, PencilSimple, Trash } from '@phosphor-icons/react/dist/ssr';
+import Link from 'next/link';
 import { useState, useSyncExternalStore } from 'react';
-import { labelFor, removeSaved, savedStore, upsertSaved } from '@/lib/saved';
+import { getSavedCap, labelFor, removeSaved, savedStore, upsertSaved } from '@/lib/saved';
 
 const btn = 'inline-flex h-9 items-center gap-1.5 rounded-lg border border-line px-3 text-sm font-bold text-fg/85 transition-colors hover:border-accent hover:text-accent';
 
@@ -13,6 +14,7 @@ export function ResultActions({ query, chainId }: { query: string; chainId: stri
   const [editing, setEditing] = useState(false);
   const [label, setLabel] = useState('');
   const [copied, setCopied] = useState(false);
+  const [full, setFull] = useState(false);
 
   async function share() {
     try {
@@ -30,7 +32,7 @@ export function ResultActions({ query, chainId }: { query: string; chainId: stri
         className="flex items-center gap-2"
         onSubmit={(e) => {
           e.preventDefault();
-          upsertSaved({ query, chainId, label: label.trim() });
+          setFull(upsertSaved({ query, chainId, label: label.trim() }) === 'limit');
           setEditing(false);
         }}
       >
@@ -55,6 +57,14 @@ export function ResultActions({ query, chainId }: { query: string; chainId: stri
 
   return (
     <>
+      {full && !item && (
+        <span className="inline-flex h-9 items-center text-sm font-semibold text-redline">
+          Saved list is full ({getSavedCap().toLocaleString('en-US')}).&nbsp;
+          <Link href="/pricing" className="underline underline-offset-2">
+            Pro keeps more
+          </Link>
+        </span>
+      )}
       {item ? (
         <>
           <span className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-accent/60 bg-accent/10 px-3 text-sm font-bold text-accent">
