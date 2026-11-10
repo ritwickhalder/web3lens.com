@@ -13,6 +13,7 @@ export function pageMetadata({
   description = SITE.shortDescription,
   path,
   noindex = false,
+  nofollow = false,
   image,
   article,
   absoluteTitle = false,
@@ -22,6 +23,11 @@ export function pageMetadata({
   path: string;
   /** Per-query result pages: keep them out of search indexes but let crawlers follow links. */
   noindex?: boolean;
+  /**
+   * Live-lookup result pages: also ask crawlers not to follow links. Each one links to more of them (an address
+   * lists its transactions and counterparties), so following them is an endless crawl of server renders.
+   */
+  nofollow?: boolean;
   /** Social image path; defaults to the site-wide generated image. */
   image?: { url: string; alt: string };
   /** Blog posts: Open Graph article fields. */
@@ -47,6 +53,6 @@ export function pageMetadata({
         : { type: 'website' }),
     },
     twitter: { card: 'summary_large_image', site: SITE.twitter, title: socialTitle, description, images: [img] },
-    ...(noindex ? { robots: { index: false, follow: true } } : {}),
+    ...(noindex ? { robots: { index: false, follow: !nofollow } } : {}),
   };
 }

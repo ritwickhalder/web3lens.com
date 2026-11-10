@@ -2,10 +2,9 @@
  * Shared plumbing for /api/v1/*: per-IP rate limit, CORS (so the browser extensions can call it
  * without host permissions), CDN caching headers and JSON errors.
  */
+import { isCrawler } from '@/lib/server/bots';
 import { LookupError } from '@/lib/server/lookup';
-import { clientIp, createLimiter } from '@/lib/server/rate-limit';
-
-const limiter = createLimiter({ windowMs: 60_000, max: 60 });
+import { clientIp, lookupBudget } from '@/lib/server/rate-limit';
 
 export const CORS_HEADERS: Record<string, string> = {
   'access-control-allow-origin': '*',
@@ -36,7 +35,9 @@ export function options() {
 
 /** Runs `fn` behind the rate limiter, turning thrown LookupErrors into JSON errors. */
 export async function handle(request: Request, fn: (params: URLSearchParams) => Promise<Response>): Promise<Response> {
-  const limit = limiter(clientIp(request.headers));
+  // robots.txt disallows /api/; crawlers that ignore it are turned away before any provider call.
+  if (isCrawler(request.headers.get('user-agent'))) return errorJson('Automated crawlers cannot use the lookup API.', 403);
+  const limit = lookupBudget(clientIp(request.headers));
   if (!limit.ok) return errorJson('Too many requests. Please wait a moment.', 429, { 'retry-after': String(limit.retryAfter) });
   try {
     return await fn(new URL(request.url).searchParams);

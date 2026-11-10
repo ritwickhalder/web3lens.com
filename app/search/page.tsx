@@ -29,6 +29,7 @@ export async function generateMetadata({ searchParams }: Props) {
     description: 'Search any blockchain address, transaction, block or name: Web3Lens detects the format, checks it and links to the right explorer.',
     path: '/search',
     noindex: Boolean(q),
+    nofollow: Boolean(q),
   });
 }
 

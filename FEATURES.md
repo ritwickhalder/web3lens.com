@@ -93,7 +93,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 
 ## 7. Public API
 
-`/api/v1/{detect,address,tx,multichain,locate-tx,security,approvals,gas,resolve,selector}`: input validated with the detector, per-IP rate limit (60/min/instance), TTL cache with stale-if-error, CDN cache headers, CORS for the extensions. Free, no key. **Web** only.
+`/api/v1/{detect,address,tx,multichain,locate-tx,security,approvals,gas,resolve,selector}`: input validated with the detector, per-IP lookup budget shared with the result pages (60/min and 1,200/hour per instance), crawler User-Agents refused (403), TTL cache with stale-if-error, CDN cache headers, CORS for the extensions. Free, no key. **Web** only.
 
 ## 8. Extension experience
 
@@ -116,7 +116,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 | **Navigation** | Search, Tools, Saved, Extension, Directory, Learn, Blog, About, News dropdown (15 outside sources), Markets, Contact; mobile sheet below 1280 px. Footer with donation addresses (copy buttons). |
 | **Contact form** | Emails the owner; honeypot, minimum fill time, spam/link checks, per-IP and per-email rate limits. |
 | **Static pages** | About, Terms, Privacy Policy, Bookmark how-to, HTML sitemap, 404. |
-| **SEO** | Per-page metadata with full Open Graph/Twitter cards, JSON-LD (Organization, WebSite + SearchAction, WebApplication, SoftwareApplication, BreadcrumbList, BlogPosting, FAQPage), sitemap, robots, RSS. Old 2018 URLs redirect permanently. |
+| **SEO** | Per-page metadata with full Open Graph/Twitter cards, JSON-LD (Organization, WebSite + SearchAction, WebApplication, SoftwareApplication, BreadcrumbList, BlogPosting, FAQPage), sitemap, robots, RSS. Old 2018 URLs redirect permanently. Live-lookup pages (`/address/`, `/tx/`, `/search?`) and `/api/` are disallowed in robots and marked noindex, nofollow; crawlers and scripts that request them anyway get the page without provider calls (title, metadata and explorer links only). |
 | **Themes and accessibility** | Dark/Light/System with no flash, both palettes tested for WCAG AA; skip link, focus rings, labelled controls, reduced motion respected. |
 | **Analytics** | GA4, only when `NEXT_PUBLIC_GA_ID` is set. |
 

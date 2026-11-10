@@ -12,6 +12,7 @@ import { explorerLinks } from '@/lib/explorer';
 import { shortHash } from '@/lib/format';
 import { pageMetadata } from '@/lib/metadata';
 import { LookupError, lookupTx } from '@/lib/server/lookup';
+import { liveLookupAllowed, liveLookupMessage } from '@/lib/server/page-guard';
 import { checkTxQuery } from '@/lib/validate-query';
 
 type Props = { params: Promise<{ chain: string; hash: string }> };
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props) {
     description: `Status, value, fee and decoded input for transaction ${hash} on ${chain?.name ?? chainId}.`,
     path: `/tx/${chainId}/${hash}`,
     noindex: true,
+    nofollow: true,
   });
 }
 
@@ -36,6 +38,8 @@ export default async function TxPage({ params }: Props) {
   if (check.query !== raw) redirect(`/tx/${chainId}/${encodeURIComponent(check.query)}`);
 
   const hashValue = check.query;
+  // Crawlers, scripts and clients over their lookup budget get the page without provider calls.
+  const live = await liveLookupAllowed();
   return (
     <main className="wrap pt-10 sm:pt-14">
       <ResultHeader
@@ -48,15 +52,19 @@ export default async function TxPage({ params }: Props) {
       />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="min-w-0 space-y-4">
-          <Suspense
-            fallback={
-              <div aria-busy className="h-64 animate-pulse rounded-2xl border border-line bg-ink-2">
-                <p className="sr-only">Loading transaction…</p>
-              </div>
-            }
-          >
-            <TxData chainId={chainId} hash={hashValue} />
-          </Suspense>
+          {live.ok ? (
+            <Suspense
+              fallback={
+                <div aria-busy className="h-64 animate-pulse rounded-2xl border border-line bg-ink-2">
+                  <p className="sr-only">Loading transaction…</p>
+                </div>
+              }
+            >
+              <TxData chainId={chainId} hash={hashValue} />
+            </Suspense>
+          ) : (
+            <Note tone={live.reason === 'rate-limited' ? 'warn' : 'info'}>{liveLookupMessage(live)}</Note>
+          )}
         </div>
         <aside className="min-w-0 space-y-4">
           <Card title="Open in an explorer">

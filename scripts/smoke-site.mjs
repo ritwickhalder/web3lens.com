@@ -11,6 +11,8 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const BASE = process.argv[2] ?? 'http://localhost:3000';
+// Result pages skip live lookups for headless browsers (lib/server/bots.ts), so present a desktop Chrome UA.
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36';
 const PAGES = [
   '/',
   '/search',
@@ -58,7 +60,7 @@ try {
     [1280, 'wide'],
     [1440, 'desktop'],
   ]) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const page = await browser.newPage({ viewport: { width, height: 900 }, userAgent: USER_AGENT });
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     for (const p of PAGES) {
@@ -73,7 +75,7 @@ try {
 
   // Light theme: every page renders, and the stored choice applies before React loads (no dark flash).
   {
-    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, userAgent: USER_AGENT });
     await ctx.addInitScript(() => localStorage.setItem('w3l:theme', '"light"'));
     const lp = await ctx.newPage();
     const errors = [];
@@ -92,7 +94,7 @@ try {
     await ctx.close();
   }
 
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, userAgent: USER_AGENT });
   for (const [from, to] of [
     ['/about.html', '/about'],
     ['/contact.php', '/contact'],

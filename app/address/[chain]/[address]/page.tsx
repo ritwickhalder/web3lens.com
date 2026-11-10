@@ -16,6 +16,7 @@ import { shortHash } from '@/lib/format';
 import { pageMetadata } from '@/lib/metadata';
 import { searchUrl } from '@/lib/search-url';
 import { LookupError, lookupAddress, resolveName } from '@/lib/server/lookup';
+import { liveLookupAllowed, liveLookupMessage } from '@/lib/server/page-guard';
 import { checkAddressQuery } from '@/lib/validate-query';
 
 type Props = { params: Promise<{ chain: string; address: string }> };
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Props) {
     description: `Balance, tokens, activity and risk checks for ${a} on ${chain?.name ?? chainId}.`,
     path: `/address/${chainId}/${a}`,
     noindex: true,
+    nofollow: true,
   });
 }
 
@@ -65,10 +67,13 @@ export default async function AddressPage({ params }: Props) {
   if (check.query !== raw) redirect(`/address/${chainId}/${encodeURIComponent(check.query)}`);
 
   const d = check.detection;
+  // Crawlers, scripts and clients over their lookup budget get the page without provider calls.
+  const live = await liveLookupAllowed();
   // ENS names are resolved up front (one cached on-chain call) so the header shows the real address.
   let addr = check.query;
   let resolvedFrom: string | undefined;
   if (d.format === 'ens') {
+    if (!live.ok) return <ResultError title="Can't resolve this name right now" message={liveLookupMessage(live)} query={raw} />;
     const r = await resolveName(check.query);
     if (r.status !== 'ok') return <ResultError title="Can't resolve this name" message={`${check.query}: ${r.reason}.`} query={raw} />;
     if (!r.data) return <ResultError title="No address for this name" message={`${check.query} has no Ethereum address set (checked on-chain and through its off-chain gateway, if it has one).`} query={raw} />;
@@ -116,16 +121,20 @@ export default async function AddressPage({ params }: Props) {
       />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="min-w-0 space-y-4">
-          <Suspense fallback={<SectionsLoading />}>
-            <AddressData chainId={chainId} address={addr} resolvedFrom={resolvedFrom} />
-          </Suspense>
-          {/^0x[0-9a-fA-F]{40}$/.test(addr) && <MultichainBalances address={addr} current={chainId} />}
+          {live.ok ? (
+            <Suspense fallback={<SectionsLoading />}>
+              <AddressData chainId={chainId} address={addr} resolvedFrom={resolvedFrom} />
+            </Suspense>
+          ) : (
+            <Note tone={live.reason === 'rate-limited' ? 'warn' : 'info'}>{liveLookupMessage(live)}</Note>
+          )}
+          {live.ok && /^0x[0-9a-fA-F]{40}$/.test(addr) && <MultichainBalances address={addr} current={chainId} />}
         </div>
         <aside className="min-w-0 space-y-4">
           <Card title="Open in an explorer">
             <ExplorerLinks links={links} />
           </Card>
-          <SecurityPanel chainId={chainId} address={addr} />
+          {live.ok && <SecurityPanel chainId={chainId} address={addr} />}
           <Card title="QR code">
             <QrCode value={addr} label={`${chain.name} address ${shortHash(addr)}`} />
           </Card>

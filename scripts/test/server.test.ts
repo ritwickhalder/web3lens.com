@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { cached, clearCache } from '../../lib/server/cache';
-import { clientIp, createLimiter } from '../../lib/server/rate-limit';
+import { clientIp, createLimiter, createLookupBudget } from '../../lib/server/rate-limit';
+import { isAutomated, isCrawler } from '../../lib/server/bots';
 import { checkAddressQuery, checkEvmAddress, checkEvmTx, checkTxQuery } from '../../lib/validate-query';
 import { checkSanctions } from '../../lib/security/sanctions';
 import { sanitizeSaved, savedId } from '../../lib/saved';
@@ -112,6 +113,53 @@ test('fetchJson maps HTTP failures to ProviderError', async () => {
   setFetch(async () => Response.json({ a: 1 }));
   assert.deepEqual(await fetchJson('X', 'https://example.com'), { a: 1 });
   setFetch(null);
+});
+
+test('lookup budget: per-minute bursts and an hourly cap', () => {
+  const check = createLookupBudget({ perMinute: 3, perHour: 5 });
+  assert.ok(check('a', 0).ok && check('a', 1).ok && check('a', 2).ok);
+  assert.ok(!check('a', 3).ok, 'fourth in a minute is refused');
+  assert.ok(check('a', 60_000).ok && check('a', 60_001).ok, 'new minute');
+  const capped = check('a', 120_000);
+  assert.ok(!capped.ok && capped.retryAfter > 3000, 'hourly cap reached; retry after the hour window');
+  assert.ok(check('b', 120_000).ok, 'other clients unaffected');
+  assert.ok(check('a', 3_600_001).ok, 'next hour');
+});
+
+test('crawler and automation detection', () => {
+  const browsers = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36 Edg/142.0.0.0',
+    'Mozilla/5.0 (Linux; Android 10; CUBOT X30 Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36',
+    'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1',
+  ];
+  for (const ua of browsers) assert.ok(!isCrawler(ua) && !isAutomated(ua), ua);
+  const crawlers = [
+    'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+    'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)',
+    'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.2; +https://openai.com/gptbot)',
+    'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)',
+    'Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)',
+    'Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; spider-feedback@bytedance.com)',
+    'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)',
+    'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)',
+  ];
+  for (const ua of crawlers) assert.ok(isCrawler(ua) && isAutomated(ua), ua);
+  // Scripts may use the API but don't get live data rendered into HTML.
+  for (const ua of ['curl/8.5.0', 'python-requests/2.32.3', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/142.0.0.0 Safari/537.36']) {
+    assert.ok(!isCrawler(ua) && isAutomated(ua), ua);
+  }
+  assert.ok(isAutomated(null) && isAutomated('') && !isCrawler(null));
+});
+
+test('robots.txt keeps crawlers off the live-lookup pages and the API, not off the empty search page', async () => {
+  const { default: robots } = await import('../../app/robots');
+  const rules = robots().rules;
+  const disallow = (Array.isArray(rules) ? rules[0] : rules).disallow;
+  for (const p of ['/api/', '/address/', '/tx/', '/search?']) assert.ok(disallow?.includes(p), p);
+  assert.ok(!disallow?.includes('/search'));
 });
 
 test('sitemap lists static pages and per-chain explorer pages, not per-browser pages', async () => {
