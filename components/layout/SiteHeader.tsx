@@ -4,6 +4,7 @@ import { ArrowUpRight, CaretDown, List, Newspaper, X } from '@phosphor-icons/rea
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { AccountButton } from '@/components/account/AccountButton';
 import { Logo } from '@/components/brand/Logo';
 import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
@@ -95,6 +96,7 @@ export function SiteHeader() {
             <ArrowUpRight aria-hidden weight="bold" className="size-3.5" />
           </a>
           <ThemeToggle />
+          <AccountButton className="ml-2" />
           <Link
             href="/contact"
             className="ml-2 flex h-10 items-center rounded-md border border-line-strong px-5 text-[15px] font-bold text-fg transition-colors hover:border-accent hover:text-accent"
@@ -135,6 +137,7 @@ export function SiteHeader() {
               ))}
             </div>
             <div>
+              <AccountButton className="mb-8 w-fit" onNavigate={close} />
               <p className="label mb-3">Browser extension</p>
               <AddToBrowserButton className="mb-8" />
               <p className="label mb-3">News & markets</p>

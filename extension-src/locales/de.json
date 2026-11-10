@@ -590,5 +590,25 @@
       "bech32Unknown": "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
       "versionByte": "Das Versionsbyte {byte} erkennt Web3Lens nicht."
     }
+  },
+  "account": {
+    "title": "Konto",
+    "signedOutBody": "Optional. Melde dich an, um deinen Web3Lens-Tarif hier zu sehen. Die Erweiterung funktioniert auch ohne Konto vollständig.",
+    "signIn": "Mit Google anmelden",
+    "pendingBody": "Bestätige diesen Code auf web3lens.com und kehre dann hierher zurück:",
+    "reopen": "Bestätigungsseite öffnen",
+    "cancel": "Abbrechen",
+    "waiting": "Warte auf Bestätigung…",
+    "signedInAs": "Angemeldet als {email}",
+    "planFree": "Kostenlos",
+    "planPro": "Pro",
+    "planLifetime": "Pro auf Lebenszeit",
+    "manage": "Konto verwalten",
+    "refresh": "Tarif aktualisieren",
+    "signOut": "Abmelden",
+    "offline": "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
+    "networkOff": "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
+    "expired": "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
+    "error": "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
   }
 }

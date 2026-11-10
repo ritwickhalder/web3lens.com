@@ -3,8 +3,8 @@
 (() => {
   // lib/api-client.ts
   var ApiError = class extends Error {
-    constructor(message, status) {
-      super(message);
+    constructor(message2, status) {
+      super(message2);
       this.status = status;
     }
   };
@@ -17,20 +17,20 @@
     const url = `${base}/api/v1/${path}?${new URLSearchParams(params)}`;
     const timeout = AbortSignal.timeout(timeoutMs);
     let res;
-    let body;
+    let body2;
     try {
       res = await fetch(url, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout, headers: { accept: "application/json" } });
-      body = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
+      body2 = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
     } catch (e) {
       if (signal?.aborted) throw e;
       if (timeout.aborted) throw new ApiError("Web3Lens took too long to answer. Try again in a moment; explorer links and local checks still work.", 0);
       throw new ApiError("Web3Lens could not be reached. Check your connection.", 0);
     }
-    if (!res.ok || !body) {
+    if (!res.ok || !body2) {
       const fallback = res.status === 429 ? "Too many lookups in a short time. Wait a minute and try again." : `The Web3Lens lookup service is unavailable right now (HTTP ${res.status}). Explorer links and local checks still work.`;
-      throw new ApiError(body?.error ?? fallback, res.status);
+      throw new ApiError(body2?.error ?? fallback, res.status);
     }
-    return body;
+    return body2;
   }
 
   // lib/networks.ts
@@ -662,6 +662,26 @@
         bech32Unknown: `A valid bech32 address for "{hrp}", a network Web3Lens doesn't list yet.`,
         versionByte: "Version byte {byte} isn't one Web3Lens recognises."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optional. Sign in to see your Web3Lens plan here. Everything in the extension keeps working without an account.",
+      signIn: "Sign in with Google",
+      pendingBody: "Approve this code on web3lens.com, then come back here:",
+      reopen: "Open the approval page",
+      cancel: "Cancel",
+      waiting: "Waiting for approval…",
+      signedInAs: "Signed in as {email}",
+      planFree: "Free",
+      planPro: "Pro",
+      planLifetime: "Pro for life",
+      manage: "Manage account",
+      refresh: "Refresh plan",
+      signOut: "Sign out",
+      offline: "Couldn't reach web3lens.com. Showing your plan as of {date}.",
+      networkOff: "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
+      expired: "Your sign-in has expired. Sign in again.",
+      error: "Sign-in didn't work. Try again in a moment."
     }
   };
 
@@ -1258,6 +1278,26 @@
         bech32Unknown: "Una dirección bech32 válida para “{hrp}”, una red que Web3Lens aún no incluye.",
         versionByte: "El byte de versión {byte} no es uno que Web3Lens reconozca."
       }
+    },
+    account: {
+      title: "Cuenta",
+      signedOutBody: "Opcional. Inicia sesión para ver aquí tu plan de Web3Lens. Todo en la extensión sigue funcionando sin cuenta.",
+      signIn: "Iniciar sesión con Google",
+      pendingBody: "Aprueba este código en web3lens.com y vuelve aquí:",
+      reopen: "Abrir la página de aprobación",
+      cancel: "Cancelar",
+      waiting: "Esperando aprobación…",
+      signedInAs: "Sesión iniciada como {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro de por vida",
+      manage: "Gestionar cuenta",
+      refresh: "Actualizar plan",
+      signOut: "Cerrar sesión",
+      offline: "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
+      networkOff: "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
+      expired: "Tu sesión ha caducado. Vuelve a iniciar sesión.",
+      error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
     }
   };
 
@@ -1854,6 +1894,26 @@
         bech32Unknown: "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
         versionByte: "O byte de versão {byte} não é um que o Web3Lens reconheça."
       }
+    },
+    account: {
+      title: "Conta",
+      signedOutBody: "Opcional. Entre para ver aqui o seu plano Web3Lens. Tudo na extensão continua funcionando sem conta.",
+      signIn: "Entrar com o Google",
+      pendingBody: "Aprove este código em web3lens.com e depois volte aqui:",
+      reopen: "Abrir a página de aprovação",
+      cancel: "Cancelar",
+      waiting: "Aguardando aprovação…",
+      signedInAs: "Conectado como {email}",
+      planFree: "Grátis",
+      planPro: "Pro",
+      planLifetime: "Pro vitalício",
+      manage: "Gerenciar conta",
+      refresh: "Atualizar plano",
+      signOut: "Sair",
+      offline: "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
+      networkOff: "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
+      expired: "Sua sessão expirou. Entre novamente.",
+      error: "Não foi possível entrar. Tente de novo em instantes."
     }
   };
 
@@ -2450,6 +2510,26 @@
         bech32Unknown: "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
         versionByte: "L’octet de version {byte} n’est pas reconnu par Web3Lens."
       }
+    },
+    account: {
+      title: "Compte",
+      signedOutBody: "Facultatif. Connectez-vous pour voir ici votre formule Web3Lens. Tout dans l'extension fonctionne sans compte.",
+      signIn: "Se connecter avec Google",
+      pendingBody: "Approuvez ce code sur web3lens.com, puis revenez ici :",
+      reopen: "Ouvrir la page d'approbation",
+      cancel: "Annuler",
+      waiting: "En attente d'approbation…",
+      signedInAs: "Connecté en tant que {email}",
+      planFree: "Gratuit",
+      planPro: "Pro",
+      planLifetime: "Pro à vie",
+      manage: "Gérer le compte",
+      refresh: "Actualiser la formule",
+      signOut: "Se déconnecter",
+      offline: "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
+      networkOff: "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
+      expired: "Votre session a expiré. Reconnectez-vous.",
+      error: "La connexion n'a pas abouti. Réessayez dans un instant."
     }
   };
 
@@ -3046,6 +3126,26 @@
         bech32Unknown: "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
         versionByte: "Das Versionsbyte {byte} erkennt Web3Lens nicht."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Optional. Melde dich an, um deinen Web3Lens-Tarif hier zu sehen. Die Erweiterung funktioniert auch ohne Konto vollständig.",
+      signIn: "Mit Google anmelden",
+      pendingBody: "Bestätige diesen Code auf web3lens.com und kehre dann hierher zurück:",
+      reopen: "Bestätigungsseite öffnen",
+      cancel: "Abbrechen",
+      waiting: "Warte auf Bestätigung…",
+      signedInAs: "Angemeldet als {email}",
+      planFree: "Kostenlos",
+      planPro: "Pro",
+      planLifetime: "Pro auf Lebenszeit",
+      manage: "Konto verwalten",
+      refresh: "Tarif aktualisieren",
+      signOut: "Abmelden",
+      offline: "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
+      networkOff: "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
+      expired: "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
+      error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
     }
   };
 
@@ -3642,6 +3742,26 @@
         bech32Unknown: "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
         versionByte: "バージョンバイト {byte} は Web3Lens が認識できないものです。"
       }
+    },
+    account: {
+      title: "アカウント",
+      signedOutBody: "任意です。サインインすると、ここに Web3Lens のプランが表示されます。拡張機能はアカウントなしでもすべて使えます。",
+      signIn: "Google でサインイン",
+      pendingBody: "web3lens.com でこのコードを承認してから、ここに戻ってください:",
+      reopen: "承認ページを開く",
+      cancel: "キャンセル",
+      waiting: "承認を待っています…",
+      signedInAs: "{email} でサインイン中",
+      planFree: "無料",
+      planPro: "Pro",
+      planLifetime: "Pro（買い切り）",
+      manage: "アカウントを管理",
+      refresh: "プランを更新",
+      signOut: "サインアウト",
+      offline: "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
+      networkOff: "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
+      expired: "サインインの有効期限が切れました。もう一度サインインしてください。",
+      error: "サインインできませんでした。しばらくしてからもう一度お試しください。"
     }
   };
 
@@ -4238,6 +4358,26 @@
         bech32Unknown: "“{hrp}”에 대한 유효한 bech32 주소이지만, Web3Lens가 아직 지원하지 않는 네트워크입니다.",
         versionByte: "버전 바이트 {byte}은(는) Web3Lens가 인식하지 못합니다."
       }
+    },
+    account: {
+      title: "계정",
+      signedOutBody: "선택 사항입니다. 로그인하면 여기에서 Web3Lens 요금제를 볼 수 있습니다. 확장 프로그램은 계정 없이도 모두 작동합니다.",
+      signIn: "Google로 로그인",
+      pendingBody: "web3lens.com에서 이 코드를 승인한 뒤 여기로 돌아오세요:",
+      reopen: "승인 페이지 열기",
+      cancel: "취소",
+      waiting: "승인을 기다리는 중…",
+      signedInAs: "{email}(으)로 로그인됨",
+      planFree: "무료",
+      planPro: "Pro",
+      planLifetime: "평생 Pro",
+      manage: "계정 관리",
+      refresh: "요금제 새로고침",
+      signOut: "로그아웃",
+      offline: "web3lens.com에 연결할 수 없습니다. {date} 기준 요금제를 표시합니다.",
+      networkOff: "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
+      expired: "로그인이 만료되었습니다. 다시 로그인하세요.",
+      error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
     }
   };
 
@@ -4834,6 +4974,26 @@
         bech32Unknown: "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
         versionByte: "Web3Lens 无法识别版本字节 {byte}。"
       }
+    },
+    account: {
+      title: "账户",
+      signedOutBody: "可选。登录后可在此查看你的 Web3Lens 套餐。不登录也能使用扩展的全部功能。",
+      signIn: "使用 Google 登录",
+      pendingBody: "请在 web3lens.com 上批准此代码，然后回到这里：",
+      reopen: "打开批准页面",
+      cancel: "取消",
+      waiting: "正在等待批准…",
+      signedInAs: "已登录：{email}",
+      planFree: "免费",
+      planPro: "Pro",
+      planLifetime: "终身 Pro",
+      manage: "管理账户",
+      refresh: "刷新套餐",
+      signOut: "退出登录",
+      offline: "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
+      networkOff: "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
+      expired: "登录已过期，请重新登录。",
+      error: "登录失败，请稍后再试。"
     }
   };
 
@@ -5430,6 +5590,26 @@
         bech32Unknown: "Действительный адрес bech32 для «{hrp}» — сети, которой пока нет в Web3Lens.",
         versionByte: "Байт версии {byte} не распознаётся Web3Lens."
       }
+    },
+    account: {
+      title: "Аккаунт",
+      signedOutBody: "Необязательно. Войдите, чтобы видеть здесь свой тариф Web3Lens. Расширение полностью работает и без аккаунта.",
+      signIn: "Войти через Google",
+      pendingBody: "Подтвердите этот код на web3lens.com и вернитесь сюда:",
+      reopen: "Открыть страницу подтверждения",
+      cancel: "Отмена",
+      waiting: "Ожидание подтверждения…",
+      signedInAs: "Вы вошли как {email}",
+      planFree: "Бесплатный",
+      planPro: "Pro",
+      planLifetime: "Pro навсегда",
+      manage: "Управление аккаунтом",
+      refresh: "Обновить тариф",
+      signOut: "Выйти",
+      offline: "Не удалось связаться с web3lens.com. Показан тариф на {date}.",
+      networkOff: "Онлайн-запросы отключены, поэтому аккаунт приостановлен. Включите их в разделе «Конфиденциальность», чтобы войти.",
+      expired: "Срок входа истёк. Войдите снова.",
+      error: "Не удалось войти. Попробуйте ещё раз чуть позже."
     }
   };
 
@@ -6026,6 +6206,26 @@
         bech32Unknown: "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
         versionByte: "Byte versi {byte} tidak dikenali Web3Lens."
       }
+    },
+    account: {
+      title: "Akun",
+      signedOutBody: "Opsional. Masuk untuk melihat paket Web3Lens Anda di sini. Semua fitur ekstensi tetap berfungsi tanpa akun.",
+      signIn: "Masuk dengan Google",
+      pendingBody: "Setujui kode ini di web3lens.com, lalu kembali ke sini:",
+      reopen: "Buka halaman persetujuan",
+      cancel: "Batal",
+      waiting: "Menunggu persetujuan…",
+      signedInAs: "Masuk sebagai {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro seumur hidup",
+      manage: "Kelola akun",
+      refresh: "Perbarui paket",
+      signOut: "Keluar",
+      offline: "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
+      networkOff: "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
+      expired: "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
+      error: "Gagal masuk. Coba lagi sebentar lagi."
     }
   };
 
@@ -6622,6 +6822,26 @@
         bech32Unknown: "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
         versionByte: "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
       }
+    },
+    account: {
+      title: "Hesap",
+      signedOutBody: "İsteğe bağlı. Web3Lens planınızı burada görmek için giriş yapın. Uzantıdaki her şey hesap olmadan da çalışır.",
+      signIn: "Google ile giriş yap",
+      pendingBody: "Bu kodu web3lens.com üzerinde onaylayın, ardından buraya dönün:",
+      reopen: "Onay sayfasını aç",
+      cancel: "İptal",
+      waiting: "Onay bekleniyor…",
+      signedInAs: "{email} olarak giriş yapıldı",
+      planFree: "Ücretsiz",
+      planPro: "Pro",
+      planLifetime: "Ömür boyu Pro",
+      manage: "Hesabı yönet",
+      refresh: "Planı yenile",
+      signOut: "Çıkış yap",
+      offline: "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
+      networkOff: "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
+      expired: "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
+      error: "Giriş yapılamadı. Birazdan tekrar deneyin."
     }
   };
 
@@ -7218,6 +7438,26 @@
         bech32Unknown: "Un indirizzo bech32 valido per “{hrp}”, una rete che Web3Lens non elenca ancora.",
         versionByte: "Il byte di versione {byte} non è riconosciuto da Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Facoltativo. Accedi per vedere qui il tuo piano Web3Lens. Tutto nell'estensione funziona anche senza account.",
+      signIn: "Accedi con Google",
+      pendingBody: "Approva questo codice su web3lens.com, poi torna qui:",
+      reopen: "Apri la pagina di approvazione",
+      cancel: "Annulla",
+      waiting: "In attesa di approvazione…",
+      signedInAs: "Accesso effettuato come {email}",
+      planFree: "Gratuito",
+      planPro: "Pro",
+      planLifetime: "Pro a vita",
+      manage: "Gestisci account",
+      refresh: "Aggiorna piano",
+      signOut: "Esci",
+      offline: "Impossibile raggiungere web3lens.com. Il piano mostrato è aggiornato al {date}.",
+      networkOff: "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
+      expired: "L'accesso è scaduto. Accedi di nuovo.",
+      error: "L'accesso non è riuscito. Riprova tra poco."
     }
   };
 
@@ -7814,6 +8054,26 @@
         bech32Unknown: "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
         versionByte: "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Opcjonalne. Zaloguj się, aby zobaczyć tutaj swój plan Web3Lens. Rozszerzenie działa w pełni bez konta.",
+      signIn: "Zaloguj się przez Google",
+      pendingBody: "Zatwierdź ten kod na web3lens.com, a potem wróć tutaj:",
+      reopen: "Otwórz stronę zatwierdzania",
+      cancel: "Anuluj",
+      waiting: "Czekam na zatwierdzenie…",
+      signedInAs: "Zalogowano jako {email}",
+      planFree: "Darmowy",
+      planPro: "Pro",
+      planLifetime: "Pro na zawsze",
+      manage: "Zarządzaj kontem",
+      refresh: "Odśwież plan",
+      signOut: "Wyloguj się",
+      offline: "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
+      networkOff: "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
+      expired: "Sesja wygasła. Zaloguj się ponownie.",
+      error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
     }
   };
 
@@ -8410,6 +8670,26 @@
         bech32Unknown: "Een geldig bech32-adres voor ‘{hrp}’, een netwerk dat Web3Lens nog niet kent.",
         versionByte: "Versiebyte {byte} wordt niet herkend door Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optioneel. Log in om hier je Web3Lens-abonnement te zien. Alles in de extensie werkt ook zonder account.",
+      signIn: "Inloggen met Google",
+      pendingBody: "Keur deze code goed op web3lens.com en kom dan hier terug:",
+      reopen: "Goedkeuringspagina openen",
+      cancel: "Annuleren",
+      waiting: "Wachten op goedkeuring…",
+      signedInAs: "Ingelogd als {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro voor altijd",
+      manage: "Account beheren",
+      refresh: "Abonnement vernieuwen",
+      signOut: "Uitloggen",
+      offline: "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
+      networkOff: "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
+      expired: "Je sessie is verlopen. Log opnieuw in.",
+      error: "Inloggen is niet gelukt. Probeer het zo opnieuw."
     }
   };
 
@@ -9006,6 +9286,26 @@
         bech32Unknown: "ที่อยู่ bech32 ที่ถูกต้องสำหรับ “{hrp}” ซึ่งเป็นเครือข่ายที่ Web3Lens ยังไม่รองรับ",
         versionByte: "Web3Lens ไม่รู้จักไบต์เวอร์ชัน {byte}"
       }
+    },
+    account: {
+      title: "บัญชี",
+      signedOutBody: "ไม่บังคับ ลงชื่อเข้าใช้เพื่อดูแพ็กเกจ Web3Lens ของคุณที่นี่ ทุกอย่างในส่วนขยายยังใช้งานได้โดยไม่ต้องมีบัญชี",
+      signIn: "ลงชื่อเข้าใช้ด้วย Google",
+      pendingBody: "อนุมัติรหัสนี้ที่ web3lens.com แล้วกลับมาที่นี่:",
+      reopen: "เปิดหน้าอนุมัติ",
+      cancel: "ยกเลิก",
+      waiting: "กำลังรอการอนุมัติ…",
+      signedInAs: "ลงชื่อเข้าใช้เป็น {email}",
+      planFree: "ฟรี",
+      planPro: "Pro",
+      planLifetime: "Pro ตลอดชีพ",
+      manage: "จัดการบัญชี",
+      refresh: "รีเฟรชแพ็กเกจ",
+      signOut: "ออกจากระบบ",
+      offline: "เชื่อมต่อ web3lens.com ไม่ได้ กำลังแสดงแพ็กเกจของคุณ ณ วันที่ {date}",
+      networkOff: "การค้นหาออนไลน์ปิดอยู่ บัญชีจึงหยุดชั่วคราว เปิดได้ที่ความเป็นส่วนตัวเพื่อลงชื่อเข้าใช้",
+      expired: "การลงชื่อเข้าใช้หมดอายุแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง",
+      error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่"
     }
   };
 
@@ -21111,10 +21411,10 @@
     }
     let zeros = 0;
     while (zeros < s.length && s[zeros] === alphabet[0]) zeros++;
-    const body = bytes.reverse();
+    const body2 = bytes.reverse();
     let start = 0;
-    while (start < body.length && body[start] === 0) start++;
-    return concatBytes(new Uint8Array(zeros), Uint8Array.from(body.slice(start)));
+    while (start < body2.length && body2[start] === 0) start++;
+    return concatBytes(new Uint8Array(zeros), Uint8Array.from(body2.slice(start)));
   }
   function base58CheckDecode(s, alphabet = BITCOIN_ALPHABET) {
     const raw = base58Decode(s, alphabet);
@@ -21472,8 +21772,8 @@
     return out;
   }
   function evmChecksumStatus(address) {
-    const body = address.slice(2);
-    if (body === body.toLowerCase() || body === body.toUpperCase()) return "none";
+    const body2 = address.slice(2);
+    if (body2 === body2.toLowerCase() || body2 === body2.toUpperCase()) return "none";
     return toChecksumAddress(address) === address ? "valid" : "invalid";
   }
 
@@ -22270,14 +22570,14 @@
     const v = value.trim().replace(/_/g, "").replace(/,/g, "");
     if (!/^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(v)) throw new Error("Not a number");
     const negative = v.startsWith("-");
-    let body = negative ? v.slice(1) : v;
-    const exp = /e([+-]?\d+)$/i.exec(body);
+    let body2 = negative ? v.slice(1) : v;
+    const exp = /e([+-]?\d+)$/i.exec(body2);
     let shift = 0;
     if (exp) {
       shift = Number(exp[1]);
-      body = body.slice(0, exp.index);
+      body2 = body2.slice(0, exp.index);
     }
-    let [int, frac = ""] = body.split(".");
+    let [int, frac = ""] = body2.split(".");
     int = int || "0";
     const totalDecimals = decimals + shift;
     if (totalDecimals < 0) throw new Error("Exponent too small");
@@ -23025,8 +23325,8 @@
     ];
   }
   function securityCard(chainId, address) {
-    const body = h("div", null, loading(t("risk.checking")));
-    const el = h("section", { class: "card" }, h("h2", null, t("risk.title")), body);
+    const body2 = h("div", null, loading(t("risk.checking")));
+    const el = h("section", { class: "card" }, h("h2", null, t("risk.title")), body2);
     apiGet("security", { chain: chainId, q: address }).then((s) => {
       const rows = [
         s.flagCount > 0 ? note(t("risk.signals", { count: s.flagCount }), "danger") : note(t("risk.noReports"), "info"),
@@ -23045,10 +23345,10 @@
           ] : []
         ])
       ];
-      clear(body, ...rows);
+      clear(body2, ...rows);
     }).catch((e) => {
       const s = checkSanctions(address);
-      clear(body, errorText(t("risk.onlineUnavailable", { error: failMessage(e) })), facts([[t("risk.ofacLocal"), s.listed ? t("risk.listed", { lists: s.lists.join(", ") }) : t("risk.notListed", { date: s.snapshotAt.slice(0, 10) })]]));
+      clear(body2, errorText(t("risk.onlineUnavailable", { error: failMessage(e) })), facts([[t("risk.ofacLocal"), s.listed ? t("risk.listed", { lists: s.lists.join(", ") }) : t("risk.notListed", { date: s.snapshotAt.slice(0, 10) })]]));
     });
     if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
       const approvals = h("div", null);
@@ -23076,10 +23376,10 @@
     return el;
   }
   function multichainCard(address, nav2) {
-    const body = h("div", null, loading(t("multichain.checking", { count: EVM_NETWORKS.length })));
+    const body2 = h("div", null, loading(t("multichain.checking", { count: EVM_NETWORKS.length })));
     apiGet("multichain", { q: address }).then(
       (m) => clear(
-        body,
+        body2,
         h(
           "ul",
           { class: "list" },
@@ -23094,19 +23394,19 @@
         ),
         h("p", { class: "source" }, t("multichain.source", { source: m.priceSource?.name ?? t("common.unavailable"), ago: ago(m.fetchedAt) }))
       )
-    ).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, t("multichain.title")), body);
+    ).catch((e) => clear(body2, errorText(failMessage(e))));
+    return h("section", { class: "card" }, h("h2", null, t("multichain.title")), body2);
   }
   function locateCard(hash, nav2) {
-    const body = h("div", null, loading(t("locate.asking", { count: EVM_NETWORKS.length })));
+    const body2 = h("div", null, loading(t("locate.asking", { count: EVM_NETWORKS.length })));
     apiGet("locate-tx", { q: hash }).then((l) => {
       const found = l.rows.filter((r) => r.status === "found");
       clear(
-        body,
+        body2,
         found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, t("locate.foundOn", { chain: r.chain.name })))) : h("p", { class: "muted" }, t("locate.notFound", { count: EVM_NETWORKS.length }))
       );
-    }).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, t("locate.title")), body);
+    }).catch((e) => clear(body2, errorText(failMessage(e))));
+    return h("section", { class: "card" }, h("h2", null, t("locate.title")), body2);
   }
   function resultView(kind, chainId, query, settings, nav2, compact = false) {
     setApiBase(settings.apiBase);
@@ -23132,19 +23432,19 @@
       if (s.listed) root2.append(note(t("result.onOfac", { lists: s.lists.join(", ") }), "danger"));
       return root2;
     }
-    const body = h("div", { class: "stack" }, loading(t("common.loading")));
-    root2.append(body);
+    const body2 = h("div", { class: "stack" }, loading(t("common.loading")));
+    root2.append(body2);
     if (kind === "address") {
       apiGet("address", { chain: chainId, q: query }).then((r) => {
-        clear(body, ...renderAddressResult(r, nav2, compact));
-        body.append(securityCard(chainId, r.address));
-        if (!compact && r.family === "evm") body.append(multichainCard(r.address, nav2));
-      }).catch((e) => clear(body, errorText(failMessage(e))));
+        clear(body2, ...renderAddressResult(r, nav2, compact));
+        body2.append(securityCard(chainId, r.address));
+        if (!compact && r.family === "evm") body2.append(multichainCard(r.address, nav2));
+      }).catch((e) => clear(body2, errorText(failMessage(e))));
     } else {
       apiGet("tx", { chain: chainId, q: query }).then((r) => {
-        clear(body, ...renderTxResult(r, nav2));
-        if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body.append(locateCard(query, nav2));
-      }).catch((e) => clear(body, errorText(failMessage(e))));
+        clear(body2, ...renderTxResult(r, nav2));
+        if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body2.append(locateCard(query, nav2));
+      }).catch((e) => clear(body2, errorText(failMessage(e))));
     }
     return root2;
   }
@@ -23521,14 +23821,210 @@
     return h("div", { class: "stack" }, form, info, actions, results, initial.recentInto ? null : recentBox);
   }
 
+  // extension-src/src/account.ts
+  var ACCOUNT_ORIGIN = "https://web3lens.com";
+  var REFRESH_MS = 12 * 36e5;
+  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
+  var EMPTY_ACCOUNT = { token: null, me: null, refreshedAt: 0, pending: null };
+  var PLANS = ["free", "pro", "lifetime"];
+  var CODE = /^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/;
+  function sanitizeAccount(raw) {
+    const r = raw ?? {};
+    const token = typeof r.token === "string" && /^[A-Za-z0-9._%-]{16,512}$/.test(r.token) ? r.token : null;
+    const m = r.me;
+    const me = token && m && typeof m.email === "string" && PLANS.includes(m.plan) ? { email: m.email.slice(0, 200), plan: m.plan, tier: m.plan === "free" ? "free" : "pro", until: typeof m.until === "string" ? m.until : null, renews: m.renews === true } : null;
+    const p = r.pending;
+    const pending = p && typeof p.code === "string" && CODE.test(p.code) && typeof p.verifier === "string" && /^[A-Za-z0-9_-]{43,128}$/.test(p.verifier) && typeof p.expiresAt === "number" ? { code: p.code, verifier: p.verifier, expiresAt: p.expiresAt } : null;
+    return { token, me, refreshedAt: typeof r.refreshedAt === "number" && token ? r.refreshedAt : 0, pending };
+  }
+  async function loadAccount() {
+    const raw = await ext.storage.local.get(["account"]);
+    return sanitizeAccount(raw.account);
+  }
+  async function saveAccount(a) {
+    await ext.storage.local.set({ account: sanitizeAccount(a) });
+  }
+  var toCached = (me) => ({ email: me.user.email, plan: me.plan, tier: me.tier, until: me.until, renews: me.renews });
+  function displayPlan(a, now = Date.now()) {
+    if (!a.token || !a.me) return null;
+    if (now - a.refreshedAt > OFFLINE_GRACE_MS) return "free";
+    if (a.me.plan === "pro" && a.me.until && Date.parse(a.me.until) <= now) return "free";
+    return a.me.plan;
+  }
+  function browserName() {
+    if (isFirefox) return "firefox";
+    return /\bEdg\//.test(navigator.userAgent) ? "edge" : "chrome";
+  }
+  var b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  var sha256Hex = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+  async function call(path, init = {}) {
+    const headers = { accept: "application/json" };
+    if (init.body) headers["content-type"] = "application/json";
+    if (init.token) headers.authorization = `Bearer ${init.token}`;
+    return fetch(`${ACCOUNT_ORIGIN}${path}`, { ...init, headers, credentials: "omit", cache: "no-store", signal: AbortSignal.timeout(2e4) });
+  }
+  var AccountError = class extends Error {
+  };
+  async function startSignIn() {
+    const verifier = b64url(crypto.getRandomValues(new Uint8Array(32)));
+    const res = await call("/api/ext/pair/start", { method: "POST", body: JSON.stringify({ verifierHash: await sha256Hex(verifier), browser: browserName() }) }).catch(() => null);
+    const body2 = await res?.json().catch(() => null);
+    if (!res?.ok || !body2?.code || !CODE.test(body2.code)) throw new AccountError(body2?.error ?? "");
+    const a = await loadAccount();
+    await saveAccount({ ...a, pending: { code: body2.code, verifier, expiresAt: Date.now() + (body2.expiresIn ?? 600) * 1e3 } });
+    await openApproval(body2.code);
+    return body2.code;
+  }
+  var openApproval = (code) => openTab(`${ACCOUNT_ORIGIN}/extension/connect?code=${encodeURIComponent(code)}`);
+  async function cancelSignIn() {
+    await saveAccount({ ...await loadAccount(), pending: null });
+  }
+  async function claimSignIn(now = Date.now()) {
+    const a = await loadAccount();
+    if (!a.pending) return "none";
+    if (a.pending.expiresAt <= now) {
+      await saveAccount({ ...a, pending: null });
+      return "failed";
+    }
+    const res = await call("/api/ext/pair/claim", { method: "POST", body: JSON.stringify({ code: a.pending.code, verifier: a.pending.verifier }) }).catch(() => null);
+    if (!res) return "offline";
+    if (res.status === 202) return "pending";
+    const body2 = await res.json().catch(() => null);
+    if (res.ok && body2?.token && body2.me) {
+      await saveAccount({ token: body2.token, me: toCached(body2.me), refreshedAt: Date.now(), pending: null });
+      return "done";
+    }
+    if (res.status >= 500 || res.status === 429) return "offline";
+    await saveAccount({ ...a, pending: null });
+    return "failed";
+  }
+  async function refreshAccount(force = false, now = Date.now()) {
+    const a = await loadAccount();
+    if (!a.token) return "signedOut";
+    if (!force && now - a.refreshedAt < REFRESH_MS) return "cached";
+    const res = await call("/api/me", { token: a.token }).catch(() => null);
+    if (!res || res.status >= 500 || res.status === 429) return "offline";
+    if (res.status === 401) {
+      await saveAccount({ ...EMPTY_ACCOUNT, pending: a.pending });
+      return "expired";
+    }
+    const me = await res.json().catch(() => null);
+    if (!res.ok || !me?.signedIn) return "offline";
+    await saveAccount({ ...a, me: toCached(me), refreshedAt: now });
+    return "fresh";
+  }
+  async function signOut() {
+    const a = await loadAccount();
+    if (a.token) await call("/api/ext/sign-out", { method: "POST", token: a.token }).catch(() => null);
+    await saveAccount(EMPTY_ACCOUNT);
+  }
+
+  // extension-src/src/views/account.ts
+  var poll = null;
+  var message = null;
+  function stopPolling() {
+    if (poll) clearInterval(poll);
+    poll = null;
+  }
+  function startPolling() {
+    if (poll) return;
+    poll = setInterval(async () => {
+      const r = await claimSignIn();
+      if (r === "pending" || r === "offline") return;
+      stopPolling();
+      if (r === "failed") message = { text: t("account.error"), tone: "warn" };
+    }, 3e3);
+  }
+  function planBadge(a) {
+    const plan = displayPlan(a);
+    if (plan === "lifetime") return badge(t("account.planLifetime"), "good");
+    if (plan === "pro") return badge(t("account.planPro"), "good");
+    return badge(t("account.planFree"));
+  }
+  function body(a, settings) {
+    if (!settings.network) return [note(t("account.networkOff"), "info")];
+    const msg = message ? note(message.text, message.tone) : null;
+    const btn = (label, onClick, primary = false) => h("button", { type: "button", class: primary ? "btn" : "btn-ghost", on: { click: () => void onClick() } }, label);
+    if (a.token && a.me) {
+      stopPolling();
+      const stale = Date.now() - a.refreshedAt > 24 * 36e5;
+      return [
+        h("p", { class: "row wrap" }, h("span", null, t("account.signedInAs", { email: a.me.email })), planBadge(a)),
+        stale ? h("p", { class: "muted" }, t("account.offline", { date: new Date(a.refreshedAt).toLocaleDateString() })) : null,
+        msg,
+        h(
+          "div",
+          { class: "row wrap" },
+          btn(t("account.manage"), () => openTab(`${ACCOUNT_ORIGIN}/account`)),
+          btn(t("account.refresh"), async () => {
+            const r = await refreshAccount(true);
+            message = r === "offline" ? { text: t("account.offline", { date: new Date(a.refreshedAt).toLocaleDateString() }), tone: "warn" } : r === "expired" ? { text: t("account.expired"), tone: "warn" } : null;
+          }),
+          btn(t("account.signOut"), () => signOut())
+        )
+      ];
+    }
+    if (a.pending && a.pending.expiresAt > Date.now()) {
+      startPolling();
+      return [
+        h("p", null, t("account.pendingBody")),
+        h("p", { class: "pair-code", "aria-live": "polite" }, a.pending.code),
+        h("p", { class: "muted" }, t("account.waiting")),
+        msg,
+        h(
+          "div",
+          { class: "row wrap" },
+          btn(t("account.reopen"), () => openApproval(a.pending.code), true),
+          btn(t("account.cancel"), () => {
+            stopPolling();
+            return cancelSignIn();
+          })
+        )
+      ];
+    }
+    stopPolling();
+    return [
+      h("p", { class: "muted" }, t("account.signedOutBody")),
+      msg,
+      h(
+        "div",
+        { class: "row wrap" },
+        btn(
+          t("account.signIn"),
+          async () => {
+            message = null;
+            try {
+              await startSignIn();
+            } catch {
+              message = { text: t("account.error"), tone: "warn" };
+              await cancelSignIn();
+            }
+          },
+          true
+        )
+      )
+    ];
+  }
+  function accountCard(settings) {
+    const slot = h("div", { class: "stack tight" }, h("p", { class: "muted" }, t("common.loading")));
+    void (async () => {
+      if (settings.network) {
+        await claimSignIn().catch(() => null);
+        await refreshAccount().catch(() => null);
+      }
+      clear(slot, ...body(await loadAccount(), settings));
+    })();
+    return card(t("account.title"), slot);
+  }
+
   // extension-src/src/views/settings.ts
   function settingsView(ctx) {
     const { prefs, settings } = ctx.state;
-    const radio = (value, title, body) => h(
+    const radio = (value, title, body2) => h(
       "label",
       { class: "choice" },
       h("input", { type: "radio", name: "action", checked: prefs.searchAction === value ? true : void 0, on: { change: () => void setPrefs({ ...prefs, searchAction: value }) } }),
-      h("span", null, h("b", null, title), h("small", null, body))
+      h("span", null, h("b", null, title), h("small", null, body2))
     );
     const language = h(
       "select",
@@ -23545,6 +24041,7 @@
       { class: "stack" },
       h("p", { class: "label" }, t("common.settings")),
       h("h1", { class: "heading" }, t("settings.pageTitle")),
+      accountCard(settings),
       card(
         t("settings.appearance"),
         h(
@@ -23918,8 +24415,8 @@
       case "array": {
         const items = v;
         if (t2.length !== null && items.length !== t2.length) throw new Error("Wrong array length");
-        const body = encodeTuple(items.map(() => t2.item), items);
-        return t2.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body) : body;
+        const body2 = encodeTuple(items.map(() => t2.item), items);
+        return t2.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body2) : body2;
       }
       case "tuple":
         return encodeTuple(
@@ -24059,8 +24556,8 @@
       if (item.length === 1 && item[0] < 128) return item;
       return concatBytes(encodeLength(item.length, 128), item);
     }
-    const body = concatBytes(...item.map(rlpEncode));
-    return concatBytes(encodeLength(body.length, 192), body);
+    const body2 = concatBytes(...item.map(rlpEncode));
+    return concatBytes(encodeLength(body2.length, 192), body2);
   }
   function readLength(data, pos, n) {
     if (pos + n > data.length) throw new Error("RLP: truncated length");
@@ -24240,8 +24737,8 @@
     const type = raw[0] >= 192 ? 0 : raw[0];
     if (type > 127) throw new Error("Not a transaction");
     if (!(type in TYPE_NAMES)) throw new Error(`Unknown transaction type 0x${type.toString(16)}`);
-    const body = type === 0 ? raw : raw.subarray(1);
-    let fields = asList(rlpDecode(body), "transaction");
+    const body2 = type === 0 ? raw : raw.subarray(1);
+    let fields = asList(rlpDecode(body2), "transaction");
     if (type === 3 && Array.isArray(fields[0])) {
       fields = fields[0];
       warnings.push("This is the network (blob-carrying) form; blobs were ignored.");
@@ -24362,9 +24859,9 @@
   function hexToDecimal(input2) {
     const s = input2.trim().replace(/_/g, "");
     const neg = s.startsWith("-");
-    const body = (neg ? s.slice(1) : s).replace(/^0x/i, "");
-    if (!body || !/^[0-9a-f]+$/i.test(body) || body.length > MAX_DIGITS) throw new Error("Not a hex number");
-    const n = BigInt(`0x${body}`);
+    const body2 = (neg ? s.slice(1) : s).replace(/^0x/i, "");
+    if (!body2 || !/^[0-9a-f]+$/i.test(body2) || body2.length > MAX_DIGITS) throw new Error("Not a hex number");
+    const n = BigInt(`0x${body2}`);
     return `${neg && n !== BigInt(0) ? "-" : ""}${n.toString(10)}`;
   }
   function decimalToHex(input2) {
@@ -24383,10 +24880,10 @@
     return n < BigInt(0) ? `-0x${(-n).toString(16)}` : `0x${n.toString(16)}`;
   }
   function hexToSignedInt256(input2) {
-    const body = input2.trim().replace(/^0x/i, "");
-    if (!/^[0-9a-f]{1,64}$/i.test(body)) throw new Error("Not a 256-bit hex word");
-    let n = BigInt(`0x${body}`);
-    if (body.length === 64 && n >> BigInt(255)) n -= BigInt(1) << BigInt(256);
+    const body2 = input2.trim().replace(/^0x/i, "");
+    if (!/^[0-9a-f]{1,64}$/i.test(body2)) throw new Error("Not a 256-bit hex word");
+    let n = BigInt(`0x${body2}`);
+    if (body2.length === 64 && n >> BigInt(255)) n -= BigInt(1) << BigInt(256);
     return n.toString();
   }
   function textToHex(text) {
@@ -24891,25 +25388,25 @@
     const ctx = { state, nav, compact: false };
     const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
     lastView = view;
-    let body;
+    let body2;
     switch (view) {
       case "result":
-        body = resultView(parts[1] === "tx" ? "tx" : "address", parts[2] ?? "", parts.slice(3).join("/"), state.settings, nav);
+        body2 = resultView(parts[1] === "tx" ? "tx" : "address", parts[2] ?? "", parts.slice(3).join("/"), state.settings, nav);
         break;
       case "batch":
-        body = batchView(ctx, params.get("q") ?? "");
+        body2 = batchView(ctx, params.get("q") ?? "");
         break;
       case "tools":
-        body = toolsView(parts[1], state.settings, nav);
+        body2 = toolsView(parts[1], state.settings, nav);
         break;
       case "saved":
-        body = savedView(ctx);
+        body2 = savedView(ctx);
         break;
       case "settings":
-        body = settingsView(ctx);
+        body2 = settingsView(ctx);
         break;
       default:
-        body = h(
+        body2 = h(
           "div",
           { class: "stack" },
           h("section", { class: "hero dot-grid" }, h("p", { class: "label" }, t("common.search")), h("h1", { class: "heading" }, ...tx("hero.title", { accent: h("span", { class: "accent" }, t("hero.titleAccent")) })), h("p", { class: "lead" }, t("hero.appLead"))),
@@ -24922,7 +25419,7 @@
               ["#tools/gas-tracker", "gas", t("common.gasTracker"), t("common.liveFees", { count: EVM_NETWORKS.length })],
               ["#tools", "wrench", t("common.developerTools"), t("app.devToolsBody")],
               ["#saved", "bookmark", t("common.saved"), t("app.savedBody")]
-            ].map(([hash, ic, title, body2]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body2)))
+            ].map(([hash, ic, title, body3]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body3)))
           )
         );
     }
@@ -24957,7 +25454,7 @@
         h("a", { href: "https://web3lens.com", target: "_blank", rel: "noopener noreferrer", class: "side-link" }, icon("external"), "web3lens.com")
       )
     );
-    clear(root, h("div", { class: "app-shell" }, sidebar, h("main", { class: "page" }, body)));
+    clear(root, h("div", { class: "app-shell" }, sidebar, h("main", { class: "page" }, body2)));
     document.title = `Web3Lens · ${VIEW_TITLE[view] ? t(VIEW_TITLE[view]) : view}`;
   }
   window.addEventListener("hashchange", () => void render());

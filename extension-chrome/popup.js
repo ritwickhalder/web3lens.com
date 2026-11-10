@@ -11919,6 +11919,26 @@
         bech32Unknown: `A valid bech32 address for "{hrp}", a network Web3Lens doesn't list yet.`,
         versionByte: "Version byte {byte} isn't one Web3Lens recognises."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optional. Sign in to see your Web3Lens plan here. Everything in the extension keeps working without an account.",
+      signIn: "Sign in with Google",
+      pendingBody: "Approve this code on web3lens.com, then come back here:",
+      reopen: "Open the approval page",
+      cancel: "Cancel",
+      waiting: "Waiting for approval…",
+      signedInAs: "Signed in as {email}",
+      planFree: "Free",
+      planPro: "Pro",
+      planLifetime: "Pro for life",
+      manage: "Manage account",
+      refresh: "Refresh plan",
+      signOut: "Sign out",
+      offline: "Couldn't reach web3lens.com. Showing your plan as of {date}.",
+      networkOff: "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
+      expired: "Your sign-in has expired. Sign in again.",
+      error: "Sign-in didn't work. Try again in a moment."
     }
   };
 
@@ -12515,6 +12535,26 @@
         bech32Unknown: "Una dirección bech32 válida para “{hrp}”, una red que Web3Lens aún no incluye.",
         versionByte: "El byte de versión {byte} no es uno que Web3Lens reconozca."
       }
+    },
+    account: {
+      title: "Cuenta",
+      signedOutBody: "Opcional. Inicia sesión para ver aquí tu plan de Web3Lens. Todo en la extensión sigue funcionando sin cuenta.",
+      signIn: "Iniciar sesión con Google",
+      pendingBody: "Aprueba este código en web3lens.com y vuelve aquí:",
+      reopen: "Abrir la página de aprobación",
+      cancel: "Cancelar",
+      waiting: "Esperando aprobación…",
+      signedInAs: "Sesión iniciada como {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro de por vida",
+      manage: "Gestionar cuenta",
+      refresh: "Actualizar plan",
+      signOut: "Cerrar sesión",
+      offline: "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
+      networkOff: "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
+      expired: "Tu sesión ha caducado. Vuelve a iniciar sesión.",
+      error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
     }
   };
 
@@ -13111,6 +13151,26 @@
         bech32Unknown: "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
         versionByte: "O byte de versão {byte} não é um que o Web3Lens reconheça."
       }
+    },
+    account: {
+      title: "Conta",
+      signedOutBody: "Opcional. Entre para ver aqui o seu plano Web3Lens. Tudo na extensão continua funcionando sem conta.",
+      signIn: "Entrar com o Google",
+      pendingBody: "Aprove este código em web3lens.com e depois volte aqui:",
+      reopen: "Abrir a página de aprovação",
+      cancel: "Cancelar",
+      waiting: "Aguardando aprovação…",
+      signedInAs: "Conectado como {email}",
+      planFree: "Grátis",
+      planPro: "Pro",
+      planLifetime: "Pro vitalício",
+      manage: "Gerenciar conta",
+      refresh: "Atualizar plano",
+      signOut: "Sair",
+      offline: "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
+      networkOff: "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
+      expired: "Sua sessão expirou. Entre novamente.",
+      error: "Não foi possível entrar. Tente de novo em instantes."
     }
   };
 
@@ -13707,6 +13767,26 @@
         bech32Unknown: "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
         versionByte: "L’octet de version {byte} n’est pas reconnu par Web3Lens."
       }
+    },
+    account: {
+      title: "Compte",
+      signedOutBody: "Facultatif. Connectez-vous pour voir ici votre formule Web3Lens. Tout dans l'extension fonctionne sans compte.",
+      signIn: "Se connecter avec Google",
+      pendingBody: "Approuvez ce code sur web3lens.com, puis revenez ici :",
+      reopen: "Ouvrir la page d'approbation",
+      cancel: "Annuler",
+      waiting: "En attente d'approbation…",
+      signedInAs: "Connecté en tant que {email}",
+      planFree: "Gratuit",
+      planPro: "Pro",
+      planLifetime: "Pro à vie",
+      manage: "Gérer le compte",
+      refresh: "Actualiser la formule",
+      signOut: "Se déconnecter",
+      offline: "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
+      networkOff: "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
+      expired: "Votre session a expiré. Reconnectez-vous.",
+      error: "La connexion n'a pas abouti. Réessayez dans un instant."
     }
   };
 
@@ -14303,6 +14383,26 @@
         bech32Unknown: "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
         versionByte: "Das Versionsbyte {byte} erkennt Web3Lens nicht."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Optional. Melde dich an, um deinen Web3Lens-Tarif hier zu sehen. Die Erweiterung funktioniert auch ohne Konto vollständig.",
+      signIn: "Mit Google anmelden",
+      pendingBody: "Bestätige diesen Code auf web3lens.com und kehre dann hierher zurück:",
+      reopen: "Bestätigungsseite öffnen",
+      cancel: "Abbrechen",
+      waiting: "Warte auf Bestätigung…",
+      signedInAs: "Angemeldet als {email}",
+      planFree: "Kostenlos",
+      planPro: "Pro",
+      planLifetime: "Pro auf Lebenszeit",
+      manage: "Konto verwalten",
+      refresh: "Tarif aktualisieren",
+      signOut: "Abmelden",
+      offline: "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
+      networkOff: "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
+      expired: "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
+      error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
     }
   };
 
@@ -14899,6 +14999,26 @@
         bech32Unknown: "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
         versionByte: "バージョンバイト {byte} は Web3Lens が認識できないものです。"
       }
+    },
+    account: {
+      title: "アカウント",
+      signedOutBody: "任意です。サインインすると、ここに Web3Lens のプランが表示されます。拡張機能はアカウントなしでもすべて使えます。",
+      signIn: "Google でサインイン",
+      pendingBody: "web3lens.com でこのコードを承認してから、ここに戻ってください:",
+      reopen: "承認ページを開く",
+      cancel: "キャンセル",
+      waiting: "承認を待っています…",
+      signedInAs: "{email} でサインイン中",
+      planFree: "無料",
+      planPro: "Pro",
+      planLifetime: "Pro（買い切り）",
+      manage: "アカウントを管理",
+      refresh: "プランを更新",
+      signOut: "サインアウト",
+      offline: "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
+      networkOff: "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
+      expired: "サインインの有効期限が切れました。もう一度サインインしてください。",
+      error: "サインインできませんでした。しばらくしてからもう一度お試しください。"
     }
   };
 
@@ -15495,6 +15615,26 @@
         bech32Unknown: "“{hrp}”에 대한 유효한 bech32 주소이지만, Web3Lens가 아직 지원하지 않는 네트워크입니다.",
         versionByte: "버전 바이트 {byte}은(는) Web3Lens가 인식하지 못합니다."
       }
+    },
+    account: {
+      title: "계정",
+      signedOutBody: "선택 사항입니다. 로그인하면 여기에서 Web3Lens 요금제를 볼 수 있습니다. 확장 프로그램은 계정 없이도 모두 작동합니다.",
+      signIn: "Google로 로그인",
+      pendingBody: "web3lens.com에서 이 코드를 승인한 뒤 여기로 돌아오세요:",
+      reopen: "승인 페이지 열기",
+      cancel: "취소",
+      waiting: "승인을 기다리는 중…",
+      signedInAs: "{email}(으)로 로그인됨",
+      planFree: "무료",
+      planPro: "Pro",
+      planLifetime: "평생 Pro",
+      manage: "계정 관리",
+      refresh: "요금제 새로고침",
+      signOut: "로그아웃",
+      offline: "web3lens.com에 연결할 수 없습니다. {date} 기준 요금제를 표시합니다.",
+      networkOff: "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
+      expired: "로그인이 만료되었습니다. 다시 로그인하세요.",
+      error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
     }
   };
 
@@ -16091,6 +16231,26 @@
         bech32Unknown: "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
         versionByte: "Web3Lens 无法识别版本字节 {byte}。"
       }
+    },
+    account: {
+      title: "账户",
+      signedOutBody: "可选。登录后可在此查看你的 Web3Lens 套餐。不登录也能使用扩展的全部功能。",
+      signIn: "使用 Google 登录",
+      pendingBody: "请在 web3lens.com 上批准此代码，然后回到这里：",
+      reopen: "打开批准页面",
+      cancel: "取消",
+      waiting: "正在等待批准…",
+      signedInAs: "已登录：{email}",
+      planFree: "免费",
+      planPro: "Pro",
+      planLifetime: "终身 Pro",
+      manage: "管理账户",
+      refresh: "刷新套餐",
+      signOut: "退出登录",
+      offline: "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
+      networkOff: "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
+      expired: "登录已过期，请重新登录。",
+      error: "登录失败，请稍后再试。"
     }
   };
 
@@ -16687,6 +16847,26 @@
         bech32Unknown: "Действительный адрес bech32 для «{hrp}» — сети, которой пока нет в Web3Lens.",
         versionByte: "Байт версии {byte} не распознаётся Web3Lens."
       }
+    },
+    account: {
+      title: "Аккаунт",
+      signedOutBody: "Необязательно. Войдите, чтобы видеть здесь свой тариф Web3Lens. Расширение полностью работает и без аккаунта.",
+      signIn: "Войти через Google",
+      pendingBody: "Подтвердите этот код на web3lens.com и вернитесь сюда:",
+      reopen: "Открыть страницу подтверждения",
+      cancel: "Отмена",
+      waiting: "Ожидание подтверждения…",
+      signedInAs: "Вы вошли как {email}",
+      planFree: "Бесплатный",
+      planPro: "Pro",
+      planLifetime: "Pro навсегда",
+      manage: "Управление аккаунтом",
+      refresh: "Обновить тариф",
+      signOut: "Выйти",
+      offline: "Не удалось связаться с web3lens.com. Показан тариф на {date}.",
+      networkOff: "Онлайн-запросы отключены, поэтому аккаунт приостановлен. Включите их в разделе «Конфиденциальность», чтобы войти.",
+      expired: "Срок входа истёк. Войдите снова.",
+      error: "Не удалось войти. Попробуйте ещё раз чуть позже."
     }
   };
 
@@ -17283,6 +17463,26 @@
         bech32Unknown: "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
         versionByte: "Byte versi {byte} tidak dikenali Web3Lens."
       }
+    },
+    account: {
+      title: "Akun",
+      signedOutBody: "Opsional. Masuk untuk melihat paket Web3Lens Anda di sini. Semua fitur ekstensi tetap berfungsi tanpa akun.",
+      signIn: "Masuk dengan Google",
+      pendingBody: "Setujui kode ini di web3lens.com, lalu kembali ke sini:",
+      reopen: "Buka halaman persetujuan",
+      cancel: "Batal",
+      waiting: "Menunggu persetujuan…",
+      signedInAs: "Masuk sebagai {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro seumur hidup",
+      manage: "Kelola akun",
+      refresh: "Perbarui paket",
+      signOut: "Keluar",
+      offline: "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
+      networkOff: "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
+      expired: "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
+      error: "Gagal masuk. Coba lagi sebentar lagi."
     }
   };
 
@@ -17879,6 +18079,26 @@
         bech32Unknown: "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
         versionByte: "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
       }
+    },
+    account: {
+      title: "Hesap",
+      signedOutBody: "İsteğe bağlı. Web3Lens planınızı burada görmek için giriş yapın. Uzantıdaki her şey hesap olmadan da çalışır.",
+      signIn: "Google ile giriş yap",
+      pendingBody: "Bu kodu web3lens.com üzerinde onaylayın, ardından buraya dönün:",
+      reopen: "Onay sayfasını aç",
+      cancel: "İptal",
+      waiting: "Onay bekleniyor…",
+      signedInAs: "{email} olarak giriş yapıldı",
+      planFree: "Ücretsiz",
+      planPro: "Pro",
+      planLifetime: "Ömür boyu Pro",
+      manage: "Hesabı yönet",
+      refresh: "Planı yenile",
+      signOut: "Çıkış yap",
+      offline: "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
+      networkOff: "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
+      expired: "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
+      error: "Giriş yapılamadı. Birazdan tekrar deneyin."
     }
   };
 
@@ -18475,6 +18695,26 @@
         bech32Unknown: "Un indirizzo bech32 valido per “{hrp}”, una rete che Web3Lens non elenca ancora.",
         versionByte: "Il byte di versione {byte} non è riconosciuto da Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Facoltativo. Accedi per vedere qui il tuo piano Web3Lens. Tutto nell'estensione funziona anche senza account.",
+      signIn: "Accedi con Google",
+      pendingBody: "Approva questo codice su web3lens.com, poi torna qui:",
+      reopen: "Apri la pagina di approvazione",
+      cancel: "Annulla",
+      waiting: "In attesa di approvazione…",
+      signedInAs: "Accesso effettuato come {email}",
+      planFree: "Gratuito",
+      planPro: "Pro",
+      planLifetime: "Pro a vita",
+      manage: "Gestisci account",
+      refresh: "Aggiorna piano",
+      signOut: "Esci",
+      offline: "Impossibile raggiungere web3lens.com. Il piano mostrato è aggiornato al {date}.",
+      networkOff: "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
+      expired: "L'accesso è scaduto. Accedi di nuovo.",
+      error: "L'accesso non è riuscito. Riprova tra poco."
     }
   };
 
@@ -19071,6 +19311,26 @@
         bech32Unknown: "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
         versionByte: "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Opcjonalne. Zaloguj się, aby zobaczyć tutaj swój plan Web3Lens. Rozszerzenie działa w pełni bez konta.",
+      signIn: "Zaloguj się przez Google",
+      pendingBody: "Zatwierdź ten kod na web3lens.com, a potem wróć tutaj:",
+      reopen: "Otwórz stronę zatwierdzania",
+      cancel: "Anuluj",
+      waiting: "Czekam na zatwierdzenie…",
+      signedInAs: "Zalogowano jako {email}",
+      planFree: "Darmowy",
+      planPro: "Pro",
+      planLifetime: "Pro na zawsze",
+      manage: "Zarządzaj kontem",
+      refresh: "Odśwież plan",
+      signOut: "Wyloguj się",
+      offline: "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
+      networkOff: "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
+      expired: "Sesja wygasła. Zaloguj się ponownie.",
+      error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
     }
   };
 
@@ -19667,6 +19927,26 @@
         bech32Unknown: "Een geldig bech32-adres voor ‘{hrp}’, een netwerk dat Web3Lens nog niet kent.",
         versionByte: "Versiebyte {byte} wordt niet herkend door Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optioneel. Log in om hier je Web3Lens-abonnement te zien. Alles in de extensie werkt ook zonder account.",
+      signIn: "Inloggen met Google",
+      pendingBody: "Keur deze code goed op web3lens.com en kom dan hier terug:",
+      reopen: "Goedkeuringspagina openen",
+      cancel: "Annuleren",
+      waiting: "Wachten op goedkeuring…",
+      signedInAs: "Ingelogd als {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro voor altijd",
+      manage: "Account beheren",
+      refresh: "Abonnement vernieuwen",
+      signOut: "Uitloggen",
+      offline: "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
+      networkOff: "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
+      expired: "Je sessie is verlopen. Log opnieuw in.",
+      error: "Inloggen is niet gelukt. Probeer het zo opnieuw."
     }
   };
 
@@ -20263,6 +20543,26 @@
         bech32Unknown: "ที่อยู่ bech32 ที่ถูกต้องสำหรับ “{hrp}” ซึ่งเป็นเครือข่ายที่ Web3Lens ยังไม่รองรับ",
         versionByte: "Web3Lens ไม่รู้จักไบต์เวอร์ชัน {byte}"
       }
+    },
+    account: {
+      title: "บัญชี",
+      signedOutBody: "ไม่บังคับ ลงชื่อเข้าใช้เพื่อดูแพ็กเกจ Web3Lens ของคุณที่นี่ ทุกอย่างในส่วนขยายยังใช้งานได้โดยไม่ต้องมีบัญชี",
+      signIn: "ลงชื่อเข้าใช้ด้วย Google",
+      pendingBody: "อนุมัติรหัสนี้ที่ web3lens.com แล้วกลับมาที่นี่:",
+      reopen: "เปิดหน้าอนุมัติ",
+      cancel: "ยกเลิก",
+      waiting: "กำลังรอการอนุมัติ…",
+      signedInAs: "ลงชื่อเข้าใช้เป็น {email}",
+      planFree: "ฟรี",
+      planPro: "Pro",
+      planLifetime: "Pro ตลอดชีพ",
+      manage: "จัดการบัญชี",
+      refresh: "รีเฟรชแพ็กเกจ",
+      signOut: "ออกจากระบบ",
+      offline: "เชื่อมต่อ web3lens.com ไม่ได้ กำลังแสดงแพ็กเกจของคุณ ณ วันที่ {date}",
+      networkOff: "การค้นหาออนไลน์ปิดอยู่ บัญชีจึงหยุดชั่วคราว เปิดได้ที่ความเป็นส่วนตัวเพื่อลงชื่อเข้าใช้",
+      expired: "การลงชื่อเข้าใช้หมดอายุแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง",
+      error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่"
     }
   };
 

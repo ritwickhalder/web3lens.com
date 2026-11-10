@@ -590,5 +590,25 @@
       "bech32Unknown": "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
       "versionByte": "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
     }
+  },
+  "account": {
+    "title": "Konto",
+    "signedOutBody": "Opcjonalne. Zaloguj się, aby zobaczyć tutaj swój plan Web3Lens. Rozszerzenie działa w pełni bez konta.",
+    "signIn": "Zaloguj się przez Google",
+    "pendingBody": "Zatwierdź ten kod na web3lens.com, a potem wróć tutaj:",
+    "reopen": "Otwórz stronę zatwierdzania",
+    "cancel": "Anuluj",
+    "waiting": "Czekam na zatwierdzenie…",
+    "signedInAs": "Zalogowano jako {email}",
+    "planFree": "Darmowy",
+    "planPro": "Pro",
+    "planLifetime": "Pro na zawsze",
+    "manage": "Zarządzaj kontem",
+    "refresh": "Odśwież plan",
+    "signOut": "Wyloguj się",
+    "offline": "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
+    "networkOff": "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
+    "expired": "Sesja wygasła. Zaloguj się ponownie.",
+    "error": "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
   }
 }

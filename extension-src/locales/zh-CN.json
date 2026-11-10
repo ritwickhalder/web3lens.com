@@ -590,5 +590,25 @@
       "bech32Unknown": "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
       "versionByte": "Web3Lens 无法识别版本字节 {byte}。"
     }
+  },
+  "account": {
+    "title": "账户",
+    "signedOutBody": "可选。登录后可在此查看你的 Web3Lens 套餐。不登录也能使用扩展的全部功能。",
+    "signIn": "使用 Google 登录",
+    "pendingBody": "请在 web3lens.com 上批准此代码，然后回到这里：",
+    "reopen": "打开批准页面",
+    "cancel": "取消",
+    "waiting": "正在等待批准…",
+    "signedInAs": "已登录：{email}",
+    "planFree": "免费",
+    "planPro": "Pro",
+    "planLifetime": "终身 Pro",
+    "manage": "管理账户",
+    "refresh": "刷新套餐",
+    "signOut": "退出登录",
+    "offline": "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
+    "networkOff": "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
+    "expired": "登录已过期，请重新登录。",
+    "error": "登录失败，请稍后再试。"
   }
 }

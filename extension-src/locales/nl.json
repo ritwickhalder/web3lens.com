@@ -590,5 +590,25 @@
       "bech32Unknown": "Een geldig bech32-adres voor ‘{hrp}’, een netwerk dat Web3Lens nog niet kent.",
       "versionByte": "Versiebyte {byte} wordt niet herkend door Web3Lens."
     }
+  },
+  "account": {
+    "title": "Account",
+    "signedOutBody": "Optioneel. Log in om hier je Web3Lens-abonnement te zien. Alles in de extensie werkt ook zonder account.",
+    "signIn": "Inloggen met Google",
+    "pendingBody": "Keur deze code goed op web3lens.com en kom dan hier terug:",
+    "reopen": "Goedkeuringspagina openen",
+    "cancel": "Annuleren",
+    "waiting": "Wachten op goedkeuring…",
+    "signedInAs": "Ingelogd als {email}",
+    "planFree": "Gratis",
+    "planPro": "Pro",
+    "planLifetime": "Pro voor altijd",
+    "manage": "Account beheren",
+    "refresh": "Abonnement vernieuwen",
+    "signOut": "Uitloggen",
+    "offline": "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
+    "networkOff": "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
+    "expired": "Je sessie is verlopen. Log opnieuw in.",
+    "error": "Inloggen is niet gelukt. Probeer het zo opnieuw."
   }
 }

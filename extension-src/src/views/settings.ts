@@ -6,6 +6,7 @@ import { h } from '../dom';
 import { t } from '../i18n';
 import { browserLanguages, LOCALES, localeName, matchLocale, type LanguagePref } from '../locales';
 import { clearRecent, setPrefs, setSaved, setSettings } from '../store';
+import { accountCard } from './account';
 import { card, note } from './common';
 import type { Ctx } from './search';
 
@@ -34,6 +35,7 @@ export function settingsView(ctx: Ctx): HTMLElement {
     { class: 'stack' },
     h('p', { class: 'label' }, t('common.settings')),
     h('h1', { class: 'heading' }, t('settings.pageTitle')),
+    accountCard(settings),
     card(
       t('settings.appearance'),
       h(

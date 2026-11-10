@@ -590,5 +590,25 @@
       "bech32Unknown": "A valid bech32 address for \"{hrp}\", a network Web3Lens doesn't list yet.",
       "versionByte": "Version byte {byte} isn't one Web3Lens recognises."
     }
+  },
+  "account": {
+    "title": "Account",
+    "signedOutBody": "Optional. Sign in to see your Web3Lens plan here. Everything in the extension keeps working without an account.",
+    "signIn": "Sign in with Google",
+    "pendingBody": "Approve this code on web3lens.com, then come back here:",
+    "reopen": "Open the approval page",
+    "cancel": "Cancel",
+    "waiting": "Waiting for approval…",
+    "signedInAs": "Signed in as {email}",
+    "planFree": "Free",
+    "planPro": "Pro",
+    "planLifetime": "Pro for life",
+    "manage": "Manage account",
+    "refresh": "Refresh plan",
+    "signOut": "Sign out",
+    "offline": "Couldn't reach web3lens.com. Showing your plan as of {date}.",
+    "networkOff": "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
+    "expired": "Your sign-in has expired. Sign in again.",
+    "error": "Sign-in didn't work. Try again in a moment."
   }
 }

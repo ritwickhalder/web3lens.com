@@ -590,5 +590,25 @@
       "bech32Unknown": "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
       "versionByte": "Byte versi {byte} tidak dikenali Web3Lens."
     }
+  },
+  "account": {
+    "title": "Akun",
+    "signedOutBody": "Opsional. Masuk untuk melihat paket Web3Lens Anda di sini. Semua fitur ekstensi tetap berfungsi tanpa akun.",
+    "signIn": "Masuk dengan Google",
+    "pendingBody": "Setujui kode ini di web3lens.com, lalu kembali ke sini:",
+    "reopen": "Buka halaman persetujuan",
+    "cancel": "Batal",
+    "waiting": "Menunggu persetujuan…",
+    "signedInAs": "Masuk sebagai {email}",
+    "planFree": "Gratis",
+    "planPro": "Pro",
+    "planLifetime": "Pro seumur hidup",
+    "manage": "Kelola akun",
+    "refresh": "Perbarui paket",
+    "signOut": "Keluar",
+    "offline": "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
+    "networkOff": "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
+    "expired": "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
+    "error": "Gagal masuk. Coba lagi sebentar lagi."
   }
 }

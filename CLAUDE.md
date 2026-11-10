@@ -45,6 +45,17 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 - Shared, browser-safe logic (detection, codecs, ABI, tools, batch, saved/prefs shapes) stays free of Node and
   React so the extensions bundle the same files.
 
+## Accounts and Pro
+
+- Optional Google sign-in (Better Auth), Neon Postgres (Drizzle, `lib/db/schema.ts`, SQL in `drizzle/`), Paddle Billing.
+  Read [docs/ACCOUNTS.md](docs/ACCOUNTS.md) before touching them. Everything must keep working signed out and without
+  the env vars (routes answer 503, the UI hides sign-in).
+- Limits live only in `lib/entitlements.ts`; the plan is resolved on the server per request (`lib/server/session.ts`,
+  `membership.ts`) and quotas are taken with one conditional upsert (`consumeQuota`). Never trust a client's plan.
+- Every user query filters by the session's user id. Never store wallet secrets (tested). Schema change:
+  edit `schema.ts`, `npm run db:generate`, commit the SQL, `npm run db:migrate` against Neon before deploying.
+- `scripts/test/accounts.test.ts` runs migrations, webhooks, quotas and sessions on PGlite (in process).
+
 ## Browser extensions
 
 - Source in `extension-src/`; `npm run ext:build` writes `extension-chrome/`, `extension-firefox/`, `extension-edge/`.

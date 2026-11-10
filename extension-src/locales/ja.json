@@ -590,5 +590,25 @@
       "bech32Unknown": "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
       "versionByte": "バージョンバイト {byte} は Web3Lens が認識できないものです。"
     }
+  },
+  "account": {
+    "title": "アカウント",
+    "signedOutBody": "任意です。サインインすると、ここに Web3Lens のプランが表示されます。拡張機能はアカウントなしでもすべて使えます。",
+    "signIn": "Google でサインイン",
+    "pendingBody": "web3lens.com でこのコードを承認してから、ここに戻ってください:",
+    "reopen": "承認ページを開く",
+    "cancel": "キャンセル",
+    "waiting": "承認を待っています…",
+    "signedInAs": "{email} でサインイン中",
+    "planFree": "無料",
+    "planPro": "Pro",
+    "planLifetime": "Pro（買い切り）",
+    "manage": "アカウントを管理",
+    "refresh": "プランを更新",
+    "signOut": "サインアウト",
+    "offline": "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
+    "networkOff": "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
+    "expired": "サインインの有効期限が切れました。もう一度サインインしてください。",
+    "error": "サインインできませんでした。しばらくしてからもう一度お試しください。"
   }
 }

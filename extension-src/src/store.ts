@@ -1,6 +1,7 @@
 /**
  * Extension storage (storage.local): the same shapes and sanitisers as the website's localStorage,
- * plus extension-only settings. Nothing is synced or sent anywhere.
+ * plus extension-only settings. Nothing here is synced or sent anywhere; the optional account (./account.ts)
+ * keeps its own `account` key.
  */
 import { DEFAULT_PREFS, sanitizePrefs, type Prefs } from '@/lib/prefs';
 import type { Theme } from '@/lib/theme';

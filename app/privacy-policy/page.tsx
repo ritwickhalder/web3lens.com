@@ -42,7 +42,7 @@ export default function PrivacyPolicyPage() {
         The Web3Lens extension for Chrome, Firefox and Edge stores its data on your device only. It reads the text you select when you use
         the right-click menu, and reads the current page only when you open the “Scan page” tab in its popup (the text is searched for addresses on your device and not sent anywhere). When online lookups are on (the
         default; you can turn them off in its settings), the addresses and hashes you look up are sent to web3lens.com as described above.
-        It contains no analytics, ads or remote code, and needs no account or wallet. It is published only on the official stores:{' '}
+        It contains no analytics, ads or remote code, and needs no wallet; signing in is optional. It is published only on the official stores:{' '}
         {EXTENSION_STORES.map((s, i) => (
           <span key={s.id}>
             {i > 0 && (i === EXTENSION_STORES.length - 1 ? ' and ' : ', ')}
@@ -57,20 +57,29 @@ export default function PrivacyPolicyPage() {
         ))}
         . Copies offered anywhere else are not ours.
       </InfoSection>
-      <InfoSection index={5} heading="Cookies & Web Beacons">
+      <InfoSection index={5} heading="Optional account and payments">
+        You can use Web3Lens without an account. If you sign in with Google, we receive and store your name, email address and profile
+        picture, plus the sessions that keep you signed in on the website and in the extension (you can end them on your account page).
+        Google's sign-in tokens are stored encrypted, and we ask Google for nothing beyond your basic profile. To enforce plan limits we
+        count usage per day (a number, not what you looked up). We never ask for, receive or store private keys, seed phrases or any other
+        wallet secret. Payments are handled by Paddle, our merchant of record: card details go to Paddle, never to us, and we keep only the
+        subscription status Paddle reports. Signing in uses a cookie that keeps your session; it is not used for tracking. You can delete
+        your account at any time from the account page.
+      </InfoSection>
+      <InfoSection index={6} heading="Cookies & Web Beacons">
         Where necessary, this site uses cookies to store information about a visitor's preferences and history in order
         to better serve the visitor and/or present the visitor with customized content. Advertising partners and other
         third parties may also use cookies, scripts and/or web beacons to track visitors to our site in order to display
         advertisements and other useful information. Such tracking is done directly by the third parties through their
         own servers and is subject to their own privacy policies.
       </InfoSection>
-      <InfoSection index={6} heading="Controlling Your Privacy">
+      <InfoSection index={7} heading="Controlling Your Privacy">
         Note that you can change your browser settings to disable cookies if you have privacy concerns. Disabling cookies
         for all sites is not recommended as it may interfere with your use of some sites. The best option is to disable
         or enable cookies on a per-site basis. Consult your browser documentation for instructions on how to block
         cookies and other tracking mechanisms.
       </InfoSection>
-      <InfoSection index={7} heading="Links & Advertising">
+      <InfoSection index={8} heading="Links & Advertising">
         This website contains links to other websites like youtube, coinmarketcap.com etc. Please be aware that I am not
         responsible for the privacy practices of other websites. I encourage you, when you leave this website, to read
         the privacy policy (or privacy statement) of each and every website you visit, as this particular privacy policy

@@ -590,5 +590,25 @@
       "bech32Unknown": "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
       "versionByte": "L’octet de version {byte} n’est pas reconnu par Web3Lens."
     }
+  },
+  "account": {
+    "title": "Compte",
+    "signedOutBody": "Facultatif. Connectez-vous pour voir ici votre formule Web3Lens. Tout dans l'extension fonctionne sans compte.",
+    "signIn": "Se connecter avec Google",
+    "pendingBody": "Approuvez ce code sur web3lens.com, puis revenez ici :",
+    "reopen": "Ouvrir la page d'approbation",
+    "cancel": "Annuler",
+    "waiting": "En attente d'approbation…",
+    "signedInAs": "Connecté en tant que {email}",
+    "planFree": "Gratuit",
+    "planPro": "Pro",
+    "planLifetime": "Pro à vie",
+    "manage": "Gérer le compte",
+    "refresh": "Actualiser la formule",
+    "signOut": "Se déconnecter",
+    "offline": "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
+    "networkOff": "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
+    "expired": "Votre session a expiré. Reconnectez-vous.",
+    "error": "La connexion n'a pas abouti. Réessayez dans un instant."
   }
 }

@@ -590,5 +590,25 @@
       "bech32Unknown": "“{hrp}”에 대한 유효한 bech32 주소이지만, Web3Lens가 아직 지원하지 않는 네트워크입니다.",
       "versionByte": "버전 바이트 {byte}은(는) Web3Lens가 인식하지 못합니다."
     }
+  },
+  "account": {
+    "title": "계정",
+    "signedOutBody": "선택 사항입니다. 로그인하면 여기에서 Web3Lens 요금제를 볼 수 있습니다. 확장 프로그램은 계정 없이도 모두 작동합니다.",
+    "signIn": "Google로 로그인",
+    "pendingBody": "web3lens.com에서 이 코드를 승인한 뒤 여기로 돌아오세요:",
+    "reopen": "승인 페이지 열기",
+    "cancel": "취소",
+    "waiting": "승인을 기다리는 중…",
+    "signedInAs": "{email}(으)로 로그인됨",
+    "planFree": "무료",
+    "planPro": "Pro",
+    "planLifetime": "평생 Pro",
+    "manage": "계정 관리",
+    "refresh": "요금제 새로고침",
+    "signOut": "로그아웃",
+    "offline": "web3lens.com에 연결할 수 없습니다. {date} 기준 요금제를 표시합니다.",
+    "networkOff": "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
+    "expired": "로그인이 만료되었습니다. 다시 로그인하세요.",
+    "error": "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
   }
 }

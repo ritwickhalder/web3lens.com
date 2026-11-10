@@ -590,5 +590,25 @@
       "bech32Unknown": "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
       "versionByte": "O byte de versão {byte} não é um que o Web3Lens reconheça."
     }
+  },
+  "account": {
+    "title": "Conta",
+    "signedOutBody": "Opcional. Entre para ver aqui o seu plano Web3Lens. Tudo na extensão continua funcionando sem conta.",
+    "signIn": "Entrar com o Google",
+    "pendingBody": "Aprove este código em web3lens.com e depois volte aqui:",
+    "reopen": "Abrir a página de aprovação",
+    "cancel": "Cancelar",
+    "waiting": "Aguardando aprovação…",
+    "signedInAs": "Conectado como {email}",
+    "planFree": "Grátis",
+    "planPro": "Pro",
+    "planLifetime": "Pro vitalício",
+    "manage": "Gerenciar conta",
+    "refresh": "Atualizar plano",
+    "signOut": "Sair",
+    "offline": "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
+    "networkOff": "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
+    "expired": "Sua sessão expirou. Entre novamente.",
+    "error": "Não foi possível entrar. Tente de novo em instantes."
   }
 }

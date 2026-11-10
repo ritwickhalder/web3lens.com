@@ -98,7 +98,7 @@ export default function ExtensionPage() {
           <li>
             <strong className="text-fg">activeTab + scripting</strong>: the popup’s “Scan page” tab, and only for the tab you're on when you open it.
           </li>
-          <li>No host permissions, no content scripts, no access to your browsing history, no wallet connection, no account.</li>
+          <li>No host permissions, no content scripts, no access to your browsing history, no wallet connection, and no account needed (signing in is optional).</li>
         </ul>
       </InfoSection>
       <InfoSection index={3} heading="Privacy">

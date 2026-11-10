@@ -590,5 +590,25 @@
       "bech32Unknown": "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
       "versionByte": "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
     }
+  },
+  "account": {
+    "title": "Hesap",
+    "signedOutBody": "İsteğe bağlı. Web3Lens planınızı burada görmek için giriş yapın. Uzantıdaki her şey hesap olmadan da çalışır.",
+    "signIn": "Google ile giriş yap",
+    "pendingBody": "Bu kodu web3lens.com üzerinde onaylayın, ardından buraya dönün:",
+    "reopen": "Onay sayfasını aç",
+    "cancel": "İptal",
+    "waiting": "Onay bekleniyor…",
+    "signedInAs": "{email} olarak giriş yapıldı",
+    "planFree": "Ücretsiz",
+    "planPro": "Pro",
+    "planLifetime": "Ömür boyu Pro",
+    "manage": "Hesabı yönet",
+    "refresh": "Planı yenile",
+    "signOut": "Çıkış yap",
+    "offline": "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
+    "networkOff": "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
+    "expired": "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
+    "error": "Giriş yapılamadı. Birazdan tekrar deneyin."
   }
 }
