@@ -38,3 +38,4 @@ next-env.d.ts
 
 # chain audit reports (npm run chains:audit)
 /audit
+.neon
