@@ -87,7 +87,7 @@ The defence for both is the same: compare the full address against a trusted sou
 
 ## Checking many addresses at once
 
-If you're reconciling a payout list or auditing a spreadsheet, checking addresses one by one doesn't scale. [Batch search](/batch) validates up to 50 values at once: type, checksum, OFAC status and your saved label for each, with a CSV export. [How to perform bulk blockchain searches and export results to CSV](/blog/bulk-blockchain-search-csv-export) walks through it.
+If you're reconciling a payout list or auditing a spreadsheet, checking addresses one by one doesn't scale. [Batch search](/batch) validates a whole list at once: type, checksum, OFAC status and your saved label for each, with a CSV export. [How to perform bulk blockchain searches and export results to CSV](/blog/bulk-blockchain-search-csv-export) walks through it.
 
 ::cta tools
 

@@ -583,7 +583,7 @@
       batch: "Batch",
       moreTools: "More tools",
       batchSearch: "Batch search",
-      batchSearchBody: "Check up to 50 addresses at once, export CSV",
+      batchSearchBody: "Check a whole list of addresses at once, export CSV",
       devToolsBody: "Units, checksums, decoders, timestamps",
       savedBody: "Your labels and notes, private to this browser",
       view: {
@@ -627,7 +627,7 @@
       imported: "Imported {count} items.",
       importFailed: "Import failed: {error}",
       title: "Your labels and notes",
-      intro: "Labels and notes stay in this browser (extension storage). Nothing is synced.",
+      intro: "Labels and notes stay in this browser (extension storage). With Pro they also sync to your account.",
       exportJson: "Export JSON",
       importJson: "Import JSON",
       selectFirst: "Select items first.",
@@ -681,7 +681,8 @@
       offline: "Couldn't reach web3lens.com. Showing your plan as of {date}.",
       networkOff: "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
       expired: "Your sign-in has expired. Sign in again.",
-      error: "Sign-in didn't work. Try again in a moment."
+      error: "Sign-in didn't work. Try again in a moment.",
+      consentNeeded: "Sign-in needs your consent to share your sign-in and email with web3lens.com. Everything else keeps working without it."
     },
     pro: {
       upgradeBatch: "Pro checks batches of {max} values with balances for all of them.",
@@ -1216,7 +1217,7 @@
       batch: "Lote",
       moreTools: "Más herramientas",
       batchSearch: "Búsqueda por lotes",
-      batchSearchBody: "Comprueba hasta 50 direcciones a la vez y exporta a CSV",
+      batchSearchBody: "Comprueba una lista de direcciones a la vez y exporta a CSV",
       devToolsBody: "Unidades, checksums, decodificadores, marcas de tiempo",
       savedBody: "Tus etiquetas y notas, privadas en este navegador",
       view: {
@@ -1260,7 +1261,7 @@
       imported: "Elementos importados: {count}.",
       importFailed: "Error al importar: {error}",
       title: "Tus etiquetas y notas",
-      intro: "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). No se sincroniza nada.",
+      intro: "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). Con Pro también se sincronizan con tu cuenta.",
       exportJson: "Exportar JSON",
       importJson: "Importar JSON",
       selectFirst: "Primero selecciona elementos.",
@@ -1314,7 +1315,8 @@
       offline: "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
       networkOff: "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
       expired: "Tu sesión ha caducado. Vuelve a iniciar sesión.",
-      error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
+      error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento.",
+      consentNeeded: "Para iniciar sesión debes aceptar compartir tu inicio de sesión y tu correo con web3lens.com. Todo lo demás funciona sin ello."
     },
     pro: {
       upgradeBatch: "Pro revisa lotes de {max} valores con saldos para todos.",
@@ -1849,7 +1851,7 @@
       batch: "Lote",
       moreTools: "Mais ferramentas",
       batchSearch: "Pesquisa em lote",
-      batchSearchBody: "Verifique até 50 endereços de uma vez e exporte CSV",
+      batchSearchBody: "Verifique uma lista inteira de endereços de uma vez e exporte CSV",
       devToolsBody: "Unidades, checksums, decodificadores, timestamps",
       savedBody: "Seus rótulos e notas, privados neste navegador",
       view: {
@@ -1893,7 +1895,7 @@
       imported: "Itens importados: {count}.",
       importFailed: "Falha na importação: {error}",
       title: "Seus rótulos e notas",
-      intro: "Rótulos e notas ficam neste navegador (armazenamento da extensão). Nada é sincronizado.",
+      intro: "Rótulos e notas ficam neste navegador (armazenamento da extensão). Com o Pro, também são sincronizados com sua conta.",
       exportJson: "Exportar JSON",
       importJson: "Importar JSON",
       selectFirst: "Selecione itens primeiro.",
@@ -1947,7 +1949,8 @@
       offline: "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
       networkOff: "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
       expired: "Sua sessão expirou. Entre novamente.",
-      error: "Não foi possível entrar. Tente de novo em instantes."
+      error: "Não foi possível entrar. Tente de novo em instantes.",
+      consentNeeded: "Para entrar, é preciso consentir em compartilhar seu login e e-mail com web3lens.com. Todo o resto funciona sem isso."
     },
     pro: {
       upgradeBatch: "O Pro verifica lotes de {max} valores com saldos de todos.",
@@ -2482,7 +2485,7 @@
       batch: "Lot",
       moreTools: "Plus d’outils",
       batchSearch: "Recherche par lot",
-      batchSearchBody: "Vérifiez jusqu’à 50 adresses d’un coup, export CSV",
+      batchSearchBody: "Vérifiez toute une liste d’adresses d’un coup, export CSV",
       devToolsBody: "Unités, checksums, décodeurs, horodatages",
       savedBody: "Vos libellés et notes, privés dans ce navigateur",
       view: {
@@ -2526,7 +2529,7 @@
       imported: "Éléments importés : {count}.",
       importFailed: "Échec de l’import : {error}",
       title: "Vos libellés et notes",
-      intro: "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Rien n’est synchronisé.",
+      intro: "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Avec Pro, ils se synchronisent aussi avec votre compte.",
       exportJson: "Exporter en JSON",
       importJson: "Importer un JSON",
       selectFirst: "Sélectionnez d’abord des éléments.",
@@ -2580,7 +2583,8 @@
       offline: "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
       networkOff: "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
       expired: "Votre session a expiré. Reconnectez-vous.",
-      error: "La connexion n'a pas abouti. Réessayez dans un instant."
+      error: "La connexion n'a pas abouti. Réessayez dans un instant.",
+      consentNeeded: "La connexion nécessite votre accord pour partager votre session et votre e-mail avec web3lens.com. Tout le reste fonctionne sans."
     },
     pro: {
       upgradeBatch: "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",
@@ -3115,7 +3119,7 @@
       batch: "Stapel",
       moreTools: "Weitere Tools",
       batchSearch: "Stapelsuche",
-      batchSearchBody: "Bis zu 50 Adressen auf einmal prüfen, CSV-Export",
+      batchSearchBody: "Eine ganze Liste von Adressen auf einmal prüfen, CSV-Export",
       devToolsBody: "Einheiten, Checksummen, Decoder, Zeitstempel",
       savedBody: "Deine Labels und Notizen, privat in diesem Browser",
       view: {
@@ -3159,7 +3163,7 @@
       imported: "Importierte Einträge: {count}.",
       importFailed: "Import fehlgeschlagen: {error}",
       title: "Deine Labels und Notizen",
-      intro: "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Es wird nichts synchronisiert.",
+      intro: "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Mit Pro werden sie auch mit deinem Konto synchronisiert.",
       exportJson: "JSON exportieren",
       importJson: "JSON importieren",
       selectFirst: "Wähle zuerst Einträge aus.",
@@ -3213,7 +3217,8 @@
       offline: "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
       networkOff: "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
       expired: "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
-      error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
+      error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal.",
+      consentNeeded: "Für die Anmeldung musst du zustimmen, dass Anmeldung und E-Mail an web3lens.com gehen. Alles andere funktioniert auch ohne."
     },
     pro: {
       upgradeBatch: "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",
@@ -3748,7 +3753,7 @@
       batch: "一括",
       moreTools: "その他のツール",
       batchSearch: "一括検索",
-      batchSearchBody: "最大 50 件のアドレスをまとめてチェックし、CSV で出力",
+      batchSearchBody: "アドレスの一覧をまとめてチェックし、CSV で出力",
       devToolsBody: "単位、チェックサム、デコーダー、タイムスタンプ",
       savedBody: "ラベルとメモ（このブラウザ内のみ）",
       view: {
@@ -3792,7 +3797,7 @@
       imported: "{count} 件をインポートしました。",
       importFailed: "インポートに失敗しました: {error}",
       title: "ラベルとメモ",
-      intro: "ラベルとメモはこのブラウザ（拡張機能ストレージ）内にとどまります。同期はされません。",
+      intro: "ラベルとメモはこのブラウザ（拡張機能のストレージ）に保存されます。Pro ではアカウントとも同期されます。",
       exportJson: "JSON をエクスポート",
       importJson: "JSON をインポート",
       selectFirst: "先に項目を選択してください。",
@@ -3846,7 +3851,8 @@
       offline: "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
       networkOff: "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
       expired: "サインインの有効期限が切れました。もう一度サインインしてください。",
-      error: "サインインできませんでした。しばらくしてからもう一度お試しください。"
+      error: "サインインできませんでした。しばらくしてからもう一度お試しください。",
+      consentNeeded: "サインインには、サインイン情報とメールアドレスを web3lens.com と共有することへの同意が必要です。それ以外の機能は同意なしでも使えます。"
     },
     pro: {
       upgradeBatch: "Pro では {max} 件の値を一括で確認し、すべての残高を調べられます。",
@@ -4381,7 +4387,7 @@
       batch: "일괄",
       moreTools: "더 많은 도구",
       batchSearch: "일괄 검색",
-      batchSearchBody: "최대 50개 주소를 한 번에 확인하고 CSV로 내보내기",
+      batchSearchBody: "주소 목록을 한 번에 확인하고 CSV로 내보내기",
       devToolsBody: "단위, 체크섬, 디코더, 타임스탬프",
       savedBody: "라벨과 메모, 이 브라우저에만 비공개 보관",
       view: {
@@ -4425,7 +4431,7 @@
       imported: "{count}개 항목을 가져왔습니다.",
       importFailed: "가져오기 실패: {error}",
       title: "라벨과 메모",
-      intro: "라벨과 메모는 이 브라우저(확장 프로그램 저장소)에 남습니다. 동기화되지 않습니다.",
+      intro: "라벨과 메모는 이 브라우저(확장 프로그램 저장소)에 저장됩니다. Pro에서는 계정과도 동기화됩니다.",
       exportJson: "JSON 내보내기",
       importJson: "JSON 가져오기",
       selectFirst: "먼저 항목을 선택하세요.",
@@ -4479,7 +4485,8 @@
       offline: "web3lens.com에 연결할 수 없습니다. {date} 기준 요금제를 표시합니다.",
       networkOff: "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
       expired: "로그인이 만료되었습니다. 다시 로그인하세요.",
-      error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요."
+      error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요.",
+      consentNeeded: "로그인하려면 로그인 정보와 이메일을 web3lens.com과 공유하는 데 동의해야 합니다. 다른 기능은 동의 없이도 작동합니다."
     },
     pro: {
       upgradeBatch: "Pro는 {max}개 값의 일괄 조회와 모든 항목의 잔액 확인을 지원합니다.",
@@ -5014,7 +5021,7 @@
       batch: "批量",
       moreTools: "更多工具",
       batchSearch: "批量搜索",
-      batchSearchBody: "一次检查最多 50 个地址，并导出 CSV",
+      batchSearchBody: "一次检查整份地址列表，并导出 CSV",
       devToolsBody: "单位、校验和、解码器、时间戳",
       savedBody: "你的标签和备注，仅保存在此浏览器中",
       view: {
@@ -5058,7 +5065,7 @@
       imported: "已导入 {count} 项。",
       importFailed: "导入失败：{error}",
       title: "你的标签和备注",
-      intro: "标签和备注保存在此浏览器中（扩展存储），不会同步。",
+      intro: "标签和备注保存在此浏览器（扩展存储）中。使用 Pro 时也会同步到你的账户。",
       exportJson: "导出 JSON",
       importJson: "导入 JSON",
       selectFirst: "请先选择项目。",
@@ -5112,7 +5119,8 @@
       offline: "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
       networkOff: "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
       expired: "登录已过期，请重新登录。",
-      error: "登录失败，请稍后再试。"
+      error: "登录失败，请稍后再试。",
+      consentNeeded: "登录需要你同意与 web3lens.com 共享登录信息和邮箱。其他功能无需同意也能正常使用。"
     },
     pro: {
       upgradeBatch: "Pro 可一次检查 {max} 个值，并查询全部余额。",
@@ -5647,7 +5655,7 @@
       batch: "Пакет",
       moreTools: "Другие инструменты",
       batchSearch: "Пакетный поиск",
-      batchSearchBody: "Проверьте до 50 адресов сразу, экспорт в CSV",
+      batchSearchBody: "Проверьте целый список адресов сразу, экспорт в CSV",
       devToolsBody: "Единицы, контрольные суммы, декодеры, метки времени",
       savedBody: "Ваши метки и заметки, только в этом браузере",
       view: {
@@ -5691,7 +5699,7 @@
       imported: "Импортировано: {count}.",
       importFailed: "Ошибка импорта: {error}",
       title: "Ваши метки и заметки",
-      intro: "Метки и заметки хранятся в этом браузере (хранилище расширения). Ничего не синхронизируется.",
+      intro: "Метки и заметки хранятся в этом браузере (хранилище расширения). С Pro они также синхронизируются с аккаунтом.",
       exportJson: "Экспорт JSON",
       importJson: "Импорт JSON",
       selectFirst: "Сначала выберите элементы.",
@@ -5745,7 +5753,8 @@
       offline: "Не удалось связаться с web3lens.com. Показан тариф на {date}.",
       networkOff: "Онлайн-запросы отключены, поэтому аккаунт приостановлен. Включите их в разделе «Конфиденциальность», чтобы войти.",
       expired: "Срок входа истёк. Войдите снова.",
-      error: "Не удалось войти. Попробуйте ещё раз чуть позже."
+      error: "Не удалось войти. Попробуйте ещё раз чуть позже.",
+      consentNeeded: "Для входа нужно ваше согласие передавать данные входа и email на web3lens.com. Всё остальное работает и без этого."
     },
     pro: {
       upgradeBatch: "Pro проверяет пакеты из {max} значений с балансами для всех.",
@@ -6280,7 +6289,7 @@
       batch: "Massal",
       moreTools: "Alat lainnya",
       batchSearch: "Pencarian massal",
-      batchSearchBody: "Periksa hingga 50 alamat sekaligus, ekspor CSV",
+      batchSearchBody: "Periksa seluruh daftar alamat sekaligus, ekspor CSV",
       devToolsBody: "Satuan, checksum, dekoder, timestamp",
       savedBody: "Label dan catatan Anda, privat di browser ini",
       view: {
@@ -6324,7 +6333,7 @@
       imported: "Item diimpor: {count}.",
       importFailed: "Impor gagal: {error}",
       title: "Label dan catatan Anda",
-      intro: "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Tidak ada yang disinkronkan.",
+      intro: "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Dengan Pro, keduanya juga tersinkron ke akun Anda.",
       exportJson: "Ekspor JSON",
       importJson: "Impor JSON",
       selectFirst: "Pilih item terlebih dahulu.",
@@ -6378,7 +6387,8 @@
       offline: "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
       networkOff: "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
       expired: "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
-      error: "Gagal masuk. Coba lagi sebentar lagi."
+      error: "Gagal masuk. Coba lagi sebentar lagi.",
+      consentNeeded: "Masuk memerlukan persetujuan Anda untuk membagikan sesi masuk dan email ke web3lens.com. Fitur lain tetap berfungsi tanpanya."
     },
     pro: {
       upgradeBatch: "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",
@@ -6913,7 +6923,7 @@
       batch: "Toplu",
       moreTools: "Diğer araçlar",
       batchSearch: "Toplu arama",
-      batchSearchBody: "Aynı anda 50'ye kadar adres kontrol edin, CSV olarak dışa aktarın",
+      batchSearchBody: "Bir adres listesinin tamamını aynı anda kontrol edin, CSV olarak dışa aktarın",
       devToolsBody: "Birimler, sağlama toplamları, çözücüler, zaman damgaları",
       savedBody: "Etiketleriniz ve notlarınız, bu tarayıcıya özel",
       view: {
@@ -6957,7 +6967,7 @@
       imported: "İçe aktarılan öğe: {count}.",
       importFailed: "İçe aktarma başarısız: {error}",
       title: "Etiketleriniz ve notlarınız",
-      intro: "Etiketler ve notlar bu tarayıcıda (eklenti depolaması) kalır. Hiçbir şey eşitlenmez.",
+      intro: "Etiketler ve notlar bu tarayıcıda (uzantı depolaması) kalır. Pro ile hesabınızla da eşitlenir.",
       exportJson: "JSON dışa aktar",
       importJson: "JSON içe aktar",
       selectFirst: "Önce öğe seçin.",
@@ -7011,7 +7021,8 @@
       offline: "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
       networkOff: "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
       expired: "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
-      error: "Giriş yapılamadı. Birazdan tekrar deneyin."
+      error: "Giriş yapılamadı. Birazdan tekrar deneyin.",
+      consentNeeded: "Giriş için oturum bilginizi ve e-postanızı web3lens.com ile paylaşmaya onay vermeniz gerekir. Diğer her şey onay olmadan da çalışır."
     },
     pro: {
       upgradeBatch: "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",
@@ -7546,7 +7557,7 @@
       batch: "In blocco",
       moreTools: "Altri strumenti",
       batchSearch: "Ricerca in blocco",
-      batchSearchBody: "Controlla fino a 50 indirizzi insieme, esporta in CSV",
+      batchSearchBody: "Controlla un intero elenco di indirizzi insieme, esporta in CSV",
       devToolsBody: "Unità, checksum, decoder, timestamp",
       savedBody: "Le tue etichette e note, private in questo browser",
       view: {
@@ -7590,7 +7601,7 @@
       imported: "Elementi importati: {count}.",
       importFailed: "Importazione non riuscita: {error}",
       title: "Le tue etichette e note",
-      intro: "Etichette e note restano in questo browser (archiviazione dell’estensione). Nulla viene sincronizzato.",
+      intro: "Etichette e note restano in questo browser (archivio dell’estensione). Con Pro si sincronizzano anche con il tuo account.",
       exportJson: "Esporta JSON",
       importJson: "Importa JSON",
       selectFirst: "Seleziona prima degli elementi.",
@@ -7644,7 +7655,8 @@
       offline: "Impossibile raggiungere web3lens.com. Il piano mostrato è aggiornato al {date}.",
       networkOff: "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
       expired: "L'accesso è scaduto. Accedi di nuovo.",
-      error: "L'accesso non è riuscito. Riprova tra poco."
+      error: "L'accesso non è riuscito. Riprova tra poco.",
+      consentNeeded: "Per accedere serve il tuo consenso a condividere accesso ed email con web3lens.com. Tutto il resto funziona anche senza."
     },
     pro: {
       upgradeBatch: "Pro controlla lotti di {max} valori con i saldi di tutti.",
@@ -8179,7 +8191,7 @@
       batch: "Zbiorczo",
       moreTools: "Więcej narzędzi",
       batchSearch: "Wyszukiwanie zbiorcze",
-      batchSearchBody: "Sprawdź do 50 adresów naraz, eksport do CSV",
+      batchSearchBody: "Sprawdź całą listę adresów naraz, eksport do CSV",
       devToolsBody: "Jednostki, sumy kontrolne, dekodery, znaczniki czasu",
       savedBody: "Twoje etykiety i notatki, prywatnie w tej przeglądarce",
       view: {
@@ -8223,7 +8235,7 @@
       imported: "Zaimportowano elementy: {count}.",
       importFailed: "Import nie powiódł się: {error}",
       title: "Twoje etykiety i notatki",
-      intro: "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Nic nie jest synchronizowane.",
+      intro: "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Z Pro synchronizują się też z Twoim kontem.",
       exportJson: "Eksportuj JSON",
       importJson: "Importuj JSON",
       selectFirst: "Najpierw zaznacz elementy.",
@@ -8277,7 +8289,8 @@
       offline: "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
       networkOff: "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
       expired: "Sesja wygasła. Zaloguj się ponownie.",
-      error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
+      error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę.",
+      consentNeeded: "Logowanie wymaga Twojej zgody na udostępnienie danych logowania i e-maila serwisowi web3lens.com. Wszystko inne działa bez niej."
     },
     pro: {
       upgradeBatch: "Pro sprawdza partie {max} wartości wraz z saldami wszystkich.",
@@ -8812,7 +8825,7 @@
       batch: "Bulk",
       moreTools: "Meer tools",
       batchSearch: "Bulkzoeken",
-      batchSearchBody: "Controleer tot 50 adressen tegelijk, exporteer CSV",
+      batchSearchBody: "Controleer een hele lijst adressen tegelijk, exporteer CSV",
       devToolsBody: "Eenheden, checksums, decoders, tijdstempels",
       savedBody: "Je labels en notities, privé in deze browser",
       view: {
@@ -8856,7 +8869,7 @@
       imported: "Geïmporteerde items: {count}.",
       importFailed: "Importeren mislukt: {error}",
       title: "Je labels en notities",
-      intro: "Labels en notities blijven in deze browser (extensieopslag). Er wordt niets gesynchroniseerd.",
+      intro: "Labels en notities blijven in deze browser (opslag van de extensie). Met Pro worden ze ook met je account gesynchroniseerd.",
       exportJson: "JSON exporteren",
       importJson: "JSON importeren",
       selectFirst: "Selecteer eerst items.",
@@ -8910,7 +8923,8 @@
       offline: "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
       networkOff: "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
       expired: "Je sessie is verlopen. Log opnieuw in.",
-      error: "Inloggen is niet gelukt. Probeer het zo opnieuw."
+      error: "Inloggen is niet gelukt. Probeer het zo opnieuw.",
+      consentNeeded: "Voor inloggen is je toestemming nodig om je inlog en e-mail met web3lens.com te delen. Al het andere werkt ook zonder."
     },
     pro: {
       upgradeBatch: "Pro controleert batches van {max} waarden met saldi voor allemaal.",
@@ -9445,7 +9459,7 @@
       batch: "แบบกลุ่ม",
       moreTools: "เครื่องมืออื่นๆ",
       batchSearch: "ค้นหาแบบกลุ่ม",
-      batchSearchBody: "ตรวจได้สูงสุด 50 ที่อยู่พร้อมกัน ส่งออก CSV ได้",
+      batchSearchBody: "ตรวจรายการที่อยู่ทั้งชุดพร้อมกัน ส่งออก CSV ได้",
       devToolsBody: "หน่วย checksum ตัวถอดรหัส timestamp",
       savedBody: "ป้ายกำกับและโน้ตของคุณ เป็นส่วนตัวในเบราว์เซอร์นี้",
       view: {
@@ -9489,7 +9503,7 @@
       imported: "นำเข้า {count} รายการแล้ว",
       importFailed: "นำเข้าไม่สำเร็จ: {error}",
       title: "ป้ายกำกับและโน้ตของคุณ",
-      intro: "ป้ายกำกับและโน้ตอยู่ในเบราว์เซอร์นี้ (พื้นที่เก็บข้อมูลส่วนขยาย) ไม่มีการซิงค์",
+      intro: "ป้ายกำกับและโน้ตจะอยู่ในเบราว์เซอร์นี้ (พื้นที่จัดเก็บของส่วนขยาย) เมื่อใช้ Pro จะซิงก์กับบัญชีของคุณด้วย",
       exportJson: "ส่งออก JSON",
       importJson: "นำเข้า JSON",
       selectFirst: "เลือกรายการก่อน",
@@ -9543,7 +9557,8 @@
       offline: "เชื่อมต่อ web3lens.com ไม่ได้ กำลังแสดงแพ็กเกจของคุณ ณ วันที่ {date}",
       networkOff: "การค้นหาออนไลน์ปิดอยู่ บัญชีจึงหยุดชั่วคราว เปิดได้ที่ความเป็นส่วนตัวเพื่อลงชื่อเข้าใช้",
       expired: "การลงชื่อเข้าใช้หมดอายุแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง",
-      error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่"
+      error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่",
+      consentNeeded: "การลงชื่อเข้าใช้ต้องได้รับความยินยอมให้ส่งข้อมูลการลงชื่อเข้าใช้และอีเมลไปยัง web3lens.com ฟีเจอร์อื่นยังใช้ได้ตามปกติ"
     },
     pro: {
       upgradeBatch: "Pro ตรวจสอบได้ครั้งละ {max} รายการ พร้อมยอดคงเหลือของทุกรายการ",
@@ -9974,6 +9989,15 @@
   // extension-src/src/browser.ts
   var ext = typeof browser !== "undefined" ? browser : chrome;
   var isFirefox = typeof navigator !== "undefined" && /firefox/i.test(navigator.userAgent);
+  var ACCOUNT_DATA_COLLECTION = ["authenticationInfo", "personallyIdentifyingInfo"];
+  async function allowAccountDataCollection() {
+    if (!isFirefox || !ext.permissions) return true;
+    try {
+      return await ext.permissions.request({ data_collection: ACCOUNT_DATA_COLLECTION });
+    } catch {
+      return true;
+    }
+  }
   function openTab(url) {
     return ext.tabs.create({ url });
   }
@@ -24580,6 +24604,11 @@
           t("account.signIn"),
           async () => {
             message = null;
+            if (!await allowAccountDataCollection()) {
+              message = { text: t("account.consentNeeded"), tone: "warn" };
+              await cancelSignIn();
+              return;
+            }
             try {
               await startSignIn();
             } catch {

@@ -511,7 +511,7 @@
     "batch": "Stapel",
     "moreTools": "Weitere Tools",
     "batchSearch": "Stapelsuche",
-    "batchSearchBody": "Bis zu 50 Adressen auf einmal prüfen, CSV-Export",
+    "batchSearchBody": "Eine ganze Liste von Adressen auf einmal prüfen, CSV-Export",
     "devToolsBody": "Einheiten, Checksummen, Decoder, Zeitstempel",
     "savedBody": "Deine Labels und Notizen, privat in diesem Browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Importierte Einträge: {count}.",
     "importFailed": "Import fehlgeschlagen: {error}",
     "title": "Deine Labels und Notizen",
-    "intro": "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Es wird nichts synchronisiert.",
+    "intro": "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Mit Pro werden sie auch mit deinem Konto synchronisiert.",
     "exportJson": "JSON exportieren",
     "importJson": "JSON importieren",
     "selectFirst": "Wähle zuerst Einträge aus.",
@@ -609,7 +609,8 @@
     "offline": "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
     "networkOff": "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
     "expired": "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
-    "error": "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal."
+    "error": "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal.",
+    "consentNeeded": "Für die Anmeldung musst du zustimmen, dass Anmeldung und E-Mail an web3lens.com gehen. Alles andere funktioniert auch ohne."
   },
   "pro": {
     "upgradeBatch": "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",

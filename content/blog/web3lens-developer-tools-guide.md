@@ -97,7 +97,7 @@ Nothing is broadcast. That makes it useful for:
 
 ## Beyond single values: batch search
 
-When you have a list instead of one value, [batch search](/batch) checks up to 50 addresses, hashes or names at once and exports CSV. See [How to perform bulk blockchain searches and export results to CSV](/blog/bulk-blockchain-search-csv-export).
+When you have a list instead of one value, [batch search](/batch) checks a list of addresses, hashes or names at once and exports CSV. See [How to perform bulk blockchain searches and export results to CSV](/blog/bulk-blockchain-search-csv-export).
 
 ## Privacy and trust
 

@@ -511,7 +511,7 @@
     "batch": "Toplu",
     "moreTools": "Diğer araçlar",
     "batchSearch": "Toplu arama",
-    "batchSearchBody": "Aynı anda 50'ye kadar adres kontrol edin, CSV olarak dışa aktarın",
+    "batchSearchBody": "Bir adres listesinin tamamını aynı anda kontrol edin, CSV olarak dışa aktarın",
     "devToolsBody": "Birimler, sağlama toplamları, çözücüler, zaman damgaları",
     "savedBody": "Etiketleriniz ve notlarınız, bu tarayıcıya özel",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "İçe aktarılan öğe: {count}.",
     "importFailed": "İçe aktarma başarısız: {error}",
     "title": "Etiketleriniz ve notlarınız",
-    "intro": "Etiketler ve notlar bu tarayıcıda (eklenti depolaması) kalır. Hiçbir şey eşitlenmez.",
+    "intro": "Etiketler ve notlar bu tarayıcıda (uzantı depolaması) kalır. Pro ile hesabınızla da eşitlenir.",
     "exportJson": "JSON dışa aktar",
     "importJson": "JSON içe aktar",
     "selectFirst": "Önce öğe seçin.",
@@ -609,7 +609,8 @@
     "offline": "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
     "networkOff": "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
     "expired": "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
-    "error": "Giriş yapılamadı. Birazdan tekrar deneyin."
+    "error": "Giriş yapılamadı. Birazdan tekrar deneyin.",
+    "consentNeeded": "Giriş için oturum bilginizi ve e-postanızı web3lens.com ile paylaşmaya onay vermeniz gerekir. Diğer her şey onay olmadan da çalışır."
   },
   "pro": {
     "upgradeBatch": "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",

@@ -511,7 +511,7 @@
     "batch": "Zbiorczo",
     "moreTools": "Więcej narzędzi",
     "batchSearch": "Wyszukiwanie zbiorcze",
-    "batchSearchBody": "Sprawdź do 50 adresów naraz, eksport do CSV",
+    "batchSearchBody": "Sprawdź całą listę adresów naraz, eksport do CSV",
     "devToolsBody": "Jednostki, sumy kontrolne, dekodery, znaczniki czasu",
     "savedBody": "Twoje etykiety i notatki, prywatnie w tej przeglądarce",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Zaimportowano elementy: {count}.",
     "importFailed": "Import nie powiódł się: {error}",
     "title": "Twoje etykiety i notatki",
-    "intro": "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Nic nie jest synchronizowane.",
+    "intro": "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Z Pro synchronizują się też z Twoim kontem.",
     "exportJson": "Eksportuj JSON",
     "importJson": "Importuj JSON",
     "selectFirst": "Najpierw zaznacz elementy.",
@@ -609,7 +609,8 @@
     "offline": "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
     "networkOff": "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
     "expired": "Sesja wygasła. Zaloguj się ponownie.",
-    "error": "Logowanie nie powiodło się. Spróbuj ponownie za chwilę."
+    "error": "Logowanie nie powiodło się. Spróbuj ponownie za chwilę.",
+    "consentNeeded": "Logowanie wymaga Twojej zgody na udostępnienie danych logowania i e-maila serwisowi web3lens.com. Wszystko inne działa bez niej."
   },
   "pro": {
     "upgradeBatch": "Pro sprawdza partie {max} wartości wraz z saldami wszystkich.",

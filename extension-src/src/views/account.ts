@@ -1,6 +1,6 @@
 /** Settings → Account: optional sign-in (pairing code), plan and sign-out. See ../account.ts for the flow. */
 import { cancelSignIn, claimSignIn, displayPlan, loadAccount, openApproval, refreshAccount, signOut, startSignIn, ACCOUNT_ORIGIN, type AccountRecord } from '../account';
-import { openTab } from '../browser';
+import { allowAccountDataCollection, openTab } from '../browser';
 import { clear, h } from '../dom';
 import { t } from '../i18n';
 import type { ExtSettings } from '../store';
@@ -90,6 +90,12 @@ function body(a: AccountRecord, settings: ExtSettings): (Node | null)[] {
         t('account.signIn'),
         async () => {
           message = null;
+          // Firefox: consent for the account's data must be asked first, inside the click.
+          if (!(await allowAccountDataCollection())) {
+            message = { text: t('account.consentNeeded'), tone: 'warn' };
+            await cancelSignIn();
+            return;
+          }
           try {
             await startSignIn();
           } catch {

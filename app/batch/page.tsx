@@ -5,7 +5,7 @@ import { pageMetadata } from '@/lib/metadata';
 
 export const metadata = pageMetadata({
   title: 'Batch address search',
-  description: 'Check up to 50 blockchain addresses or transaction hashes at once: format, checksum, OFAC sanctions and EVM balances, with CSV export.',
+  description: 'Check a whole list of blockchain addresses or transaction hashes at once: format, checksum, OFAC sanctions and EVM balances, with CSV export.',
   path: '/batch',
 });
 

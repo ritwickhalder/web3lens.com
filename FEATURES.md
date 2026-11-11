@@ -86,7 +86,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 
 | Feature | What it does | Web | Ext |
 |---|---|---|---|
-| **Batch search** (`/batch`) | Up to 50 values: type, checksum, OFAC, saved label, optional EVM balances; CSV export (formula-safe), save all, share link. | ✓ | ✓ |
+| **Batch search** (`/batch`) | Up to 50 values (Free 10 / Pro 500 once Pro launches): type, checksum, OFAC, saved label, optional EVM balances; CSV export (formula-safe), save all, share link. | ✓ | ✓ |
 | **Saved addresses** (`/saved`) | Labels, notes, favourites/pins, filter, JSON export/import. Browser-only storage. | ✓ | ✓ (Saved tab) |
 | **Settings** (`/settings`) | Search behaviour, preferred explorer per chain, favourite chains, theme, data reset. Extension adds language, online lookups on/off (offline mode keeps everything local) and clear recents. | ✓ | ✓ |
 | **Shareable investigations** (`/investigate#…`) | A titled list of items with labels and notes encoded in the URL fragment (the server never sees it); "save all" imports it. Shared labels are shown as claims. | ✓ | ✓ (Saved and Batch copy an investigation link) |

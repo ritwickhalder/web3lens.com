@@ -36,6 +36,16 @@ interface ExtApi {
     onInputChanged: ExtEvent<(text: string, suggest: (s: { content: string; description: string }[]) => void) => void>;
     onInputEntered: ExtEvent<(text: string, disposition: 'currentTab' | 'newForegroundTab' | 'newBackgroundTab') => void>;
   };
+  /** Firefox 140+: optional data-collection consent (`data_collection_permissions.optional` in the manifest). */
+  permissions?: {
+    request(p: { data_collection?: string[] }): Promise<boolean>;
+    contains(p: { data_collection?: string[] }): Promise<boolean>;
+  };
+  /** Toolbar badge (no permission needed). */
+  action?: {
+    setBadgeText(d: { text: string }): Promise<void> | void;
+    setBadgeBackgroundColor?(d: { color: string }): Promise<void> | void;
+  };
   scripting: {
     executeScript<T>(details: { target: { tabId: number }; func: () => T }): Promise<{ result?: T }[]>;
   };

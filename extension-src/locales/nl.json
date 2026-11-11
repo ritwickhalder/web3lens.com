@@ -511,7 +511,7 @@
     "batch": "Bulk",
     "moreTools": "Meer tools",
     "batchSearch": "Bulkzoeken",
-    "batchSearchBody": "Controleer tot 50 adressen tegelijk, exporteer CSV",
+    "batchSearchBody": "Controleer een hele lijst adressen tegelijk, exporteer CSV",
     "devToolsBody": "Eenheden, checksums, decoders, tijdstempels",
     "savedBody": "Je labels en notities, privé in deze browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Geïmporteerde items: {count}.",
     "importFailed": "Importeren mislukt: {error}",
     "title": "Je labels en notities",
-    "intro": "Labels en notities blijven in deze browser (extensieopslag). Er wordt niets gesynchroniseerd.",
+    "intro": "Labels en notities blijven in deze browser (opslag van de extensie). Met Pro worden ze ook met je account gesynchroniseerd.",
     "exportJson": "JSON exporteren",
     "importJson": "JSON importeren",
     "selectFirst": "Selecteer eerst items.",
@@ -609,7 +609,8 @@
     "offline": "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
     "networkOff": "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
     "expired": "Je sessie is verlopen. Log opnieuw in.",
-    "error": "Inloggen is niet gelukt. Probeer het zo opnieuw."
+    "error": "Inloggen is niet gelukt. Probeer het zo opnieuw.",
+    "consentNeeded": "Voor inloggen is je toestemming nodig om je inlog en e-mail met web3lens.com te delen. Al het andere werkt ook zonder."
   },
   "pro": {
     "upgradeBatch": "Pro controleert batches van {max} waarden met saldi voor allemaal.",

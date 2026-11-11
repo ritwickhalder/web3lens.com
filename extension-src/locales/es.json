@@ -511,7 +511,7 @@
     "batch": "Lote",
     "moreTools": "Más herramientas",
     "batchSearch": "Búsqueda por lotes",
-    "batchSearchBody": "Comprueba hasta 50 direcciones a la vez y exporta a CSV",
+    "batchSearchBody": "Comprueba una lista de direcciones a la vez y exporta a CSV",
     "devToolsBody": "Unidades, checksums, decodificadores, marcas de tiempo",
     "savedBody": "Tus etiquetas y notas, privadas en este navegador",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Elementos importados: {count}.",
     "importFailed": "Error al importar: {error}",
     "title": "Tus etiquetas y notas",
-    "intro": "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). No se sincroniza nada.",
+    "intro": "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). Con Pro también se sincronizan con tu cuenta.",
     "exportJson": "Exportar JSON",
     "importJson": "Importar JSON",
     "selectFirst": "Primero selecciona elementos.",
@@ -609,7 +609,8 @@
     "offline": "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
     "networkOff": "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
     "expired": "Tu sesión ha caducado. Vuelve a iniciar sesión.",
-    "error": "No se pudo iniciar sesión. Inténtalo de nuevo en un momento."
+    "error": "No se pudo iniciar sesión. Inténtalo de nuevo en un momento.",
+    "consentNeeded": "Para iniciar sesión debes aceptar compartir tu inicio de sesión y tu correo con web3lens.com. Todo lo demás funciona sin ello."
   },
   "pro": {
     "upgradeBatch": "Pro revisa lotes de {max} valores con saldos para todos.",

@@ -94,7 +94,7 @@ Paste these into [Web3Lens](/) and watch the label and checksum status change:
 - `TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t`: Tron address (the USDT contract)
 - `vitalik.eth`: ENS name
 
-The [address validator](/tools/address-validator) shows the same detection with more detail, one value at a time, and [batch search](/batch) checks up to 50 at once.
+The [address validator](/tools/address-validator) shows the same detection with more detail, one value at a time, and [batch search](/batch) checks a whole list at once.
 
 ::cta tools
 

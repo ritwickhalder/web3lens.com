@@ -511,7 +511,7 @@
     "batch": "Batch",
     "moreTools": "More tools",
     "batchSearch": "Batch search",
-    "batchSearchBody": "Check up to 50 addresses at once, export CSV",
+    "batchSearchBody": "Check a whole list of addresses at once, export CSV",
     "devToolsBody": "Units, checksums, decoders, timestamps",
     "savedBody": "Your labels and notes, private to this browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Imported {count} items.",
     "importFailed": "Import failed: {error}",
     "title": "Your labels and notes",
-    "intro": "Labels and notes stay in this browser (extension storage). Nothing is synced.",
+    "intro": "Labels and notes stay in this browser (extension storage). With Pro they also sync to your account.",
     "exportJson": "Export JSON",
     "importJson": "Import JSON",
     "selectFirst": "Select items first.",
@@ -609,7 +609,8 @@
     "offline": "Couldn't reach web3lens.com. Showing your plan as of {date}.",
     "networkOff": "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
     "expired": "Your sign-in has expired. Sign in again.",
-    "error": "Sign-in didn't work. Try again in a moment."
+    "error": "Sign-in didn't work. Try again in a moment.",
+    "consentNeeded": "Sign-in needs your consent to share your sign-in and email with web3lens.com. Everything else keeps working without it."
   },
   "pro": {
     "upgradeBatch": "Pro checks batches of {max} values with balances for all of them.",

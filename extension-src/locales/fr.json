@@ -511,7 +511,7 @@
     "batch": "Lot",
     "moreTools": "Plus d’outils",
     "batchSearch": "Recherche par lot",
-    "batchSearchBody": "Vérifiez jusqu’à 50 adresses d’un coup, export CSV",
+    "batchSearchBody": "Vérifiez toute une liste d’adresses d’un coup, export CSV",
     "devToolsBody": "Unités, checksums, décodeurs, horodatages",
     "savedBody": "Vos libellés et notes, privés dans ce navigateur",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Éléments importés : {count}.",
     "importFailed": "Échec de l’import : {error}",
     "title": "Vos libellés et notes",
-    "intro": "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Rien n’est synchronisé.",
+    "intro": "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Avec Pro, ils se synchronisent aussi avec votre compte.",
     "exportJson": "Exporter en JSON",
     "importJson": "Importer un JSON",
     "selectFirst": "Sélectionnez d’abord des éléments.",
@@ -609,7 +609,8 @@
     "offline": "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
     "networkOff": "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
     "expired": "Votre session a expiré. Reconnectez-vous.",
-    "error": "La connexion n'a pas abouti. Réessayez dans un instant."
+    "error": "La connexion n'a pas abouti. Réessayez dans un instant.",
+    "consentNeeded": "La connexion nécessite votre accord pour partager votre session et votre e-mail avec web3lens.com. Tout le reste fonctionne sans."
   },
   "pro": {
     "upgradeBatch": "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",

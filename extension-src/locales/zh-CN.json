@@ -511,7 +511,7 @@
     "batch": "批量",
     "moreTools": "更多工具",
     "batchSearch": "批量搜索",
-    "batchSearchBody": "一次检查最多 50 个地址，并导出 CSV",
+    "batchSearchBody": "一次检查整份地址列表，并导出 CSV",
     "devToolsBody": "单位、校验和、解码器、时间戳",
     "savedBody": "你的标签和备注，仅保存在此浏览器中",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "已导入 {count} 项。",
     "importFailed": "导入失败：{error}",
     "title": "你的标签和备注",
-    "intro": "标签和备注保存在此浏览器中（扩展存储），不会同步。",
+    "intro": "标签和备注保存在此浏览器（扩展存储）中。使用 Pro 时也会同步到你的账户。",
     "exportJson": "导出 JSON",
     "importJson": "导入 JSON",
     "selectFirst": "请先选择项目。",
@@ -609,7 +609,8 @@
     "offline": "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
     "networkOff": "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
     "expired": "登录已过期，请重新登录。",
-    "error": "登录失败，请稍后再试。"
+    "error": "登录失败，请稍后再试。",
+    "consentNeeded": "登录需要你同意与 web3lens.com 共享登录信息和邮箱。其他功能无需同意也能正常使用。"
   },
   "pro": {
     "upgradeBatch": "Pro 可一次检查 {max} 个值，并查询全部余额。",

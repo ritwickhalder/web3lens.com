@@ -511,7 +511,7 @@
     "batch": "Lote",
     "moreTools": "Mais ferramentas",
     "batchSearch": "Pesquisa em lote",
-    "batchSearchBody": "Verifique até 50 endereços de uma vez e exporte CSV",
+    "batchSearchBody": "Verifique uma lista inteira de endereços de uma vez e exporte CSV",
     "devToolsBody": "Unidades, checksums, decodificadores, timestamps",
     "savedBody": "Seus rótulos e notas, privados neste navegador",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Itens importados: {count}.",
     "importFailed": "Falha na importação: {error}",
     "title": "Seus rótulos e notas",
-    "intro": "Rótulos e notas ficam neste navegador (armazenamento da extensão). Nada é sincronizado.",
+    "intro": "Rótulos e notas ficam neste navegador (armazenamento da extensão). Com o Pro, também são sincronizados com sua conta.",
     "exportJson": "Exportar JSON",
     "importJson": "Importar JSON",
     "selectFirst": "Selecione itens primeiro.",
@@ -609,7 +609,8 @@
     "offline": "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
     "networkOff": "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
     "expired": "Sua sessão expirou. Entre novamente.",
-    "error": "Não foi possível entrar. Tente de novo em instantes."
+    "error": "Não foi possível entrar. Tente de novo em instantes.",
+    "consentNeeded": "Para entrar, é preciso consentir em compartilhar seu login e e-mail com web3lens.com. Todo o resto funciona sem isso."
   },
   "pro": {
     "upgradeBatch": "O Pro verifica lotes de {max} valores com saldos de todos.",

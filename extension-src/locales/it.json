@@ -511,7 +511,7 @@
     "batch": "In blocco",
     "moreTools": "Altri strumenti",
     "batchSearch": "Ricerca in blocco",
-    "batchSearchBody": "Controlla fino a 50 indirizzi insieme, esporta in CSV",
+    "batchSearchBody": "Controlla un intero elenco di indirizzi insieme, esporta in CSV",
     "devToolsBody": "Unità, checksum, decoder, timestamp",
     "savedBody": "Le tue etichette e note, private in questo browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Elementi importati: {count}.",
     "importFailed": "Importazione non riuscita: {error}",
     "title": "Le tue etichette e note",
-    "intro": "Etichette e note restano in questo browser (archiviazione dell’estensione). Nulla viene sincronizzato.",
+    "intro": "Etichette e note restano in questo browser (archivio dell’estensione). Con Pro si sincronizzano anche con il tuo account.",
     "exportJson": "Esporta JSON",
     "importJson": "Importa JSON",
     "selectFirst": "Seleziona prima degli elementi.",
@@ -609,7 +609,8 @@
     "offline": "Impossibile raggiungere web3lens.com. Il piano mostrato è aggiornato al {date}.",
     "networkOff": "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
     "expired": "L'accesso è scaduto. Accedi di nuovo.",
-    "error": "L'accesso non è riuscito. Riprova tra poco."
+    "error": "L'accesso non è riuscito. Riprova tra poco.",
+    "consentNeeded": "Per accedere serve il tuo consenso a condividere accesso ed email con web3lens.com. Tutto il resto funziona anche senza."
   },
   "pro": {
     "upgradeBatch": "Pro controlla lotti di {max} valori con i saldi di tutti.",

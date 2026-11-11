@@ -511,7 +511,7 @@
     "batch": "Massal",
     "moreTools": "Alat lainnya",
     "batchSearch": "Pencarian massal",
-    "batchSearchBody": "Periksa hingga 50 alamat sekaligus, ekspor CSV",
+    "batchSearchBody": "Periksa seluruh daftar alamat sekaligus, ekspor CSV",
     "devToolsBody": "Satuan, checksum, dekoder, timestamp",
     "savedBody": "Label dan catatan Anda, privat di browser ini",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Item diimpor: {count}.",
     "importFailed": "Impor gagal: {error}",
     "title": "Label dan catatan Anda",
-    "intro": "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Tidak ada yang disinkronkan.",
+    "intro": "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Dengan Pro, keduanya juga tersinkron ke akun Anda.",
     "exportJson": "Ekspor JSON",
     "importJson": "Impor JSON",
     "selectFirst": "Pilih item terlebih dahulu.",
@@ -609,7 +609,8 @@
     "offline": "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
     "networkOff": "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
     "expired": "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
-    "error": "Gagal masuk. Coba lagi sebentar lagi."
+    "error": "Gagal masuk. Coba lagi sebentar lagi.",
+    "consentNeeded": "Masuk memerlukan persetujuan Anda untuk membagikan sesi masuk dan email ke web3lens.com. Fitur lain tetap berfungsi tanpanya."
   },
   "pro": {
     "upgradeBatch": "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",

@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
 const ALL = [
   ...TOOLS,
   { slug: 'gas-tracker', title: 'Gas tracker', short: 'Live fees on 11 chains + Bitcoin', href: '/gas' },
-  { slug: 'batch', title: 'Batch search', short: 'Check up to 50 addresses at once', href: '/batch' },
+  { slug: 'batch', title: 'Batch search', short: 'Check a list of addresses at once', href: '/batch' },
 ];
 
 export default function ToolsPage() {
