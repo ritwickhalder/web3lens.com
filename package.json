@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
+    "db:migrate": "node scripts/db-migrate.mjs",
     "test": "tsx --test scripts/test/*.test.ts",
     "ext:build": "node scripts/build-extensions.mjs",
     "ext:check": "node scripts/build-extensions.mjs --check",

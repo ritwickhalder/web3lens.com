@@ -1,61 +1,132 @@
-# Web3Lens Pro — what's left
+# Web3Lens Pro — your to-do list
 
-All code for the three Pro phases is written, tested and pushed (branch `claude/exciting-carson-gr78b9`). Everything is
-**dormant** until you complete section 1: without the env vars the site behaves exactly as before (no sign-in, the
-pre-Pro limits, `/pricing` hidden from the nav and search engines). Architecture and rules: [docs/ACCOUNTS.md](docs/ACCOUNTS.md).
+The code for accounts and Pro is finished and merged. It stays **switched off** until you do part 1 below: until
+then the website and extensions work exactly as before. You can stop after any step; nothing breaks half-way.
 
-## 1. Your steps (need your accounts or a decision)
+Each step says where to click and what to copy. "Vercel" means the web3lens.com project on vercel.com
+(team "Ritwick Halder's projects"). After adding environment variables in Vercel, they apply to the **next deploy**:
+use Deployments → ⋯ → Redeploy, or just push a commit.
 
-Do these in order; each says where.
+How to make a random secret (used a few times below) — run in a terminal and copy the output:
 
-### Database (Neon)
-- [ ] Create a Neon project. Put its pooled connection string in Vercel as `DATABASE_URL` (Production and Preview).
-- [ ] Run the migrations once, from your machine: `DATABASE_URL="…" npm run db:migrate` (applies `drizzle/0000`–`0002`).
-      Run it again whenever a new file appears in `drizzle/`, before deploying.
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
 
-### Google sign-in
-- [ ] Google Cloud Console → OAuth client (Web application). Authorised redirect URI:
-      `https://web3lens.com/api/auth/callback/google` (add the preview URL too if you want sign-in on previews).
-- [ ] Vercel env: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `BETTER_AUTH_SECRET` (`openssl rand -base64 32`),
-      `BETTER_AUTH_URL=https://web3lens.com`.
+## 1. Switch it on
 
-### Paddle (turning this on is what launches Pro and the Free limits)
-- [ ] Create a Web3Lens product with three prices: monthly, yearly, lifetime (one-time). Choose the amounts.
-- [ ] Client-side token; approve `web3lens.com` as a checkout domain.
-- [ ] Notification destination `https://web3lens.com/api/webhooks/paddle` with `subscription.*`,
-      `transaction.completed`, `adjustment.created`, `adjustment.updated`.
-- [ ] Vercel env: `PADDLE_WEBHOOK_SECRET`, `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, `NEXT_PUBLIC_PADDLE_ENV`
-      (`sandbox` first, then `production`), `NEXT_PUBLIC_PADDLE_PRICE_MONTHLY`, `…_YEARLY`, `…_LIFETIME`. Redeploy
-      (the `NEXT_PUBLIC_` ones are read at build time).
-- [ ] Add the three price ids to the shared catalog in WebInternetArchive (`docs/paddle-catalog.md`,
-      `lib/paddle-catalog.ts`) so your other sites' webhooks label them.
+### Step 1 — Database (Neon), about 5 minutes
+1. [ ] Vercel → your project → **Storage** → **Create Database** → **Neon** → follow the prompts and connect it to the
+       web3lens.com project (Production and Preview). This adds `DATABASE_URL` for you.
+       *(If you prefer neon.tech directly: create a project there, copy the **pooled** connection string, and add it in
+       Vercel → Settings → Environment Variables as `DATABASE_URL`.)*
+2. [ ] On your computer, in the project folder:
 
-### Watchlist, emails and admin
-- [ ] Vercel env: `CRON_SECRET` (any long random string; Vercel Cron sends it automatically).
-- [ ] The cron in `vercel.json` runs **daily** at 06:00 UTC because Vercel Hobby allows only daily crons. On a Vercel
-      Pro plan, change the schedule to hourly (`0 * * * *`) for faster alerts.
-- [ ] Alert emails use the existing SMTP settings (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`). Use a sender
-      address with SPF/DKIM set up for web3lens.com so alerts don't land in spam.
-- [ ] Vercel env: `ADMIN_EMAILS=you@…` (comma-separated Google emails) to open `/admin`.
+   ```bash
+   git pull
+   ```
 
-### Legal and store listings
-- [ ] Review the new sections in `/terms` ("Accounts and Pro", "API keys and fair use") and the privacy policy's
-      "Optional account and payments" section. I wrote them carefully, but they are not legal advice.
-- [ ] When you publish the extension update: copy the text in `store/pro-launch.md` into the three store listings and
-      privacy forms (Chrome, Edge, Firefox), and refresh screenshots (`node scripts/make-store-assets.mjs`).
-- [ ] Firefox AMO: the add-on now declares the account's data (sign-in, email) as **optional** data collection and asks
-      at sign-in (`web-ext lint` passes). Confirm AMO accepts it on submission.
+   ```bash
+   npm install
+   ```
 
-### Decisions only you can make
-- [ ] **Approval scans on every EVM chain** need a paid log index (e.g. a commercial RPC with `eth_getLogs` over full
-      history, or an indexer API). Free sources cover only some chains today. Pick a provider and budget; then it's a
-      provider adapter in `lib/providers/` plus an env key.
-- [ ] **Pricing structured data** (Product/Offer on `/pricing`) once real prices exist. I left it out so no prices are
-      invented. Optional for SEO.
-- [ ] Review the defaults I chose beyond your table: watchlist 50 addresses, collections 20, API keys 5 per user, trial
-      7 days once per email. All in `lib/entitlements.ts` / `lib/server/pro-stores.ts`.
+   ```bash
+   vercel env pull .env.local --environment=production
+   ```
 
-## 2. Live checks after section 1 (nothing has run against live services yet)
+   (If `vercel` isn't found: `npm i -g vercel`, then `vercel link` and pick the web3lens.com project.)
+
+   ```bash
+   npm run db:migrate
+   ```
+
+   You should see "Done: the database is up to date." Run `npm run db:migrate` again whenever a future update adds a
+   file to the `drizzle/` folder.
+
+### Step 2 — Google sign-in, about 10 minutes
+1. [ ] Open https://console.cloud.google.com → pick or create a project → **APIs & Services** → **OAuth consent
+       screen**: app name "Web3Lens", support email, authorised domain `web3lens.com`, scopes: email, profile, openid.
+       Publish it (so anyone can sign in, not only test users).
+2. [ ] **Credentials** → **Create credentials** → **OAuth client ID** → type **Web application**.
+       Authorised redirect URI: `https://web3lens.com/api/auth/callback/google`. Create, then copy the client ID and
+       secret.
+3. [ ] Vercel → Settings → Environment Variables (Production), add:
+
+   | Name | Value |
+   |---|---|
+   | `GOOGLE_CLIENT_ID` | the client ID |
+   | `GOOGLE_CLIENT_SECRET` | the client secret |
+   | `BETTER_AUTH_SECRET` | a random secret (command above) |
+   | `BETTER_AUTH_URL` | `https://web3lens.com` |
+
+4. [ ] Redeploy. Open https://web3lens.com/account — you should see "Continue with Google". Sign in once to check.
+   *(Sign-in is now live, but Pro isn't for sale yet and nobody's limits have changed.)*
+
+### Step 3 — Payments (Paddle), about 20 minutes. This is what launches Pro.
+Do it first in the **sandbox** (https://sandbox-vendors.paddle.com) to test, then repeat in the live dashboard
+(https://vendors.paddle.com) with the live values.
+
+1. [ ] **Catalog → Products → New product** "Web3Lens Pro". Add three prices: **Monthly** (recurring, 1 month),
+       **Yearly** (recurring, 1 year) and **Lifetime** (one-time). Choose the amounts. Copy each price ID (`pri_…`).
+2. [ ] **Developer tools → Authentication → Client-side tokens → New**. Copy the token (`test_…` in sandbox, `live_…`
+       in live).
+3. [ ] **Developer tools → Notifications → New destination**: URL `https://web3lens.com/api/webhooks/paddle`, type
+       webhook, events: all `subscription.*`, `transaction.completed`, `adjustment.created`, `adjustment.updated`.
+       Save, then copy its **secret key**.
+4. [ ] **Checkout → Website approval**: add `web3lens.com` (live only; sandbox doesn't need it).
+5. [ ] Vercel → Environment Variables (Production), add:
+
+   | Name | Value |
+   |---|---|
+   | `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` | the client-side token |
+   | `NEXT_PUBLIC_PADDLE_ENV` | `sandbox` (later: `production`) |
+   | `NEXT_PUBLIC_PADDLE_PRICE_MONTHLY` | monthly price ID |
+   | `NEXT_PUBLIC_PADDLE_PRICE_YEARLY` | yearly price ID |
+   | `NEXT_PUBLIC_PADDLE_PRICE_LIFETIME` | lifetime price ID |
+   | `PADDLE_WEBHOOK_SECRET` | the notification secret key |
+
+6. [ ] Redeploy. Open https://web3lens.com/pricing — prices should show, and "Pricing" appears in the menu. Buy with a
+       Paddle test card (sandbox), then check https://web3lens.com/account says Pro.
+7. [ ] When the sandbox works: repeat 1–5 in the **live** dashboard, replace the six values in Vercel with the live
+       ones (`NEXT_PUBLIC_PADDLE_ENV` = `production`), redeploy.
+8. [ ] Optional: add the three live price IDs to the shared catalog in the WebInternetArchive repo
+       (`docs/paddle-catalog.md`, `lib/paddle-catalog.ts`) so your other sites label these payments correctly.
+
+### Step 4 — Watchlist alerts and admin page, about 5 minutes
+1. [ ] Vercel → Environment Variables (Production), add:
+
+   | Name | Value |
+   |---|---|
+   | `CRON_SECRET` | a random secret (command above) |
+   | `ADMIN_EMAILS` | your Google email (several: comma-separated) |
+
+2. [ ] Alert emails use the same mail settings as your contact form (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD`,
+       `SMTP_FROM`). If the contact form already sends mail, nothing to do. Tip: use a sender address on web3lens.com
+       so alerts don't land in spam.
+3. [ ] Redeploy. Open https://web3lens.com/admin — you should see "Users and plans" (everyone else gets "not found").
+4. [ ] Alerts are checked once a day (06:00 UTC), the most Vercel's free plan allows. If you're on Vercel Pro and
+       want hourly checks: in `vercel.json` change `"0 6 * * *"` to `"0 * * * *"` and push.
+
+### Step 5 — Publish the extension update (when steps 1–3 are done)
+1. [ ] Build the store zips:
+
+   ```bash
+   npm run ext:pack
+   ```
+
+   They're in `dist-extensions/`.
+2. [ ] Upload them to the Chrome Web Store, Firefox Add-ons and Edge Add-ons (version 1.1.0).
+3. [ ] In each store listing, paste the text from `store/pro-launch.md` (description lines and privacy answers).
+4. [ ] Firefox: the add-on now asks for consent to the account data when someone signs in; just confirm AMO accepts it.
+
+### Step 6 — Read and decide (no rush)
+1. [ ] Read the new parts of https://web3lens.com/terms ("Accounts and Pro", "API keys and fair use") and the
+       privacy policy section "Optional account and payments". Change anything you want; they aren't legal advice.
+2. [ ] Limits I picked where your table had none: watchlist 50 addresses, 20 collections, 5 API keys, a 7-day trial
+       once per email. To change them, ask me (they live in `lib/entitlements.ts`).
+3. [ ] Approval scans on every EVM chain need a paid data provider — only if you want that feature and its cost.
+
+## 2. Check it works (after part 1)
 
 - [ ] Neon: the site reads and writes through the Neon HTTP driver (tests use an in-process Postgres).
 - [ ] Google: sign in by popup, sign in with the popup blocked (redirect), sign out, sign out another device on
