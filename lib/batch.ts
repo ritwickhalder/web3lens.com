@@ -2,7 +2,8 @@
 import { detectAll, extractQuery, type Detection } from '@/lib/detect';
 import { checkSanctions, type SanctionsCheck } from '@/lib/security/sanctions';
 
-export const BATCH_MAX = 50;
+/** Absolute ceiling; each plan's cap is LIMITS[tier].batch (lib/entitlements.ts). */
+export const BATCH_MAX = 500;
 
 export type BatchRow = {
   input: string;

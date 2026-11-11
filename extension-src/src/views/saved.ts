@@ -5,8 +5,11 @@ import { investigationUrl } from '@/lib/investigation';
 import { exportSaved, sanitizeSaved } from '@/lib/saved';
 import { clear, copy, h } from '../dom';
 import { detectLabel, t } from '../i18n';
-import { removeSaved, setSaved, upsertSaved } from '../store';
+import { importSaved, removeSaved, savedCap, upsertSaved } from '../store';
 import type { Ctx } from './search';
+import { badge } from './common';
+import { isWatched, loadWatches, type CachedWatch } from '../watches';
+import { syncStatus } from './sync-status';
 
 export function savedView(ctx: Ctx): HTMLElement {
   const list = h('ul', { class: 'list saved' });
@@ -45,7 +48,7 @@ export function savedView(ctx: Ctx): HTMLElement {
               { type: 'button', class: 'linkish mono', on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
               item.query,
             ),
-            h('span', { class: 'muted small' }, `${d ? detectLabel(d.label) : t('common.unrecognised')}${chain ? ` · ${chain.name}` : ''}`),
+            h('span', { class: 'muted small' }, `${d ? detectLabel(d.label) : t('common.unrecognised')}${chain ? ` · ${chain.name}` : ''}`, isWatched(watched, item.chainId, item.query) ? ' · ' : null, isWatched(watched, item.chainId, item.query) ? badge(t('watch.watching'), 'good') : null),
             notes,
           ),
           h(
@@ -59,6 +62,13 @@ export function savedView(ctx: Ctx): HTMLElement {
     );
   }
   filter.addEventListener('input', render);
+  // Pro: mark addresses on the watchlist (cached list; empty otherwise).
+  let watched: CachedWatch[] = [];
+  if (ctx.state.settings.network)
+    void loadWatches().then((list) => {
+      watched = list;
+      if (list.length) render();
+    });
   const file = h('input', { type: 'file', accept: 'application/json,.json', hidden: true });
   file.addEventListener('change', async () => {
     const f = file.files?.[0];
@@ -67,8 +77,8 @@ export function savedView(ctx: Ctx): HTMLElement {
       if (f.size > 2_000_000) throw new Error(t('savedPage.tooLarge'));
       const raw = JSON.parse(await f.text());
       const incoming = sanitizeSaved(raw?.items ?? raw);
-      await setSaved([...incoming, ...ctx.state.saved]);
-      msg.textContent = t('savedPage.imported', { count: incoming.length });
+      const r = await importSaved(incoming);
+      msg.textContent = r.skipped ? `${t('savedPage.imported', { count: r.imported })} ${t('pro.savedFull', { count: r.skipped, max: await savedCap() })}` : t('savedPage.imported', { count: r.imported });
     } catch (e) {
       msg.textContent = t('savedPage.importFailed', { error: (e as Error).message });
     }
@@ -80,6 +90,7 @@ export function savedView(ctx: Ctx): HTMLElement {
     h('p', { class: 'label' }, t('common.saved')),
     h('h1', { class: 'heading' }, t('savedPage.title')),
     h('p', { class: 'muted' }, t('savedPage.intro')),
+    syncStatus(ctx.state.settings.network, true),
     h(
       'div',
       { class: 'row wrap' },

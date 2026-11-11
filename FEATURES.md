@@ -1,6 +1,6 @@
 # Web3Lens: feature reference
 
-**Last updated:** 2026-11-05, verified against the source (website on `main`, extensions **1.0.1** for Chrome, Firefox and Edge).
+**Last updated:** 2026-11-05, verified against the source (website on `main`, extensions **1.0.1** published for Chrome, Firefox and Edge; 1.1.0 with the optional account is built but not published — see CHANGELOG.md).
 
 This is the **authoritative list of what Web3Lens does today**. Use it for development, marketing, store listings and docs; update it in the same change whenever a feature ships, changes or is removed. Only shipped features are listed. Planned work lives in [ROADMAP.md](ROADMAP.md) and is never described here as available (see [Not in the product](#not-in-the-product-do-not-market)).
 
@@ -8,7 +8,7 @@ This is the **authoritative list of what Web3Lens does today**. Use it for devel
 
 ## Plans
 
-**Everything is Free.** There is no account, sign-in, paid plan or usage meter in the code. A Pro tier is only a later roadmap phase (ROADMAP Phase 7) and does not exist yet. Data such as saved addresses, settings and recent searches stays in the user's browser.
+**Everything is Free.** No feature is limited by plan yet. The code for optional Google sign-in, an account page (`/account`), Paddle subscriptions, a `/pricing` page and the Free/Pro features (larger batches with server-enforced balances, cloud sync of saved addresses, collections, saved investigations, JSON export, API keys, a watchlist with activity alerts, a portfolio view, and an admin page) exists (Pro phases 1–3, [docs/ACCOUNTS.md](docs/ACCOUNTS.md), [TODO.md](TODO.md)) but is **not live**. Until Paddle is configured everyone keeps today's limits (batch 50, saved 500), `/pricing` is noindex and not in the nav, and until the production environment has Neon, Google and Paddle credentials, `/api/me` reports accounts as unavailable and the header shows no sign-in button. Do not market accounts or Pro until the launch checklist in docs/ACCOUNTS.md is done. Data such as saved addresses, settings and recent searches stays in the user's browser.
 
 ## Platforms
 
@@ -86,7 +86,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 
 | Feature | What it does | Web | Ext |
 |---|---|---|---|
-| **Batch search** (`/batch`) | Up to 50 values: type, checksum, OFAC, saved label, optional EVM balances; CSV export (formula-safe), save all, share link. | ✓ | ✓ |
+| **Batch search** (`/batch`) | Up to 50 values (Free 10 / Pro 500 once Pro launches): type, checksum, OFAC, saved label, optional EVM balances; CSV export (formula-safe), save all, share link. | ✓ | ✓ |
 | **Saved addresses** (`/saved`) | Labels, notes, favourites/pins, filter, JSON export/import. Browser-only storage. | ✓ | ✓ (Saved tab) |
 | **Settings** (`/settings`) | Search behaviour, preferred explorer per chain, favourite chains, theme, data reset. Extension adds language, online lookups on/off (offline mode keeps everything local) and clear recents. | ✓ | ✓ |
 | **Shareable investigations** (`/investigate#…`) | A titled list of items with labels and notes encoded in the URL fragment (the server never sees it); "save all" imports it. Shared labels are shown as claims. | ✓ | ✓ (Saved and Batch copy an investigation link) |
@@ -141,7 +141,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 
 ## Not in the product (do not market)
 
-- Accounts, sign-in, sync between devices, or any paid/Pro plan (ROADMAP Phase 7, not built).
+- Accounts, sign-in, a paid/Pro plan, sync between devices, collections, saved investigations, JSON export, API keys, watchlist alerts or the portfolio view (built, not live yet; see TODO.md).
 - Native result pages for chains beyond the 14 listed (others open their explorer).
 - Approval scanning on Avalanche, BNB Chain and Linea.
 - A translated website (only the extensions are translated).

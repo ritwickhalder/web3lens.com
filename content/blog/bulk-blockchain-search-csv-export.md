@@ -1,7 +1,7 @@
 ---
 title: How to Perform Bulk Blockchain Searches and Export Results to CSV
 seoTitle: Bulk Crypto Address Lookup with CSV Export
-description: Check up to 50 crypto addresses, hashes or ENS names at once for format, checksum, OFAC status and EVM balances, then export a spreadsheet-safe CSV.
+description: Check a whole list of crypto addresses, hashes or ENS names at once for format, checksum, OFAC status and EVM balances, then export a spreadsheet-safe CSV.
 category: developer-tools
 tags: [batch search, csv export, bulk lookup, sanctions screening, spreadsheets]
 date: 2026-11-03
@@ -13,7 +13,7 @@ related: [verify-crypto-wallet-address-checksums, blockchain-address-risk-checks
 
 Sooner or later you'll have a list rather than a single address: an airdrop allowlist, a payroll run, the deposit addresses in a vendor spreadsheet, every wallet mentioned in an incident report. Checking them one by one in an explorer is slow and makes it easy to miss the one bad entry.
 
-[Batch search](/batch) on Web3Lens (and in the browser extension) checks up to 50 values at once and exports the results as CSV. This guide covers the workflow and how to read the output.
+[Batch search](/batch) on Web3Lens (and in the browser extension) checks a whole list of values at once and exports the results as CSV. This guide covers the workflow and how to read the output.
 
 ## Step 1: Paste your list
 
@@ -22,7 +22,7 @@ Open [web3lens.com/batch](/batch) and paste your values into the box. The parser
 - one value per line, **or** separated by commas, semicolons, tabs or spaces, so a column copied from a spreadsheet works as is
 - explorer links and payment URIs are reduced to the address or hash inside
 - duplicates are removed, comparing the normalised form, so `0xabc…` in lowercase and in checksummed case count once
-- up to **50 values** per run; anything beyond that is reported as truncated rather than silently dropped
+- a list per run up to your plan's limit (shown above the input box); anything beyond that is reported as truncated rather than silently dropped
 
 Then press **Check all**.
 
@@ -100,7 +100,7 @@ If you juggle many research tabs while doing this kind of work, [Super Session M
 
 - **Sanctions coverage** is the OFAC SDN list's published crypto addresses, refreshed periodically. It's one important list, not every list; regulated businesses need a full screening provider.
 - **Balances** are native-currency only in batch mode; open an address for token holdings.
-- **50 values per run** keeps the public data sources responsive. For larger lists, split them into runs and combine the CSVs.
+- **A per-run limit** keeps the public data sources responsive. For larger lists, split them into runs and combine the CSVs.
 
 ::cta batch
 

@@ -4,10 +4,14 @@ import { ArrowUpRight, CaretDown, List, Newspaper, X } from '@phosphor-icons/rea
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { AccountButton } from '@/components/account/AccountButton';
 import { Logo } from '@/components/brand/Logo';
 import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import { MAIN_NAV, MARKET_LINK, NEWS_LINKS } from '@/config/site';
+import { MAIN_NAV, MARKET_LINK, NEWS_LINKS, PRO_ON_SALE } from '@/config/site';
+
+/** 'Pricing' joins the nav only once Pro is on sale (no marketing before launch). */
+const NAV = PRO_ON_SALE ? [...MAIN_NAV, { label: 'Pricing', href: '/pricing' }] : MAIN_NAV;
 
 const navItem =
   'flex h-10 items-center gap-1.5 rounded-md px-3.5 text-[15px] font-semibold text-fg/80 transition-colors hover:bg-ink-3 hover:text-fg';
@@ -79,7 +83,7 @@ export function SiteHeader() {
         </Link>
 
         <div className="ml-auto hidden items-center gap-1 xl:flex">
-          {MAIN_NAV.map((link) => (
+          {NAV.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -95,6 +99,7 @@ export function SiteHeader() {
             <ArrowUpRight aria-hidden weight="bold" className="size-3.5" />
           </a>
           <ThemeToggle />
+          <AccountButton className="ml-2" />
           <Link
             href="/contact"
             className="ml-2 flex h-10 items-center rounded-md border border-line-strong px-5 text-[15px] font-bold text-fg transition-colors hover:border-accent hover:text-accent"
@@ -122,7 +127,7 @@ export function SiteHeader() {
         <div className="border-t border-line bg-ink-2 xl:hidden">
           <div className="wrap grid grid-cols-1 gap-8 py-6 sm:grid-cols-2">
             <div>
-              {[...MAIN_NAV, { label: 'Contact', href: '/contact' }].map((link) => (
+              {[...NAV, { label: 'Contact', href: '/contact' }].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -135,6 +140,7 @@ export function SiteHeader() {
               ))}
             </div>
             <div>
+              <AccountButton className="mb-8 w-fit" onNavigate={close} />
               <p className="label mb-3">Browser extension</p>
               <AddToBrowserButton className="mb-8" />
               <p className="label mb-3">News & markets</p>

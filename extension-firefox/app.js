@@ -3,8 +3,8 @@
 (() => {
   // lib/api-client.ts
   var ApiError = class extends Error {
-    constructor(message, status) {
-      super(message);
+    constructor(message2, status) {
+      super(message2);
       this.status = status;
     }
   };
@@ -17,20 +17,20 @@
     const url = `${base}/api/v1/${path}?${new URLSearchParams(params)}`;
     const timeout = AbortSignal.timeout(timeoutMs);
     let res;
-    let body;
+    let body2;
     try {
       res = await fetch(url, { signal: signal ? AbortSignal.any([signal, timeout]) : timeout, headers: { accept: "application/json" } });
-      body = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
+      body2 = await res.json().catch((e) => e.name === "TimeoutError" || e.name === "AbortError" ? Promise.reject(e) : null);
     } catch (e) {
       if (signal?.aborted) throw e;
       if (timeout.aborted) throw new ApiError("Web3Lens took too long to answer. Try again in a moment; explorer links and local checks still work.", 0);
       throw new ApiError("Web3Lens could not be reached. Check your connection.", 0);
     }
-    if (!res.ok || !body) {
+    if (!res.ok || !body2) {
       const fallback = res.status === 429 ? "Too many lookups in a short time. Wait a minute and try again." : `The Web3Lens lookup service is unavailable right now (HTTP ${res.status}). Explorer links and local checks still work.`;
-      throw new ApiError(body?.error ?? fallback, res.status);
+      throw new ApiError(body2?.error ?? fallback, res.status);
     }
-    return body;
+    return body2;
   }
 
   // lib/networks.ts
@@ -62,6 +62,9 @@
   };
   var NETWORKS = [...EVM_NETWORKS, ...UTXO_NETWORKS, SOLANA_NETWORK];
   var BY_ID = new Map(NETWORKS.map((n) => [n.id, n]));
+  function getNetwork(id) {
+    return BY_ID.get(id);
+  }
   function hasNativeSupport(chainId, kind) {
     const n = BY_ID.get(chainId);
     if (!n) return false;
@@ -583,7 +586,7 @@
       batch: "Batch",
       moreTools: "More tools",
       batchSearch: "Batch search",
-      batchSearchBody: "Check up to 50 addresses at once, export CSV",
+      batchSearchBody: "Check a whole list of addresses at once, export CSV",
       devToolsBody: "Units, checksums, decoders, timestamps",
       savedBody: "Your labels and notes, private to this browser",
       view: {
@@ -627,7 +630,7 @@
       imported: "Imported {count} items.",
       importFailed: "Import failed: {error}",
       title: "Your labels and notes",
-      intro: "Labels and notes stay in this browser (extension storage). Nothing is synced.",
+      intro: "Labels and notes stay in this browser (extension storage). With Pro they also sync to your account.",
       exportJson: "Export JSON",
       importJson: "Import JSON",
       selectFirst: "Select items first.",
@@ -662,6 +665,49 @@
         bech32Unknown: `A valid bech32 address for "{hrp}", a network Web3Lens doesn't list yet.`,
         versionByte: "Version byte {byte} isn't one Web3Lens recognises."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optional. Sign in to see your Web3Lens plan here. Everything in the extension keeps working without an account.",
+      signIn: "Sign in with Google",
+      pendingBody: "Approve this code on web3lens.com, then come back here:",
+      reopen: "Open the approval page",
+      cancel: "Cancel",
+      waiting: "Waiting for approval…",
+      signedInAs: "Signed in as {email}",
+      planFree: "Free",
+      planPro: "Pro",
+      planLifetime: "Pro for life",
+      manage: "Manage account",
+      refresh: "Refresh plan",
+      signOut: "Sign out",
+      offline: "Couldn't reach web3lens.com. Showing your plan as of {date}.",
+      networkOff: "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
+      expired: "Your sign-in has expired. Sign in again.",
+      error: "Sign-in didn't work. Try again in a moment.",
+      consentNeeded: "Sign-in needs your consent to share your sign-in and email with web3lens.com. Everything else keeps working without it."
+    },
+    pro: {
+      upgradeBatch: "Pro checks batches of {max} values with balances for all of them.",
+      seePro: "See Pro on web3lens.com",
+      usage: "Cross-chain balance lookups today: {used} of {limit}.",
+      balancesCapped: "Balances are checked for the first {max} EVM addresses on your plan.",
+      dailyLimitShort: "Daily limit reached",
+      dailyLimit: "You've used today's {limit} cross-chain balance lookups. They reset at 00:00 UTC.",
+      proOnly: "Pro feature",
+      exportJson: "Export JSON",
+      savedFull: "{count} weren't saved: your plan keeps up to {max} saved items.",
+      syncOn: "Cloud sync is on.",
+      syncedAt: "Last synced {date}.",
+      syncFailed: "Sync failed. Your saved items are safe in the extension.",
+      syncNow: "Sync now",
+      syncing: "Syncing…",
+      savedCapNote: "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
+    },
+    watch: {
+      watch: "Watch",
+      watching: "Watching",
+      failed: "Couldn't update the watchlist. Try again."
     }
   };
 
@@ -1179,7 +1225,7 @@
       batch: "Lote",
       moreTools: "Más herramientas",
       batchSearch: "Búsqueda por lotes",
-      batchSearchBody: "Comprueba hasta 50 direcciones a la vez y exporta a CSV",
+      batchSearchBody: "Comprueba una lista de direcciones a la vez y exporta a CSV",
       devToolsBody: "Unidades, checksums, decodificadores, marcas de tiempo",
       savedBody: "Tus etiquetas y notas, privadas en este navegador",
       view: {
@@ -1223,7 +1269,7 @@
       imported: "Elementos importados: {count}.",
       importFailed: "Error al importar: {error}",
       title: "Tus etiquetas y notas",
-      intro: "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). No se sincroniza nada.",
+      intro: "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). Con Pro también se sincronizan con tu cuenta.",
       exportJson: "Exportar JSON",
       importJson: "Importar JSON",
       selectFirst: "Primero selecciona elementos.",
@@ -1258,6 +1304,49 @@
         bech32Unknown: "Una dirección bech32 válida para “{hrp}”, una red que Web3Lens aún no incluye.",
         versionByte: "El byte de versión {byte} no es uno que Web3Lens reconozca."
       }
+    },
+    account: {
+      title: "Cuenta",
+      signedOutBody: "Opcional. Inicia sesión para ver aquí tu plan de Web3Lens. Todo en la extensión sigue funcionando sin cuenta.",
+      signIn: "Iniciar sesión con Google",
+      pendingBody: "Aprueba este código en web3lens.com y vuelve aquí:",
+      reopen: "Abrir la página de aprobación",
+      cancel: "Cancelar",
+      waiting: "Esperando aprobación…",
+      signedInAs: "Sesión iniciada como {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro de por vida",
+      manage: "Gestionar cuenta",
+      refresh: "Actualizar plan",
+      signOut: "Cerrar sesión",
+      offline: "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
+      networkOff: "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
+      expired: "Tu sesión ha caducado. Vuelve a iniciar sesión.",
+      error: "No se pudo iniciar sesión. Inténtalo de nuevo en un momento.",
+      consentNeeded: "Para iniciar sesión debes aceptar compartir tu inicio de sesión y tu correo con web3lens.com. Todo lo demás funciona sin ello."
+    },
+    pro: {
+      upgradeBatch: "Pro revisa lotes de {max} valores con saldos para todos.",
+      seePro: "Ver Pro en web3lens.com",
+      usage: "Consultas de saldo entre cadenas hoy: {used} de {limit}.",
+      balancesCapped: "En tu plan se revisan los saldos de las primeras {max} direcciones EVM.",
+      dailyLimitShort: "Límite diario alcanzado",
+      dailyLimit: "Has usado las {limit} consultas de saldo entre cadenas de hoy. Se reinician a las 00:00 UTC.",
+      proOnly: "Función Pro",
+      exportJson: "Exportar JSON",
+      savedFull: "{count} no se guardaron: tu plan guarda hasta {max} elementos.",
+      syncOn: "La sincronización en la nube está activada.",
+      syncedAt: "Última sincronización: {date}.",
+      syncFailed: "La sincronización falló. Tus elementos guardados están seguros en la extensión.",
+      syncNow: "Sincronizar ahora",
+      syncing: "Sincronizando…",
+      savedCapNote: "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Vigilar",
+      watching: "Vigilando",
+      failed: "No se pudo actualizar la lista de vigilancia. Inténtalo de nuevo."
     }
   };
 
@@ -1775,7 +1864,7 @@
       batch: "Lote",
       moreTools: "Mais ferramentas",
       batchSearch: "Pesquisa em lote",
-      batchSearchBody: "Verifique até 50 endereços de uma vez e exporte CSV",
+      batchSearchBody: "Verifique uma lista inteira de endereços de uma vez e exporte CSV",
       devToolsBody: "Unidades, checksums, decodificadores, timestamps",
       savedBody: "Seus rótulos e notas, privados neste navegador",
       view: {
@@ -1819,7 +1908,7 @@
       imported: "Itens importados: {count}.",
       importFailed: "Falha na importação: {error}",
       title: "Seus rótulos e notas",
-      intro: "Rótulos e notas ficam neste navegador (armazenamento da extensão). Nada é sincronizado.",
+      intro: "Rótulos e notas ficam neste navegador (armazenamento da extensão). Com o Pro, também são sincronizados com sua conta.",
       exportJson: "Exportar JSON",
       importJson: "Importar JSON",
       selectFirst: "Selecione itens primeiro.",
@@ -1854,6 +1943,49 @@
         bech32Unknown: "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
         versionByte: "O byte de versão {byte} não é um que o Web3Lens reconheça."
       }
+    },
+    account: {
+      title: "Conta",
+      signedOutBody: "Opcional. Entre para ver aqui o seu plano Web3Lens. Tudo na extensão continua funcionando sem conta.",
+      signIn: "Entrar com o Google",
+      pendingBody: "Aprove este código em web3lens.com e depois volte aqui:",
+      reopen: "Abrir a página de aprovação",
+      cancel: "Cancelar",
+      waiting: "Aguardando aprovação…",
+      signedInAs: "Conectado como {email}",
+      planFree: "Grátis",
+      planPro: "Pro",
+      planLifetime: "Pro vitalício",
+      manage: "Gerenciar conta",
+      refresh: "Atualizar plano",
+      signOut: "Sair",
+      offline: "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
+      networkOff: "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
+      expired: "Sua sessão expirou. Entre novamente.",
+      error: "Não foi possível entrar. Tente de novo em instantes.",
+      consentNeeded: "Para entrar, é preciso consentir em compartilhar seu login e e-mail com web3lens.com. Todo o resto funciona sem isso."
+    },
+    pro: {
+      upgradeBatch: "O Pro verifica lotes de {max} valores com saldos de todos.",
+      seePro: "Ver o Pro em web3lens.com",
+      usage: "Consultas de saldo entre cadeias hoje: {used} de {limit}.",
+      balancesCapped: "No seu plano, os saldos são verificados para os primeiros {max} endereços EVM.",
+      dailyLimitShort: "Limite diário atingido",
+      dailyLimit: "Você usou as {limit} consultas de saldo entre cadeias de hoje. Elas reiniciam às 00:00 UTC.",
+      proOnly: "Recurso Pro",
+      exportJson: "Exportar JSON",
+      savedFull: "{count} não foram salvos: seu plano guarda até {max} itens.",
+      syncOn: "A sincronização na nuvem está ativada.",
+      syncedAt: "Última sincronização: {date}.",
+      syncFailed: "A sincronização falhou. Seus itens salvos estão seguros na extensão.",
+      syncNow: "Sincronizar agora",
+      syncing: "Sincronizando…",
+      savedCapNote: "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Acompanhar",
+      watching: "Acompanhando",
+      failed: "Não foi possível atualizar a lista de acompanhamento. Tente de novo."
     }
   };
 
@@ -2371,7 +2503,7 @@
       batch: "Lot",
       moreTools: "Plus d’outils",
       batchSearch: "Recherche par lot",
-      batchSearchBody: "Vérifiez jusqu’à 50 adresses d’un coup, export CSV",
+      batchSearchBody: "Vérifiez toute une liste d’adresses d’un coup, export CSV",
       devToolsBody: "Unités, checksums, décodeurs, horodatages",
       savedBody: "Vos libellés et notes, privés dans ce navigateur",
       view: {
@@ -2415,7 +2547,7 @@
       imported: "Éléments importés : {count}.",
       importFailed: "Échec de l’import : {error}",
       title: "Vos libellés et notes",
-      intro: "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Rien n’est synchronisé.",
+      intro: "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Avec Pro, ils se synchronisent aussi avec votre compte.",
       exportJson: "Exporter en JSON",
       importJson: "Importer un JSON",
       selectFirst: "Sélectionnez d’abord des éléments.",
@@ -2450,6 +2582,49 @@
         bech32Unknown: "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
         versionByte: "L’octet de version {byte} n’est pas reconnu par Web3Lens."
       }
+    },
+    account: {
+      title: "Compte",
+      signedOutBody: "Facultatif. Connectez-vous pour voir ici votre formule Web3Lens. Tout dans l'extension fonctionne sans compte.",
+      signIn: "Se connecter avec Google",
+      pendingBody: "Approuvez ce code sur web3lens.com, puis revenez ici :",
+      reopen: "Ouvrir la page d'approbation",
+      cancel: "Annuler",
+      waiting: "En attente d'approbation…",
+      signedInAs: "Connecté en tant que {email}",
+      planFree: "Gratuit",
+      planPro: "Pro",
+      planLifetime: "Pro à vie",
+      manage: "Gérer le compte",
+      refresh: "Actualiser la formule",
+      signOut: "Se déconnecter",
+      offline: "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
+      networkOff: "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
+      expired: "Votre session a expiré. Reconnectez-vous.",
+      error: "La connexion n'a pas abouti. Réessayez dans un instant.",
+      consentNeeded: "La connexion nécessite votre accord pour partager votre session et votre e-mail avec web3lens.com. Tout le reste fonctionne sans."
+    },
+    pro: {
+      upgradeBatch: "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",
+      seePro: "Découvrir Pro sur web3lens.com",
+      usage: "Recherches de soldes multichaînes aujourd'hui : {used} sur {limit}.",
+      balancesCapped: "Votre formule vérifie les soldes des {max} premières adresses EVM.",
+      dailyLimitShort: "Limite quotidienne atteinte",
+      dailyLimit: "Vous avez utilisé les {limit} recherches de soldes multichaînes du jour. Elles se réinitialisent à 00:00 UTC.",
+      proOnly: "Fonction Pro",
+      exportJson: "Exporter en JSON",
+      savedFull: "{count} n'ont pas été enregistrés : votre formule conserve jusqu'à {max} éléments.",
+      syncOn: "La synchronisation cloud est activée.",
+      syncedAt: "Dernière synchronisation : {date}.",
+      syncFailed: "La synchronisation a échoué. Vos éléments enregistrés restent en sécurité dans l'extension.",
+      syncNow: "Synchroniser",
+      syncing: "Synchronisation…",
+      savedCapNote: "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
+    },
+    watch: {
+      watch: "Surveiller",
+      watching: "Surveillé",
+      failed: "Impossible de mettre à jour la liste de surveillance. Réessayez."
     }
   };
 
@@ -2967,7 +3142,7 @@
       batch: "Stapel",
       moreTools: "Weitere Tools",
       batchSearch: "Stapelsuche",
-      batchSearchBody: "Bis zu 50 Adressen auf einmal prüfen, CSV-Export",
+      batchSearchBody: "Eine ganze Liste von Adressen auf einmal prüfen, CSV-Export",
       devToolsBody: "Einheiten, Checksummen, Decoder, Zeitstempel",
       savedBody: "Deine Labels und Notizen, privat in diesem Browser",
       view: {
@@ -3011,7 +3186,7 @@
       imported: "Importierte Einträge: {count}.",
       importFailed: "Import fehlgeschlagen: {error}",
       title: "Deine Labels und Notizen",
-      intro: "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Es wird nichts synchronisiert.",
+      intro: "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Mit Pro werden sie auch mit deinem Konto synchronisiert.",
       exportJson: "JSON exportieren",
       importJson: "JSON importieren",
       selectFirst: "Wähle zuerst Einträge aus.",
@@ -3046,6 +3221,49 @@
         bech32Unknown: "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
         versionByte: "Das Versionsbyte {byte} erkennt Web3Lens nicht."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Optional. Melde dich an, um deinen Web3Lens-Tarif hier zu sehen. Die Erweiterung funktioniert auch ohne Konto vollständig.",
+      signIn: "Mit Google anmelden",
+      pendingBody: "Bestätige diesen Code auf web3lens.com und kehre dann hierher zurück:",
+      reopen: "Bestätigungsseite öffnen",
+      cancel: "Abbrechen",
+      waiting: "Warte auf Bestätigung…",
+      signedInAs: "Angemeldet als {email}",
+      planFree: "Kostenlos",
+      planPro: "Pro",
+      planLifetime: "Pro auf Lebenszeit",
+      manage: "Konto verwalten",
+      refresh: "Tarif aktualisieren",
+      signOut: "Abmelden",
+      offline: "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
+      networkOff: "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
+      expired: "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
+      error: "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal.",
+      consentNeeded: "Für die Anmeldung musst du zustimmen, dass Anmeldung und E-Mail an web3lens.com gehen. Alles andere funktioniert auch ohne."
+    },
+    pro: {
+      upgradeBatch: "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",
+      seePro: "Pro auf web3lens.com ansehen",
+      usage: "Kettenübergreifende Guthabenabfragen heute: {used} von {limit}.",
+      balancesCapped: "Guthaben werden in deinem Tarif für die ersten {max} EVM-Adressen geprüft.",
+      dailyLimitShort: "Tageslimit erreicht",
+      dailyLimit: "Du hast die {limit} kettenübergreifenden Guthabenabfragen für heute verbraucht. Sie werden um 00:00 UTC zurückgesetzt.",
+      proOnly: "Pro-Funktion",
+      exportJson: "Als JSON exportieren",
+      savedFull: "{count} wurden nicht gespeichert: Dein Tarif behält bis zu {max} gespeicherte Einträge.",
+      syncOn: "Cloud-Synchronisierung ist an.",
+      syncedAt: "Zuletzt synchronisiert: {date}.",
+      syncFailed: "Synchronisierung fehlgeschlagen. Deine gespeicherten Einträge sind in der Erweiterung sicher.",
+      syncNow: "Jetzt synchronisieren",
+      syncing: "Synchronisiere…",
+      savedCapNote: "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
+    },
+    watch: {
+      watch: "Beobachten",
+      watching: "Wird beobachtet",
+      failed: "Die Beobachtungsliste konnte nicht aktualisiert werden. Versuche es erneut."
     }
   };
 
@@ -3563,7 +3781,7 @@
       batch: "一括",
       moreTools: "その他のツール",
       batchSearch: "一括検索",
-      batchSearchBody: "最大 50 件のアドレスをまとめてチェックし、CSV で出力",
+      batchSearchBody: "アドレスの一覧をまとめてチェックし、CSV で出力",
       devToolsBody: "単位、チェックサム、デコーダー、タイムスタンプ",
       savedBody: "ラベルとメモ（このブラウザ内のみ）",
       view: {
@@ -3607,7 +3825,7 @@
       imported: "{count} 件をインポートしました。",
       importFailed: "インポートに失敗しました: {error}",
       title: "ラベルとメモ",
-      intro: "ラベルとメモはこのブラウザ（拡張機能ストレージ）内にとどまります。同期はされません。",
+      intro: "ラベルとメモはこのブラウザ（拡張機能のストレージ）に保存されます。Pro ではアカウントとも同期されます。",
       exportJson: "JSON をエクスポート",
       importJson: "JSON をインポート",
       selectFirst: "先に項目を選択してください。",
@@ -3642,6 +3860,49 @@
         bech32Unknown: "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
         versionByte: "バージョンバイト {byte} は Web3Lens が認識できないものです。"
       }
+    },
+    account: {
+      title: "アカウント",
+      signedOutBody: "任意です。サインインすると、ここに Web3Lens のプランが表示されます。拡張機能はアカウントなしでもすべて使えます。",
+      signIn: "Google でサインイン",
+      pendingBody: "web3lens.com でこのコードを承認してから、ここに戻ってください:",
+      reopen: "承認ページを開く",
+      cancel: "キャンセル",
+      waiting: "承認を待っています…",
+      signedInAs: "{email} でサインイン中",
+      planFree: "無料",
+      planPro: "Pro",
+      planLifetime: "Pro（買い切り）",
+      manage: "アカウントを管理",
+      refresh: "プランを更新",
+      signOut: "サインアウト",
+      offline: "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
+      networkOff: "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
+      expired: "サインインの有効期限が切れました。もう一度サインインしてください。",
+      error: "サインインできませんでした。しばらくしてからもう一度お試しください。",
+      consentNeeded: "サインインには、サインイン情報とメールアドレスを web3lens.com と共有することへの同意が必要です。それ以外の機能は同意なしでも使えます。"
+    },
+    pro: {
+      upgradeBatch: "Pro では {max} 件の値を一括で確認し、すべての残高を調べられます。",
+      seePro: "web3lens.com で Pro を見る",
+      usage: "今日のクロスチェーン残高検索: {limit} 件中 {used} 件。",
+      balancesCapped: "現在のプランでは最初の {max} 件の EVM アドレスの残高を確認します。",
+      dailyLimitShort: "1日の上限に達しました",
+      dailyLimit: "今日のクロスチェーン残高検索 {limit} 件を使い切りました。00:00 UTC にリセットされます。",
+      proOnly: "Pro 機能",
+      exportJson: "JSON でエクスポート",
+      savedFull: "{count} 件は保存されませんでした。現在のプランで保存できるのは {max} 件までです。",
+      syncOn: "クラウド同期はオンです。",
+      syncedAt: "最終同期: {date}。",
+      syncFailed: "同期に失敗しました。保存した項目は拡張機能内に安全に残っています。",
+      syncNow: "今すぐ同期",
+      syncing: "同期中…",
+      savedCapNote: "保存済みが {max} 件に達しました。既存の項目はそのまま残りますが、新しい項目を追加する余地がありません。Pro なら {pro} 件をデバイス間で同期できます。"
+    },
+    watch: {
+      watch: "ウォッチ",
+      watching: "ウォッチ中",
+      failed: "ウォッチリストを更新できませんでした。もう一度お試しください。"
     }
   };
 
@@ -4159,7 +4420,7 @@
       batch: "일괄",
       moreTools: "더 많은 도구",
       batchSearch: "일괄 검색",
-      batchSearchBody: "최대 50개 주소를 한 번에 확인하고 CSV로 내보내기",
+      batchSearchBody: "주소 목록을 한 번에 확인하고 CSV로 내보내기",
       devToolsBody: "단위, 체크섬, 디코더, 타임스탬프",
       savedBody: "라벨과 메모, 이 브라우저에만 비공개 보관",
       view: {
@@ -4203,7 +4464,7 @@
       imported: "{count}개 항목을 가져왔습니다.",
       importFailed: "가져오기 실패: {error}",
       title: "라벨과 메모",
-      intro: "라벨과 메모는 이 브라우저(확장 프로그램 저장소)에 남습니다. 동기화되지 않습니다.",
+      intro: "라벨과 메모는 이 브라우저(확장 프로그램 저장소)에 저장됩니다. Pro에서는 계정과도 동기화됩니다.",
       exportJson: "JSON 내보내기",
       importJson: "JSON 가져오기",
       selectFirst: "먼저 항목을 선택하세요.",
@@ -4238,6 +4499,49 @@
         bech32Unknown: "“{hrp}”에 대한 유효한 bech32 주소이지만, Web3Lens가 아직 지원하지 않는 네트워크입니다.",
         versionByte: "버전 바이트 {byte}은(는) Web3Lens가 인식하지 못합니다."
       }
+    },
+    account: {
+      title: "계정",
+      signedOutBody: "선택 사항입니다. 로그인하면 여기에서 Web3Lens 요금제를 볼 수 있습니다. 확장 프로그램은 계정 없이도 모두 작동합니다.",
+      signIn: "Google로 로그인",
+      pendingBody: "web3lens.com에서 이 코드를 승인한 뒤 여기로 돌아오세요:",
+      reopen: "승인 페이지 열기",
+      cancel: "취소",
+      waiting: "승인을 기다리는 중…",
+      signedInAs: "{email}(으)로 로그인됨",
+      planFree: "무료",
+      planPro: "Pro",
+      planLifetime: "평생 Pro",
+      manage: "계정 관리",
+      refresh: "요금제 새로고침",
+      signOut: "로그아웃",
+      offline: "web3lens.com에 연결할 수 없습니다. {date} 기준 요금제를 표시합니다.",
+      networkOff: "온라인 조회가 꺼져 있어 계정이 일시 중지되었습니다. 로그인하려면 개인정보 보호에서 켜세요.",
+      expired: "로그인이 만료되었습니다. 다시 로그인하세요.",
+      error: "로그인하지 못했습니다. 잠시 후 다시 시도하세요.",
+      consentNeeded: "로그인하려면 로그인 정보와 이메일을 web3lens.com과 공유하는 데 동의해야 합니다. 다른 기능은 동의 없이도 작동합니다."
+    },
+    pro: {
+      upgradeBatch: "Pro는 {max}개 값의 일괄 조회와 모든 항목의 잔액 확인을 지원합니다.",
+      seePro: "web3lens.com에서 Pro 보기",
+      usage: "오늘 크로스체인 잔액 조회: {limit}회 중 {used}회.",
+      balancesCapped: "현재 요금제에서는 처음 {max}개 EVM 주소의 잔액만 확인합니다.",
+      dailyLimitShort: "일일 한도 도달",
+      dailyLimit: "오늘의 크로스체인 잔액 조회 {limit}회를 모두 사용했습니다. 00:00 UTC에 초기화됩니다.",
+      proOnly: "Pro 기능",
+      exportJson: "JSON 내보내기",
+      savedFull: "{count}개는 저장되지 않았습니다. 현재 요금제는 최대 {max}개까지 저장합니다.",
+      syncOn: "클라우드 동기화가 켜져 있습니다.",
+      syncedAt: "마지막 동기화: {date}.",
+      syncFailed: "동기화에 실패했습니다. 저장한 항목은 확장 프로그램에 안전하게 남아 있습니다.",
+      syncNow: "지금 동기화",
+      syncing: "동기화 중…",
+      savedCapNote: "저장한 항목이 {max}개에 도달했습니다. 기존 항목은 그대로 유지되지만 새 항목을 추가할 공간이 없습니다. Pro는 {pro}개를 기기 간에 동기화합니다."
+    },
+    watch: {
+      watch: "관심 등록",
+      watching: "관심 등록됨",
+      failed: "관심 목록을 업데이트하지 못했습니다. 다시 시도하세요."
     }
   };
 
@@ -4755,7 +5059,7 @@
       batch: "批量",
       moreTools: "更多工具",
       batchSearch: "批量搜索",
-      batchSearchBody: "一次检查最多 50 个地址，并导出 CSV",
+      batchSearchBody: "一次检查整份地址列表，并导出 CSV",
       devToolsBody: "单位、校验和、解码器、时间戳",
       savedBody: "你的标签和备注，仅保存在此浏览器中",
       view: {
@@ -4799,7 +5103,7 @@
       imported: "已导入 {count} 项。",
       importFailed: "导入失败：{error}",
       title: "你的标签和备注",
-      intro: "标签和备注保存在此浏览器中（扩展存储），不会同步。",
+      intro: "标签和备注保存在此浏览器（扩展存储）中。使用 Pro 时也会同步到你的账户。",
       exportJson: "导出 JSON",
       importJson: "导入 JSON",
       selectFirst: "请先选择项目。",
@@ -4834,6 +5138,49 @@
         bech32Unknown: "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
         versionByte: "Web3Lens 无法识别版本字节 {byte}。"
       }
+    },
+    account: {
+      title: "账户",
+      signedOutBody: "可选。登录后可在此查看你的 Web3Lens 套餐。不登录也能使用扩展的全部功能。",
+      signIn: "使用 Google 登录",
+      pendingBody: "请在 web3lens.com 上批准此代码，然后回到这里：",
+      reopen: "打开批准页面",
+      cancel: "取消",
+      waiting: "正在等待批准…",
+      signedInAs: "已登录：{email}",
+      planFree: "免费",
+      planPro: "Pro",
+      planLifetime: "终身 Pro",
+      manage: "管理账户",
+      refresh: "刷新套餐",
+      signOut: "退出登录",
+      offline: "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
+      networkOff: "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
+      expired: "登录已过期，请重新登录。",
+      error: "登录失败，请稍后再试。",
+      consentNeeded: "登录需要你同意与 web3lens.com 共享登录信息和邮箱。其他功能无需同意也能正常使用。"
+    },
+    pro: {
+      upgradeBatch: "Pro 可一次检查 {max} 个值，并查询全部余额。",
+      seePro: "在 web3lens.com 查看 Pro",
+      usage: "今日跨链余额查询：{used} / {limit}。",
+      balancesCapped: "你的套餐会检查前 {max} 个 EVM 地址的余额。",
+      dailyLimitShort: "已达每日上限",
+      dailyLimit: "你已用完今日的 {limit} 次跨链余额查询，将于 00:00 UTC 重置。",
+      proOnly: "Pro 功能",
+      exportJson: "导出 JSON",
+      savedFull: "{count} 项未保存：你的套餐最多保存 {max} 项。",
+      syncOn: "云同步已开启。",
+      syncedAt: "上次同步：{date}。",
+      syncFailed: "同步失败。你保存的项目仍安全地保存在扩展中。",
+      syncNow: "立即同步",
+      syncing: "正在同步…",
+      savedCapNote: "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
+    },
+    watch: {
+      watch: "关注",
+      watching: "已关注",
+      failed: "无法更新关注列表，请重试。"
     }
   };
 
@@ -5351,7 +5698,7 @@
       batch: "Пакет",
       moreTools: "Другие инструменты",
       batchSearch: "Пакетный поиск",
-      batchSearchBody: "Проверьте до 50 адресов сразу, экспорт в CSV",
+      batchSearchBody: "Проверьте целый список адресов сразу, экспорт в CSV",
       devToolsBody: "Единицы, контрольные суммы, декодеры, метки времени",
       savedBody: "Ваши метки и заметки, только в этом браузере",
       view: {
@@ -5395,7 +5742,7 @@
       imported: "Импортировано: {count}.",
       importFailed: "Ошибка импорта: {error}",
       title: "Ваши метки и заметки",
-      intro: "Метки и заметки хранятся в этом браузере (хранилище расширения). Ничего не синхронизируется.",
+      intro: "Метки и заметки хранятся в этом браузере (хранилище расширения). С Pro они также синхронизируются с аккаунтом.",
       exportJson: "Экспорт JSON",
       importJson: "Импорт JSON",
       selectFirst: "Сначала выберите элементы.",
@@ -5430,6 +5777,49 @@
         bech32Unknown: "Действительный адрес bech32 для «{hrp}» — сети, которой пока нет в Web3Lens.",
         versionByte: "Байт версии {byte} не распознаётся Web3Lens."
       }
+    },
+    account: {
+      title: "Аккаунт",
+      signedOutBody: "Необязательно. Войдите, чтобы видеть здесь свой тариф Web3Lens. Расширение полностью работает и без аккаунта.",
+      signIn: "Войти через Google",
+      pendingBody: "Подтвердите этот код на web3lens.com и вернитесь сюда:",
+      reopen: "Открыть страницу подтверждения",
+      cancel: "Отмена",
+      waiting: "Ожидание подтверждения…",
+      signedInAs: "Вы вошли как {email}",
+      planFree: "Бесплатный",
+      planPro: "Pro",
+      planLifetime: "Pro навсегда",
+      manage: "Управление аккаунтом",
+      refresh: "Обновить тариф",
+      signOut: "Выйти",
+      offline: "Не удалось связаться с web3lens.com. Показан тариф на {date}.",
+      networkOff: "Онлайн-запросы отключены, поэтому аккаунт приостановлен. Включите их в разделе «Конфиденциальность», чтобы войти.",
+      expired: "Срок входа истёк. Войдите снова.",
+      error: "Не удалось войти. Попробуйте ещё раз чуть позже.",
+      consentNeeded: "Для входа нужно ваше согласие передавать данные входа и email на web3lens.com. Всё остальное работает и без этого."
+    },
+    pro: {
+      upgradeBatch: "Pro проверяет пакеты из {max} значений с балансами для всех.",
+      seePro: "Подробнее о Pro на web3lens.com",
+      usage: "Межсетевые запросы балансов сегодня: {used} из {limit}.",
+      balancesCapped: "В вашем тарифе балансы проверяются для первых {max} EVM-адресов.",
+      dailyLimitShort: "Дневной лимит исчерпан",
+      dailyLimit: "Вы использовали сегодняшние {limit} межсетевых запросов балансов. Лимит обновится в 00:00 UTC.",
+      proOnly: "Функция Pro",
+      exportJson: "Экспорт в JSON",
+      savedFull: "{count} не сохранено: ваш тариф хранит до {max} элементов.",
+      syncOn: "Облачная синхронизация включена.",
+      syncedAt: "Последняя синхронизация: {date}.",
+      syncFailed: "Синхронизация не удалась. Сохранённые элементы в безопасности в расширении.",
+      syncNow: "Синхронизировать",
+      syncing: "Синхронизация…",
+      savedCapNote: "У вас {max} сохранённых элементов. Всё, что есть, остаётся; для новых нет места. Pro хранит {pro} с синхронизацией между устройствами."
+    },
+    watch: {
+      watch: "Отслеживать",
+      watching: "Отслеживается",
+      failed: "Не удалось обновить список отслеживания. Попробуйте ещё раз."
     }
   };
 
@@ -5947,7 +6337,7 @@
       batch: "Massal",
       moreTools: "Alat lainnya",
       batchSearch: "Pencarian massal",
-      batchSearchBody: "Periksa hingga 50 alamat sekaligus, ekspor CSV",
+      batchSearchBody: "Periksa seluruh daftar alamat sekaligus, ekspor CSV",
       devToolsBody: "Satuan, checksum, dekoder, timestamp",
       savedBody: "Label dan catatan Anda, privat di browser ini",
       view: {
@@ -5991,7 +6381,7 @@
       imported: "Item diimpor: {count}.",
       importFailed: "Impor gagal: {error}",
       title: "Label dan catatan Anda",
-      intro: "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Tidak ada yang disinkronkan.",
+      intro: "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Dengan Pro, keduanya juga tersinkron ke akun Anda.",
       exportJson: "Ekspor JSON",
       importJson: "Impor JSON",
       selectFirst: "Pilih item terlebih dahulu.",
@@ -6026,6 +6416,49 @@
         bech32Unknown: "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
         versionByte: "Byte versi {byte} tidak dikenali Web3Lens."
       }
+    },
+    account: {
+      title: "Akun",
+      signedOutBody: "Opsional. Masuk untuk melihat paket Web3Lens Anda di sini. Semua fitur ekstensi tetap berfungsi tanpa akun.",
+      signIn: "Masuk dengan Google",
+      pendingBody: "Setujui kode ini di web3lens.com, lalu kembali ke sini:",
+      reopen: "Buka halaman persetujuan",
+      cancel: "Batal",
+      waiting: "Menunggu persetujuan…",
+      signedInAs: "Masuk sebagai {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro seumur hidup",
+      manage: "Kelola akun",
+      refresh: "Perbarui paket",
+      signOut: "Keluar",
+      offline: "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
+      networkOff: "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
+      expired: "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
+      error: "Gagal masuk. Coba lagi sebentar lagi.",
+      consentNeeded: "Masuk memerlukan persetujuan Anda untuk membagikan sesi masuk dan email ke web3lens.com. Fitur lain tetap berfungsi tanpanya."
+    },
+    pro: {
+      upgradeBatch: "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",
+      seePro: "Lihat Pro di web3lens.com",
+      usage: "Pencarian saldo lintas rantai hari ini: {used} dari {limit}.",
+      balancesCapped: "Saldo diperiksa untuk {max} alamat EVM pertama sesuai paket Anda.",
+      dailyLimitShort: "Batas harian tercapai",
+      dailyLimit: "Anda telah memakai {limit} pencarian saldo lintas rantai hari ini. Batas diatur ulang pukul 00:00 UTC.",
+      proOnly: "Fitur Pro",
+      exportJson: "Ekspor JSON",
+      savedFull: "{count} tidak disimpan: paket Anda menyimpan hingga {max} item.",
+      syncOn: "Sinkronisasi cloud aktif.",
+      syncedAt: "Terakhir disinkronkan {date}.",
+      syncFailed: "Sinkronisasi gagal. Item tersimpan Anda tetap aman di ekstensi.",
+      syncNow: "Sinkronkan sekarang",
+      syncing: "Menyinkronkan…",
+      savedCapNote: "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
+    },
+    watch: {
+      watch: "Pantau",
+      watching: "Dipantau",
+      failed: "Tidak dapat memperbarui daftar pantau. Coba lagi."
     }
   };
 
@@ -6543,7 +6976,7 @@
       batch: "Toplu",
       moreTools: "Diğer araçlar",
       batchSearch: "Toplu arama",
-      batchSearchBody: "Aynı anda 50'ye kadar adres kontrol edin, CSV olarak dışa aktarın",
+      batchSearchBody: "Bir adres listesinin tamamını aynı anda kontrol edin, CSV olarak dışa aktarın",
       devToolsBody: "Birimler, sağlama toplamları, çözücüler, zaman damgaları",
       savedBody: "Etiketleriniz ve notlarınız, bu tarayıcıya özel",
       view: {
@@ -6587,7 +7020,7 @@
       imported: "İçe aktarılan öğe: {count}.",
       importFailed: "İçe aktarma başarısız: {error}",
       title: "Etiketleriniz ve notlarınız",
-      intro: "Etiketler ve notlar bu tarayıcıda (eklenti depolaması) kalır. Hiçbir şey eşitlenmez.",
+      intro: "Etiketler ve notlar bu tarayıcıda (uzantı depolaması) kalır. Pro ile hesabınızla da eşitlenir.",
       exportJson: "JSON dışa aktar",
       importJson: "JSON içe aktar",
       selectFirst: "Önce öğe seçin.",
@@ -6622,6 +7055,49 @@
         bech32Unknown: "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
         versionByte: "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
       }
+    },
+    account: {
+      title: "Hesap",
+      signedOutBody: "İsteğe bağlı. Web3Lens planınızı burada görmek için giriş yapın. Uzantıdaki her şey hesap olmadan da çalışır.",
+      signIn: "Google ile giriş yap",
+      pendingBody: "Bu kodu web3lens.com üzerinde onaylayın, ardından buraya dönün:",
+      reopen: "Onay sayfasını aç",
+      cancel: "İptal",
+      waiting: "Onay bekleniyor…",
+      signedInAs: "{email} olarak giriş yapıldı",
+      planFree: "Ücretsiz",
+      planPro: "Pro",
+      planLifetime: "Ömür boyu Pro",
+      manage: "Hesabı yönet",
+      refresh: "Planı yenile",
+      signOut: "Çıkış yap",
+      offline: "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
+      networkOff: "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
+      expired: "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
+      error: "Giriş yapılamadı. Birazdan tekrar deneyin.",
+      consentNeeded: "Giriş için oturum bilginizi ve e-postanızı web3lens.com ile paylaşmaya onay vermeniz gerekir. Diğer her şey onay olmadan da çalışır."
+    },
+    pro: {
+      upgradeBatch: "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",
+      seePro: "Pro'yu web3lens.com'da inceleyin",
+      usage: "Bugünkü zincirler arası bakiye sorguları: {limit} içinden {used}.",
+      balancesCapped: "Planınızda ilk {max} EVM adresinin bakiyesi kontrol edilir.",
+      dailyLimitShort: "Günlük sınıra ulaşıldı",
+      dailyLimit: "Bugünkü {limit} zincirler arası bakiye sorgusunu kullandınız. 00:00 UTC'de sıfırlanır.",
+      proOnly: "Pro özelliği",
+      exportJson: "JSON olarak dışa aktar",
+      savedFull: "{count} öğe kaydedilmedi: planınız en fazla {max} öğe tutar.",
+      syncOn: "Bulut eşitleme açık.",
+      syncedAt: "Son eşitleme: {date}.",
+      syncFailed: "Eşitleme başarısız oldu. Kayıtlı öğeleriniz uzantıda güvende.",
+      syncNow: "Şimdi eşitle",
+      syncing: "Eşitleniyor…",
+      savedCapNote: "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
+    },
+    watch: {
+      watch: "İzle",
+      watching: "İzleniyor",
+      failed: "İzleme listesi güncellenemedi. Tekrar deneyin."
     }
   };
 
@@ -7139,7 +7615,7 @@
       batch: "In blocco",
       moreTools: "Altri strumenti",
       batchSearch: "Ricerca in blocco",
-      batchSearchBody: "Controlla fino a 50 indirizzi insieme, esporta in CSV",
+      batchSearchBody: "Controlla un intero elenco di indirizzi insieme, esporta in CSV",
       devToolsBody: "Unità, checksum, decoder, timestamp",
       savedBody: "Le tue etichette e note, private in questo browser",
       view: {
@@ -7183,7 +7659,7 @@
       imported: "Elementi importati: {count}.",
       importFailed: "Importazione non riuscita: {error}",
       title: "Le tue etichette e note",
-      intro: "Etichette e note restano in questo browser (archiviazione dell’estensione). Nulla viene sincronizzato.",
+      intro: "Etichette e note restano in questo browser (archivio dell’estensione). Con Pro si sincronizzano anche con il tuo account.",
       exportJson: "Esporta JSON",
       importJson: "Importa JSON",
       selectFirst: "Seleziona prima degli elementi.",
@@ -7218,6 +7694,49 @@
         bech32Unknown: "Un indirizzo bech32 valido per “{hrp}”, una rete che Web3Lens non elenca ancora.",
         versionByte: "Il byte di versione {byte} non è riconosciuto da Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Facoltativo. Accedi per vedere qui il tuo piano Web3Lens. Tutto nell'estensione funziona anche senza account.",
+      signIn: "Accedi con Google",
+      pendingBody: "Approva questo codice su web3lens.com, poi torna qui:",
+      reopen: "Apri la pagina di approvazione",
+      cancel: "Annulla",
+      waiting: "In attesa di approvazione…",
+      signedInAs: "Accesso effettuato come {email}",
+      planFree: "Gratuito",
+      planPro: "Pro",
+      planLifetime: "Pro a vita",
+      manage: "Gestisci account",
+      refresh: "Aggiorna piano",
+      signOut: "Esci",
+      offline: "Impossibile raggiungere web3lens.com. Il piano mostrato è aggiornato al {date}.",
+      networkOff: "Le ricerche online sono disattivate, quindi l'account è in pausa. Attivale in Privacy per accedere.",
+      expired: "L'accesso è scaduto. Accedi di nuovo.",
+      error: "L'accesso non è riuscito. Riprova tra poco.",
+      consentNeeded: "Per accedere serve il tuo consenso a condividere accesso ed email con web3lens.com. Tutto il resto funziona anche senza."
+    },
+    pro: {
+      upgradeBatch: "Pro controlla lotti di {max} valori con i saldi di tutti.",
+      seePro: "Scopri Pro su web3lens.com",
+      usage: "Ricerche di saldi multi-chain oggi: {used} su {limit}.",
+      balancesCapped: "Con il tuo piano i saldi vengono controllati per i primi {max} indirizzi EVM.",
+      dailyLimitShort: "Limite giornaliero raggiunto",
+      dailyLimit: "Hai usato le {limit} ricerche di saldi multi-chain di oggi. Si azzerano alle 00:00 UTC.",
+      proOnly: "Funzione Pro",
+      exportJson: "Esporta JSON",
+      savedFull: "{count} non sono stati salvati: il tuo piano conserva fino a {max} elementi.",
+      syncOn: "La sincronizzazione cloud è attiva.",
+      syncedAt: "Ultima sincronizzazione: {date}.",
+      syncFailed: "Sincronizzazione non riuscita. I tuoi elementi salvati sono al sicuro nell'estensione.",
+      syncNow: "Sincronizza ora",
+      syncing: "Sincronizzazione…",
+      savedCapNote: "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
+    },
+    watch: {
+      watch: "Monitora",
+      watching: "Monitorato",
+      failed: "Impossibile aggiornare la lista di monitoraggio. Riprova."
     }
   };
 
@@ -7735,7 +8254,7 @@
       batch: "Zbiorczo",
       moreTools: "Więcej narzędzi",
       batchSearch: "Wyszukiwanie zbiorcze",
-      batchSearchBody: "Sprawdź do 50 adresów naraz, eksport do CSV",
+      batchSearchBody: "Sprawdź całą listę adresów naraz, eksport do CSV",
       devToolsBody: "Jednostki, sumy kontrolne, dekodery, znaczniki czasu",
       savedBody: "Twoje etykiety i notatki, prywatnie w tej przeglądarce",
       view: {
@@ -7779,7 +8298,7 @@
       imported: "Zaimportowano elementy: {count}.",
       importFailed: "Import nie powiódł się: {error}",
       title: "Twoje etykiety i notatki",
-      intro: "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Nic nie jest synchronizowane.",
+      intro: "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Z Pro synchronizują się też z Twoim kontem.",
       exportJson: "Eksportuj JSON",
       importJson: "Importuj JSON",
       selectFirst: "Najpierw zaznacz elementy.",
@@ -7814,6 +8333,49 @@
         bech32Unknown: "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
         versionByte: "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
       }
+    },
+    account: {
+      title: "Konto",
+      signedOutBody: "Opcjonalne. Zaloguj się, aby zobaczyć tutaj swój plan Web3Lens. Rozszerzenie działa w pełni bez konta.",
+      signIn: "Zaloguj się przez Google",
+      pendingBody: "Zatwierdź ten kod na web3lens.com, a potem wróć tutaj:",
+      reopen: "Otwórz stronę zatwierdzania",
+      cancel: "Anuluj",
+      waiting: "Czekam na zatwierdzenie…",
+      signedInAs: "Zalogowano jako {email}",
+      planFree: "Darmowy",
+      planPro: "Pro",
+      planLifetime: "Pro na zawsze",
+      manage: "Zarządzaj kontem",
+      refresh: "Odśwież plan",
+      signOut: "Wyloguj się",
+      offline: "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
+      networkOff: "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
+      expired: "Sesja wygasła. Zaloguj się ponownie.",
+      error: "Logowanie nie powiodło się. Spróbuj ponownie za chwilę.",
+      consentNeeded: "Logowanie wymaga Twojej zgody na udostępnienie danych logowania i e-maila serwisowi web3lens.com. Wszystko inne działa bez niej."
+    },
+    pro: {
+      upgradeBatch: "Pro sprawdza partie {max} wartości wraz z saldami wszystkich.",
+      seePro: "Zobacz Pro na web3lens.com",
+      usage: "Dzisiejsze wyszukiwania sald między łańcuchami: {used} z {limit}.",
+      balancesCapped: "W Twoim planie sprawdzane są salda pierwszych {max} adresów EVM.",
+      dailyLimitShort: "Osiągnięto dzienny limit",
+      dailyLimit: "Wykorzystano dzisiejsze {limit} wyszukiwań sald między łańcuchami. Limit odnawia się o 00:00 UTC.",
+      proOnly: "Funkcja Pro",
+      exportJson: "Eksportuj JSON",
+      savedFull: "{count} nie zapisano: Twój plan przechowuje do {max} elementów.",
+      syncOn: "Synchronizacja w chmurze jest włączona.",
+      syncedAt: "Ostatnia synchronizacja: {date}.",
+      syncFailed: "Synchronizacja nie powiodła się. Zapisane elementy są bezpieczne w rozszerzeniu.",
+      syncNow: "Synchronizuj teraz",
+      syncing: "Synchronizowanie…",
+      savedCapNote: "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
+    },
+    watch: {
+      watch: "Obserwuj",
+      watching: "Obserwowany",
+      failed: "Nie udało się zaktualizować listy obserwowanych. Spróbuj ponownie."
     }
   };
 
@@ -8331,7 +8893,7 @@
       batch: "Bulk",
       moreTools: "Meer tools",
       batchSearch: "Bulkzoeken",
-      batchSearchBody: "Controleer tot 50 adressen tegelijk, exporteer CSV",
+      batchSearchBody: "Controleer een hele lijst adressen tegelijk, exporteer CSV",
       devToolsBody: "Eenheden, checksums, decoders, tijdstempels",
       savedBody: "Je labels en notities, privé in deze browser",
       view: {
@@ -8375,7 +8937,7 @@
       imported: "Geïmporteerde items: {count}.",
       importFailed: "Importeren mislukt: {error}",
       title: "Je labels en notities",
-      intro: "Labels en notities blijven in deze browser (extensieopslag). Er wordt niets gesynchroniseerd.",
+      intro: "Labels en notities blijven in deze browser (opslag van de extensie). Met Pro worden ze ook met je account gesynchroniseerd.",
       exportJson: "JSON exporteren",
       importJson: "JSON importeren",
       selectFirst: "Selecteer eerst items.",
@@ -8410,6 +8972,49 @@
         bech32Unknown: "Een geldig bech32-adres voor ‘{hrp}’, een netwerk dat Web3Lens nog niet kent.",
         versionByte: "Versiebyte {byte} wordt niet herkend door Web3Lens."
       }
+    },
+    account: {
+      title: "Account",
+      signedOutBody: "Optioneel. Log in om hier je Web3Lens-abonnement te zien. Alles in de extensie werkt ook zonder account.",
+      signIn: "Inloggen met Google",
+      pendingBody: "Keur deze code goed op web3lens.com en kom dan hier terug:",
+      reopen: "Goedkeuringspagina openen",
+      cancel: "Annuleren",
+      waiting: "Wachten op goedkeuring…",
+      signedInAs: "Ingelogd als {email}",
+      planFree: "Gratis",
+      planPro: "Pro",
+      planLifetime: "Pro voor altijd",
+      manage: "Account beheren",
+      refresh: "Abonnement vernieuwen",
+      signOut: "Uitloggen",
+      offline: "web3lens.com is niet bereikbaar. Je abonnement wordt getoond zoals op {date}.",
+      networkOff: "Online opzoekingen staan uit, dus het account is gepauzeerd. Zet ze aan onder Privacy om in te loggen.",
+      expired: "Je sessie is verlopen. Log opnieuw in.",
+      error: "Inloggen is niet gelukt. Probeer het zo opnieuw.",
+      consentNeeded: "Voor inloggen is je toestemming nodig om je inlog en e-mail met web3lens.com te delen. Al het andere werkt ook zonder."
+    },
+    pro: {
+      upgradeBatch: "Pro controleert batches van {max} waarden met saldi voor allemaal.",
+      seePro: "Bekijk Pro op web3lens.com",
+      usage: "Cross-chain saldo-opzoekingen vandaag: {used} van {limit}.",
+      balancesCapped: "Met je abonnement worden de saldi van de eerste {max} EVM-adressen gecontroleerd.",
+      dailyLimitShort: "Daglimiet bereikt",
+      dailyLimit: "Je hebt de {limit} cross-chain saldo-opzoekingen van vandaag gebruikt. Ze worden om 00:00 UTC gereset.",
+      proOnly: "Pro-functie",
+      exportJson: "JSON exporteren",
+      savedFull: "{count} zijn niet opgeslagen: je abonnement bewaart tot {max} items.",
+      syncOn: "Cloudsynchronisatie staat aan.",
+      syncedAt: "Laatst gesynchroniseerd: {date}.",
+      syncFailed: "Synchroniseren mislukt. Je opgeslagen items zijn veilig in de extensie.",
+      syncNow: "Nu synchroniseren",
+      syncing: "Synchroniseren…",
+      savedCapNote: "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
+    },
+    watch: {
+      watch: "Volgen",
+      watching: "Gevolgd",
+      failed: "De volglijst kon niet worden bijgewerkt. Probeer het opnieuw."
     }
   };
 
@@ -8927,7 +9532,7 @@
       batch: "แบบกลุ่ม",
       moreTools: "เครื่องมืออื่นๆ",
       batchSearch: "ค้นหาแบบกลุ่ม",
-      batchSearchBody: "ตรวจได้สูงสุด 50 ที่อยู่พร้อมกัน ส่งออก CSV ได้",
+      batchSearchBody: "ตรวจรายการที่อยู่ทั้งชุดพร้อมกัน ส่งออก CSV ได้",
       devToolsBody: "หน่วย checksum ตัวถอดรหัส timestamp",
       savedBody: "ป้ายกำกับและโน้ตของคุณ เป็นส่วนตัวในเบราว์เซอร์นี้",
       view: {
@@ -8971,7 +9576,7 @@
       imported: "นำเข้า {count} รายการแล้ว",
       importFailed: "นำเข้าไม่สำเร็จ: {error}",
       title: "ป้ายกำกับและโน้ตของคุณ",
-      intro: "ป้ายกำกับและโน้ตอยู่ในเบราว์เซอร์นี้ (พื้นที่เก็บข้อมูลส่วนขยาย) ไม่มีการซิงค์",
+      intro: "ป้ายกำกับและโน้ตจะอยู่ในเบราว์เซอร์นี้ (พื้นที่จัดเก็บของส่วนขยาย) เมื่อใช้ Pro จะซิงก์กับบัญชีของคุณด้วย",
       exportJson: "ส่งออก JSON",
       importJson: "นำเข้า JSON",
       selectFirst: "เลือกรายการก่อน",
@@ -9006,6 +9611,49 @@
         bech32Unknown: "ที่อยู่ bech32 ที่ถูกต้องสำหรับ “{hrp}” ซึ่งเป็นเครือข่ายที่ Web3Lens ยังไม่รองรับ",
         versionByte: "Web3Lens ไม่รู้จักไบต์เวอร์ชัน {byte}"
       }
+    },
+    account: {
+      title: "บัญชี",
+      signedOutBody: "ไม่บังคับ ลงชื่อเข้าใช้เพื่อดูแพ็กเกจ Web3Lens ของคุณที่นี่ ทุกอย่างในส่วนขยายยังใช้งานได้โดยไม่ต้องมีบัญชี",
+      signIn: "ลงชื่อเข้าใช้ด้วย Google",
+      pendingBody: "อนุมัติรหัสนี้ที่ web3lens.com แล้วกลับมาที่นี่:",
+      reopen: "เปิดหน้าอนุมัติ",
+      cancel: "ยกเลิก",
+      waiting: "กำลังรอการอนุมัติ…",
+      signedInAs: "ลงชื่อเข้าใช้เป็น {email}",
+      planFree: "ฟรี",
+      planPro: "Pro",
+      planLifetime: "Pro ตลอดชีพ",
+      manage: "จัดการบัญชี",
+      refresh: "รีเฟรชแพ็กเกจ",
+      signOut: "ออกจากระบบ",
+      offline: "เชื่อมต่อ web3lens.com ไม่ได้ กำลังแสดงแพ็กเกจของคุณ ณ วันที่ {date}",
+      networkOff: "การค้นหาออนไลน์ปิดอยู่ บัญชีจึงหยุดชั่วคราว เปิดได้ที่ความเป็นส่วนตัวเพื่อลงชื่อเข้าใช้",
+      expired: "การลงชื่อเข้าใช้หมดอายุแล้ว โปรดลงชื่อเข้าใช้อีกครั้ง",
+      error: "ลงชื่อเข้าใช้ไม่สำเร็จ โปรดลองอีกครั้งในอีกสักครู่",
+      consentNeeded: "การลงชื่อเข้าใช้ต้องได้รับความยินยอมให้ส่งข้อมูลการลงชื่อเข้าใช้และอีเมลไปยัง web3lens.com ฟีเจอร์อื่นยังใช้ได้ตามปกติ"
+    },
+    pro: {
+      upgradeBatch: "Pro ตรวจสอบได้ครั้งละ {max} รายการ พร้อมยอดคงเหลือของทุกรายการ",
+      seePro: "ดู Pro ที่ web3lens.com",
+      usage: "การค้นหายอดคงเหลือข้ามเชนวันนี้: {used} จาก {limit}",
+      balancesCapped: "แพ็กเกจของคุณตรวจยอดคงเหลือของที่อยู่ EVM {max} รายการแรก",
+      dailyLimitShort: "ถึงขีดจำกัดรายวันแล้ว",
+      dailyLimit: "คุณใช้การค้นหายอดคงเหลือข้ามเชน {limit} ครั้งของวันนี้ครบแล้ว จะรีเซ็ตเวลา 00:00 UTC",
+      proOnly: "ฟีเจอร์ Pro",
+      exportJson: "ส่งออก JSON",
+      savedFull: "{count} รายการไม่ได้บันทึก: แพ็กเกจของคุณเก็บได้สูงสุด {max} รายการ",
+      syncOn: "การซิงก์บนคลาวด์เปิดอยู่",
+      syncedAt: "ซิงก์ล่าสุด {date}",
+      syncFailed: "ซิงก์ไม่สำเร็จ รายการที่บันทึกไว้ยังปลอดภัยในส่วนขยาย",
+      syncNow: "ซิงก์ตอนนี้",
+      syncing: "กำลังซิงก์…",
+      savedCapNote: "คุณบันทึกครบ {max} รายการแล้ว รายการเดิมยังอยู่ครบ แต่ไม่มีที่สำหรับรายการใหม่ Pro เก็บได้ {pro} รายการ ซิงก์ข้ามอุปกรณ์"
+    },
+    watch: {
+      watch: "ติดตาม",
+      watching: "กำลังติดตาม",
+      failed: "อัปเดตรายการติดตามไม่สำเร็จ โปรดลองอีกครั้ง"
     }
   };
 
@@ -9227,8 +9875,239 @@
     return b;
   }
 
+  // lib/entitlements.ts
+  var tierOf = (plan) => plan === "free" ? "free" : "pro";
+  var LIMITS = {
+    free: {
+      batch: 10,
+      batchBalances: 5,
+      crossChainPerDay: 10,
+      apiPerDay: 0,
+      apiPerMinuteShared: 60,
+      savedLocal: 50,
+      savedCloud: 0,
+      investigations: 0,
+      exports: ["csv"],
+      watches: 0
+    },
+    pro: {
+      batch: 500,
+      batchBalances: 500,
+      crossChainPerDay: 500,
+      apiPerDay: 1e3,
+      apiPerMinuteShared: 60,
+      savedLocal: 2e3,
+      savedCloud: 2e3,
+      investigations: 100,
+      exports: ["csv", "json"],
+      watches: 50
+    }
+  };
+  var limitsFor = (plan) => LIMITS[tierOf(plan)];
+  var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
+  function canUse(feature, plan) {
+    const l = limitsFor(plan);
+    switch (feature) {
+      case "cloudSync":
+        return l.savedCloud > 0;
+      case "investigations":
+        return l.investigations > 0;
+      case "jsonExport":
+        return l.exports.includes("json");
+      case "apiKeys":
+        return l.apiPerDay > 0;
+      case "watchlist":
+        return l.watches > 0;
+      case "portfolio":
+        return l.savedCloud > 0;
+    }
+  }
+
+  // extension-src/src/browser.ts
+  var ext = typeof browser !== "undefined" ? browser : chrome;
+  var isFirefox = typeof navigator !== "undefined" && /firefox/i.test(navigator.userAgent);
+  var ACCOUNT_DATA_COLLECTION = ["authenticationInfo", "personallyIdentifyingInfo"];
+  async function allowAccountDataCollection() {
+    if (!isFirefox || !ext.permissions) return true;
+    try {
+      return await ext.permissions.request({ data_collection: ACCOUNT_DATA_COLLECTION });
+    } catch {
+      return true;
+    }
+  }
+  function openTab(url) {
+    return ext.tabs.create({ url });
+  }
+  function appUrl(hash = "") {
+    return ext.runtime.getURL(`app.html${hash}`);
+  }
+
+  // extension-src/src/account.ts
+  var ACCOUNT_ORIGIN = "https://web3lens.com";
+  var REFRESH_MS = 12 * 36e5;
+  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
+  var EMPTY_ACCOUNT = { token: null, me: null, refreshedAt: 0, pending: null };
+  var PLANS = ["free", "pro", "lifetime"];
+  var CODE = /^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/;
+  function sanitizeAccount(raw) {
+    const r = raw ?? {};
+    const token = typeof r.token === "string" && /^[A-Za-z0-9._%-]{16,512}$/.test(r.token) ? r.token : null;
+    const m = r.me;
+    const me = token && m && typeof m.email === "string" && PLANS.includes(m.plan) ? { email: m.email.slice(0, 200), plan: m.plan, tier: m.plan === "free" ? "free" : "pro", until: typeof m.until === "string" ? m.until : null, renews: m.renews === true, billing: m.billing === true } : null;
+    const p = r.pending;
+    const pending = p && typeof p.code === "string" && CODE.test(p.code) && typeof p.verifier === "string" && /^[A-Za-z0-9_-]{43,128}$/.test(p.verifier) && typeof p.expiresAt === "number" ? { code: p.code, verifier: p.verifier, expiresAt: p.expiresAt } : null;
+    return { token, me, refreshedAt: typeof r.refreshedAt === "number" && token ? r.refreshedAt : 0, pending };
+  }
+  async function loadAccount() {
+    const raw = await ext.storage.local.get(["account"]);
+    return sanitizeAccount(raw.account);
+  }
+  async function saveAccount(a) {
+    await ext.storage.local.set({ account: sanitizeAccount(a) });
+  }
+  var toCached = (me) => ({ email: me.user.email, plan: me.plan, tier: me.tier, until: me.until, renews: me.renews, billing: me.billing });
+  function displayPlan(a, now = Date.now()) {
+    if (!a.token || !a.me) return null;
+    if (now - a.refreshedAt > OFFLINE_GRACE_MS) return "free";
+    if (a.me.plan === "pro" && a.me.until && Date.parse(a.me.until) <= now) return "free";
+    return a.me.plan;
+  }
+  function extLimits(a, now = Date.now()) {
+    const plan = displayPlan(a, now);
+    if (!plan || !a.me?.billing) return plan && plan !== "free" ? limitsFor(plan) : PRE_LAUNCH_LIMITS;
+    return limitsFor(plan);
+  }
+  async function batchBalances(addresses) {
+    const a = await loadAccount();
+    const res = await call("/api/batch/balances", { method: "POST", token: a.token, body: JSON.stringify({ addresses }) }).catch(() => null);
+    if (!res) return { ok: false, status: 0, usage: null };
+    const body2 = await res.json().catch(() => null);
+    const usage = body2?.usage && typeof body2.usage.used === "number" && typeof body2.usage.limit === "number" ? { used: body2.usage.used, limit: body2.usage.limit } : null;
+    if (!res.ok || !Array.isArray(body2?.results)) return { ok: false, status: res.status, usage };
+    return { ok: true, results: body2.results, usage };
+  }
+  async function authedCall(path, init = {}) {
+    const a = await loadAccount();
+    if (!a.token) return null;
+    return call(path, { ...init, token: a.token }).catch(() => null);
+  }
+  function browserName() {
+    if (isFirefox) return "firefox";
+    return /\bEdg\//.test(navigator.userAgent) ? "edge" : "chrome";
+  }
+  var b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  var sha256Hex = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+  async function call(path, init = {}) {
+    const headers = { accept: "application/json" };
+    if (init.body) headers["content-type"] = "application/json";
+    if (init.token) headers.authorization = `Bearer ${init.token}`;
+    return fetch(`${ACCOUNT_ORIGIN}${path}`, { ...init, headers, credentials: "omit", cache: "no-store", signal: AbortSignal.timeout(2e4) });
+  }
+  var AccountError = class extends Error {
+  };
+  async function startSignIn() {
+    const verifier = b64url(crypto.getRandomValues(new Uint8Array(32)));
+    const res = await call("/api/ext/pair/start", { method: "POST", body: JSON.stringify({ verifierHash: await sha256Hex(verifier), browser: browserName() }) }).catch(() => null);
+    const body2 = await res?.json().catch(() => null);
+    if (!res?.ok || !body2?.code || !CODE.test(body2.code)) throw new AccountError(body2?.error ?? "");
+    const a = await loadAccount();
+    await saveAccount({ ...a, pending: { code: body2.code, verifier, expiresAt: Date.now() + (body2.expiresIn ?? 600) * 1e3 } });
+    await openApproval(body2.code);
+    return body2.code;
+  }
+  var openApproval = (code) => openTab(`${ACCOUNT_ORIGIN}/extension/connect?code=${encodeURIComponent(code)}`);
+  async function cancelSignIn() {
+    await saveAccount({ ...await loadAccount(), pending: null });
+  }
+  async function claimSignIn(now = Date.now()) {
+    const a = await loadAccount();
+    if (!a.pending) return "none";
+    if (a.pending.expiresAt <= now) {
+      await saveAccount({ ...a, pending: null });
+      return "failed";
+    }
+    const res = await call("/api/ext/pair/claim", { method: "POST", body: JSON.stringify({ code: a.pending.code, verifier: a.pending.verifier }) }).catch(() => null);
+    if (!res) return "offline";
+    if (res.status === 202) return "pending";
+    const body2 = await res.json().catch(() => null);
+    if (res.ok && body2?.token && body2.me) {
+      await saveAccount({ token: body2.token, me: toCached(body2.me), refreshedAt: Date.now(), pending: null });
+      return "done";
+    }
+    if (res.status >= 500 || res.status === 429) return "offline";
+    await saveAccount({ ...a, pending: null });
+    return "failed";
+  }
+  async function refreshAccount(force = false, now = Date.now()) {
+    const a = await loadAccount();
+    if (!a.token) return "signedOut";
+    if (!force && now - a.refreshedAt < REFRESH_MS) return "cached";
+    const res = await call("/api/me", { token: a.token }).catch(() => null);
+    if (!res || res.status >= 500 || res.status === 429) return "offline";
+    if (res.status === 401) {
+      await saveAccount({ ...EMPTY_ACCOUNT, pending: a.pending });
+      return "expired";
+    }
+    const me = await res.json().catch(() => null);
+    if (!res.ok || !me?.signedIn) return "offline";
+    await saveAccount({ ...a, me: toCached(me), refreshedAt: now });
+    return "fresh";
+  }
+  async function signOut() {
+    const a = await loadAccount();
+    if (a.token) await call("/api/ext/sign-out", { method: "POST", token: a.token }).catch(() => null);
+    await saveAccount(EMPTY_ACCOUNT);
+  }
+
+  // extension-src/src/watches.ts
+  var TTL_MS = 10 * 6e4;
+  var BADGE_TTL_MS = 5 * 6e4;
+  async function watchlistAvailable() {
+    const plan = displayPlan(await loadAccount());
+    return !!plan && canUse("watchlist", plan);
+  }
+  var watchable = (chainId) => {
+    const f = getNetwork(chainId)?.family;
+    return f === "evm" || f === "utxo";
+  };
+  function sanitize(raw) {
+    if (!Array.isArray(raw)) return [];
+    return raw.filter((w) => typeof w?.id === "string" && typeof w?.chainId === "string" && typeof w?.address === "string").map((w) => ({ id: w.id, chainId: w.chainId, address: w.address })).slice(0, 500);
+  }
+  async function loadWatches(force = false) {
+    if (!await watchlistAvailable()) return [];
+    const cache2 = (await ext.storage.local.get(["watchCache"])).watchCache;
+    if (!force && cache2 && typeof cache2.at === "number" && Date.now() - cache2.at < TTL_MS) return sanitize(cache2.list);
+    const res = await authedCall("/api/watches");
+    if (!res?.ok) return sanitize(cache2?.list);
+    const list = sanitize((await res.json().catch(() => null))?.watches);
+    await ext.storage.local.set({ watchCache: { at: Date.now(), list } });
+    return list;
+  }
+  var isWatched = (list, chainId, address) => list.some((w) => (!chainId || w.chainId === chainId) && w.address.toLowerCase() === address.toLowerCase());
+  async function toggleWatch(chainId, address) {
+    const list = await loadWatches();
+    const existing = list.find((w) => w.chainId === chainId && w.address.toLowerCase() === address.toLowerCase());
+    const res = existing ? await authedCall(`/api/watches/${existing.id}`, { method: "DELETE" }) : await authedCall("/api/watches", { method: "POST", body: JSON.stringify({ chainId, address }) });
+    if (!res?.ok && res?.status !== 409) return "error";
+    await loadWatches(true);
+    return existing ? "removed" : "added";
+  }
+  async function refreshAlertBadge(force = false) {
+    if (!ext.action) return;
+    if (!await watchlistAvailable()) return void await ext.action.setBadgeText({ text: "" });
+    const last = (await ext.storage.local.get(["alertBadgeAt"])).alertBadgeAt;
+    if (!force && typeof last === "number" && Date.now() - last < BADGE_TTL_MS) return;
+    await ext.storage.local.set({ alertBadgeAt: Date.now() });
+    const res = await authedCall("/api/alerts");
+    if (!res?.ok) return;
+    const unread = Number((await res.json().catch(() => null))?.unread ?? 0);
+    await ext.action.setBadgeText({ text: unread > 0 ? unread > 99 ? "99+" : String(unread) : "" });
+    await ext.action.setBadgeBackgroundColor?.({ color: "#00729c" });
+  }
+
   // lib/local-store.ts
-  function createLocalStore(key, fallback, sanitize) {
+  function createLocalStore(key, fallback, sanitize2) {
     const listeners = /* @__PURE__ */ new Set();
     let cachedRaw;
     let cached = fallback;
@@ -9242,7 +10121,7 @@
       if (raw === cachedRaw) return cached;
       cachedRaw = raw;
       try {
-        cached = raw === null ? fallback : sanitize(JSON.parse(raw));
+        cached = raw === null ? fallback : sanitize2(JSON.parse(raw));
       } catch {
         cached = fallback;
       }
@@ -9290,7 +10169,8 @@
   var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
 
   // lib/saved.ts
-  var MAX_SAVED = 500;
+  var MAX_SAVED = 5e3;
+  var MAX_TOMBSTONES = 5e3;
   var EMPTY = [];
   function savedId(query, chainId) {
     const q = query.trim();
@@ -9316,28 +10196,61 @@
         label: str(r?.label, 80),
         note: str(r?.note, 1e3),
         favourite: r?.favourite === true,
-        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now()
+        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now(),
+        updatedAt: typeof r?.updatedAt === "number" ? r.updatedAt : typeof r?.addedAt === "number" ? r.addedAt : Date.now()
       });
       if (out.length >= MAX_SAVED) break;
     }
     return out;
   }
   var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
+  function sanitizeTombstones(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    for (const r of raw) if (typeof r?.id === "string" && r.id.length <= 300 && typeof r?.deletedAt === "number") out.push({ id: r.id, deletedAt: r.deletedAt });
+    return out.slice(-MAX_TOMBSTONES);
+  }
+  var tombstoneStore = createLocalStore("w3l:saved-deleted", [], sanitizeTombstones);
+  function applyUpsert(list, item, cap, now = Date.now()) {
+    const id = savedId(item.query, item.chainId);
+    const existing = list.find((x) => x.id === id);
+    if (!existing && list.length >= cap) return { list, result: "limit" };
+    const next = {
+      id,
+      query: item.query.trim(),
+      chainId: item.chainId,
+      label: (item.label ?? existing?.label ?? "").slice(0, 80),
+      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
+      favourite: item.favourite ?? existing?.favourite ?? false,
+      addedAt: existing?.addedAt ?? now,
+      updatedAt: now
+    };
+    return { list: [next, ...list.filter((x) => x.id !== id)], result: existing ? "updated" : "added" };
+  }
+  function mergeImport(list, incoming, cap, now = Date.now()) {
+    const byId = new Map(list.map((x) => [x.id, x]));
+    let room = Math.max(0, cap - list.length);
+    let imported = 0;
+    let skipped = 0;
+    const added = [];
+    for (const item of incoming) {
+      const existing = byId.get(item.id);
+      if (existing) {
+        byId.set(item.id, { ...item, addedAt: existing.addedAt, updatedAt: now });
+        imported++;
+      } else if (room > 0) {
+        added.push({ ...item, updatedAt: now });
+        room--;
+        imported++;
+      } else skipped++;
+    }
+    return { list: [...added, ...list.map((x) => byId.get(x.id))], imported, skipped };
+  }
   function exportSaved(list) {
     return JSON.stringify({ app: "web3lens", version: 1, exportedAt: (/* @__PURE__ */ new Date()).toISOString(), items: list }, null, 2);
   }
   function labelFor(list, query, chainId) {
     return list.find((x) => x.id === savedId(query, chainId)) ?? list.find((x) => x.id === savedId(query, null));
-  }
-
-  // extension-src/src/browser.ts
-  var ext = typeof browser !== "undefined" ? browser : chrome;
-  var isFirefox = typeof navigator !== "undefined" && /firefox/i.test(navigator.userAgent);
-  function openTab(url) {
-    return ext.tabs.create({ url });
-  }
-  function appUrl(hash = "") {
-    return ext.runtime.getURL(`app.html${hash}`);
   }
 
   // extension-src/src/store.ts
@@ -9386,24 +10299,38 @@
   async function clearRecent() {
     await ext.storage.local.set({ recent: [] });
   }
+  async function savedCap() {
+    return extLimits(await loadAccount()).savedLocal;
+  }
+  async function loadTombstones() {
+    return sanitizeTombstones((await ext.storage.local.get(["savedDeleted"])).savedDeleted);
+  }
+  async function setTombstones(list) {
+    await ext.storage.local.set({ savedDeleted: sanitizeTombstones(list) });
+  }
   async function upsertSaved(item) {
     const { saved } = await load();
-    const id = savedId(item.query, item.chainId);
-    const existing = saved.find((x) => x.id === id);
-    const next = {
-      id,
-      query: item.query.trim(),
-      chainId: item.chainId,
-      label: (item.label ?? existing?.label ?? "").slice(0, 80),
-      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
-      favourite: item.favourite ?? existing?.favourite ?? false,
-      addedAt: existing?.addedAt ?? Date.now()
-    };
-    await setSaved([next, ...saved.filter((x) => x.id !== id)]);
+    const r = applyUpsert(saved, item, await savedCap());
+    if (r.result !== "limit") await setSaved(r.list);
+    return r.result;
   }
   async function removeSaved(id) {
     const { saved } = await load();
     await setSaved(saved.filter((x) => x.id !== id));
+    await setTombstones([...(await loadTombstones()).filter((x) => x.id !== id), { id, deletedAt: Date.now() }]);
+  }
+  async function clearSaved() {
+    const { saved } = await load();
+    const now = Date.now();
+    const ids = new Set(saved.map((x) => x.id));
+    await setSaved([]);
+    await setTombstones([...(await loadTombstones()).filter((x) => !ids.has(x.id)), ...[...ids].map((id) => ({ id, deletedAt: now }))]);
+  }
+  async function importSaved(incoming) {
+    const { saved } = await load();
+    const r = mergeImport(saved, incoming, await savedCap());
+    await setSaved(r.list);
+    return { imported: r.imported, skipped: r.skipped };
   }
   function onStorageChange(cb) {
     ext.storage.onChanged.addListener((_changes, area2) => area2 === "local" && cb());
@@ -21111,10 +22038,10 @@
     }
     let zeros = 0;
     while (zeros < s.length && s[zeros] === alphabet[0]) zeros++;
-    const body = bytes.reverse();
+    const body2 = bytes.reverse();
     let start = 0;
-    while (start < body.length && body[start] === 0) start++;
-    return concatBytes(new Uint8Array(zeros), Uint8Array.from(body.slice(start)));
+    while (start < body2.length && body2[start] === 0) start++;
+    return concatBytes(new Uint8Array(zeros), Uint8Array.from(body2.slice(start)));
   }
   function base58CheckDecode(s, alphabet = BITCOIN_ALPHABET) {
     const raw = base58Decode(s, alphabet);
@@ -21472,8 +22399,8 @@
     return out;
   }
   function evmChecksumStatus(address) {
-    const body = address.slice(2);
-    if (body === body.toLowerCase() || body === body.toUpperCase()) return "none";
+    const body2 = address.slice(2);
+    if (body2 === body2.toLowerCase() || body2 === body2.toUpperCase()) return "none";
     return toChecksumAddress(address) === address ? "valid" : "invalid";
   }
 
@@ -22226,7 +23153,7 @@
   }
 
   // lib/batch.ts
-  var BATCH_MAX = 50;
+  var BATCH_MAX = 500;
   function parseBatch(text, max = BATCH_MAX) {
     const tokens = text.split(/[\s,;]+/).map((t2) => t2.trim()).filter(Boolean);
     const seen = /* @__PURE__ */ new Set();
@@ -22270,14 +23197,14 @@
     const v = value.trim().replace(/_/g, "").replace(/,/g, "");
     if (!/^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(v)) throw new Error("Not a number");
     const negative = v.startsWith("-");
-    let body = negative ? v.slice(1) : v;
-    const exp = /e([+-]?\d+)$/i.exec(body);
+    let body2 = negative ? v.slice(1) : v;
+    const exp = /e([+-]?\d+)$/i.exec(body2);
     let shift = 0;
     if (exp) {
       shift = Number(exp[1]);
-      body = body.slice(0, exp.index);
+      body2 = body2.slice(0, exp.index);
     }
-    let [int, frac = ""] = body.split(".");
+    let [int, frac = ""] = body2.split(".");
     int = int || "0";
     const totalDecimals = decimals + shift;
     if (totalDecimals < 0) throw new Error("Exponent too small");
@@ -22438,8 +23365,23 @@
     const out = h("div", { class: "stack" });
     const msg = h("p", { class: "accent small" });
     const balances = /* @__PURE__ */ new Map();
+    let limits = PRE_LAUNCH_LIMITS;
+    let plan = null;
+    let launched = false;
+    let limitNote = null;
+    let usage = null;
+    const intro = h("p", { class: "muted" }, t("batch.intro", { max: limits.batch }));
+    void loadAccount().then((a) => {
+      limits = extLimits(a);
+      plan = displayPlan(a);
+      launched = a.me?.billing === true;
+      intro.textContent = t("batch.intro", { max: limits.batch });
+      if (out.childNodes.length) render2();
+    });
+    const pro = () => !!plan && plan !== "free";
+    const upsell = () => launched && !pro() ? h("p", { class: "muted small" }, `${t("pro.upgradeBatch", { max: LIMITS.pro.batch })} `, h("a", { href: `${ACCOUNT_ORIGIN}/pricing`, target: "_blank", rel: "noopener noreferrer" }, t("pro.seePro"))) : null;
     function render2() {
-      const { rows, truncated } = parseBatch(text.value);
+      const { rows, truncated } = parseBatch(text.value, limits.batch);
       const table2 = h(
         "table",
         { class: "table" },
@@ -22467,7 +23409,10 @@
       const evm = rows.filter((r) => r.detection?.format === "evm-address" && r.detection.checksum !== "invalid");
       clear(
         out,
-        truncated ? note(t("batch.leftOut", { count: truncated, max: BATCH_MAX }), "warn") : null,
+        truncated ? note(t("batch.leftOut", { count: truncated, max: limits.batch }), "warn") : null,
+        limitNote ? note(limitNote, "warn") : null,
+        usage ? h("p", { class: "muted small" }, t("pro.usage", { used: usage.used, limit: usage.limit })) : null,
+        truncated || limitNote ? upsell() : null,
         h(
           "div",
           { class: "row wrap" },
@@ -22479,23 +23424,35 @@
               on: {
                 click: async () => {
                   if (!ctx.state.settings.network) return msg.textContent = t("common.offInSettings");
-                  for (const r of evm) {
-                    const q = r.detection.normalized;
-                    balances.set(q, t("batch.checking"));
+                  const targets = evm.slice(0, limits.batchBalances).map((r) => r.detection.normalized);
+                  limitNote = evm.length > targets.length ? t("pro.balancesCapped", { max: limits.batchBalances }) : null;
+                  const chunk = pro() ? 50 : limits.batchBalances;
+                  for (let i = 0; i < targets.length; i += chunk) {
+                    const part = targets.slice(i, i + chunk);
+                    for (const q of part) balances.set(q, t("batch.checking"));
                     render2();
-                    try {
-                      const m = await apiGet("multichain", { q });
-                      const ok = m.rows.filter((x) => x.status === "ok");
-                      balances.set(q, t("batch.active", { active: ok.filter((x) => x.balanceWei !== "0" || (x.nonce ?? 0) > 0).length, total: m.rows.length, usd: formatUsd(ok.reduce((n, x) => n + (x.usd ?? 0), 0)) || "$0" }));
-                    } catch (e) {
-                      balances.set(q, t("common.unavailableReason", { reason: e.message }));
+                    const r = await batchBalances(part);
+                    if (r.usage) usage = r.usage;
+                    if (!r.ok) {
+                      for (const q of part) balances.set(q, r.status === 429 ? t("pro.dailyLimitShort") : t("common.unavailable"));
+                      if (r.status === 429 || r.status === 413) limitNote = r.status === 429 ? t("pro.dailyLimit", { limit: r.usage?.limit ?? limits.crossChainPerDay }) : t("pro.balancesCapped", { max: limits.batchBalances });
+                      render2();
+                      break;
+                    }
+                    for (const x of r.results) {
+                      if (!x.result) {
+                        balances.set(x.address, t("common.unavailableReason", { reason: x.error ?? "" }));
+                        continue;
+                      }
+                      const ok = x.result.rows.filter((y) => y.status === "ok");
+                      balances.set(x.address, t("batch.active", { active: ok.filter((y) => y.balanceWei !== "0" || (y.nonce ?? 0) > 0).length, total: x.result.rows.length, usd: formatUsd(ok.reduce((n, y) => n + (y.usd ?? 0), 0)) || "$0" }));
                     }
                     render2();
                   }
                 }
               }
             },
-            t("batch.fetchBalances", { count: evm.length })
+            t("batch.fetchBalances", { count: Math.min(evm.length, limits.batchBalances) })
           ) : null,
           rows.length ? h(
             "button",
@@ -22520,10 +23477,33 @@
             {
               type: "button",
               class: "btn-ghost sm",
+              disabled: plan && canUse("jsonExport", plan) ? void 0 : true,
+              title: plan && canUse("jsonExport", plan) ? void 0 : t("pro.proOnly"),
+              on: {
+                click: () => {
+                  const data = {
+                    app: "web3lens",
+                    kind: "batch",
+                    exportedAt: (/* @__PURE__ */ new Date()).toISOString(),
+                    rows: rows.map((r) => ({ input: r.input, normalized: r.detection?.normalized ?? null, type: r.detection?.label ?? null, checksum: r.detection?.checksum ?? null, chains: r.detection?.chains ?? [], ofacListed: r.sanctions ? r.sanctions.listed : null, evm: r.detection ? balances.get(r.detection.normalized) ?? null : null }))
+                  };
+                  const a = h("a", { href: URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" })), download: "web3lens-batch.json" });
+                  a.click();
+                }
+              }
+            },
+            plan && canUse("jsonExport", plan) ? t("pro.exportJson") : `${t("pro.exportJson")} · ${t("pro.proOnly")}`
+          ) : null,
+          rows.length ? h(
+            "button",
+            {
+              type: "button",
+              class: "btn-ghost sm",
               on: {
                 click: async () => {
-                  for (const r of rows) if (r.detection && r.detection.kind !== "secret") await upsertSaved({ query: r.detection.normalized, chainId: null });
-                  msg.textContent = t("batch.savedMsg");
+                  let refused = 0;
+                  for (const r of rows) if (r.detection && r.detection.kind !== "secret" && await upsertSaved({ query: r.detection.normalized, chainId: null }) === "limit") refused++;
+                  msg.textContent = refused ? `${t("batch.savedMsg")} ${t("pro.savedFull", { count: refused, max: limits.savedLocal })}` : t("batch.savedMsg");
                 }
               }
             },
@@ -22555,7 +23535,7 @@
       { class: "stack" },
       h("p", { class: "label" }, t("app.batchSearch")),
       h("h1", { class: "heading" }, t("batch.title")),
-      h("p", { class: "muted" }, t("batch.intro", { max: BATCH_MAX })),
+      intro,
       text,
       h("div", { class: "row" }, h("button", { type: "button", class: "btn", on: { click: render2 } }, t("batch.checkAll"))),
       out
@@ -22760,17 +23740,17 @@
     const get = (x, y) => dark[y * size + x];
     for (let pass = 0; pass < 2; pass++) {
       for (let a = 0; a < size; a++) {
-        let run = 1;
+        let run2 = 1;
         for (let b = 1; b < size; b++) {
           const cur = pass ? get(a, b) : get(b, a);
           const prev = pass ? get(a, b - 1) : get(b - 1, a);
-          if (cur === prev) run++;
+          if (cur === prev) run2++;
           else {
-            if (run >= 5) score += run - 2;
-            run = 1;
+            if (run2 >= 5) score += run2 - 2;
+            run2 = 1;
           }
         }
-        if (run >= 5) score += run - 2;
+        if (run2 >= 5) score += run2 - 2;
       }
     }
     for (let y = 0; y < size - 1; y++) for (let x = 0; x < size - 1; x++) {
@@ -23025,8 +24005,8 @@
     ];
   }
   function securityCard(chainId, address) {
-    const body = h("div", null, loading(t("risk.checking")));
-    const el = h("section", { class: "card" }, h("h2", null, t("risk.title")), body);
+    const body2 = h("div", null, loading(t("risk.checking")));
+    const el = h("section", { class: "card" }, h("h2", null, t("risk.title")), body2);
     apiGet("security", { chain: chainId, q: address }).then((s) => {
       const rows = [
         s.flagCount > 0 ? note(t("risk.signals", { count: s.flagCount }), "danger") : note(t("risk.noReports"), "info"),
@@ -23045,10 +24025,10 @@
           ] : []
         ])
       ];
-      clear(body, ...rows);
+      clear(body2, ...rows);
     }).catch((e) => {
       const s = checkSanctions(address);
-      clear(body, errorText(t("risk.onlineUnavailable", { error: failMessage(e) })), facts([[t("risk.ofacLocal"), s.listed ? t("risk.listed", { lists: s.lists.join(", ") }) : t("risk.notListed", { date: s.snapshotAt.slice(0, 10) })]]));
+      clear(body2, errorText(t("risk.onlineUnavailable", { error: failMessage(e) })), facts([[t("risk.ofacLocal"), s.listed ? t("risk.listed", { lists: s.lists.join(", ") }) : t("risk.notListed", { date: s.snapshotAt.slice(0, 10) })]]));
     });
     if (/^0x[0-9a-fA-F]{40}$/.test(address)) {
       const approvals = h("div", null);
@@ -23076,10 +24056,10 @@
     return el;
   }
   function multichainCard(address, nav2) {
-    const body = h("div", null, loading(t("multichain.checking", { count: EVM_NETWORKS.length })));
+    const body2 = h("div", null, loading(t("multichain.checking", { count: EVM_NETWORKS.length })));
     apiGet("multichain", { q: address }).then(
       (m) => clear(
-        body,
+        body2,
         h(
           "ul",
           { class: "list" },
@@ -23094,19 +24074,37 @@
         ),
         h("p", { class: "source" }, t("multichain.source", { source: m.priceSource?.name ?? t("common.unavailable"), ago: ago(m.fetchedAt) }))
       )
-    ).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, t("multichain.title")), body);
+    ).catch((e) => clear(body2, errorText(failMessage(e))));
+    return h("section", { class: "card" }, h("h2", null, t("multichain.title")), body2);
   }
   function locateCard(hash, nav2) {
-    const body = h("div", null, loading(t("locate.asking", { count: EVM_NETWORKS.length })));
+    const body2 = h("div", null, loading(t("locate.asking", { count: EVM_NETWORKS.length })));
     apiGet("locate-tx", { q: hash }).then((l) => {
       const found = l.rows.filter((r) => r.status === "found");
       clear(
-        body,
+        body2,
         found.length ? h("div", { class: "chips" }, found.map((r) => h("button", { type: "button", class: "chip primary", on: { click: () => nav2(`#result/tx/${r.chain.id}/${hash}`) } }, t("locate.foundOn", { chain: r.chain.name })))) : h("p", { class: "muted" }, t("locate.notFound", { count: EVM_NETWORKS.length }))
       );
-    }).catch((e) => clear(body, errorText(failMessage(e))));
-    return h("section", { class: "card" }, h("h2", null, t("locate.title")), body);
+    }).catch((e) => clear(body2, errorText(failMessage(e))));
+    return h("section", { class: "card" }, h("h2", null, t("locate.title")), body2);
+  }
+  function watchControl(chainId, address) {
+    if (!watchable(chainId)) return null;
+    const slot = h("span", { class: "row" });
+    const render2 = async (force = false) => {
+      if (!await watchlistAvailable()) return;
+      const on = isWatched(await loadWatches(force), chainId, address);
+      const btn = h("button", { type: "button", class: "btn-ghost sm", "aria-pressed": String(on) }, on ? t("watch.watching") : t("watch.watch"));
+      btn.addEventListener("click", async () => {
+        btn.setAttribute("disabled", "");
+        const r = await toggleWatch(chainId, address);
+        if (r === "error") btn.textContent = t("watch.failed");
+        else void render2(true);
+      });
+      clear(slot, btn);
+    };
+    void render2();
+    return slot;
   }
   function resultView(kind, chainId, query, settings, nav2, compact = false) {
     setApiBase(settings.apiBase);
@@ -23122,7 +24120,7 @@
       { class: "result-head" },
       h("p", { class: "result-chain" }, glyph(chainId, getChain(chainId)?.name ?? chainId, "md"), h("span", { class: "label" }, `${getChain(chainId)?.name ?? chainId} · ${kind === "tx" ? t("result.transaction") : t("result.address")}`)),
       h("h1", { class: "mono value" }, query),
-      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, explorerList(chainId, query)),
+      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, kind === "address" && settings.network ? watchControl(chainId, query) : null, explorerList(chainId, query)),
       qrBox
     );
     root2.append(header);
@@ -23132,21 +24130,179 @@
       if (s.listed) root2.append(note(t("result.onOfac", { lists: s.lists.join(", ") }), "danger"));
       return root2;
     }
-    const body = h("div", { class: "stack" }, loading(t("common.loading")));
-    root2.append(body);
+    const body2 = h("div", { class: "stack" }, loading(t("common.loading")));
+    root2.append(body2);
     if (kind === "address") {
       apiGet("address", { chain: chainId, q: query }).then((r) => {
-        clear(body, ...renderAddressResult(r, nav2, compact));
-        body.append(securityCard(chainId, r.address));
-        if (!compact && r.family === "evm") body.append(multichainCard(r.address, nav2));
-      }).catch((e) => clear(body, errorText(failMessage(e))));
+        clear(body2, ...renderAddressResult(r, nav2, compact));
+        body2.append(securityCard(chainId, r.address));
+        if (!compact && r.family === "evm") body2.append(multichainCard(r.address, nav2));
+      }).catch((e) => clear(body2, errorText(failMessage(e))));
     } else {
       apiGet("tx", { chain: chainId, q: query }).then((r) => {
-        clear(body, ...renderTxResult(r, nav2));
-        if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body.append(locateCard(query, nav2));
-      }).catch((e) => clear(body, errorText(failMessage(e))));
+        clear(body2, ...renderTxResult(r, nav2));
+        if (r.family === "evm" && r.tx.status === "ok" && !r.tx.data) body2.append(locateCard(query, nav2));
+      }).catch((e) => clear(body2, errorText(failMessage(e))));
     }
     return root2;
+  }
+
+  // lib/saved-sync.ts
+  var SYNC_BATCH = 500;
+  function toCloud(item) {
+    return { key: item.id, query: item.query, chainId: item.chainId, label: item.label, note: item.note, favourite: item.favourite, addedAt: item.addedAt, updatedAt: item.updatedAt, deletedAt: null };
+  }
+  var stamp = (c) => c.deletedAt ?? c.updatedAt;
+  function sanitizeCloud(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    for (const r of raw) {
+      const [item] = sanitizeSaved([{ ...r, id: void 0 }]);
+      if (!item || typeof r?.key !== "string" || r.key !== item.id || typeof r?.updatedAt !== "number") continue;
+      out.push({ ...toCloud(item), deletedAt: typeof r.deletedAt === "number" ? r.deletedAt : null });
+    }
+    return out;
+  }
+  function mergeSaved(local, tombstones, remote) {
+    const remoteBy = new Map(remote.map((r) => [r.key, r]));
+    const tombBy = new Map(tombstones.map((t2) => [t2.id, t2]));
+    const localBy = new Map(local.map((l) => [l.id, l]));
+    const push = [];
+    const items = [];
+    const nextTombs = new Map(tombBy);
+    let changed = false;
+    for (const l of local) {
+      const r = remoteBy.get(l.id);
+      if (!r) {
+        push.push(toCloud(l));
+        items.push(l);
+        continue;
+      }
+      if (r.deletedAt !== null && r.deletedAt > l.updatedAt) {
+        changed = true;
+        nextTombs.set(l.id, { id: l.id, deletedAt: r.deletedAt });
+        continue;
+      }
+      if (r.deletedAt === null && r.updatedAt > l.updatedAt) {
+        const { key, deletedAt: _d, ...rest } = r;
+        items.push({ ...rest, id: key });
+        changed = true;
+        continue;
+      }
+      if (stamp(r) < l.updatedAt || r.deletedAt !== null && r.deletedAt <= l.updatedAt) push.push(toCloud(l));
+      items.push(l);
+    }
+    for (const t2 of tombstones) {
+      if (localBy.has(t2.id)) continue;
+      const r = remoteBy.get(t2.id);
+      if (r && r.deletedAt === null && r.updatedAt <= t2.deletedAt) {
+        push.push({ ...r, deletedAt: t2.deletedAt });
+      }
+    }
+    const added = [];
+    for (const r of remote) {
+      if (localBy.has(r.key) || r.deletedAt !== null) continue;
+      const t2 = tombBy.get(r.key);
+      if (t2 && t2.deletedAt >= r.updatedAt) continue;
+      if (t2) nextTombs.delete(r.key);
+      const { key, deletedAt: _d, ...rest } = r;
+      added.push({ ...rest, id: key });
+      changed = true;
+    }
+    added.sort((a, b) => b.addedAt - a.addedAt);
+    return { items: [...added, ...items], tombstones: [...nextTombs.values()], push, changed };
+  }
+
+  // extension-src/src/sync.ts
+  async function loadSyncInfo() {
+    const r = (await ext.storage.local.get(["syncInfo"])).syncInfo;
+    return {
+      cursor: typeof r?.cursor === "string" ? r.cursor : null,
+      lastSyncAt: typeof r?.lastSyncAt === "number" ? r.lastSyncAt : null,
+      error: typeof r?.error === "string" ? r.error : null,
+      refused: typeof r?.refused === "number" ? r.refused : 0
+    };
+  }
+  async function saveSyncInfo(info) {
+    await ext.storage.local.set({ syncInfo: info });
+  }
+  async function syncAvailable() {
+    const plan = displayPlan(await loadAccount());
+    return !!plan && canUse("cloudSync", plan);
+  }
+  var running = null;
+  var lastAuto = 0;
+  function syncSaved(force = false) {
+    if (!force && Date.now() - lastAuto < 3e4) return Promise.resolve("skipped");
+    lastAuto = Date.now();
+    running ??= run().finally(() => {
+      running = null;
+    });
+    return running;
+  }
+  async function run() {
+    if (!await syncAvailable()) return "off";
+    const info = await loadSyncInfo();
+    try {
+      const remote = [];
+      let cursor = info.cursor;
+      for (let page = 0; page < 20; page++) {
+        const res = await authedCall(`/api/sync/saved${cursor ? `?since=${encodeURIComponent(cursor)}` : ""}`);
+        if (!res?.ok) throw new Error(`read ${res?.status ?? 0}`);
+        const body2 = await res.json();
+        remote.push(...sanitizeCloud(body2.items));
+        const done = !Array.isArray(body2.items) || body2.items.length < 5e3 || body2.cursor === cursor;
+        cursor = body2.cursor ?? cursor;
+        if (done) break;
+      }
+      const { saved } = await load();
+      const merged = mergeSaved(saved, await loadTombstones(), remote);
+      if (merged.changed) await setSaved(merged.items);
+      await setTombstones(merged.tombstones);
+      let refused = 0;
+      for (let i = 0; i < merged.push.length; i += SYNC_BATCH) {
+        const res = await authedCall("/api/sync/saved", { method: "POST", body: JSON.stringify({ items: merged.push.slice(i, i + SYNC_BATCH) }) });
+        if (!res?.ok) throw new Error(`write ${res?.status ?? 0}`);
+        refused += Number((await res.json()).refused ?? 0);
+      }
+      await saveSyncInfo({ cursor, lastSyncAt: Date.now(), error: null, refused });
+      return "ok";
+    } catch (e) {
+      await saveSyncInfo({ ...info, error: e instanceof Error ? e.message : "failed" });
+      return "error";
+    }
+  }
+
+  // extension-src/src/views/sync-status.ts
+  function syncStatus(network, withCapNote = false) {
+    const slot = h("div", { class: "stack tight" });
+    if (!network) return slot;
+    void (async () => {
+      const [account, { saved }] = await Promise.all([loadAccount(), load()]);
+      if (await syncAvailable()) {
+        void syncSaved();
+        const info = await loadSyncInfo();
+        const text = info.error ? t("pro.syncFailed") : info.lastSyncAt ? `${t("pro.syncOn")} ${t("pro.syncedAt", { date: new Date(info.lastSyncAt).toLocaleString() })}` : t("pro.syncOn");
+        const btn = h("button", { type: "button", class: "btn-ghost sm" }, t("pro.syncNow"));
+        btn.addEventListener("click", async () => {
+          btn.textContent = t("pro.syncing");
+          btn.setAttribute("disabled", "");
+          await syncSaved(true);
+          btn.textContent = t("pro.syncNow");
+          btn.removeAttribute("disabled");
+        });
+        clear(slot, h("div", { class: "row wrap" }, h("span", { class: info.error ? "warn small" : "muted small" }, text), btn));
+        return;
+      }
+      const cap = extLimits(account).savedLocal;
+      if (withCapNote && account.me?.billing && saved.length >= cap) {
+        clear(
+          slot,
+          h("p", { class: "muted small" }, `${t("pro.savedCapNote", { max: cap, pro: LIMITS.pro.savedCloud })} `, h("a", { href: `${ACCOUNT_ORIGIN}/pricing`, target: "_blank", rel: "noopener noreferrer" }, t("pro.seePro")))
+        );
+      }
+    })();
+    return slot;
   }
 
   // extension-src/src/views/saved.ts
@@ -23184,7 +24340,7 @@
                 { type: "button", class: "linkish mono", on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
                 item.query
               ),
-              h("span", { class: "muted small" }, `${d ? detectLabel(d.label) : t("common.unrecognised")}${chain ? ` · ${chain.name}` : ""}`),
+              h("span", { class: "muted small" }, `${d ? detectLabel(d.label) : t("common.unrecognised")}${chain ? ` · ${chain.name}` : ""}`, isWatched(watched, item.chainId, item.query) ? " · " : null, isWatched(watched, item.chainId, item.query) ? badge(t("watch.watching"), "good") : null),
               notes
             ),
             h(
@@ -23198,6 +24354,12 @@
       );
     }
     filter.addEventListener("input", render2);
+    let watched = [];
+    if (ctx.state.settings.network)
+      void loadWatches().then((list2) => {
+        watched = list2;
+        if (list2.length) render2();
+      });
     const file = h("input", { type: "file", accept: "application/json,.json", hidden: true });
     file.addEventListener("change", async () => {
       const f = file.files?.[0];
@@ -23206,8 +24368,8 @@
         if (f.size > 2e6) throw new Error(t("savedPage.tooLarge"));
         const raw = JSON.parse(await f.text());
         const incoming = sanitizeSaved(raw?.items ?? raw);
-        await setSaved([...incoming, ...ctx.state.saved]);
-        msg.textContent = t("savedPage.imported", { count: incoming.length });
+        const r = await importSaved(incoming);
+        msg.textContent = r.skipped ? `${t("savedPage.imported", { count: r.imported })} ${t("pro.savedFull", { count: r.skipped, max: await savedCap() })}` : t("savedPage.imported", { count: r.imported });
       } catch (e) {
         msg.textContent = t("savedPage.importFailed", { error: e.message });
       }
@@ -23219,6 +24381,7 @@
       h("p", { class: "label" }, t("common.saved")),
       h("h1", { class: "heading" }, t("savedPage.title")),
       h("p", { class: "muted" }, t("savedPage.intro")),
+      syncStatus(ctx.state.settings.network, true),
       h(
         "div",
         { class: "row wrap" },
@@ -23521,14 +24684,118 @@
     return h("div", { class: "stack" }, form, info, actions, results, initial.recentInto ? null : recentBox);
   }
 
+  // extension-src/src/views/account.ts
+  var poll = null;
+  var message = null;
+  function stopPolling() {
+    if (poll) clearInterval(poll);
+    poll = null;
+  }
+  function startPolling() {
+    if (poll) return;
+    poll = setInterval(async () => {
+      const r = await claimSignIn();
+      if (r === "pending" || r === "offline") return;
+      stopPolling();
+      if (r === "failed") message = { text: t("account.error"), tone: "warn" };
+    }, 3e3);
+  }
+  function planBadge(a) {
+    const plan = displayPlan(a);
+    if (plan === "lifetime") return badge(t("account.planLifetime"), "good");
+    if (plan === "pro") return badge(t("account.planPro"), "good");
+    return badge(t("account.planFree"));
+  }
+  function body(a, settings) {
+    if (!settings.network) return [note(t("account.networkOff"), "info")];
+    const msg = message ? note(message.text, message.tone) : null;
+    const btn = (label, onClick, primary = false) => h("button", { type: "button", class: primary ? "btn" : "btn-ghost", on: { click: () => void onClick() } }, label);
+    if (a.token && a.me) {
+      stopPolling();
+      const stale = Date.now() - a.refreshedAt > 24 * 36e5;
+      return [
+        h("p", { class: "row wrap" }, h("span", null, t("account.signedInAs", { email: a.me.email })), planBadge(a)),
+        syncStatus(settings.network),
+        stale ? h("p", { class: "muted" }, t("account.offline", { date: new Date(a.refreshedAt).toLocaleDateString() })) : null,
+        msg,
+        h(
+          "div",
+          { class: "row wrap" },
+          btn(t("account.manage"), () => openTab(`${ACCOUNT_ORIGIN}/account`)),
+          btn(t("account.refresh"), async () => {
+            const r = await refreshAccount(true);
+            message = r === "offline" ? { text: t("account.offline", { date: new Date(a.refreshedAt).toLocaleDateString() }), tone: "warn" } : r === "expired" ? { text: t("account.expired"), tone: "warn" } : null;
+          }),
+          btn(t("account.signOut"), () => signOut())
+        )
+      ];
+    }
+    if (a.pending && a.pending.expiresAt > Date.now()) {
+      startPolling();
+      return [
+        h("p", null, t("account.pendingBody")),
+        h("p", { class: "pair-code", "aria-live": "polite" }, a.pending.code),
+        h("p", { class: "muted" }, t("account.waiting")),
+        msg,
+        h(
+          "div",
+          { class: "row wrap" },
+          btn(t("account.reopen"), () => openApproval(a.pending.code), true),
+          btn(t("account.cancel"), () => {
+            stopPolling();
+            return cancelSignIn();
+          })
+        )
+      ];
+    }
+    stopPolling();
+    return [
+      h("p", { class: "muted" }, t("account.signedOutBody")),
+      msg,
+      h(
+        "div",
+        { class: "row wrap" },
+        btn(
+          t("account.signIn"),
+          async () => {
+            message = null;
+            if (!await allowAccountDataCollection()) {
+              message = { text: t("account.consentNeeded"), tone: "warn" };
+              await cancelSignIn();
+              return;
+            }
+            try {
+              await startSignIn();
+            } catch {
+              message = { text: t("account.error"), tone: "warn" };
+              await cancelSignIn();
+            }
+          },
+          true
+        )
+      )
+    ];
+  }
+  function accountCard(settings) {
+    const slot = h("div", { class: "stack tight" }, h("p", { class: "muted" }, t("common.loading")));
+    void (async () => {
+      if (settings.network) {
+        await claimSignIn().catch(() => null);
+        await refreshAccount().catch(() => null);
+      }
+      clear(slot, ...body(await loadAccount(), settings));
+    })();
+    return card(t("account.title"), slot);
+  }
+
   // extension-src/src/views/settings.ts
   function settingsView(ctx) {
     const { prefs, settings } = ctx.state;
-    const radio = (value, title, body) => h(
+    const radio = (value, title, body2) => h(
       "label",
       { class: "choice" },
       h("input", { type: "radio", name: "action", checked: prefs.searchAction === value ? true : void 0, on: { change: () => void setPrefs({ ...prefs, searchAction: value }) } }),
-      h("span", null, h("b", null, title), h("small", null, body))
+      h("span", null, h("b", null, title), h("small", null, body2))
     );
     const language = h(
       "select",
@@ -23545,6 +24812,7 @@
       { class: "stack" },
       h("p", { class: "label" }, t("common.settings")),
       h("h1", { class: "heading" }, t("settings.pageTitle")),
+      accountCard(settings),
       card(
         t("settings.appearance"),
         h(
@@ -23608,7 +24876,7 @@
           "div",
           { class: "row wrap" },
           h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void clearRecent() } }, t("settings.clearRecent")),
-          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => confirm(t("settings.confirmDelete")) && void setSaved([]) } }, t("settings.deleteSaved")),
+          h("button", { type: "button", class: "btn-ghost sm", on: { click: () => confirm(t("settings.confirmDelete")) && void clearSaved() } }, t("settings.deleteSaved")),
           h("button", { type: "button", class: "btn-ghost sm", on: { click: () => void setPrefs(DEFAULT_PREFS) } }, t("settings.resetPrefs"))
         )
       )
@@ -23918,8 +25186,8 @@
       case "array": {
         const items = v;
         if (t2.length !== null && items.length !== t2.length) throw new Error("Wrong array length");
-        const body = encodeTuple(items.map(() => t2.item), items);
-        return t2.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body) : body;
+        const body2 = encodeTuple(items.map(() => t2.item), items);
+        return t2.length === null ? concatBytes(bigIntToBytes(BigInt(items.length), 32), body2) : body2;
       }
       case "tuple":
         return encodeTuple(
@@ -24059,8 +25327,8 @@
       if (item.length === 1 && item[0] < 128) return item;
       return concatBytes(encodeLength(item.length, 128), item);
     }
-    const body = concatBytes(...item.map(rlpEncode));
-    return concatBytes(encodeLength(body.length, 192), body);
+    const body2 = concatBytes(...item.map(rlpEncode));
+    return concatBytes(encodeLength(body2.length, 192), body2);
   }
   function readLength(data, pos, n) {
     if (pos + n > data.length) throw new Error("RLP: truncated length");
@@ -24240,8 +25508,8 @@
     const type = raw[0] >= 192 ? 0 : raw[0];
     if (type > 127) throw new Error("Not a transaction");
     if (!(type in TYPE_NAMES)) throw new Error(`Unknown transaction type 0x${type.toString(16)}`);
-    const body = type === 0 ? raw : raw.subarray(1);
-    let fields = asList(rlpDecode(body), "transaction");
+    const body2 = type === 0 ? raw : raw.subarray(1);
+    let fields = asList(rlpDecode(body2), "transaction");
     if (type === 3 && Array.isArray(fields[0])) {
       fields = fields[0];
       warnings.push("This is the network (blob-carrying) form; blobs were ignored.");
@@ -24362,9 +25630,9 @@
   function hexToDecimal(input2) {
     const s = input2.trim().replace(/_/g, "");
     const neg = s.startsWith("-");
-    const body = (neg ? s.slice(1) : s).replace(/^0x/i, "");
-    if (!body || !/^[0-9a-f]+$/i.test(body) || body.length > MAX_DIGITS) throw new Error("Not a hex number");
-    const n = BigInt(`0x${body}`);
+    const body2 = (neg ? s.slice(1) : s).replace(/^0x/i, "");
+    if (!body2 || !/^[0-9a-f]+$/i.test(body2) || body2.length > MAX_DIGITS) throw new Error("Not a hex number");
+    const n = BigInt(`0x${body2}`);
     return `${neg && n !== BigInt(0) ? "-" : ""}${n.toString(10)}`;
   }
   function decimalToHex(input2) {
@@ -24383,10 +25651,10 @@
     return n < BigInt(0) ? `-0x${(-n).toString(16)}` : `0x${n.toString(16)}`;
   }
   function hexToSignedInt256(input2) {
-    const body = input2.trim().replace(/^0x/i, "");
-    if (!/^[0-9a-f]{1,64}$/i.test(body)) throw new Error("Not a 256-bit hex word");
-    let n = BigInt(`0x${body}`);
-    if (body.length === 64 && n >> BigInt(255)) n -= BigInt(1) << BigInt(256);
+    const body2 = input2.trim().replace(/^0x/i, "");
+    if (!/^[0-9a-f]{1,64}$/i.test(body2)) throw new Error("Not a 256-bit hex word");
+    let n = BigInt(`0x${body2}`);
+    if (body2.length === 64 && n >> BigInt(255)) n -= BigInt(1) << BigInt(256);
     return n.toString();
   }
   function textToHex(text) {
@@ -24538,7 +25806,7 @@
   var input = (value = "", placeholder = "") => h("input", { class: "input mono", value, placeholder, spellcheck: "false", autocomplete: "off" });
   var area = (value = "", placeholder = "") => h("textarea", { class: "input mono area", placeholder, spellcheck: "false" }, value);
   function live(controls, out, compute) {
-    const run = () => {
+    const run2 = () => {
       try {
         const r = compute();
         clear(out, ...Array.isArray(r) ? r : [r]);
@@ -24547,10 +25815,10 @@
       }
     };
     for (const c of controls) {
-      c.addEventListener("input", run);
-      c.addEventListener("change", run);
+      c.addEventListener("input", run2);
+      c.addEventListener("change", run2);
     }
-    run();
+    run2();
   }
   function unitConverter() {
     const amount = input("1");
@@ -24891,25 +26159,25 @@
     const ctx = { state, nav, compact: false };
     const { view, parts, params } = fixed ? { view: fixed, parts: [fixed], params: new URLSearchParams() } : parse(location.hash);
     lastView = view;
-    let body;
+    let body2;
     switch (view) {
       case "result":
-        body = resultView(parts[1] === "tx" ? "tx" : "address", parts[2] ?? "", parts.slice(3).join("/"), state.settings, nav);
+        body2 = resultView(parts[1] === "tx" ? "tx" : "address", parts[2] ?? "", parts.slice(3).join("/"), state.settings, nav);
         break;
       case "batch":
-        body = batchView(ctx, params.get("q") ?? "");
+        body2 = batchView(ctx, params.get("q") ?? "");
         break;
       case "tools":
-        body = toolsView(parts[1], state.settings, nav);
+        body2 = toolsView(parts[1], state.settings, nav);
         break;
       case "saved":
-        body = savedView(ctx);
+        body2 = savedView(ctx);
         break;
       case "settings":
-        body = settingsView(ctx);
+        body2 = settingsView(ctx);
         break;
       default:
-        body = h(
+        body2 = h(
           "div",
           { class: "stack" },
           h("section", { class: "hero dot-grid" }, h("p", { class: "label" }, t("common.search")), h("h1", { class: "heading" }, ...tx("hero.title", { accent: h("span", { class: "accent" }, t("hero.titleAccent")) })), h("p", { class: "lead" }, t("hero.appLead"))),
@@ -24922,7 +26190,7 @@
               ["#tools/gas-tracker", "gas", t("common.gasTracker"), t("common.liveFees", { count: EVM_NETWORKS.length })],
               ["#tools", "wrench", t("common.developerTools"), t("app.devToolsBody")],
               ["#saved", "bookmark", t("common.saved"), t("app.savedBody")]
-            ].map(([hash, ic, title, body2]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body2)))
+            ].map(([hash, ic, title, body3]) => h("a", { href: hash, class: "feature" }, icon(ic, "ic feature-ic", true), h("span", { class: "feature-title" }, title), h("span", { class: "feature-body" }, body3)))
           )
         );
     }
@@ -24957,7 +26225,7 @@
         h("a", { href: "https://web3lens.com", target: "_blank", rel: "noopener noreferrer", class: "side-link" }, icon("external"), "web3lens.com")
       )
     );
-    clear(root, h("div", { class: "app-shell" }, sidebar, h("main", { class: "page" }, body)));
+    clear(root, h("div", { class: "app-shell" }, sidebar, h("main", { class: "page" }, body2)));
     document.title = `Web3Lens · ${VIEW_TITLE[view] ? t(VIEW_TITLE[view]) : view}`;
   }
   window.addEventListener("hashchange", () => void render());
@@ -24968,4 +26236,8 @@
     if (applyLanguage(settings.language) !== before) void render();
   });
   void render();
+  void load().then(({ settings }) => {
+    if (settings.network) refreshAlertBadge().catch(() => {
+    });
+  });
 })();

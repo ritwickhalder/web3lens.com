@@ -511,7 +511,7 @@
     "batch": "Lot",
     "moreTools": "Plus d’outils",
     "batchSearch": "Recherche par lot",
-    "batchSearchBody": "Vérifiez jusqu’à 50 adresses d’un coup, export CSV",
+    "batchSearchBody": "Vérifiez toute une liste d’adresses d’un coup, export CSV",
     "devToolsBody": "Unités, checksums, décodeurs, horodatages",
     "savedBody": "Vos libellés et notes, privés dans ce navigateur",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Éléments importés : {count}.",
     "importFailed": "Échec de l’import : {error}",
     "title": "Vos libellés et notes",
-    "intro": "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Rien n’est synchronisé.",
+    "intro": "Les libellés et notes restent dans ce navigateur (stockage de l’extension). Avec Pro, ils se synchronisent aussi avec votre compte.",
     "exportJson": "Exporter en JSON",
     "importJson": "Importer un JSON",
     "selectFirst": "Sélectionnez d’abord des éléments.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Une adresse bech32 valide pour « {hrp} », un réseau que Web3Lens ne liste pas encore.",
       "versionByte": "L’octet de version {byte} n’est pas reconnu par Web3Lens."
     }
+  },
+  "account": {
+    "title": "Compte",
+    "signedOutBody": "Facultatif. Connectez-vous pour voir ici votre formule Web3Lens. Tout dans l'extension fonctionne sans compte.",
+    "signIn": "Se connecter avec Google",
+    "pendingBody": "Approuvez ce code sur web3lens.com, puis revenez ici :",
+    "reopen": "Ouvrir la page d'approbation",
+    "cancel": "Annuler",
+    "waiting": "En attente d'approbation…",
+    "signedInAs": "Connecté en tant que {email}",
+    "planFree": "Gratuit",
+    "planPro": "Pro",
+    "planLifetime": "Pro à vie",
+    "manage": "Gérer le compte",
+    "refresh": "Actualiser la formule",
+    "signOut": "Se déconnecter",
+    "offline": "Impossible de joindre web3lens.com. Votre formule est affichée telle qu'au {date}.",
+    "networkOff": "Les recherches en ligne sont désactivées, le compte est donc en pause. Activez-les dans Confidentialité pour vous connecter.",
+    "expired": "Votre session a expiré. Reconnectez-vous.",
+    "error": "La connexion n'a pas abouti. Réessayez dans un instant.",
+    "consentNeeded": "La connexion nécessite votre accord pour partager votre session et votre e-mail avec web3lens.com. Tout le reste fonctionne sans."
+  },
+  "pro": {
+    "upgradeBatch": "Pro vérifie des lots de {max} valeurs avec les soldes de toutes.",
+    "seePro": "Découvrir Pro sur web3lens.com",
+    "usage": "Recherches de soldes multichaînes aujourd'hui : {used} sur {limit}.",
+    "balancesCapped": "Votre formule vérifie les soldes des {max} premières adresses EVM.",
+    "dailyLimitShort": "Limite quotidienne atteinte",
+    "dailyLimit": "Vous avez utilisé les {limit} recherches de soldes multichaînes du jour. Elles se réinitialisent à 00:00 UTC.",
+    "proOnly": "Fonction Pro",
+    "exportJson": "Exporter en JSON",
+    "savedFull": "{count} n'ont pas été enregistrés : votre formule conserve jusqu'à {max} éléments.",
+    "syncOn": "La synchronisation cloud est activée.",
+    "syncedAt": "Dernière synchronisation : {date}.",
+    "syncFailed": "La synchronisation a échoué. Vos éléments enregistrés restent en sécurité dans l'extension.",
+    "syncNow": "Synchroniser",
+    "syncing": "Synchronisation…",
+    "savedCapNote": "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
+  },
+  "watch": {
+    "watch": "Surveiller",
+    "watching": "Surveillé",
+    "failed": "Impossible de mettre à jour la liste de surveillance. Réessayez."
   }
 }

@@ -5,7 +5,8 @@ import { DEFAULT_PREFS } from '@/lib/prefs';
 import { h } from '../dom';
 import { t } from '../i18n';
 import { browserLanguages, LOCALES, localeName, matchLocale, type LanguagePref } from '../locales';
-import { clearRecent, setPrefs, setSaved, setSettings } from '../store';
+import { clearRecent, clearSaved, setPrefs, setSettings } from '../store';
+import { accountCard } from './account';
 import { card, note } from './common';
 import type { Ctx } from './search';
 
@@ -34,6 +35,7 @@ export function settingsView(ctx: Ctx): HTMLElement {
     { class: 'stack' },
     h('p', { class: 'label' }, t('common.settings')),
     h('h1', { class: 'heading' }, t('settings.pageTitle')),
+    accountCard(settings),
     card(
       t('settings.appearance'),
       h(
@@ -99,7 +101,7 @@ export function settingsView(ctx: Ctx): HTMLElement {
         'div',
         { class: 'row wrap' },
         h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void clearRecent() } }, t('settings.clearRecent')),
-        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => confirm(t('settings.confirmDelete')) && void setSaved([]) } }, t('settings.deleteSaved')),
+        h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => confirm(t('settings.confirmDelete')) && void clearSaved() } }, t('settings.deleteSaved')),
         h('button', { type: 'button', class: 'btn-ghost sm', on: { click: () => void setPrefs(DEFAULT_PREFS) } }, t('settings.resetPrefs')),
       ),
     ),

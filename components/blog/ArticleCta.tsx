@@ -19,7 +19,7 @@ const PRESETS: Record<CtaPreset, { icon: typeof MagnifyingGlass; title: string; 
   },
   batch: {
     icon: ListChecks,
-    title: 'Check up to 50 values at once',
+    title: 'Check a whole list at once',
     body: 'Paste a list of addresses, hashes or names to get type, checksum and OFAC status for each, optional EVM balances, and a CSV export.',
     links: [{ label: 'Open batch search', href: '/batch' }],
   },

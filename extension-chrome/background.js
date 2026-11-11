@@ -12564,7 +12564,8 @@
   var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
 
   // lib/saved.ts
-  var MAX_SAVED = 500;
+  var MAX_SAVED = 5e3;
+  var MAX_TOMBSTONES = 5e3;
   var EMPTY = [];
   function savedId(query, chainId) {
     const q = query.trim();
@@ -12590,13 +12591,54 @@
         label: str(r?.label, 80),
         note: str(r?.note, 1e3),
         favourite: r?.favourite === true,
-        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now()
+        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now(),
+        updatedAt: typeof r?.updatedAt === "number" ? r.updatedAt : typeof r?.addedAt === "number" ? r.addedAt : Date.now()
       });
       if (out.length >= MAX_SAVED) break;
     }
     return out;
   }
   var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
+  function sanitizeTombstones(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    for (const r of raw) if (typeof r?.id === "string" && r.id.length <= 300 && typeof r?.deletedAt === "number") out.push({ id: r.id, deletedAt: r.deletedAt });
+    return out.slice(-MAX_TOMBSTONES);
+  }
+  var tombstoneStore = createLocalStore("w3l:saved-deleted", [], sanitizeTombstones);
+
+  // lib/entitlements.ts
+  var LIMITS = {
+    free: {
+      batch: 10,
+      batchBalances: 5,
+      crossChainPerDay: 10,
+      apiPerDay: 0,
+      apiPerMinuteShared: 60,
+      savedLocal: 50,
+      savedCloud: 0,
+      investigations: 0,
+      exports: ["csv"],
+      watches: 0
+    },
+    pro: {
+      batch: 500,
+      batchBalances: 500,
+      crossChainPerDay: 500,
+      apiPerDay: 1e3,
+      apiPerMinuteShared: 60,
+      savedLocal: 2e3,
+      savedCloud: 2e3,
+      investigations: 100,
+      exports: ["csv", "json"],
+      watches: 50
+    }
+  };
+  var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
+
+  // extension-src/src/account.ts
+  var REFRESH_MS = 12 * 36e5;
+  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
 
   // extension-src/src/locales.ts
   var LOCALES = [

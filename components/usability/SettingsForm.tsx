@@ -89,7 +89,7 @@ export function SettingsForm() {
 
       <Panel title="Data in this browser">
         <p className="mb-4 text-sm font-medium text-muted">
-          Recent searches, {saved.length} saved item{saved.length === 1 ? '' : 's'} and these settings live in this browser's local storage. Web3Lens has no account system and never receives them.
+          Recent searches, {saved.length} saved item{saved.length === 1 ? '' : 's'} and these settings live in this browser's local storage. Web3Lens never receives them, even if you sign in.
         </p>
         <div className="flex flex-wrap gap-2">
           <button type="button" className={ghostBtnCls} onClick={() => recentStore.clear()}>

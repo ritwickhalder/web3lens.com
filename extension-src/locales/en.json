@@ -511,7 +511,7 @@
     "batch": "Batch",
     "moreTools": "More tools",
     "batchSearch": "Batch search",
-    "batchSearchBody": "Check up to 50 addresses at once, export CSV",
+    "batchSearchBody": "Check a whole list of addresses at once, export CSV",
     "devToolsBody": "Units, checksums, decoders, timestamps",
     "savedBody": "Your labels and notes, private to this browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Imported {count} items.",
     "importFailed": "Import failed: {error}",
     "title": "Your labels and notes",
-    "intro": "Labels and notes stay in this browser (extension storage). Nothing is synced.",
+    "intro": "Labels and notes stay in this browser (extension storage). With Pro they also sync to your account.",
     "exportJson": "Export JSON",
     "importJson": "Import JSON",
     "selectFirst": "Select items first.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "A valid bech32 address for \"{hrp}\", a network Web3Lens doesn't list yet.",
       "versionByte": "Version byte {byte} isn't one Web3Lens recognises."
     }
+  },
+  "account": {
+    "title": "Account",
+    "signedOutBody": "Optional. Sign in to see your Web3Lens plan here. Everything in the extension keeps working without an account.",
+    "signIn": "Sign in with Google",
+    "pendingBody": "Approve this code on web3lens.com, then come back here:",
+    "reopen": "Open the approval page",
+    "cancel": "Cancel",
+    "waiting": "Waiting for approval…",
+    "signedInAs": "Signed in as {email}",
+    "planFree": "Free",
+    "planPro": "Pro",
+    "planLifetime": "Pro for life",
+    "manage": "Manage account",
+    "refresh": "Refresh plan",
+    "signOut": "Sign out",
+    "offline": "Couldn't reach web3lens.com. Showing your plan as of {date}.",
+    "networkOff": "Online lookups are off, so the account is paused. Turn them on under Privacy to sign in.",
+    "expired": "Your sign-in has expired. Sign in again.",
+    "error": "Sign-in didn't work. Try again in a moment.",
+    "consentNeeded": "Sign-in needs your consent to share your sign-in and email with web3lens.com. Everything else keeps working without it."
+  },
+  "pro": {
+    "upgradeBatch": "Pro checks batches of {max} values with balances for all of them.",
+    "seePro": "See Pro on web3lens.com",
+    "usage": "Cross-chain balance lookups today: {used} of {limit}.",
+    "balancesCapped": "Balances are checked for the first {max} EVM addresses on your plan.",
+    "dailyLimitShort": "Daily limit reached",
+    "dailyLimit": "You've used today's {limit} cross-chain balance lookups. They reset at 00:00 UTC.",
+    "proOnly": "Pro feature",
+    "exportJson": "Export JSON",
+    "savedFull": "{count} weren't saved: your plan keeps up to {max} saved items.",
+    "syncOn": "Cloud sync is on.",
+    "syncedAt": "Last synced {date}.",
+    "syncFailed": "Sync failed. Your saved items are safe in the extension.",
+    "syncNow": "Sync now",
+    "syncing": "Syncing…",
+    "savedCapNote": "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
+  },
+  "watch": {
+    "watch": "Watch",
+    "watching": "Watching",
+    "failed": "Couldn't update the watchlist. Try again."
   }
 }

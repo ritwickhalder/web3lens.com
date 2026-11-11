@@ -511,7 +511,7 @@
     "batch": "Stapel",
     "moreTools": "Weitere Tools",
     "batchSearch": "Stapelsuche",
-    "batchSearchBody": "Bis zu 50 Adressen auf einmal prüfen, CSV-Export",
+    "batchSearchBody": "Eine ganze Liste von Adressen auf einmal prüfen, CSV-Export",
     "devToolsBody": "Einheiten, Checksummen, Decoder, Zeitstempel",
     "savedBody": "Deine Labels und Notizen, privat in diesem Browser",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Importierte Einträge: {count}.",
     "importFailed": "Import fehlgeschlagen: {error}",
     "title": "Deine Labels und Notizen",
-    "intro": "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Es wird nichts synchronisiert.",
+    "intro": "Labels und Notizen bleiben in diesem Browser (Erweiterungsspeicher). Mit Pro werden sie auch mit deinem Konto synchronisiert.",
     "exportJson": "JSON exportieren",
     "importJson": "JSON importieren",
     "selectFirst": "Wähle zuerst Einträge aus.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Eine gültige bech32-Adresse für „{hrp}“, ein Netzwerk, das Web3Lens noch nicht kennt.",
       "versionByte": "Das Versionsbyte {byte} erkennt Web3Lens nicht."
     }
+  },
+  "account": {
+    "title": "Konto",
+    "signedOutBody": "Optional. Melde dich an, um deinen Web3Lens-Tarif hier zu sehen. Die Erweiterung funktioniert auch ohne Konto vollständig.",
+    "signIn": "Mit Google anmelden",
+    "pendingBody": "Bestätige diesen Code auf web3lens.com und kehre dann hierher zurück:",
+    "reopen": "Bestätigungsseite öffnen",
+    "cancel": "Abbrechen",
+    "waiting": "Warte auf Bestätigung…",
+    "signedInAs": "Angemeldet als {email}",
+    "planFree": "Kostenlos",
+    "planPro": "Pro",
+    "planLifetime": "Pro auf Lebenszeit",
+    "manage": "Konto verwalten",
+    "refresh": "Tarif aktualisieren",
+    "signOut": "Abmelden",
+    "offline": "web3lens.com ist nicht erreichbar. Dein Tarif wird mit Stand {date} angezeigt.",
+    "networkOff": "Online-Abfragen sind aus, daher ist das Konto pausiert. Schalte sie unter Datenschutz ein, um dich anzumelden.",
+    "expired": "Deine Anmeldung ist abgelaufen. Melde dich erneut an.",
+    "error": "Die Anmeldung hat nicht geklappt. Versuche es gleich noch einmal.",
+    "consentNeeded": "Für die Anmeldung musst du zustimmen, dass Anmeldung und E-Mail an web3lens.com gehen. Alles andere funktioniert auch ohne."
+  },
+  "pro": {
+    "upgradeBatch": "Pro prüft Stapel mit {max} Werten und Guthaben für alle.",
+    "seePro": "Pro auf web3lens.com ansehen",
+    "usage": "Kettenübergreifende Guthabenabfragen heute: {used} von {limit}.",
+    "balancesCapped": "Guthaben werden in deinem Tarif für die ersten {max} EVM-Adressen geprüft.",
+    "dailyLimitShort": "Tageslimit erreicht",
+    "dailyLimit": "Du hast die {limit} kettenübergreifenden Guthabenabfragen für heute verbraucht. Sie werden um 00:00 UTC zurückgesetzt.",
+    "proOnly": "Pro-Funktion",
+    "exportJson": "Als JSON exportieren",
+    "savedFull": "{count} wurden nicht gespeichert: Dein Tarif behält bis zu {max} gespeicherte Einträge.",
+    "syncOn": "Cloud-Synchronisierung ist an.",
+    "syncedAt": "Zuletzt synchronisiert: {date}.",
+    "syncFailed": "Synchronisierung fehlgeschlagen. Deine gespeicherten Einträge sind in der Erweiterung sicher.",
+    "syncNow": "Jetzt synchronisieren",
+    "syncing": "Synchronisiere…",
+    "savedCapNote": "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
+  },
+  "watch": {
+    "watch": "Beobachten",
+    "watching": "Wird beobachtet",
+    "failed": "Die Beobachtungsliste konnte nicht aktualisiert werden. Versuche es erneut."
   }
 }

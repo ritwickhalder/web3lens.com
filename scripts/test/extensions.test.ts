@@ -42,6 +42,8 @@ test('browser-specific adapters', () => {
   assert.deepEqual(ff.background.scripts, ['background.js']);
   assert.match(ff.browser_specific_settings?.gecko?.id ?? '', /@/);
   assert.ok(ff.browser_specific_settings?.gecko?.data_collection_permissions, 'Firefox requires data collection disclosure');
+  // The optional account (sign-in, email) is disclosed as optional data collection and asked for at sign-in.
+  assert.deepEqual((ff.browser_specific_settings?.gecko?.data_collection_permissions as { optional?: string[] }).optional, ['authenticationInfo', 'personallyIdentifyingInfo']);
 });
 
 test('minimal permissions: no host permissions, no content scripts, locked-down CSP', () => {

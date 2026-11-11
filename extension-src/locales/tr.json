@@ -511,7 +511,7 @@
     "batch": "Toplu",
     "moreTools": "Diğer araçlar",
     "batchSearch": "Toplu arama",
-    "batchSearchBody": "Aynı anda 50'ye kadar adres kontrol edin, CSV olarak dışa aktarın",
+    "batchSearchBody": "Bir adres listesinin tamamını aynı anda kontrol edin, CSV olarak dışa aktarın",
     "devToolsBody": "Birimler, sağlama toplamları, çözücüler, zaman damgaları",
     "savedBody": "Etiketleriniz ve notlarınız, bu tarayıcıya özel",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "İçe aktarılan öğe: {count}.",
     "importFailed": "İçe aktarma başarısız: {error}",
     "title": "Etiketleriniz ve notlarınız",
-    "intro": "Etiketler ve notlar bu tarayıcıda (eklenti depolaması) kalır. Hiçbir şey eşitlenmez.",
+    "intro": "Etiketler ve notlar bu tarayıcıda (uzantı depolaması) kalır. Pro ile hesabınızla da eşitlenir.",
     "exportJson": "JSON dışa aktar",
     "importJson": "JSON içe aktar",
     "selectFirst": "Önce öğe seçin.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "“{hrp}” için geçerli bir bech32 adresi; Web3Lens bu ağı henüz listelemiyor.",
       "versionByte": "{byte} sürüm baytı Web3Lens tarafından tanınmıyor."
     }
+  },
+  "account": {
+    "title": "Hesap",
+    "signedOutBody": "İsteğe bağlı. Web3Lens planınızı burada görmek için giriş yapın. Uzantıdaki her şey hesap olmadan da çalışır.",
+    "signIn": "Google ile giriş yap",
+    "pendingBody": "Bu kodu web3lens.com üzerinde onaylayın, ardından buraya dönün:",
+    "reopen": "Onay sayfasını aç",
+    "cancel": "İptal",
+    "waiting": "Onay bekleniyor…",
+    "signedInAs": "{email} olarak giriş yapıldı",
+    "planFree": "Ücretsiz",
+    "planPro": "Pro",
+    "planLifetime": "Ömür boyu Pro",
+    "manage": "Hesabı yönet",
+    "refresh": "Planı yenile",
+    "signOut": "Çıkış yap",
+    "offline": "web3lens.com'a ulaşılamadı. Planınız {date} itibarıyla gösteriliyor.",
+    "networkOff": "Çevrimiçi sorgular kapalı, bu yüzden hesap duraklatıldı. Giriş yapmak için Gizlilik bölümünden açın.",
+    "expired": "Oturumunuzun süresi doldu. Tekrar giriş yapın.",
+    "error": "Giriş yapılamadı. Birazdan tekrar deneyin.",
+    "consentNeeded": "Giriş için oturum bilginizi ve e-postanızı web3lens.com ile paylaşmaya onay vermeniz gerekir. Diğer her şey onay olmadan da çalışır."
+  },
+  "pro": {
+    "upgradeBatch": "Pro, {max} değerlik toplu sorguları tümünün bakiyesiyle birlikte kontrol eder.",
+    "seePro": "Pro'yu web3lens.com'da inceleyin",
+    "usage": "Bugünkü zincirler arası bakiye sorguları: {limit} içinden {used}.",
+    "balancesCapped": "Planınızda ilk {max} EVM adresinin bakiyesi kontrol edilir.",
+    "dailyLimitShort": "Günlük sınıra ulaşıldı",
+    "dailyLimit": "Bugünkü {limit} zincirler arası bakiye sorgusunu kullandınız. 00:00 UTC'de sıfırlanır.",
+    "proOnly": "Pro özelliği",
+    "exportJson": "JSON olarak dışa aktar",
+    "savedFull": "{count} öğe kaydedilmedi: planınız en fazla {max} öğe tutar.",
+    "syncOn": "Bulut eşitleme açık.",
+    "syncedAt": "Son eşitleme: {date}.",
+    "syncFailed": "Eşitleme başarısız oldu. Kayıtlı öğeleriniz uzantıda güvende.",
+    "syncNow": "Şimdi eşitle",
+    "syncing": "Eşitleniyor…",
+    "savedCapNote": "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
+  },
+  "watch": {
+    "watch": "İzle",
+    "watching": "İzleniyor",
+    "failed": "İzleme listesi güncellenemedi. Tekrar deneyin."
   }
 }

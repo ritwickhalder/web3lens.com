@@ -511,7 +511,7 @@
     "batch": "Lote",
     "moreTools": "Más herramientas",
     "batchSearch": "Búsqueda por lotes",
-    "batchSearchBody": "Comprueba hasta 50 direcciones a la vez y exporta a CSV",
+    "batchSearchBody": "Comprueba una lista de direcciones a la vez y exporta a CSV",
     "devToolsBody": "Unidades, checksums, decodificadores, marcas de tiempo",
     "savedBody": "Tus etiquetas y notas, privadas en este navegador",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Elementos importados: {count}.",
     "importFailed": "Error al importar: {error}",
     "title": "Tus etiquetas y notas",
-    "intro": "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). No se sincroniza nada.",
+    "intro": "Las etiquetas y notas se quedan en este navegador (almacenamiento de la extensión). Con Pro también se sincronizan con tu cuenta.",
     "exportJson": "Exportar JSON",
     "importJson": "Importar JSON",
     "selectFirst": "Primero selecciona elementos.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Una dirección bech32 válida para “{hrp}”, una red que Web3Lens aún no incluye.",
       "versionByte": "El byte de versión {byte} no es uno que Web3Lens reconozca."
     }
+  },
+  "account": {
+    "title": "Cuenta",
+    "signedOutBody": "Opcional. Inicia sesión para ver aquí tu plan de Web3Lens. Todo en la extensión sigue funcionando sin cuenta.",
+    "signIn": "Iniciar sesión con Google",
+    "pendingBody": "Aprueba este código en web3lens.com y vuelve aquí:",
+    "reopen": "Abrir la página de aprobación",
+    "cancel": "Cancelar",
+    "waiting": "Esperando aprobación…",
+    "signedInAs": "Sesión iniciada como {email}",
+    "planFree": "Gratis",
+    "planPro": "Pro",
+    "planLifetime": "Pro de por vida",
+    "manage": "Gestionar cuenta",
+    "refresh": "Actualizar plan",
+    "signOut": "Cerrar sesión",
+    "offline": "No se pudo conectar con web3lens.com. Se muestra tu plan a fecha de {date}.",
+    "networkOff": "Las consultas en línea están desactivadas, así que la cuenta está en pausa. Actívalas en Privacidad para iniciar sesión.",
+    "expired": "Tu sesión ha caducado. Vuelve a iniciar sesión.",
+    "error": "No se pudo iniciar sesión. Inténtalo de nuevo en un momento.",
+    "consentNeeded": "Para iniciar sesión debes aceptar compartir tu inicio de sesión y tu correo con web3lens.com. Todo lo demás funciona sin ello."
+  },
+  "pro": {
+    "upgradeBatch": "Pro revisa lotes de {max} valores con saldos para todos.",
+    "seePro": "Ver Pro en web3lens.com",
+    "usage": "Consultas de saldo entre cadenas hoy: {used} de {limit}.",
+    "balancesCapped": "En tu plan se revisan los saldos de las primeras {max} direcciones EVM.",
+    "dailyLimitShort": "Límite diario alcanzado",
+    "dailyLimit": "Has usado las {limit} consultas de saldo entre cadenas de hoy. Se reinician a las 00:00 UTC.",
+    "proOnly": "Función Pro",
+    "exportJson": "Exportar JSON",
+    "savedFull": "{count} no se guardaron: tu plan guarda hasta {max} elementos.",
+    "syncOn": "La sincronización en la nube está activada.",
+    "syncedAt": "Última sincronización: {date}.",
+    "syncFailed": "La sincronización falló. Tus elementos guardados están seguros en la extensión.",
+    "syncNow": "Sincronizar ahora",
+    "syncing": "Sincronizando…",
+    "savedCapNote": "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
+  },
+  "watch": {
+    "watch": "Vigilar",
+    "watching": "Vigilando",
+    "failed": "No se pudo actualizar la lista de vigilancia. Inténtalo de nuevo."
   }
 }

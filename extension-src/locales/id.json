@@ -511,7 +511,7 @@
     "batch": "Massal",
     "moreTools": "Alat lainnya",
     "batchSearch": "Pencarian massal",
-    "batchSearchBody": "Periksa hingga 50 alamat sekaligus, ekspor CSV",
+    "batchSearchBody": "Periksa seluruh daftar alamat sekaligus, ekspor CSV",
     "devToolsBody": "Satuan, checksum, dekoder, timestamp",
     "savedBody": "Label dan catatan Anda, privat di browser ini",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Item diimpor: {count}.",
     "importFailed": "Impor gagal: {error}",
     "title": "Label dan catatan Anda",
-    "intro": "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Tidak ada yang disinkronkan.",
+    "intro": "Label dan catatan tetap di browser ini (penyimpanan ekstensi). Dengan Pro, keduanya juga tersinkron ke akun Anda.",
     "exportJson": "Ekspor JSON",
     "importJson": "Impor JSON",
     "selectFirst": "Pilih item terlebih dahulu.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Alamat bech32 yang valid untuk “{hrp}”, jaringan yang belum ada di Web3Lens.",
       "versionByte": "Byte versi {byte} tidak dikenali Web3Lens."
     }
+  },
+  "account": {
+    "title": "Akun",
+    "signedOutBody": "Opsional. Masuk untuk melihat paket Web3Lens Anda di sini. Semua fitur ekstensi tetap berfungsi tanpa akun.",
+    "signIn": "Masuk dengan Google",
+    "pendingBody": "Setujui kode ini di web3lens.com, lalu kembali ke sini:",
+    "reopen": "Buka halaman persetujuan",
+    "cancel": "Batal",
+    "waiting": "Menunggu persetujuan…",
+    "signedInAs": "Masuk sebagai {email}",
+    "planFree": "Gratis",
+    "planPro": "Pro",
+    "planLifetime": "Pro seumur hidup",
+    "manage": "Kelola akun",
+    "refresh": "Perbarui paket",
+    "signOut": "Keluar",
+    "offline": "Tidak dapat menghubungi web3lens.com. Menampilkan paket Anda per {date}.",
+    "networkOff": "Pencarian online dimatikan, jadi akun dijeda. Nyalakan di Privasi untuk masuk.",
+    "expired": "Sesi masuk Anda telah berakhir. Silakan masuk lagi.",
+    "error": "Gagal masuk. Coba lagi sebentar lagi.",
+    "consentNeeded": "Masuk memerlukan persetujuan Anda untuk membagikan sesi masuk dan email ke web3lens.com. Fitur lain tetap berfungsi tanpanya."
+  },
+  "pro": {
+    "upgradeBatch": "Pro memeriksa batch berisi {max} nilai beserta saldo untuk semuanya.",
+    "seePro": "Lihat Pro di web3lens.com",
+    "usage": "Pencarian saldo lintas rantai hari ini: {used} dari {limit}.",
+    "balancesCapped": "Saldo diperiksa untuk {max} alamat EVM pertama sesuai paket Anda.",
+    "dailyLimitShort": "Batas harian tercapai",
+    "dailyLimit": "Anda telah memakai {limit} pencarian saldo lintas rantai hari ini. Batas diatur ulang pukul 00:00 UTC.",
+    "proOnly": "Fitur Pro",
+    "exportJson": "Ekspor JSON",
+    "savedFull": "{count} tidak disimpan: paket Anda menyimpan hingga {max} item.",
+    "syncOn": "Sinkronisasi cloud aktif.",
+    "syncedAt": "Terakhir disinkronkan {date}.",
+    "syncFailed": "Sinkronisasi gagal. Item tersimpan Anda tetap aman di ekstensi.",
+    "syncNow": "Sinkronkan sekarang",
+    "syncing": "Menyinkronkan…",
+    "savedCapNote": "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
+  },
+  "watch": {
+    "watch": "Pantau",
+    "watching": "Dipantau",
+    "failed": "Tidak dapat memperbarui daftar pantau. Coba lagi."
   }
 }

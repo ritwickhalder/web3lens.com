@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { BLOG_CATEGORIES } from '@/config/blog';
-import { PAGES, SITE } from '@/config/site';
+import { PAGES, PRO_ON_SALE, SITE } from '@/config/site';
 import { getAllPosts } from '@/lib/blog/posts';
 import { allExplorerRoutes, getChain } from '@/lib/chains';
 
@@ -15,7 +15,7 @@ export const SITEMAP_EXCLUDED = ['/saved', '/settings'];
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const latest = posts.reduce((d, p) => (p.updated > d ? p.updated : d), '');
-  const pages = PAGES.filter((p) => !SITEMAP_EXCLUDED.includes(p.href)).map((page) => ({
+  const pages = PAGES.filter((p) => !SITEMAP_EXCLUDED.includes(p.href) && (PRO_ON_SALE || p.href !== '/pricing')).map((page) => ({
     url: `${SITE.url}${page.href === '/' ? '' : page.href}`,
     changeFrequency: page.href === '/' || page.href === '/blog' ? ('weekly' as const) : ('monthly' as const),
     priority: page.href === '/' ? 1 : page.href === '/blog' ? 0.8 : 0.6,

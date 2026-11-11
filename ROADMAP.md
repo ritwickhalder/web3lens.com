@@ -109,9 +109,13 @@ Blockchair, CoinGecko.
 - **Learn:** expanded guide, an MDX blog and a glossary (long-tail SEO).
 - **i18n** with next-intl, the same setup as Super Session Manager.
 
-## Phase 4 — Accounts and watchlists (Supabase)
+## Phase 4 — Accounts and watchlists
 
-- Sign in (Google OAuth, as in Super Session Manager).
+Stack decided November 2026: **Neon Postgres + Better Auth + Paddle**, as in Edit Page (not Supabase). See
+[docs/ACCOUNTS.md](docs/ACCOUNTS.md).
+
+- Sign in with Google: built (Pro phase 1, 2026-11-10) — optional, website and extensions (pairing code, no new
+  extension permissions). Waits on live Google, Neon and Paddle credentials (docs/ACCOUNTS.md launch checklist).
 - Saved addresses with labels and notes: ✅ local-only on the site and in the extensions (export/import JSON,
   shareable investigation links). Next: account sync.
 - Email alerts when a watched address sends or receives (Vercel cron).
@@ -140,7 +144,19 @@ Add-ons and AMO; the store pages are linked from `/extension` (`EXTENSION_STORES
 - ✅ Structured data (WebSite + SearchAction) for a sitelinks search box.
 - Point the old blocksearchengine.com domain at www.web3lens.com with permanent redirects.
 
-## Phase 7 — Pro (later)
+## Phase 7 — Pro
+
+Three releases (plan in [docs/ACCOUNTS.md](docs/ACCOUNTS.md)):
+
+1. **Foundation** — built 2026-11-10, not live: Google sign-in, Neon schema and migrations, Paddle monthly/yearly/
+   lifetime + 7-day trial with verified idempotent webhooks, central entitlements (`lib/entitlements.ts`), daily
+   quota counters, `/account`, extension sign-in.
+2. **Monetisation** — built 2026-11-10, not live: batch limits (Free 10 / Pro 500), server-enforced batch balances
+   (5 / 500 rows, 10 / 500 lookups a day), cloud sync of saved addresses (Pro 2,000) in the website and extensions,
+   collections, cloud investigations (100), JSON export, API keys (1,000/day), `/pricing`, inline upgrade notes.
+3. **Expansion** — built 2026-11-11, not live: watchlist (Pro, 50 addresses) with activity alerts and email digests
+   (daily Vercel cron), Watch button and badges in the website and extensions, portfolio view of saved EVM addresses,
+   admin UI. Approval scans on every EVM chain still need a paid log index (owner decision, TODO.md).
 
 Decided November 2026: build after accounts (Phase 4). Rule: safety stays free for everyone — detection,
 checksums, risk checks, sanctions, explorer routing, the developer tools and the extensions' core features.

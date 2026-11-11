@@ -3,6 +3,7 @@ import { setApiBase } from '@/lib/api-client';
 import { EVM_NETWORKS } from '@/lib/networks';
 import { clear, h } from './dom';
 import { applyLanguage, locale, t, tx, type MessageKey } from './i18n';
+import { refreshAlertBadge } from './watches';
 import { load, onStorageChange, setSettings, type ExtSettings } from './store';
 import { brand, icon, type IconName } from './ui';
 import { batchView } from './views/batch';
@@ -149,3 +150,6 @@ onStorageChange(async () => {
   if (applyLanguage(settings.language) !== before) void render();
 });
 void render();
+void load().then(({ settings }) => {
+  if (settings.network) refreshAlertBadge().catch(() => {});
+});

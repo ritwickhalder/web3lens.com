@@ -2,10 +2,14 @@
 
 import Link from 'next/link';
 import { useState, useSyncExternalStore } from 'react';
+import { ProNote, ProTag } from '@/components/account/ProNote';
 import { Badge } from '@/components/results/ResultHeader';
 import { btnCls, ghostBtnCls, Panel, textareaCls } from '@/components/tools/ui';
-import { apiGet } from '@/lib/api-client';
-import { parseBatch, type BatchRow, BATCH_MAX } from '@/lib/batch';
+import { accountStore, planOfState } from '@/lib/client/account';
+import { parseBatch, type BatchRow } from '@/lib/batch';
+import { canUse, LIMITS } from '@/lib/entitlements';
+
+const LIMITS_PRO = LIMITS.pro;
 import { getChain } from '@/lib/chains';
 import { downloadText, toCsv } from '@/lib/csv';
 import { explorerLinks, toQueryKind } from '@/lib/explorer';
@@ -33,37 +37,83 @@ export function BatchSearch() {
   const [running, setRunning] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const saved = useSyncExternalStore(savedStore.subscribe, savedStore.getSnapshot, savedStore.getServerSnapshot);
+  const account = useSyncExternalStore(accountStore.subscribe, accountStore.getSnapshot, accountStore.getServerSnapshot);
+  const { plan, limits, signedIn } = planOfState(account);
+  const pro = plan !== 'free';
+  const [usage, setUsage] = useState<{ used: number; limit: number } | null>(null);
+  const [limitNote, setLimitNote] = useState<string | null>(null);
 
   const rows = parsed?.rows ?? [];
   const evm = rows.filter((r) => r.detection?.format === 'evm-address' && r.detection.checksum !== 'invalid');
 
+  /** Balances go through /api/batch/balances, which enforces rows per batch and the daily cross-chain quota. */
   async function fetchBalances() {
     setRunning(true);
-    const queue = [...evm];
-    const worker = async () => {
-      while (queue.length) {
-        const row = queue.shift()!;
-        const q = row.detection!.normalized;
-        setBalances((b) => ({ ...b, [q]: { status: 'loading' } }));
-        try {
-          const r = await apiGet<MultichainResult>('multichain', { q });
-          const ok = r.rows.filter((x) => x.status === 'ok');
-          setBalances((b) => ({
-            ...b,
-            [q]: {
-              status: 'ok',
-              active: ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length,
-              usd: ok.reduce((n, x) => n + (x.usd ?? 0), 0),
-              unavailable: r.rows.length - ok.length,
-            },
-          }));
-        } catch (e) {
-          setBalances((b) => ({ ...b, [q]: { status: 'error', error: (e as Error).message } }));
-        }
+    setLimitNote(null);
+    const targets = evm.slice(0, limits.batchBalances).map((r) => r.detection!.normalized);
+    if (evm.length > targets.length) setLimitNote(`Balances are checked for the first ${limits.batchBalances} EVM addresses on your plan.`);
+    const chunk = pro ? 50 : limits.batchBalances;
+    for (let i = 0; i < targets.length; i += chunk) {
+      const part = targets.slice(i, i + chunk);
+      setBalances((b) => ({ ...b, ...Object.fromEntries(part.map((q) => [q, { status: 'loading' } as Balance])) }));
+      let res: Response;
+      let body: { results?: { address: string; result: MultichainResult | null; error: string | null }[]; usage?: { used: number; limit: number } | null; error?: string } | null = null;
+      try {
+        res = await fetch('/api/batch/balances', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ addresses: part }) });
+        body = await res.json().catch(() => null);
+      } catch {
+        res = new Response(null, { status: 0 });
       }
-    };
-    await Promise.all([worker(), worker()]);
+      if (body?.usage) setUsage(body.usage);
+      if (!res.ok || !body?.results) {
+        const error = body?.error ?? 'Web3Lens could not be reached. Check your connection.';
+        setBalances((b) => ({ ...b, ...Object.fromEntries(part.map((q) => [q, { status: 'error', error: res.status === 429 ? 'Daily limit reached' : 'Unavailable' } as Balance])) }));
+        if (res.status === 429 || res.status === 413) setLimitNote(error);
+        else setNotice(error);
+        break;
+      }
+      setBalances((b) => {
+        const next = { ...b };
+        for (const r of body!.results!) {
+          if (!r.result) {
+            next[r.address] = { status: 'error', error: r.error ?? 'Unavailable' };
+            continue;
+          }
+          const ok = r.result.rows.filter((x) => x.status === 'ok');
+          next[r.address] = {
+            status: 'ok',
+            active: ok.filter((x) => x.balanceWei !== '0' || (x.nonce ?? 0) > 0).length,
+            usd: ok.reduce((n, x) => n + (x.usd ?? 0), 0),
+            unavailable: r.result.rows.length - ok.length,
+          };
+        }
+        return next;
+      });
+    }
     setRunning(false);
+  }
+
+  function exportJson() {
+    const data = {
+      app: 'web3lens',
+      kind: 'batch',
+      exportedAt: new Date().toISOString(),
+      rows: rows.map((r) => {
+        const d = r.detection;
+        const b = d ? balances[d.normalized] : undefined;
+        return {
+          input: r.input,
+          normalized: d?.normalized ?? null,
+          type: d?.label ?? null,
+          checksum: d?.checksum ?? null,
+          chains: d?.chains ?? [],
+          ofacListed: r.sanctions ? r.sanctions.listed : null,
+          label: d ? (labelFor(saved, d.normalized, null)?.label ?? null) : null,
+          evmBalances: b?.status === 'ok' ? { chainsActive: b.active, nativeUsdApprox: Number(b.usd.toFixed(2)), chainsUnavailable: b.unavailable } : null,
+        };
+      }),
+    };
+    downloadText(`web3lens-batch-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(data, null, 2), 'application/json');
   }
 
   function exportCsv() {
@@ -103,13 +153,14 @@ export function BatchSearch() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setParsed(parseBatch(text));
+            setParsed(parseBatch(text, limits.batch));
+            setLimitNote(null);
             setBalances({});
             setNotice(null);
           }}
         >
           <label htmlFor="batch-input" className="mb-1.5 block text-sm font-bold text-muted">
-            Addresses, hashes or names: one per line, or separated by commas or spaces (up to {BATCH_MAX})
+            Addresses, hashes or names: one per line, or separated by commas or spaces (up to {limits.batch.toLocaleString('en-US')})
           </label>
           <textarea id="batch-input" className={`${textareaCls} min-h-44`} value={text} onChange={(e) => setText(e.target.value)} spellCheck={false} placeholder={'0x…\nbc1…\nvitalik.eth'} />
           <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -120,7 +171,7 @@ export function BatchSearch() {
               <>
                 {evm.length > 0 && (
                   <button type="button" className={ghostBtnCls} onClick={fetchBalances} disabled={running}>
-                    {running ? 'Fetching…' : `Fetch EVM balances (${evm.length})`}
+                    {running ? 'Fetching…' : `Fetch EVM balances (${Math.min(evm.length, limits.batchBalances)})`}
                   </button>
                 )}
                 <button type="button" className={ghostBtnCls} onClick={exportCsv}>
@@ -128,10 +179,27 @@ export function BatchSearch() {
                 </button>
                 <button
                   type="button"
+                  className={`${ghostBtnCls} disabled:opacity-60`}
+                  onClick={exportJson}
+                  disabled={!canUse('jsonExport', plan)}
+                  title={canUse('jsonExport', plan) ? undefined : 'JSON export is part of Pro'}
+                >
+                  Export JSON {!canUse('jsonExport', plan) && <ProTag />}
+                </button>
+                <button
+                  type="button"
                   className={ghostBtnCls}
                   onClick={() => {
-                    for (const r of rows) if (r.detection && r.detection.kind !== 'secret') upsertSaved({ query: r.detection.normalized, chainId: null });
-                    setNotice(`Saved ${rows.filter((r) => r.detection && r.detection.kind !== 'secret').length} items to this browser.`);
+                    let added = 0;
+                    let refused = 0;
+                    for (const r of rows) {
+                      if (!r.detection || r.detection.kind === 'secret') continue;
+                      const result = upsertSaved({ query: r.detection.normalized, chainId: null });
+                      if (result === 'limit') refused++;
+                      else added++;
+                    }
+                    setNotice(`Saved ${added} items${pro ? '' : ' to this browser'}.`);
+                    if (refused) setLimitNote(`${refused} weren't saved: your plan keeps up to ${limits.savedLocal.toLocaleString('en-US')} saved items.`);
                   }}
                 >
                   Save all
@@ -143,7 +211,22 @@ export function BatchSearch() {
             )}
           </div>
           {notice && <p className="mt-3 text-sm font-semibold text-accent">{notice}</p>}
-          {parsed && parsed.truncated > 0 && <p className="mt-3 text-sm font-semibold text-redline">{parsed.truncated} more were left out (limit {BATCH_MAX}).</p>}
+          {parsed && parsed.truncated > 0 && (
+            <p className="mt-3 text-sm font-semibold text-redline">
+              {parsed.truncated} more were left out (limit {limits.batch.toLocaleString('en-US')} per batch).
+            </p>
+          )}
+          {usage && (
+            <p className="mt-3 text-xs font-semibold text-faint">
+              Cross-chain balance lookups today: {usage.used.toLocaleString('en-US')} of {usage.limit.toLocaleString('en-US')} (resets 00:00 UTC){signedIn ? '' : ', counted per connection without an account'}.
+            </p>
+          )}
+          {!pro && (limitNote || (parsed && parsed.truncated > 0)) && (
+            <ProNote className="mt-2">
+              {limitNote ?? ''} Pro checks batches of {LIMITS_PRO.batch.toLocaleString('en-US')} values with balances for all of them, {LIMITS_PRO.crossChainPerDay.toLocaleString('en-US')} lookups a day.
+            </ProNote>
+          )}
+          {pro && limitNote && <p className="mt-2 text-sm font-semibold text-redline">{limitNote}</p>}
         </form>
       </Panel>
 

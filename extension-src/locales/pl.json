@@ -511,7 +511,7 @@
     "batch": "Zbiorczo",
     "moreTools": "Więcej narzędzi",
     "batchSearch": "Wyszukiwanie zbiorcze",
-    "batchSearchBody": "Sprawdź do 50 adresów naraz, eksport do CSV",
+    "batchSearchBody": "Sprawdź całą listę adresów naraz, eksport do CSV",
     "devToolsBody": "Jednostki, sumy kontrolne, dekodery, znaczniki czasu",
     "savedBody": "Twoje etykiety i notatki, prywatnie w tej przeglądarce",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Zaimportowano elementy: {count}.",
     "importFailed": "Import nie powiódł się: {error}",
     "title": "Twoje etykiety i notatki",
-    "intro": "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Nic nie jest synchronizowane.",
+    "intro": "Etykiety i notatki zostają w tej przeglądarce (pamięć rozszerzenia). Z Pro synchronizują się też z Twoim kontem.",
     "exportJson": "Eksportuj JSON",
     "importJson": "Importuj JSON",
     "selectFirst": "Najpierw zaznacz elementy.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Prawidłowy adres bech32 dla „{hrp}”, sieci, której Web3Lens jeszcze nie obsługuje.",
       "versionByte": "Bajt wersji {byte} nie jest rozpoznawany przez Web3Lens."
     }
+  },
+  "account": {
+    "title": "Konto",
+    "signedOutBody": "Opcjonalne. Zaloguj się, aby zobaczyć tutaj swój plan Web3Lens. Rozszerzenie działa w pełni bez konta.",
+    "signIn": "Zaloguj się przez Google",
+    "pendingBody": "Zatwierdź ten kod na web3lens.com, a potem wróć tutaj:",
+    "reopen": "Otwórz stronę zatwierdzania",
+    "cancel": "Anuluj",
+    "waiting": "Czekam na zatwierdzenie…",
+    "signedInAs": "Zalogowano jako {email}",
+    "planFree": "Darmowy",
+    "planPro": "Pro",
+    "planLifetime": "Pro na zawsze",
+    "manage": "Zarządzaj kontem",
+    "refresh": "Odśwież plan",
+    "signOut": "Wyloguj się",
+    "offline": "Nie można połączyć się z web3lens.com. Pokazuję plan według stanu z {date}.",
+    "networkOff": "Wyszukiwanie online jest wyłączone, więc konto jest wstrzymane. Włącz je w sekcji Prywatność, aby się zalogować.",
+    "expired": "Sesja wygasła. Zaloguj się ponownie.",
+    "error": "Logowanie nie powiodło się. Spróbuj ponownie za chwilę.",
+    "consentNeeded": "Logowanie wymaga Twojej zgody na udostępnienie danych logowania i e-maila serwisowi web3lens.com. Wszystko inne działa bez niej."
+  },
+  "pro": {
+    "upgradeBatch": "Pro sprawdza partie {max} wartości wraz z saldami wszystkich.",
+    "seePro": "Zobacz Pro na web3lens.com",
+    "usage": "Dzisiejsze wyszukiwania sald między łańcuchami: {used} z {limit}.",
+    "balancesCapped": "W Twoim planie sprawdzane są salda pierwszych {max} adresów EVM.",
+    "dailyLimitShort": "Osiągnięto dzienny limit",
+    "dailyLimit": "Wykorzystano dzisiejsze {limit} wyszukiwań sald między łańcuchami. Limit odnawia się o 00:00 UTC.",
+    "proOnly": "Funkcja Pro",
+    "exportJson": "Eksportuj JSON",
+    "savedFull": "{count} nie zapisano: Twój plan przechowuje do {max} elementów.",
+    "syncOn": "Synchronizacja w chmurze jest włączona.",
+    "syncedAt": "Ostatnia synchronizacja: {date}.",
+    "syncFailed": "Synchronizacja nie powiodła się. Zapisane elementy są bezpieczne w rozszerzeniu.",
+    "syncNow": "Synchronizuj teraz",
+    "syncing": "Synchronizowanie…",
+    "savedCapNote": "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
+  },
+  "watch": {
+    "watch": "Obserwuj",
+    "watching": "Obserwowany",
+    "failed": "Nie udało się zaktualizować listy obserwowanych. Spróbuj ponownie."
   }
 }

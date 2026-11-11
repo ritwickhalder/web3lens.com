@@ -16,6 +16,7 @@ import { clear, ext_link, h } from './dom';
 import { applyLanguage, detectLabel, t, tx, type MessageKey } from './i18n';
 import { browserLanguages, LOCALES, localeName, matchLocale, type LanguagePref } from './locales';
 import { scanPageForCandidates } from './scan';
+import { refreshAlertBadge } from './watches';
 import { clearRecent, load, onStorageChange, setPrefs, setSettings, upsertSaved, type ExtSettings } from './store';
 import { brand, glyph, heroIllustration, icon, iconButton, spot, TOOL_ICONS, type IconName } from './ui';
 import { errorText, failMessage, loading, note } from './views/common';
@@ -694,3 +695,7 @@ onStorageChange(async () => {
 });
 
 void render();
+// Unread watchlist alerts on the toolbar icon (Pro; at most every 5 minutes).
+void load().then(({ settings }) => {
+  if (settings.network) refreshAlertBadge().catch(() => {});
+});

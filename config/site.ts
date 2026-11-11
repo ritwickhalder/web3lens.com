@@ -88,6 +88,9 @@ export const INFO_LINKS: NavLink[] = [
   { label: 'About', href: '/about' },
 ];
 
+/** Pro is on sale on this deployment (Paddle's client token is set at build time). Until then /pricing is noindex. */
+export const PRO_ON_SALE = !!process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
+
 /** Internal pages, in sitemap order. Shared by the HTML sitemap and app/sitemap.ts. */
 export const PAGES = [
   { label: 'Index/Home Page', href: '/' },
@@ -103,6 +106,7 @@ export const PAGES = [
   { label: 'Calldata and ABI Decoder', href: '/tools/abi-decoder' },
   { label: 'Raw Transaction Decoder', href: '/tools/transaction-decoder' },
   { label: 'Batch Address Search', href: '/batch' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Browser Extension', href: '/extension' },
   { label: 'Saved Addresses', href: '/saved' },
   { label: 'Settings', href: '/settings' },

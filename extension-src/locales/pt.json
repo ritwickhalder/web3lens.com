@@ -511,7 +511,7 @@
     "batch": "Lote",
     "moreTools": "Mais ferramentas",
     "batchSearch": "Pesquisa em lote",
-    "batchSearchBody": "Verifique até 50 endereços de uma vez e exporte CSV",
+    "batchSearchBody": "Verifique uma lista inteira de endereços de uma vez e exporte CSV",
     "devToolsBody": "Unidades, checksums, decodificadores, timestamps",
     "savedBody": "Seus rótulos e notas, privados neste navegador",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "Itens importados: {count}.",
     "importFailed": "Falha na importação: {error}",
     "title": "Seus rótulos e notas",
-    "intro": "Rótulos e notas ficam neste navegador (armazenamento da extensão). Nada é sincronizado.",
+    "intro": "Rótulos e notas ficam neste navegador (armazenamento da extensão). Com o Pro, também são sincronizados com sua conta.",
     "exportJson": "Exportar JSON",
     "importJson": "Importar JSON",
     "selectFirst": "Selecione itens primeiro.",
@@ -590,5 +590,48 @@
       "bech32Unknown": "Um endereço bech32 válido para “{hrp}”, uma rede que o Web3Lens ainda não lista.",
       "versionByte": "O byte de versão {byte} não é um que o Web3Lens reconheça."
     }
+  },
+  "account": {
+    "title": "Conta",
+    "signedOutBody": "Opcional. Entre para ver aqui o seu plano Web3Lens. Tudo na extensão continua funcionando sem conta.",
+    "signIn": "Entrar com o Google",
+    "pendingBody": "Aprove este código em web3lens.com e depois volte aqui:",
+    "reopen": "Abrir a página de aprovação",
+    "cancel": "Cancelar",
+    "waiting": "Aguardando aprovação…",
+    "signedInAs": "Conectado como {email}",
+    "planFree": "Grátis",
+    "planPro": "Pro",
+    "planLifetime": "Pro vitalício",
+    "manage": "Gerenciar conta",
+    "refresh": "Atualizar plano",
+    "signOut": "Sair",
+    "offline": "Não foi possível acessar web3lens.com. Mostrando seu plano em {date}.",
+    "networkOff": "As consultas online estão desativadas, então a conta está pausada. Ative-as em Privacidade para entrar.",
+    "expired": "Sua sessão expirou. Entre novamente.",
+    "error": "Não foi possível entrar. Tente de novo em instantes.",
+    "consentNeeded": "Para entrar, é preciso consentir em compartilhar seu login e e-mail com web3lens.com. Todo o resto funciona sem isso."
+  },
+  "pro": {
+    "upgradeBatch": "O Pro verifica lotes de {max} valores com saldos de todos.",
+    "seePro": "Ver o Pro em web3lens.com",
+    "usage": "Consultas de saldo entre cadeias hoje: {used} de {limit}.",
+    "balancesCapped": "No seu plano, os saldos são verificados para os primeiros {max} endereços EVM.",
+    "dailyLimitShort": "Limite diário atingido",
+    "dailyLimit": "Você usou as {limit} consultas de saldo entre cadeias de hoje. Elas reiniciam às 00:00 UTC.",
+    "proOnly": "Recurso Pro",
+    "exportJson": "Exportar JSON",
+    "savedFull": "{count} não foram salvos: seu plano guarda até {max} itens.",
+    "syncOn": "A sincronização na nuvem está ativada.",
+    "syncedAt": "Última sincronização: {date}.",
+    "syncFailed": "A sincronização falhou. Seus itens salvos estão seguros na extensão.",
+    "syncNow": "Sincronizar agora",
+    "syncing": "Sincronizando…",
+    "savedCapNote": "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
+  },
+  "watch": {
+    "watch": "Acompanhar",
+    "watching": "Acompanhando",
+    "failed": "Não foi possível atualizar a lista de acompanhamento. Tente de novo."
   }
 }

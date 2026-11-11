@@ -511,7 +511,7 @@
     "batch": "批量",
     "moreTools": "更多工具",
     "batchSearch": "批量搜索",
-    "batchSearchBody": "一次检查最多 50 个地址，并导出 CSV",
+    "batchSearchBody": "一次检查整份地址列表，并导出 CSV",
     "devToolsBody": "单位、校验和、解码器、时间戳",
     "savedBody": "你的标签和备注，仅保存在此浏览器中",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "已导入 {count} 项。",
     "importFailed": "导入失败：{error}",
     "title": "你的标签和备注",
-    "intro": "标签和备注保存在此浏览器中（扩展存储），不会同步。",
+    "intro": "标签和备注保存在此浏览器（扩展存储）中。使用 Pro 时也会同步到你的账户。",
     "exportJson": "导出 JSON",
     "importJson": "导入 JSON",
     "selectFirst": "请先选择项目。",
@@ -590,5 +590,48 @@
       "bech32Unknown": "这是“{hrp}”的有效 bech32 地址，但 Web3Lens 尚未收录该网络。",
       "versionByte": "Web3Lens 无法识别版本字节 {byte}。"
     }
+  },
+  "account": {
+    "title": "账户",
+    "signedOutBody": "可选。登录后可在此查看你的 Web3Lens 套餐。不登录也能使用扩展的全部功能。",
+    "signIn": "使用 Google 登录",
+    "pendingBody": "请在 web3lens.com 上批准此代码，然后回到这里：",
+    "reopen": "打开批准页面",
+    "cancel": "取消",
+    "waiting": "正在等待批准…",
+    "signedInAs": "已登录：{email}",
+    "planFree": "免费",
+    "planPro": "Pro",
+    "planLifetime": "终身 Pro",
+    "manage": "管理账户",
+    "refresh": "刷新套餐",
+    "signOut": "退出登录",
+    "offline": "无法连接 web3lens.com。显示的是截至 {date} 的套餐。",
+    "networkOff": "在线查询已关闭，账户已暂停。请在隐私设置中开启后再登录。",
+    "expired": "登录已过期，请重新登录。",
+    "error": "登录失败，请稍后再试。",
+    "consentNeeded": "登录需要你同意与 web3lens.com 共享登录信息和邮箱。其他功能无需同意也能正常使用。"
+  },
+  "pro": {
+    "upgradeBatch": "Pro 可一次检查 {max} 个值，并查询全部余额。",
+    "seePro": "在 web3lens.com 查看 Pro",
+    "usage": "今日跨链余额查询：{used} / {limit}。",
+    "balancesCapped": "你的套餐会检查前 {max} 个 EVM 地址的余额。",
+    "dailyLimitShort": "已达每日上限",
+    "dailyLimit": "你已用完今日的 {limit} 次跨链余额查询，将于 00:00 UTC 重置。",
+    "proOnly": "Pro 功能",
+    "exportJson": "导出 JSON",
+    "savedFull": "{count} 项未保存：你的套餐最多保存 {max} 项。",
+    "syncOn": "云同步已开启。",
+    "syncedAt": "上次同步：{date}。",
+    "syncFailed": "同步失败。你保存的项目仍安全地保存在扩展中。",
+    "syncNow": "立即同步",
+    "syncing": "正在同步…",
+    "savedCapNote": "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
+  },
+  "watch": {
+    "watch": "关注",
+    "watching": "已关注",
+    "failed": "无法更新关注列表，请重试。"
   }
 }

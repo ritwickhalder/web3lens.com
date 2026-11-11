@@ -45,6 +45,24 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 - Shared, browser-safe logic (detection, codecs, ABI, tools, batch, saved/prefs shapes) stays free of Node and
   React so the extensions bundle the same files.
 
+## Accounts and Pro
+
+- Optional Google sign-in (Better Auth), Neon Postgres (Drizzle, `lib/db/schema.ts`, SQL in `drizzle/`), Paddle Billing.
+  Read [docs/ACCOUNTS.md](docs/ACCOUNTS.md) before touching them. Everything must keep working signed out and without
+  the env vars (routes answer 503, the UI hides sign-in).
+- Limits live only in `lib/entitlements.ts`; the plan is resolved on the server per request (`lib/server/session.ts`,
+  `membership.ts`) and quotas are taken with one conditional upsert (`consumeQuota`). Never trust a client's plan.
+- Every user query filters by the session's user id. Never store wallet secrets (tested). Schema change:
+  edit `schema.ts`, `npm run db:generate`, commit the SQL, `npm run db:migrate` against Neon before deploying.
+- `scripts/test/accounts.test.ts` and `pro.test.ts` run migrations, webhooks, quotas, sessions, sync, collections,
+  investigations and API keys on PGlite (in process).
+- Saved items: the plan cap applies only when adding (`applyUpsert`); never trim or hide existing items. Sync uses the
+  shared merge in `lib/saved-sync.ts` (newest change wins, user deletions as tombstones, a failed pull writes nothing).
+- Until Paddle is configured, Free gets `PRE_LAUNCH_LIMITS` (the pre-Pro limits). Open work: [TODO.md](TODO.md).
+- Watchlist checks (`lib/server/watch*.ts`, cron `app/api/cron/watches`, `CRON_SECRET`): a provider error is never an
+  alert; downgrades pause watches, never delete them. `/admin` is for `ADMIN_EMAILS` only (404 otherwise) and every
+  admin action is written to `admin_actions`. Keep `vercel.json`'s cron daily unless the Vercel plan allows more.
+
 ## Browser extensions
 
 - Source in `extension-src/`; `npm run ext:build` writes `extension-chrome/`, `extension-firefox/`, `extension-edge/`.

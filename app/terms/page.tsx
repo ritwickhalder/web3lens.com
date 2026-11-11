@@ -53,7 +53,27 @@ export default function TermsPage() {
         some or all of the above disclaimers, exclusions, or limitations may not apply to you, and you might have
         additional rights.
       </InfoSection>
-      <InfoSection index={5} heading="Your Feedback">
+      <InfoSection index={5} heading="Accounts and Pro" id="pro">
+        An account is optional; everything that does not need one stays available without it. If you sign in with
+        Google you are responsible for activity on your account and for keeping your devices and API keys secure. Pro is
+        offered as a monthly or yearly subscription that renews automatically until you cancel, or as a one-time lifetime
+        purchase, and may be tried free for 7 days once per account. Payments are processed by Paddle.com, our merchant
+        of record, which also handles tax, invoices and refunds under its own buyer terms. You can cancel a subscription
+        at any time from Manage billing on your account page; Pro stays active until the end of the period already paid,
+        and it does not renew after that. Refunds are handled by Paddle; a refunded or charged-back payment ends the Pro
+        access it paid for. If Pro ends for any reason, nothing you stored is deleted: saved items stay in your browser,
+        your cloud copy stays readable, and watches pause until Pro is active again. Plan limits and features are
+        described on the <Link href="/pricing">pricing page</Link> and may change; a change that reduces a paid plan
+        applies from your next billing period. We may suspend accounts used for abuse, fraud or attacks on the service.
+      </InfoSection>
+      <InfoSection index={6} heading="API keys and fair use">
+        API keys are personal to your account and must not be shared, published or resold. Keyed requests count against
+        your account's daily quota; requests without a key share a per-connection limit. Automated scraping of the
+        website's pages, attempts to bypass limits (for example by rotating keys, accounts or addresses) and use that
+        harms the free public data sources Web3Lens relies on are not allowed and may lead to revoked keys or a
+        suspended account. Data from the API is provided as is, with its source and time, and is not financial advice.
+      </InfoSection>
+      <InfoSection index={7} heading="Your Feedback">
         If you have any questions or suggestions regarding terms of use, please feel free to contact us at our{' '}
         <Link href="/contact">'contact us'</Link> page to let us know anything you wish to convey and we'll get back to
         you as soon as possible. Thank you.

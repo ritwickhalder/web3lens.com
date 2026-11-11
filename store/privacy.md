@@ -37,6 +37,9 @@ privacy policy (https://web3lens.com/privacy-policy, section "Browser extension"
   look up is transmitted to web3lens.com. Firefox shows this at install. If AMO reviewers consider the lookup part of
   the core function that needs no declaration, it can be changed to `["none"]`; keep the manifest and this file in
   step.
+- `data_collection_permissions.optional = ["authenticationInfo", "personallyIdentifyingInfo"]`: only if the user signs
+  in to the optional Web3Lens account (session token, email). Firefox asks for this consent when they click Sign in;
+  declining keeps everything else working.
 
 ## Decision for the owner
 

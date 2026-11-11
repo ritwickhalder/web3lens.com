@@ -511,7 +511,7 @@
     "batch": "一括",
     "moreTools": "その他のツール",
     "batchSearch": "一括検索",
-    "batchSearchBody": "最大 50 件のアドレスをまとめてチェックし、CSV で出力",
+    "batchSearchBody": "アドレスの一覧をまとめてチェックし、CSV で出力",
     "devToolsBody": "単位、チェックサム、デコーダー、タイムスタンプ",
     "savedBody": "ラベルとメモ（このブラウザ内のみ）",
     "view": {
@@ -555,7 +555,7 @@
     "imported": "{count} 件をインポートしました。",
     "importFailed": "インポートに失敗しました: {error}",
     "title": "ラベルとメモ",
-    "intro": "ラベルとメモはこのブラウザ（拡張機能ストレージ）内にとどまります。同期はされません。",
+    "intro": "ラベルとメモはこのブラウザ（拡張機能のストレージ）に保存されます。Pro ではアカウントとも同期されます。",
     "exportJson": "JSON をエクスポート",
     "importJson": "JSON をインポート",
     "selectFirst": "先に項目を選択してください。",
@@ -590,5 +590,48 @@
       "bech32Unknown": "「{hrp}」の有効な bech32 アドレスですが、Web3Lens がまだ対応していないネットワークです。",
       "versionByte": "バージョンバイト {byte} は Web3Lens が認識できないものです。"
     }
+  },
+  "account": {
+    "title": "アカウント",
+    "signedOutBody": "任意です。サインインすると、ここに Web3Lens のプランが表示されます。拡張機能はアカウントなしでもすべて使えます。",
+    "signIn": "Google でサインイン",
+    "pendingBody": "web3lens.com でこのコードを承認してから、ここに戻ってください:",
+    "reopen": "承認ページを開く",
+    "cancel": "キャンセル",
+    "waiting": "承認を待っています…",
+    "signedInAs": "{email} でサインイン中",
+    "planFree": "無料",
+    "planPro": "Pro",
+    "planLifetime": "Pro（買い切り）",
+    "manage": "アカウントを管理",
+    "refresh": "プランを更新",
+    "signOut": "サインアウト",
+    "offline": "web3lens.com に接続できません。{date} 時点のプランを表示しています。",
+    "networkOff": "オンライン検索がオフのため、アカウントは一時停止中です。サインインするにはプライバシーでオンにしてください。",
+    "expired": "サインインの有効期限が切れました。もう一度サインインしてください。",
+    "error": "サインインできませんでした。しばらくしてからもう一度お試しください。",
+    "consentNeeded": "サインインには、サインイン情報とメールアドレスを web3lens.com と共有することへの同意が必要です。それ以外の機能は同意なしでも使えます。"
+  },
+  "pro": {
+    "upgradeBatch": "Pro では {max} 件の値を一括で確認し、すべての残高を調べられます。",
+    "seePro": "web3lens.com で Pro を見る",
+    "usage": "今日のクロスチェーン残高検索: {limit} 件中 {used} 件。",
+    "balancesCapped": "現在のプランでは最初の {max} 件の EVM アドレスの残高を確認します。",
+    "dailyLimitShort": "1日の上限に達しました",
+    "dailyLimit": "今日のクロスチェーン残高検索 {limit} 件を使い切りました。00:00 UTC にリセットされます。",
+    "proOnly": "Pro 機能",
+    "exportJson": "JSON でエクスポート",
+    "savedFull": "{count} 件は保存されませんでした。現在のプランで保存できるのは {max} 件までです。",
+    "syncOn": "クラウド同期はオンです。",
+    "syncedAt": "最終同期: {date}。",
+    "syncFailed": "同期に失敗しました。保存した項目は拡張機能内に安全に残っています。",
+    "syncNow": "今すぐ同期",
+    "syncing": "同期中…",
+    "savedCapNote": "保存済みが {max} 件に達しました。既存の項目はそのまま残りますが、新しい項目を追加する余地がありません。Pro なら {pro} 件をデバイス間で同期できます。"
+  },
+  "watch": {
+    "watch": "ウォッチ",
+    "watching": "ウォッチ中",
+    "failed": "ウォッチリストを更新できませんでした。もう一度お試しください。"
   }
 }

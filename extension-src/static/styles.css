@@ -412,6 +412,7 @@ body.popup { width: 720px; height: 600px; overflow: hidden; }
 .btn-ghost { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: color-mix(in oklab, var(--fg) 88%, transparent); font: 700 13px var(--sans); cursor: pointer; transition: border-color .15s, color .15s; }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 .btn-ghost.sm { height: 30px; padding: 0 10px; font-size: 12.5px; }
+.pair-code { margin: 4px 0; font: 800 26px var(--sans); letter-spacing: 0.18em; color: var(--accent); }
 .btn-ghost .ic { width: 14px; height: 14px; }
 .linkish { display: inline-flex; align-items: center; gap: 4px; background: none; border: 0; padding: 0; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
