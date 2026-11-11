@@ -59,6 +59,9 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 - Saved items: the plan cap applies only when adding (`applyUpsert`); never trim or hide existing items. Sync uses the
   shared merge in `lib/saved-sync.ts` (newest change wins, user deletions as tombstones, a failed pull writes nothing).
 - Until Paddle is configured, Free gets `PRE_LAUNCH_LIMITS` (the pre-Pro limits). Open work: [TODO.md](TODO.md).
+- Watchlist checks (`lib/server/watch*.ts`, cron `app/api/cron/watches`, `CRON_SECRET`): a provider error is never an
+  alert; downgrades pause watches, never delete them. `/admin` is for `ADMIN_EMAILS` only (404 otherwise) and every
+  admin action is written to `admin_actions`. Keep `vercel.json`'s cron daily unless the Vercel plan allows more.
 
 ## Browser extensions
 

@@ -1,6 +1,6 @@
 # Accounts, Pro and billing
 
-Status (2026-11-10): **Phase 1 (Foundation) and Phase 2 (Monetisation) are built and tested, not live.** They need real
+Status (2026-11-11): **Phases 1 (Foundation), 2 (Monetisation) and 3 (Expansion) are built and tested, not live.** They need real
 Google, Neon and Paddle credentials and the manual checks in [TODO.md](../TODO.md). Until then the deployed site
 behaves as before: `/api/me` reports `accounts: false`, the header shows no sign-in button, the account routes answer
 503, and everyone keeps the pre-Pro limits (below).
@@ -123,6 +123,27 @@ curl -H "x-api-key: w3l_XXXXXXXX_…" "https://web3lens.com/api/v1/detect?q=vita
   429 daily limit (with `retry-after`); 503 key store unreachable.
 - Without a key nothing changes: CDN-cached answers and 60/min, 1,200/h per IP. A keyed request that the CDN answers
   from a cached keyless response isn't counted.
+
+### Phase 3: watchlist, alerts, portfolio, admin
+
+| Feature | Route(s) | Notes |
+|---|---|---|
+| Watchlist (Pro, 50) | `/api/watches`, `/api/watches/:id`, `/api/watches/check` | EVM chains with native pages, Bitcoin, Litecoin. Reads, renames, email toggle and delete work on any plan; adding and checking need Pro. |
+| Alerts | `/api/alerts` | Created by checks; kept 90 days; mark read. |
+| Cron | `GET /api/cron/watches` (`vercel.json`, daily) | `Authorization: Bearer $CRON_SECRET`; checks up to 300 due watches with a 45 s budget, emails digests, prunes alerts. |
+| Unsubscribe | `/api/watches/unsubscribe?t=` | HMAC-signed per watch (`BETTER_AUTH_SECRET`); GET or one-click POST. |
+| Portfolio (Pro) | `/portfolio` (client) | Saved EVM addresses through `/api/batch/balances` (quota counted); native coins only; unavailable chains are shown, never summed as zero. |
+| Admin | `/admin`, `/api/admin/users`, `/api/admin/users/:id` | `ADMIN_EMAILS` only, 404 otherwise; overrides, suspend (also ends sessions), sign out everywhere; every action in `admin_actions`. |
+
+How a check decides (`lib/server/watch.ts` `diffWatch`): EVM — a higher nonce is "sent", otherwise a higher balance is
+"received", any other balance move is "balance changed"; UTXO — more transactions or a balance change is activity, the
+balance direction says which. The first check records a baseline. Provider errors go to `last_error`, are retried after
+5 minutes and never create an alert. The state update is conditional on the state compared against, so overlapping
+runs (cron and Check now) can't alert twice. Watches of users without Pro are skipped and pushed back a day, never
+deleted.
+
+Extensions: watch/unwatch on address results, "Watching" badges in Saved, and the unread count on the toolbar icon
+(`action.setBadgeText`, no permission), refreshed when a view opens; no background polling (would need `alarms`).
 
 ### Quotas
 

@@ -154,7 +154,9 @@ Three releases (plan in [docs/ACCOUNTS.md](docs/ACCOUNTS.md)):
 2. **Monetisation** — built 2026-11-10, not live: batch limits (Free 10 / Pro 500), server-enforced batch balances
    (5 / 500 rows, 10 / 500 lookups a day), cloud sync of saved addresses (Pro 2,000) in the website and extensions,
    collections, cloud investigations (100), JSON export, API keys (1,000/day), `/pricing`, inline upgrade notes.
-3. **Expansion** — later: wallet monitoring, activity alerts, portfolio analysis.
+3. **Expansion** — built 2026-11-11, not live: watchlist (Pro, 50 addresses) with activity alerts and email digests
+   (daily Vercel cron), Watch button and badges in the website and extensions, portfolio view of saved EVM addresses,
+   admin UI. Approval scans on every EVM chain still need a paid log index (owner decision, TODO.md).
 
 Decided November 2026: build after accounts (Phase 4). Rule: safety stays free for everyone — detection,
 checksums, risk checks, sanctions, explorer routing, the developer tools and the extensions' core features.

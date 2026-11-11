@@ -1,85 +1,103 @@
-# Web3Lens Pro — TODO
+# Web3Lens Pro — what's left
 
-Single list of what's left for accounts and Pro. Architecture and rules: [docs/ACCOUNTS.md](docs/ACCOUNTS.md).
-Tick items as they land; keep this file in the same commit as the work.
+All code for the three Pro phases is written, tested and pushed (branch `claude/exciting-carson-gr78b9`). Everything is
+**dormant** until you complete section 1: without the env vars the site behaves exactly as before (no sign-in, the
+pre-Pro limits, `/pricing` hidden from the nav and search engines). Architecture and rules: [docs/ACCOUNTS.md](docs/ACCOUNTS.md).
 
-## 1. Launch steps (need the owner's accounts)
+## 1. Your steps (need your accounts or a decision)
 
-- [ ] **Neon**: create the project, set `DATABASE_URL` (Vercel Production + Preview), run `npm run db:migrate`.
-- [ ] **Google OAuth**: Web client, redirect URI `https://web3lens.com/api/auth/callback/google`; set `GOOGLE_CLIENT_ID`,
-      `GOOGLE_CLIENT_SECRET`, `BETTER_AUTH_SECRET` (`openssl rand -base64 32`), `BETTER_AUTH_URL=https://web3lens.com`.
-- [ ] **Paddle**: Web3Lens product with monthly, yearly and lifetime prices; client-side token; notification destination
-      `https://web3lens.com/api/webhooks/paddle` (`subscription.*`, `transaction.completed`, `adjustment.created`,
-      `adjustment.updated`); approve web3lens.com as a checkout domain; set `PADDLE_WEBHOOK_SECRET`,
-      `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, `NEXT_PUBLIC_PADDLE_ENV`, `NEXT_PUBLIC_PADDLE_PRICE_{MONTHLY,YEARLY,LIFETIME}`.
-- [ ] Add the Web3Lens prices to the shared Paddle catalog (`docs/paddle-catalog.md` + `lib/paddle-catalog.ts` in
-      WebInternetArchive) so the other sites label them.
-- [ ] **Firefox AMO**: decide whether the optional account needs `data_collection_permissions` (authentication info,
-      email) declared as optional and requested at sign-in. Manifests are unchanged so far.
-- [ ] Store listings and `/extension` copy: mention the optional account and Pro before publishing the extension update.
-- [ ] `/terms`: subscription, cancellation and refund terms (Paddle is merchant of record). `/pricing` links to it.
-- [ ] At launch, update copy that still says "up to 50" for batch search (it becomes Free 10 / Pro 500): `app/batch/page.tsx`
-      metadata, `app/tools/page.tsx`, `components/blog/ArticleCta.tsx`, and the blog posts
-      `bulk-blockchain-search-csv-export`, `identify-blockchain-addresses-and-transaction-hashes`,
-      `web3lens-developer-tools-guide`, `verify-crypto-wallet-address-checksums`; and FEATURES.md.
-- [ ] At launch: optionally add Product/Offer structured data to `/pricing` once real prices exist (left out so no
-      prices are invented).
+Do these in order; each says where.
 
-## 2. Live verification (nothing here has run against live services yet)
+### Database (Neon)
+- [ ] Create a Neon project. Put its pooled connection string in Vercel as `DATABASE_URL` (Production and Preview).
+- [ ] Run the migrations once, from your machine: `DATABASE_URL="…" npm run db:migrate` (applies `drizzle/0000`–`0002`).
+      Run it again whenever a new file appears in `drizzle/`, before deploying.
 
-- [ ] Migrations applied to Neon; requests work over the Neon HTTP driver (tests use PGlite).
-- [ ] Real Google sign-in: popup flow, blocked-popup redirect, sign-out, revoking another session.
-- [ ] Paddle sandbox: monthly, yearly, lifetime checkouts; scheduled and immediate cancel; failed payment → past_due;
-      full refund of a lifetime and of a subscription charge; webhook retry. Compare real payload fields with
-      `lib/server/paddle.ts`.
-- [ ] Extension pairing on Chrome, Edge and Firefox against production (store ids in CORS).
-- [ ] API key against production: headers, 1,000/day, revoke.
-- [ ] Cloud sync between the website and an extension on two devices (edit, delete, offline then online).
-- [ ] Paddle `PricePreview` shows localised prices on `/pricing`; checkout opens from `/pricing` and `/account`.
+### Google sign-in
+- [ ] Google Cloud Console → OAuth client (Web application). Authorised redirect URI:
+      `https://web3lens.com/api/auth/callback/google` (add the preview URL too if you want sign-in on previews).
+- [ ] Vercel env: `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `BETTER_AUTH_SECRET` (`openssl rand -base64 32`),
+      `BETTER_AUTH_URL=https://web3lens.com`.
 
-## 3. Phase 1 — Foundation ✅ (2026-11-10, code + tests, not live)
+### Paddle (turning this on is what launches Pro and the Free limits)
+- [ ] Create a Web3Lens product with three prices: monthly, yearly, lifetime (one-time). Choose the amounts.
+- [ ] Client-side token; approve `web3lens.com` as a checkout domain.
+- [ ] Notification destination `https://web3lens.com/api/webhooks/paddle` with `subscription.*`,
+      `transaction.completed`, `adjustment.created`, `adjustment.updated`.
+- [ ] Vercel env: `PADDLE_WEBHOOK_SECRET`, `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN`, `NEXT_PUBLIC_PADDLE_ENV`
+      (`sandbox` first, then `production`), `NEXT_PUBLIC_PADDLE_PRICE_MONTHLY`, `…_YEARLY`, `…_LIFETIME`. Redeploy
+      (the `NEXT_PUBLIC_` ones are read at build time).
+- [ ] Add the three price ids to the shared catalog in WebInternetArchive (`docs/paddle-catalog.md`,
+      `lib/paddle-catalog.ts`) so your other sites' webhooks label them.
 
-- [x] Google sign-in (Better Auth), Neon schema + migration, sessions and expiry.
-- [x] Paddle webhooks (verified, idempotent, order-safe, refunds), monthly/yearly/lifetime, 7-day trial.
-- [x] Central entitlements (`lib/entitlements.ts`), atomic daily quotas.
-- [x] `/account`, header account button, extension sign-in by pairing code.
+### Watchlist, emails and admin
+- [ ] Vercel env: `CRON_SECRET` (any long random string; Vercel Cron sends it automatically).
+- [ ] The cron in `vercel.json` runs **daily** at 06:00 UTC because Vercel Hobby allows only daily crons. On a Vercel
+      Pro plan, change the schedule to hourly (`0 * * * *`) for faster alerts.
+- [ ] Alert emails use the existing SMTP settings (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`). Use a sender
+      address with SPF/DKIM set up for web3lens.com so alerts don't land in spam.
+- [ ] Vercel env: `ADMIN_EMAILS=you@…` (comma-separated Google emails) to open `/admin`.
 
-## 4. Phase 2 — Monetisation ✅ (2026-11-10, code + tests, not live)
+### Legal and store listings
+- [ ] Review the new sections in `/terms` ("Accounts and Pro", "API keys and fair use") and the privacy policy's
+      "Optional account and payments" section. I wrote them carefully, but they are not legal advice.
+- [ ] When you publish the extension update: copy the text in `store/pro-launch.md` into the three store listings and
+      privacy forms (Chrome, Edge, Firefox), and refresh screenshots (`node scripts/make-store-assets.mjs`).
+- [ ] Firefox AMO: the add-on now declares the account's data (sign-in, email) as **optional** data collection and asks
+      at sign-in (`web-ext lint` passes). Confirm AMO accepts it on submission.
 
-- [x] Migration `0001`: saved_items, collections, collection_items, investigations, api_keys.
-- [x] Batch: Free 10 / Pro 500 values (UI cap; detection runs in the browser).
-- [x] Batch balances via `POST /api/batch/balances`: Free 5 rows, Pro 500; daily cross-chain quota (Free 10, Pro 500,
-      anonymous metered per hashed IP).
-- [x] Saved addresses: Free 50 / Pro 2,000 local cap on add (existing items never hidden); Pro cloud sync (website and
-      extensions).
-- [x] Collections (Pro).
-- [x] Cloud investigations (Pro, 100).
-- [x] JSON export of batch and investigation results (Pro); CSV stays free; saved-items backup stays free.
-- [x] API keys (Pro, 5 keys, 1,000 requests/day) on `/api/v1`.
-- [x] `/pricing` page; inline upgrade notes; usage on `/account`.
-- [x] Extension parity (batch caps, balances endpoint, saved cap, sync, strings in 15 languages).
-- [x] Docs: FEATURES, ROADMAP, ACCOUNTS, CLAUDE.md.
+### Decisions only you can make
+- [ ] **Approval scans on every EVM chain** need a paid log index (e.g. a commercial RPC with `eth_getLogs` over full
+      history, or an indexer API). Free sources cover only some chains today. Pick a provider and budget; then it's a
+      provider adapter in `lib/providers/` plus an env key.
+- [ ] **Pricing structured data** (Product/Offer on `/pricing`) once real prices exist. I left it out so no prices are
+      invented. Optional for SEO.
+- [ ] Review the defaults I chose beyond your table: watchlist 50 addresses, collections 20, API keys 5 per user, trial
+      7 days once per email. All in `lib/entitlements.ts` / `lib/server/pro-stores.ts`.
 
-## 5. Phase 3 — Expansion (not started)
+## 2. Live checks after section 1 (nothing has run against live services yet)
 
-- [ ] Wallet monitoring: watches on saved addresses (Pro).
-- [ ] Activity alerts: Vercel cron + email (and extension badge) when a watched address moves.
-- [ ] Portfolio analysis: combined value across chains for saved addresses.
-- [ ] Watchlist badges in the extension.
-- [ ] Admin UI for plan overrides and suspensions (today: SQL on `user_profiles`).
-- [ ] Approval scans on every EVM chain (needs a paid log index).
+- [ ] Neon: the site reads and writes through the Neon HTTP driver (tests use an in-process Postgres).
+- [ ] Google: sign in by popup, sign in with the popup blocked (redirect), sign out, sign out another device on
+      `/account`.
+- [ ] Paddle sandbox: buy monthly, yearly and lifetime; cancel at period end and immediately; a failed renewal
+      (past_due); refund a lifetime and a subscription charge; check `/account` updates each time. Compare real webhook
+      payloads with `lib/server/paddle.ts` (written from Paddle's docs).
+- [ ] `/pricing` shows localised prices; checkout opens from `/pricing` and `/account`; the 7-day trial starts.
+- [ ] Extensions (Chrome, Edge, Firefox): sign in with the code, plan shows in Settings, sign out; sync saved items with
+      the website both ways (edit, delete, offline then online); Watch an address; the toolbar badge shows unread alerts.
+- [ ] API key: create on `/account`, call `curl -H "x-api-key: …" https://web3lens.com/api/v1/detect?q=vitalik.eth`,
+      check the `x-ratelimit-*` headers, revoke it.
+- [ ] Watchlist: watch an address you control, move a small amount, wait for the cron (or Check now), get the email,
+      use its unsubscribe link.
+- [ ] `/admin`: find your test user, grant Pro until a date, suspend and unsuspend.
 
-## 6. Known limitations
+## 3. Done (code and tests)
 
-- Per-IP limits in `lib/server/rate-limit.ts` / `limiters.ts` are per serverless instance; money-relevant quotas are in
-  Postgres and exact.
-- Batch value caps and the local saved-items cap are enforced in the browser (the work happens there); server-side
-  limits cover balances, cloud data and the API.
-- Paddle can't refuse a checkout: `/api/billing/prepare` blocks a second subscription, but a hand-made checkout could
-  still create one (recorded, never double-granted).
+- [x] **Phase 1 — Foundation**: Google sign-in (Better Auth), Neon schema and migrations, Paddle monthly/yearly/lifetime
+      with verified idempotent webhooks and refunds, 7-day trial, central entitlements, daily quotas, `/account`,
+      extension sign-in by pairing code.
+- [x] **Phase 2 — Monetisation**: batch limits, server-enforced batch balances and daily cross-chain quota, local saved
+      cap (never trims), cloud sync (website and extensions), collections, cloud investigations, JSON export, API keys,
+      `/pricing`, inline upgrade notes, pre-launch limits.
+- [x] **Phase 3 — Expansion**: watchlist with activity alerts and email digests (daily cron, Check now, one-click
+      unsubscribe), Watch button and badges (website and extensions), portfolio view, admin UI with audit log.
+- [x] Launch prep: batch copy without hard-coded numbers, Pro terms, Firefox optional data-collection consent, store
+      copy draft (`store/pro-launch.md`).
+
+## 4. Known limitations
+
+- Per-IP limits (`lib/server/rate-limit.ts`, `limiters.ts`, Check now) are per serverless instance; the limits that
+  cost money (daily quotas, caps) are in Postgres and exact.
+- Batch value caps, the local saved-items cap and JSON export are enforced in the browser (where that work happens).
+- Paddle can't refuse a checkout: a hand-made second subscription is recorded and shown, never double-granted.
 - Moving from a subscription to lifetime doesn't cancel the subscription automatically.
-- An offline extension shows a cached plan for up to 7 days; the server never grants Pro limits from that cache.
+- An offline extension shows a cached plan for up to 7 days; the server never grants Pro limits from it.
 - Two devices pushing at the same moment can exceed the 2,000 cloud cap by at most one batch.
-- A keyed `/api/v1` request answered by the CDN from a cached keyless response isn't counted against the key.
-- `/api/v1/multichain` stays open per IP (it powers every address page), so batch balance limits apply to the batch
-  feature, not to someone scripting the single-address API within the shared IP budget.
+- A keyed `/api/v1` request answered by the CDN from a cached keyless response isn't counted.
+- `/api/v1/multichain` stays open per IP (it powers every address page).
+- Watch alerts compare transaction count and native balance only: token-only transfers aren't detected, and with a
+  daily cron an alert can be up to a day late (hourly on Vercel Pro).
+- The extension's alert badge updates when you open it (no background polling, which would need a new permission).
+- The extension smoke test's live lookup check (`scripts/smoke-extension.mjs`) sometimes times out against production;
+  rerun it.

@@ -64,7 +64,8 @@ export default function PrivacyPolicyPage() {
         count usage per day (a number, not what you looked up; without an account the count is keyed by a salted hash of
         your IP address, never the address itself). With Pro, the saved addresses, labels, notes, collections and
         investigations you choose to keep in your account are stored so they reach your other devices, and API keys are
-        stored only as hashes. Deleting your account deletes all of them. We never ask for, receive or store private keys, seed phrases or any other
+        stored only as hashes. Addresses you put on your watchlist are checked against public blockchain data, and if you
+        turn on email alerts we send them to your Google email (every email has a one-click unsubscribe link). Deleting your account deletes all of them. We never ask for, receive or store private keys, seed phrases or any other
         wallet secret. Payments are handled by Paddle, our merchant of record: card details go to Paddle, never to us, and we keep only the
         subscription status Paddle reports. Signing in uses a cookie that keeps your session; it is not used for tracking. You can delete
         your account at any time from the account page.

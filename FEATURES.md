@@ -8,7 +8,7 @@ This is the **authoritative list of what Web3Lens does today**. Use it for devel
 
 ## Plans
 
-**Everything is Free.** No feature is limited by plan yet. The code for optional Google sign-in, an account page (`/account`), Paddle subscriptions, a `/pricing` page and the Free/Pro features (larger batches with server-enforced balances, cloud sync of saved addresses, collections, saved investigations, JSON export, API keys) exists (Pro phases 1–2, [docs/ACCOUNTS.md](docs/ACCOUNTS.md), [TODO.md](TODO.md)) but is **not live**. Until Paddle is configured everyone keeps today's limits (batch 50, saved 500), `/pricing` is noindex and not in the nav, and until the production environment has Neon, Google and Paddle credentials, `/api/me` reports accounts as unavailable and the header shows no sign-in button. Do not market accounts or Pro until the launch checklist in docs/ACCOUNTS.md is done. Data such as saved addresses, settings and recent searches stays in the user's browser.
+**Everything is Free.** No feature is limited by plan yet. The code for optional Google sign-in, an account page (`/account`), Paddle subscriptions, a `/pricing` page and the Free/Pro features (larger batches with server-enforced balances, cloud sync of saved addresses, collections, saved investigations, JSON export, API keys, a watchlist with activity alerts, a portfolio view, and an admin page) exists (Pro phases 1–3, [docs/ACCOUNTS.md](docs/ACCOUNTS.md), [TODO.md](TODO.md)) but is **not live**. Until Paddle is configured everyone keeps today's limits (batch 50, saved 500), `/pricing` is noindex and not in the nav, and until the production environment has Neon, Google and Paddle credentials, `/api/me` reports accounts as unavailable and the header shows no sign-in button. Do not market accounts or Pro until the launch checklist in docs/ACCOUNTS.md is done. Data such as saved addresses, settings and recent searches stays in the user's browser.
 
 ## Platforms
 
@@ -141,7 +141,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 
 ## Not in the product (do not market)
 
-- Accounts, sign-in, a paid/Pro plan, sync between devices, collections, saved investigations, JSON export or API keys (built, not live yet; see TODO.md).
+- Accounts, sign-in, a paid/Pro plan, sync between devices, collections, saved investigations, JSON export, API keys, watchlist alerts or the portfolio view (built, not live yet; see TODO.md).
 - Native result pages for chains beyond the 14 listed (others open their explorer).
 - Approval scanning on Avalanche, BNB Chain and Linea.
 - A translated website (only the extensions are translated).
