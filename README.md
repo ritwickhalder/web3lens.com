@@ -16,7 +16,7 @@ Router), React 19, TypeScript and Tailwind v4; hosted on Vercel.
 ```bash
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 89 unit tests: codecs, QR, theme contrast, ENS CCIP-read, detection, routing, ABI/tx decoding, tools, server, extensions
+npm test           # unit and database tests: codecs, detection, routing, decoding, tools, server, extensions, accounts/Pro (PGlite)
 npm run lint
 npm run typecheck
 npm run build
@@ -30,6 +30,18 @@ npm run ext:check          # fails if those are out of date (also part of npm te
 npm run ext:lint:firefox   # Mozilla web-ext lint (downloads web-ext via npx)
 npm run ext:pack           # store zips + reviewer source zip in dist-extensions/
 ```
+
+Accounts and Pro (optional; dormant until configured, see [docs/ACCOUNTS.md](docs/ACCOUNTS.md) and [TODO.md](TODO.md)):
+
+```bash
+cp .env.example .env.local   # DATABASE_URL, BETTER_AUTH_*, GOOGLE_*, PADDLE_*, CRON_SECRET, ADMIN_EMAILS
+npm run db:migrate           # apply drizzle/*.sql to DATABASE_URL (Neon)
+npm run db:generate          # after editing lib/db/schema.ts: write a new migration
+node scripts/smoke-pro.mjs http://localhost:3000   # account/Pro pages with mocked APIs (needs Playwright)
+```
+
+Without these variables the site and extensions work exactly as before: no sign-in, the pre-Pro limits, and the
+account routes answer 503.
 
 Data snapshots (commit the result):
 

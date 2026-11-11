@@ -83,7 +83,7 @@ Do these in order; each says where.
 - [x] **Phase 3 — Expansion**: watchlist with activity alerts and email digests (daily cron, Check now, one-click
       unsubscribe), Watch button and badges (website and extensions), portfolio view, admin UI with audit log.
 - [x] Launch prep: batch copy without hard-coded numbers, Pro terms, Firefox optional data-collection consent, store
-      copy draft (`store/pro-launch.md`).
+      copy draft (`store/pro-launch.md`), extension version 1.1.0 (`CHANGELOG.md`), `scripts/smoke-pro.mjs`.
 
 ## 4. Known limitations
 
@@ -99,5 +99,3 @@ Do these in order; each says where.
 - Watch alerts compare transaction count and native balance only: token-only transfers aren't detected, and with a
   daily cron an alert can be up to a day late (hourly on Vercel Pro).
 - The extension's alert badge updates when you open it (no background polling, which would need a new permission).
-- The extension smoke test's live lookup check (`scripts/smoke-extension.mjs`) sometimes times out against production;
-  rerun it.

@@ -1,6 +1,6 @@
 # Web3Lens: feature reference
 
-**Last updated:** 2026-11-05, verified against the source (website on `main`, extensions **1.0.1** for Chrome, Firefox and Edge).
+**Last updated:** 2026-11-05, verified against the source (website on `main`, extensions **1.0.1** published for Chrome, Firefox and Edge; 1.1.0 with the optional account is built but not published — see CHANGELOG.md).
 
 This is the **authoritative list of what Web3Lens does today**. Use it for development, marketing, store listings and docs; update it in the same change whenever a feature ships, changes or is removed. Only shipped features are listed. Planned work lives in [ROADMAP.md](ROADMAP.md) and is never described here as available (see [Not in the product](#not-in-the-product-do-not-market)).
 

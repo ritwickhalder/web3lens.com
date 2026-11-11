@@ -137,11 +137,16 @@ try {
 
   // Native lookups degrade cleanly when the API is unreachable (no deployment yet / offline).
   await app.goto(`chrome-extension://${id}/app.html#result/address/ethereum/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`);
-  await app.waitForSelector('.error, .card h2', { timeout: 20000 });
+  // Wait for the lookup itself to finish (data or a clear error), not just the first card: against the live API this
+  // can take a while, and the extension's own timeout is 65 s.
+  const done = /Balance|could not be reached|lookup service is unavailable|Too many|took too long/;
+  await app
+    .waitForFunction((src) => new RegExp(src).test(document.querySelector('main')?.textContent ?? ''), done.source, { timeout: 70000 })
+    .catch(() => {});
   const text = await app.textContent('main');
   await app.click('text=QR');
   check('result view shows a QR code', (await app.$('.qr svg path')) !== null);
-  check('result view renders data or a clear error', /Balance|could not be reached|lookup service is unavailable|Too many/.test(text), text.slice(0, 120).replace(/\s+/g, ' '));
+  check('result view renders data or a clear error', done.test(text), text.slice(0, 120).replace(/\s+/g, ' '));
 
   check('no uncaught page errors', errors.length === 0, errors.join(' | '));
 } finally {
