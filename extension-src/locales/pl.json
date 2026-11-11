@@ -628,5 +628,10 @@
     "syncNow": "Synchronizuj teraz",
     "syncing": "Synchronizowanie…",
     "savedCapNote": "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
+  },
+  "watch": {
+    "watch": "Obserwuj",
+    "watching": "Obserwowany",
+    "failed": "Nie udało się zaktualizować listy obserwowanych. Spróbuj ponownie."
   }
 }

@@ -628,5 +628,10 @@
     "syncNow": "Sincronizza ora",
     "syncing": "Sincronizzazione…",
     "savedCapNote": "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
+  },
+  "watch": {
+    "watch": "Monitora",
+    "watching": "Monitorato",
+    "failed": "Impossibile aggiornare la lista di monitoraggio. Riprova."
   }
 }

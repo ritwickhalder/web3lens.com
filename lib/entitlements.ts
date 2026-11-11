@@ -33,6 +33,8 @@ export type Limits = {
   /** Investigations stored in the account (0 = not available). */
   investigations: number;
   exports: readonly ExportFormat[];
+  /** Addresses on the watchlist (activity alerts); 0 = not available. */
+  watches: number;
 };
 
 export const LIMITS: Record<Tier, Limits> = {
@@ -46,6 +48,7 @@ export const LIMITS: Record<Tier, Limits> = {
     savedCloud: 0,
     investigations: 0,
     exports: ['csv'],
+    watches: 0,
   },
   pro: {
     batch: 500,
@@ -57,6 +60,7 @@ export const LIMITS: Record<Tier, Limits> = {
     savedCloud: 2000,
     investigations: 100,
     exports: ['csv', 'json'],
+    watches: 50,
   },
 };
 
@@ -69,7 +73,7 @@ export const limitsFor = (plan: Plan): Limits => LIMITS[tierOf(plan)];
 export const PRE_LAUNCH_LIMITS: Limits = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
 
 /** Features that are on or off per tier (numbers live in LIMITS). */
-export type Feature = 'cloudSync' | 'investigations' | 'jsonExport' | 'apiKeys';
+export type Feature = 'cloudSync' | 'investigations' | 'jsonExport' | 'apiKeys' | 'watchlist' | 'portfolio';
 
 export function canUse(feature: Feature, plan: Plan): boolean {
   const l = limitsFor(plan);
@@ -82,6 +86,10 @@ export function canUse(feature: Feature, plan: Plan): boolean {
       return l.exports.includes('json');
     case 'apiKeys':
       return l.apiPerDay > 0;
+    case 'watchlist':
+      return l.watches > 0;
+    case 'portfolio':
+      return l.savedCloud > 0;
   }
 }
 

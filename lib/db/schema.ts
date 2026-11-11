@@ -288,3 +288,71 @@ export const apiKeys = pgTable(
   },
   (t) => [index('api_keys_user_idx').on(t.userId), check('api_keys_name_ck', sql`length(${t.name}) <= 40`)],
 );
+
+/* ---- Pro: watchlist, alerts (Phase 3) and admin audit ---- */
+
+/**
+ * Addresses a Pro user watches for activity. Checked by the cron (/api/cron/watches) against free public sources:
+ * EVM accounts (nonce and balance) and Bitcoin/Litecoin (transaction count and balance). The first check only
+ * records a baseline; a provider error is stored in `last_error` and never turned into an alert.
+ */
+export const watches = pgTable(
+  'watches',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    chainId: text('chain_id').notNull(),
+    address: text('address').notNull(),
+    label: text('label').notNull().default(''),
+    notifyEmail: boolean('notify_email').notNull().default(true),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    lastCheckedAt: ts('last_checked_at'),
+    lastCount: integer('last_count'),
+    lastBalance: text('last_balance'),
+    lastError: text('last_error'),
+    nextCheckAt: ts('next_check_at').notNull().defaultNow(),
+  },
+  (t) => [
+    uniqueIndex('watches_user_chain_address_uq').on(t.userId, t.chainId, sql`lower(${t.address})`),
+    index('watches_next_check_idx').on(t.nextCheckAt),
+    check('watches_len_ck', sql`length(${t.chainId}) <= 60 and length(${t.address}) <= 120 and length(${t.label}) <= 80`),
+  ],
+);
+
+export const ALERT_KINDS = ['sent', 'received', 'balance_changed'] as const;
+
+/** Activity found on a watched address. Pruned after 90 days. */
+export const alerts = pgTable(
+  'alerts',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    watchId: uuid('watch_id')
+      .notNull()
+      .references(() => watches.id, { onDelete: 'cascade' }),
+    kind: text('kind', { enum: ALERT_KINDS }).notNull(),
+    detail: jsonb('detail').notNull(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    readAt: ts('read_at'),
+    emailedAt: ts('emailed_at'),
+  },
+  (t) => [index('alerts_user_created_idx').on(t.userId, t.createdAt), check('alerts_kind_ck', sql`${t.kind} in ('sent','received','balance_changed')`)],
+);
+
+/** Every admin action (plan overrides, suspensions, session revokes). */
+export const adminActions = pgTable(
+  'admin_actions',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    adminUserId: text('admin_user_id').notNull(),
+    targetUserId: text('target_user_id').notNull(),
+    action: text('action').notNull(),
+    detail: jsonb('detail').notNull(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+  },
+  (t) => [index('admin_actions_target_idx').on(t.targetUserId, t.createdAt)],
+);

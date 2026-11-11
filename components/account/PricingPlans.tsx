@@ -28,6 +28,8 @@ const PRO = [
   `${n(LIMITS.pro.investigations)} investigations saved to your account`,
   'JSON export of batches and investigations',
   `API keys: ${n(LIMITS.pro.apiPerDay)} requests a day`,
+  `Watchlist of ${n(LIMITS.pro.watches)} addresses with activity alerts`,
+  'Portfolio view across 11 EVM chains',
 ];
 
 /** Localised prices from Paddle (tax and currency for the visitor's country); null until loaded or when not live. */

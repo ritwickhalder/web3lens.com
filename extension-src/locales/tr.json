@@ -628,5 +628,10 @@
     "syncNow": "Şimdi eşitle",
     "syncing": "Eşitleniyor…",
     "savedCapNote": "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
+  },
+  "watch": {
+    "watch": "İzle",
+    "watching": "İzleniyor",
+    "failed": "İzleme listesi güncellenemedi. Tekrar deneyin."
   }
 }

@@ -390,6 +390,27 @@ export function AccountPanel() {
         )}
         <PlanComparison />
       </Panel>
+      {me.tier === 'pro' && (
+        <Panel title="Your Pro tools">
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {(
+              [
+                ['/watchlist', 'Watchlist', 'Alerts when watched addresses move'],
+                ['/portfolio', 'Portfolio', 'Saved EVM addresses added up across chains'],
+                ['/saved', 'Saved and collections', 'Synced across devices and the extension'],
+                ['/investigate', 'Investigations', 'Kept in your account'],
+              ] as const
+            ).map(([href, title, body]) => (
+              <li key={href}>
+                <a href={href} className="block rounded-xl border border-line p-3 hover:border-accent">
+                  <span className="block font-extrabold">{title}</span>
+                  <span className="text-sm font-medium text-muted">{body}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      )}
       <ApiKeys me={me} onError={setError} />
       <Sessions onError={setError} />
       <DangerZone me={me} />

@@ -628,5 +628,10 @@
     "syncNow": "立即同步",
     "syncing": "正在同步…",
     "savedCapNote": "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
+  },
+  "watch": {
+    "watch": "关注",
+    "watching": "已关注",
+    "failed": "无法更新关注列表，请重试。"
   }
 }

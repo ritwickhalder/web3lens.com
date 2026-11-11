@@ -628,5 +628,10 @@
     "syncNow": "Sync now",
     "syncing": "Syncing…",
     "savedCapNote": "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
+  },
+  "watch": {
+    "watch": "Watch",
+    "watching": "Watching",
+    "failed": "Couldn't update the watchlist. Try again."
   }
 }

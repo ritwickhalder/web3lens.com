@@ -12618,7 +12618,8 @@
       savedLocal: 50,
       savedCloud: 0,
       investigations: 0,
-      exports: ["csv"]
+      exports: ["csv"],
+      watches: 0
     },
     pro: {
       batch: 500,
@@ -12629,7 +12630,8 @@
       savedLocal: 2e3,
       savedCloud: 2e3,
       investigations: 100,
-      exports: ["csv", "json"]
+      exports: ["csv", "json"],
+      watches: 50
     }
   };
   var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };

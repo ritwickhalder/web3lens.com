@@ -62,6 +62,9 @@
   };
   var NETWORKS = [...EVM_NETWORKS, ...UTXO_NETWORKS, SOLANA_NETWORK];
   var BY_ID = new Map(NETWORKS.map((n) => [n.id, n]));
+  function getNetwork(id) {
+    return BY_ID.get(id);
+  }
   function hasNativeSupport(chainId, kind) {
     const n = BY_ID.get(chainId);
     if (!n) return false;
@@ -700,6 +703,11 @@
       syncNow: "Sync now",
       syncing: "Syncing…",
       savedCapNote: "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
+    },
+    watch: {
+      watch: "Watch",
+      watching: "Watching",
+      failed: "Couldn't update the watchlist. Try again."
     }
   };
 
@@ -1334,6 +1342,11 @@
       syncNow: "Sincronizar ahora",
       syncing: "Sincronizando…",
       savedCapNote: "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Vigilar",
+      watching: "Vigilando",
+      failed: "No se pudo actualizar la lista de vigilancia. Inténtalo de nuevo."
     }
   };
 
@@ -1968,6 +1981,11 @@
       syncNow: "Sincronizar agora",
       syncing: "Sincronizando…",
       savedCapNote: "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Acompanhar",
+      watching: "Acompanhando",
+      failed: "Não foi possível atualizar a lista de acompanhamento. Tente de novo."
     }
   };
 
@@ -2602,6 +2620,11 @@
       syncNow: "Synchroniser",
       syncing: "Synchronisation…",
       savedCapNote: "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
+    },
+    watch: {
+      watch: "Surveiller",
+      watching: "Surveillé",
+      failed: "Impossible de mettre à jour la liste de surveillance. Réessayez."
     }
   };
 
@@ -3236,6 +3259,11 @@
       syncNow: "Jetzt synchronisieren",
       syncing: "Synchronisiere…",
       savedCapNote: "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
+    },
+    watch: {
+      watch: "Beobachten",
+      watching: "Wird beobachtet",
+      failed: "Die Beobachtungsliste konnte nicht aktualisiert werden. Versuche es erneut."
     }
   };
 
@@ -3870,6 +3898,11 @@
       syncNow: "今すぐ同期",
       syncing: "同期中…",
       savedCapNote: "保存済みが {max} 件に達しました。既存の項目はそのまま残りますが、新しい項目を追加する余地がありません。Pro なら {pro} 件をデバイス間で同期できます。"
+    },
+    watch: {
+      watch: "ウォッチ",
+      watching: "ウォッチ中",
+      failed: "ウォッチリストを更新できませんでした。もう一度お試しください。"
     }
   };
 
@@ -4504,6 +4537,11 @@
       syncNow: "지금 동기화",
       syncing: "동기화 중…",
       savedCapNote: "저장한 항목이 {max}개에 도달했습니다. 기존 항목은 그대로 유지되지만 새 항목을 추가할 공간이 없습니다. Pro는 {pro}개를 기기 간에 동기화합니다."
+    },
+    watch: {
+      watch: "관심 등록",
+      watching: "관심 등록됨",
+      failed: "관심 목록을 업데이트하지 못했습니다. 다시 시도하세요."
     }
   };
 
@@ -5138,6 +5176,11 @@
       syncNow: "立即同步",
       syncing: "正在同步…",
       savedCapNote: "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
+    },
+    watch: {
+      watch: "关注",
+      watching: "已关注",
+      failed: "无法更新关注列表，请重试。"
     }
   };
 
@@ -5772,6 +5815,11 @@
       syncNow: "Синхронизировать",
       syncing: "Синхронизация…",
       savedCapNote: "У вас {max} сохранённых элементов. Всё, что есть, остаётся; для новых нет места. Pro хранит {pro} с синхронизацией между устройствами."
+    },
+    watch: {
+      watch: "Отслеживать",
+      watching: "Отслеживается",
+      failed: "Не удалось обновить список отслеживания. Попробуйте ещё раз."
     }
   };
 
@@ -6406,6 +6454,11 @@
       syncNow: "Sinkronkan sekarang",
       syncing: "Menyinkronkan…",
       savedCapNote: "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
+    },
+    watch: {
+      watch: "Pantau",
+      watching: "Dipantau",
+      failed: "Tidak dapat memperbarui daftar pantau. Coba lagi."
     }
   };
 
@@ -7040,6 +7093,11 @@
       syncNow: "Şimdi eşitle",
       syncing: "Eşitleniyor…",
       savedCapNote: "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
+    },
+    watch: {
+      watch: "İzle",
+      watching: "İzleniyor",
+      failed: "İzleme listesi güncellenemedi. Tekrar deneyin."
     }
   };
 
@@ -7674,6 +7732,11 @@
       syncNow: "Sincronizza ora",
       syncing: "Sincronizzazione…",
       savedCapNote: "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
+    },
+    watch: {
+      watch: "Monitora",
+      watching: "Monitorato",
+      failed: "Impossibile aggiornare la lista di monitoraggio. Riprova."
     }
   };
 
@@ -8308,6 +8371,11 @@
       syncNow: "Synchronizuj teraz",
       syncing: "Synchronizowanie…",
       savedCapNote: "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
+    },
+    watch: {
+      watch: "Obserwuj",
+      watching: "Obserwowany",
+      failed: "Nie udało się zaktualizować listy obserwowanych. Spróbuj ponownie."
     }
   };
 
@@ -8942,6 +9010,11 @@
       syncNow: "Nu synchroniseren",
       syncing: "Synchroniseren…",
       savedCapNote: "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
+    },
+    watch: {
+      watch: "Volgen",
+      watching: "Gevolgd",
+      failed: "De volglijst kon niet worden bijgewerkt. Probeer het opnieuw."
     }
   };
 
@@ -9576,6 +9649,11 @@
       syncNow: "ซิงก์ตอนนี้",
       syncing: "กำลังซิงก์…",
       savedCapNote: "คุณบันทึกครบ {max} รายการแล้ว รายการเดิมยังอยู่ครบ แต่ไม่มีที่สำหรับรายการใหม่ Pro เก็บได้ {pro} รายการ ซิงก์ข้ามอุปกรณ์"
+    },
+    watch: {
+      watch: "ติดตาม",
+      watching: "กำลังติดตาม",
+      failed: "อัปเดตรายการติดตามไม่สำเร็จ โปรดลองอีกครั้ง"
     }
   };
 
@@ -9797,153 +9875,6 @@
     return b;
   }
 
-  // lib/local-store.ts
-  function createLocalStore(key, fallback, sanitize) {
-    const listeners = /* @__PURE__ */ new Set();
-    let cachedRaw;
-    let cached = fallback;
-    function read() {
-      let raw = null;
-      try {
-        raw = window.localStorage.getItem(key);
-      } catch {
-        return cached;
-      }
-      if (raw === cachedRaw) return cached;
-      cachedRaw = raw;
-      try {
-        cached = raw === null ? fallback : sanitize(JSON.parse(raw));
-      } catch {
-        cached = fallback;
-      }
-      return cached;
-    }
-    return {
-      subscribe(listener) {
-        listeners.add(listener);
-        const onStorage = (e) => e.key === key && listener();
-        window.addEventListener("storage", onStorage);
-        return () => {
-          listeners.delete(listener);
-          window.removeEventListener("storage", onStorage);
-        };
-      },
-      getSnapshot: read,
-      getServerSnapshot: () => fallback,
-      set(next) {
-        const value = typeof next === "function" ? next(read()) : next;
-        try {
-          window.localStorage.setItem(key, JSON.stringify(value));
-        } catch {
-          cached = value;
-          cachedRaw = void 0;
-        }
-        listeners.forEach((l) => l());
-      }
-    };
-  }
-
-  // lib/prefs.ts
-  var DEFAULT_PREFS = { explorers: {}, favouriteChains: [], searchAction: "results" };
-  function sanitizePrefs(raw) {
-    const r = raw ?? {};
-    const explorers = {};
-    if (r.explorers && typeof r.explorers === "object") {
-      for (const [k, v] of Object.entries(r.explorers)) if (typeof v === "string" && v.length < 80) explorers[k] = v;
-    }
-    return {
-      explorers,
-      favouriteChains: Array.isArray(r.favouriteChains) ? r.favouriteChains.filter((x) => typeof x === "string").slice(0, 50) : [],
-      searchAction: r.searchAction === "explorer" ? "explorer" : "results"
-    };
-  }
-  var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
-
-  // lib/saved.ts
-  var MAX_SAVED = 5e3;
-  var MAX_TOMBSTONES = 5e3;
-  var EMPTY = [];
-  function savedId(query, chainId) {
-    const q = query.trim();
-    const key = /^0x/i.test(q) || /^[a-z]+1[02-9ac-hj-np-z]+$/i.test(q) ? q.toLowerCase() : q;
-    return `${chainId ?? "*"}:${key}`;
-  }
-  var str = (v, max) => typeof v === "string" ? v.slice(0, max) : "";
-  function sanitizeSaved(raw) {
-    if (!Array.isArray(raw)) return EMPTY;
-    const seen = /* @__PURE__ */ new Set();
-    const out = [];
-    for (const r of raw) {
-      const query = str(r?.query, 200).trim();
-      if (!query) continue;
-      const chainId = typeof r?.chainId === "string" && r.chainId ? r.chainId.slice(0, 60) : null;
-      const id = savedId(query, chainId);
-      if (seen.has(id)) continue;
-      seen.add(id);
-      out.push({
-        id,
-        query,
-        chainId,
-        label: str(r?.label, 80),
-        note: str(r?.note, 1e3),
-        favourite: r?.favourite === true,
-        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now(),
-        updatedAt: typeof r?.updatedAt === "number" ? r.updatedAt : typeof r?.addedAt === "number" ? r.addedAt : Date.now()
-      });
-      if (out.length >= MAX_SAVED) break;
-    }
-    return out;
-  }
-  var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
-  function sanitizeTombstones(raw) {
-    if (!Array.isArray(raw)) return [];
-    const out = [];
-    for (const r of raw) if (typeof r?.id === "string" && r.id.length <= 300 && typeof r?.deletedAt === "number") out.push({ id: r.id, deletedAt: r.deletedAt });
-    return out.slice(-MAX_TOMBSTONES);
-  }
-  var tombstoneStore = createLocalStore("w3l:saved-deleted", [], sanitizeTombstones);
-  function applyUpsert(list, item, cap, now = Date.now()) {
-    const id = savedId(item.query, item.chainId);
-    const existing = list.find((x) => x.id === id);
-    if (!existing && list.length >= cap) return { list, result: "limit" };
-    const next = {
-      id,
-      query: item.query.trim(),
-      chainId: item.chainId,
-      label: (item.label ?? existing?.label ?? "").slice(0, 80),
-      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
-      favourite: item.favourite ?? existing?.favourite ?? false,
-      addedAt: existing?.addedAt ?? now,
-      updatedAt: now
-    };
-    return { list: [next, ...list.filter((x) => x.id !== id)], result: existing ? "updated" : "added" };
-  }
-  function mergeImport(list, incoming, cap, now = Date.now()) {
-    const byId = new Map(list.map((x) => [x.id, x]));
-    let room = Math.max(0, cap - list.length);
-    let imported = 0;
-    let skipped = 0;
-    const added = [];
-    for (const item of incoming) {
-      const existing = byId.get(item.id);
-      if (existing) {
-        byId.set(item.id, { ...item, addedAt: existing.addedAt, updatedAt: now });
-        imported++;
-      } else if (room > 0) {
-        added.push({ ...item, updatedAt: now });
-        room--;
-        imported++;
-      } else skipped++;
-    }
-    return { list: [...added, ...list.map((x) => byId.get(x.id))], imported, skipped };
-  }
-  function exportSaved(list) {
-    return JSON.stringify({ app: "web3lens", version: 1, exportedAt: (/* @__PURE__ */ new Date()).toISOString(), items: list }, null, 2);
-  }
-  function labelFor(list, query, chainId) {
-    return list.find((x) => x.id === savedId(query, chainId)) ?? list.find((x) => x.id === savedId(query, null));
-  }
-
   // lib/entitlements.ts
   var tierOf = (plan) => plan === "free" ? "free" : "pro";
   var LIMITS = {
@@ -9956,7 +9887,8 @@
       savedLocal: 50,
       savedCloud: 0,
       investigations: 0,
-      exports: ["csv"]
+      exports: ["csv"],
+      watches: 0
     },
     pro: {
       batch: 500,
@@ -9967,7 +9899,8 @@
       savedLocal: 2e3,
       savedCloud: 2e3,
       investigations: 100,
-      exports: ["csv", "json"]
+      exports: ["csv", "json"],
+      watches: 50
     }
   };
   var limitsFor = (plan) => LIMITS[tierOf(plan)];
@@ -9983,6 +9916,10 @@
         return l.exports.includes("json");
       case "apiKeys":
         return l.apiPerDay > 0;
+      case "watchlist":
+        return l.watches > 0;
+      case "portfolio":
+        return l.savedCloud > 0;
     }
   }
 
@@ -10120,6 +10057,200 @@
     const a = await loadAccount();
     if (a.token) await call("/api/ext/sign-out", { method: "POST", token: a.token }).catch(() => null);
     await saveAccount(EMPTY_ACCOUNT);
+  }
+
+  // extension-src/src/watches.ts
+  var TTL_MS = 10 * 6e4;
+  var BADGE_TTL_MS = 5 * 6e4;
+  async function watchlistAvailable() {
+    const plan = displayPlan(await loadAccount());
+    return !!plan && canUse("watchlist", plan);
+  }
+  var watchable = (chainId) => {
+    const f = getNetwork(chainId)?.family;
+    return f === "evm" || f === "utxo";
+  };
+  function sanitize(raw) {
+    if (!Array.isArray(raw)) return [];
+    return raw.filter((w) => typeof w?.id === "string" && typeof w?.chainId === "string" && typeof w?.address === "string").map((w) => ({ id: w.id, chainId: w.chainId, address: w.address })).slice(0, 500);
+  }
+  async function loadWatches(force = false) {
+    if (!await watchlistAvailable()) return [];
+    const cache2 = (await ext.storage.local.get(["watchCache"])).watchCache;
+    if (!force && cache2 && typeof cache2.at === "number" && Date.now() - cache2.at < TTL_MS) return sanitize(cache2.list);
+    const res = await authedCall("/api/watches");
+    if (!res?.ok) return sanitize(cache2?.list);
+    const list = sanitize((await res.json().catch(() => null))?.watches);
+    await ext.storage.local.set({ watchCache: { at: Date.now(), list } });
+    return list;
+  }
+  var isWatched = (list, chainId, address) => list.some((w) => (!chainId || w.chainId === chainId) && w.address.toLowerCase() === address.toLowerCase());
+  async function toggleWatch(chainId, address) {
+    const list = await loadWatches();
+    const existing = list.find((w) => w.chainId === chainId && w.address.toLowerCase() === address.toLowerCase());
+    const res = existing ? await authedCall(`/api/watches/${existing.id}`, { method: "DELETE" }) : await authedCall("/api/watches", { method: "POST", body: JSON.stringify({ chainId, address }) });
+    if (!res?.ok && res?.status !== 409) return "error";
+    await loadWatches(true);
+    return existing ? "removed" : "added";
+  }
+  async function refreshAlertBadge(force = false) {
+    if (!ext.action) return;
+    if (!await watchlistAvailable()) return void await ext.action.setBadgeText({ text: "" });
+    const last = (await ext.storage.local.get(["alertBadgeAt"])).alertBadgeAt;
+    if (!force && typeof last === "number" && Date.now() - last < BADGE_TTL_MS) return;
+    await ext.storage.local.set({ alertBadgeAt: Date.now() });
+    const res = await authedCall("/api/alerts");
+    if (!res?.ok) return;
+    const unread = Number((await res.json().catch(() => null))?.unread ?? 0);
+    await ext.action.setBadgeText({ text: unread > 0 ? unread > 99 ? "99+" : String(unread) : "" });
+    await ext.action.setBadgeBackgroundColor?.({ color: "#00729c" });
+  }
+
+  // lib/local-store.ts
+  function createLocalStore(key, fallback, sanitize2) {
+    const listeners = /* @__PURE__ */ new Set();
+    let cachedRaw;
+    let cached = fallback;
+    function read() {
+      let raw = null;
+      try {
+        raw = window.localStorage.getItem(key);
+      } catch {
+        return cached;
+      }
+      if (raw === cachedRaw) return cached;
+      cachedRaw = raw;
+      try {
+        cached = raw === null ? fallback : sanitize2(JSON.parse(raw));
+      } catch {
+        cached = fallback;
+      }
+      return cached;
+    }
+    return {
+      subscribe(listener) {
+        listeners.add(listener);
+        const onStorage = (e) => e.key === key && listener();
+        window.addEventListener("storage", onStorage);
+        return () => {
+          listeners.delete(listener);
+          window.removeEventListener("storage", onStorage);
+        };
+      },
+      getSnapshot: read,
+      getServerSnapshot: () => fallback,
+      set(next) {
+        const value = typeof next === "function" ? next(read()) : next;
+        try {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        } catch {
+          cached = value;
+          cachedRaw = void 0;
+        }
+        listeners.forEach((l) => l());
+      }
+    };
+  }
+
+  // lib/prefs.ts
+  var DEFAULT_PREFS = { explorers: {}, favouriteChains: [], searchAction: "results" };
+  function sanitizePrefs(raw) {
+    const r = raw ?? {};
+    const explorers = {};
+    if (r.explorers && typeof r.explorers === "object") {
+      for (const [k, v] of Object.entries(r.explorers)) if (typeof v === "string" && v.length < 80) explorers[k] = v;
+    }
+    return {
+      explorers,
+      favouriteChains: Array.isArray(r.favouriteChains) ? r.favouriteChains.filter((x) => typeof x === "string").slice(0, 50) : [],
+      searchAction: r.searchAction === "explorer" ? "explorer" : "results"
+    };
+  }
+  var prefsStore = createLocalStore("w3l:prefs", DEFAULT_PREFS, sanitizePrefs);
+
+  // lib/saved.ts
+  var MAX_SAVED = 5e3;
+  var MAX_TOMBSTONES = 5e3;
+  var EMPTY = [];
+  function savedId(query, chainId) {
+    const q = query.trim();
+    const key = /^0x/i.test(q) || /^[a-z]+1[02-9ac-hj-np-z]+$/i.test(q) ? q.toLowerCase() : q;
+    return `${chainId ?? "*"}:${key}`;
+  }
+  var str = (v, max) => typeof v === "string" ? v.slice(0, max) : "";
+  function sanitizeSaved(raw) {
+    if (!Array.isArray(raw)) return EMPTY;
+    const seen = /* @__PURE__ */ new Set();
+    const out = [];
+    for (const r of raw) {
+      const query = str(r?.query, 200).trim();
+      if (!query) continue;
+      const chainId = typeof r?.chainId === "string" && r.chainId ? r.chainId.slice(0, 60) : null;
+      const id = savedId(query, chainId);
+      if (seen.has(id)) continue;
+      seen.add(id);
+      out.push({
+        id,
+        query,
+        chainId,
+        label: str(r?.label, 80),
+        note: str(r?.note, 1e3),
+        favourite: r?.favourite === true,
+        addedAt: typeof r?.addedAt === "number" ? r.addedAt : Date.now(),
+        updatedAt: typeof r?.updatedAt === "number" ? r.updatedAt : typeof r?.addedAt === "number" ? r.addedAt : Date.now()
+      });
+      if (out.length >= MAX_SAVED) break;
+    }
+    return out;
+  }
+  var savedStore = createLocalStore("w3l:saved", EMPTY, sanitizeSaved);
+  function sanitizeTombstones(raw) {
+    if (!Array.isArray(raw)) return [];
+    const out = [];
+    for (const r of raw) if (typeof r?.id === "string" && r.id.length <= 300 && typeof r?.deletedAt === "number") out.push({ id: r.id, deletedAt: r.deletedAt });
+    return out.slice(-MAX_TOMBSTONES);
+  }
+  var tombstoneStore = createLocalStore("w3l:saved-deleted", [], sanitizeTombstones);
+  function applyUpsert(list, item, cap, now = Date.now()) {
+    const id = savedId(item.query, item.chainId);
+    const existing = list.find((x) => x.id === id);
+    if (!existing && list.length >= cap) return { list, result: "limit" };
+    const next = {
+      id,
+      query: item.query.trim(),
+      chainId: item.chainId,
+      label: (item.label ?? existing?.label ?? "").slice(0, 80),
+      note: (item.note ?? existing?.note ?? "").slice(0, 1e3),
+      favourite: item.favourite ?? existing?.favourite ?? false,
+      addedAt: existing?.addedAt ?? now,
+      updatedAt: now
+    };
+    return { list: [next, ...list.filter((x) => x.id !== id)], result: existing ? "updated" : "added" };
+  }
+  function mergeImport(list, incoming, cap, now = Date.now()) {
+    const byId = new Map(list.map((x) => [x.id, x]));
+    let room = Math.max(0, cap - list.length);
+    let imported = 0;
+    let skipped = 0;
+    const added = [];
+    for (const item of incoming) {
+      const existing = byId.get(item.id);
+      if (existing) {
+        byId.set(item.id, { ...item, addedAt: existing.addedAt, updatedAt: now });
+        imported++;
+      } else if (room > 0) {
+        added.push({ ...item, updatedAt: now });
+        room--;
+        imported++;
+      } else skipped++;
+    }
+    return { list: [...added, ...list.map((x) => byId.get(x.id))], imported, skipped };
+  }
+  function exportSaved(list) {
+    return JSON.stringify({ app: "web3lens", version: 1, exportedAt: (/* @__PURE__ */ new Date()).toISOString(), items: list }, null, 2);
+  }
+  function labelFor(list, query, chainId) {
+    return list.find((x) => x.id === savedId(query, chainId)) ?? list.find((x) => x.id === savedId(query, null));
   }
 
   // extension-src/src/store.ts
@@ -23957,6 +24088,24 @@
     }).catch((e) => clear(body2, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, t("locate.title")), body2);
   }
+  function watchControl(chainId, address) {
+    if (!watchable(chainId)) return null;
+    const slot = h("span", { class: "row" });
+    const render2 = async (force = false) => {
+      if (!await watchlistAvailable()) return;
+      const on = isWatched(await loadWatches(force), chainId, address);
+      const btn = h("button", { type: "button", class: "btn-ghost sm", "aria-pressed": String(on) }, on ? t("watch.watching") : t("watch.watch"));
+      btn.addEventListener("click", async () => {
+        btn.setAttribute("disabled", "");
+        const r = await toggleWatch(chainId, address);
+        if (r === "error") btn.textContent = t("watch.failed");
+        else void render2(true);
+      });
+      clear(slot, btn);
+    };
+    void render2();
+    return slot;
+  }
   function resultView(kind, chainId, query, settings, nav2, compact = false) {
     setApiBase(settings.apiBase);
     const root2 = h("div", { class: "stack" });
@@ -23971,7 +24120,7 @@
       { class: "result-head" },
       h("p", { class: "result-chain" }, glyph(chainId, getChain(chainId)?.name ?? chainId, "md"), h("span", { class: "label" }, `${getChain(chainId)?.name ?? chainId} · ${kind === "tx" ? t("result.transaction") : t("result.address")}`)),
       h("h1", { class: "mono value" }, query),
-      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, explorerList(chainId, query)),
+      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, kind === "address" && settings.network ? watchControl(chainId, query) : null, explorerList(chainId, query)),
       qrBox
     );
     root2.append(header);
@@ -24191,7 +24340,7 @@
                 { type: "button", class: "linkish mono", on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
                 item.query
               ),
-              h("span", { class: "muted small" }, `${d ? detectLabel(d.label) : t("common.unrecognised")}${chain ? ` · ${chain.name}` : ""}`),
+              h("span", { class: "muted small" }, `${d ? detectLabel(d.label) : t("common.unrecognised")}${chain ? ` · ${chain.name}` : ""}`, isWatched(watched, item.chainId, item.query) ? " · " : null, isWatched(watched, item.chainId, item.query) ? badge(t("watch.watching"), "good") : null),
               notes
             ),
             h(
@@ -24205,6 +24354,12 @@
       );
     }
     filter.addEventListener("input", render2);
+    let watched = [];
+    if (ctx.state.settings.network)
+      void loadWatches().then((list2) => {
+        watched = list2;
+        if (list2.length) render2();
+      });
     const file = h("input", { type: "file", accept: "application/json,.json", hidden: true });
     file.addEventListener("change", async () => {
       const f = file.files?.[0];
@@ -26081,4 +26236,8 @@
     if (applyLanguage(settings.language) !== before) void render();
   });
   void render();
+  void load().then(({ settings }) => {
+    if (settings.network) refreshAlertBadge().catch(() => {
+    });
+  });
 })();

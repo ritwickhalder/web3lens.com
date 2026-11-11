@@ -628,5 +628,10 @@
     "syncNow": "Sincronizar ahora",
     "syncing": "Sincronizando…",
     "savedCapNote": "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
+  },
+  "watch": {
+    "watch": "Vigilar",
+    "watching": "Vigilando",
+    "failed": "No se pudo actualizar la lista de vigilancia. Inténtalo de nuevo."
   }
 }

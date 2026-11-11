@@ -3,6 +3,7 @@
 import { BookmarkSimple, Check, LinkSimple, PencilSimple, Trash } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { useState, useSyncExternalStore } from 'react';
+import { WatchButton } from '@/components/results/WatchButton';
 import { getSavedCap, labelFor, removeSaved, savedStore, upsertSaved } from '@/lib/saved';
 
 const btn = 'inline-flex h-9 items-center gap-1.5 rounded-lg border border-line px-3 text-sm font-bold text-fg/85 transition-colors hover:border-accent hover:text-accent';
@@ -97,6 +98,7 @@ export function ResultActions({ query, chainId }: { query: string; chainId: stri
           <BookmarkSimple aria-hidden weight="bold" className="size-4" /> Save & label
         </button>
       )}
+      <WatchButton query={query} chainId={chainId} label={item?.label} />
       <button type="button" className={btn} onClick={share}>
         {copied ? <Check aria-hidden weight="bold" className="size-4 text-accent" /> : <LinkSimple aria-hidden weight="bold" className="size-4" />}
         {copied ? 'Link copied' : 'Copy link'}

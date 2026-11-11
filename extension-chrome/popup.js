@@ -11280,6 +11280,9 @@
   };
   var NETWORKS = [...EVM_NETWORKS, ...UTXO_NETWORKS, SOLANA_NETWORK];
   var BY_ID2 = new Map(NETWORKS.map((n) => [n.id, n]));
+  function getNetwork(id) {
+    return BY_ID2.get(id);
+  }
   function hasNativeSupport(chainId, kind) {
     const n = BY_ID2.get(chainId);
     if (!n) return false;
@@ -11957,6 +11960,11 @@
       syncNow: "Sync now",
       syncing: "Syncing…",
       savedCapNote: "You've reached {max} saved items. Everything you have stays; new items need room. Pro keeps {pro}, synced across devices."
+    },
+    watch: {
+      watch: "Watch",
+      watching: "Watching",
+      failed: "Couldn't update the watchlist. Try again."
     }
   };
 
@@ -12591,6 +12599,11 @@
       syncNow: "Sincronizar ahora",
       syncing: "Sincronizando…",
       savedCapNote: "Has llegado a {max} elementos guardados. Todo lo que tienes se queda; los nuevos necesitan espacio. Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Vigilar",
+      watching: "Vigilando",
+      failed: "No se pudo actualizar la lista de vigilancia. Inténtalo de nuevo."
     }
   };
 
@@ -13225,6 +13238,11 @@
       syncNow: "Sincronizar agora",
       syncing: "Sincronizando…",
       savedCapNote: "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
+    },
+    watch: {
+      watch: "Acompanhar",
+      watching: "Acompanhando",
+      failed: "Não foi possível atualizar a lista de acompanhamento. Tente de novo."
     }
   };
 
@@ -13859,6 +13877,11 @@
       syncNow: "Synchroniser",
       syncing: "Synchronisation…",
       savedCapNote: "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
+    },
+    watch: {
+      watch: "Surveiller",
+      watching: "Surveillé",
+      failed: "Impossible de mettre à jour la liste de surveillance. Réessayez."
     }
   };
 
@@ -14493,6 +14516,11 @@
       syncNow: "Jetzt synchronisieren",
       syncing: "Synchronisiere…",
       savedCapNote: "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
+    },
+    watch: {
+      watch: "Beobachten",
+      watching: "Wird beobachtet",
+      failed: "Die Beobachtungsliste konnte nicht aktualisiert werden. Versuche es erneut."
     }
   };
 
@@ -15127,6 +15155,11 @@
       syncNow: "今すぐ同期",
       syncing: "同期中…",
       savedCapNote: "保存済みが {max} 件に達しました。既存の項目はそのまま残りますが、新しい項目を追加する余地がありません。Pro なら {pro} 件をデバイス間で同期できます。"
+    },
+    watch: {
+      watch: "ウォッチ",
+      watching: "ウォッチ中",
+      failed: "ウォッチリストを更新できませんでした。もう一度お試しください。"
     }
   };
 
@@ -15761,6 +15794,11 @@
       syncNow: "지금 동기화",
       syncing: "동기화 중…",
       savedCapNote: "저장한 항목이 {max}개에 도달했습니다. 기존 항목은 그대로 유지되지만 새 항목을 추가할 공간이 없습니다. Pro는 {pro}개를 기기 간에 동기화합니다."
+    },
+    watch: {
+      watch: "관심 등록",
+      watching: "관심 등록됨",
+      failed: "관심 목록을 업데이트하지 못했습니다. 다시 시도하세요."
     }
   };
 
@@ -16395,6 +16433,11 @@
       syncNow: "立即同步",
       syncing: "正在同步…",
       savedCapNote: "已保存 {max} 项。现有项目都会保留，但新项目没有空间了。Pro 可保存 {pro} 项，并在设备间同步。"
+    },
+    watch: {
+      watch: "关注",
+      watching: "已关注",
+      failed: "无法更新关注列表，请重试。"
     }
   };
 
@@ -17029,6 +17072,11 @@
       syncNow: "Синхронизировать",
       syncing: "Синхронизация…",
       savedCapNote: "У вас {max} сохранённых элементов. Всё, что есть, остаётся; для новых нет места. Pro хранит {pro} с синхронизацией между устройствами."
+    },
+    watch: {
+      watch: "Отслеживать",
+      watching: "Отслеживается",
+      failed: "Не удалось обновить список отслеживания. Попробуйте ещё раз."
     }
   };
 
@@ -17663,6 +17711,11 @@
       syncNow: "Sinkronkan sekarang",
       syncing: "Menyinkronkan…",
       savedCapNote: "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
+    },
+    watch: {
+      watch: "Pantau",
+      watching: "Dipantau",
+      failed: "Tidak dapat memperbarui daftar pantau. Coba lagi."
     }
   };
 
@@ -18297,6 +18350,11 @@
       syncNow: "Şimdi eşitle",
       syncing: "Eşitleniyor…",
       savedCapNote: "{max} kayıtlı öğeye ulaştınız. Mevcut her şey korunur; yeni öğeler için yer yok. Pro, cihazlar arasında eşitlenen {pro} öğe tutar."
+    },
+    watch: {
+      watch: "İzle",
+      watching: "İzleniyor",
+      failed: "İzleme listesi güncellenemedi. Tekrar deneyin."
     }
   };
 
@@ -18931,6 +18989,11 @@
       syncNow: "Sincronizza ora",
       syncing: "Sincronizzazione…",
       savedCapNote: "Hai raggiunto {max} elementi salvati. Tutto ciò che hai resta; i nuovi elementi non hanno spazio. Pro ne conserva {pro}, sincronizzati tra i dispositivi."
+    },
+    watch: {
+      watch: "Monitora",
+      watching: "Monitorato",
+      failed: "Impossibile aggiornare la lista di monitoraggio. Riprova."
     }
   };
 
@@ -19565,6 +19628,11 @@
       syncNow: "Synchronizuj teraz",
       syncing: "Synchronizowanie…",
       savedCapNote: "Masz już {max} zapisanych elementów. Wszystko, co masz, zostaje; na nowe brak miejsca. Pro przechowuje {pro}, synchronizowanych między urządzeniami."
+    },
+    watch: {
+      watch: "Obserwuj",
+      watching: "Obserwowany",
+      failed: "Nie udało się zaktualizować listy obserwowanych. Spróbuj ponownie."
     }
   };
 
@@ -20199,6 +20267,11 @@
       syncNow: "Nu synchroniseren",
       syncing: "Synchroniseren…",
       savedCapNote: "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
+    },
+    watch: {
+      watch: "Volgen",
+      watching: "Gevolgd",
+      failed: "De volglijst kon niet worden bijgewerkt. Probeer het opnieuw."
     }
   };
 
@@ -20833,6 +20906,11 @@
       syncNow: "ซิงก์ตอนนี้",
       syncing: "กำลังซิงก์…",
       savedCapNote: "คุณบันทึกครบ {max} รายการแล้ว รายการเดิมยังอยู่ครบ แต่ไม่มีที่สำหรับรายการใหม่ Pro เก็บได้ {pro} รายการ ซิงก์ข้ามอุปกรณ์"
+    },
+    watch: {
+      watch: "ติดตาม",
+      watching: "กำลังติดตาม",
+      failed: "อัปเดตรายการติดตามไม่สำเร็จ โปรดลองอีกครั้ง"
     }
   };
 
@@ -21075,8 +21153,145 @@
     return [...found];
   }
 
+  // lib/entitlements.ts
+  var tierOf = (plan) => plan === "free" ? "free" : "pro";
+  var LIMITS = {
+    free: {
+      batch: 10,
+      batchBalances: 5,
+      crossChainPerDay: 10,
+      apiPerDay: 0,
+      apiPerMinuteShared: 60,
+      savedLocal: 50,
+      savedCloud: 0,
+      investigations: 0,
+      exports: ["csv"],
+      watches: 0
+    },
+    pro: {
+      batch: 500,
+      batchBalances: 500,
+      crossChainPerDay: 500,
+      apiPerDay: 1e3,
+      apiPerMinuteShared: 60,
+      savedLocal: 2e3,
+      savedCloud: 2e3,
+      investigations: 100,
+      exports: ["csv", "json"],
+      watches: 50
+    }
+  };
+  var limitsFor = (plan) => LIMITS[tierOf(plan)];
+  var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
+  function canUse(feature, plan) {
+    const l = limitsFor(plan);
+    switch (feature) {
+      case "cloudSync":
+        return l.savedCloud > 0;
+      case "investigations":
+        return l.investigations > 0;
+      case "jsonExport":
+        return l.exports.includes("json");
+      case "apiKeys":
+        return l.apiPerDay > 0;
+      case "watchlist":
+        return l.watches > 0;
+      case "portfolio":
+        return l.savedCloud > 0;
+    }
+  }
+
+  // extension-src/src/account.ts
+  var ACCOUNT_ORIGIN = "https://web3lens.com";
+  var REFRESH_MS = 12 * 36e5;
+  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
+  var PLANS = ["free", "pro", "lifetime"];
+  var CODE = /^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/;
+  function sanitizeAccount(raw) {
+    const r = raw ?? {};
+    const token = typeof r.token === "string" && /^[A-Za-z0-9._%-]{16,512}$/.test(r.token) ? r.token : null;
+    const m = r.me;
+    const me = token && m && typeof m.email === "string" && PLANS.includes(m.plan) ? { email: m.email.slice(0, 200), plan: m.plan, tier: m.plan === "free" ? "free" : "pro", until: typeof m.until === "string" ? m.until : null, renews: m.renews === true, billing: m.billing === true } : null;
+    const p = r.pending;
+    const pending = p && typeof p.code === "string" && CODE.test(p.code) && typeof p.verifier === "string" && /^[A-Za-z0-9_-]{43,128}$/.test(p.verifier) && typeof p.expiresAt === "number" ? { code: p.code, verifier: p.verifier, expiresAt: p.expiresAt } : null;
+    return { token, me, refreshedAt: typeof r.refreshedAt === "number" && token ? r.refreshedAt : 0, pending };
+  }
+  async function loadAccount() {
+    const raw = await ext.storage.local.get(["account"]);
+    return sanitizeAccount(raw.account);
+  }
+  function displayPlan(a, now = Date.now()) {
+    if (!a.token || !a.me) return null;
+    if (now - a.refreshedAt > OFFLINE_GRACE_MS) return "free";
+    if (a.me.plan === "pro" && a.me.until && Date.parse(a.me.until) <= now) return "free";
+    return a.me.plan;
+  }
+  function extLimits(a, now = Date.now()) {
+    const plan = displayPlan(a, now);
+    if (!plan || !a.me?.billing) return plan && plan !== "free" ? limitsFor(plan) : PRE_LAUNCH_LIMITS;
+    return limitsFor(plan);
+  }
+  async function authedCall(path, init = {}) {
+    const a = await loadAccount();
+    if (!a.token) return null;
+    return call(path, { ...init, token: a.token }).catch(() => null);
+  }
+  async function call(path, init = {}) {
+    const headers = { accept: "application/json" };
+    if (init.body) headers["content-type"] = "application/json";
+    if (init.token) headers.authorization = `Bearer ${init.token}`;
+    return fetch(`${ACCOUNT_ORIGIN}${path}`, { ...init, headers, credentials: "omit", cache: "no-store", signal: AbortSignal.timeout(2e4) });
+  }
+
+  // extension-src/src/watches.ts
+  var TTL_MS = 10 * 6e4;
+  var BADGE_TTL_MS = 5 * 6e4;
+  async function watchlistAvailable() {
+    const plan = displayPlan(await loadAccount());
+    return !!plan && canUse("watchlist", plan);
+  }
+  var watchable = (chainId) => {
+    const f = getNetwork(chainId)?.family;
+    return f === "evm" || f === "utxo";
+  };
+  function sanitize(raw) {
+    if (!Array.isArray(raw)) return [];
+    return raw.filter((w) => typeof w?.id === "string" && typeof w?.chainId === "string" && typeof w?.address === "string").map((w) => ({ id: w.id, chainId: w.chainId, address: w.address })).slice(0, 500);
+  }
+  async function loadWatches(force = false) {
+    if (!await watchlistAvailable()) return [];
+    const cache2 = (await ext.storage.local.get(["watchCache"])).watchCache;
+    if (!force && cache2 && typeof cache2.at === "number" && Date.now() - cache2.at < TTL_MS) return sanitize(cache2.list);
+    const res = await authedCall("/api/watches");
+    if (!res?.ok) return sanitize(cache2?.list);
+    const list = sanitize((await res.json().catch(() => null))?.watches);
+    await ext.storage.local.set({ watchCache: { at: Date.now(), list } });
+    return list;
+  }
+  var isWatched = (list, chainId, address) => list.some((w) => (!chainId || w.chainId === chainId) && w.address.toLowerCase() === address.toLowerCase());
+  async function toggleWatch(chainId, address) {
+    const list = await loadWatches();
+    const existing = list.find((w) => w.chainId === chainId && w.address.toLowerCase() === address.toLowerCase());
+    const res = existing ? await authedCall(`/api/watches/${existing.id}`, { method: "DELETE" }) : await authedCall("/api/watches", { method: "POST", body: JSON.stringify({ chainId, address }) });
+    if (!res?.ok && res?.status !== 409) return "error";
+    await loadWatches(true);
+    return existing ? "removed" : "added";
+  }
+  async function refreshAlertBadge(force = false) {
+    if (!ext.action) return;
+    if (!await watchlistAvailable()) return void await ext.action.setBadgeText({ text: "" });
+    const last = (await ext.storage.local.get(["alertBadgeAt"])).alertBadgeAt;
+    if (!force && typeof last === "number" && Date.now() - last < BADGE_TTL_MS) return;
+    await ext.storage.local.set({ alertBadgeAt: Date.now() });
+    const res = await authedCall("/api/alerts");
+    if (!res?.ok) return;
+    const unread = Number((await res.json().catch(() => null))?.unread ?? 0);
+    await ext.action.setBadgeText({ text: unread > 0 ? unread > 99 ? "99+" : String(unread) : "" });
+    await ext.action.setBadgeBackgroundColor?.({ color: "#00729c" });
+  }
+
   // lib/local-store.ts
-  function createLocalStore(key, fallback, sanitize) {
+  function createLocalStore(key, fallback, sanitize2) {
     const listeners = /* @__PURE__ */ new Set();
     let cachedRaw;
     let cached = fallback;
@@ -21090,7 +21305,7 @@
       if (raw === cachedRaw) return cached;
       cachedRaw = raw;
       try {
-        cached = raw === null ? fallback : sanitize(JSON.parse(raw));
+        cached = raw === null ? fallback : sanitize2(JSON.parse(raw));
       } catch {
         cached = fallback;
       }
@@ -21198,65 +21413,6 @@
   }
   function labelFor(list, query, chainId) {
     return list.find((x) => x.id === savedId(query, chainId)) ?? list.find((x) => x.id === savedId(query, null));
-  }
-
-  // lib/entitlements.ts
-  var tierOf = (plan) => plan === "free" ? "free" : "pro";
-  var LIMITS = {
-    free: {
-      batch: 10,
-      batchBalances: 5,
-      crossChainPerDay: 10,
-      apiPerDay: 0,
-      apiPerMinuteShared: 60,
-      savedLocal: 50,
-      savedCloud: 0,
-      investigations: 0,
-      exports: ["csv"]
-    },
-    pro: {
-      batch: 500,
-      batchBalances: 500,
-      crossChainPerDay: 500,
-      apiPerDay: 1e3,
-      apiPerMinuteShared: 60,
-      savedLocal: 2e3,
-      savedCloud: 2e3,
-      investigations: 100,
-      exports: ["csv", "json"]
-    }
-  };
-  var limitsFor = (plan) => LIMITS[tierOf(plan)];
-  var PRE_LAUNCH_LIMITS = { ...LIMITS.free, batch: 50, batchBalances: 50, savedLocal: 500 };
-
-  // extension-src/src/account.ts
-  var REFRESH_MS = 12 * 36e5;
-  var OFFLINE_GRACE_MS = 7 * 24 * 36e5;
-  var PLANS = ["free", "pro", "lifetime"];
-  var CODE = /^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/;
-  function sanitizeAccount(raw) {
-    const r = raw ?? {};
-    const token = typeof r.token === "string" && /^[A-Za-z0-9._%-]{16,512}$/.test(r.token) ? r.token : null;
-    const m = r.me;
-    const me = token && m && typeof m.email === "string" && PLANS.includes(m.plan) ? { email: m.email.slice(0, 200), plan: m.plan, tier: m.plan === "free" ? "free" : "pro", until: typeof m.until === "string" ? m.until : null, renews: m.renews === true, billing: m.billing === true } : null;
-    const p = r.pending;
-    const pending = p && typeof p.code === "string" && CODE.test(p.code) && typeof p.verifier === "string" && /^[A-Za-z0-9_-]{43,128}$/.test(p.verifier) && typeof p.expiresAt === "number" ? { code: p.code, verifier: p.verifier, expiresAt: p.expiresAt } : null;
-    return { token, me, refreshedAt: typeof r.refreshedAt === "number" && token ? r.refreshedAt : 0, pending };
-  }
-  async function loadAccount() {
-    const raw = await ext.storage.local.get(["account"]);
-    return sanitizeAccount(raw.account);
-  }
-  function displayPlan(a, now = Date.now()) {
-    if (!a.token || !a.me) return null;
-    if (now - a.refreshedAt > OFFLINE_GRACE_MS) return "free";
-    if (a.me.plan === "pro" && a.me.until && Date.parse(a.me.until) <= now) return "free";
-    return a.me.plan;
-  }
-  function extLimits(a, now = Date.now()) {
-    const plan = displayPlan(a, now);
-    if (!plan || !a.me?.billing) return plan && plan !== "free" ? limitsFor(plan) : PRE_LAUNCH_LIMITS;
-    return limitsFor(plan);
   }
 
   // extension-src/src/store.ts
@@ -23648,6 +23804,24 @@
     }).catch((e) => clear(body, errorText(failMessage(e))));
     return h("section", { class: "card" }, h("h2", null, t("locate.title")), body);
   }
+  function watchControl(chainId, address) {
+    if (!watchable(chainId)) return null;
+    const slot = h("span", { class: "row" });
+    const render2 = async (force = false) => {
+      if (!await watchlistAvailable()) return;
+      const on = isWatched(await loadWatches(force), chainId, address);
+      const btn = h("button", { type: "button", class: "btn-ghost sm", "aria-pressed": String(on) }, on ? t("watch.watching") : t("watch.watch"));
+      btn.addEventListener("click", async () => {
+        btn.setAttribute("disabled", "");
+        const r = await toggleWatch(chainId, address);
+        if (r === "error") btn.textContent = t("watch.failed");
+        else void render2(true);
+      });
+      clear(slot, btn);
+    };
+    void render2();
+    return slot;
+  }
   function resultView(kind, chainId, query, settings, nav, compact = false) {
     setApiBase(settings.apiBase);
     const root2 = h("div", { class: "stack" });
@@ -23662,7 +23836,7 @@
       { class: "result-head" },
       h("p", { class: "result-chain" }, glyph(chainId, getChain(chainId)?.name ?? chainId, "md"), h("span", { class: "label" }, `${getChain(chainId)?.name ?? chainId} · ${kind === "tx" ? t("result.transaction") : t("result.address")}`)),
       h("h1", { class: "mono value" }, query),
-      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, explorerList(chainId, query)),
+      h("div", { class: "row wrap" }, copyBtn(query, t("common.copy")), kind === "address" ? qrBtn : null, kind === "address" && settings.network ? watchControl(chainId, query) : null, explorerList(chainId, query)),
       qrBox
     );
     root2.append(header2);
@@ -25690,4 +25864,8 @@
     refreshSaved?.();
   });
   void render();
+  void load().then(({ settings }) => {
+    if (settings.network) refreshAlertBadge().catch(() => {
+    });
+  });
 })();

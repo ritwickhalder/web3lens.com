@@ -10,6 +10,7 @@ import { checkSanctions } from '@/lib/security/sanctions';
 import { formatUnits } from '@/lib/tools/units';
 import { getChain } from '@/lib/chains';
 import { EVM_NETWORKS } from '@/lib/networks';
+import { isWatched, loadWatches, toggleWatch, watchable, watchlistAvailable } from '../watches';
 import { clear, copyBtn, ext_link, h } from '../dom';
 import { ago, t, type MessageKey } from '../i18n';
 import { glyph, icon } from '../ui';
@@ -335,6 +336,26 @@ export function locateCard(hash: string, nav: Nav): HTMLElement {
 }
 
 /** Full (or compact) result for one chain, fetched from the Web3Lens API. */
+/** Watch / Watching toggle for Pro accounts on watchable chains (filled in once the cached list loads). */
+function watchControl(chainId: string, address: string): HTMLElement | null {
+  if (!watchable(chainId)) return null;
+  const slot = h('span', { class: 'row' });
+  const render = async (force = false) => {
+    if (!(await watchlistAvailable())) return;
+    const on = isWatched(await loadWatches(force), chainId, address);
+    const btn = h('button', { type: 'button', class: 'btn-ghost sm', 'aria-pressed': String(on) }, on ? t('watch.watching') : t('watch.watch'));
+    btn.addEventListener('click', async () => {
+      btn.setAttribute('disabled', '');
+      const r = await toggleWatch(chainId, address);
+      if (r === 'error') btn.textContent = t('watch.failed');
+      else void render(true);
+    });
+    clear(slot, btn);
+  };
+  void render();
+  return slot;
+}
+
 export function resultView(kind: 'address' | 'tx', chainId: string, query: string, settings: ExtSettings, nav: Nav, compact = false): HTMLElement {
   setApiBase(settings.apiBase);
   const root = h('div', { class: 'stack' });
@@ -349,7 +370,7 @@ export function resultView(kind: 'address' | 'tx', chainId: string, query: strin
     { class: 'result-head' },
     h('p', { class: 'result-chain' }, glyph(chainId, getChain(chainId)?.name ?? chainId, 'md'), h('span', { class: 'label' }, `${getChain(chainId)?.name ?? chainId} · ${kind === 'tx' ? t('result.transaction') : t('result.address')}`)),
     h('h1', { class: 'mono value' }, query),
-    h('div', { class: 'row wrap' }, copyBtn(query, t('common.copy')), kind === 'address' ? qrBtn : null, explorerList(chainId, query)),
+    h('div', { class: 'row wrap' }, copyBtn(query, t('common.copy')), kind === 'address' ? qrBtn : null, kind === 'address' && settings.network ? watchControl(chainId, query) : null, explorerList(chainId, query)),
     qrBox,
   );
   root.append(header);

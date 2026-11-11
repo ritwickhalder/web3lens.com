@@ -628,5 +628,10 @@
     "syncNow": "Nu synchroniseren",
     "syncing": "Synchroniseren…",
     "savedCapNote": "Je hebt {max} opgeslagen items bereikt. Alles wat je hebt blijft; nieuwe items hebben geen ruimte. Pro bewaart er {pro}, gesynchroniseerd tussen apparaten."
+  },
+  "watch": {
+    "watch": "Volgen",
+    "watching": "Gevolgd",
+    "failed": "De volglijst kon niet worden bijgewerkt. Probeer het opnieuw."
   }
 }

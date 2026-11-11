@@ -628,5 +628,10 @@
     "syncNow": "Jetzt synchronisieren",
     "syncing": "Synchronisiere…",
     "savedCapNote": "Du hast {max} gespeicherte Einträge erreicht. Alles Vorhandene bleibt; für neue Einträge fehlt der Platz. Pro behält {pro}, geräteübergreifend synchronisiert."
+  },
+  "watch": {
+    "watch": "Beobachten",
+    "watching": "Wird beobachtet",
+    "failed": "Die Beobachtungsliste konnte nicht aktualisiert werden. Versuche es erneut."
   }
 }

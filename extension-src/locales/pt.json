@@ -628,5 +628,10 @@
     "syncNow": "Sincronizar agora",
     "syncing": "Sincronizando…",
     "savedCapNote": "Você chegou a {max} itens salvos. Tudo o que você tem continua; novos itens precisam de espaço. O Pro guarda {pro}, sincronizados entre dispositivos."
+  },
+  "watch": {
+    "watch": "Acompanhar",
+    "watching": "Acompanhando",
+    "failed": "Não foi possível atualizar a lista de acompanhamento. Tente de novo."
   }
 }

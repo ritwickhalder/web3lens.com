@@ -7,6 +7,8 @@ import { clear, copy, h } from '../dom';
 import { detectLabel, t } from '../i18n';
 import { importSaved, removeSaved, savedCap, upsertSaved } from '../store';
 import type { Ctx } from './search';
+import { badge } from './common';
+import { isWatched, loadWatches, type CachedWatch } from '../watches';
 import { syncStatus } from './sync-status';
 
 export function savedView(ctx: Ctx): HTMLElement {
@@ -46,7 +48,7 @@ export function savedView(ctx: Ctx): HTMLElement {
               { type: 'button', class: 'linkish mono', on: { click: () => ctx.nav(chain ? `#result/${kind}/${chain.id}/${encodeURIComponent(item.query)}` : `#search?q=${encodeURIComponent(item.query)}`) } },
               item.query,
             ),
-            h('span', { class: 'muted small' }, `${d ? detectLabel(d.label) : t('common.unrecognised')}${chain ? ` · ${chain.name}` : ''}`),
+            h('span', { class: 'muted small' }, `${d ? detectLabel(d.label) : t('common.unrecognised')}${chain ? ` · ${chain.name}` : ''}`, isWatched(watched, item.chainId, item.query) ? ' · ' : null, isWatched(watched, item.chainId, item.query) ? badge(t('watch.watching'), 'good') : null),
             notes,
           ),
           h(
@@ -60,6 +62,13 @@ export function savedView(ctx: Ctx): HTMLElement {
     );
   }
   filter.addEventListener('input', render);
+  // Pro: mark addresses on the watchlist (cached list; empty otherwise).
+  let watched: CachedWatch[] = [];
+  if (ctx.state.settings.network)
+    void loadWatches().then((list) => {
+      watched = list;
+      if (list.length) render();
+    });
   const file = h('input', { type: 'file', accept: 'application/json,.json', hidden: true });
   file.addEventListener('change', async () => {
     const f = file.files?.[0];

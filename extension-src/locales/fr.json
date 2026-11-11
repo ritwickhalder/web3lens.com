@@ -628,5 +628,10 @@
     "syncNow": "Synchroniser",
     "syncing": "Synchronisation…",
     "savedCapNote": "Vous avez atteint {max} éléments enregistrés. Tout ce que vous avez reste ; les nouveaux éléments manquent de place. Pro en garde {pro}, synchronisés entre vos appareils."
+  },
+  "watch": {
+    "watch": "Surveiller",
+    "watching": "Surveillé",
+    "failed": "Impossible de mettre à jour la liste de surveillance. Réessayez."
   }
 }

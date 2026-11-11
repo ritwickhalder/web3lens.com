@@ -18,6 +18,8 @@ export function PlanComparison() {
     ['Investigations saved to your account', null, n(p.investigations)],
     ['Batch and investigation exports', 'CSV', 'CSV and JSON'],
     ['API keys', null, 'Up to 5'],
+    ['Watchlist with activity alerts (email)', null, `${n(p.watches)} addresses`],
+    ['Portfolio view of saved addresses', null, 'Included'],
   ];
   return (
     <div className="overflow-x-auto">

@@ -628,5 +628,10 @@
     "syncNow": "Sinkronkan sekarang",
     "syncing": "Menyinkronkan…",
     "savedCapNote": "Anda telah mencapai {max} item tersimpan. Semua yang ada tetap tersimpan; item baru butuh ruang. Pro menyimpan {pro}, tersinkron antarperangkat."
+  },
+  "watch": {
+    "watch": "Pantau",
+    "watching": "Dipantau",
+    "failed": "Tidak dapat memperbarui daftar pantau. Coba lagi."
   }
 }
