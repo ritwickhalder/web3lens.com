@@ -14,6 +14,7 @@ export const SITE = {
   author: { name: 'Ritwick Halder', url: 'https://www.ritwick.com', github: 'https://github.com/ritwickhalder', youtube: 'https://www.youtube.com/@ritwick.halder/' },
   twitter: '@BSearchEngine',
   facebook: 'https://www.facebook.com/BlockSearchEngine/',
+  email: 'web3lensapp@gmail.com',
 } as const;
 
 export const DONATION_ADDRESSES = [
