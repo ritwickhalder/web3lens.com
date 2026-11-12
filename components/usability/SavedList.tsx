@@ -226,7 +226,7 @@ export function SavedList() {
       )}
       {cloud && collections && (
         <div className="mb-4 flex flex-wrap items-center gap-2">
-          <button type="button" onClick={() => setActiveCollection(null)} className={`rounded-full border px-3 py-1 text-sm font-bold ${!activeCollection ? 'border-accent text-accent' : 'border-line text-muted hover:text-fg'}`}>
+          <button type="button" onClick={() => setActiveCollection(null)} className={`rounded-md border px-3 py-1 text-sm font-bold ${!activeCollection ? 'border-accent text-accent' : 'border-line text-muted hover:text-fg'}`}>
             All
           </button>
           {collections.map((c) => (
@@ -269,8 +269,8 @@ export function SavedList() {
               }
             }}
           >
-            <input value={newCollection} onChange={(e) => setNewCollection(e.target.value)} maxLength={60} placeholder="New collection" aria-label="New collection name" className="h-8 w-40 rounded-full border border-line-strong bg-ink px-3 text-sm font-semibold outline-none focus:border-accent" />
-            <button type="submit" className="h-8 rounded-full border border-line px-3 text-sm font-bold hover:border-accent hover:text-accent">
+            <input value={newCollection} onChange={(e) => setNewCollection(e.target.value)} maxLength={60} placeholder="New collection" aria-label="New collection name" className="h-8 w-40 rounded-md border border-line-strong bg-ink px-3 text-sm font-semibold outline-none focus:border-accent" />
+            <button type="submit" className="h-8 rounded-md border border-line px-3 text-sm font-bold hover:border-accent hover:text-accent">
               Add
             </button>
           </form>

@@ -9,7 +9,7 @@ import { billingConfigured } from '@/lib/server/env';
 import { effectivePlan, manageUrlOf, planFor, subscriptionRenews, trialStatus } from '@/lib/server/membership';
 import { nextDay, profileOf, subscriptionsOf, trialClaimFor, usageOf } from '@/lib/server/stores';
 
-export type SessionUser = { id: string; email: string; name: string; image?: string | null };
+export type SessionUser = { id: string; email: string; name: string; image?: string | null; createdAt?: Date | string | null };
 export type CurrentSession = { user: SessionUser; session: { id: string; token: string; expiresAt: Date; userAgent?: string | null } };
 
 export async function currentUser(headers: Headers): Promise<CurrentSession | null> {
@@ -41,7 +41,7 @@ export async function meFor(user: SessionUser, now = new Date()): Promise<MeResp
   const resetsAt = nextDay(now).toISOString();
   return {
     signedIn: true,
-    user: { id: user.id, email: user.email, name: user.name, image: user.image ?? null },
+    user: { id: user.id, email: user.email, name: user.name, image: user.image ?? null, createdAt: user.createdAt ? new Date(user.createdAt).toISOString() : null },
     plan: p.plan,
     tier: tierOf(p.plan),
     until: p.until?.toISOString() ?? null,

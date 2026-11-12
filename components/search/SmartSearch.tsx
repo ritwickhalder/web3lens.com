@@ -283,7 +283,7 @@ export function SmartSearch({
         ) : detection && candidates.length > 0 ? (
           <div className="flex w-full flex-col items-center gap-2">
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="mr-1 flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1.5 text-sm font-bold text-accent">
+              <span className="mr-1 flex items-center gap-1.5 rounded-md bg-accent/10 px-3 py-1.5 text-sm font-bold text-accent">
                 <Scan aria-hidden weight="bold" className="size-4" />
                 {detection.label}
                 {detection.checksum === 'valid' && <span className="font-semibold text-accent/80">· checksum ok</span>}

@@ -1,3 +1,4 @@
+import { PageArt } from '@/components/content/PageArt';
 import { PageShell } from '@/components/content/PageShell';
 import { DirectoryGrid, type DirectoryEntry } from '@/components/directory/DirectoryGrid';
 import entries from '@/data/directory.json';
@@ -20,6 +21,7 @@ export default function DirectoryPage() {
           The crypto internet, <span className="text-accent">curated.</span>
         </>
       }
+      art={<PageArt scene="directory" />}
       lead="YouTube channels, forums, news sites and communities worth following. Filter by type or search by name."
     >
       <DirectoryGrid entries={entries as DirectoryEntry[]} />

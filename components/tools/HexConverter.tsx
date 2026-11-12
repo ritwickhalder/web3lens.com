@@ -65,7 +65,7 @@ export function HexConverter() {
                 role="radio"
                 aria-checked={hashKind === k}
                 onClick={() => setHashKind(k)}
-                className="rounded-full border border-line px-3 py-1 text-sm font-bold aria-checked:border-accent aria-checked:text-accent"
+                className="rounded-md border border-line px-3 py-1 text-sm font-bold aria-checked:border-accent aria-checked:text-accent"
               >
                 {k === 'text' ? 'Text' : 'Hex bytes'}
               </button>

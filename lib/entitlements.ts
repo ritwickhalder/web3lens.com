@@ -104,7 +104,7 @@ export const METRIC_LIMIT: Record<Metric, (l: Limits) => number> = {
 /** What /api/me returns; the extension caches it (shape checked by sanitizeMe). */
 export type MeResponse = {
   signedIn: true;
-  user: { id: string; email: string; name: string; image: string | null };
+  user: { id: string; email: string; name: string; image: string | null; /** Account created (older servers may omit it). */ createdAt?: string | null };
   plan: Plan;
   tier: Tier;
   /** Pro ends (subscription period end, trial end or grant end); null = no end (lifetime) or Free. */

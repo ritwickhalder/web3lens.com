@@ -47,7 +47,7 @@ export function PostCover({ icon, category, coins, index, size = 'card' }: { ico
   const Icon = COVER_ICONS[icon as CoverIcon] ?? BookOpenText;
   const hero = size === 'hero';
   return (
-    <div aria-hidden className={`relative overflow-hidden rounded-xl border border-line bg-ink-3 ${hero ? 'aspect-[21/9]' : 'aspect-[16/9]'}`}>
+    <div aria-hidden className={`relative overflow-hidden rounded-lg border border-line bg-ink-3 ${hero ? 'aspect-[5/2]' : 'aspect-[2/1]'}`}>
       <svg className="absolute -right-10 -top-10 h-[150%] text-line-strong" viewBox="0 0 200 200" fill="none" stroke="currentColor">
         {[30, 55, 80, 98].map((r) => (
           <circle key={r} cx="130" cy="70" r={r} strokeWidth="1" />
@@ -59,8 +59,8 @@ export function PostCover({ icon, category, coins, index, size = 'card' }: { ico
         {index !== undefined && <span className="text-faint">No. {String(index).padStart(2, '0')}</span>}
       </div>
       <div className="absolute bottom-4 left-4 flex items-end gap-3">
-        <span className={`grid place-items-center rounded-xl bg-ink-2 text-accent ring-1 ring-line ${hero ? 'size-20' : 'size-14'}`}>
-          <Icon weight="duotone" className={hero ? 'size-12' : 'size-9'} />
+        <span className={`grid place-items-center rounded-lg bg-ink-2 text-accent ring-1 ring-line ${hero ? 'size-16' : 'size-12'}`}>
+          <Icon weight="duotone" className={hero ? 'size-10' : 'size-8'} />
         </span>
       </div>
       {coins.length > 0 && (

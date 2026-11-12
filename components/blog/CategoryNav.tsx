@@ -5,7 +5,7 @@ import { getAllPosts } from '@/lib/blog/posts';
 /** Category links (crawlable pages, not just client-side filters). */
 export function CategoryNav({ current }: { current?: string }) {
   const posts = getAllPosts();
-  const chip = 'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-bold transition-colors';
+  const chip = 'inline-flex h-9 items-center gap-2 rounded-md border px-3.5 text-sm font-bold transition-colors';
   return (
     <nav aria-label="Blog categories">
       <ul className="flex flex-wrap gap-2">

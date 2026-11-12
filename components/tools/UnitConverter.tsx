@@ -38,7 +38,7 @@ export function UnitConverter() {
               setFamily(f);
               setFrom(f === 'evm' ? 18 : f === 'btc' ? 8 : f === 'sol' ? 9 : dec);
             }}
-            className="rounded-full border border-line px-3.5 py-1.5 text-sm font-bold text-fg/80 aria-selected:border-accent aria-selected:bg-accent/10 aria-selected:text-accent"
+            className="rounded-md border border-line px-3.5 py-1.5 text-sm font-bold text-fg/80 aria-selected:border-accent aria-selected:bg-accent/10 aria-selected:text-accent"
           >
             {f === 'custom' ? 'Any token' : FAMILIES[f].label}
           </button>

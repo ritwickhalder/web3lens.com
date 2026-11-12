@@ -67,7 +67,7 @@ export function GasCalculator() {
         </div>
         <div className="mt-3 flex flex-wrap gap-2">
           {GAS_PRESETS.map((p) => (
-            <button key={p.label} type="button" onClick={() => setGasLimit(p.gas)} className="rounded-full border border-line px-3 py-1 text-xs font-bold text-muted hover:border-accent hover:text-accent">
+            <button key={p.label} type="button" onClick={() => setGasLimit(p.gas)} className="rounded-md border border-line px-3 py-1 text-xs font-bold text-muted hover:border-accent hover:text-accent">
               {p.label} · {Number(p.gas).toLocaleString('en-US')}
             </button>
           ))}
@@ -136,7 +136,7 @@ export function GasCalculator() {
                 ['Economy', btcRates.economy],
               ] as const
             ).map(([l, v]) => (
-              <button key={l} type="button" onClick={() => setSatVb(String(v))} className="rounded-full border border-line px-3 py-1 text-xs font-bold text-muted hover:border-accent hover:text-accent">
+              <button key={l} type="button" onClick={() => setSatVb(String(v))} className="rounded-md border border-line px-3 py-1 text-xs font-bold text-muted hover:border-accent hover:text-accent">
                 {l}: {v} sat/vB
               </button>
             ))}

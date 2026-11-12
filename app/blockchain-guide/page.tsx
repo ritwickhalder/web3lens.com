@@ -1,4 +1,5 @@
 import { RelatedGuides } from '@/components/blog/RelatedGuides';
+import { PageArt } from '@/components/content/PageArt';
 import { PageShell } from '@/components/content/PageShell';
 import { GuideSections, GuideToc } from '@/components/guide/GuideSections';
 import { GUIDE } from '@/content/guide';
@@ -20,10 +21,11 @@ export default function BlockchainGuidePage() {
         </>
       }
       lead={`A beginner's guide in ${GUIDE.length} short answers, most with a video. Start at the top or jump to what you need.`}
+      art={<PageArt scene="guide" />}
       aside={<GuideToc entries={GUIDE} />}
     >
       <GuideSections entries={GUIDE} />
-      <RelatedGuides page={'/blockchain-guide'} />
+      <RelatedGuides page={'/blockchain-guide'} className="mt-8" />
     </PageShell>
   );
 }

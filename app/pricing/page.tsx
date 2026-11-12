@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { PlanComparison } from '@/components/account/PlanComparison';
 import { PricingPlans } from '@/components/account/PricingPlans';
+import { PageArt } from '@/components/content/PageArt';
 import { PageShell } from '@/components/content/PageShell';
 import { Panel } from '@/components/tools/ui';
 import { PRO_ON_SALE } from '@/config/site';
@@ -49,19 +50,20 @@ export default function PricingPage() {
       layout="stacked"
       eyebrow="Pricing"
       title="Free for everyone. Pro for heavy use."
+      art={<PageArt scene="pricing" />}
       lead="Search, explorers, developer tools and safety checks are free and need no account. Pro is for people who work through large lists every day."
     >
-      <div className="space-y-6">
+      <div className="space-y-4">
         <PricingPlans />
         <Panel title="Compare plans">
           <PlanComparison />
         </Panel>
         <Panel title="Questions">
-          <dl className="divide-y divide-line">
+          <dl className="grid grid-cols-1 gap-x-10 gap-y-5 lg:grid-cols-2">
             {FAQ.map(([q, a]) => (
-              <div key={q} className="grid grid-cols-1 gap-2 py-5 first:pt-0 last:pb-0 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-8">
+              <div key={q} className="border-l-2 border-line pl-4">
                 <dt className="font-extrabold">{q}</dt>
-                <dd className="text-[15px] font-medium leading-relaxed text-muted">{a}</dd>
+                <dd className="mt-1 text-[15px] font-medium leading-relaxed text-muted">{a}</dd>
               </div>
             ))}
           </dl>

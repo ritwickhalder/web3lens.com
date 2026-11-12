@@ -128,7 +128,7 @@ export default async function BlogPost({ params }: Props) {
                   <p className="label mb-3">Topics</p>
                   <ul className="flex flex-wrap gap-2">
                     {post.tags.map((t) => (
-                      <li key={t} className="rounded-full border border-line px-3 py-1 text-sm font-semibold text-muted">
+                      <li key={t} className="rounded-md border border-line px-3 py-1 text-sm font-semibold text-muted">
                         {t}
                       </li>
                     ))}

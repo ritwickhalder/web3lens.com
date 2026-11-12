@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { BlogSearch } from '@/components/blog/BlogSearch';
 import { CategoryNav } from '@/components/blog/CategoryNav';
 import { PostList } from '@/components/blog/PostList';
+import { PageArt } from '@/components/content/PageArt';
 import { PageShell } from '@/components/content/PageShell';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BLOG_CATEGORIES, getCategory } from '@/config/blog';
@@ -39,9 +40,10 @@ export default async function CategoryPage({ params }: Props) {
       eyebrow="Blog category"
       title={c.name}
       lead={c.description}
+      art={<PageArt scene="blog" />}
     >
       <JsonLd data={collectionPage(`${c.name} articles`, `/blog/category/${c.slug}`, c.description)} />
-      <div className="mb-8 space-y-6">
+      <div className="mb-5 flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
         <CategoryNav current={c.slug} />
         <BlogSearch listId="category-posts" total={posts.length} />
       </div>

@@ -13,7 +13,8 @@ const CURSOR_KEY = 'w3l:sync';
 
 export type SyncState = { status: 'off' | 'syncing' | 'ok' | 'error'; lastSyncAt: number | null; message: string | null };
 
-let state: SyncState = { status: 'off', lastSyncAt: null, message: null };
+const SERVER_STATE: SyncState = { status: 'off', lastSyncAt: null, message: null };
+let state: SyncState = SERVER_STATE;
 const listeners = new Set<() => void>();
 const set = (next: Partial<SyncState>) => {
   state = { ...state, ...next };
@@ -26,7 +27,7 @@ export const syncStore = {
     return () => listeners.delete(l);
   },
   getSnapshot: () => state,
-  getServerSnapshot: (): SyncState => ({ status: 'off', lastSyncAt: null, message: null }),
+  getServerSnapshot: (): SyncState => SERVER_STATE,
 };
 
 function readCursor(): { cursor: string | null; lastSyncAt: number | null } {

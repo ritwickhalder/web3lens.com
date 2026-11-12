@@ -22,7 +22,7 @@ function LiteYouTube({ id, title }: { id: string; title: string }) {
   if (play) {
     return (
       <iframe
-        className="aspect-video w-full rounded-xl border border-line"
+        className="aspect-video w-full rounded-lg border border-line"
         src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -35,7 +35,7 @@ function LiteYouTube({ id, title }: { id: string; title: string }) {
       type="button"
       onClick={() => setPlay(true)}
       aria-label={`Play video: ${title}`}
-      className="group relative block aspect-video w-full overflow-hidden rounded-xl border border-line bg-ink-3"
+      className="group relative block aspect-video w-full overflow-hidden rounded-lg border border-line bg-ink-3"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- remote YouTube thumbnail, no optimisation needed */}
       <img
@@ -45,8 +45,8 @@ function LiteYouTube({ id, title }: { id: string; title: string }) {
         className="size-full object-cover opacity-75 transition-opacity group-hover:opacity-100"
       />
       <span className="absolute inset-0 grid place-items-center">
-        <span className="flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-base font-extrabold text-ink shadow-xl transition-transform group-hover:scale-105">
-          <Play weight="fill" className="size-5" /> Play video
+        <span className="flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-extrabold text-ink shadow-xl transition-transform group-hover:scale-105">
+          <Play weight="fill" className="size-4" /> Play video
         </span>
       </span>
     </button>
@@ -56,8 +56,8 @@ function LiteYouTube({ id, title }: { id: string; title: string }) {
 /** Table of contents for the guide; sits in the sticky left column. */
 export function GuideToc({ entries }: { entries: GuideEntry[] }) {
   return (
-    <nav aria-label="Questions" className="rounded-2xl border border-line bg-ink-2 p-2">
-      <p className="label px-3 py-2">Contents</p>
+    <nav aria-label="Questions" className="rounded-xl border border-line bg-ink-2 p-2">
+      <p className="label px-2.5 py-1.5">Contents</p>
       <ol>
         {entries.map((e, i) => {
           const QIcon = ICONS[i] ?? Cube;
@@ -65,7 +65,7 @@ export function GuideToc({ entries }: { entries: GuideEntry[] }) {
             <li key={e.question}>
               <a
                 href={`#${guideAnchor(i)}`}
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[15px] font-bold text-fg/80 transition-colors hover:bg-ink-3 hover:text-accent"
+                className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-bold text-fg/80 transition-colors hover:bg-ink-3 hover:text-accent"
               >
                 <QIcon aria-hidden weight="duotone" className="size-5 shrink-0 text-accent" />
                 {cleanQuestion(e.question)}
@@ -81,21 +81,23 @@ export function GuideToc({ entries }: { entries: GuideEntry[] }) {
 /** Every answer as its own section, video beside the text on wide screens. */
 export function GuideSections({ entries }: { entries: GuideEntry[] }) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {entries.map((entry, i) => {
         const QIcon = ICONS[i] ?? Cube;
         return (
           <section
             key={entry.question}
             id={guideAnchor(i)}
-            className="grid grid-cols-1 gap-6 rounded-2xl border border-line bg-ink-2 p-6 sm:p-8 xl:grid-cols-2 xl:gap-10"
+            className="grid scroll-mt-24 grid-cols-1 gap-5 rounded-xl border border-line bg-ink-2 p-5 sm:p-6 xl:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] 2xl:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] xl:gap-8"
           >
             <div>
-              <span className="grid size-14 place-items-center rounded-xl bg-accent/10 text-accent">
-                <QIcon aria-hidden weight="duotone" className="size-8" />
-              </span>
-              <h2 className="heading mt-5 text-2xl sm:text-3xl">{cleanQuestion(entry.question)}</h2>
-              <p className="prose-bp mt-4 text-base">{entry.answer}</p>
+              <h2 className="heading flex items-center gap-3 text-xl sm:text-2xl">
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
+                  <QIcon aria-hidden weight="duotone" className="size-6" />
+                </span>
+                {cleanQuestion(entry.question)}
+              </h2>
+              <p className="prose-bp mt-3 text-[15px]">{entry.answer}</p>
             </div>
             {entry.youtubeId && (
               <div className="self-center">

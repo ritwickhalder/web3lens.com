@@ -1,4 +1,4 @@
-import { Minus } from '@phosphor-icons/react/dist/ssr';
+import { Check, Minus } from '@phosphor-icons/react/dist/ssr';
 import { LIMITS } from '@/lib/entitlements';
 
 /** Free vs Pro, from the same numbers the server enforces (lib/entitlements.ts). */
@@ -21,22 +21,32 @@ export function PlanComparison() {
     ['Watchlist with activity alerts (email)', null, `${n(p.watches)} addresses`],
     ['Portfolio view of saved addresses', null, 'Included'],
   ];
+  const cell = (v: React.ReactNode, pro: boolean) =>
+    v === null ? (
+      <Minus aria-label="Not included" weight="bold" className="size-4 text-faint" />
+    ) : v === 'Included' ? (
+      <span className="inline-flex items-center gap-1.5">
+        <Check aria-hidden weight="bold" className={`size-4 ${pro ? 'text-accent' : 'text-muted'}`} /> Included
+      </span>
+    ) : (
+      v
+    );
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left text-sm">
         <thead>
-          <tr className="border-b border-line text-faint">
-            <th className="py-2 pr-4 font-bold">Feature</th>
-            <th className="py-2 pr-4 font-bold">Free</th>
-            <th className="py-2 font-bold text-accent">Pro</th>
+          <tr className="text-xs uppercase tracking-wider text-faint">
+            <th className="px-3 py-2 font-extrabold">Feature</th>
+            <th className="px-3 py-2 font-extrabold">Free</th>
+            <th className="px-3 py-2 font-extrabold text-accent">Pro</th>
           </tr>
         </thead>
         <tbody>
           {rows.map(([label, free, pro]) => (
-            <tr key={label} className="border-b border-line last:border-0">
-              <td className="py-2.5 pr-4 font-semibold">{label}</td>
-              <td className="py-2.5 pr-4 font-medium text-muted">{free ?? <Minus aria-label="Not included" weight="bold" className="size-4 text-faint" />}</td>
-              <td className="py-2.5 font-bold">{pro}</td>
+            <tr key={label} className="odd:bg-ink-3/60">
+              <td className="rounded-l-sm px-3 py-2.5 font-semibold">{label}</td>
+              <td className="px-3 py-2.5 font-medium text-muted">{cell(free, false)}</td>
+              <td className="rounded-r-sm px-3 py-2.5 font-bold">{cell(pro, true)}</td>
             </tr>
           ))}
         </tbody>
@@ -44,4 +54,3 @@ export function PlanComparison() {
     </div>
   );
 }
-

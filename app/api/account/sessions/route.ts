@@ -5,6 +5,15 @@ import { EXTENSION_SESSION_AGENT } from '@/lib/server/auth';
 import { accountsConfigured } from '@/lib/server/env';
 import { currentUser } from '@/lib/server/session';
 
+/** "Chrome on Windows" from a user agent; null when it can't tell. */
+function deviceOf(ua: string | null | undefined): string | null {
+  if (!ua) return null;
+  const browser = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : null;
+  const os = /Windows/.test(ua) ? 'Windows' : /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iOS' : /Mac OS X/.test(ua) ? 'macOS' : /CrOS/.test(ua) ? 'ChromeOS' : /Linux/.test(ua) ? 'Linux' : null;
+  if (browser && os) return `${browser} on ${os}`;
+  return browser ?? os;
+}
+
 /** GET: the signed-in user's live sessions (website and extensions). Tokens are never returned. */
 export async function GET(request: Request) {
   if (!accountsConfigured()) return accountError(request, 'Accounts are not available yet.', 503);
@@ -19,6 +28,7 @@ export async function GET(request: Request) {
     sessions: rows.map((r) => ({
       id: r.id,
       kind: r.userAgent?.startsWith(EXTENSION_SESSION_AGENT) ? 'extension' : 'web',
+      device: r.userAgent?.startsWith(EXTENSION_SESSION_AGENT) ? null : deviceOf(r.userAgent),
       createdAt: r.createdAt.toISOString(),
       expiresAt: r.expiresAt.toISOString(),
       current: r.id === who.session.id,

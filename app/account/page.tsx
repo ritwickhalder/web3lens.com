@@ -1,4 +1,3 @@
-import { PageShell } from '@/components/content/PageShell';
 import { AccountPanel } from '@/components/account/AccountPanel';
 import { pageMetadata } from '@/lib/metadata';
 
@@ -11,12 +10,8 @@ export const metadata = pageMetadata({
 
 export default function AccountPage() {
   return (
-    <PageShell
-      eyebrow="Account"
-      title="Your Web3Lens"
-      lead="Optional. Search, explorers, developer tools and safety checks stay free and work without signing in."
-    >
+    <main className="wrap pt-6 sm:pt-10">
       <AccountPanel />
-    </PageShell>
+    </main>
   );
 }

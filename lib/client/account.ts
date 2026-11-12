@@ -13,7 +13,8 @@ export type AccountState =
   | { status: 'signedOut' }
   | { status: 'signedIn'; me: MeResponse };
 
-let state: AccountState = { status: 'loading' };
+const LOADING: AccountState = { status: 'loading' };
+let state: AccountState = LOADING;
 /** From /api/me for signed-out visitors: whether Pro is on sale here. */
 let signedOutBilling = false;
 let inflight: Promise<void> | null = null;
@@ -59,7 +60,7 @@ export const accountStore = {
     return () => listeners.delete(l);
   },
   getSnapshot: () => state,
-  getServerSnapshot: (): AccountState => ({ status: 'loading' }),
+  getServerSnapshot: (): AccountState => LOADING,
 };
 
 /** Better Auth's client loads only when someone signs in or out, not with every page. */

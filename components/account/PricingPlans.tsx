@@ -95,7 +95,7 @@ export function PricingPlans() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <section className="flex flex-col rounded-2xl border border-line bg-ink-2 p-6 sm:p-8">
+        <section className="flex flex-col rounded-xl border border-line bg-ink-2 p-5 sm:p-6">
           <p className="label">Free</p>
           <p className="mt-3 text-4xl font-extrabold tracking-tight">$0</p>
           <p className="mt-1 text-sm font-semibold text-muted">No account needed. Safety stays free for everyone.</p>
@@ -107,7 +107,7 @@ export function PricingPlans() {
           </Link>
         </section>
 
-        <section className="flex flex-col rounded-2xl border-2 border-accent bg-ink-2 p-6 sm:p-8">
+        <section className="flex flex-col rounded-xl border-2 border-accent bg-ink-2 p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="label flex items-center gap-1.5">
               <Crown aria-hidden weight="bold" className="size-4" /> Pro

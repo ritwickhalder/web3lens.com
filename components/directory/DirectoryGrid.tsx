@@ -59,11 +59,11 @@ export function DirectoryGrid({ entries }: { entries: DirectoryEntry[] }) {
       type="button"
       aria-pressed={source === key}
       onClick={() => setSource(key)}
-      className="flex shrink-0 items-center gap-2 rounded-full border border-line bg-ink-2 py-2 pl-2.5 pr-3.5 text-[15px] font-bold text-fg/80 transition-colors hover:border-line-strong hover:text-fg aria-pressed:border-accent aria-pressed:bg-accent/10 aria-pressed:text-fg"
+      className="flex shrink-0 items-center gap-2 rounded-md border border-line bg-ink-2 py-1.5 pl-2.5 pr-3 text-[15px] font-bold text-fg/80 transition-colors hover:border-line-strong hover:text-fg aria-pressed:border-accent aria-pressed:bg-accent/10 aria-pressed:text-fg"
     >
       <TabIcon aria-hidden weight="duotone" className="size-5" style={color ? { color } : undefined} />
       {label}
-      <span className="rounded-full bg-ink-3 px-2 text-xs font-extrabold text-muted">{count}</span>
+      <span className="rounded bg-ink-3 px-1.5 text-xs font-extrabold text-muted">{count}</span>
     </button>
   );
 
@@ -85,12 +85,12 @@ export function DirectoryGrid({ entries }: { entries: DirectoryEntry[] }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search channels, sites, forums…"
-            className="w-full rounded-xl border border-line bg-ink-2 py-3 pl-11 pr-4 text-base font-semibold text-fg outline-none placeholder:font-medium placeholder:text-faint focus:border-accent"
+            className="w-full rounded-md border border-line bg-ink-2 py-2.5 pl-11 pr-4 text-base font-semibold text-fg outline-none placeholder:font-medium placeholder:text-faint focus:border-accent"
           />
         </label>
       </div>
 
-      <p className="mt-6 text-sm font-bold text-muted" aria-live="polite">
+      <p className="mt-5 text-sm font-bold text-muted" aria-live="polite">
         {filtered.length} {filtered.length === 1 ? 'resource' : 'resources'}
       </p>
 
@@ -103,7 +103,7 @@ export function DirectoryGrid({ entries }: { entries: DirectoryEntry[] }) {
           .
         </p>
       ) : (
-        <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {filtered.map((e) => {
             const style = SOURCE_STYLE[e.source] ?? FALLBACK_STYLE;
             const SourceIcon = style.icon;
@@ -113,10 +113,10 @@ export function DirectoryGrid({ entries }: { entries: DirectoryEntry[] }) {
                   href={e.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full items-center gap-4 rounded-xl border border-line bg-ink-2 p-4 transition-colors hover:border-accent/60 hover:bg-ink-3"
+                  className="group flex h-full items-center gap-4 rounded-xl border border-line bg-ink-2 p-3.5 transition-colors hover:border-accent/60 hover:bg-ink-3"
                 >
                   <span
-                    className="grid size-12 shrink-0 place-items-center rounded-xl"
+                    className="grid size-11 shrink-0 place-items-center rounded-lg"
                     style={{ color: `color-mix(in oklab, ${style.color}, var(--color-fg) var(--glyph-mix))`, background: `color-mix(in oklab, ${style.color} 14%, transparent)` }}
                   >
                     <SourceIcon aria-hidden weight="duotone" className="size-7" />

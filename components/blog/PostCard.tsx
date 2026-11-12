@@ -9,9 +9,9 @@ import type { PostSummary } from '@/lib/blog/posts';
 export function PostCard({ post, index, headingLevel = 'h2', featured = false }: { post: PostSummary; index?: number; headingLevel?: 'h2' | 'h3'; featured?: boolean }) {
   const H = headingLevel;
   return (
-    <article className={`group relative flex h-full flex-col rounded-2xl border border-line bg-ink-2 p-3 transition-colors hover:border-accent/60 ${featured ? 'lg:grid lg:grid-cols-2 lg:items-center lg:gap-8' : ''}`}>
+    <article className={`group relative flex h-full flex-col rounded-xl border border-line bg-ink-2 p-2.5 transition-colors hover:border-accent/60 ${featured ? 'lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-8' : ''}`}>
       <PostCover icon={post.icon} category={post.category} coins={post.coins} index={index} size={featured ? 'hero' : 'card'} />
-      <div className={`flex flex-1 flex-col px-2 pb-2 pt-4 ${featured ? 'lg:py-6 lg:pr-6' : ''}`}>
+      <div className={`flex flex-1 flex-col px-2 pb-1.5 pt-3.5 ${featured ? 'lg:py-6 lg:pr-6' : ''}`}>
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-bold text-muted">
           <Link href={`/blog/category/${post.category}`} className="relative z-10 text-accent hover:underline">
             {getCategory(post.category)?.name}
@@ -23,7 +23,7 @@ export function PostCard({ post, index, headingLevel = 'h2', featured = false }:
           </span>
         </p>
         <H className={`mt-2.5 font-extrabold tracking-tight text-fg group-hover:text-accent ${featured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'}`}>
-          <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 after:rounded-2xl">
+          <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 after:rounded-xl">
             {post.title}
           </Link>
         </H>

@@ -25,8 +25,8 @@ export function BlogSearch({ listId, total }: { listId: string; total: number })
   }
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-      <label className="flex h-12 w-full items-center gap-2.5 rounded-xl border border-line-strong bg-ink-2 px-4 focus-within:border-accent sm:max-w-md">
+    <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+      <label className="flex h-10 w-full items-center gap-2.5 rounded-md border border-line-strong bg-ink-2 px-3.5 focus-within:border-accent sm:max-w-sm">
         <MagnifyingGlass aria-hidden weight="bold" className="size-4 shrink-0 text-muted" />
         <span className="sr-only">Search articles</span>
         <input
@@ -37,7 +37,7 @@ export function BlogSearch({ listId, total }: { listId: string; total: number })
           className="h-full w-full bg-transparent text-[15px] font-semibold text-fg placeholder:text-faint focus:outline-none"
         />
       </label>
-      <p aria-live="polite" className="text-sm font-semibold text-muted">
+      <p aria-live="polite" className="whitespace-nowrap text-sm font-semibold text-muted">
         {q ? `${shown} of ${total} articles` : `${total} articles`}
       </p>
     </div>
