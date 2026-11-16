@@ -4,7 +4,7 @@ import { ArrowUpRight, CaretDown, List, Newspaper, X } from '@phosphor-icons/rea
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import { AccountButton } from '@/components/account/AccountButton';
+import { AccountButton, MobileAccountPanel } from '@/components/account/AccountButton';
 import { Logo } from '@/components/brand/Logo';
 import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
@@ -75,6 +75,16 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const close = () => setMenuOpen(false);
 
+  // Keep the page behind the open menu from scrolling, so the menu itself scrolls on short screens.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur-md">
       <nav className="wrap flex h-[72px] items-center gap-4">
@@ -124,23 +134,27 @@ export function SiteHeader() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-line bg-ink-2 xl:hidden">
-          <div className="wrap grid grid-cols-1 gap-8 py-6 sm:grid-cols-2">
+        <div className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-line bg-ink-2 xl:hidden">
+          <div className="wrap grid grid-cols-1 gap-8 py-5 sm:grid-cols-2">
             <div>
-              {[...NAV, { label: 'Contact', href: '/contact' }].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={close}
-                  aria-current={isActive(pathname, link.href) ? 'page' : undefined}
-                  className="block border-b border-line py-3.5 text-2xl font-extrabold tracking-tight text-fg aria-[current=page]:text-accent"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              <div className="mb-5">
+                <MobileAccountPanel onNavigate={close} />
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {[...NAV, { label: 'Contact', href: '/contact' }].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={close}
+                    aria-current={isActive(pathname, link.href) ? 'page' : undefined}
+                    className="flex h-12 items-center rounded-md border border-line px-4 text-base font-bold text-fg transition-colors hover:border-line-strong aria-[current=page]:border-accent aria-[current=page]:text-accent"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
             <div>
-              <AccountButton className="mb-8 w-fit" onNavigate={close} />
               <p className="label mb-3">Browser extension</p>
               <AddToBrowserButton className="mb-8" />
               <p className="label mb-3">News & markets</p>
