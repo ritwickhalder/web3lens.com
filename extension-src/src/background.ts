@@ -8,6 +8,7 @@ import { detectAll, extractQuery } from '@/lib/detect';
 import { detectionFor, resolveExplorer, toQueryKind } from '@/lib/explorer';
 import { hasNativeSupport } from '@/lib/networks';
 import { appUrl, ext, omniboxText } from './browser';
+import { maybeOpenWelcomePage, refreshUninstallUrl } from './lifecycle';
 import { load } from './store';
 
 const MENU_LOOKUP = 'w3l-lookup';
@@ -15,13 +16,18 @@ const MENU_EXPLORER = 'w3l-explorer';
 const menus = ext.contextMenus;
 const omnibox = ext.omnibox;
 
-ext.runtime.onInstalled.addListener(() => {
+ext.runtime.onInstalled.addListener((details) => {
+  void maybeOpenWelcomePage(details);
+  void refreshUninstallUrl();
   if (!menus) return;
   void menus.removeAll().then(() => {
     menus.create({ id: MENU_LOOKUP, title: 'Look up “%s” on Web3Lens', contexts: ['selection'] });
     menus.create({ id: MENU_EXPLORER, title: 'Open “%s” in its block explorer', contexts: ['selection'] });
   });
 });
+
+// The uninstall URL carries the extension version, so re-register it whenever the browser starts.
+ext.runtime.onStartup?.addListener(() => void refreshUninstallUrl());
 
 /** Where a query should go: the extension's result page, an explorer URL, or the search page. */
 async function destination(text: string, mode: 'lookup' | 'explorer', chainId?: string): Promise<string> {

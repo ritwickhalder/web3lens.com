@@ -12,6 +12,8 @@ Ready to submit once accounts and Pro are live (TODO.md §1); use the store copy
   export of batches; watch/unwatch addresses and see "Watching" badges; unread watchlist alerts on the toolbar icon.
 - Plan limits are shown in place (batch size, saved items) with a quiet "See Pro" link; nothing pops up.
 - New strings in all 15 languages. No new permissions, no content scripts, no remote code.
+- A fresh install opens a short welcome page on web3lens.com (once; never on updates). Removing the extension opens
+  web3lens.com/uninstall, a one-question anonymous survey (version and browser in the URL; browser only on Firefox).
 
 ## 1.0.1
 

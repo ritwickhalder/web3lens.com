@@ -133,7 +133,8 @@ curl -H "x-api-key: w3l_XXXXXXXX_…" "https://web3lens.com/api/v1/detect?q=vita
 | Cron | `GET /api/cron/watches` (`vercel.json`, daily) | `Authorization: Bearer $CRON_SECRET`; checks up to 300 due watches with a 45 s budget, emails digests, prunes alerts. |
 | Unsubscribe | `/api/watches/unsubscribe?t=` | HMAC-signed per watch (`BETTER_AUTH_SECRET`); GET or one-click POST. |
 | Portfolio (Pro) | `/portfolio` (client) | Saved EVM addresses through `/api/batch/balances` (quota counted); native coins only; unavailable chains are shown, never summed as zero. |
-| Admin | `/admin`, `/api/admin/users`, `/api/admin/users/:id` | `ADMIN_EMAILS` only, 404 otherwise; overrides, suspend (also ends sessions), sign out everywhere; every action in `admin_actions`. |
+| Admin | `/admin`, `/api/admin/users`, `/api/admin/users/:id` | `ADMIN_EMAILS` only, 404 otherwise; overrides, suspend (also ends sessions), sign out everywhere; every action in `admin_actions`. Also lists uninstall-survey answers. |
+| Welcome email | Better Auth `user.create.after` → `lib/server/welcome-mail.ts` | Once per new account, through the contact form's SMTP settings. Best effort: no SMTP → skipped; a failed send is logged and never blocks sign-in. Mentions the Pro trial only when billing is configured. |
 
 How a check decides (`lib/server/watch.ts` `diffWatch`): EVM — a higher nonce is "sent", otherwise a higher balance is
 "received", any other balance move is "balance changed"; UTXO — more transactions or a balance change is activity, the

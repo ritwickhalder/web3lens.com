@@ -356,3 +356,30 @@ export const adminActions = pgTable(
   },
   (t) => [index('admin_actions_target_idx').on(t.targetUserId, t.createdAt)],
 );
+
+/**
+ * Anonymous uninstall survey answers (web3lens.com/uninstall, lib/uninstall.ts). No user id, email, address or IP:
+ * only the reason, the optional answer, the extension version and browser family. `visit_key` is a random id made
+ * by the page so a double submit is stored once.
+ */
+export const uninstallFeedback = pgTable(
+  'uninstall_feedback',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    reason: text('reason').notNull(),
+    details: text('details'),
+    competitor: text('competitor'),
+    extensionVersion: text('extension_version'),
+    browser: text('browser').notNull().default('other'),
+    visitKey: uuid('visit_key'),
+    createdAt: ts('created_at').notNull().defaultNow(),
+  },
+  (t) => [
+    index('uninstall_feedback_created_idx').on(t.createdAt),
+    uniqueIndex('uninstall_feedback_visit_uq').on(t.visitKey),
+    check(
+      'uninstall_feedback_len_ck',
+      sql`length(${t.reason}) <= 40 and (${t.details} is null or length(${t.details}) <= 500) and (${t.competitor} is null or length(${t.competitor}) <= 80) and (${t.extensionVersion} is null or length(${t.extensionVersion}) <= 20) and length(${t.browser}) <= 10`,
+    ),
+  ],
+);

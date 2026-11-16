@@ -18,6 +18,7 @@ import { PostCard } from '@/components/blog/PostCard';
 import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import { PopularChains } from '@/components/home/PopularChains';
 import { TryExamples } from '@/components/home/TryExamples';
+import { WelcomeBlock } from '@/components/home/WelcomeBlock';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { SmartSearch } from '@/components/search/SmartSearch';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -86,6 +87,7 @@ export default function HomePage() {
   return (
     <main>
       <JsonLd data={webApplication()} />
+      <WelcomeBlock />
       {/* Hero: centred headline and a wide search bar */}
       <section className="relative">
         <div aria-hidden className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[560px]" />

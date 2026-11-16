@@ -11,6 +11,7 @@ import { bearer } from 'better-auth/plugins';
 import { getDb, schema } from '@/lib/db';
 import { accountsConfigured, serverEnv } from '@/lib/server/env';
 import { profileOf } from '@/lib/server/stores';
+import { sendWelcomeEmail } from '@/lib/server/welcome-mail';
 
 /** Sessions minted for an extension start their user agent with this (see /api/ext/pair/claim). */
 export const EXTENSION_SESSION_AGENT = 'Web3Lens extension';
@@ -40,6 +41,14 @@ function createAuth() {
     telemetry: { enabled: false },
     plugins: [bearer()],
     databaseHooks: {
+      user: {
+        create: {
+          // Once per new account. Best effort: sendWelcomeEmail never throws, so sign-in can't fail because of it.
+          after: async (u) => {
+            await sendWelcomeEmail({ email: u.email, name: u.name });
+          },
+        },
+      },
       session: {
         create: {
           // A suspended account can't start a session (website or extension).

@@ -51,6 +51,7 @@ export const MAIN_NAV: NavLink[] = [
   { label: 'Directory', href: '/directory' },
   { label: 'Learn', href: '/blockchain-guide' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Changelog', href: '/changelog' },
   { label: 'About', href: '/about' },
 ];
 
@@ -85,6 +86,7 @@ export const INFO_LINKS: NavLink[] = [
   { label: 'Terms of use', href: '/terms' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Sitemap', href: '/site-map' },
+  { label: 'Changelog', href: '/changelog' },
   { label: 'Settings', href: '/settings' },
   { label: 'About', href: '/about' },
 ];

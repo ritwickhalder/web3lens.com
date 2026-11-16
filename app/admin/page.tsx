@@ -1,9 +1,11 @@
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { AdminPanel } from '@/components/account/AdminPanel';
+import { UninstallFeedbackList } from '@/components/account/UninstallFeedbackList';
 import { PageShell } from '@/components/content/PageShell';
 import { pageMetadata } from '@/lib/metadata';
 import { adminCaller } from '@/lib/server/admin';
+import { recentUninstallFeedback } from '@/lib/server/uninstall-store';
 
 export const metadata = pageMetadata({ title: 'Admin', path: '/admin', noindex: true, nofollow: true });
 export const dynamic = 'force-dynamic';
@@ -14,6 +16,7 @@ export default async function AdminPage() {
   return (
     <PageShell layout="stacked" eyebrow="Admin" title="Users and plans">
       <AdminPanel />
+      <UninstallFeedbackList rows={await recentUninstallFeedback()} />
     </PageShell>
   );
 }

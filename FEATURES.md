@@ -102,6 +102,7 @@ All run locally in the browser except live gas and the optional selector lookup.
 | **Popup (720 × 600, no scrolling)** | Tabs: **Lookup** (search with compact results, Copy, recents and examples), **Scan page**, **Tools** (all seven tools inline), **Gas**, **Saved**. Header: online status, theme switch, **Settings** and **Info** dialogs (shortcuts, coverage, links, the developer's other tools). |
 | **Full-page app** | Result pages, cross-chain, approvals, all tools, batch, saved and settings in a sidebar layout with feature cards. |
 | **Design** | The website's look: bundled Manrope, lens logo, official coin logos and Phosphor icons rendered from the site's components; light (default), dark and system themes. |
+| **Welcome and uninstall pages** | A fresh install (never an update) opens `web3lens.com/?welcome=true` once, where the homepage shows three tips (pin it, right-click, `w3`). Removing the extension opens `/uninstall`: one optional anonymous question (version and browser in the URL; browser only on Firefox). `extension-src/src/lifecycle.ts`; no permission needed. |
 | **15 languages** | English, Spanish, Portuguese, French, German, Japanese, Korean, Simplified Chinese, Russian, Indonesian, Turkish, Italian, Polish, Dutch, Thai; follows the browser language or a saved choice. Chain names, symbols and identifiers stay untranslated. Right-click and omnibox texts stay English. |
 
 ## 9. Website content and pages
@@ -114,6 +115,8 @@ All run locally in the browser except live gas and the optional selector lookup.
 | **Learn** (`/blockchain-guide`) | Beginner's guide: 7 questions (blockchain, Bitcoin, buying/selling, mining, wallets, NFTs, DeFi) with illustrations and click-to-load videos. |
 | **Extension page** (`/extension`) | Features and install links for Chrome, Firefox and Edge. |
 | **Navigation** | Search, Tools, Saved, Extension, Directory, Learn, Blog, About, News dropdown (15 outside sources), Markets, Contact; mobile sheet below 1280 px. Footer with donation addresses (copy buttons). |
+| **Changelog** (`/changelog`) | Public list of what changed on the site and in the extension, newest first (`content/changelog.ts`; only live features). |
+| **Uninstall survey** (`/uninstall`) | Noindex. Reason + one optional follow-up; stored in `uninstall_feedback` (no user id, email, address or IP; one row per visit), or emailed to the owner while there is no database. Answers and per-reason counts on `/admin`. |
 | **Contact form** | Emails the owner; honeypot, minimum fill time, spam/link checks, per-IP and per-email rate limits. |
 | **Static pages** | About, Terms, Privacy Policy, Bookmark how-to, HTML sitemap, 404. |
 | **SEO** | Per-page metadata with full Open Graph/Twitter cards, JSON-LD (Organization, WebSite + SearchAction, WebApplication, SoftwareApplication, BreadcrumbList, BlogPosting, FAQPage), sitemap, robots, RSS. Old 2018 URLs redirect permanently. Live-lookup pages (`/address/`, `/tx/`, `/search?`) and `/api/` are disallowed in robots and marked noindex, nofollow; crawlers and scripts that request them anyway get the page without provider calls (title, metadata and explorer links only). |

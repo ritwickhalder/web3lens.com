@@ -11,6 +11,9 @@ interface ExtApi {
     getManifest(): { version: string; name: string };
     openOptionsPage(): Promise<void>;
     onInstalled: ExtEvent<(details: { reason: string }) => void>;
+    onStartup?: ExtEvent<() => void>;
+    /** Missing on Firefox for Android before 79 and in some embedders; always feature-test. */
+    setUninstallURL?(url: string): Promise<void>;
   };
   storage: {
     local: {

@@ -18,7 +18,7 @@ type Group = { name: string; icon: Icon; match: (href: string) => boolean };
 const GROUPS: Group[] = [
   { name: 'Search & explore', icon: MagnifyingGlass, match: (h) => ['/', '/search', '/explorer', '/gas', '/batch'].includes(h) },
   { name: 'Developer tools', icon: Code, match: (h) => h === '/tools' || h.startsWith('/tools/') },
-  { name: 'Learn', icon: BookOpenText, match: (h) => ['/blog', '/blockchain-guide', '/directory'].includes(h) },
+  { name: 'Learn', icon: BookOpenText, match: (h) => ['/blog', '/blockchain-guide', '/directory', '/changelog'].includes(h) },
   { name: 'Your Web3Lens', icon: SquaresFour, match: (h) => ['/saved', '/settings', '/pricing', '/extension', '/bookmark'].includes(h) },
   { name: 'Information', icon: Info, match: (h) => ['/about', '/contact', '/terms', '/privacy-policy', '/site-map'].includes(h) },
 ];

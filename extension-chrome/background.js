@@ -12501,6 +12501,53 @@
     return ext.runtime.getURL(`app.html${hash}`);
   }
 
+  // extension-src/src/lifecycle.ts
+  var SITE_ORIGIN = "https://web3lens.com";
+  var WELCOME_SHOWN_KEY = "welcomePageShown:v1";
+  var UNINSTALL_PRODUCT = "w3l";
+  function browserFamily(ua, brave = false) {
+    if (/\bEdg\//i.test(ua)) return "edge";
+    if (/\bOPR\/|\bOpera\//i.test(ua)) return "opera";
+    if (brave) return "brave";
+    if (/\bFirefox\//i.test(ua)) return "firefox";
+    if (/\bChrome\//i.test(ua)) return "chrome";
+    return "other";
+  }
+  function welcomeUrl(origin = SITE_ORIGIN) {
+    const url = new URL(`${origin}/`);
+    url.searchParams.set("welcome", "true");
+    return url.toString();
+  }
+  function uninstallUrl(o, origin = SITE_ORIGIN) {
+    const url = new URL(`${origin}/uninstall`);
+    url.searchParams.set("product", UNINSTALL_PRODUCT);
+    if (o.version) url.searchParams.set("v", o.version);
+    url.searchParams.set("b", o.browser);
+    return url.toString();
+  }
+  async function maybeOpenWelcomePage(details) {
+    if (details?.reason !== "install") return;
+    try {
+      const stored = await ext.storage.local.get([WELCOME_SHOWN_KEY]);
+      if (stored[WELCOME_SHOWN_KEY]) return;
+      await ext.storage.local.set({ [WELCOME_SHOWN_KEY]: Date.now() });
+      await ext.tabs.create({ url: welcomeUrl() });
+    } catch (e) {
+      console.warn("Web3Lens: welcome page did not open", e);
+    }
+  }
+  async function refreshUninstallUrl() {
+    if (!ext.runtime.setUninstallURL) return;
+    try {
+      const nav = typeof navigator !== "undefined" ? navigator : void 0;
+      const browser2 = browserFamily(nav?.userAgent ?? "", !!nav?.brave);
+      const version = isFirefox ? void 0 : ext.runtime.getManifest().version;
+      await ext.runtime.setUninstallURL(uninstallUrl({ browser: browser2, version }));
+    } catch (e) {
+      console.warn("Web3Lens: uninstall URL not set", e);
+    }
+  }
+
   // lib/local-store.ts
   function createLocalStore(key, fallback, sanitize) {
     const listeners = /* @__PURE__ */ new Set();
@@ -12697,13 +12744,16 @@
   var MENU_EXPLORER = "w3l-explorer";
   var menus = ext.contextMenus;
   var omnibox = ext.omnibox;
-  ext.runtime.onInstalled.addListener(() => {
+  ext.runtime.onInstalled.addListener((details) => {
+    void maybeOpenWelcomePage(details);
+    void refreshUninstallUrl();
     if (!menus) return;
     void menus.removeAll().then(() => {
       menus.create({ id: MENU_LOOKUP, title: "Look up “%s” on Web3Lens", contexts: ["selection"] });
       menus.create({ id: MENU_EXPLORER, title: "Open “%s” in its block explorer", contexts: ["selection"] });
     });
   });
+  ext.runtime.onStartup?.addListener(() => void refreshUninstallUrl());
   async function destination(text, mode, chainId) {
     const { query } = extractQuery(text.trim().slice(0, 300));
     const best = detectAll(query)[0];

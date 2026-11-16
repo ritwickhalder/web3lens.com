@@ -69,7 +69,10 @@ export default function PrivacyPolicyPage() {
           The Web3Lens extension for Chrome, Firefox and Edge stores its data on your device only. It reads the text you select when you use
           the right-click menu, and reads the current page only when you open the “Scan page” tab in its popup (the text is searched for addresses on your device and not sent anywhere). When online lookups are on (the
           default; you can turn them off in its settings), the addresses and hashes you look up are sent to web3lens.com as described above.
-          It contains no analytics, ads or remote code, and needs no wallet; signing in is optional. It is published only on the official stores:{' '}
+          It contains no analytics, ads or remote code, and needs no wallet; signing in is optional. After a fresh install it opens a short
+          welcome page on web3lens.com once. If you remove it, your browser opens web3lens.com/uninstall with the extension version and
+          browser name in the address (only the browser name on Firefox), where you can answer one optional, anonymous question about why;
+          answers are stored without any account, email, address or IP. It is published only on the official stores:{' '}
           {EXTENSION_STORES.map((s, i) => (
             <span key={s.id}>
               {i > 0 && (i === EXTENSION_STORES.length - 1 ? ' and ' : ', ')}
