@@ -65,6 +65,7 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
 
 ## Browser extensions
 
+- Store metadata: the store title and short description are frozen: `npm run store:guard` (also run by the tests and before packaging) fails on any change to the extension name, short name, summary or toolbar title, in any locale or build. Change them only when the owner explicitly asks for that exact wording, then `node scripts/store-metadata-guard.mjs --update`. Never as a side effect of other work (Super Session Manager lost its Chrome Web Store ranking that way).
 - Source in `extension-src/`; `npm run ext:build` writes `extension-chrome/`, `extension-firefox/`, `extension-edge/`.
   Only each directory's `manifest.json` (and `*.md`) is hand-written; never edit the generated JS/HTML there.
 - `npm test` fails if the builds are stale, the manifests drift apart, or permissions/CSP loosen. Keep: no host

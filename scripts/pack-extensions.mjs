@@ -76,6 +76,9 @@ function zip(files) {
   return Buffer.concat([...locals, centralBuf, end]);
 }
 
+// The store title and short description are frozen (scripts/store-metadata-guard.mjs): a changed one can't be packaged.
+execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'store-metadata-guard.mjs')], { stdio: 'inherit' });
+
 fs.mkdirSync(OUT, { recursive: true });
 const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'extension-chrome', 'manifest.json'), 'utf8')).version;
 for (const browser of ['chrome', 'edge', 'firefox']) {

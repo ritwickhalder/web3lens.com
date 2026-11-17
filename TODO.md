@@ -92,6 +92,10 @@ Do it first in the **sandbox** (https://sandbox-vendors.paddle.com) to test, the
 8. [ ] Optional: add the three live price IDs to the shared catalog in the WebInternetArchive repo
        (`docs/paddle-catalog.md`, `lib/paddle-catalog.ts`) so your other sites label these payments correctly.
 
+Once Pro is on sale and SMTP is set, the daily `/api/cron/emails` job (needs `CRON_SECRET`, see step 4) starts
+sending the upgrade nudge, the "your trial has ended" email and the abandoned-checkout reminder. Before that it does
+nothing. Check who it would email with `/api/cron/emails?dryRun=1` (same `Authorization: Bearer` header).
+
 ### Step 4 — Watchlist alerts and admin page, about 5 minutes
 1. [ ] Vercel → Environment Variables (Production), add:
 

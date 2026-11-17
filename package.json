@@ -17,7 +17,8 @@
     "ext:lint:firefox": "npx --yes web-ext@10 lint --source-dir extension-firefox --self-hosted",
     "explorers:check": "node scripts/check-explorers.mjs",
     "chains:audit": "node scripts/audit-chains.mjs --refs --out audit",
-    "sanctions:update": "node scripts/update-sanctions.mjs"
+    "sanctions:update": "node scripts/update-sanctions.mjs",
+    "store:guard": "node scripts/store-metadata-guard.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",

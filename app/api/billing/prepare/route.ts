@@ -1,6 +1,7 @@
 import { accountError, accountJson, isSameOrigin, readJson } from '@/lib/server/account-http';
 import { billingConfigured, serverEnv } from '@/lib/server/env';
 import { limited } from '@/lib/server/limiters';
+import { recordCheckoutIntent } from '@/lib/server/lifecycle-mail';
 import { currentUser, planOf } from '@/lib/server/session';
 
 type Choice = 'monthly' | 'yearly' | 'lifetime';
@@ -26,5 +27,7 @@ export async function POST(request: Request) {
     return accountError(request, 'You already have a Pro subscription. Change it under Manage billing.', 409);
   }
   const priceId = serverEnv.prices[plan as Choice];
+  // For the abandoned-checkout reminder (lib/server/lifecycle-mail.ts). Best effort: never blocks the checkout.
+  await recordCheckoutIntent(who.user.id, plan as Choice);
   return accountJson(request, { priceId, email: who.user.email, customData: { userId: who.user.id } });
 }

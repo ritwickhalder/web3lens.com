@@ -383,3 +383,58 @@ export const uninstallFeedback = pgTable(
     ),
   ],
 );
+
+/**
+ * Unsubscribed from product emails (upgrade nudge, checkout reminder). A table of its own rather than a user_profiles
+ * column, so existing profile reads keep working before the migration has run. Watch alerts have their own switch.
+ */
+export const emailOptOuts = pgTable('email_opt_outs', {
+  userId: text('user_id')
+    .primaryKey()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  createdAt: ts('created_at').notNull().defaultNow(),
+});
+
+export const LIFECYCLE_EMAIL_KINDS = ['nudge', 'trial_ended', 'checkout_recovery', 'test'] as const;
+
+/**
+ * Product emails (lib/server/lifecycle-mail.ts): the upgrade nudge, its after-trial version and the abandoned-checkout
+ * reminder. A row is claimed ('pending') before SMTP so overlapping runs can't send twice; it also drives the daily cap
+ * and the resend windows. `test` rows never suppress anything.
+ */
+export const lifecycleEmails = pgTable(
+  'lifecycle_emails',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id').references(() => user.id, { onDelete: 'set null' }),
+    email: text('email').notNull(),
+    kind: text('kind', { enum: LIFECYCLE_EMAIL_KINDS }).notNull(),
+    status: text('status', { enum: ['pending', 'sent', 'failed'] }).notNull().default('pending'),
+    error: text('error'),
+    createdAt: ts('created_at').notNull().defaultNow(),
+    sentAt: ts('sent_at'),
+  },
+  (t) => [
+    index('lifecycle_emails_user_idx').on(t.userId, t.createdAt),
+    index('lifecycle_emails_created_idx').on(t.createdAt),
+    check('lifecycle_emails_kind_ck', sql`${t.kind} in ('nudge','trial_ended','checkout_recovery','test')`),
+    check('lifecycle_emails_status_ck', sql`${t.status} in ('pending','sent','failed')`),
+  ],
+);
+
+/**
+ * A signed-in user asked for a Paddle checkout (POST /api/billing/prepare). The abandoned-checkout reminder reads these;
+ * whether they paid is the plan itself. Pruned after 30 days by the reminder run.
+ */
+export const checkoutIntents = pgTable(
+  'checkout_intents',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    plan: text('plan', { enum: SUBSCRIPTION_PLANS }).notNull(),
+    createdAt: ts('created_at').notNull().defaultNow(),
+  },
+  (t) => [index('checkout_intents_created_idx').on(t.createdAt), check('checkout_intents_plan_ck', sql`${t.plan} in ('monthly','yearly','lifetime')`)],
+);

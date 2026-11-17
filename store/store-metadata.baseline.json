@@ -1,0 +1,19 @@
+{
+  "_comment": "FROZEN store title/description. Regenerate only with `node scripts/store-metadata-guard.mjs --update`, and only when the owner has explicitly asked for that wording change. See scripts/store-metadata-guard.mjs.",
+  "values": {
+    "extension-chrome/manifest.json :: name": "Blockchain Explorer & Web3 Block Explorer – Web3Lens",
+    "extension-chrome/manifest.json :: short_name": "Web3Lens",
+    "extension-chrome/manifest.json :: description": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 700+ blockchains with Web3Lens.",
+    "extension-chrome/manifest.json :: action.default_title": "Web3Lens",
+    "extension-edge/manifest.json :: name": "Blockchain Explorer & Web3 Block Explorer",
+    "extension-edge/manifest.json :: short_name": "Web3Lens",
+    "extension-edge/manifest.json :: description": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 700+ blockchains with Web3Lens.",
+    "extension-edge/manifest.json :: action.default_title": "Web3Lens",
+    "extension-firefox/manifest.json :: name": "Blockchain Explorer & Web3 Block Explorer",
+    "extension-firefox/manifest.json :: short_name": "Web3Lens",
+    "extension-firefox/manifest.json :: description": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 700+ blockchains with Web3Lens.",
+    "extension-firefox/manifest.json :: action.default_title": "Web3Lens",
+    "store/listing.md :: Name": "Blockchain Explorer & Web3 Block Explorer – Web3Lens | Blockchain Explorer & Web3 Block Explorer",
+    "store/listing.md :: Short description / summary": "Scan blockchain networks, find block explorers, look up crypto addresses and transaction hashes on 700+ blockchains with Web3Lens. | Paste or right-click any blockchain address, transaction hash or ENS name. Web3Lens recognises the format and chain, checks the checksum, opens the right explorer page, and shows balances and risk checks. No account, no wallet, no tracking."
+  }
+}
