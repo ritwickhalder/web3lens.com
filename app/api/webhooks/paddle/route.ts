@@ -1,5 +1,6 @@
 import { applyPaddleEvent, isPaddleEvent, verifyPaddleSignature } from '@/lib/server/paddle';
 import { billingConfigured, serverEnv } from '@/lib/server/env';
+import { purchaseRowId, sendProThankYouIfNew } from '@/lib/server/pro-thank-you';
 import { subscriptionStore } from '@/lib/server/stores';
 
 /**
@@ -22,7 +23,11 @@ export async function POST(request: Request) {
   }
   if (!isPaddleEvent(event)) return Response.json({ error: 'Not a Paddle event' }, { status: 400 });
   try {
+    const rowId = purchaseRowId(event);
+    const before = rowId ? await subscriptionStore.get(rowId) : null;
     const result = await applyPaddleEvent(subscriptionStore, event, serverEnv.prices);
+    // A purchase that just became active gets one thank-you (never throws; see lib/server/pro-thank-you.ts).
+    if (result === 'applied' && rowId) await sendProThankYouIfNew(subscriptionStore, rowId, before);
     return Response.json({ ok: true, result });
   } catch (e) {
     console.error('[paddle] applying', event.event_id, event.event_type, 'failed:', e instanceof Error ? e.message : e);
