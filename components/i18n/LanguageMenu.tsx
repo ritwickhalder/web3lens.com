@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { DEFAULT_LOCALE, LOCALES, LOCALE_META, LOCALIZED_PATHS, localizePath, type Locale } from '@/lib/i18n/config';
 
 const STYLE = {
+  /** The corner pill (FloatingLanguageMenu): same trigger, with its own surface since it sits over the page. */
+  floating: "inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-full px-2.5 text-[13px] font-semibold transition-colors focus:outline-none focus-visible:ring-2 border border-line-strong bg-ink-2 text-fg/70 shadow-md hover:border-accent hover:text-fg",
   trigger: "inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-md px-2.5 text-[13px] font-bold text-fg/60 transition-colors hover:bg-ink-3 hover:text-fg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent",
   triggerOpen: "bg-ink-3 text-fg",
   panel: "rounded-xl border border-line-strong bg-ink-2 p-2 shadow-2xl shadow-black/50",
@@ -54,12 +56,15 @@ export function LanguageMenu({
   label,
   className = '',
   codeClassName = '',
+  floating = false,
 }: {
   locale: Locale;
   label: string;
   className?: string;
   /** Lets a crowded header show only the globe at some widths (e.g. `hidden 2xl:inline`). */
   codeClassName?: string;
+  /** Pill look for the floating corner picker. */
+  floating?: boolean;
 }) {
   const pathname = usePathname() ?? '/';
   const page = pagePath(pathname);
@@ -127,7 +132,7 @@ export function LanguageMenu({
         aria-controls={panelId}
         aria-label={`${label}: ${LOCALE_META[locale].nativeName}`}
         title={label}
-        className={`${STYLE.trigger} ${open ? STYLE.triggerOpen : ''}`}
+        className={floating ? STYLE.floating : `${STYLE.trigger} ${open ? STYLE.triggerOpen : ''}`}
       >
         <GlobeIcon className="h-4 w-4 shrink-0" />
         <span className={`uppercase tracking-wide ${codeClassName}`}>{locale}</span>
@@ -174,5 +179,34 @@ export function LanguageMenu({
         )}
       </div>
     </div>
+  );
+}
+
+/**
+ * The language picker as a small pill fixed in the window's top-right corner, so it stays out of the header and the
+ * page. Render it outside <header>: a backdrop-filter on the header would make `fixed` relative to the header.
+ * `className` sets the vertical position (centred on the header row). The header keeps clear of it with
+ * <LanguageMenuRoom/>.
+ */
+export function FloatingLanguageMenu({ className = '', ...props }: { locale: Locale; label: string; className?: string }) {
+  return (
+    <div className={`fixed right-2 z-[110] sm:right-3 ${className}`}>
+      <LanguageMenu {...props} floating codeClassName="hidden xl:inline" />
+    </div>
+  );
+}
+
+/**
+ * Last item of the header row: takes up only the width the corner pill needs beyond the page margin, so on narrow
+ * windows the header's own buttons never sit under it, and on wide ones (margin wide enough) it is 0px.
+ * `maxWidth` is the header container's max-width. The pill's footprint is --lang-fab (globals.css).
+ */
+export function LanguageMenuRoom({ maxWidth }: { maxWidth: string }) {
+  return (
+    <span
+      aria-hidden
+      className="pointer-events-none block shrink-0"
+      style={{ width: `max(0px, calc(var(--lang-fab, 6rem) - max(0px, (100vw - ${maxWidth}) / 2)))` }}
+    />
   );
 }

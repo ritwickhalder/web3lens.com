@@ -7,7 +7,7 @@ import { useEffect, useRef, useState, type RefObject } from 'react';
 import { AccountButton, MobileAccountPanel } from '@/components/account/AccountButton';
 import { Logo } from '@/components/brand/Logo';
 import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
-import { LanguageMenu } from '@/components/i18n/LanguageMenu';
+import { FloatingLanguageMenu, LanguageMenuRoom } from '@/components/i18n/LanguageMenu';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { MAIN_NAV, MARKET_LINK, NEWS_LINKS, PRO_ON_SALE } from '@/config/site';
 import { useLocale, useTx } from '@/lib/i18n/client';
@@ -79,6 +79,13 @@ function NewsMenu() {
  * the header falls back to the menu sheet instead of clipping. Remembers the width the bar needed, to bring it back
  * once the row is wide enough again.
  */
+/** The row's items run past its content box (scrollWidth misses a shrink-0 item pushed past the padding, like the language-pill room). */
+function overflows(nav: HTMLElement): boolean {
+  if (nav.scrollWidth > nav.clientWidth + 1) return true;
+  const right = nav.getBoundingClientRect().right - (parseFloat(getComputedStyle(nav).paddingRight) || 0);
+  return [...nav.children].some((c) => c.getBoundingClientRect().right > right + 1);
+}
+
 function useBarOverflow(navRef: RefObject<HTMLElement | null>, barRef: RefObject<HTMLElement | null>) {
   const [cramped, setCramped] = useState(false);
   const needed = useRef(0);
@@ -89,7 +96,7 @@ function useBarOverflow(navRef: RefObject<HTMLElement | null>, barRef: RefObject
     const observer = new ResizeObserver(() => {
       if (cramped) {
         if (nav.clientWidth >= needed.current) setCramped(false);
-      } else if (barRef.current?.offsetParent && nav.scrollWidth > nav.clientWidth + 1) {
+      } else if (barRef.current?.offsetParent && overflows(nav)) {
         needed.current = nav.scrollWidth;
         setCramped(true);
       }
@@ -101,7 +108,7 @@ function useBarOverflow(navRef: RefObject<HTMLElement | null>, barRef: RefObject
   return cramped;
 }
 
-/** Full-width sticky navbar. Below xl (2xl on translated pages) it collapses into a sheet. */
+/** Full-width sticky navbar. Below 1360px (2xl on translated pages) it collapses into a sheet. */
 export function SiteHeader() {
   const pathname = usePathname();
   const tx = useTx();
@@ -117,8 +124,9 @@ export function SiteHeader() {
   // show the extension button only on very wide screens. Literal class names, so Tailwind sees them.
   const english = locale === 'en';
   const cramped = useBarOverflow(navRef, barRef);
-  const bar = cramped ? '' : english ? 'xl:flex' : '2xl:flex';
-  const sheetOnly = cramped ? '' : english ? 'xl:hidden' : '2xl:hidden';
+  // English fits from 1360px: the right edge keeps room for the floating language pill (LanguageMenuRoom).
+  const bar = cramped ? '' : english ? 'min-[1360px]:flex' : '2xl:flex';
+  const sheetOnly = cramped ? '' : english ? 'min-[1360px]:hidden' : '2xl:hidden';
   const extension = english ? '2xl:block' : 'min-[1800px]:block';
 
   // Keep the page behind the open menu from scrolling, so the menu itself scrolls on short screens.
@@ -132,7 +140,10 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur-md">
+    <>
+      {/* Language: a pill floating in the top-right corner, out of the nav (outside <header>: its backdrop blur would trap `fixed`). */}
+      <FloatingLanguageMenu locale={locale} label={tx('Language')} className="top-[18px]" />
+      <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur-md">
       <nav ref={navRef} className="wrap flex h-[72px] items-center gap-4">
         <Link href={home} aria-label={tx('Web3Lens home')} onClick={close} className="shrink-0">
           <Logo />
@@ -154,8 +165,6 @@ export function SiteHeader() {
             {tx('Markets')}
             <ArrowUpRight aria-hidden weight="bold" className="size-3.5" />
           </a>
-          {/* The bar is full below 1800px, so only the globe shows there. */}
-          <LanguageMenu locale={locale} label={tx('Language')} codeClassName="hidden min-[1800px]:inline" />
           <ThemeToggle />
           <AccountButton className="ml-2" />
           <Link
@@ -169,8 +178,7 @@ export function SiteHeader() {
           </span>
         </div>
 
-        <LanguageMenu locale={locale} label={tx('Language')} className={`ml-auto ${sheetOnly}`} />
-        <ThemeToggle className={sheetOnly} />
+        <ThemeToggle className={`ml-auto ${sheetOnly}`} />
         <button
           type="button"
           aria-label={menuOpen ? tx('Close menu') : tx('Open menu')}
@@ -180,6 +188,8 @@ export function SiteHeader() {
         >
           {menuOpen ? <X weight="bold" className="size-5" /> : <List weight="bold" className="size-5" />}
         </button>
+        {/* Keeps the bar clear of the corner language pill when the page margin is too narrow for it. */}
+        <LanguageMenuRoom maxWidth="1880px" />
       </nav>
 
       {menuOpen && (
@@ -224,6 +234,7 @@ export function SiteHeader() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

@@ -366,3 +366,13 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Room the floating language picker (FloatingLanguageMenu) needs at the right edge: globe only below 1280px, globe + code above. */
+:root {
+  --lang-fab: 3rem;
+}
+@media (min-width: 1280px) {
+  :root {
+    --lang-fab: 6.25rem;
+  }
+}
