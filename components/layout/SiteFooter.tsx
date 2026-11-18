@@ -4,6 +4,7 @@ import { LogoMark } from '@/components/brand/Logo';
 import { AddToBrowserButton, OtherStoreLinks } from '@/components/extension/AddToBrowser';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { CopyButton } from '@/components/ui/CopyButton';
+import { T } from '@/components/i18n/T';
 import { DONATION_ADDRESSES, INFO_LINKS, MAIN_NAV, MARKET_LINK, OTHER_PRODUCTS, SITE } from '@/config/site';
 
 const DONATION_CHAIN: Record<string, string> = { 'Ethereum / Polygon': 'ethereum', Cosmos: 'cosmos' };
@@ -20,20 +21,24 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-muted">
-            One search box for every blockchain. Simple, free and ad-free since 2018.
+            <T>One search box for every blockchain. Simple, free and ad-free since 2018.</T>
           </p>
           <div className="mt-6">
             <AddToBrowserButton />
             <OtherStoreLinks className="mt-3" />
           </div>
-          <p className="label mb-3 mt-8">More free tools by the developer</p>
+          <p className="label mb-3 mt-8">
+            <T>More free tools by the developer</T>
+          </p>
           <ul className="space-y-2 text-sm font-semibold">
             {OTHER_PRODUCTS.map((p) => (
               <li key={p.href}>
                 <a href={p.href} target="_blank" rel="noopener" className="text-fg/80 underline decoration-line-strong underline-offset-2 hover:text-accent">
                   {p.name}
                 </a>{' '}
-                <span className="text-faint">· {p.description}</span>
+                <span className="text-faint">
+                  · <T>{p.description}</T>
+                </span>
               </li>
             ))}
             <li>
@@ -45,12 +50,14 @@ export function SiteFooter() {
         </div>
 
         <nav aria-label="Explore" className="md:col-span-2">
-          <p className="label mb-4">Explore</p>
+          <p className="label mb-4">
+            <T>Explore</T>
+          </p>
           <ul className="space-y-3 text-[15px] font-semibold">
             {[...MAIN_NAV, { label: 'Contact', href: '/contact' }].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-fg/80 hover:text-accent">
-                  {l.label}
+                  <T>{l.label}</T>
                 </Link>
               </li>
             ))}
@@ -58,18 +65,20 @@ export function SiteFooter() {
         </nav>
 
         <nav aria-label="Information" className="md:col-span-2">
-          <p className="label mb-4">Information</p>
+          <p className="label mb-4">
+            <T>Information</T>
+          </p>
           <ul className="space-y-3 text-[15px] font-semibold">
             {INFO_LINKS.filter((l) => l.href !== '/about').map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-fg/80 hover:text-accent">
-                  {l.label}
+                  <T>{l.label}</T>
                 </Link>
               </li>
             ))}
             <li>
               <a href={MARKET_LINK.href} target="_blank" rel="noopener noreferrer" className="text-fg/80 hover:text-accent">
-                Markets ↗
+                <T>Markets</T> ↗
               </a>
             </li>
           </ul>
@@ -77,9 +86,11 @@ export function SiteFooter() {
 
         <div id="support" className="col-span-2 md:col-span-4">
           <p className="label mb-3 flex items-center gap-2 !text-redline">
-            <Heart aria-hidden weight="duotone" className="size-4" /> Keep it ad-free
+            <Heart aria-hidden weight="duotone" className="size-4" /> <T>Keep it ad-free</T>
           </p>
-          <p className="mb-4 text-[15px] text-muted">Donations keep this website simple and ad-free.</p>
+          <p className="mb-4 text-[15px] text-muted">
+            <T>Donations keep this website simple and ad-free.</T>
+          </p>
           <ul className="space-y-2.5">
             {DONATION_ADDRESSES.map((d) => (
               <li key={d.label} className="flex items-center gap-3 rounded-lg border border-line bg-ink p-2.5">
@@ -99,7 +110,7 @@ export function SiteFooter() {
       <div className="border-t border-line">
         <div className="wrap flex flex-wrap items-center justify-between gap-3 py-5 text-sm font-semibold text-faint">
           <p>
-            © {new Date().getFullYear()} {SITE.domain} · Built by{' '}
+            © {new Date().getFullYear()} {SITE.domain} · <T>Built by</T>{' '}
             <a href={SITE.author.url} target="_blank" rel="noopener noreferrer" className="text-muted underline underline-offset-2 hover:text-fg">
               {SITE.author.name}
             </a>
@@ -108,7 +119,9 @@ export function SiteFooter() {
               YouTube
             </a>
           </p>
-          <p>Links out to third-party explorers; not responsible for their content.</p>
+          <p>
+            <T>Links out to third-party explorers; not responsible for their content.</T>
+          </p>
         </div>
       </div>
     </footer>

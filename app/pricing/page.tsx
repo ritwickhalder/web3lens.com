@@ -6,17 +6,25 @@ import { PageShell } from '@/components/content/PageShell';
 import { Panel } from '@/components/tools/ui';
 import { PRO_ON_SALE } from '@/config/site';
 import { pageMetadata } from '@/lib/metadata';
+import { LanguageLinks } from '@/components/i18n/LanguageLinks';
+import { PRICING_META } from '@/lib/i18n/pages';
+import { localeAlternates } from '@/lib/i18n/seo';
+import { getTx } from '@/lib/i18n/server';
 
-export const metadata = pageMetadata({
-  title: 'Pricing: Free and Pro',
-  description:
-    'Web3Lens is free for searching, explorers, developer tools and safety checks. Pro adds large batches with balances, cloud-synced saved addresses, investigations, JSON export and API keys.',
+const base = pageMetadata({
+  title: PRICING_META.title,
+  description: PRICING_META.description,
   path: '/pricing',
   // Indexed only once Pro is actually on sale.
   noindex: !PRO_ON_SALE,
 });
 
-const FAQ: [string, React.ReactNode][] = [
+export const metadata = { ...base, alternates: { ...base.alternates, ...localeAlternates('/pricing', 'en') } };
+
+const LINK = 'text-accent underline underline-offset-2';
+
+/** Question and answer in English (the translation key); an answer may use <account> and <terms> links. */
+const FAQ: [string, string][] = [
   [
     'What stays free?',
     'Everything that keeps people safe or helps them look something up: detection, address, transaction and block pages, explorer routing for 700+ chains, OFAC and risk checks, approvals, the gas tracker, every developer tool and the browser extensions. None of it needs an account.',
@@ -31,11 +39,7 @@ const FAQ: [string, React.ReactNode][] = [
   ],
   [
     'How do payments, cancellation and refunds work?',
-    <>
-      Payments are handled by Paddle, our merchant of record, which also handles tax and invoices. Cancel any time from Manage billing on your{' '}
-      <Link href="/account" className="text-accent underline underline-offset-2">account page</Link>; Pro stays on until the end of the period you paid for.
-      Refunds follow Paddle's buyer terms and our <Link href="/terms" className="text-accent underline underline-offset-2">terms of use</Link>.
-    </>,
+    "Payments are handled by Paddle, our merchant of record, which also handles tax and invoices. Cancel any time from Manage billing on your <account>account page</account>; Pro stays on until the end of the period you paid for. Refunds follow Paddle's buyer terms and our <terms>terms of use</terms>.",
   ],
   [
     'What happens to my data if Pro ends?',
@@ -45,30 +49,37 @@ const FAQ: [string, React.ReactNode][] = [
 ];
 
 export default function PricingPage() {
+  const tx = getTx();
   return (
     <PageShell
       layout="stacked"
-      eyebrow="Pricing"
-      title="Free for everyone. Pro for heavy use."
+      eyebrow={tx('Pricing')}
+      title={tx('Free for everyone. Pro for heavy use.')}
       art={<PageArt scene="pricing" />}
-      lead="Search, explorers, developer tools and safety checks are free and need no account. Pro is for people who work through large lists every day."
+      lead={tx('Search, explorers, developer tools and safety checks are free and need no account. Pro is for people who work through large lists every day.')}
     >
       <div className="space-y-4">
         <PricingPlans />
-        <Panel title="Compare plans">
+        <Panel title={tx('Compare plans')}>
           <PlanComparison />
         </Panel>
-        <Panel title="Questions">
+        <Panel title={tx('Questions')}>
           <dl className="grid grid-cols-1 gap-x-10 gap-y-5 lg:grid-cols-2">
             {FAQ.map(([q, a]) => (
               <div key={q} className="border-l-2 border-line pl-4">
-                <dt className="font-extrabold">{q}</dt>
-                <dd className="mt-1 text-[15px] font-medium leading-relaxed text-muted">{a}</dd>
+                <dt className="font-extrabold">{tx(q)}</dt>
+                <dd className="mt-1 text-[15px] font-medium leading-relaxed text-muted">
+                  {tx.rich(a, {
+                    account: (c) => <Link href="/account" className={LINK}>{c}</Link>,
+                    terms: (c) => <Link href="/terms" className={LINK}>{c}</Link>,
+                  })}
+                </dd>
               </div>
             ))}
           </dl>
         </Panel>
       </div>
+      <LanguageLinks path="/pricing" inset />
     </PageShell>
   );
 }

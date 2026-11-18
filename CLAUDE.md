@@ -75,7 +75,10 @@ Package and architecture choices follow `D:\SuperSessionManager` (see its `AI_CO
   must match `app/globals.css` (tested). Store kit: `store/`; refresh screenshots with `node scripts/make-store-assets.mjs`.
 - Extension UI text goes through `t()` (`extension-src/src/i18n.ts`); strings live in `extension-src/locales/<lang>.json`
   (English is the source; all 15 catalogs must have every key, tested). Keep chain names, symbols and identifiers
-  untranslated and spacing in code, not in catalog values. The website is not translated.
+  untranslated and spacing in code, not in catalog values. On the website only the homepage and /pricing
+  are translated (`lib/i18n`, `app/[locale]`): text goes through `tx('English text')` (server `getTx()`, client
+  `useTx()`, `<T>` in the footer); catalogs in `lib/i18n/messages/` (header/footer strings in `chrome.json`), keyed by
+  the English text, with English as the fallback. `scripts/test/site-i18n.test.ts` checks them.
 - `npm run ext:lint:firefox` (web-ext), `node scripts/smoke-extension.mjs` and `node scripts/smoke-site.mjs <url>`
   need Playwright/Chromium locally (`PW_CHANNEL=msedge` uses the installed Edge; branded Chrome ignores unpacked
   extensions); `node scripts/smoke-extension-firefox.mjs` needs only an installed Firefox; `npm run ext:pack` builds store zips into `dist-extensions/` (gitignored).

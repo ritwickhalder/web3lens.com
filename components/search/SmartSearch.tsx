@@ -14,6 +14,7 @@ import { hasNativeSupport } from '@/lib/networks';
 import { prefsStore, toggleFavouriteChain } from '@/lib/prefs';
 import { recentStore } from '@/lib/recent';
 import { nativeResultUrl, searchUrl } from '@/lib/search-url';
+import { useTx } from '@/lib/i18n/client';
 
 type Notice =
   | { tone: 'error' | 'info'; text: string }
@@ -86,6 +87,7 @@ export function SmartSearch({
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  const tx = useTx();
   const recent = useSyncExternalStore(recentStore.subscribe, recentStore.getSnapshot, recentStore.getServerSnapshot);
   const prefs = useSyncExternalStore(prefsStore.subscribe, prefsStore.getSnapshot, prefsStore.getServerSnapshot);
 
@@ -146,7 +148,7 @@ export function SmartSearch({
     const extracted = extractQuery(value);
     if (extracted.from && extracted.query !== value.trim()) {
       setQuery(extracted.query);
-      setExtractedFrom(extracted.from === 'url' ? `Taken from the ${extracted.host} link you pasted` : 'Taken from the payment link you pasted');
+      setExtractedFrom(extracted.from === 'url' ? tx('Taken from the {host} link you pasted', { host: extracted.host ?? '' }) : tx('Taken from the payment link you pasted'));
     } else {
       setQuery(value);
       setExtractedFrom(null);
@@ -157,13 +159,13 @@ export function SmartSearch({
     e.preventDefault();
     const q = extractQuery(query).query.trim();
     if (!q) {
-      setNotice({ tone: 'error', text: 'Paste an address, transaction hash, block number or name first.' });
+      setNotice({ tone: 'error', text: tx('Paste an address, transaction hash, block number or name first.') });
       inputRef.current?.focus();
       return;
     }
     const d = detectQuery(q);
     if (d?.kind === 'secret') {
-      setNotice({ tone: 'error', text: d.note ?? 'This looks like a secret. Web3Lens will not search it.' });
+      setNotice({ tone: 'error', text: d.note ?? tx('This looks like a secret. Web3Lens will not search it.') });
       return;
     }
     const resolved = resolveExplorer(chain, q, { explorer: prefs.explorers[chain.id] });
@@ -178,10 +180,10 @@ export function SmartSearch({
     }
     if (resolved.unreachable) {
       const host = new URL(resolved.action.kind === 'url' ? resolved.action.href : resolved.action.action).hostname;
-      const when = resolved.unreachable.checkedAt ? new Date(resolved.unreachable.checkedAt).toLocaleDateString() : 'the last check';
+      const when = resolved.unreachable.checkedAt ? new Date(resolved.unreachable.checkedAt).toLocaleDateString() : tx('the last check');
       setNotice({
         tone: 'down',
-        text: `${chain.name}'s explorer (${host}) did not respond on ${when}. It may be offline for good.`,
+        text: tx("{chain}'s explorer ({host}) did not respond on {when}. It may be offline for good.", { chain: chain.name, host, when }),
         open: resolved.action,
         web: webSearchLink(chain, q),
       });
@@ -224,14 +226,14 @@ export function SmartSearch({
               if (!e.target.value) setUserPicked(false);
               setNotice(null);
             }}
-            placeholder="Address, tx hash, block or ENS name"
-            aria-label="Address, transaction hash, block or name"
+            placeholder={tx('Address, tx hash, block or ENS name')}
+            aria-label={tx('Address, transaction hash, block or name')}
             className="h-16 w-full min-w-0 bg-transparent px-4 font-mono text-base font-medium text-fg outline-none placeholder:font-sans placeholder:text-base placeholder:font-semibold placeholder:text-faint md:text-lg"
           />
           {query ? (
             <button
               type="button"
-              aria-label="Clear"
+              aria-label={tx('Clear')}
               onClick={() => {
                 setQuery('');
                 setExtractedFrom(null);
@@ -250,7 +252,7 @@ export function SmartSearch({
           type="submit"
           className="group flex h-14 cursor-pointer items-center justify-center gap-2 rounded-xl bg-accent px-8 text-base font-extrabold text-ink transition-colors hover:bg-accent-hover md:h-16"
         >
-          Search
+          {tx('Search')}
           <ArrowRight aria-hidden weight="bold" className="size-5 transition-transform group-hover:translate-x-0.5" />
         </button>
       </form>
@@ -261,10 +263,10 @@ export function SmartSearch({
             <Warning aria-hidden weight="bold" className="size-5 shrink-0" />
             <span className="min-w-0 flex-1">{notice.text}</span>
             <a href={notice.web} target="_blank" rel="noopener noreferrer" className="rounded-md bg-redline px-3 py-1 text-sm font-extrabold text-ink">
-              Search the web
+              {tx('Search the web')}
             </a>
             <button type="button" onClick={() => openExplorer(notice.open)} className="text-sm font-bold underline underline-offset-2">
-              Open anyway
+              {tx('Open anyway')}
             </button>
           </div>
         ) : notice ? (
@@ -286,12 +288,12 @@ export function SmartSearch({
               <span className="mr-1 flex items-center gap-1.5 rounded-md bg-accent/10 px-3 py-1.5 text-sm font-bold text-accent">
                 <Scan aria-hidden weight="bold" className="size-4" />
                 {detection.label}
-                {detection.checksum === 'valid' && <span className="font-semibold text-accent/80">· checksum ok</span>}
+                {detection.checksum === 'valid' && <span className="font-semibold text-accent/80">· {tx('checksum ok')}</span>}
               </span>
               {/* Offer the matching chains when there are several, or when the user's pick doesn't match the input. */}
               {(candidates.length > 1 || !candidates.includes(chain)) && (
                 <>
-                  <RowLabel>{candidates.includes(chain) ? 'Search on' : 'Switch to'}</RowLabel>
+                  <RowLabel>{candidates.includes(chain) ? tx('Search on') : tx('Switch to')}</RowLabel>
                   {candidates.slice(0, 6).map((c) => (
                     <Chip key={c.id} chain={c} active={c.id === chain.id} onClick={() => pickChain(c)} />
                   ))}
@@ -301,7 +303,7 @@ export function SmartSearch({
                 href={searchUrl(detection.normalized, candidates.includes(chain) ? chain.id : undefined)}
                 className="flex items-center gap-1 px-2 text-sm font-bold text-muted hover:text-accent"
               >
-                {candidates.length > 6 ? `All ${candidates.length} chains` : 'Results page'}
+                {candidates.length > 6 ? tx('All {count} chains', { count: candidates.length }) : tx('Results page')}
                 <ArrowSquareOut aria-hidden weight="bold" className="size-3.5" />
               </Link>
             </div>
@@ -311,7 +313,7 @@ export function SmartSearch({
           </div>
         ) : recent.length > 0 && !query ? (
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <RowLabel icon={ClockCounterClockwise}>Recent</RowLabel>
+            <RowLabel icon={ClockCounterClockwise}>{tx('Recent')}</RowLabel>
             {recent.map((r) => {
               const c = getChain(r.chainId);
               if (!c) return null;
@@ -331,18 +333,19 @@ export function SmartSearch({
               );
             })}
             <button type="button" onClick={() => recentStore.clear()} className="px-2 text-sm font-bold text-faint hover:text-fg">
-              Clear
+              {tx('Clear')}
             </button>
           </div>
         ) : hidePopular ? (
           <p className="hidden items-center text-sm font-semibold text-faint md:flex">
-            Press <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">/</kbd> or
-            <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">Ctrl K</kbd> to search from
-            anywhere on the page
+            {tx.rich('Press <slash/> or <ctrlk/> to search from anywhere on the page', {
+              slash: () => <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">/</kbd>,
+              ctrlk: () => <kbd className="mx-1.5 rounded border border-line px-1.5 py-0.5 font-mono text-xs text-muted">Ctrl K</kbd>,
+            })}
           </p>
         ) : (
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <RowLabel>Popular</RowLabel>
+            <RowLabel>{tx('Popular')}</RowLabel>
             {POPULAR.map((c) => (
               <Chip key={c.id} chain={c} active={userPicked && c.id === chain.id} onClick={() => pickChain(c)} />
             ))}

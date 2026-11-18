@@ -4,6 +4,7 @@ import { ArrowUpRight, PuzzlePiece } from '@phosphor-icons/react/dist/ssr';
 import { useSyncExternalStore } from 'react';
 import { EXTENSION_STORES, extensionInstallHref } from '@/config/site';
 import { detectBrowser, type BrowserMatch } from '@/lib/browser';
+import { useTx } from '@/lib/i18n/client';
 
 /** Server render (and first paint) assumes Chrome, the most common desktop browser; the client corrects it. */
 const SERVER_MATCH: BrowserMatch = { store: 'chrome', name: 'Chrome' };
@@ -40,6 +41,7 @@ const SIZES = {
  */
 export function AddToBrowserButton({ size = 'md', className = '' }: { size?: keyof typeof SIZES; className?: string }) {
   const { store, name } = useBrowser();
+  const tx = useTx();
   const href = store ? extensionInstallHref(store) : '/extension#install';
   return (
     <a
@@ -47,8 +49,8 @@ export function AddToBrowserButton({ size = 'md', className = '' }: { size?: key
       className={`inline-flex shrink-0 items-center whitespace-nowrap bg-accent text-ink no-underline transition-colors hover:bg-accent-hover ${SIZES[size]} ${className}`}
     >
       <PuzzlePiece aria-hidden weight="bold" className={size === 'lg' ? 'size-5' : 'size-4'} />
-      {store ? `Add to ${name}` : 'Get the extension'}
-      {store && <span className="sr-only"> (opens the {EXTENSION_STORES.find((s) => s.id === store)?.name} store)</span>}
+      {store ? tx('Add to {browser}', { browser: name }) : tx('Get the extension')}
+      {store && <span className="sr-only"> {tx('(opens the {store} store)', { store: EXTENSION_STORES.find((s) => s.id === store)?.name ?? '' })}</span>}
     </a>
   );
 }
@@ -56,13 +58,14 @@ export function AddToBrowserButton({ size = 'md', className = '' }: { size?: key
 /** Links to the stores other than the visitor's own, e.g. "Also for Firefox and Microsoft Edge". */
 export function OtherStoreLinks({ className = '' }: { className?: string }) {
   const { store } = useBrowser();
+  const tx = useTx();
   const others = EXTENSION_STORES.filter((s) => s.id !== store);
   return (
     <p className={`text-sm font-semibold text-muted ${className}`}>
-      {store ? 'Also for ' : 'Available for '}
+      {store ? tx('Also for') : tx('Available for')}{' '}
       {others.map((s, i) => (
         <span key={s.id}>
-          {i > 0 && (i === others.length - 1 ? ' and ' : ', ')}
+          {i > 0 && (i === others.length - 1 ? ` ${tx('and')} ` : ', ')}
           <a {...linkProps(extensionInstallHref(s.id))} className="inline-flex items-center gap-0.5 font-bold text-fg underline decoration-line-strong underline-offset-2 hover:text-accent">
             {s.name}
             <ArrowUpRight aria-hidden weight="bold" className="size-3" />

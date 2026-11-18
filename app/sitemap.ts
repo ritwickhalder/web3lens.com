@@ -3,6 +3,13 @@ import { BLOG_CATEGORIES } from '@/config/blog';
 import { PAGES, PRO_ON_SALE, SITE } from '@/config/site';
 import { getAllPosts } from '@/lib/blog/posts';
 import { allExplorerRoutes, getChain } from '@/lib/chains';
+import { LOCALES, PREFIXED_LOCALES, localizePath } from '@/lib/i18n/config';
+
+/** Absolute URL of a translated page (`/` and `/pricing`) in one language. */
+const localizedUrl = (path: string, locale: string) => `${SITE.url}${localizePath(path, locale) === '/' ? '' : localizePath(path, locale)}`;
+
+/** hreflang alternates for a page published in every language. */
+const languages = (path: string) => Object.fromEntries(LOCALES.map((l) => [l, localizedUrl(path, l)]));
 
 /** Per-browser pages hold nothing worth indexing; they are excluded here (and noindexed). */
 export const SITEMAP_EXCLUDED = ['/saved', '/settings'];
@@ -20,7 +27,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: page.href === '/' || page.href === '/blog' ? ('weekly' as const) : ('monthly' as const),
     priority: page.href === '/' ? 1 : page.href === '/blog' ? 0.8 : 0.6,
     ...(page.href === '/blog' && latest ? { lastModified: latest } : {}),
+    ...(page.href === '/' || page.href === '/pricing' ? { alternates: { languages: languages(page.href) } } : {}),
   }));
+  // The homepage and /pricing in every other language (same indexing rule as the English page).
+  const translated = PAGES.filter((p) => p.href === '/' || (PRO_ON_SALE && p.href === '/pricing')).flatMap((page) =>
+    PREFIXED_LOCALES.map((l) => ({
+      url: localizedUrl(page.href, l),
+      changeFrequency: page.href === '/' ? ('weekly' as const) : ('monthly' as const),
+      priority: page.href === '/' ? 0.9 : 0.6,
+      alternates: { languages: languages(page.href) },
+    })),
+  );
   const blogPosts = posts.map((p) => ({ url: `${SITE.url}/blog/${p.slug}`, lastModified: p.updated, changeFrequency: 'monthly' as const, priority: 0.7 }));
   const categories = BLOG_CATEGORIES.filter((c) => posts.some((p) => p.category === c.slug)).map((c) => {
     const inCat = posts.filter((p) => p.category === c.slug);
@@ -34,5 +51,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const chains = Object.keys(allExplorerRoutes())
     .filter((id) => getChain(id))
     .map((id) => ({ url: `${SITE.url}/explorer/${id}`, changeFrequency: 'monthly' as const, priority: 0.5 }));
-  return [...pages, ...blogPosts, ...categories, ...chains];
+  return [...pages, ...translated, ...blogPosts, ...categories, ...chains];
 }

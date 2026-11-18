@@ -2,6 +2,7 @@
 
 import { CheckCircle, CursorClick, Keyboard, PushPin, X } from '@phosphor-icons/react/dist/ssr';
 import { useState, useSyncExternalStore } from 'react';
+import { useTx } from '@/lib/i18n/client';
 
 const noopSubscribe = () => () => {};
 const readWelcome = () => new URLSearchParams(window.location.search).get('welcome') === 'true';
@@ -18,6 +19,7 @@ const TIPS = [
  * paint show nothing. Closing it drops the query parameter so a reload or a shared link shows the normal homepage.
  */
 export function WelcomeBlock() {
+  const tx = useTx();
   const welcome = useSyncExternalStore(noopSubscribe, readWelcome, () => false);
   const [dismissed, setDismissed] = useState(false);
   if (!welcome || dismissed) return null;
@@ -37,20 +39,20 @@ export function WelcomeBlock() {
         <button
           type="button"
           onClick={dismiss}
-          aria-label="Close the welcome message"
+          aria-label={tx('Close the welcome message')}
           className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-md text-faint transition-colors hover:bg-ink-3 hover:text-fg"
         >
           <X aria-hidden weight="bold" className="size-5" />
         </button>
         <p className="label inline-flex items-center gap-2">
           <CheckCircle aria-hidden weight="bold" className="size-4 text-accent" />
-          Extension installed
+          {tx('Extension installed')}
         </p>
         <h2 id="welcome-heading" className="heading mt-2.5 pr-10 text-3xl sm:text-4xl">
-          Welcome to <span className="text-accent">Web3Lens.</span>
+          {tx.rich('Welcome to <accent>Web3Lens.</accent>', { accent: (c) => <span className="text-accent">{c}</span> })}
         </h2>
         <p className="mt-2 max-w-3xl text-base font-medium text-muted sm:text-lg">
-          You&rsquo;re all set. Three ways to look up any address, transaction or name without leaving the page you&rsquo;re on:
+          {tx('You’re all set. Three ways to look up any address, transaction or name without leaving the page you’re on:')}
         </p>
         <ol className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
           {TIPS.map((tip, i) => (
@@ -58,9 +60,9 @@ export function WelcomeBlock() {
               <tip.icon aria-hidden weight="duotone" className="size-8 shrink-0 text-accent" />
               <div>
                 <p className="font-extrabold text-fg">
-                  <span className="text-accent">{i + 1}.</span> {tip.title}
+                  <span className="text-accent">{i + 1}.</span> {tx(tip.title)}
                 </p>
-                <p className="mt-1 text-sm font-medium text-muted">{tip.body}</p>
+                <p className="mt-1 text-sm font-medium text-muted">{tx(tip.body)}</p>
               </div>
             </li>
           ))}
@@ -70,7 +72,7 @@ export function WelcomeBlock() {
           onClick={dismiss}
           className="mt-6 rounded-md bg-accent px-6 py-3 text-base font-extrabold text-ink transition-colors hover:bg-accent-hover"
         >
-          Got it, start searching
+          {tx('Got it, start searching')}
         </button>
       </div>
     </section>

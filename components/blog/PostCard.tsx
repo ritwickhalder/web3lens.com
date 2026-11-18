@@ -4,10 +4,12 @@ import { PostCover } from '@/components/blog/PostCover';
 import { formatDate } from '@/components/blog/format';
 import { getCategory } from '@/config/blog';
 import type { PostSummary } from '@/lib/blog/posts';
+import { getTx } from '@/lib/i18n/server';
 
 /** Article card for listings and "related articles". */
 export function PostCard({ post, index, headingLevel = 'h2', featured = false }: { post: PostSummary; index?: number; headingLevel?: 'h2' | 'h3'; featured?: boolean }) {
   const H = headingLevel;
+  const tx = getTx();
   return (
     <article className={`group relative flex h-full flex-col rounded-xl border border-line bg-ink-2 p-2.5 transition-colors hover:border-accent/60 ${featured ? 'lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-8' : ''}`}>
       <PostCover icon={post.icon} category={post.category} coins={post.coins} index={index} size={featured ? 'hero' : 'card'} />
@@ -19,7 +21,7 @@ export function PostCard({ post, index, headingLevel = 'h2', featured = false }:
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span className="flex items-center gap-1">
             <Clock aria-hidden weight="bold" className="size-3.5" />
-            {post.readingMinutes} min read
+            {tx('{minutes} min read', { minutes: post.readingMinutes })}
           </span>
         </p>
         <H className={`mt-2.5 font-extrabold tracking-tight text-fg group-hover:text-accent ${featured ? 'text-2xl sm:text-3xl' : 'text-lg sm:text-xl'}`}>
@@ -29,7 +31,7 @@ export function PostCard({ post, index, headingLevel = 'h2', featured = false }:
         </H>
         <p className={`mt-2 font-medium leading-relaxed text-muted ${featured ? 'text-base sm:text-lg' : 'line-clamp-3 text-[15px]'}`}>{post.description}</p>
         <span className="mt-auto flex items-center gap-1.5 pt-4 text-sm font-bold text-fg group-hover:text-accent">
-          Read article <ArrowRight aria-hidden weight="bold" className="size-4 transition-transform group-hover:translate-x-1" />
+          {tx('Read article')} <ArrowRight aria-hidden weight="bold" className="size-4 transition-transform group-hover:translate-x-1" />
         </span>
       </div>
     </article>

@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { PREFIXED_LOCALES } from './lib/i18n/config';
 
 /** Old static-site URLs → new routes. Listed one by one so /google*.html verification files still resolve. */
 const LEGACY_PAGES: Record<string, string> = {
@@ -35,6 +36,10 @@ const nextConfig: NextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      // Translated homepage and /pricing: the response's language, read by search engines with <html lang> and hreflang.
+      ...PREFIXED_LOCALES.flatMap((locale) =>
+        [`/${locale}`, `/${locale}/pricing`].map((source) => ({ source, headers: [{ key: 'Content-Language', value: locale }] })),
+      ),
     ];
   },
 

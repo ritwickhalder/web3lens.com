@@ -27,13 +27,20 @@ import { getAllPosts, summary } from '@/lib/blog/posts';
 import { CHAIN_COUNT_LABEL } from '@/lib/chains';
 import { pageMetadata } from '@/lib/metadata';
 import { webApplication } from '@/lib/structured-data';
+import { LanguageLinks } from '@/components/i18n/LanguageLinks';
+import { localizePath } from '@/lib/i18n/config';
+import { HOME_META } from '@/lib/i18n/pages';
+import { localeAlternates } from '@/lib/i18n/seo';
+import { getLocale, getTx } from '@/lib/i18n/server';
 
-export const metadata = pageMetadata({
+const base = pageMetadata({
   title: SITE.title,
   absoluteTitle: true,
-  description: `Search any crypto address, transaction hash, block or ENS name on ${CHAIN_COUNT_LABEL} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.`,
+  description: HOME_META.description.replace('{chains}', CHAIN_COUNT_LABEL),
   path: '/',
 });
+
+export const metadata = { ...base, alternates: { ...base.alternates, ...localeAlternates('/', 'en') } };
 
 const HERO_COINS = ['bitcoin', 'ethereum', 'solana', 'binancecoin', 'ripple'];
 
@@ -53,7 +60,7 @@ const STEPS = [
   {
     icon: Stack,
     title: 'Pick the chain, or let us',
-    body: `The matching chain is pre-selected and alternatives are one click away. Or choose any of ${CHAIN_COUNT_LABEL} chains yourself.`,
+    body: 'The matching chain is pre-selected and alternatives are one click away. Or choose any of {chains} chains yourself.',
   },
   {
     icon: CursorClick,
@@ -71,6 +78,19 @@ const ROADMAP = [
   { icon: Wrench, title: 'Developer toolkit', body: 'Unit converter, calldata and transaction decoders, checksum and timestamp tools.', href: '/tools' },
 ];
 
+/** The homepage in the reader's language: JSON-LD for the translated WebPage (English keeps only WebApplication). */
+function pageJsonLd(locale: string, name: string, description: string) {
+  return {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}${localizePath('/', locale)}#webpage`,
+    url: `${SITE.url}${localizePath('/', locale)}`,
+    name,
+    description,
+    inLanguage: locale,
+    isPartOf: { '@id': `${SITE.url}/#website` },
+  };
+}
+
 function SectionHead({ label, title, aside }: { label: string; title: React.ReactNode; aside?: React.ReactNode }) {
   return (
     <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -84,9 +104,12 @@ function SectionHead({ label, title, aside }: { label: string; title: React.Reac
 }
 
 export default function HomePage() {
+  const locale = getLocale();
+  const tx = getTx();
+  const chains = CHAIN_COUNT_LABEL;
   return (
     <main>
-      <JsonLd data={webApplication()} />
+      <JsonLd data={locale === 'en' ? webApplication() : [webApplication(), pageJsonLd(locale, tx(SITE.title), tx(HOME_META.description, { chains }))]} />
       <WelcomeBlock />
       {/* Hero: centred headline and a wide search bar */}
       <section className="relative">
@@ -100,13 +123,13 @@ export default function HomePage() {
                 </span>
               ))}
             </span>
-            {CHAIN_COUNT_LABEL} blockchains<span className="hidden sm:inline"> · one search box</span>
+            {tx('{chains} blockchains', { chains })}<span className="hidden sm:inline"> · {tx('one search box')}</span>
           </p>
           <h1 className="heading mx-auto mt-7 text-[2.6rem] sm:text-6xl lg:whitespace-nowrap lg:text-[clamp(3.5rem,5.2vw,5.5rem)]">
-            Look up anything, on <span className="text-accent">any chain.</span>
+            {tx.rich('Look up anything, on <accent>any chain.</accent>', { accent: (c) => <span className="text-accent">{c}</span> })}
           </h1>
           <p className="mx-auto mt-5 max-w-5xl text-base font-medium leading-relaxed text-muted sm:text-lg xl:whitespace-nowrap xl:text-xl">
-            Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer.
+            {tx('Paste an address, transaction, block or name. Web3Lens recognises it, checks it and shows you the answer.')}
           </p>
           <div className="mx-auto mt-9 max-w-6xl">
             <SmartSearch hidePopular />
@@ -115,9 +138,9 @@ export default function HomePage() {
           {/* Pick a chain first: sets it in the search bar above */}
           <div className="mx-auto mt-7 max-w-6xl text-left">
             <div className="mb-3 flex items-center gap-4">
-              <p className="label shrink-0">Or start with a chain</p>
+              <p className="label shrink-0">{tx('Or start with a chain')}</p>
               <span aria-hidden className="h-px flex-1 bg-line" />
-              <p className="hidden shrink-0 text-sm font-semibold text-faint sm:block">Pick one, then paste your address</p>
+              <p className="hidden shrink-0 text-sm font-semibold text-faint sm:block">{tx('Pick one, then paste your address')}</p>
             </div>
             <PopularChains />
           </div>
@@ -129,7 +152,7 @@ export default function HomePage() {
                 className={`flex items-baseline justify-center gap-3 px-4 py-4 ${i > 1 ? 'border-t border-line sm:border-t-0' : ''} ${i % 2 === 1 ? 'border-l border-line sm:border-l-0' : ''}`}
               >
                 <dd className="text-2xl font-extrabold tracking-tight text-accent">{s.value}</dd>
-                <dt className="text-sm font-bold text-muted">{s.label}</dt>
+                <dt className="text-sm font-bold text-muted">{tx(s.label)}</dt>
               </div>
             ))}
           </dl>
@@ -138,19 +161,15 @@ export default function HomePage() {
 
       {/* Try it */}
       <section className="wrap mt-20">
-        <SectionHead label="Try it" title="Click an example, watch it detect" />
+        <SectionHead label={tx('Try it')} title={tx('Click an example, watch it detect')} />
         <TryExamples />
       </section>
 
       {/* How it works */}
       <section className="wrap mt-24">
         <SectionHead
-          label="How it works"
-          title={
-            <>
-              One search box instead of <span className="text-accent">{CHAIN_COUNT_LABEL} bookmarks</span>
-            </>
-          }
+          label={tx('How it works')}
+          title={tx.rich('One search box instead of <accent>{chains} bookmarks</accent>', { accent: (c) => <span className="text-accent">{c}</span> }, { chains })}
         />
         <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {STEPS.map((step, i) => (
@@ -161,8 +180,8 @@ export default function HomePage() {
                 </span>
                 <span className="text-5xl font-extrabold tracking-tight text-faint">0{i + 1}</span>
               </div>
-              <h3 className="mt-7 text-xl font-extrabold tracking-tight">{step.title}</h3>
-              <p className="mt-2 text-[15px] font-medium leading-relaxed text-muted">{step.body}</p>
+              <h3 className="mt-7 text-xl font-extrabold tracking-tight">{tx(step.title)}</h3>
+              <p className="mt-2 text-[15px] font-medium leading-relaxed text-muted">{tx(step.body, { chains })}</p>
             </li>
           ))}
         </ol>
@@ -170,7 +189,7 @@ export default function HomePage() {
 
       {/* Explore */}
       <section className="wrap mt-24">
-        <SectionHead label="Explore" title="More than a search box" />
+        <SectionHead label={tx('Explore')} title={tx('More than a search box')} />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
             {
@@ -197,10 +216,10 @@ export default function HomePage() {
                 <card.icon aria-hidden weight="duotone" className="size-9" />
               </span>
               <span>
-                <span className="block text-2xl font-extrabold tracking-tight">{card.title}</span>
-                <span className="mt-2 block max-w-md text-[15px] font-medium leading-relaxed text-muted">{card.body}</span>
+                <span className="block text-2xl font-extrabold tracking-tight">{tx(card.title)}</span>
+                <span className="mt-2 block max-w-md text-[15px] font-medium leading-relaxed text-muted">{tx(card.body)}</span>
                 <span className="mt-5 flex items-center gap-2 text-[15px] font-bold text-fg group-hover:text-accent">
-                  {card.cta}
+                  {tx(card.cta)}
                   <ArrowRight aria-hidden weight="bold" className="size-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </span>
@@ -217,13 +236,14 @@ export default function HomePage() {
               <PuzzlePiece aria-hidden weight="duotone" className="size-9" />
             </span>
             <div>
-              <p className="label">Browser extension</p>
-              <h2 className="heading mt-2.5 text-3xl sm:text-4xl">Web3Lens on every page you visit.</h2>
+              <p className="label">{tx('Browser extension')}</p>
+              <h2 className="heading mt-2.5 text-3xl sm:text-4xl">{tx('Web3Lens on every page you visit.')}</h2>
               <p className="mt-2 max-w-2xl text-[15px] font-medium text-muted">
-                Right-click any address to look it up, type <strong className="text-fg">w3</strong> in the address bar, or scan the page for addresses. Free, with no host
-                permissions and no tracking.{' '}
+                {tx.rich('Right-click any address to look it up, type <strong>w3</strong> in the address bar, or scan the page for addresses. Free, with no host permissions and no tracking.', {
+                  strong: (c) => <strong className="text-fg">{c}</strong>,
+                })}{' '}
                 <Link href="/extension" className="font-bold text-fg underline decoration-line-strong underline-offset-2 hover:text-accent">
-                  What it does
+                  {tx('What it does')}
                 </Link>
               </p>
             </div>
@@ -238,11 +258,11 @@ export default function HomePage() {
       {/* Blog */}
       <section className="wrap mt-24">
         <SectionHead
-          label="From the blog"
-          title="Guides for reading the chain"
+          label={tx('From the blog')}
+          title={tx('Guides for reading the chain')}
           aside={
             <Link href="/blog" className="text-[15px] font-bold text-muted hover:text-accent">
-              All articles →
+              {tx('All articles →')}
             </Link>
           }
         />
@@ -260,11 +280,11 @@ export default function HomePage() {
       {/* Roadmap */}
       <section className="wrap mt-24">
         <SectionHead
-          label="New"
-          title="More than a link to an explorer"
+          label={tx('New')}
+          title={tx('More than a link to an explorer')}
           aside={
             <Link href="/contact" className="text-[15px] font-bold text-muted hover:text-accent">
-              Suggest a feature →
+              {tx('Suggest a feature →')}
             </Link>
           }
         />
@@ -274,10 +294,10 @@ export default function HomePage() {
               <Link href={item.href} className="group block h-full rounded-2xl border border-line bg-ink-2 p-6 transition-colors hover:border-accent/60 hover:bg-ink-3">
                 <div className="flex items-start justify-between">
                   <item.icon aria-hidden weight="duotone" className="size-10 text-accent" />
-                  <span className="rounded-full border border-accent/50 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.12em] text-accent">Live</span>
+                  <span className="rounded-full border border-accent/50 px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.12em] text-accent">{tx('Live')}</span>
                 </div>
-                <h3 className="mt-5 text-lg font-extrabold tracking-tight group-hover:text-accent">{item.title}</h3>
-                <p className="mt-1.5 text-[15px] font-medium leading-relaxed text-muted">{item.body}</p>
+                <h3 className="mt-5 text-lg font-extrabold tracking-tight group-hover:text-accent">{tx(item.title)}</h3>
+                <p className="mt-1.5 text-[15px] font-medium leading-relaxed text-muted">{tx(item.body)}</p>
               </Link>
             </li>
           ))}
@@ -292,9 +312,9 @@ export default function HomePage() {
               <Heart aria-hidden weight="duotone" className="size-9" />
             </span>
             <div>
-              <h2 className="heading text-3xl sm:text-4xl">Free and ad-free since 2018.</h2>
+              <h2 className="heading text-3xl sm:text-4xl">{tx('Free and ad-free since 2018.')}</h2>
               <p className="mt-2 max-w-xl text-[15px] font-medium text-muted">
-                Web3Lens is a one-person project kept alive by donations. If it saves you time, consider chipping in.
+                {tx('Web3Lens is a one-person project kept alive by donations. If it saves you time, consider chipping in.')}
               </p>
             </div>
           </div>
@@ -302,10 +322,11 @@ export default function HomePage() {
             href="#support"
             className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-accent px-7 py-4 text-base font-extrabold text-ink transition-colors hover:bg-accent-hover"
           >
-            Support Web3Lens <ArrowRight aria-hidden weight="bold" className="size-5" />
+            {tx('Support Web3Lens')} <ArrowRight aria-hidden weight="bold" className="size-5" />
           </a>
         </div>
       </section>
+      <LanguageLinks path="/" />
     </main>
   );
 }

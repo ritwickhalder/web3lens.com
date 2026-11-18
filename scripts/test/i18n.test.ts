@@ -1,7 +1,7 @@
 /**
  * Extension translations (extension-src/locales/*.json): every language has exactly the English keys,
  * the same {placeholders}, keeps chain names, symbols and technical terms verbatim, and every key the
- * code uses exists. The website is not translated.
+ * code uses exists. The website's homepage and /pricing have their own catalogs (site-i18n.test.ts).
  */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';

@@ -4,9 +4,11 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { TRY_EVENT } from '@/components/search/SmartSearch';
 import { EXAMPLES } from '@/lib/detect';
+import { useTx } from '@/lib/i18n/client';
 
 /** Example queries; clicking one fills the search bar so people see auto-detect at work. */
 export function TryExamples() {
+  const tx = useTx();
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {EXAMPLES.map((ex) => (
@@ -19,13 +21,13 @@ export function TryExamples() {
           <span className="flex items-center gap-3">
             <ChainGlyph id={ex.icon} name={ex.note} size="lg" />
             <span className="min-w-0">
-              <span className="block text-base font-extrabold text-fg">{ex.note}</span>
-              <span className="block text-xs font-bold uppercase tracking-[0.12em] text-accent">{ex.expect}</span>
+              <span className="block text-base font-extrabold text-fg">{tx(ex.note)}</span>
+              <span className="block text-xs font-bold uppercase tracking-[0.12em] text-accent">{tx(ex.expect)}</span>
             </span>
           </span>
           <span className="mt-5 block truncate rounded-lg bg-ink px-3 py-2 font-mono text-[13px] text-fg/90">{ex.query}</span>
           <span className="mt-4 flex items-center gap-1.5 text-sm font-bold text-muted group-hover:text-accent">
-            Try this example <ArrowRight aria-hidden weight="bold" className="size-4 transition-transform group-hover:translate-x-0.5" />
+            {tx('Try this example')} <ArrowRight aria-hidden weight="bold" className="size-4 transition-transform group-hover:translate-x-0.5" />
           </span>
         </button>
       ))}

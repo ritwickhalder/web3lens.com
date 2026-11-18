@@ -5,11 +5,13 @@ import { ChainGlyph } from '@/components/search/ChainGlyph';
 import { CHAIN_EVENT } from '@/components/search/SmartSearch';
 import { chainMeta, POPULAR_CHAIN_IDS } from '@/lib/chain-meta';
 import { CHAINS, countLabel, getChain, type Chain } from '@/lib/chains';
+import { useTx } from '@/lib/i18n/client';
 
 const POPULAR = POPULAR_CHAIN_IDS.map((id) => getChain(id)).filter((c): c is Chain => Boolean(c));
 
 /** Tiles for the most-used chains; clicking one selects it in the search bar. */
 export function PopularChains() {
+  const tx = useTx();
   const select = (id: string) => window.dispatchEvent(new CustomEvent(CHAIN_EVENT, { detail: id }));
   return (
     <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
@@ -36,8 +38,8 @@ export function PopularChains() {
           <MagnifyingGlass weight="bold" className="size-5" />
         </span>
         <span>
-          <span className="block text-[15px] font-extrabold">{countLabel(CHAINS.length - POPULAR.length)} more</span>
-          <span className="block text-xs font-bold">all chains</span>
+          <span className="block text-[15px] font-extrabold">{tx('{count} more', { count: countLabel(CHAINS.length - POPULAR.length) })}</span>
+          <span className="block text-xs font-bold">{tx('all chains')}</span>
         </span>
       </button>
     </div>
