@@ -3,10 +3,11 @@
 import { ArrowUpRight, CaretDown, List, Newspaper, X } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import { AccountButton, MobileAccountPanel } from '@/components/account/AccountButton';
 import { Logo } from '@/components/brand/Logo';
 import { AddToBrowserButton } from '@/components/extension/AddToBrowser';
+import { LanguageMenu } from '@/components/i18n/LanguageMenu';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { MAIN_NAV, MARKET_LINK, NEWS_LINKS, PRO_ON_SALE } from '@/config/site';
 import { useLocale, useTx } from '@/lib/i18n/client';
@@ -16,7 +17,7 @@ import { localizePath } from '@/lib/i18n/config';
 const NAV = PRO_ON_SALE ? [...MAIN_NAV, { label: 'Pricing', href: '/pricing' }] : MAIN_NAV;
 
 const navItem =
-  'flex h-10 items-center gap-1.5 rounded-md px-3.5 text-[15px] font-semibold text-fg/80 transition-colors hover:bg-ink-3 hover:text-fg';
+  'flex h-10 items-center gap-1.5 whitespace-nowrap rounded-md px-2.5 text-[15px] font-semibold text-fg/80 transition-colors hover:bg-ink-3 hover:text-fg min-[1800px]:px-3.5';
 
 /** `home` is the homepage in the page's language (`/` or `/de`); the homepage is active only on itself. */
 function isActive(pathname: string, href: string, home = '/') {
@@ -73,7 +74,34 @@ function NewsMenu() {
   );
 }
 
-/** Full-width sticky navbar. Below xl it collapses into a sheet. */
+/**
+ * True while the inline nav bar does not fit its row (long translated labels, the sign-in button, odd widths), so
+ * the header falls back to the menu sheet instead of clipping. Remembers the width the bar needed, to bring it back
+ * once the row is wide enough again.
+ */
+function useBarOverflow(navRef: RefObject<HTMLElement | null>, barRef: RefObject<HTMLElement | null>) {
+  const [cramped, setCramped] = useState(false);
+  const needed = useRef(0);
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    // ResizeObserver reports once on observe, so this also runs on first paint.
+    const observer = new ResizeObserver(() => {
+      if (cramped) {
+        if (nav.clientWidth >= needed.current) setCramped(false);
+      } else if (barRef.current?.offsetParent && nav.scrollWidth > nav.clientWidth + 1) {
+        needed.current = nav.scrollWidth;
+        setCramped(true);
+      }
+    });
+    observer.observe(nav);
+    if (barRef.current) observer.observe(barRef.current);
+    return () => observer.disconnect();
+  }, [cramped, navRef, barRef]);
+  return cramped;
+}
+
+/** Full-width sticky navbar. Below xl (2xl on translated pages) it collapses into a sheet. */
 export function SiteHeader() {
   const pathname = usePathname();
   const tx = useTx();
@@ -83,6 +111,15 @@ export function SiteHeader() {
   const home = localizePath('/', locale);
   const [menuOpen, setMenuOpen] = useState(false);
   const close = () => setMenuOpen(false);
+  const navRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+  // Translated nav labels run longer (German, Russian…), so translated pages keep the menu sheet up to 2xl and
+  // show the extension button only on very wide screens. Literal class names, so Tailwind sees them.
+  const english = locale === 'en';
+  const cramped = useBarOverflow(navRef, barRef);
+  const bar = cramped ? '' : english ? 'xl:flex' : '2xl:flex';
+  const sheetOnly = cramped ? '' : english ? 'xl:hidden' : '2xl:hidden';
+  const extension = english ? '2xl:block' : 'min-[1800px]:block';
 
   // Keep the page behind the open menu from scrolling, so the menu itself scrolls on short screens.
   useEffect(() => {
@@ -96,12 +133,12 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-ink/90 backdrop-blur-md">
-      <nav className="wrap flex h-[72px] items-center gap-4">
+      <nav ref={navRef} className="wrap flex h-[72px] items-center gap-4">
         <Link href={home} aria-label={tx('Web3Lens home')} onClick={close} className="shrink-0">
           <Logo />
         </Link>
 
-        <div className="ml-auto hidden items-center gap-1 xl:flex">
+        <div ref={barRef} className={`ml-auto hidden items-center gap-1 ${bar}`}>
           {nav.map((link) => (
             <Link
               key={link.href}
@@ -117,6 +154,8 @@ export function SiteHeader() {
             {tx('Markets')}
             <ArrowUpRight aria-hidden weight="bold" className="size-3.5" />
           </a>
+          {/* The bar is full below 1800px, so only the globe shows there. */}
+          <LanguageMenu locale={locale} label={tx('Language')} codeClassName="hidden min-[1800px]:inline" />
           <ThemeToggle />
           <AccountButton className="ml-2" />
           <Link
@@ -125,25 +164,26 @@ export function SiteHeader() {
           >
             {tx('Contact')}
           </Link>
-          <span className="ml-2 hidden 2xl:block">
+          <span className={`ml-2 hidden ${extension}`}>
             <AddToBrowserButton size="sm" />
           </span>
         </div>
 
-        <ThemeToggle className="ml-auto xl:hidden" />
+        <LanguageMenu locale={locale} label={tx('Language')} className={`ml-auto ${sheetOnly}`} />
+        <ThemeToggle className={sheetOnly} />
         <button
           type="button"
           aria-label={menuOpen ? tx('Close menu') : tx('Open menu')}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((o) => !o)}
-          className="grid size-11 place-items-center rounded-md border border-line-strong text-fg xl:hidden"
+          className={`grid size-11 place-items-center rounded-md border border-line-strong text-fg ${sheetOnly}`}
         >
           {menuOpen ? <X weight="bold" className="size-5" /> : <List weight="bold" className="size-5" />}
         </button>
       </nav>
 
       {menuOpen && (
-        <div className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-line bg-ink-2 xl:hidden">
+        <div className={`max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-line bg-ink-2 ${sheetOnly}`}>
           <div className="wrap grid grid-cols-1 gap-8 py-5 sm:grid-cols-2">
             <div>
               <div className="mb-5">

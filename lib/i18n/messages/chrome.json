@@ -43,7 +43,8 @@
   "Save and restore browser sessions and tabs": "Browser-Sitzungen und Tabs speichern und wiederherstellen",
   "Everyday web developer utilities": "Alltägliche Tools für Webentwickler",
   "Search the Wayback Machine and more web archives": "Die Wayback Machine und weitere Webarchive durchsuchen",
-  "Edit text, CSS and HTML on any webpage visually": "Text, CSS und HTML auf jeder Webseite visuell bearbeiten"
+  "Edit text, CSS and HTML on any webpage visually": "Text, CSS und HTML auf jeder Webseite visuell bearbeiten",
+  "Language": "Sprache"
  },
  "es": {
   "News": "Noticias",
@@ -89,7 +90,8 @@
   "Save and restore browser sessions and tabs": "Guarda y restaura sesiones y pestañas del navegador",
   "Everyday web developer utilities": "Utilidades diarias para desarrolladores web",
   "Search the Wayback Machine and more web archives": "Busca en Wayback Machine y otros archivos web",
-  "Edit text, CSS and HTML on any webpage visually": "Edita texto, CSS y HTML en cualquier página web de forma visual"
+  "Edit text, CSS and HTML on any webpage visually": "Edita texto, CSS y HTML en cualquier página web de forma visual",
+  "Language": "Idioma"
  },
  "fr": {
   "News": "Actualités",
@@ -135,7 +137,8 @@
   "Save and restore browser sessions and tabs": "Enregistrez et restaurez vos sessions et onglets",
   "Everyday web developer utilities": "Utilitaires quotidiens pour développeurs web",
   "Search the Wayback Machine and more web archives": "Cherchez dans la Wayback Machine et d’autres archives web",
-  "Edit text, CSS and HTML on any webpage visually": "Modifiez visuellement le texte, le CSS et le HTML de n’importe quelle page"
+  "Edit text, CSS and HTML on any webpage visually": "Modifiez visuellement le texte, le CSS et le HTML de n’importe quelle page",
+  "Language": "Langue"
  },
  "it": {
   "News": "Notizie",
@@ -181,7 +184,8 @@
   "Save and restore browser sessions and tabs": "Salva e ripristina sessioni e schede del browser",
   "Everyday web developer utilities": "Utility quotidiane per sviluppatori web",
   "Search the Wayback Machine and more web archives": "Cerca nella Wayback Machine e in altri archivi web",
-  "Edit text, CSS and HTML on any webpage visually": "Modifica testo, CSS e HTML di qualsiasi pagina in modo visuale"
+  "Edit text, CSS and HTML on any webpage visually": "Modifica testo, CSS e HTML di qualsiasi pagina in modo visuale",
+  "Language": "Lingua"
  },
  "pt-BR": {
   "News": "Notícias",
@@ -227,7 +231,8 @@
   "Save and restore browser sessions and tabs": "Salve e restaure sessões e abas do navegador",
   "Everyday web developer utilities": "Utilitários do dia a dia para desenvolvedores web",
   "Search the Wayback Machine and more web archives": "Pesquise na Wayback Machine e em outros arquivos da web",
-  "Edit text, CSS and HTML on any webpage visually": "Edite texto, CSS e HTML de qualquer página visualmente"
+  "Edit text, CSS and HTML on any webpage visually": "Edite texto, CSS e HTML de qualquer página visualmente",
+  "Language": "Idioma"
  },
  "nl": {
   "News": "Nieuws",
@@ -273,7 +278,8 @@
   "Save and restore browser sessions and tabs": "Browsersessies en tabbladen opslaan en herstellen",
   "Everyday web developer utilities": "Dagelijkse hulpmiddelen voor webontwikkelaars",
   "Search the Wayback Machine and more web archives": "Doorzoek de Wayback Machine en meer webarchieven",
-  "Edit text, CSS and HTML on any webpage visually": "Tekst, CSS en HTML visueel bewerken op elke webpagina"
+  "Edit text, CSS and HTML on any webpage visually": "Tekst, CSS en HTML visueel bewerken op elke webpagina",
+  "Language": "Taal"
  },
  "pl": {
   "News": "Wiadomości",
@@ -319,7 +325,8 @@
   "Save and restore browser sessions and tabs": "Zapisuj i przywracaj sesje oraz karty przeglądarki",
   "Everyday web developer utilities": "Codzienne narzędzia dla web developerów",
   "Search the Wayback Machine and more web archives": "Przeszukuj Wayback Machine i inne archiwa internetu",
-  "Edit text, CSS and HTML on any webpage visually": "Wizualnie edytuj tekst, CSS i HTML na dowolnej stronie"
+  "Edit text, CSS and HTML on any webpage visually": "Wizualnie edytuj tekst, CSS i HTML na dowolnej stronie",
+  "Language": "Język"
  },
  "tr": {
   "News": "Haberler",
@@ -365,7 +372,8 @@
   "Save and restore browser sessions and tabs": "Tarayıcı oturumlarını ve sekmeleri kaydedin ve geri yükleyin",
   "Everyday web developer utilities": "Web geliştiricileri için günlük araçlar",
   "Search the Wayback Machine and more web archives": "Wayback Machine'i ve diğer web arşivlerini arayın",
-  "Edit text, CSS and HTML on any webpage visually": "Her web sayfasında metni, CSS'i ve HTML'i görsel olarak düzenleyin"
+  "Edit text, CSS and HTML on any webpage visually": "Her web sayfasında metni, CSS'i ve HTML'i görsel olarak düzenleyin",
+  "Language": "Dil"
  },
  "ru": {
   "News": "Новости",
@@ -411,7 +419,8 @@
   "Save and restore browser sessions and tabs": "Сохранение и восстановление сеансов и вкладок браузера",
   "Everyday web developer utilities": "Повседневные утилиты для веб-разработчиков",
   "Search the Wayback Machine and more web archives": "Поиск в Wayback Machine и других веб-архивах",
-  "Edit text, CSS and HTML on any webpage visually": "Визуальная правка текста, CSS и HTML на любой странице"
+  "Edit text, CSS and HTML on any webpage visually": "Визуальная правка текста, CSS и HTML на любой странице",
+  "Language": "Язык"
  },
  "id": {
   "News": "Berita",
@@ -457,7 +466,8 @@
   "Save and restore browser sessions and tabs": "Simpan dan pulihkan sesi serta tab browser",
   "Everyday web developer utilities": "Utilitas harian untuk pengembang web",
   "Search the Wayback Machine and more web archives": "Cari di Wayback Machine dan arsip web lainnya",
-  "Edit text, CSS and HTML on any webpage visually": "Edit teks, CSS, dan HTML di halaman web mana pun secara visual"
+  "Edit text, CSS and HTML on any webpage visually": "Edit teks, CSS, dan HTML di halaman web mana pun secara visual",
+  "Language": "Bahasa"
  },
  "vi": {
   "News": "Tin tức",
@@ -503,7 +513,8 @@
   "Save and restore browser sessions and tabs": "Lưu và khôi phục phiên và thẻ trình duyệt",
   "Everyday web developer utilities": "Tiện ích hằng ngày cho nhà phát triển web",
   "Search the Wayback Machine and more web archives": "Tìm trên Wayback Machine và các kho lưu trữ web khác",
-  "Edit text, CSS and HTML on any webpage visually": "Chỉnh sửa trực quan văn bản, CSS và HTML trên mọi trang web"
+  "Edit text, CSS and HTML on any webpage visually": "Chỉnh sửa trực quan văn bản, CSS và HTML trên mọi trang web",
+  "Language": "Ngôn ngữ"
  },
  "ja": {
   "News": "ニュース",
@@ -549,7 +560,8 @@
   "Save and restore browser sessions and tabs": "ブラウザのセッションとタブを保存・復元",
   "Everyday web developer utilities": "Web 開発者のための日常ツール",
   "Search the Wayback Machine and more web archives": "Wayback Machine などのウェブアーカイブを検索",
-  "Edit text, CSS and HTML on any webpage visually": "どのウェブページのテキスト・CSS・HTML もビジュアルに編集"
+  "Edit text, CSS and HTML on any webpage visually": "どのウェブページのテキスト・CSS・HTML もビジュアルに編集",
+  "Language": "言語"
  },
  "ko": {
   "News": "뉴스",
@@ -595,7 +607,8 @@
   "Save and restore browser sessions and tabs": "브라우저 세션과 탭 저장 및 복원",
   "Everyday web developer utilities": "웹 개발자를 위한 일상 도구",
   "Search the Wayback Machine and more web archives": "Wayback Machine 및 기타 웹 아카이브 검색",
-  "Edit text, CSS and HTML on any webpage visually": "모든 웹페이지의 텍스트, CSS, HTML을 시각적으로 편집"
+  "Edit text, CSS and HTML on any webpage visually": "모든 웹페이지의 텍스트, CSS, HTML을 시각적으로 편집",
+  "Language": "언어"
  },
  "zh-CN": {
   "News": "新闻",
@@ -641,7 +654,8 @@
   "Save and restore browser sessions and tabs": "保存并恢复浏览器会话和标签页",
   "Everyday web developer utilities": "面向 Web 开发者的日常工具",
   "Search the Wayback Machine and more web archives": "搜索 Wayback Machine 及更多网页存档",
-  "Edit text, CSS and HTML on any webpage visually": "可视化编辑任意网页的文字、CSS 和 HTML"
+  "Edit text, CSS and HTML on any webpage visually": "可视化编辑任意网页的文字、CSS 和 HTML",
+  "Language": "语言"
  },
  "zh-TW": {
   "News": "新聞",
@@ -687,6 +701,7 @@
   "Save and restore browser sessions and tabs": "儲存並恢復瀏覽器會話和標籤頁",
   "Everyday web developer utilities": "面向 Web 開發者的日常工具",
   "Search the Wayback Machine and more web archives": "搜尋 Wayback Machine 及更多網頁存檔",
-  "Edit text, CSS and HTML on any webpage visually": "視覺化編輯任意網頁的文字、CSS 和 HTML"
+  "Edit text, CSS and HTML on any webpage visually": "視覺化編輯任意網頁的文字、CSS 和 HTML",
+  "Language": "語言"
  }
 }

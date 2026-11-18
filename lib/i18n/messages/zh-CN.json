@@ -87,7 +87,6 @@
  "Popular": "热门",
  "{minutes} min read": "阅读约 {minutes} 分钟",
  "Read article": "阅读文章",
- "Language": "语言",
  "Web3Lens - Blockchain Explorer | Blockchain Search Engine": "Web3Lens - 区块链浏览器 | 区块链搜索引擎",
  "Search any crypto address, transaction hash, block or ENS name on {chains} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.": "在 {chains} 条区块链上搜索任意加密地址、交易哈希、区块或 ENS 名称。Web3Lens 会识别链、验证校验和，并找到合适的区块浏览器。",
  "Pricing: Free and Pro": "价格：Free 与 Pro",

@@ -9,7 +9,10 @@ import { LOCALES, PREFIXED_LOCALES, localizePath } from '@/lib/i18n/config';
 const localizedUrl = (path: string, locale: string) => `${SITE.url}${localizePath(path, locale) === '/' ? '' : localizePath(path, locale)}`;
 
 /** hreflang alternates for a page published in every language. */
-const languages = (path: string) => Object.fromEntries(LOCALES.map((l) => [l, localizedUrl(path, l)]));
+const languages = (path: string) => ({
+  ...Object.fromEntries(LOCALES.map((l) => [l, localizedUrl(path, l)])),
+  'x-default': localizedUrl(path, 'en'),
+});
 
 /** Per-browser pages hold nothing worth indexing; they are excluded here (and noindexed). */
 export const SITEMAP_EXCLUDED = ['/saved', '/settings'];

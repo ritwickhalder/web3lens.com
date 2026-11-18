@@ -87,7 +87,6 @@
  "Popular": "熱門",
  "{minutes} min read": "閱讀約 {minutes} 分鐘",
  "Read article": "閱讀文章",
- "Language": "語言",
  "Web3Lens - Blockchain Explorer | Blockchain Search Engine": "Web3Lens - 區塊鏈瀏覽器 | 區塊鏈搜尋引擎",
  "Search any crypto address, transaction hash, block or ENS name on {chains} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.": "在 {chains} 條區塊鏈上搜尋任意加密地址、交易雜湊、區塊或 ENS 名稱。Web3Lens 會識別鏈、驗證校驗和，並找到合適的區塊瀏覽器。",
  "Pricing: Free and Pro": "價格：Free 與 Pro",

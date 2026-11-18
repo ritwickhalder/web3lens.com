@@ -87,7 +87,6 @@
  "Popular": "Популярные",
  "{minutes} min read": "{minutes} мин чтения",
  "Read article": "Читать статью",
- "Language": "Язык",
  "Web3Lens - Blockchain Explorer | Blockchain Search Engine": "Web3Lens — обозреватель блокчейнов | Поисковик по блокчейнам",
  "Search any crypto address, transaction hash, block or ENS name on {chains} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.": "Ищите любой криптоадрес, хеш транзакции, блок или имя ENS в {chains} блокчейнах. Web3Lens определяет сеть, проверяет контрольные суммы и находит нужный обозреватель.",
  "Pricing: Free and Pro": "Цены: Free и Pro",

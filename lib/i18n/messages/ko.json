@@ -87,7 +87,6 @@
  "Popular": "인기",
  "{minutes} min read": "{minutes}분 분량",
  "Read article": "글 읽기",
- "Language": "언어",
  "Web3Lens - Blockchain Explorer | Blockchain Search Engine": "Web3Lens - 블록체인 탐색기 | 블록체인 검색 엔진",
  "Search any crypto address, transaction hash, block or ENS name on {chains} blockchains. Web3Lens detects the chain, verifies checksums and finds the right explorer.": "블록체인 {chains}개에서 암호화폐 주소, 트랜잭션 해시, 블록, ENS 이름을 검색하세요. Web3Lens가 체인을 감지하고 체크섬을 확인한 뒤 알맞은 탐색기를 찾아 줍니다.",
  "Pricing: Free and Pro": "요금: Free 및 Pro",
